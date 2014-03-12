@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>findpath()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">findpath</span><span class="s">(</span><span class="s">list</span>, curvature =<span class="s">1.0</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Constructs a fluid path from a list of coordinates. Each element in the list is a 2-tuple
+        defining the x-coordinate and the y-coordinate. If the curve has more than three points,
+        the <i>curvature</i> parameter offers some control on how separate segments are stitched
+        together: from straight lines (0.0) to smooth curves (1.0).
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        <a href="#BezierPath">BezierPath</a> containing the constructed path
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Paths.html">Paths</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/findpath.jpg" width="125"/></span>
+              </td><td>
+<pre>
+points = <span class="s">[</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span><span class="s">)</span>, <span class="s">(</span><span class="s">90</span>, <span class="s">90</span><span class="s">)</span>, <span class="s">(</span><span class="s">350</span>, <span class="s">200</span><span class="s">)</span><span class="s">]</span>
+<span class="kw">for</span> x, y <span class="kw">in</span> points:
+    <span class="kw">oval</span><span class="s">(</span>x<span class="s">-2</span>, y<span class="s">-2</span>, <span class="s">4</span>, <span class="s">4</span><span class="s">)</span>
+ 
+<span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
+<span class="kw">stroke</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
+<span class="kw">autoclosepath</span><span class="s">(</span><span class="kw">False</span><span class="s">)</span>    
+path = <span class="kw">findpath</span><span class="s">(</span>points<span class="s">)</span>
+<span class="kw">drawpath</span><span class="s">(</span>path<span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

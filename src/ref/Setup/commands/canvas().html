@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>canvas</h3>
+
+    <div class="definition">
+      <h2>Object Description</h2>
+
+      <div class="row">
+        The <code>canvas</code> object accumulates a list of graphic objects as a side effect of
+        calls to the various plotdevice drawing commands. It can save the image to an output file and
+        can clear itself if you have more drawing to do.
+      </div>
+
+      <h2>Properties</h2>
+
+      <div class="row">
+<pre>canvas.<span class="kw">size</span>   <span class="grey"># returns (w, h) based on prior call to size()</span>
+canvas.<span class="kw">_grobs</span> <span class="grey"># list of objects to be called when canvas.save() is called</span>
+</pre>
+      </div>
+
+      <h2>Methods</h2>
+
+      <div class="row">
+<pre>canvas.<span class="kw">clear</span>()        <span class="grey"># erases all objects on the canvas and resets drawing state</span>
+canvas.<span class="kw">save</span>(filename) <span class="grey"># name must end with pdf, eps, png, tiff, jpg, gif, or mov</span>
+</pre>
+      </div>
+    </div>
+  </div>
+
+</body></html>

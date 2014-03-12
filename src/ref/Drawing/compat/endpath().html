@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>endpath()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">endpath</span><span class="s">(</span>draw=<span class="kw">True</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        The endpath() command is the companion to <a href="#beginpath()">beginpath()</a> and may
+        only be called after the later. When endpath() is called, the path defined between
+        beginpath() and endpath() is drawn to the screen. Optionally, when endpath(draw=False) is
+        called, the path is not drawn to the screen, but can be assigned to a variable and drawn to
+        the screen at a later time with the <a href="#drawpath()">drawpath()</a> command. Check the
+        <a href="../tut/Paths.html">tutorial on paths</a> for other possibilities with paths.
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        <a href="#BezierPath">BezierPath</a> containing the constructed path
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Paths.html">Paths</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/endpath.jpg" width="125"/></span>
+              </td><td>
+<pre>
+<span class="kw">stroke</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
+<span class="kw">beginpath</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span><span class="s">)</span>
+<span class="kw">lineto</span><span class="s">(</span><span class="s">40</span>, <span class="s">10</span><span class="s">)</span>
+<span class="kw">endpath</span><span class="s">(</span><span class="s">)</span>
+</pre>
+<pre>
+<span class="kw">beginpath</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span><span class="s">)</span>
+<span class="kw">lineto</span><span class="s">(</span><span class="s">40</span>, <span class="s">10</span><span class="s">)</span>
+p = <span class="kw">endpath</span><span class="s">(</span>draw=<span class="kw">False</span><span class="s">)</span>
+<span class="kw">drawpath</span><span class="s">(</span>p<span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

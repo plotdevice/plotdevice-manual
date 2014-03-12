@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>BezierPath</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">BezierPath</span><span class="s">(</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Each path in PlotDevice (see for example, <a href="Primitives#rect()">rect()</a>, <a href="Primitives#oval()">oval()</a>, <a href="#bezier()">bezier()</a>, <a href="Typography#textpath()">textpath()</a>) is a BezierPath object. This object has a number of
+        properties to manipulate indivdual points in the path and can be passed to the bezier()
+        command to draw it on the canvas.
+      </div>
+
+      <h2>Properties</h2>
+
+      <div class="row">
+<pre>path.<span class="s">bounds</span>
+path.<span class="s">length</span>
+path.<span class="s">contours</span>
+</pre>
+      </div>
+
+      <h2>Methods</h2>
+
+      <div class="row">
+<pre>path<span class="s">[</span>i<span class="s">]</span>
+path.<span>moveto</span><span class="s">(</span>x, y<span class="s">)</span>
+path.<span>lineto</span><span class="s">(</span>x, y<span class="s">)</span>
+path.<span>curveto</span><span class="s">(</span>h1x, h1y, h2x, h2y, x, y<span class="s">)</span>
+path.<span>closepath</span><span class="s">(</span><span class="s">)</span>
+path.<span>rect</span><span class="s">(</span>x, y, width, height<span class="s">)</span>
+path.<span>oval</span><span class="s">(</span>x, y, width, height<span class="s">)</span>
+</pre>
+<pre>path.<span class="s">contains</span><span class="s">(</span>x, y<span class="s">)</span>
+</pre>
+<pre>path.<span class="s">point</span><span class="s">(</span>t<span class="s">)</span>
+path.<span class="s">points</span><span class="s">(</span>amount=<span class="s">100</span><span class="s">)</span>
+path.<span class="s">addpoint</span><span class="s">(</span>t<span class="s">)</span>
+path.<span class="s">segmentlengths</span><span class="s">(</span>relative=<span class="kw">False</span>, n=<span class="s">10</span><span class="s">)</span>
+</pre>
+<pre>path.<span class="s">intersects</span><span class="s">(</span>path<span class="s">)</span>
+path.<span class="s">intersect</span><span class="s">(</span>path, flatness=<span class="s">0.6</span><span class="s">)</span>
+path.<span class="s">union</span><span class="s">(</span>path, flatness=<span class="s">0.6</span><span class="s">)</span>
+path.<span class="s">difference</span><span class="s">(</span>path, flatness=<span class="s">0.6</span><span class="s">)</span>
+</pre>
+<pre>path.<span class="s">fit</span><span class="s">(</span>x=<span class="kw">None</span>, y=<span class="kw">None</span>, width=<span class="kw">None</span>, height=<span class="kw">None</span>, stretch=<span class="kw">False</span><span class="s">)</span>
+</pre>
+<pre>path.<span class="s">copy</span><span class="s">(</span><span class="s">)</span>
+</pre>
+
+        <p>See the <a href="../tut/Paths.html">tutorial on paths</a> to learn about all the
+        methods.</p>
+        <p>With the <i>segmentlengths()</i> method you can define the math precision for
+        <i>point()</i> and <i>points()</i> by making <i>n</i> a higher value (usually 10 is
+        fine).<br/></p>
+        <p>When you loop over a path it returns a list of <a href="#PathElement">PathElement</a>
+        objects.<br/></p>
+      </div>
+    </div>
+  </div>
+
+</body></html>

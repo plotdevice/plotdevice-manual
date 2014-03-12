@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>translate()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">translate</span><span class="s">(</span>x, y<span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Specifies the amount to move a subsequent shape, path, text, image on the screen. The first
+        parameter sets the horizontal offset, the second parameter the vertical offset. Translating
+        is the same as dragging something across the screen. Or the same as moving the canvas
+        registration point, which is situated in the upper left corner by default. Once called, all
+        commands following translate() are repositioned, which makes translate() useful for
+        positioning whole compositions of multiple elements.
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Graphics_State.html">Graphics State</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/translate.jpg" width="125"/></span>
+              </td><td>
+<pre>
+<span class="kw">fill</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
+<span class="kw">oval</span><span class="s">(</span><span class="s">-10</span>, <span class="s">-10</span>, <span class="s">40</span>, <span class="s">40</span><span class="s">)</span>
+<span class="kw">translate</span><span class="s">(</span><span class="s">50</span>, <span class="s">50</span><span class="s">)</span>
+<span class="kw">oval</span><span class="s">(</span><span class="s">-10</span>, <span class="s">-10</span>, <span class="s">40</span>, <span class="s">40</span><span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

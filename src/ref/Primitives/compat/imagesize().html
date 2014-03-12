@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>imagesize()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">imagesize</span><span class="s">(</span>path<span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        <p>Returns the dimensions (width and height) of an image located at the given path.
+        Obtaining the size of an image is useful when the image needs to scaled to an exact size,
+        for example. The return value is a list with the image’s width and the image’s height.</p>
+        <p>Note that these dimensions may also be retrieved from the <code>size</code> property of
+        the <a href="#Image">Image</a> object returned by the <a href="#image()">image()</a>
+        command.</p>
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        a tuple with the width and height of the given image
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td>
+<pre>
+w, h = <span class="kw">imagesize</span><span class="s">(</span><span class="str">"superfolia.jpg"</span><span class="s">)</span>
+<span class="kw">print</span> w
+<span class="kw">print</span> h
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

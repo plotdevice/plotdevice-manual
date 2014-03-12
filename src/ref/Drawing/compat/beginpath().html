@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>beginpath()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">beginpath</span><span class="s">(</span>x=<span class="kw">None</span>, y=<span class="kw">None</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Using the beginpath() and <a href="#endpath()">endpath()</a> commands allows creating
+        custom shapes. The two parameters of beginpath() set the location of the first point
+        (origin) in the path. These parameters are optional. When not supplied, a starting location
+        for the path should be given with the <a href="#moveto()">moveto()</a> command. After
+        calling the beginpath() command, a series of other path commands usually follow, for
+        example moveto(), <a href="#lineto()">lineto()</a>, or <a href="#curveto()">curveto()</a>.
+        Finally, the endpath() command draws the path to the screen.
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Paths.html">Paths</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/beginpath.jpg" width="125"/></span>
+              </td><td>
+<pre>
+<span class="kw">stroke</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
+<span class="kw">beginpath</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span><span class="s">)</span>
+<span class="kw">lineto</span><span class="s">(</span><span class="s">40</span>, <span class="s">10</span><span class="s">)</span>
+<span class="kw">endpath</span><span class="s">(</span><span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

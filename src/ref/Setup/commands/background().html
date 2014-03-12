@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>background()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">background</span><span class="s">(</span>r, g, b, a=<span class="s">1.0</span><span class="s">)</span>
+<span class="kw">background</span><span class="s">(</span>h, s, b, a=<span class="s">1.0</span><span class="s">)</span>
+<span class="kw">background</span><span class="s">(</span>c, m, y, k, a=<span class="s">1.0</span><span class="s">)</span>
+<span class="kw">background</span><span class="s">(</span>k, a=<span class="s">1.0</span><span class="s">)</span>
+<span class="kw">background</span><span class="s">(</span><span class="kw">color</span><span class="s">)</span>
+<span class="kw">background</span><span class="s">(</span><span class="kw">None</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Sets the PDF background color. This command works exactly like the <a href="Line+Color#fill()">fill()</a> or <a href="Line+Color#stroke()">stroke()</a> command. You
+        can use it to set the PDF background to transparent by supplying None as parameter (so it
+        imports more easily in Photoshop or Illustrator).
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        <a href="Line+Color#Color">Color</a> containing the defined color values<a href="Line+Color#Color"></a>
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../lib/Colors.html">Colors</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="120" src="../etc/ref/background.gif" width="120"/></span>
+              </td><td>
+<pre>
+<span class="kw">background</span><span class="s">(</span><span class="kw">None</span><span class="s">)</span>
+<span class="kw">rect</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span>, <span class="s">50</span>, <span class="s">50</span><span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

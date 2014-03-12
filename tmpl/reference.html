@@ -1,0 +1,40 @@
+{%- from 'nav.html' import nav -%}
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>PlotDevice Reference: {{name.replace('+',' & ')}}</title>
+  <link rel="stylesheet" href="{{root}}../etc/manual.css" type="text/css" charset="utf-8">
+</head>
+<body>
+
+{{nav('ref',name,root,siblings,tutorial)}}
+<div class="article">
+  {%- if commands -%}
+  <div class="commands">
+    {%- for cmd in commands -%}<a name="{{cmd[0]}}"></a>{{cmd[1]}}{%- endfor -%}
+  </div>
+  {%- endif -%}
+  {%- if types -%}
+  <div class="types">
+    {%- for typ in types -%}<a name="{{typ[0]}}"></a>{{typ[1]}}{%- endfor -%}
+  </div>
+  {%- endif -%}
+  {%- if compat -%}
+  <div class="compat">
+    <div class="classic">
+      <p class="pink_text">NodeBox Compatibility</p>
+      <p><em>Though their functionality has been subsumed by the commands listed above, the following NodeBox
+        {{name}} commands may also be used in your scripts.</em></p>
+    </div>
+    {%- for old in compat -%}<a name="{{old[0]}}"></a>{{old[1]}}{%- endfor -%}
+  </div>
+  {%- endif -%}
+
+
+</div>
+
+
+</body>
+</html>

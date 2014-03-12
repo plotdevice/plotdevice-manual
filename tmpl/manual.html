@@ -1,0 +1,101 @@
+{% from 'nav.html' import nav %}
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>PlotDevice Manual</title>  
+  <link rel="stylesheet" href="etc/manual.css" type="text/css" charset="utf-8">
+</head>
+<body class="commands">
+
+  {{nav()}}
+
+  <div class="toc ref">
+    <h1>Reference</h1>
+    <ul class="filter"><li class="commands active">Commands</li> / <li class='types'>Types</li></ul>
+    <div class="sections">
+      {% for sect, groups in ref.items() %}
+      <div class="section {{sect.lower()}}">
+        <h2>{{sect.replace('+',' &amp; ')}}</h2>
+        {% for group, links in groups.items() %}
+        <ul class="{{group}}">
+          {% for link in links %}
+          {% if isinstance(link, tuple) %}
+          <li>{% for lnk in link %} <a href="ref/{{sect}}.html#{{lnk}}">{{lnk}}</a> {% endfor%} </li>
+          {% else %}
+          <li><a href="ref/{{sect}}.html#{{link}}">{{link}}</a></li>
+          {% endif %}
+          {% endfor %}
+
+          {% if group=='commands' and groups['compat'] %}
+          <li class="others"><hr>{{len(groups['compat'])}} more…</li>
+          {% elif group=='compat' and groups['commands'] %}
+          <li class="others"><hr>hide</li>
+          {% endif %}
+        </ul>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="toc tut">
+    <h1>Tutorials</h1>
+    <div class="sections">
+      {% for sect, links in tut.items() %}
+      <div class="section">
+        <h2>{{sect}}</h2>
+        <ul>
+          {% for link in links %}
+          <li><a href="tut/{{link}}.html">{{link.replace('_',' ')}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="toc lib">
+    <h1>Libraries</h1>
+    <div class="sections">
+      {% for sect, links in lib.items() %}
+      <div class="section">
+        <h2>{{sect}}</h2>
+        <ul>
+          {% for link in links %}
+          <li><a href="lib/{{link.replace(' ','_')}}.html">{{link}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="toc footer">
+    Derived from <a class="noexternal" href="http://organisms.be">Tom De Smedt</a>’s manual for <a class="noexternal" href="http://nodebox.net/code">NodeBox</a>
+    <a class="noexternal" href="http://www.emrg.be/" title="Experimental Media Research Group">© 2004-2012</a>.
+    <br>
+    Rewritten for <a class="noexternal" href="http://plotdevice.io">PlotDevice</a> by <a class="noexternal" href="http://samizdat.cc">Christian Swinehart</a>.
+  </div>
+  <script src="etc/zepto.min.js"></script>
+  <script>
+    Zepto(function($){
+
+      // handle Commands/Types clicks for the refs
+      $('.filter').on('click', 'li', function(e){
+        $('.filter li.active').removeClass('active')
+        $('body').attr('class',$(e.target).attr('class'))
+        $(e.target).addClass('active')
+      })
+
+      // handle n-more clicks within a ref section
+      $('.ref .sections').on('click', 'li.others', function(e){
+        var sect = $(e.target).closest('.section')
+        sect.toggleClass('compat')
+        console.log(sect)
+      })
+    })
+  </script>
+</body>
+</html>

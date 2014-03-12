@@ -1,0 +1,45 @@
+{%- macro nav(sect=None, title=None, root='', siblings=[], tutorial=None) -%}
+{%- set section={None:'Manual', 'ref':'Reference', 'tut':"Tutorials", 'lib':"Libraries"}[sect] -%}
+{%- set home='' if not sect else ' href="%s../manual.html"'%root -%}
+{%- set navclass='link' if sect else 'nop' -%}
+{%- set book=["Introduction", "Environment", "Primitives", "Graphics_State", "Variables", "Lists", "Strings", "Repetition", "Commands", "Libraries", "Classes", "Animation", "Interaction", "Paths", "Color", "Math", "Extending", "Scripting", "nodebox"] -%}
+
+{%- set next=book[book.index(tutorial)+1] if tutorial in book and tutorial!=book[-1] else None -%}
+{%- set prev=book[book.index(tutorial)-1] if tutorial in book and tutorial!=book[0] else None -%}
+{%- set chapter="Chapter %i"%(book.index(tutorial)+1) if tutorial in book else None -%}
+
+
+<div id="nav" class="{{navclass}}">
+  <h1><a{{home}}>Plot&#8202;Device <span>{{section}}</span></a></h1>
+  {%- if title and title=='nodebox' -%}
+  <h3 class="tt">{{title}}</h3>
+  {%- elif title and title=='Extending' -%}
+  <h3>{{title}} Plot&#8202;Device</h3>
+  {%- elif title and not siblings-%}
+  <h3>{{title}}</h3>
+  {%- endif -%}  
+  {%- if siblings -%}
+  <ul class="siblings">
+  {% for sect in siblings %}
+  {%- if sect==title -%}
+  <li><h3 style="margin:0;">{{sect.replace('+',' &amp; ')}}</h3></li>
+  {%- else -%}  
+  <li><a href="{{sect}}.html">{{sect.replace('+',' &amp; ')}}</a></li>
+  {%- endif -%}  
+  {%- endfor -%}
+  </ul>
+  {%- endif -%}
+  {%- if chapter -%}
+  <ul class="chapter">
+  {% if next %}
+  <li><a href="{{next}}.html">{{next.replace('_',' ')}} &rarr;</a></li>
+  {%- endif -%}
+  <li>{{chapter}}</li>
+  {% if prev %}
+  <li><a href="{{prev}}.html">&larr; {{prev.replace('_',' ')}}</a></li>
+  {%- endif -%}
+  </ul>
+  {%- endif -%}
+
+</div>
+{%- endmacro %}

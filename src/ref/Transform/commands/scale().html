@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>scale()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">scale</span><span class="s">(</span>x, y=<span class="kw">None</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Increases, decreases or streches the size of all subsequent shape, path, text, image
+        commands. The first parameter sets the horizontal scale, the second parameter the vertical
+        scale. Additionally, the scale() command can be called with a single parameter that sets
+        both the horizontal and vertical scale. Scale values are specified as floating-point
+        (decimal) numbers. The scale() command works incrementally: if you call scale(0.5), and
+        later on call scale(0.2), all commands following that second scale() will be sized to 10
+        percent (0.2 of 0.5).
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Graphics_State.html">Graphics State</a> 
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/scale.jpg" width="125"/></span>
+              </td><td>
+<pre>
+<span class="kw">fill</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
+<span class="kw">rect</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span>, <span class="s">40</span>, <span class="s">40</span><span class="s">)</span>
+<span class="kw">scale</span><span class="s">(</span><span class="s">0.5</span><span class="s">)</span>
+<span class="kw">rect</span><span class="s">(</span><span class="s">50</span>, <span class="s">10</span>, <span class="s">40</span>, <span class="s">40</span><span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

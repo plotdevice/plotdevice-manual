@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>skew()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">skew</span><span class="s">(</span>x, y=<span class="kw">None</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Slants the direction of all subsequent shape, path, text, image commands. The first
+        parameter sets the horizontal skew. The second parameter is optional and sets the vertical
+        skew. The skew() command works incrementally: if you call skew(10), and later on call
+        skew(20), all commands following that second skew() will be skewed by 30 (10+20).
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Graphics_State.html">Graphics State</a> 
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/skew.jpg" width="125"/></span>
+              </td><td>
+<pre>
+<span class="kw">fill</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
+<span class="kw">skew</span><span class="s">(</span><span class="s">10.0</span><span class="s">)</span>
+<span class="kw">rect</span><span class="s">(</span><span class="s">20</span>, <span class="s">10</span>, <span class="s">40</span>, <span class="s">40</span><span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

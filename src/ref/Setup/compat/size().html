@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>size()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">size</span><span class="s">(</span>w, h<span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Sets the size of the canvas in points. The first parameter sets the width, the second
+        parameter the height. If this command is used, it should be the first line in a script -
+        it’s illogical to set the size of the canvas halfway a script! The supplied values can be
+        multiplied by ‘inch’, ‘cm’ or ‘mm’. The predefined WIDTH and HEIGHT variables can be used
+        to obtain the canvas size.
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Variables.html">Variables</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td>
+<pre>
+<span class="kw">size</span><span class="s">(</span><span class="s">400</span>, <span class="s">600</span><span class="s">)</span>
+<span class="grey"># the canvas is 400 X 600 points</span>
+<span class="kw">print</span> <span class="kw">WIDTH</span> <span class="grey"># prints 400</span>
+<span class="kw">print</span> <span class="kw">HEIGHT</span> <span class="grey"># prints 600</span>
+</pre>
+<pre>
+<span class="kw">size</span><span class="s">(</span><span class="s">20</span>*<span class="kw">cm</span>, <span class="s">20</span>*<span class="kw">cm</span><span class="s">)</span>
+<span class="grey"># the canvas is 20 x 20 cm</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

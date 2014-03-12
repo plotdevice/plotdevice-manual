@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>fill()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">fill</span><span class="s">(</span>r, g, b, a<span class="s">)</span>
+<span class="kw">fill</span><span class="s">(</span>h, s, b, a<span class="s">)</span>
+<span class="kw">fill</span><span class="s">(</span>c, m, y, k, a<span class="s">)</span>
+<span class="kw">fill</span><span class="s">(</span>k, a<span class="s">)</span>
+<span class="kw">fill</span><span class="s">(</span><span class="kw">color</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Sets the current fill color. All shapes, paths and text following this command will be
+        drawn in this fill color. The color is either specified in terms of RGB, HSB or CMYK
+        depending on the current <a href="#colormode()">colormode()</a>. Each RGB, HSB or CMYK
+        parameter ranges between 0.0 and 1.0. The default colormode is RGB. The last parameter is
+        optional and sets the alpha (opacity) value. Additionally, fill() can be called with just
+        one parameter that sets the gray value, or with the color value returned from the <a href="#color()">color()</a> command.
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        the current fill <a href="#Color">color</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/fill.jpg" width="125"/></span>
+              </td><td>
+<pre>
+<span class="kw">fill</span><span class="s">(</span><span class="s">1.0</span>, <span class="s">0.0</span>, <span class="s">0.5</span><span class="s">)</span>
+<span class="kw">rect</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span>, <span class="s">25</span>, <span class="s">25</span><span class="s">)</span>
+<span class="kw">fill</span><span class="s">(</span>.<span class="s">3</span>, <span class="s">0.0</span>, <span class="s">0.4</span><span class="s">)</span>
+<span class="kw">oval</span><span class="s">(</span><span class="s">40</span>, <span class="s">40</span>, <span class="s">40</span>, <span class="s">40</span><span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

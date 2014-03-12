@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>PathElement</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">PathElement</span><span class="s">(</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Each point in a <a href="#BezierPath">BezierPath</a> is a PathElement object. This object
+        has a number of properties that describe the coordinates and handles of the path point.
+      </div>
+
+      <h2>Properties</h2>
+
+      <div class="row">
+<pre>point.<span class="s">cmd</span>
+point.<span class="s">x</span>
+point.<span class="s">y</span>
+point.<span class="s">ctrl1</span>.<span class="s">x</span>
+point.<span class="s">ctrl1</span>.<span class="s">y</span>
+point.<span class="s">ctrl2</span>.<span class="s">x</span>
+point.<span class="s">ctrl2</span>.<span class="s">y</span>
+</pre>
+
+        <p>The point.cmd property describes the type of curve this point belongs to. Its value can
+        be MOVETO, LINETO, CURVETO or CLOSE.<br/></p>
+        <p>See the <a href="../tut/Paths.html">tutorial on paths</a> to learn about all the
+        properties.</p>
+      </div>
+    </div>
+  </div>
+
+</body></html>

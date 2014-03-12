@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>line()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">line</span><span class="s">(</span>x1, y1, x2, y2, draw=<span class="kw">True</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Draws a line to the screen. A line is a straight path between two points. The first two
+        parameters set the location of the first point (origin), the following two parameters set
+        the location of the second point (destination). You will not notice a line if it’s <a href="Line+Color#stroke()">stroke()</a> is the same as the background color, or if the line’s
+        <a href="Line+Color#strokewidth()">strokewidth()</a> is zero.
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        <a href="Drawing#BezierPath">BezierPath</a> containing the line
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Primitives.html">Primitives</a>, <a href="../tut/Paths.html">Paths</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/line.jpg" width="125"/></span>
+              </td><td>
+<pre>
+<span class="kw">stroke</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
+<span class="kw">strokewidth</span><span class="s">(</span><span class="s">2</span><span class="s">)</span>
+<span class="kw">line</span><span class="s">(</span><span class="s">10</span>, <span class="s">20</span>, <span class="s">80</span>, <span class="s">80</span><span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

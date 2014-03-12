@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>textheight()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">textheight</span><span class="s">(</span>txt, width=<span class="kw">None</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Returns what would be the height of a text block drawn with the <a href="#text()">text()</a> command, in the current <a href="#font()">font()</a>, <a href="#fontsize()">fontsize()</a> and <a href="#lineheight()">lineheight()</a>. The first
+        parameter sets the text string to measure, the second parameter sets the width of a line of
+        text in block.
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        the height of the text block, as a floating point number
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td>
+<pre>
+<span class="kw">font</span><span class="s">(</span><span class="str">"Courier New"</span><span class="s">)</span>
+h = <span class="kw">textheight</span><span class="s">(</span><span class="str">"hello"</span>, <span class="s">30</span><span class="s">)</span>
+<span class="kw">print</span> h
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

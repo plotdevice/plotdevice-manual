@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>colormode()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">colormode</span><span class="s">(</span>mode, <span class="s">range</span>=<span class="s">1.0</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Changes the way PlotDevice interprets color data. By default, <a href="#fill()">fill()</a> and
+        <a href="#stroke()">stroke()</a> are set by values between 0.0 and 1.0 using the RGB color
+        model. RGB corresponds to Red/Green/Blue. Alternatively HSB (Hue/Saturation/Brightness) or
+        CMYK (Cyan/Magenta/Yellow/Black) can be specified. Regardless of which colormode is
+        specified, PDF’s and images are exported in the specified <a href="Setup#outputmode()">outputmode()</a>. The optional range parameter specifies whether color
+        values are defined between 0.0 and 1.0, or something else, 0 and 255 for example
+        (range=255).
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        the current color mode (RGB, CMYK or HSB)
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../lib/Colors.html">Colors</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/colormode.jpg" width="125"/></span>
+              </td><td>
+<pre>
+<span class="kw">colormode</span><span class="s">(</span><span class="kw">RGB</span><span class="s">)</span>
+<span class="kw">fill</span><span class="s">(</span><span class="s">0.25</span>, <span class="s">0.25</span>, <span class="s">0.25</span><span class="s">)</span>
+<span class="kw">rect</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span>, <span class="s">40</span>, <span class="s">40</span><span class="s">)</span>
+ 
+<span class="kw">colormode</span><span class="s">(</span><span class="kw">HSB</span><span class="s">)</span>
+<span class="kw">fill</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span>, <span class="s">0.25</span><span class="s">)</span>
+<span class="kw">rect</span><span class="s">(</span><span class="s">60</span>, <span class="s">10</span>, <span class="s">40</span>, <span class="s">40</span><span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

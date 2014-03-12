@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>fonts()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">fonts</span><span class="s">(</span>like=<span class="kw">None</span>, western=<span class="kw">True</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        The fonts() command searches the fonts installed on the system and can filter the list in a
+        few ways. When called with no arguments, the list contains all fonts on the system with a
+        latin character set. To retrieve the set of non-latin fonts, pass False as the western
+        parameter. To filter the list through a (case-insensitive) font name match, pass a
+        substring as the like parameter.
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        a list of “Postscript Names” which can be used as arguments for the <a href="Typography#font()">font()</a> command
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+<pre>romans = <span class="kw">fonts</span><span class="s">()</span> <span class="grey"># Get a list of all the text-friendly fonts on the system</span>
+jenson = <span class="kw">fonts</span><span class="s">(like=<span class="str">"jenson"</span>)</span> <span class="grey"># all installed weights of Adobe Jenson.</span>
+
+eastern = <span class="kw">fonts</span><span class="s">(western=<span class="kw">False</span>)</span> <span class="grey"># all asian-character fonts, math fonts, etc.</span>
+kozuka = <span class="kw">fonts</span><span class="s">(western=<span class="kw">False</span>, like=<span class="str">"koz"</span>)</span> <span class="grey"># the weights in the Kozuka families</span>
+</pre>
+      </div>
+    </div>
+  </div>
+
+</body></html>

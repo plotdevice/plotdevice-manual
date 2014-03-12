@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>textpath()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">textpath</span><span class="s">(</span>txt, x, y, width=<span class="kw">None</span>, height=<span class="s">1000000</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Works exactly like the <a href="#text()">text()</a> command, except it returns a path that
+        can be used with <a href="Drawing#bezier()">bezier()</a> or <a href="Drawing#clip()">clip()</a> instead of drawing text to the screen.
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        <a href="Drawing#BezierPath">BezierPath</a> containing the given text as outlines
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Paths.html">Paths</a>, <a href="../tut/Strings.html">Strings</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/textpath.jpg" width="125"/></span>
+              </td><td>
+<pre>
+<span class="kw">fontsize</span>(65)
+path = <span class="kw">textpath</span>(<span class="str">"clip"</span>, 10, 70)
+<span class="kw">with clip</span>(path):
+    <span class="kw">image</span>(<span class="str">"header.jpg"</span>, -300, -150)
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

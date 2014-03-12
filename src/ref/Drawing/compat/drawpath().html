@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>drawpath()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">drawpath</span><span class="s">(</span>path<span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Draws a path to the screen. A path is a series of lines and curves defined between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>. Normally, endpath()
+        draws the path to the screen, unless when calling endpath(draw=False). The path can then be
+        assigned to a variable, and this variable used as a parameter for drawpath().
+
+        <p><u>Note</u>: if you have one path that you want to draw multiple times with drawpath(),
+        for example each with its own rotation and position, you need to supply a copy:<br/>
+        <span style="font-family: Courier">drawpath(path.copy())</span></p>
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Paths.html">Paths</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/drawpath.jpg" width="125"/></span>
+              </td><td>
+<pre>
+<span class="kw">stroke</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
+<span class="kw">beginpath</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span><span class="s">)</span>
+<span class="kw">lineto</span><span class="s">(</span><span class="s">40</span>, <span class="s">10</span><span class="s">)</span>
+p = <span class="kw">endpath</span><span class="s">(</span>draw=<span class="kw">False</span><span class="s">)</span>
+<span class="kw">drawpath</span><span class="s">(</span>p<span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

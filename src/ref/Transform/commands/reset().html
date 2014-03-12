@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>reset()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">reset</span><span class="s">(</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Resets all transformations to their default values. PlotDevice is a so-called state-machine.
+        For example, once rotate(90) is called, all subsequent shapes, paths, text and images are
+        rotated 90 degrees. The rotation state is 90 degrees. If <a href="#rotate()">rotate()</a>
+        is called again, for example rotate(30), the rotation state becomes 120 degrees (90+30).
+        Once reset() is called, the rotation state becomes 0 degrees (the default rotation) again.
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Graphics_State.html">Graphics State</a> 
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img alt="GCD" height="125" src="../etc/ref/reset.jpg" width="125"/></span>
+              </td><td>
+<pre>
+<span class="kw">fill</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
+<span class="kw">fontsize</span><span class="s">(</span><span class="s">14</span><span class="s">)</span>
+<span class="kw">rotate</span><span class="s">(</span><span class="s">90</span><span class="s">)</span>
+<span class="kw">text</span><span class="s">(</span><span class="str">"one"</span>, <span class="s">30</span>, <span class="s">80</span><span class="s">)</span>
+<span class="kw">text</span><span class="s">(</span><span class="str">"two"</span>, <span class="s">45</span>, <span class="s">80</span><span class="s">)</span>
+ 
+<span class="kw">reset</span><span class="s">(</span><span class="s">)</span>
+<span class="kw">text</span><span class="s">(</span><span class="str">"three"</span>, <span class="s">70</span>, <span class="s">80</span><span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

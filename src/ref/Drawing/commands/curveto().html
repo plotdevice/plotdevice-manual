@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>curveto()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">curveto</span><span class="s">(</span>h1x, h1y, h2x, h2y, x, y<span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        The curveto() command must be called within a <a href="#bezier()">bezier()</a> block (or
+        between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).
+        Draws a curve between the current point in the path and a new destination point. The last
+        two parameters, x and y, set the location of the new destination point. The first and
+        second, and the third and fourth parameters set the location of the two control points of
+        the curve. These control points, or handles, define the edge and slant of the curve.
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Paths.html">Paths</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img src="../etc/ref/curveto.jpg"/></span>
+              </td><td>
+              </td><td>
+<pre>
+<span class="kw">with bezier</span><span class="s">(stroke=0.2, fill=<span class="kw">None</span>) as path:</span>
+    <span class="kw">curveto</span><span class="s">(</span><span class="s">100</span>, <span class="s">100</span>, <span class="s">50</span>, <span class="s">0</span>, <span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
+</pre><em>or</em>
+<pre>
+<span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
+<span class="kw">stroke</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
+<span class="kw">beginpath</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span><span class="s">)</span>
+<span class="kw">curveto</span><span class="s">(</span><span class="s">100</span>, <span class="s">100</span>, <span class="s">50</span>, <span class="s">0</span>, <span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
+<span class="kw">endpath</span><span class="s">(</span><span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>open()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">open</span><span class="s">(</span>path<span class="s">)</span>.<span class="s">read</span><span class="s">(</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        The open() command opens a file specified by the path parameter. The open() command can be
+        used in two ways: open(path).read(), which returns the file’s text content as a string, or,
+        alternatively, open(path).readlines(), which returns a list of text lines.
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        the file’s text content, as a string
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Strings.html">Strings</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td>
+<pre>
+<span class="grey"># Prints the contents of sample.txt as a whole</span>
+txt = <span class="kw">open</span><span class="s">(</span><span class="str">"sample.txt"</span><span class="s">)</span>.<span class="s">read</span><span class="s">(</span><span class="s">)</span>
+<span class="kw">print</span> txt
+ 
+<span class="grey"># Prints the contents line per line</span>
+txt = <span class="kw">open</span><span class="s">(</span><span class="str">"sample.txt"</span><span class="s">)</span>.<span class="s">readlines</span><span class="s">(</span><span class="s">)</span>
+<span class="kw">for</span> <span class="kw">line</span> <span class="kw">in</span> txt:
+    <span class="kw">print</span> <span class="kw">line</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

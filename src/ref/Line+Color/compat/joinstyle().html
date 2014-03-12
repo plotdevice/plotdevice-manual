@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>joinstyle()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">joinstyle</span>(style)
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Defines how vertices in a path should be rendered. The style argument must be one of:
+        <code class="kw">MITER</code> (the default), <code class="kw">ROUND</code>, or <code class="kw">BEVEL</code>.
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Paths.html">Paths</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img src="../etc/ref/joinstyle.png"/></span>
+              </td><td>
+<pre>
+<span class="kw">fill</span>(None)
+<span class="kw">stroke</span>(0)
+<span class="kw">strokewidth</span>(10)
+
+<span class="kw">joinstyle</span>(<span class="kw">MITER</span>)
+<span class="kw">bezier</span>([(20,20), (40,40), (60,20)], curvature=0)
+
+<span class="kw">joinstyle</span>(<span class="kw">ROUND</span>)
+<span class="kw">bezier</span>([(20,50), (40,70), (60,50)], curvature=0)
+
+<span class="kw">joinstyle</span>(<span class="kw">BEVEL</span>)
+<span class="kw">bezier</span>([(20,80), (40,100), (60,80)], curvature=0)
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

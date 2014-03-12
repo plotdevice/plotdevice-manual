@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>autotext()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">autotext</span><span class="s">(</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Generates random text from an XML-document. Autotext is a very powerful feature once you
+        learn how to use it. PlotDevice has a built-in implementation of the Kant Generator Pro.
+        XML-files for the Kant Generator have a specified structure. Further information can be
+        found at http://diveintopython.org/xml_processing/
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        a string containing automatically generated text
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Strings.html">Strings</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/autotext.jpg" width="125"/></span>
+              </td><td>
+<pre>
+<span class="kw">fontsize</span><span class="s">(</span><span class="s">9</span><span class="s">)</span>
+<span class="kw">lineheight</span><span class="s">(</span><span class="s">0.8</span><span class="s">)</span>
+txt = <span class="kw">autotext</span><span class="s">(</span><span class="str">"kant.xml"</span><span class="s">)</span>
+<span class="kw">text</span><span class="s">(</span>txt, <span class="s">5</span>, <span class="s">10</span>, width=<span class="s">110</span><span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+
+      <div class="row">
+         
+      </div>
+
+      <h2>Download</h2>
+
+      <div class="row">
+        <a href="../tut/media/kant.xml">kant.xml</a>
+      </div>
+    </div>
+  </div>
+
+</body></html>

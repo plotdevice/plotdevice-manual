@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>random()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>
+<span class="kw">random</span><span class="s">(</span>v1=<span class="kw">None</span>, v2=<span class="kw">None</span><span class="s">)</span>
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Returns a random number that can be assigned to a variable or a parameter. When no
+        parameters are supplied, returns a floating-point (decimal) number between 0.0 and 1.0
+        (including 0.0 and 1.0). When one parameter is supplied, returns a number between 0 and
+        this parameter. When two parameters are supplied, returns a number between the first and
+        the second parameter. The random() command is useful for all sorts of operations, from
+        random colors to lines with a random width.
+
+        <p>Note: new random values are returned each time the script runs. The variation can be
+        locked by supplying a custom random seed:<br/>
+        <span class="inline_code">from random import seed<br/>
+        seed(0)</span><br/></p>
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        a random number (either an integer or floating-point) within the given boundaries
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Repetition.html">Repetition</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td>
+<pre>
+r = <span class="kw">random</span><span class="s">(</span><span class="s">)</span> <span class="grey"># returns a float between 0 and 1</span>
+r = <span class="kw">random</span><span class="s">(</span><span class="s">2.5</span><span class="s">)</span> <span class="grey"># returns a float between 0 and 2.5 </span>
+r = <span class="kw">random</span><span class="s">(</span><span class="s">-1.0</span>, <span class="s">1.0</span><span class="s">)</span> <span class="grey"># returns a float between -1.0 and 1.0</span>
+r = <span class="kw">random</span><span class="s">(</span><span class="s">5</span><span class="s">)</span> <span class="grey"># returns an int between 0 and 5</span>
+r = <span class="kw">random</span><span class="s">(</span><span class="s">1</span>, <span class="s">10</span><span class="s">)</span> <span class="grey"># returns an int between 1 and 10</span>
+ 
+<span class="grey"># sets the fill to anything from </span>
+<span class="grey"># black (0.0,0,0) to red (1.0,0,0)</span>
+<span class="kw">fill</span><span class="s">(</span><span class="kw">random</span><span class="s">(</span><span class="s">)</span>, <span class="s">0</span>, <span class="s">0</span><span class="s">)</span>
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>
