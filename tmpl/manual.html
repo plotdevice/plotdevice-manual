@@ -13,7 +13,11 @@
 
   <div class="toc ref">
     <h1>Reference</h1>
-    <ul class="filter"><li class="commands active">Commands</li> / <li class='types'>Types</li></ul>
+    <ul class="filter"><li class="commands active">Commands</li><li class='types'>Types</li><li class='compat'>Etc.</li></ul>
+    <div class="nodebox">
+      <p>NodeBox commands drawn in cyan are supported but an alternate syntax is now available for each.</p>
+      <p>Consult their reference entries for details.</p>
+    </div>
     <div class="sections">
       {% for sect, groups in ref.items() %}
       <div class="section {{sect.lower()}}">
@@ -27,12 +31,6 @@
           <li><a href="ref/{{sect}}.html#{{link}}">{{link}}</a></li>
           {% endif %}
           {% endfor %}
-
-          {% if group=='commands' and groups['compat'] %}
-          <li class="others"><hr>{{len(groups['compat'])}} more…</li>
-          {% elif group=='compat' and groups['commands'] %}
-          <li class="others"><hr>hide</li>
-          {% endif %}
         </ul>
         {% endfor %}
       </div>
@@ -84,9 +82,10 @@
 
       // handle Commands/Types clicks for the refs
       $('.filter').on('click', 'li', function(e){
+        var elt = $(e.target).closest('li')
         $('.filter li.active').removeClass('active')
-        $('body').attr('class',$(e.target).attr('class'))
-        $(e.target).addClass('active')
+        $('body').attr('class',elt.attr('class'))
+        elt.addClass('active')
       })
 
       // handle n-more clicks within a ref section

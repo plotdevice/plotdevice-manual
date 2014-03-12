@@ -27,15 +27,17 @@ from bs4 import BeautifulSoup, NavigableString
 ### the big red button ###
 
 def build(static=True):
+  if not static:
+    print "Building website...\n"
   # if True, will make sure every link points to a valid .html file path
   # if False, hrefs are shortened: Line+Color.html#fill() -> Line+Color#fill()
   global file_urls
   file_urls = static
+  toc()
   etc()
   ref()
   tut()
   lib()
-  toc()
 
 ### utilities ###
 
@@ -88,12 +90,12 @@ def tidy(html):
           
   # close <p> and </pre> at the end of the line rather than on a new one
   html = re.sub(r'\n( +)</p><',r'</p>\n\1<', unicode(soup))
+  html = re.sub(r'\n( +)</li><',r'</li>\n\1<', html)
   html = re.sub(r'<pre><',r'<pre>\n<', html)
   # html = re.sub(r'\n</pre>',r'</pre>\n', html)
   html = re.sub(r'( +)<pre>',r'<pre>', html)
   html = re.sub(r'<body><',r'<body>\n  <', html)
   return html
-  # return BeautifulSoup(html.decode('utf-8'), "html5lib")
 
 def namify(fn):
   if fn.endswith('.html'):
@@ -121,12 +123,9 @@ def syntax_color(src):
   return soup.find_next('pre').extract()
 
 class PlotDeviceLexer(PythonLexer):
-  """
-  A Python lexer recognizing PlotDevice builtins, classes, and constants.
-  """
+  """A Python lexer recognizing PlotDevice builtins, classes, and constants."""
 
-  name = 'PlotDevice'
-  aliases = ['plotdevice']
+  name, aliases = 'PlotDevice', ['plotdevice']
 
   # override the mimetypes to not inherit them from python
   mimetypes = []
@@ -151,7 +150,7 @@ class PlotDeviceLexer(PythonLexer):
 
 
 
-### handlers each section of the site ###
+### handlers for each section of the site ###
 
 tmpls = Environment(loader=FileSystemLoader('%s/tmpl'%py_root))
 
@@ -233,6 +232,7 @@ def lib():
       f.write(tidy(markup).encode('utf-8'))
 
 def toc():
+  print "Table of Contents"
 
   # dump out the contents of the src/ref folders for a first pass at setting up the `ref` dict
   # 
@@ -247,6 +247,7 @@ def toc():
   #   ref[sect] = dict(zip(('commands','types','compat'),ref_sects[sect]))
   # print ref
 
+  print "- Reference"
   ref=odict()
   ref['Setup'] = {
       'commands': ['canvas()', 'speed()', 'export()', 'background()'], 
@@ -257,8 +258,8 @@ def toc():
       'types': ['Image'],
       'compat': ['imagesize()'] }
   ref['Drawing'] = {
-      'commands': ['plot()', 'bezier()', 'moveto()', 'lineto()', 'curveto()', 'clip()', ], 
-      'types': ['BezierPath', 'PathElement'],
+      'commands': ['bezier()', 'moveto()', 'lineto()', 'curveto()', 'clip()', 'measure()', 'plot()', ], 
+      'types': ['Bezier', 'Curve'],
       'compat': ['autoclosepath()', 'beginclip()', 'beginpath()', 'drawpath()', 'endclip()', 'endpath()', 'findpath()'] }
   ref['Line+Color'] = {
       'commands': ['plotstyle()', 'color()', 'pen()', 'fill()', 'stroke()', 'shadow()'], 
@@ -273,10 +274,11 @@ def toc():
       'types': ['Transform'],
       'compat': ['pop()', 'push()'] }
   ref['Utility'] = {
-      'commands': ['read()', 'grid()', 'measure()', 'random()', ('choice()', 'shuffled()'), ('order()', 'ordered()'), ('files()', 'fonts()')], 
+      'commands': ['read()', 'grid()', 'random()', ('choice()', 'shuffled()'), ('order()', 'ordered()'), ('files()', 'fonts()')], 
       'types': ['dictionaries'],
       'compat': ['autotext()', 'open()'] }
 
+  print "- Tutorials"
   tut=odict()
   tut['Basics']=["Introduction", "Environment", "Primitives", "Graphics_State",]
   tut['Data']=["Variables", "Lists", "Strings",]
@@ -284,6 +286,7 @@ def toc():
   tut['Specifics']=["Animation", "Interaction", "Paths", "Color", "Math",]
   tut['Advanced']=["Extending", "Scripting", "plotdevice",]
 
+  print "- Libraries"
   lib=odict()
   lib['Design']=["Colors", "Grid", "Pixie", "Fatpath",]
   lib['Pixels']=["PhotoBot", "Core Image", "iSight", "Quicktime",]
@@ -297,6 +300,7 @@ def toc():
   info = dict(ref=ref, tut=tut, lib=lib, isinstance=isinstance, tuple=tuple, len=len)
   markup = html.render(info)
 
+  _mkdir('doc')
   with file('doc/manual.html', 'w') as f:
     f.write(tidy(markup).encode('utf-8'))
 
@@ -373,6 +377,6 @@ def code_blocks():
 
 if __name__=='__main__':
   build(static=not sys.argv[1:] or sys.argv[1]!='site')
-  check_media()
-  check_links()
+  # check_media()
+  # check_links()
   # code_blocks()

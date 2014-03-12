@@ -193,14 +193,20 @@ a.noexternal { background-image:none !important; padding-right: 0; }
 /***************************************/
 /* TABLE OF CONTENTS */
 
+/* row layout */
+.toc.ref{ margin-top:48px; margin-bottom:0;}
+.toc.ref .section{ min-height:180px; }
+.toc.lib .section{ min-height:180px; }
+.toc.tut .section{ min-height:140px; }
+
+/* basic styles for each section's row */
 .toc{
   overflow:auto;
   padding-bottom:40px;
   border-top:1px solid #666;
   font-size:13px;
+  position:relative;
 }
-
-.toc.ref{ margin-top:48px; margin-bottom:0; min-height:205px; }
 
 .toc h1{
   position:absolute;
@@ -224,9 +230,34 @@ a.noexternal { background-image:none !important; padding-right: 0; }
   position:relative;
 }
 
-.toc.ref .section{ min-height:205px; }
-.toc.lib .section{ min-height:180px; }
-.toc.tut .section{ min-height:140px; }
+.toc .section a{
+  font-style:italic;
+}
+
+.toc .section a[href="tut/plotdevice.html"]{
+  font-family:"American Typewriter";
+  font-style:normal;
+}
+
+.toc .section ul hr{
+  border:0;
+  margin:0.15em 0;
+  max-width:120px;
+  background:#8bc;
+  height:1px;
+}
+
+.toc .section ul li{
+  max-width:130px;
+}
+
+
+/* draw slashes between reference links on the same line */
+.toc .section ul li a+a:before{
+  content:" / ";
+  color:#589;
+}
+
 
 /* overlapping command/type/compat-specific ul's in each section column */
 .toc .section ul{
@@ -281,9 +312,9 @@ a.noexternal { background-image:none !important; padding-right: 0; }
 }
 
 body.types .toc .section ul.commands,
+body.compat .toc .section ul.commands,
 body.commands .toc .section ul.types,
-body .toc .section.compat ul.commands,
-body .toc .section.compat ul.types,
+body.compat .toc .section ul.types,
 body .toc .section ul.compat{
   position:absolute;
   pointer-events:none;
@@ -295,66 +326,87 @@ body .toc .section ul.compat{
 
 body.commands .toc ul.commands,
 body.types .toc ul.types,
-.toc .section.compat ul.compat{
+body.compat .toc ul.compat{
   opacity:1;
   pointer-events:auto;
   -webkit-transition: opacity .333s;
   background:white;
 }
 
-.toc .section a{
-  font-style:italic;
-}
 
-.toc .section a[href="tut/plotdevice.html"]{
-  font-family:"American Typewriter";
-  font-style:normal;
-}
-
-.toc .section ul hr{
-  border:0;
-  margin:0.15em 0;
-  max-width:120px;
-  background:#8bc;
-  height:1px;
-}
-
-.toc .section ul li{
-  max-width:130px;
-}
-
-
-/* draw slashes between reference links on the same line */
-.toc .section ul li a+a:before{
-  content:" / ";
-  color:#589;
-}
-
-
-
-
-/* the Commands/Types toggle */
-.toc .filter{
+/* the Commands/Types/Etc. toggle */
+.toc ul.filter{
   position:absolute;
-  left:2px;
-  margin-top:35px;
-  font:12px/16px Arial;
+  left:14px;
+  margin-top:33px;
+  font:12px/19px Arial;
   color:#888;
+  padding-left:0;
+  list-style:none;
+  width:200px;
 }
+
 .toc .filter li{
   color:#666;
   display:inline;
 }
 
+.toc .filter li+li{
+  margin-left:6px;
+  position:relative;
+}
+
+.toc .filter li+li:before{
+  content:" / ";
+  color:#589;
+  position:absolute;
+  left:-6px;
+}
+
 .toc .filter li:hover{
   text-decoration:underline;
   cursor:pointer;
+  color:black;
 }
 
 .toc .filter li.active{
   font-weight:bold;
   pointer-events:none;
   color:#333;
+}
+
+.toc .filter li.active:hover{
+  text-decoration:none;
+}
+
+
+/* the text block explaining nodebox compatibility */
+.toc .nodebox{
+  display:none;
+  font:italic 12px/18px Georgia;
+  color:#888;
+}
+
+body.compat .toc .nodebox{
+  position:absolute;
+  top:68px;
+  display:block;
+  margin:0 0 0 14px;
+  padding:0;
+  width:180px;
+}
+
+body.compat .toc .nodebox h5{
+  color:#333;
+  margin:0 0 8px 0;
+  font:11px Georgia;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+body.compat .toc .nodebox p{
+  margin:0 0 8px 0;
+  width:160px;
 }
 
 
