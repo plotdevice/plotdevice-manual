@@ -5,9 +5,9 @@
 
 </head><body>
   <div class="article">
-    <p>Colors returned from the <a href="../ref/Line+Color#color()">color()</a> command in PlotDevice
-    have a few useful attributes that allow you to think in different color spaces at the same
-    time. For example, if we wanted to draw a grid of lines in random colors, we would use the
+    <p>Colors returned from the <a href="../ref/Line+Color.html#color()">color()</a> command in
+    PlotDevice have a few useful attributes that allow you to think in different color spaces at the
+    same time. For example, if we wanted to draw a grid of lines in random colors, we would use the
     following code:</p>
 <pre>
 <span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="kw">HEIGHT</span><span class="s">)</span>:
@@ -53,9 +53,10 @@
     <p>All of these can be used at any time in the script, PlotDevice calculates the exact color.</p>
     <h2>CMYK output?</h2>
 
-    <p>But then what colorspace is used for output? In whatever way you use a <a href="../ref/Line+Color#colormode()">colormode()</a> in your script, the output adhers to <a href="../ref/Setup#outputmode()">outputmode()</a>. This makes it easy when working with print
-    documents as you don’t need to worry about the technical details, but can instead focus on the
-    colors you like. Keep in mind that not all RGB colors are printable though.</p>
+    <p>But then what colorspace is used for output? In whatever way you use a <a href="../ref/Line+Color.html#colormode()">colormode()</a> in your script, the output adhers to
+    <a href="../ref/Setup.html#outputmode()">outputmode()</a>. This makes it easy when working with
+    print documents as you don’t need to worry about the technical details, but can instead focus
+    on the colors you like. Keep in mind that not all RGB colors are printable though.</p>
     <h2>Colors are stored in the graphics state</h2>
 
     <p>PlotDevice remembers the last color you defined, and keeps on using that fill or stroke color,

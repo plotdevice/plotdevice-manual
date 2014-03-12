@@ -622,8 +622,8 @@ results = web.<span class="s">yahoo</span>.<span class="s">search</span><span cl
         <span class="kw">print</span> textblock + <span class="str">"<span class="s">\n</span>"</span>
 </pre>
 
-    <p>To display a paragraph with the <a href="../ref/Typography#text()">text()</a> command you
-    can loop over all the textblocks individually:</p>
+    <p>To display a paragraph with the <a href="../ref/Typography.html#text()">text()</a> command
+    you can loop over all the textblocks individually:</p>
 <pre>
 <span class="kw">fontsize</span><span class="s">(</span><span class="s">10</span><span class="s">)</span>
 x, y, w = <span class="s">20</span>, <span class="s">20</span>, <span class="s">300</span>
@@ -914,7 +914,8 @@ img.<span class="s">download</span><span class="s">(</span><span class="kw">size
     </li></ul>
 
     <p>You can loop through a theme object as a list. Each item in the theme is a tuple of (R, G,
-    B) values, which you can supply to <a href="../ref/Line+Color#fill()">fill()</a> or <a href="../ref/Line+Color#stroke()">stroke()</a> in PlotDevice.</p>
+    B) values, which you can supply to <a href="../ref/Line+Color.html#fill()">fill()</a> or
+    <a href="../ref/Line+Color.html#stroke()">stroke()</a> in PlotDevice.</p>
 <pre>themes = web.<span class="s">kuler</span>.<span class="s">search</span><span class="s">(</span><span class="str">"banana"</span><span class="s">)</span>
 <span class="kw">for</span> r, g, b <span class="kw">in</span> themes<span class="s">[</span><span class="s">0</span><span class="s">]</span>:
     <span class="kw">print</span> r, g, b

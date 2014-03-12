@@ -105,17 +105,16 @@
     <h2><a id="rules" name="rules" title="rules"></a>Growing rules</h2>
 
     <p>The shape your L-system will take depends on its set of rules. A rule is a string of
-    predefined <b>symbols</b> that each represent a transformation command (like <a href="../ref/Transform#scale()">scale()</a> or <a href="../ref/Transform#scale()">rotate()</a>). So
-    a rule is a bit like a DNA-string representing a piece of PlotDevice code. Here are all the
-    symbols:</p>
+    predefined <b>symbols</b> that each represent a transformation command (like <a href="../ref/Transform.html#scale()">scale()</a> or <a href="../ref/Transform.html#scale()">rotate()</a>). So a rule is a bit like a DNA-string
+    representing a piece of PlotDevice code. Here are all the symbols:</p>
     <ul>
       <li><b class="inline_code">F</b> : the system draws a segment here (a rectangle by default).
       </li><li><b class="inline_code">f</b> : move to the next position without drawing a segment
       </li><li><b class="inline_code">+</b> : rotate counterclockwise by <i>lsystem.angle</i>.
       </li><li><b class="inline_code">-</b> : rotate clockwise by <i>lsystem.angle</i>.
       </li><li><b class="inline_code">|</b> : rotate 180 degrees.
-      </li><li><b class="inline_code">[</b> : works like the <a href="../ref/Transform#push()">push()</a> command, starting a subbranch.
-      </li><li><span class="inline_code"><b>]</b></span> : works like the <a href="../ref/Transform#pop()">pop()</a> command, ending the subbranch.
+      </li><li><b class="inline_code">[</b> : works like the <a href="../ref/Transform.html#push()">push()</a> command, starting a subbranch.
+      </li><li><span class="inline_code"><b>]</b></span> : works like the <a href="../ref/Transform.html#pop()">pop()</a> command, ending the subbranch.
       </li><li><span class="inline_code">!</span> : reverses the rotation angle.<br/>
       </li><li><b class="inline_code">(</b> : increases the rotation angle to 110%.
       </li><li><b class="inline_code">)</b> : decreases the rotation angle to 90%.
@@ -206,10 +205,10 @@ tree.<span class="s">draw</span><span class="s">(</span><span class="s">50</span
     <span class="kw">pop</span><span class="s">(</span><span class="s">)</span>
 </pre>
 
-    <p>An L-system uses <a href="../tut/Graphics_State.html">corner-mode</a> <a href="../ref/Transform#translate()">translate()</a> commands to move from segment to segment. It
-    just takes some twiddling with the <i>length</i> parameter to position a segment correctly. You
-    can use the <i>generation</i>, <i>time</i> and <i>id</i> parameters to devise color schemes or
-    select segment shapes.</p>
+    <p>An L-system uses <a href="../tut/Graphics_State.html">corner-mode</a> <a href="../ref/Transform.html#translate()">translate()</a> commands to move from segment to segment.
+    It just takes some twiddling with the <i>length</i> parameter to position a segment correctly.
+    You can use the <i>generation</i>, <i>time</i> and <i>id</i> parameters to devise color schemes
+    or select segment shapes.</p>
     <p>In an animation, the <i>time</i> parameter is the <b>current time</b> when the segment is
     drawn. Time spreads equally through all branches. If you divide the time by
     <i>lsystem.duration()</i> you get a number from 1.0 to 0.0 which you can use as an alpha value

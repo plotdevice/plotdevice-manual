@@ -29,23 +29,24 @@
     <span class="media"><img height="552" src="../etc/tut/paths-bezier.jpg" width="552"/></span><br/>
     <br/>
     The path will be filled and closed by default, without a stroke color.<br/>
-    We use <a href="../ref/Line+Color#nofill()">nofill()</a>, <a href="../ref/Drawing#autoclosepath()">autoclosepath()</a> and <a href="../ref/Line+Color#stroke()">stroke()</a> to get a plain visualization.<br/></p>
+    We use <a href="../ref/Line+Color.html#nofill()">nofill()</a>, <a href="../ref/Drawing.html#autoclosepath()">autoclosepath()</a> and <a href="../ref/Line+Color.html#stroke()">stroke()</a> to get a plain visualization.<br/></p>
     <h2>Bezier math in PlotDevice</h2>
 
     <p>In PlotDevice, you have access to all the points on a path and to all of their control handles.
     This way, you can transform paths on the fly, and even manipulate type as well (using the
-    <a href="../ref/Typography#textpath()">textpath()</a> comand). Additionally, you can perform a
-    number of math operations on paths (for example finding out what the x and y coordinate would
-    be of a point halfway down the path) and unite or intersect different paths.<a id="Manipulating_Paths" name="Manipulating_Paths"></a></p>
+    <a href="../ref/Typography.html#textpath()">textpath()</a> comand). Additionally, you can
+    perform a number of math operations on paths (for example finding out what the x and y
+    coordinate would be of a point halfway down the path) and unite or intersect different
+    paths.<a id="Manipulating_Paths" name="Manipulating_Paths"></a></p>
     <div class="section">
       <h3>Manipulating Paths</h3>
 
-      <p>Each of the PlotDevice shape commands (<a href="../ref/Primitives#oval()">oval()</a>,
-      <a href="../ref/Primitives#rect()">rect()</a>, etc.) returns a path. This path is actually
-      <b>a list of points</b>, in which each point (or <a href="../ref/Drawing#PathElement">PathElement</a>) has certain properties that you can manipulate.
-      This way you can retrieve or edit the coordinates for each point, the coordinates of its
-      control handles, and the kind of points you are dealing with (straight line, curve, pen
-      move).</p>
+      <p>Each of the PlotDevice shape commands (<a href="../ref/Primitives.html#oval()">oval()</a>,
+      <a href="../ref/Primitives.html#rect()">rect()</a>, etc.) returns a path. This path is
+      actually <b>a list of points</b>, in which each point (or <a href="../ref/Drawing.html#PathElement">PathElement</a>) has certain properties that you can
+      manipulate. This way you can retrieve or edit the coordinates for each point, the coordinates
+      of its control handles, and the kind of points you are dealing with (straight line, curve,
+      pen move).</p>
       <p> </p>
       <table border="0">
         <tbody>
@@ -102,8 +103,8 @@ points = <span class="s">[</span><span class="s">]</span>
 
       <h2>Manipulating points</h2>
 
-      <p>Each point in the path is a <a href="../ref/Drawing#PathElement">PathElement</a> object
-      with the following attributes:</p>
+      <p>Each point in the path is a <a href="../ref/Drawing.html#PathElement">PathElement</a>
+      object with the following attributes:</p>
       <ul>
         <li><i>point.x</i>: the x-coordinate or horizontal location.
         </li><li><i>point.y</i>: the y-coordinate or vertical location.<br/>
@@ -161,8 +162,8 @@ points = <span class="s">[</span><span class="s">]</span>
       <p>Paths in PlotDevice consist of Bezier curves. Each curve has a starting point and an ending
       point, and control handles. But what if we want to know the location of a point on the path
       that is not one of these, but somewhere in between? What is the location of <b>halfway the a
-      curve</b> for example? A <a href="../ref/Drawing#BezierPath">path</a> in PlotDevice has some
-      interesting methods we can use:</p>
+      curve</b> for example? A <a href="../ref/Drawing.html#BezierPath">path</a> in PlotDevice has
+      some interesting methods we can use:</p>
 <pre>path.<span class="s">points</span><span class="s">(</span>amount=<span class="s">100</span><span class="s">)</span>
 </pre>
 <pre>path.<span class="s">point</span><span class="s">(</span>t<span class="s">)</span>
@@ -260,7 +261,7 @@ path = <span class="kw">textpath</span><span class="s">(</span><span class="str"
 <pre>path1.<span class="s">difference</span><span class="s">(</span>path2, flatness=<span class="s">0.6</span><span class="s">)</span>
 </pre>
 
-      <p>Each of the three methods returns a new <a href="../ref/Drawing#BezierPath">path</a>
+      <p>Each of the three methods returns a new <a href="../ref/Drawing.html#BezierPath">path</a>
       combined from the two given paths. The way in which the new path is traced differs for each
       method, as you can observe below:</p>
       <p> </p>
@@ -319,9 +320,8 @@ compound = path1.<span class="s">xor</span><span class="s">(</span>path2<span cl
             </td></tr></tbody></table>
 
       <p> </p>
-      <p>The returned path can be manipulated like any other path in PlotDevice, you can <a href="../ref/Line+Color#fill()">fill()</a> and <a href="../ref/Line+Color#stroke()">stroke()</a>
-      it, <a href="../ref/Transform#rotate()">rotate()</a> it and put it (or multiple copies of it)
-      onscreen with <a href="../ref/Drawing#bezier()">bezier()</a>.</p>
+      <p>The returned path can be manipulated like any other path in PlotDevice, you can <a href="../ref/Line+Color.html#fill()">fill()</a> and <a href="../ref/Line+Color.html#stroke()">stroke()</a> it, <a href="../ref/Transform.html#rotate()">rotate()</a> it and put it (or multiple copies of it)
+      onscreen with <a href="../ref/Drawing.html#bezier()">bezier()</a>.</p>
       <p>One thing to note is that the compound path will not contain any curves, rather, it is
       made up of numerous straight line segments (we say that the path is <b>flattened</b>)<i>.</i>
       Each of the compound methods has an optional <i>flatness</i> parameter. The lower it gets,
@@ -347,7 +347,8 @@ compound = path1.<span class="s">xor</span><span class="s">(</span>path2<span cl
 
       <p>It’s easy enough to draw transformed and colored copies of the compound path, but what if
       we want to <b>rotate and scale the individual shapes</b> before flattening them? We can use
-      the <a href="../ref/Transform#Transform">Transform</a> object in PlotDevice for this purpose.</p>
+      the <a href="../ref/Transform.html#Transform">Transform</a> object in PlotDevice for this
+      purpose.</p>
 <pre>
 <span class="grey"># We construct our indivual shape in the top-left corner.</span>
 <span class="grey"># This is where corner-mode transforms originate.</span>

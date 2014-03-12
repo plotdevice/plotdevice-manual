@@ -61,7 +61,7 @@
     <h2><a id="color" name="color" title="color"></a>Colors</h2>
 
     <p>The Colors library has a number of commands that create a new color you can use with
-    <a href="../ref/Line+Color#fill()">fill()</a> or <a href="../ref/Line+Color#fill()">stroke()</a>.</p>
+    <a href="../ref/Line+Color.html#fill()">fill()</a> or <a href="../ref/Line+Color.html#fill()">stroke()</a>.</p>
 <pre>rgb<span class="s">(</span>r, g, b, a=<span class="kw">None</span>, <span class="s">range</span>=<span class="s">1.0</span>, name=<span class="str">""</span><span class="s">)</span>
 </pre>
 <pre>hsb<span class="s">(</span>h, s, b, a=<span class="kw">None</span>, <span class="s">range</span>=<span class="s">1.0</span>, name=<span class="str">""</span><span class="s">)</span>
@@ -96,9 +96,9 @@ clr2 = colors.<span class="s">olive</span><span class="s">(</span><span class="s
 
     <p><span class="grey_box">Color properties</span></p>
     <p>Each of the above commands returns a <i>Color</i> object. It has all the standard properties
-    a color created with the PlotDevice <a href="../ref/Line+Color#color()">color()</a> command also
-    has. You can use these to find out the color’s R, B and B values, or its C, M, Y and K values,
-    or its H, S and B values:</p>
+    a color created with the PlotDevice <a href="../ref/Line+Color.html#color()">color()</a> command
+    also has. You can use these to find out the color’s R, B and B values, or its C, M, Y and K
+    values, or its H, S and B values:</p>
     <ul>
       <li><i>clr.r</i>: the red value in RGB.
       </li><li><i>clr</i><i>.g</i>: the green value in RGB.
@@ -223,8 +223,8 @@ x = <span class="s">0</span>
 </pre>
 
     <p><img alt="colors_colorlist1" height="27" src="../etc/lib/colors_colorlist1.jpg" width="550"/></p>
-    <p>You can also use the <a href="../ref/Utility#choice()">choice()</a> command to get a random
-    colors from the list.</p>
+    <p>You can also use the <a href="../ref/Utility.html#choice()">choice()</a> command to get a
+    random colors from the list.</p>
     <p> </p>
     <hr/>
 
@@ -621,7 +621,7 @@ colors.<span class="s">shadow</span><span class="s">(</span>blur=<span class="s"
     <p>Outlines a <i>path</i> with the colors in the list. When <i>continuous</i> is False, each
     contour in the path starts with the first color in the list, and ends with the last color in
     the list. Because each line segment is drawn separately, the command works only with a
-    corner-mode <a href="../ref/Transform#transform()">transform()</a>.</p>
+    corner-mode <a href="../ref/Transform.html#transform()">transform()</a>.</p>
 <pre>
 <span class="kw">font</span><span class="s">(</span><span class="str">"Georgia"</span>, <span class="s">58</span><span class="s">)</span>
 p = <span class="kw">textpath</span><span class="s">(</span><span class="str">"gradient text is back!"</span>, <span class="s">10</span>, <span class="s">50</span><span class="s">)</span>
@@ -1068,7 +1068,7 @@ colors.<span class="s">shadow</span><span class="s">(</span><span class="s">)</s
 
     <p>The Colors library has a <i>shadow()</i> command and a <i>gradientfill()</i> to add depth to
     your compositions. Shadows influence all the elements on the canvas while gradients are applied
-    to a given <a href="../ref/Drawing#BezierPath">path</a>.</p>
+    to a given <a href="../ref/Drawing.html#BezierPath">path</a>.</p>
 <pre>shadow<span class="s">(</span>dx=<span class="s">10</span>, dy=<span class="s">10</span>, alpha=<span class="s">0.25</span>, blur=<span class="s">4.0</span><span class="s">)</span>
 </pre>
 <pre>noshadow<span class="s">(</span><span class="s">)</span>
@@ -1077,13 +1077,13 @@ colors.<span class="s">shadow</span><span class="s">(</span><span class="s">)</s
              dx=<span class="s">0</span>, dy=<span class="s">0</span>, spread=<span class="s">1.0</span>, angle=<span class="s">0</span>, alpha=<span class="s">1.0</span><span class="s">)</span>
 </pre>
 
-    <p>The <i>shadow()</i> and <i>noshadow()</i> commands work like <a href="../ref/Line+Color#fill()">fill()</a> and <a href="../ref/Line+Color#nofill()">nofill()</a>.
-    Once you set a shadow all the subsequent elements you draw to the canvas will have a dropshadow
-    (or until <i>nofill()</i> is called). The <i>dx</i> and <i>dy</i> define the shadow’s offset,
-    <i>alpha</i> the shadow’s opacity and <i>blur</i> its sharpness.</p>
-    <p>The <i>gradientfill()</i> command takes a given <i>path</i> just like <a href="../ref/Drawing#drawpath()">drawpath()</a> and draws it to the screen filled with a gradient
-    ranging between <a href="../ref/Line+Color#color()">colors</a> <i>clr1</i> and <i>clr2</i>. The
-    <i>type</i> of gradient can be ‘radial’ or ‘linear’.</p>
+    <p>The <i>shadow()</i> and <i>noshadow()</i> commands work like <a href="../ref/Line+Color.html#fill()">fill()</a> and <a href="../ref/Line+Color.html#nofill()">nofill()</a>. Once you set a shadow all the subsequent
+    elements you draw to the canvas will have a dropshadow (or until <i>nofill()</i> is called).
+    The <i>dx</i> and <i>dy</i> define the shadow’s offset, <i>alpha</i> the shadow’s opacity and
+    <i>blur</i> its sharpness.</p>
+    <p>The <i>gradientfill()</i> command takes a given <i>path</i> just like <a href="../ref/Drawing.html#drawpath()">drawpath()</a> and draws it to the screen filled with a
+    gradient ranging between <a href="../ref/Line+Color.html#color()">colors</a> <i>clr1</i> and
+    <i>clr2</i>. The <i>type</i> of gradient can be ‘radial’ or ‘linear’.</p>
     <p>The <i>spread</i> parameter is the distance between the two colors. It can be a relative
     float number between 0.0 and 1.0 or an absolute int. In the case of a float, 1.0 represents the
     highest of either width and height for radial gradients, and the lowest of width and height for

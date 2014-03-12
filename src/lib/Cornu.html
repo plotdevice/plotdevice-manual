@@ -48,7 +48,7 @@
 
     <p>The <i>drawpath()</i> command draws a cornu path from a list of (x,y)-tuples. The x and y
     coordinates range between 0.0 and 1.0, describing a point’s position <b>relative</b> to the
-    drawing area’s <a href="../ref/Setup#size()">size()</a>.</p>
+    drawing area’s <a href="../ref/Setup.html#size()">size()</a>.</p>
     <p>When the <i>close</i> parameter is set to True, draws a closed path. The number of
     <i>tweaks</i> makes the path more elegant, but slows down the command as well. When
     <i>points</i> is true, draws the path’s control points to the screen. When <i>flat</i> is true,
@@ -69,14 +69,14 @@ cornu.<span class="kw">drawpath</span><span class="s">(</span>path, tweaks=<span
 
     <p><span><img height="434" src="../etc/lib/cornu_drawpath.gif" width="569"/></span></p>
     <p> <br/></p>
-    <p>The <i>path()</i> command returns a <a href="../ref/Drawing#BezierPath">path</a> object from
-    a given list of (x,y)-tuples, instead of drawing the path directly to the screen.</p>
+    <p>The <i>path()</i> command returns a <a href="../ref/Drawing.html#BezierPath">path</a> object
+    from a given list of (x,y)-tuples, instead of drawing the path directly to the screen.</p>
 <pre>path<span class="s">(</span>coordinates, close=<span class="kw">False</span>, tweaks=<span class="s">20</span>, flat=<span class="kw">False</span><span class="s">)</span>
 </pre>
 
     <p>Again, the x and y coordinates in this list range between 0.0 and 1.0, describing a point’s
-    position relative to the drawing area’s <a href="../ref/Setup#size()">size()</a>. The points in
-    the returned path object are absolute positions.<br/></p>
+    position relative to the drawing area’s <a href="../ref/Setup.html#size()">size()</a>. The
+    points in the returned path object are absolute positions.<br/></p>
     <p>See the documentation on <a href="../tut/Paths.html">paths</a> to see what you can do with
     path objects.</p>
   </div>

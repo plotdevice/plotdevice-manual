@@ -61,14 +61,15 @@ ease = sin<span class="s">(</span>radians<span class="s">(</span>x<span class="s
 
     <ul>
       <li>If you plan to use a lot of lines in your animation, group them in a single path with
-      <a href="../ref/Drawing#lineto()">lineto()</a> and <a href="../ref/Drawing#moveto()">moveto()</a>. A single big path renders faster than many small
+      <a href="../ref/Drawing.html#lineto()">lineto()</a> and <a href="../ref/Drawing.html#moveto()">moveto()</a>. A single big path renders faster than many small
       paths. All the lines would have the same stroke color and width however.
-      </li><li>If you plan to use a lot of text in your animation, create cached <a href="../ref/Typography#textpath()">textpath()</a> versions in the setup() command and <a href="../ref/Transform#translate()">translate()</a> those when drawing instead of repeatedly
-      calling <a href="../ref/Typography#text()">text()</a> in the draw() command.
+      </li><li>If you plan to use a lot of text in your animation, create cached <a href="../ref/Typography.html#textpath()">textpath()</a> versions in the setup() command and
+      <a href="../ref/Transform.html#translate()">translate()</a> those when drawing instead of
+      repeatedly calling <a href="../ref/Typography.html#text()">text()</a> in the draw() command.
       </li><li>Tune the speed() command to exactly the speed you need. Setting it as high as possible
       often works as a drawback because then PlotDevice would attempt to update too much.
-      </li><li>Tune the <a href="../ref/Setup#size()">size()</a> of the canvas to exactly what you need
-      - a smaller canvas means less screen to refresh.<br/>
+      </li><li>Tune the <a href="../ref/Setup.html#size()">size()</a> of the canvas to exactly what you
+      need - a smaller canvas means less screen to refresh.<br/>
     </li></ul>
 
     <h2>Exporting as a Quicktime movie</h2>

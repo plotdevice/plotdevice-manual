@@ -139,7 +139,7 @@ canvas.<span class="s">draw</span><span class="s">(</span><span class="s">)</spa
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers2.jpg" width="150"/>
           </td><td>
-            Opaque fill layers are created from a standard PlotDevice <a href="../ref/Line+Color#color()">color()</a>. The layer will fill the entire canvas by
+            Opaque fill layers are created from a standard PlotDevice <a href="../ref/Line+Color.html#color()">color()</a>. The layer will fill the entire canvas by
             default.
 <pre>
 l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">1.0</span>, <span class="s">0.0</span>, <span class="s">0.5</span><span class="s">)</span><span class="s">)</span>
@@ -1246,7 +1246,7 @@ l.<span class="s">shadow</span><span class="s">(</span><span class="s">)</span>
     maximum and average pixel values. The <i>layer.pixels()</i> gives you a pixels object that is a
     list of colors with some extra methods: <i>pixels.min()</i>, <i>pixels.max()</i>,
     <i>pixels.average()</i>, and <i>pixels.</i><i>get_pixel()</i>, <i>pixels.</i><i>set_pixel()</i>
-    and <i>pixels.</i><i>get_range().</i> These return a <a href="../ref/Line+Color#color()">color</a>.</p>
+    and <i>pixels.</i><i>get_range().</i> These return a <a href="../ref/Line+Color.html#color()">color</a>.</p>
 <pre>l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
 p = l.<span class="s">pixels</span><span class="s">(</span><span class="s">)</span>
 </pre>
@@ -1368,7 +1368,7 @@ canvas.<span class="s">export</span><span class="s">(</span><span class="str">"f
         correctly remap colors that are outside the CMYK scope: pure RGB red and other high
         intensity colors may contain pixel errors. This is especially true for layers created from
         paths. It is your responsibility to create paths in CMYK-safe colors. Usually everything is
-        OK so long as you use paths created with PlotDevice <a href="../ref/Line+Color#color()">color()</a> colors.</p>
+        OK so long as you use paths created with PlotDevice <a href="../ref/Line+Color.html#color()">color()</a> colors.</p>
       </li><li>When you export Core Image compositions from the PlotDevice file menu, PDF export won’t work
       under Mac OS X 10.5. You can export JPEG, GIF and PNG however.<br/>
     </li></ul>
@@ -1534,7 +1534,7 @@ images = morguefile.<span class="s">search</span><span class="s">(</span><span c
         makes no attempt to correctly remap colors that are outside the CMYK scope: pure RGB red
         and other high intensity colors may contain pixel errors. This is especially true for
         layers created from paths. It is your responsibility to create paths in CMYK-safe colors.
-        Usually everything is OK so long as you use paths created with PlotDevice <a href="../ref/Line+Color#color()">color()</a> colors.</p>
+        Usually everything is OK so long as you use paths created with PlotDevice <a href="../ref/Line+Color.html#color()">color()</a> colors.</p>
       </li><li>
         <p>Using the <i>layer.distort()</i> command in combination with layer filters displaces the
         layer from the origin, because the bounding box of a layer does not take filters into

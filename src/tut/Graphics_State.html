@@ -18,13 +18,11 @@
     it encounters certain commands, it changes the current state. All subsequent elements
     (primitives, paths, text and images) you draw then adhere to the current state.</p>
     <p>Color commands that change the state:<br/>
-    <a href="../ref/Line+Color#colormode()">colormode()</a>, <a href="../ref/Line+Color#fill()">fill()</a>, <a href="../ref/Line+Color#stroke()">stroke()</a>,
-    <a href="../ref/Line+Color#strokewidth()">strokewidth()</a>, <a href="../ref/Line+Color#nofill()">nofill()</a>, <a href="../ref/Line+Color#nostroke()">nostroke()</a></p>
+    <a href="../ref/Line+Color.html#colormode()">colormode()</a>, <a href="../ref/Line+Color.html#fill()">fill()</a>, <a href="../ref/Line+Color.html#stroke()">stroke()</a>, <a href="../ref/Line+Color.html#strokewidth()">strokewidth()</a>, <a href="../ref/Line+Color.html#nofill()">nofill()</a>, <a href="../ref/Line+Color.html#nostroke()">nostroke()</a></p>
     <p>Transformation commands that change the state:<br/>
-    <a href="../ref/Transform#transform()">transform()</a>, <a href="../ref/Transform#translate()">translate()</a>, <a href="../ref/Transform#rotate()">rotate()</a>, <a href="../ref/Transform#scale()">scale()</a>,
-    <a href="../ref/Transform#skew()">skew()</a></p>
+    <a href="../ref/Transform.html#transform()">transform()</a>, <a href="../ref/Transform.html#translate()">translate()</a>, <a href="../ref/Transform.html#rotate()">rotate()</a>, <a href="../ref/Transform.html#scale()">scale()</a>, <a href="../ref/Transform.html#skew()">skew()</a></p>
     <p>Text commands that change the state:<br/>
-    <a href="../ref/Typography#font()">font()</a>, <a href="../ref/Typography#font()">fontsize()</a></p>
+    <a href="../ref/Typography.html#font()">font()</a>, <a href="../ref/Typography.html#font()">fontsize()</a></p>
     <p>For example, observe the following script. We start by setting the current fill to red and
     draw three red ovals. Then we set the current stroke to black and change the fill color to
     transparent and draw two ovals with a black outline and a transparent fill:</p>
@@ -35,8 +33,8 @@
 
     <p>You can think of the transformation state along the same lines as when painting. The PlotDevice
     drawing canvas has an <b>origin point</b> at the top left corner (horizontal x=0 and vertical
-    y=0). The <a href="../ref/Transform#translate()">translate()</a> command lifts up the brush and
-    puts it somewhere else. It changes the origin point.</p>
+    y=0). The <a href="../ref/Transform.html#translate()">translate()</a> command lifts up the
+    brush and puts it somewhere else. It changes the origin point.</p>
     <p>When you say:</p>
 <pre>
 <span class="kw">rect</span><span class="s">(</span><span class="s">20</span>, <span class="s">40</span>, <span class="s">80</span>, <span class="s">80</span><span class="s">)</span>
@@ -66,8 +64,8 @@
     becomes 0.64 (0.8 x 0.8), the third time it becomes 0.512 (0.64 x 0.8) and so on.</p>
     <h2>Corner mode transformations</h2>
 
-    <p>We haven’t discussed the <a href="../ref/Transform#transform()">transform()</a> command yet.
-    As you may have already read in the reference you can switch it between CENTER and CORNER.
+    <p>We haven’t discussed the <a href="../ref/Transform.html#transform()">transform()</a> command
+    yet. As you may have already read in the reference you can switch it between CENTER and CORNER.
     Centered transformation means that all shapes, paths, text and images rotate scale and skew
     around their own center. As we would probably expect them to. Corner mode transformations means
     that elements <b>transform around the current origin point</b>. This can be a difficult concept
@@ -81,8 +79,8 @@
     center and it would be a lot more difficult to position them.<br/></p>
     <p><img alt="graphics_state4" height="520" src="../etc/tut/graphics_state4.gif" width="581"/></p>
     <p> </p>
-    <p>The <a href="../ref/Transform#reset()">reset()</a> command will reset all transformations
-    from that point onward in your script.</p>
+    <p>The <a href="../ref/Transform.html#reset()">reset()</a> command will reset all
+    transformations from that point onward in your script.</p>
     <h2>State in a state?</h2>
 
     <p>The transform() command can also be used as part of a <code class="kw">with</code> block,
