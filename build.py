@@ -3,6 +3,8 @@
 """
 build.py
 
+Generate the PlotDevice Manual. 
+
 Created by Christian Swinehart on 2014/01/14.
 Copyright (c) 2014 Samizdat Drafting Co. All rights reserved.
 """
@@ -370,7 +372,7 @@ def code_blocks():
   print yack.get_style_defs()
 
 if __name__=='__main__':
-  build(static=True)
+  build(static=not sys.argv[1:] or sys.argv[1]!='site')
   check_media()
   check_links()
   # code_blocks()
