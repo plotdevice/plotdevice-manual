@@ -11,8 +11,7 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>
-<span class="kw">lineto</span><span class="s">(</span>x, y<span class="s">)</span>
+<pre>lineto(x, y)
 </pre>
       </div>
 
@@ -40,17 +39,17 @@
               <td><span class="image_border"><img src="../etc/ref/lineto.jpg"/></span>
               </td><td>
 <pre>
-<span class="kw">with bezier</span><span class="s">(10, 10, stroke=0.2, fill=<span class="kw">None</span>) as path:</span>
-    <span class="kw">lineto</span><span class="s">(</span><span class="s">40</span>, <span class="s">40</span><span class="s">)</span>
-    <span class="kw">lineto</span><span class="s">(</span><span class="s">80</span>, <span class="s">40</span><span class="s">)</span>
+with bezier(10, 10, stroke=0.2, fill=None) as path:
+    lineto(40, 40)
+    lineto(80, 40)
 </pre><em>or</em>
 <pre>
-<span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">stroke</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
-<span class="kw">beginpath</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span><span class="s">)</span>
-<span class="kw">lineto</span><span class="s">(</span><span class="s">40</span>, <span class="s">40</span><span class="s">)</span>
-<span class="kw">lineto</span><span class="s">(</span><span class="s">80</span>, <span class="s">40</span><span class="s">)</span>
-<span class="kw">endpath</span><span class="s">(</span><span class="s">)</span>
+nofill()
+stroke(0.2)
+beginpath(10, 10)
+lineto(40, 40)
+lineto(80, 40)
+endpath()
 </pre>
               </td></tr></tbody></table>
       </div>

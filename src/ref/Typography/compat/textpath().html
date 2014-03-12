@@ -11,8 +11,7 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>
-<span class="kw">textpath</span><span class="s">(</span>txt, x, y, width=<span class="kw">None</span>, height=<span class="s">1000000</span><span class="s">)</span>
+<pre>textpath(txt, x, y, width=None, height=1000000)
 </pre>
       </div>
 
@@ -44,10 +43,10 @@
               <td><span class="image_border"><img height="125" src="../etc/ref/textpath.jpg" width="125"/></span>
               </td><td>
 <pre>
-<span class="kw">fontsize</span>(65)
-path = <span class="kw">textpath</span>(<span class="str">"clip"</span>, 10, 70)
-<span class="kw">with clip</span>(path):
-    <span class="kw">image</span>(<span class="str">"header.jpg"</span>, -300, -150)
+fontsize(65)
+path = textpath("clip", 10, 70)
+with clip(path):
+    image("header.jpg", -300, -150)
 </pre>
               </td></tr></tbody></table>
       </div>

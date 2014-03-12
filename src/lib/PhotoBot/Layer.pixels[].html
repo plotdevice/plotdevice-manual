@@ -6,7 +6,7 @@
 </head><body>
   <div class="article">
     <h2>Syntax</h2>
-<pre>canvas.<span class="s">layers</span><span class="s">[</span>i<span class="s">]</span>.<span class="s">pixels</span><span class="s">[</span>j<span class="s">]</span>
+<pre>canvas.layers[i].pixels[j]
 </pre>
 
     <h2>Description</h2>
@@ -18,15 +18,15 @@
     <h2>Example</h2>
 
     <p>Add a reddish glow to the image by increasing all red pixels:</p>
-<pre>photobot = <span class="kw">ximport</span><span class="s">(</span><span class="str">"photobot"</span><span class="s">)</span>
-canvas = photobot.<span class="s">canvas</span><span class="s">(</span><span class="s">100</span>,<span class="s">100</span><span class="s">)</span>
-canvas.<span class="s">layer</span><span class="s">(</span><span class="str">"robot.jpg"</span><span class="s">)</span>
-pixels = canvas.<span class="s">layers</span><span class="s">[</span><span class="s">1</span><span class="s">]</span>.<span class="s">pixels</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">len</span><span class="s">(</span>pixels<span class="s">)</span><span class="s">)</span>:
-  r, g, b, a = pixels<span class="s">[</span>i<span class="s">]</span>
-  r += <span class="s">20</span>
-  pixels<span class="s">[</span>i<span class="s">]</span> = r, g, b, a
-pixels.<span class="s">update</span><span class="s">(</span><span class="s">)</span>
+<pre>photobot = ximport("photobot")
+canvas = photobot.canvas(100,100)
+canvas.layer("robot.jpg")
+pixels = canvas.layers[1].pixels
+for i in range(len(pixels)):
+  r, g, b, a = pixels[i]
+  r += 20
+  pixels[i] = r, g, b, a
+pixels.update()
 </pre>
   </div>
 

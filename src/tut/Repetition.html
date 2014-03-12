@@ -20,8 +20,7 @@
     <p><span class="media"><img alt="" height="511" src="../etc/tut/repetition1.jpg" width="584"/></span></p>
     <p> </p>
     <p>The statement looks like this:</p>
-<pre>
-<span class="kw">for</span> variable <span class="kw">in</span> <span class="s">list</span>:
+<pre>for variable in list:
   do stuff
 </pre>
 
@@ -42,9 +41,8 @@
     <p>So if <em>list</em> where [’apple’, ‘pear’, ‘banana’], the commands in the for-loop would be
     executed three times, with <em>variable</em> consecutively being <em>apple</em> the first time,
     <em>pear</em> the second time, and <em>banana</em> the third time. Now we’re counting fruit.</p>
-<pre>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">[</span><span class="str">"apple"</span>, <span class="str">"pear"</span>, <span class="str">"banana"</span><span class="s">]</span>:
-  <span class="kw">print</span> i
+<pre>for i in ["apple", "pear", "banana"]:
+  print i
 &gt;&gt;&gt; apple
 &gt;&gt;&gt; pear
 &gt;&gt;&gt; banana
@@ -52,12 +50,11 @@
 
     <p>A common thing to put here as <em>list</em> is the <strong>range(<em>n</em>)</strong>
     command, which returns a list with numbers from 0 to <em>n</em>.</p>
-<pre>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">3</span><span class="s">)</span>:
-    <span class="kw">print</span> i
-&gt;&gt;&gt; <span class="s">0</span>
-&gt;&gt;&gt; <span class="s">1</span>
-&gt;&gt;&gt; <span class="s">2</span>
+<pre>for i in range(3):
+    print i
+&gt;&gt;&gt; 0
+&gt;&gt;&gt; 1
+&gt;&gt;&gt; 2
 </pre>
 
     <h2>The <em>do stuff</em> part</h2>
@@ -78,12 +75,11 @@
     example, and have PlotDevice place each of them at random locations. This way, each time you run
     the script, you get a different composition of circles.</p>
     <p>It’s easy to program a ‘style’ with variations this way.</p>
-<pre>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">100</span><span class="s">)</span>:
-    x = <span class="kw">random</span><span class="s">(</span><span class="kw">HEIGHT</span><span class="s">)</span>
-    y = <span class="kw">random</span><span class="s">(</span><span class="kw">WIDTH</span><span class="s">)</span>
-    r = <span class="kw">random</span><span class="s">(</span><span class="s">50</span>, <span class="s">100</span><span class="s">)</span>
-    <span class="kw">oval</span><span class="s">(</span>x, y, r, r<span class="s">)</span>
+<pre>for i in range(100):
+    x = random(HEIGHT)
+    y = random(WIDTH)
+    r = random(50, 100)
+    oval(x, y, r, r)
 </pre>
   </div>
 

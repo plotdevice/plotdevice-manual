@@ -11,8 +11,7 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>
-<span class="kw">grid</span><span class="s">(</span>cols, rows, colsize=<span class="s">1</span>, rowsize=<span class="s">1</span><span class="s">)</span>
+<pre>grid(cols, rows, colsize=1, rowsize=1)
 </pre>
       </div>
 
@@ -41,9 +40,9 @@
               <td><span class="image_border"><img height="125" src="../etc/ref/grid.jpg" width="125"/></span>
               </td><td>
 <pre>
-<span class="kw">fill</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
-<span class="kw">for</span> x, y <span class="kw">in</span> <span class="kw">grid</span><span class="s">(</span><span class="s">7</span>, <span class="s">5</span>, <span class="s">12</span>, <span class="s">12</span><span class="s">)</span>:
-    <span class="kw">rect</span><span class="s">(</span><span class="s">10</span>+x, <span class="s">10</span>+y, <span class="s">10</span>, <span class="s">10</span><span class="s">)</span>
+fill(0.2)
+for x, y in grid(7, 5, 12, 12):
+    rect(10+x, 10+y, 10, 10)
 </pre>
               </td></tr></tbody></table>
       </div>

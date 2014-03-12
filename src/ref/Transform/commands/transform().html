@@ -11,11 +11,9 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>
-<span class="kw">transform</span><span class="s">(</span>mode=<span class="kw">CENTER</span><span class="s">, *transforms)</span>
+<pre>transform(mode=CENTER, *transforms)
 </pre>
-<pre>
-<span class="kw">with transform</span>(mode=<span class="kw">CENTER</span>, *transforms) <span class="kw">as</span> t:
+<pre>with transform(mode=CENTER, *transforms) as t:
 </pre>
       </div>
 
@@ -36,21 +34,21 @@
             <tr>
               <td>
 <pre>
-oldmode = <span class="kw">transform</span>()
-<span class="kw">transform</span>(<span class="kw">CORNER</span>)
-<span class="kw">push</span>()
-<span class="kw">translate</span>(100,20)
-<span class="kw">line</span>(0,0, 40,0)
-<span class="kw">pop</span>()
-<span class="kw">transform</span>(oldmode)
+oldmode = transform()
+transform(CORNER)
+push()
+translate(100,20)
+line(0,0, 40,0)
+pop()
+transform(oldmode)
             
 </pre>
               </td><td><em>simplifies to</em>
               </td><td>
 <pre>
-with <span class="kw">transform</span>(<span class="kw">CORNER</span>):
-    <span class="kw">translate</span>(100,20)
-    <span class="kw">line</span>(0,0, 40,0)
+with transform(CORNER):
+    translate(100,20)
+    line(0,0, 40,0)
 </pre>
               </td></tr></tbody></table>
       </div>
@@ -66,13 +64,13 @@ with <span class="kw">transform</span>(<span class="kw">CORNER</span>):
             <tr>
               <td>
 <pre>
-<span class="kw">rotate</span>(radians=pi/2)
+rotate(radians=pi/2)
 scale(2.0)
 </pre>
               </td><td><em>or</em>
               </td><td>
 <pre>
-<span class="kw">transform</span>(rotate(radians=pi/2), scale(2.0))
+transform(rotate(radians=pi/2), scale(2.0))
 </pre>
               </td></tr></tbody></table>
 
@@ -84,16 +82,16 @@ scale(2.0)
             <tr>
               <td>
 <pre>
-<span class="kw">with transform</span>():
-    <span class="kw">reset</span>()
-    <span class="kw">translate</span>(40,40)
-    <span class="kw">rotate</span>(45)
-    <span class="kw">rect</span>(0,0,20,20)
+with transform():
+    reset()
+    translate(40,40)
+    rotate(45)
+    rect(0,0,20,20)
 </pre>
               </td><td>
 <pre>
-<span class="kw">with transform</span>(<span class="kw">reset</span>(), <span class="kw">translate</span>(40,40), <span class="kw">rotate</span>(45)):
-    <span class="kw">rect</span>(0,0,20,20)
+with transform(reset(), translate(40,40), rotate(45)):
+    rect(0,0,20,20)
 </pre>
               </td></tr></tbody></table>
       </div>
@@ -102,23 +100,21 @@ scale(2.0)
 
       <div class="row">
         <p>When called as a simple function, returns the current transform mode (<code class="kw">CORNER</code> or <code class="kw">CENTER</code>).</p>
-<pre>
-<span class="kw">print</span> <span class="str">"initial mode:"</span>, <span class="kw">transform</span>()
-<span class="kw">print</span> <span class="str">"new mode:"</span>, <span class="kw">transform</span>(<span class="kw">CORNER</span>)
-<span class="grey">&gt;&gt;&gt; initial mode: CENTER</span>
-<span class="grey">&gt;&gt;&gt; new mode: CORNER</span>
+<pre>print "initial mode:", transform()
+print "new mode:", transform(CORNER)
+&gt;&gt;&gt; initial mode: CENTER
+&gt;&gt;&gt; new mode: CORNER
 </pre>
 
         <p>Alternately, the <a href="#Transform"><code>Transform</code></a> assembled in a
         <code>with</code> block can be captured using the <code class="kw">as</code> construct and
         can be applied to <a href="Drawing.html#BezierPath"><code>BezierPath</code></a> and
         <code>Point</code> objects even after the block has completed:</p>
-<pre>
-<span class="kw">with transform</span>(<span class="kw">CORNER</span>) <span class="kw">as</span> t: <span class="grey"># define a Transform object in the `t` variable</span>
-    <span class="kw">skew</span>(20.0)
-square = <span class="kw">rect</span>(20,20,40,40, fill=0.7) <span class="grey"># a non-transfomed square</span>
-parallelogram = t.<span class="kw">apply</span>(square) <span class="grey"># create a skewed copy of the square</span>
-<span class="kw">bezier</span>(parallelogram, fill=<span class="kw">None</span>, stroke=0)
+<pre>with transform(CORNER) as t: # define a Transform object in the `t` variable
+    skew(20.0)
+square = rect(20,20,40,40, fill=0.7) # a non-transfomed square
+parallelogram = t.apply(square) # create a skewed copy of the square
+bezier(parallelogram, fill=None, stroke=0)
 </pre>
       </div>
 
@@ -137,31 +133,31 @@ parallelogram = t.<span class="kw">apply</span>(square) <span class="grey"># cre
               <td><span class="image_border"><img height="125" src="../etc/ref/pop.jpg" width="125"/></span>
               </td><td>
 <pre>
-<span class="kw">fill</span>(0.2)
-<span class="kw">fontsize</span>(14)
-<span class="kw">rotate</span>(90)
-<span class="kw">text</span>(<span class="str">"one"</span>, 40, 80)
+fill(0.2)
+fontsize(14)
+rotate(90)
+text("one", 40, 80)
  
-<span class="kw">with</span> <span class="kw">transform</span>(<span class="kw">rotate(-90)):
-    <span class="kw">text</span>(<span class="str">"two"</span>, 40, 40)
+with transform(rotate(-90)):
+    text("two", 40, 40)
  
-<span class="kw">text</span>(<span class="str">"three"</span>, 50, 80)
-</span>
+text("three", 50, 80)
+
 </pre>
               </td><td><em>or</em>
               </td><td>
 <pre>
-<span class="kw">fill</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
-<span class="kw">fontsize</span><span class="s">(</span><span class="s">14</span><span class="s">)</span>
-<span class="kw">rotate</span><span class="s">(</span><span class="s">90</span><span class="s">)</span>
-<span class="kw">text</span><span class="s">(</span><span class="str">"one"</span>, <span class="s">40</span>, <span class="s">80</span><span class="s">)</span>
+fill(0.2)
+fontsize(14)
+rotate(90)
+text("one", 40, 80)
 
-<span class="kw">push</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">rotate</span><span class="s">(</span><span class="s">-90</span><span class="s">)</span>
-<span class="kw">text</span><span class="s">(</span><span class="str">"two"</span>, <span class="s">40</span>, <span class="s">40</span><span class="s">)</span>
-<span class="kw">pop</span><span class="s">(</span><span class="s">)</span>
+push()
+rotate(-90)
+text("two", 40, 40)
+pop()
 
-<span class="kw">text</span><span class="s">(</span><span class="str">"three"</span>, <span class="s">50</span>, <span class="s">80</span><span class="s">)</span>
+text("three", 50, 80)
 </pre>
               </td></tr></tbody></table>
       </div>

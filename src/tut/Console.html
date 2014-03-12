@@ -14,13 +14,13 @@
     <p>One of the new features in PlotDevice is that you can access the canvas object. It’s a
     list-like structure, containing all your graphical objects (’grobs’). The canvas also has a
     ‘save’ method, so anywhere in your script you can do:</p>
-<pre>canvas.<span class="s">save</span><span class="s">(</span><span class="str">"partial.pdf"</span><span class="s">)</span>
+<pre>canvas.save("partial.pdf")
 </pre>
 
     <p>And it will save what it has drawn <em>up until that point.</em> Do it at the end of your
     script, and you get the full output.</p>
     <p>After saving, you might want to clear out the canvas. You can:</p>
-<pre>canvas.<span class="s">clear</span><span class="s">(</span><span class="s">)</span>
+<pre>canvas.clear()
 </pre>
 
     <p>This will remove all grobs already on the canvas; they will not show up in the render.</p>
@@ -29,21 +29,21 @@
     <p>If you want to use PlotDevice from the command line, you will have to install it. We currently
     recommend using <a href="http://subversion.tigris.org/" title="Subversion">Subversion</a> to
     grab a copy:</p>
-<pre>svn co http://dev.<span class="s">plotdevice</span>.<span class="s">net</span>/svn/plotdevice/trunk/ plotdevice
-<span class="s">cd</span> libs/Numeric
-python setup.<span class="s">py</span> install
-<span class="s">cd</span> ../..
+<pre>svn co http://dev.nodebox.net/svn/plotdevice/trunk/ plotdevice
+cd libs/Numeric
+python setup.py install
+cd ../..
  
-<span class="s">cd</span> libs/pathmatics
-python setup.<span class="s">py</span> install
-<span class="s">cd</span> ../..
+cd libs/pathmatics
+python setup.py install
+cd ../..
  
-<span class="s">cd</span> libs/polymagic
-python setup.<span class="s">py</span> install
-<span class="s">cd</span> ../..
+cd libs/polymagic
+python setup.py install
+cd ../..
  
-<span class="s">cd</span> src
-python setup.<span class="s">py</span> install
+cd src
+python setup.py install
 </pre>
 
     <p>The only outside dependency is <a href="http://pyobjc.sourceforge.net/" title="PyObjC">PyObjC</a>. We recommend the latest version from Subversion.</p>
@@ -51,11 +51,10 @@ python setup.<span class="s">py</span> install
 
     <p>When you have a set of PlotDevice scripts that you want to run to generate images or a movie,
     use the following commands:</p>
-<pre>
-<span class="kw">from</span> plotdevice <span class="kw">import</span> console
-source = <span class="str">"size(200,200)<span class="s">\n</span>rect(random(WIDTH), random(HEIGHT), 20, 20)"</span>
-console.<span class="s">make_image</span><span class="s">(</span>source, <span class="str">"rect.png"</span><span class="s">)</span>
-console.<span class="s">make_movie</span><span class="s">(</span>source, <span class="str">"rect.mov"</span>, <span class="s">20</span>, fps=<span class="s">30</span><span class="s">)</span>
+<pre>from plotdevice import console
+source = "size(200,200)\nrect(random(WIDTH), random(HEIGHT), 20, 20)"
+console.make_image(source, "rect.png")
+console.make_movie(source, "rect.mov", 20, fps=30)
 </pre>
 
     <p>Currently, there is no way to run the console from the command line, but we’re working on
@@ -65,47 +64,44 @@ console.<span class="s">make_movie</span><span class="s">(</span>source, <span c
     <p>If you want to have direct access to PlotDevice’s drawing context, you can import everything
     directly. The API remains the same, but you have to prefix everything with the context. Note
     also the initialization of Cocoa, necessary for using the API.</p>
-<pre>
-<span class="kw">from</span> AppKit <span class="kw">import</span> NSApplication
-NSApplication.<span class="s">sharedApplication</span><span class="s">(</span><span class="s">)</span>.<span class="s">activateIgnoringOtherApps_</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>
+<pre>from AppKit import NSApplication
+NSApplication.sharedApplication().activateIgnoringOtherApps_(0)
  
-<span class="kw">from</span> plotdevice.<span class="s">graphics</span> <span class="kw">import</span> Context
-<span class="kw">from</span> plotdevice.<span class="s">util</span> <span class="kw">import</span> <span class="kw">random</span>, <span class="kw">choice</span>, <span class="kw">grid</span>, <span class="kw">files</span>
-ctx = Context<span class="s">(</span><span class="s">)</span>
-ctx.<span class="kw">size</span><span class="s">(</span><span class="s">200</span>, <span class="s">200</span><span class="s">)</span>
-ctx.<span class="kw">rect</span><span class="s">(</span><span class="kw">random</span><span class="s">(</span>ctx.<span class="kw">WIDTH</span><span class="s">)</span>, <span class="kw">random</span><span class="s">(</span>ctx.<span class="kw">HEIGHT</span><span class="s">)</span>, <span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
-ctx.<span class="s">save</span><span class="s">(</span><span class="str">"test.png"</span><span class="s">)</span>
+from plotdevice.graphics import Context
+from plotdevice.util import random, choice, grid, files
+ctx = Context()
+ctx.size(200, 200)
+ctx.rect(random(ctx.WIDTH), random(ctx.HEIGHT), 100, 100)
+ctx.save("test.png")
 </pre>
 
     <p>You can also make movies this way:</p>
-<pre>
-<span class="kw">from</span> AppKit <span class="kw">import</span> NSApplication
-NSApplication.<span class="s">sharedApplication</span><span class="s">(</span><span class="s">)</span>.<span class="s">activateIgnoringOtherApps_</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>
+<pre>from AppKit import NSApplication
+NSApplication.sharedApplication().activateIgnoringOtherApps_(0)
  
-<span class="kw">from</span> plotdevice.<span class="s">graphics</span> <span class="kw">import</span> Context
-<span class="kw">from</span> plotdevice.<span class="s">util</span> <span class="kw">import</span> <span class="kw">random</span>, <span class="kw">choice</span>, <span class="kw">grid</span>, <span class="kw">files</span>
-<span class="kw">from</span> plotdevice.<span class="s">util</span>.<span class="s">QTSupport</span> <span class="kw">import</span> Movie
+from plotdevice.graphics import Context
+from plotdevice.util import random, choice, grid, files
+from plotdevice.util.QTSupport import Movie
  
-movie = Movie<span class="s">(</span><span class="str">"rects.mov"</span><span class="s">)</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">10</span><span class="s">)</span>:
-   ctx = Context<span class="s">(</span><span class="s">)</span>
-    ctx.<span class="kw">size</span><span class="s">(</span><span class="s">200</span>, <span class="s">200</span><span class="s">)</span>
- ctx.<span class="kw">rect</span><span class="s">(</span><span class="kw">random</span><span class="s">(</span>ctx.<span class="kw">WIDTH</span><span class="s">)</span>, <span class="kw">random</span><span class="s">(</span>ctx.<span class="kw">HEIGHT</span><span class="s">)</span>, <span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
-  movie.<span class="s">add</span><span class="s">(</span>ctx<span class="s">)</span>
-movie.<span class="s">save</span><span class="s">(</span><span class="s">)</span>
+movie = Movie("rects.mov")
+for i in range(10):
+   ctx = Context()
+    ctx.size(200, 200)
+ ctx.rect(random(ctx.WIDTH), random(ctx.HEIGHT), 100, 100)
+  movie.add(ctx)
+movie.save()
 </pre>
 
     <h2>5. Drawing in a Cocoa drawRect method</h2>
 
     <p>If you want to implement your existing drawing using PlotDevice, you can do the following in
     your class’s drawRect: method:</p>
-<pre>
-<span class="kw">def</span> <span class="red">drawRect_</span><span class="s">(</span><span class="s">self</span>, <span class="kw">rect</span><span class="s">)</span>:
-    <span class="kw">from</span> plotdevice.<span class="s">graphics</span> <span class="kw">import</span> Context
-   <span class="kw">from</span> plotdevice.<span class="s">util</span> <span class="kw">import</span> <span class="kw">random</span>
-    ctx.<span class="kw">size</span><span class="s">(</span>*<span class="kw">rect</span><span class="s">[</span><span class="s">1</span><span class="s">]</span><span class="s">)</span>
- ctx.<span class="kw">rect</span><span class="s">(</span><span class="kw">random</span><span class="s">(</span>ctx.<span class="kw">WIDTH</span><span class="s">)</span>, <span class="kw">random</span><span class="s">(</span>ctx.<span class="kw">HEIGHT</span><span class="s">)</span>, <span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
-  ctx.<span class="s">canvas</span>.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
+<pre>def drawRect_(self, rect):
+    from plotdevice.graphics import Context
+   from plotdevice.util import random
+    ctx.size(*rect[1])
+ ctx.rect(random(ctx.WIDTH), random(ctx.HEIGHT), 100, 100)
+  ctx.canvas.draw()
 </pre>
 
     <p>Note that creating the Context and drawing it are two separate steps:</p>

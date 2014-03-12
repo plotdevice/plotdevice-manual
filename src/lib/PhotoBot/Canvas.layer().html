@@ -6,7 +6,7 @@
 </head><body>
   <div class="article">
     <h2>Syntax</h2>
-<pre>canvas.<span class="s">layer</span><span class="s">(</span><span class="kw">image</span>, x=<span class="s">0</span>, y=<span class="s">0</span>, name=<span class="str">""</span><span class="s">)</span>
+<pre>canvas.layer(image, x=0, y=0, name="")
 </pre>
 
     <h2>Description</h2>
@@ -21,13 +21,13 @@
     <h2>Example</h2>
 
     <p>Adds the image file <em>robot.jpg</em> as the top layer of <em>canvas</em>.</p>
-<pre>photobot = <span class="kw">ximport</span><span class="s">(</span><span class="str">"photobot"</span><span class="s">)</span>
-canvas = photobot.<span class="s">canvas</span><span class="s">(</span><span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
-canvas.<span class="s">layer</span><span class="s">(</span><span class="str">"images/robot.jpg"</span><span class="s">)</span>
+<pre>photobot = ximport("photobot")
+canvas = photobot.canvas(100, 100)
+canvas.layer("images/robot.jpg")
 </pre>
 
     <p>Sets the opacity of the lowest layer in <em>canvas</em>.</p>
-<pre>canvas.<span class="s">layers</span><span class="s">[</span><span class="s">1</span><span class="s">]</span>.<span class="s">opacity</span><span class="s">(</span><span class="s">60</span><span class="s">)</span>
+<pre>canvas.layers[1].opacity(60)
 </pre>
 
     <div class="example">

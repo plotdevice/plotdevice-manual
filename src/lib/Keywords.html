@@ -33,34 +33,33 @@
     <p>First import the library in your project. You can do this by putting the <i>keywords.py</i>
     file in the same folder as your script or by putting it in <i>~/Library/Application
     Support/PlotDevice</i>/. Then load it:</p>
-<pre>keywords = <span class="kw">ximport</span><span class="s">(</span><span class="str">"keywords"</span><span class="s">)</span>
+<pre>keywords = ximport("keywords")
 </pre>
 
     <p>The library has a single command, <i>top()</i> which returns a list of 2-tuples, for example
     [(5,’typography’), (2,’workshop’)], representing the most important words in the text
     <i>str</i>, and their count. The command returns the top <i>n</i> words.<br/></p>
-<pre>top<span class="s">(</span><span class="s">str</span>, n=<span class="s">10</span>, nouns=<span class="kw">True</span>, singularize=<span class="kw">True</span>, filters=<span class="s">[</span><span class="s">]</span><span class="s">)</span>
+<pre>top(str, n=10, nouns=True, singularize=True, filters=[])
 </pre>
 
     <p>When WordNet is present, the command will return only nouns by default and try to
     singularize them. Optionally, you also can supply a filters list of words to ignore. For
     example, here we filter keywords from Lucas Nijs’ text on <a href="Keywords/Ideas_from_the_Heart.html">Ideas from the Heart</a>.</p>
-<pre>
-<span class="kw">import</span> keywords
-<span class="s">str</span> = <span class="kw">open</span><span class="s">(</span><span class="str">"ideasfromtheheart.txt"</span><span class="s">)</span>.<span class="s">read</span><span class="s">(</span><span class="s">)</span>
-top = keywords.<span class="s">top</span><span class="s">(</span><span class="s">str</span>, nouns=<span class="kw">True</span><span class="s">)</span>
-<span class="kw">for</span> count, word <span class="kw">in</span> top:
-    <span class="kw">print</span> count, word
-&gt;&gt;&gt; <span class="s">10</span> typography
-&gt;&gt;&gt; <span class="s">7</span> student
-&gt;&gt;&gt; <span class="s">6</span> workshop
-&gt;&gt;&gt; <span class="s">6</span> project
-&gt;&gt;&gt; <span class="s">5</span> teacher
-&gt;&gt;&gt; <span class="s">4</span> idea
-&gt;&gt;&gt; <span class="s">4</span> grade
-&gt;&gt;&gt; <span class="s">4</span> design
-&gt;&gt;&gt; <span class="s">4</span> communication
-&gt;&gt;&gt; <span class="s">3</span> course
+<pre>import keywords
+str = open("ideasfromtheheart.txt").read()
+top = keywords.top(str, nouns=True)
+for count, word in top:
+    print count, word
+&gt;&gt;&gt; 10 typography
+&gt;&gt;&gt; 7 student
+&gt;&gt;&gt; 6 workshop
+&gt;&gt;&gt; 6 project
+&gt;&gt;&gt; 5 teacher
+&gt;&gt;&gt; 4 idea
+&gt;&gt;&gt; 4 grade
+&gt;&gt;&gt; 4 design
+&gt;&gt;&gt; 4 communication
+&gt;&gt;&gt; 3 course
 </pre> 
   </div>
 

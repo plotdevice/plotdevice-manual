@@ -11,11 +11,10 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>path = <span class="kw">bezier</span>(points=[], curvature=1.0, <span class="red">**</span>opts)
+<pre>path = bezier(points=[], curvature=1.0, **opts)
 </pre>
-<pre>
-<span class="kw">with bezier</span>(x=0, y=0, <span class="red">**</span>opts) as path:
-    <span class="grey"># call moveto(), lineto(), or curveto() to add points to the path</span>
+<pre>with bezier(x=0, y=0, **opts) as path:
+    # call moveto(), lineto(), or curveto() to add points to the path
 </pre>
       </div>
 
@@ -79,9 +78,9 @@
               <td><span class="image_border"><img src="../etc/ref/beginpath.jpg"/></span>
               </td><td>
 <pre>
-<span class="grey"># define a path inside of a 'with' block</span>
-<span class="kw">with bezier</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span><span class="s">, stroke=0.2) as path:</span>
-    <span class="kw">lineto</span><span class="s">(</span><span class="s">40</span>, <span class="s">10</span><span class="s">)</span>
+# define a path inside of a 'with' block
+with bezier(10, 10, stroke=0.2) as path:
+    lineto(40, 10)
 </pre>
               </td></tr></tbody></table>
       </div>
@@ -93,13 +92,13 @@
               <td><span class="image_border"><img src="../etc/ref/findpath.jpg"/></span>
               </td><td>
 <pre>
-<span class="grey"># define a path with a list of x,y points</span>
-points = <span class="s">[</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span><span class="s">)</span>, <span class="s">(</span><span class="s">90</span>, <span class="s">90</span><span class="s">)</span>, <span class="s">(</span><span class="s">350</span>, <span class="s">200</span><span class="s">)</span><span class="s">]</span>
-path = <span class="kw">bezier</span>(points, close=<span class="kw">False</span>, stroke=0.2, fill=<span class="kw">None</span>)
+# define a path with a list of x,y points
+points = [(10, 10), (90, 90), (350, 200)]
+path = bezier(points, close=False, stroke=0.2, fill=None)
 
-<span class="grey"># draw dots at the point coordinates</span>
-<span class="kw">for</span> x, y <span class="kw">in</span> points:
-    <span class="kw">oval</span><span class="s">(</span>x<span class="s">-2</span>, y<span class="s">-2</span>, <span class="s">4</span>, <span class="s">4</span><span class="s">)</span>
+# draw dots at the point coordinates
+for x, y in points:
+    oval(x-2, y-2, 4, 4)
 </pre>
               </td></tr></tbody></table>
       </div>

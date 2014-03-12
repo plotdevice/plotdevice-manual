@@ -48,7 +48,7 @@
 
     <p>Put the web library folder in the same folder as your script so PlotDevice can find the
     library. You can also put it in ~/Library/Application Support/PlotDevice/.</p>
-<pre>wiinode = ximport("wiinode")<br/>
+<pre>wiinode = ximport("wiinode")
 </pre>
 
     <p><small>Outside of PlotDevice you can also just do import wiinode.</small></p>
@@ -59,7 +59,7 @@
 
     <p>In your animation, initialize the WiiMote object. Then, in each frame, call the update
     method:</p>
-<pre>def setup():<br/>    global wm<br/>    wm = wiinode.WiiMote()<br/><br/>def draw():<br/>    global wm<br/>    wm.update()<br/>    print wm.yaw<br/>
+<pre>def setup():    global wm    wm = wiinode.WiiMote()def draw():    global wm    wm.update()    print wm.yaw
 </pre>
     <hr/>
     <a name="wiimote" title="wiimote"></a>
@@ -72,18 +72,18 @@
     <p>The WiiMote returns roll, pitch and yaw. See the <a href="http://en.wikipedia.org/wiki/Flight_dynamics">Wikipedia article on flight dynamics</a> for
     more information.</p>
     <p>See the <code>wiinode_example1.py</code> for a game that uses the roll value.</p>
-<pre>wm.pitch # The absolute pitch value<br/>wm.roll # The absolute roll value<br/>wm.yaw # The absolute yaw value<br/>
+<pre>wm.pitch # The absolute pitch valuewm.roll # The absolute roll valuewm.yaw # The absolute yaw value
 </pre>
 
     <p><span class="grey_box">Acceleration</span></p>
     <p>The WiiMote returns acceleration in both x, y and z positions. This is <b>not</b> the
     remote’s absolute position in space. You need an infrared sender for that.</p>
-<pre>wm.x # The horizontal (left-right) acceleration<br/>wm.y # The forward acceleration<br/>wm.z # The vertical (up-down) acceleration<br/>
+<pre>wm.x # The horizontal (left-right) accelerationwm.y # The forward accelerationwm.z # The vertical (up-down) acceleration
 </pre>
 
     <p><span class="grey_box">Buttons</span></p>
     <p>The WiiMote’s A and B buttons can be monitored as well.</p>
-<pre>wm.a # True if the A button is pressed<br/>wm.b # True if the B button is pressed<br/>
+<pre>wm.a # True if the A button is pressedwm.b # True if the B button is pressed
 </pre>
     <hr/>
     <a name="fooling" title="fooling"></a>

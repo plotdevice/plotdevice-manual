@@ -52,7 +52,7 @@
 
     <p>Put the <em>ants</em> library folder in the same folder as your script so PlotDevice can find
     the library. You can also put it in ~/Library/Application Support/PlotDevice/.</p>
-<pre>ants = <span class="kw">ximport</span><span class="s">(</span><span class="str">"ants"</span><span class="s">)</span>
+<pre>ants = ximport("ants")
 </pre> 
     <hr/>
 
@@ -60,7 +60,7 @@
 
     <p>The <em>colony()</em> command returns a new community consisting of <em>n</em> ants with an
     operating radius of <em>r</em>, and located at coordinates <em>x</em> and <em>y</em>.<br/></p>
-<pre>colony<span class="s">(</span>n, x, y, r<span class="s">)</span>
+<pre>colony(n, x, y, r)
 </pre>
 
     <p>The returned colony object has a number of properties:</p>
@@ -79,9 +79,9 @@
 
     <p>A colony object returned from the colony() command is a list of individual ants. You can
     easily loop through it:</p>
-<pre>colony = ants.<span class="s">colony</span><span class="s">(</span><span class="s">30</span>, <span class="kw">WIDTH</span>/<span class="s">2</span>, <span class="kw">HEIGHT</span>/<span class="s">2</span>, <span class="s">200</span><span class="s">)</span>
-<span class="kw">for</span> ant <span class="kw">in</span> colony:
-    <span class="kw">print</span> ant.<span class="s">x</span>, ant.<span class="s">y</span>
+<pre>colony = ants.colony(30, WIDTH/2, HEIGHT/2, 200)
+for ant in colony:
+    print ant.x, ant.y
 </pre>
 
     <p>Each ant object has a number of useful properties:</p>
@@ -98,18 +98,18 @@
     <p><br/>
     Each ant object also has a number of methods. The primary method is <em>ant.forage()</em>,
     which you usually call each frame in an animation to have the ant search for food.</p>
-<pre>ant.<span class="s">forage</span><span class="s">(</span><span class="kw">speed</span>=<span class="s">2</span><span class="s">)</span>
+<pre>ant.forage(speed=2)
 </pre>
 
     <p>The other methods contain the ant AI for wandering, trailing and harvesting. Check the
     source code.</p>
-<pre>ant.<span class="s">goal</span><span class="s">(</span>obj<span class="s">)</span>
+<pre>ant.goal(obj)
 </pre>
 
     <p>This method sets the object <em>obj</em>, which has x and y properties, as a goal for the
     ant. The ant starts moving towards it. This low-level ant command allows you to modify the
     ant’s behaviour by defining custom goals.</p>
-<pre>ant.<span class="s">near</span><span class="s">(</span>obj, radius=<span class="s">10</span><span class="s">)</span>
+<pre>ant.near(obj, radius=10)
 </pre>
 
     <p>This command checks if something is nearby. If the object’s x and y properties are within
@@ -122,14 +122,13 @@
 
     <p>The <em>food()</em> command creates a new heap of food for the ants to harvest. When you add
     it to the <em>foodsources</em> list in the colony, the ants can find it:</p>
-<pre>food<span class="s">(</span>x, y, <span class="kw">size</span><span class="s">)</span>
+<pre>food(x, y, size)
 </pre>
-<pre>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">8</span><span class="s">)</span>:
-    x = <span class="s">50</span> + <span class="kw">random</span><span class="s">(</span>WIDTH<span class="s">-100</span><span class="s">)</span>
-    y = <span class="s">50</span> + <span class="kw">random</span><span class="s">(</span>HEIGHT<span class="s">-100</span><span class="s">)</span>
-    s = <span class="kw">random</span><span class="s">(</span><span class="s">20</span>,<span class="s">40</span><span class="s">)</span>
-    colony.<span class="s">foodsources</span>.<span class="s">append</span><span class="s">(</span>ants.<span class="s">food</span><span class="s">(</span>x,y,s<span class="s">)</span><span class="s">)</span>
+<pre>for i in range(8):
+    x = 50 + random(WIDTH-100)
+    y = 50 + random(HEIGHT-100)
+    s = random(20,40)
+    colony.foodsources.append(ants.food(x,y,s))
 </pre> 
     <hr/>
 

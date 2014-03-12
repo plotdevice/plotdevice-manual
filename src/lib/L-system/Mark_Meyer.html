@@ -102,60 +102,59 @@
     <hr/>
 
     <p>The source:</p>
-<pre>
-<span class="grey"># by mark meyer | http://www.photo-mark.com | enjoy. </span>
-<span class="kw">size</span><span class="s">(</span><span class="s">600</span>, <span class="s">800</span><span class="s">)</span>
-<span class="kw">strokewidth</span><span class="s">(</span><span class="s">1</span><span class="s">)</span>
-<span class="kw">stroke</span><span class="s">(</span>.<span class="s">45</span>, .<span class="s">45</span>, .<span class="s">25</span>, .<span class="s">35</span><span class="s">)</span>
-<span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
+<pre># by mark meyer | http://www.photo-mark.com | enjoy. 
+size(600, 800)
+strokewidth(1)
+stroke(.45, .45, .25, .35)
+nofill()
  
-<span class="kw">translate</span><span class="s">(</span><span class="s">300</span>, <span class="s">800</span><span class="s">)</span> <span class="grey">#starting point</span>
+translate(300, 800) #starting point
  
-segmentLength = <span class="s">3</span>
-rightTurnAngle = <span class="s">25.7</span>
-leftTurnAngle =  <span class="s">-25.7</span>
+segmentLength = 3
+rightTurnAngle = 25.7
+leftTurnAngle =  -25.7
  
-rules= <span class="s">{</span><span class="s">}</span>
-<span class="grey"># The symbold for the formal language are: </span>
-<span class="grey"># [ = save state (i.e push()).  ] = restore state (i.e. pop()). </span>
-<span class="grey"># + and - = turn right and left respectively (based on angles given above)</span>
-<span class="grey"># Other symbolds are recursively substituted </span>
-<span class="grey"># and then processed as a draw forward instruction</span>
-rules<span class="s">[</span><span class="str">'w'</span><span class="s">]</span> = <span class="str">'X'</span> <span class="grey"># This is the starting rule</span>
-rules<span class="s">[</span><span class="str">'X'</span><span class="s">]</span> = <span class="str">'F[+X][-X]FX'</span>
-rules<span class="s">[</span><span class="str">'F'</span><span class="s">]</span> = <span class="str">'FF'</span>
+rules= {}
+# The symbold for the formal language are: 
+# [ = save state (i.e push()).  ] = restore state (i.e. pop()). 
+# + and - = turn right and left respectively (based on angles given above)
+# Other symbolds are recursively substituted 
+# and then processed as a draw forward instruction
+rules['w'] = 'X' # This is the starting rule
+rules['X'] = 'F[+X][-X]FX'
+rules['F'] = 'FF'
  
-<span class="grey"># Be careful with large numbers of iterations,</span>
-<span class="grey"># the complexity grows exponentially</span>
-iterations = <span class="s">8</span> 
+# Be careful with large numbers of iterations,
+# the complexity grows exponentially
+iterations = 8 
  
-<span class="kw">def</span> <span class="rose">draw</span><span class="s">(</span><span class="s">)</span>:
-    <span class="kw">beginpath</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span><span class="s">)</span>
-    <span class="kw">lineto</span><span class="s">(</span><span class="s">0</span>, -segmentLength<span class="s">)</span>
-    <span class="kw">endpath</span><span class="s">(</span><span class="s">)</span>
-    <span class="kw">transform</span><span class="s">(</span>mode=CORNER<span class="s">)</span>
-    <span class="kw">translate</span><span class="s">(</span><span class="s">0</span>, -segmentLength<span class="s">)</span>
+def draw():
+    beginpath(0, 0)
+    lineto(0, -segmentLength)
+    endpath()
+    transform(mode=CORNER)
+    translate(0, -segmentLength)
     
-<span class="kw">def</span> <span class="rose">iterate</span><span class="s">(</span>n, rule<span class="s">)</span>:
-    <span class="kw">if</span> rule == <span class="str">'+'</span>:
-        <span class="kw">rotate</span><span class="s">(</span>rightTurnAngle<span class="s">)</span>
-        <span class="kw">return</span>
-    <span class="kw">elif</span> rule == <span class="str">'-'</span>:
-        <span class="kw">rotate</span><span class="s">(</span>leftTurnAngle<span class="s">)</span>
-        <span class="kw">return</span>
-    <span class="kw">elif</span> rule == <span class="str">"["</span>: 
-        <span class="kw">push</span><span class="s">(</span><span class="s">)</span>
-        <span class="kw">return</span>
-    <span class="kw">elif</span> rule == <span class="str">"]"</span>:
-         <span class="kw">pop</span><span class="s">(</span><span class="s">)</span>
-         <span class="kw">return</span>
-    <span class="kw">if</span> n &gt; <span class="s">0</span>:
-        <span class="grey">#scale(.98) # scaling on each iteration is fun to play with</span>
-        <span class="kw">for</span> step <span class="kw">in</span> rules<span class="s">[</span>rule<span class="s">]</span>:
-            iterate<span class="s">(</span>n<span class="s">-1</span>, step<span class="s">)</span>
-    <span class="kw">else</span>: draw<span class="s">(</span><span class="s">)</span>
+def iterate(n, rule):
+    if rule == '+':
+        rotate(rightTurnAngle)
+        return
+    elif rule == '-':
+        rotate(leftTurnAngle)
+        return
+    elif rule == "[": 
+        push()
+        return
+    elif rule == "]":
+         pop()
+         return
+    if n &gt; 0:
+        #scale(.98) # scaling on each iteration is fun to play with
+        for step in rules[rule]:
+            iterate(n-1, step)
+    else: draw()
  
-iterate<span class="s">(</span>iterations, <span class="str">'w'</span><span class="s">)</span>
+iterate(iterations, 'w')
 </pre>
 
     <p><a href="http://nodebox.net/code/data/media/markmeyer-lsystem.zip">Download source</a></p>

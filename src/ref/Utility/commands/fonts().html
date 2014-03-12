@@ -11,8 +11,7 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>
-<span class="kw">fonts</span><span class="s">(</span>like=<span class="kw">None</span>, western=<span class="kw">True</span><span class="s">)</span>
+<pre>fonts(like=None, western=True)
 </pre>
       </div>
 
@@ -35,11 +34,11 @@
       <h2>Example</h2>
 
       <div class="row">
-<pre>romans = <span class="kw">fonts</span><span class="s">()</span> <span class="grey"># Get a list of all the text-friendly fonts on the system</span>
-jenson = <span class="kw">fonts</span><span class="s">(like=<span class="str">"jenson"</span>)</span> <span class="grey"># all installed weights of Adobe Jenson.</span>
+<pre>romans = fonts() # Get a list of all the text-friendly fonts on the system
+jenson = fonts(like="jenson") # all installed weights of Adobe Jenson.
 
-eastern = <span class="kw">fonts</span><span class="s">(western=<span class="kw">False</span>)</span> <span class="grey"># all asian-character fonts, math fonts, etc.</span>
-kozuka = <span class="kw">fonts</span><span class="s">(western=<span class="kw">False</span>, like=<span class="str">"koz"</span>)</span> <span class="grey"># the weights in the Kozuka families</span>
+eastern = fonts(western=False) # all asian-character fonts, math fonts, etc.
+kozuka = fonts(western=False, like="koz") # the weights in the Kozuka families
 </pre>
       </div>
     </div>

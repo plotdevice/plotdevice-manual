@@ -15,94 +15,93 @@
     all the tendrils together.</p>
     <p> </p>
     <p><img alt="tendrils1" height="550" src="../etc/tut/tendrils1.jpg" width="550"/></p>
-<pre>
-<span class="kw">size</span><span class="s">(</span><span class="s">600</span>, <span class="s">600</span><span class="s">)</span>
+<pre>size(600, 600)
  
-<span class="kw">from</span> <span class="s">math</span> <span class="kw">import</span> pi, sin, cos, radians
+from math import pi, sin, cos, radians
  
-<span class="kw">class</span> Tendril:
+class Tendril:
     
-    <span class="kw">def</span> <span class="red">__init__</span><span class="s">(</span><span class="s">self</span>, x, y, width=<span class="s">15</span><span class="s">)</span>:
-        <span class="str">""</span><span class="str">" A new sinewy tendril at location x and y.
+    def __init__(self, x, y, width=15):
+        """ A new sinewy tendril at location x and y.
         Its segment width will gradually become smaller as it grows.
-        "</span><span class="str">""</span>
-        <span class="s">self</span>.<span class="s">x</span> = x
-        <span class="s">self</span>.<span class="s">y</span> = y
-        <span class="s">self</span>.<span class="s">width</span> = width
-        <span class="s">self</span>.<span class="s">angle</span> = <span class="kw">random</span><span class="s">(</span><span class="s">2</span>*pi<span class="s">)</span> - pi <span class="grey"># random angle in radians.</span>
-        <span class="s">self</span>.<span class="s">segments</span> = <span class="s">[</span><span class="s">]</span>
-        <span class="s">self</span>.<span class="s">v</span> = <span class="s">0</span>
+        """
+        self.x = x
+        self.y = y
+        self.width = width
+        self.angle = random(2*pi) - pi # random angle in radians.
+        self.segments = []
+        self.v = 0
  
-    <span class="kw">def</span> <span class="red">grow</span><span class="s">(</span><span class="s">self</span>, distance=<span class="s">3.0</span>, curl=<span class="s">1.0</span>, step=<span class="s">0.02</span><span class="s">)</span>:
-        <span class="str">""</span><span class="str">" Tendril segment growth using fluid, spiral sine functions,
+    def grow(self, distance=3.0, curl=1.0, step=0.02):
+        """ Tendril segment growth using fluid, spiral sine functions,
         taken from the ART+COM Tendrils class for Processing.
-        "</span><span class="str">""</span>
-        <span class="grey"># Think of a tendril having a steering compass.</span>
-        <span class="grey"># For each new segment, the compass shifts a bit left or right.</span>
-        <span class="s">self</span>.<span class="s">x</span> += cos<span class="s">(</span><span class="s">self</span>.<span class="s">angle</span><span class="s">)</span> * distance
-        <span class="s">self</span>.<span class="s">y</span> += sin<span class="s">(</span><span class="s">self</span>.<span class="s">angle</span><span class="s">)</span> * distance
-        <span class="s">self</span>.<span class="s">v</span> += <span class="kw">random</span><span class="s">(</span>-step, step<span class="s">)</span>
-        <span class="s">self</span>.<span class="s">v</span> *= <span class="s">0.9</span> + curl*<span class="s">0.1</span>
-        <span class="s">self</span>.<span class="s">angle</span> += <span class="s">self</span>.<span class="s">v</span>
-        <span class="s">self</span>.<span class="s">segments</span>.<span class="s">append</span><span class="s">(</span>
-            <span class="s">(</span><span class="s">self</span>.<span class="s">x</span>, <span class="s">self</span>.<span class="s">y</span>, <span class="s">self</span>.<span class="s">angle</span><span class="s">)</span>
-        <span class="s">)</span>
+        """
+        # Think of a tendril having a steering compass.
+        # For each new segment, the compass shifts a bit left or right.
+        self.x += cos(self.angle) * distance
+        self.y += sin(self.angle) * distance
+        self.v += random(-step, step)
+        self.v *= 0.9 + curl*0.1
+        self.angle += self.v
+        self.segments.append(
+            (self.x, self.y, self.angle)
+        )
         
-    <span class="kw">def</span> <span class="red">draw</span><span class="s">(</span><span class="s">self</span>, path=<span class="kw">None</span><span class="s">)</span>:
-        <span class="str">""</span><span class="str">" Draws all the segments in the tendril,
+    def draw(self, path=None):
+        """ Draws all the segments in the tendril,
         as separate ovals or as a single path if one is supplied.
-        "</span><span class="str">""</span>
-        n = <span class="s">len</span><span class="s">(</span><span class="s">self</span>.<span class="s">segments</span><span class="s">)</span>
-        <span class="kw">for</span> i, <span class="s">(</span>x, y, angle<span class="s">)</span> <span class="kw">in</span> <span class="s">enumerate</span><span class="s">(</span><span class="s">self</span>.<span class="s">segments</span><span class="s">)</span>:
-            r = <span class="s">(</span><span class="s">1</span>-<span class="s">float</span><span class="s">(</span>i<span class="s">)</span>/n<span class="s">)</span> * <span class="s">self</span>.<span class="s">width</span> <span class="grey"># size gradually decreases.</span>
-            <span class="kw">if</span> path != <span class="kw">None</span>:
-                path.<span class="kw">oval</span><span class="s">(</span>x, y, r, r<span class="s">)</span>
-            <span class="kw">else</span>:
-                <span class="kw">oval</span><span class="s">(</span>x, y, r, r<span class="s">)</span>
+        """
+        n = len(self.segments)
+        for i, (x, y, angle) in enumerate(self.segments):
+            r = (1-float(i)/n) * self.width # size gradually decreases.
+            if path != None:
+                path.oval(x, y, r, r)
+            else:
+                oval(x, y, r, r)
         
-<span class="kw">class</span> Plant:
+class Plant:
     
-    <span class="kw">def</span> <span class="red">__init__</span><span class="s">(</span><span class="s">self</span>, x, y, tendrils=<span class="s">30</span>, width=<span class="s">15</span><span class="s">)</span>:
-        <span class="str">""</span><span class="str">" A collection of tendrils.
-        "</span><span class="str">""</span>
-        <span class="s">self</span>.<span class="s">x</span> = x
-        <span class="s">self</span>.<span class="s">y</span> = y
-        <span class="s">self</span>.<span class="s">tendrils</span> = <span class="s">[</span><span class="s">]</span>
-        <span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span>tendrils<span class="s">)</span>: 
-            <span class="s">self</span>.<span class="s">tendrils</span>.<span class="s">append</span><span class="s">(</span>
-                Tendril<span class="s">(</span><span class="s">self</span>.<span class="s">x</span>, <span class="s">self</span>.<span class="s">y</span>, width<span class="s">)</span>
-            <span class="s">)</span>
+    def __init__(self, x, y, tendrils=30, width=15):
+        """ A collection of tendrils.
+        """
+        self.x = x
+        self.y = y
+        self.tendrils = []
+        for i in range(tendrils): 
+            self.tendrils.append(
+                Tendril(self.x, self.y, width)
+            )
     
-    <span class="kw">def</span> <span class="red">grow</span><span class="s">(</span><span class="s">self</span>, distance=<span class="s">3.0</span>, curl=<span class="s">1.0</span>, step=<span class="s">0.02</span><span class="s">)</span>:
-        <span class="str">""</span><span class="str">" Grow a new segment on each of the plant's tendrils.
-        "</span><span class="str">""</span>
-        <span class="kw">for</span> b <span class="kw">in</span> <span class="s">self</span>.<span class="s">tendrils</span>:
-            b.<span class="s">grow</span><span class="s">(</span>distance, curl, step<span class="s">)</span>
+    def grow(self, distance=3.0, curl=1.0, step=0.02):
+        """ Grow a new segment on each of the plant's tendrils.
+        """
+        for b in self.tendrils:
+            b.grow(distance, curl, step)
             
-    <span class="kw">def</span> <span class="red">draw</span><span class="s">(</span><span class="s">self</span><span class="s">)</span>:
-        <span class="str">""</span><span class="str">" Draw the plant.
-        "</span><span class="str">""</span>
-        <span class="kw">for</span> tendril <span class="kw">in</span> <span class="s">self</span>.<span class="s">tendrils</span>:
-            tendril.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
+    def draw(self):
+        """ Draw the plant.
+        """
+        for tendril in self.tendrils:
+            tendril.draw()
         
-    <span class="kw">def</span> <span class="red">path</span><span class="s">(</span><span class="s">self</span><span class="s">)</span>:
-        <span class="str">""</span><span class="str">" Return the plant as a path consisting of ovals.
-        "</span><span class="str">""</span>
-        path = <span class="kw">BezierPath</span><span class="s">(</span><span class="s">)</span>
-        <span class="kw">for</span> tendril <span class="kw">in</span> <span class="s">self</span>.<span class="s">tendrils</span>:
-            tendril.<span class="s">draw</span><span class="s">(</span>path<span class="s">)</span>
-        <span class="kw">return</span> path
+    def path(self):
+        """ Return the plant as a path consisting of ovals.
+        """
+        path = BezierPath()
+        for tendril in self.tendrils:
+            tendril.draw(path)
+        return path
  
-<span class="kw">background</span><span class="s">(</span><span class="s">0.12</span>, <span class="s">0.12</span>, <span class="s">0.06</span><span class="s">)</span>
-<span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">stroke</span><span class="s">(</span><span class="s">1</span>, <span class="s">0.5</span><span class="s">)</span>
-<span class="kw">strokewidth</span><span class="s">(</span><span class="s">0.5</span><span class="s">)</span>
+background(0.12, 0.12, 0.06)
+nofill()
+stroke(1, 0.5)
+strokewidth(0.5)
  
-plant = Plant<span class="s">(</span><span class="kw">WIDTH</span>/<span class="s">2</span>, <span class="kw">HEIGHT</span>/<span class="s">2</span>, tendrils=<span class="s">20</span><span class="s">)</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">200</span><span class="s">)</span>: 
-    plant.<span class="s">grow</span><span class="s">(</span>curl=<span class="s">1.0</span>, step=<span class="s">0.02</span><span class="s">)</span>
+plant = Plant(WIDTH/2, HEIGHT/2, tendrils=20)
+for i in range(200): 
+    plant.grow(curl=1.0, step=0.02)
  
-plant.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
+plant.draw()
 </pre> 
     <hr size="2" width="100%"/>
 
@@ -113,16 +112,16 @@ plant.<span class="s">draw</span><span class="s">(</span><span class="s">)</span
     play around with the <i>curl</i> parameter a bit.</p>
     <p> </p>
     <p><img alt="tendrils2" height="550" src="../etc/tut/tendrils2.jpg" width="550"/></p>
-<pre>coreimage = <span class="kw">ximport</span><span class="s">(</span><span class="str">"coreimage"</span><span class="s">)</span>
-canvas = coreimage.<span class="s">canvas</span><span class="s">(</span><span class="kw">WIDTH</span>, <span class="kw">HEIGHT</span><span class="s">)</span>
-layer = canvas.<span class="s">append</span><span class="s">(</span>
-    plant.<span class="s">path</span><span class="s">(</span><span class="s">)</span>, 
-    <span class="kw">fill</span>=<span class="kw">color</span><span class="s">(</span><span class="s">1</span>,<span class="s">0</span><span class="s">)</span>, 
-    <span class="kw">stroke</span>=<span class="kw">color</span><span class="s">(</span><span class="s">1</span>,<span class="s">0.8</span><span class="s">)</span>, 
-    <span class="kw">strokewidth</span>=<span class="s">0.2</span>
-<span class="s">)</span>
-layer.<span class="s">filter</span><span class="s">(</span><span class="str">"zoomblur"</span>, amount=<span class="s">10</span><span class="s">)</span>
-canvas.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
+<pre>coreimage = ximport("coreimage")
+canvas = coreimage.canvas(WIDTH, HEIGHT)
+layer = canvas.append(
+    plant.path(), 
+    fill=color(1,0), 
+    stroke=color(1,0.8), 
+    strokewidth=0.2
+)
+layer.filter("zoomblur", amount=10)
+canvas.draw()
 </pre> 
 
     <p>Created by Tom De Smedt<br/>

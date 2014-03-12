@@ -45,7 +45,7 @@
 
     <p>Put the <i>svg</i> library folder in the same folder as your script so PlotDevice can find the
     library. You can also put it in ~/Library/Application Support/PlotDevice/.</p>
-<pre>svg = <span class="kw">ximport</span><span class="s">(</span><span class="str">"svg"</span><span class="s">)</span>
+<pre>svg = ximport("svg")
 </pre>         
     <hr/>
 
@@ -65,7 +65,7 @@
     <hr/>
 
     <h2><a id="parse" name="parse" title="parse"></a>Importing SVG files</h2>
-<pre>parse<span class="s">(</span><span class="s">str</span>, cached=<span class="kw">False</span><span class="s">)</span>
+<pre>parse(str, cached=False)
 </pre>
 
     <p>The <i>parse()</i> command reads SVG source and returns a list of <a href="../tut/Paths.html">paths</a> that are drawable with <a href="../ref/Drawing.html#drawpath()">drawpath()</a>. The command has an optional <i>cached</i>
@@ -86,15 +86,15 @@
     into PlotDevice. Those that have a fill color will retain their original fill.</p>
     <p> </p>
     <p><span class="media"><img height="668" src="../etc/lib/svg-illustrator.jpg" width="634"/></span></p>
-<pre>data = <span class="kw">open</span><span class="s">(</span><span class="str">"flower.svg"</span><span class="s">)</span>.<span class="s">read</span><span class="s">(</span><span class="s">)</span>
-paths = svg.<span class="s">parse</span><span class="s">(</span>data<span class="s">)</span>
+<pre>data = open("flower.svg").read()
+paths = svg.parse(data)
  
-<span class="kw">for</span> path <span class="kw">in</span> paths:
-  <span class="kw">try</span>:
-    <span class="kw">fill</span><span class="s">(</span>path.<span class="kw">fill</span><span class="s">)</span>
-  <span class="kw">except</span>:
-    <span class="kw">fill</span><span class="s">(</span><span class="kw">random</span><span class="s">(</span><span class="s">)</span>, <span class="s">0</span>, <span class="s">0</span><span class="s">)</span>
-  <span class="kw">drawpath</span><span class="s">(</span>path<span class="s">)</span>
+for path in paths:
+  try:
+    fill(path.fill)
+  except:
+    fill(random(), 0, 0)
+  drawpath(path)
 </pre>
 
     <p><span class="media">In the following example we override the colors in the original
@@ -115,33 +115,32 @@ paths = svg.<span class="s">parse</span><span class="s">(</span>data<span class=
     <p><span class="media"><img height="647" src="../etc/lib/svg-pathfilter.jpg" width="739"/></span></p>
     <p>Below is some example code used to alter the path.<br/>
     You can see it in use in the <a href="http://nodebox.net/code/index.php/Superfolia">Superfolia</a> project in the gallery.</p>
-<pre>
-<span class="kw">def</span> <span class="rose">draw_furry</span><span class="s">(</span>path<span class="s">)</span>:
-    prev = <span class="kw">None</span>
-    <span class="kw">autoclosepath</span><span class="s">(</span><span class="kw">False</span><span class="s">)</span>
-    <span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
-    <span class="kw">for</span> pt <span class="kw">in</span> path.<span class="s">points</span><span class="s">(</span><span class="s">100</span><span class="s">)</span>:
-        <span class="kw">stroke</span><span class="s">(</span><span class="s">1</span>, <span class="s">0.5</span><span class="s">)</span>
-        <span class="kw">strokewidth</span><span class="s">(</span><span class="kw">random</span><span class="s">(</span><span class="s">0.5</span><span class="s">)</span><span class="s">)</span>
-        <span class="kw">if</span> prev != <span class="kw">None</span>:
-            <span class="kw">beginpath</span><span class="s">(</span>prev.<span class="s">x</span>, prev.<span class="s">y</span><span class="s">)</span>
-            <span class="kw">curveto</span><span class="s">(</span>
-                pt.<span class="s">ctrl1</span>.<span class="s">x</span> - <span class="kw">random</span><span class="s">(</span><span class="s">30</span><span class="s">)</span>, 
-                pt.<span class="s">ctrl1</span>.<span class="s">y</span>,
-                pt.<span class="s">ctrl2</span>.<span class="s">x</span>, 
-                pt.<span class="s">ctrl2</span>.<span class="s">y</span> + <span class="kw">random</span><span class="s">(</span><span class="s">30</span><span class="s">)</span>,
-                pt.<span class="s">x</span>, 
-                pt.<span class="s">y</span>
-            <span class="s">)</span>
-            <span class="kw">curveto</span><span class="s">(</span>
-                pt.<span class="s">ctrl1</span>.<span class="s">x</span> + <span class="kw">random</span><span class="s">(</span><span class="s">10</span><span class="s">)</span>, 
-                pt.<span class="s">ctrl1</span>.<span class="s">y</span>,
-                pt.<span class="s">ctrl2</span>.<span class="s">x</span>, 
-                pt.<span class="s">ctrl2</span>.<span class="s">y</span> - <span class="kw">random</span><span class="s">(</span><span class="s">10</span><span class="s">)</span>,
-                pt.<span class="s">x</span> + <span class="kw">random</span><span class="s">(</span><span class="s">-20</span>, <span class="s">20</span><span class="s">)</span>, 
-                pt.<span class="s">y</span> + <span class="kw">random</span><span class="s">(</span><span class="s">-20</span>, <span class="s">20</span><span class="s">)</span>
-            <span class="s">)</span>
-            <span class="kw">endpath</span><span class="s">(</span><span class="s">)</span>
+<pre>def draw_furry(path):
+    prev = None
+    autoclosepath(False)
+    nofill()
+    for pt in path.points(100):
+        stroke(1, 0.5)
+        strokewidth(random(0.5))
+        if prev != None:
+            beginpath(prev.x, prev.y)
+            curveto(
+                pt.ctrl1.x - random(30), 
+                pt.ctrl1.y,
+                pt.ctrl2.x, 
+                pt.ctrl2.y + random(30),
+                pt.x, 
+                pt.y
+            )
+            curveto(
+                pt.ctrl1.x + random(10), 
+                pt.ctrl1.y,
+                pt.ctrl2.x, 
+                pt.ctrl2.y - random(10),
+                pt.x + random(-20, 20), 
+                pt.y + random(-20, 20)
+            )
+            endpath()
         prev = pt
 </pre>
 
@@ -158,49 +157,47 @@ paths = svg.<span class="s">parse</span><span class="s">(</span>data<span class=
     <p>The first command, <i>bounds()</i>, calculates the position and total size of a list of
     paths. The second command, <i>drawpaths()</i>, draws all of the paths rotating and scaling from
     the given origin. By default origin is (0.5, 0.5) which means the center of the group.</p>
-<pre>
-<span class="kw">def</span> <span class="rose">bounds</span><span class="s">(</span>paths=<span class="s">[</span><span class="s">]</span><span class="s">)</span>:
-   <span class="str">""</span><span class="str">" Returns (x, y), (width, height) bounds for a group of paths.
-   "</span><span class="str">""</span>
-   <span class="kw">if</span> <span class="s">len</span><span class="s">(</span>paths<span class="s">)</span> == <span class="s">0</span>: 
-       <span class="kw">return</span> <span class="s">(</span><span class="s">0</span>,<span class="s">0</span><span class="s">)</span>, <span class="s">(</span><span class="s">0</span>,<span class="s">0</span><span class="s">)</span>
-   l = t = <span class="s">float</span><span class="s">(</span><span class="str">"inf"</span><span class="s">)</span>
-   r = b = <span class="s">float</span><span class="s">(</span><span class="str">"-inf"</span><span class="s">)</span>
-   <span class="kw">for</span> path <span class="kw">in</span> paths:
-       <span class="s">(</span>x, y<span class="s">)</span>, <span class="s">(</span>w, h<span class="s">)</span> = path.<span class="s">bounds</span>
-       l = <span class="s">min</span><span class="s">(</span>l, x<span class="s">)</span>
-       t = <span class="s">min</span><span class="s">(</span>t, y<span class="s">)</span>
-       r = <span class="s">max</span><span class="s">(</span>r, x+w<span class="s">)</span>
-       b = <span class="s">max</span><span class="s">(</span>b, y+h<span class="s">)</span>
-   <span class="kw">return</span> <span class="s">(</span>l, t<span class="s">)</span>, <span class="s">(</span>r-l, b-t<span class="s">)</span>
+<pre>def bounds(paths=[]):
+   """ Returns (x, y), (width, height) bounds for a group of paths.
+   """
+   if len(paths) == 0: 
+       return (0,0), (0,0)
+   l = t = float("inf")
+   r = b = float("-inf")
+   for path in paths:
+       (x, y), (w, h) = path.bounds
+       l = min(l, x)
+       t = min(t, y)
+       r = max(r, x+w)
+       b = max(b, y+h)
+   return (l, t), (r-l, b-t)
 </pre>
-<pre>
-<span class="kw">def</span> <span class="rose">drawpaths</span><span class="s">(</span>paths=<span class="s">[</span><span class="s">]</span>, x=<span class="s">0</span>, y=<span class="s">0</span>, <span class="kw">rotate</span>=<span class="s">0</span>, <span class="kw">scale</span>=<span class="s">1.0</span>, origin=<span class="s">(</span><span class="s">0.5</span>,<span class="s">0.5</span><span class="s">)</span><span class="s">)</span>:
-   <span class="str">""</span><span class="str">" Draws a group of paths that rotate and scale from the given origin.
-   "</span><span class="str">""</span>
-   _ctx.<span class="kw">transform</span><span class="s">(</span>CORNER<span class="s">)</span>
-   _ctx.<span class="kw">push</span><span class="s">(</span><span class="s">)</span>
-   _ctx.<span class="kw">translate</span><span class="s">(</span>x, y<span class="s">)</span>
-   _ctx.<span class="kw">rotate</span><span class="s">(</span><span class="kw">rotate</span><span class="s">)</span>
-   _ctx.<span class="kw">scale</span><span class="s">(</span><span class="kw">scale</span><span class="s">)</span>
-   <span class="s">(</span>x, y<span class="s">)</span>, <span class="s">(</span>w, h<span class="s">)</span> = bounds<span class="s">(</span>paths<span class="s">)</span>
-   _ctx.<span class="kw">translate</span><span class="s">(</span><span class="s">(</span>-x-w<span class="s">)</span>*origin<span class="s">[</span><span class="s">0</span><span class="s">]</span>, <span class="s">(</span>-y-h<span class="s">)</span>*origin<span class="s">[</span><span class="s">1</span><span class="s">]</span><span class="s">)</span>
-   <span class="kw">for</span> path <span class="kw">in</span> paths:
-       <span class="grey">#_ctx.fill(path.fill)</span>
-       <span class="grey">#_ctx.stroke(path.stroke)</span>
-       <span class="grey">#_ctx.strokewidth(path.strokewidth)</span>
-       <span class="grey"># Use copies of the paths that adhere to the transformations.</span>
-       _ctx.<span class="kw">drawpath</span><span class="s">(</span>path.<span class="s">copy</span><span class="s">(</span><span class="s">)</span><span class="s">)</span>
-   _ctx.<span class="kw">pop</span><span class="s">(</span><span class="s">)</span>
+<pre>def drawpaths(paths=[], x=0, y=0, rotate=0, scale=1.0, origin=(0.5,0.5)):
+   """ Draws a group of paths that rotate and scale from the given origin.
+   """
+   _ctx.transform(CORNER)
+   _ctx.push()
+   _ctx.translate(x, y)
+   _ctx.rotate(rotate)
+   _ctx.scale(scale)
+   (x, y), (w, h) = bounds(paths)
+   _ctx.translate((-x-w)*origin[0], (-y-h)*origin[1])
+   for path in paths:
+       #_ctx.fill(path.fill)
+       #_ctx.stroke(path.stroke)
+       #_ctx.strokewidth(path.strokewidth)
+       # Use copies of the paths that adhere to the transformations.
+       _ctx.drawpath(path.copy())
+   _ctx.pop()
 </pre>        
     <hr/>
 
     <p>Finally, remember that when you want to supply one path multiple times to drawpath(), each
     with its own translation and rotation, you need to <b>feed copies of the path to drawpath</b>:</p>
-<pre>path = svg.<span class="s">parse</span><span class="s">(</span>data<span class="s">)</span><span class="s">[</span><span class="s">0</span><span class="s">]</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">5</span><span class="s">)</span>:
-  <span class="kw">rotate</span><span class="s">(</span>i*<span class="s">10</span><span class="s">)</span>
-  <span class="kw">drawpath</span><span class="s">(</span>path.<span class="s">copy</span><span class="s">(</span><span class="s">)</span><span class="s">)</span>
+<pre>path = svg.parse(data)[0]
+for i in range(5):
+  rotate(i*10)
+  drawpath(path.copy())
 </pre>
 
     <p> </p>

@@ -52,9 +52,8 @@
     for each curve, which gives me a fluid distortion vector that eases in and eases out each
     curve.</p>
     <p>A sine function typically looks like this:</p>
-<pre>
-<span class="kw">from</span> <span class="s">math</span> <span class="kw">import</span> sin, radians
-ease = sin<span class="s">(</span>radians<span class="s">(</span>x<span class="s">)</span><span class="s">)</span> * y
+<pre>from math import sin, radians
+ease = sin(radians(x)) * y
 </pre>
 
     <h2>Tips for speed optimization</h2>

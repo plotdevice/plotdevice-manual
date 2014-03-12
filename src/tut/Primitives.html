@@ -19,8 +19,7 @@
     <em>syntax</em>, in other words, how exaclty you need to write down the command in PlotDevice for
     it to work.</p>
     <p>In case of the rect() command the syntax is:</p>
-<pre>
-<span class="kw">rect</span><span class="s">(</span>x, y, width, height, roundness=<span class="s">0.0</span>, draw=<span class="kw">True</span><span class="s">)</span>
+<pre>rect(x, y, width, height, roundness=0.0, draw=True)
 </pre>
 
     <p>All commands in PlotDevice look like this: you have the <strong>name</strong> of the command
@@ -38,8 +37,7 @@
     <em>parameters</em>. Parameters are things you can customize. You can supply numbers, <a href="Variables.html">variables</a>, <a href="Strings.html">strings</a> and other things as
     parameters to a command to have it look exactly the way you want it to.</p>
     <p>For example, to draw a square in the top left of the canvas:</p>
-<pre>
-<span class="kw">rect</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span>, <span class="s">40</span>, <span class="s">40</span><span class="s">)</span>
+<pre>rect(0, 0, 40, 40)
 </pre>
 
     <p>Notice how we replaced the <em>x</em>, <em>y</em>, <em>width</em> and <em>height</em> from
@@ -56,8 +54,7 @@
     to it, this means it is optional. If we don’t define this parameter in our script, it’s default
     value is <em>something</em>. In case of the rectangle command, the corner roundness is 0 by
     default, unless we explicitly say:</p>
-<pre>
-<span class="kw">rect</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span>, <span class="s">40</span>, <span class="s">40</span>, roundness=<span class="s">0.5</span><span class="s">)</span>
+<pre>rect(0, 0, 40, 40, roundness=0.5)
 </pre>
 
     <p>Now we have a rectangle with 50% round corners.</p>

@@ -6,7 +6,7 @@
 </head><body>
   <div class="article">
     <h2>Syntax</h2>
-<pre>canvas.<span class="s">layers</span><span class="s">[</span>i<span class="s">]</span>.<span class="s">select</span><span class="s">(</span>path, feather=<span class="kw">True</span><span class="s">)</span>
+<pre>canvas.layers[i].select(path, feather=True)
 </pre>
 
     <h2>Description</h2>
@@ -17,11 +17,11 @@
     <p>Selections use a <em>feather</em>, setting this parameter to False will result in jaggy
     aliased edges.</p>
     <h2>Example</h2>
-<pre>photobot = <span class="kw">ximport</span><span class="s">(</span><span class="str">"photobot"</span><span class="s">)</span>
-canvas = photobot.<span class="s">canvas</span><span class="s">(</span><span class="s">100</span>,<span class="s">100</span><span class="s">)</span>
-canvas.<span class="s">layer</span><span class="s">(</span><span class="str">"robot.jpg"</span><span class="s">)</span>
-path = <span class="s">[</span><span class="s">0</span>,<span class="s">0</span>, <span class="kw">random</span><span class="s">(</span><span class="s">100</span><span class="s">)</span>,<span class="kw">random</span><span class="s">(</span><span class="s">100</span><span class="s">)</span>, <span class="s">80</span>,<span class="s">20</span>, <span class="s">0</span>,<span class="s">0</span><span class="s">]</span>
-canvas.<span class="s">layers</span><span class="s">[</span><span class="s">1</span><span class="s">]</span>.<span class="s">select</span><span class="s">(</span>path, feather=<span class="kw">False</span><span class="s">)</span>
+<pre>photobot = ximport("photobot")
+canvas = photobot.canvas(100,100)
+canvas.layer("robot.jpg")
+path = [0,0, random(100),random(100), 80,20, 0,0]
+canvas.layers[1].select(path, feather=False)
 </pre>
 
     <div class="example">

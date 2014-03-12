@@ -19,9 +19,8 @@
     describe those points’ vector. The first handle describes the forward curvature of the starting
     point, the second handle the backward curvature of the second point.</p>
     <p>For example:</p>
-<pre>
-<span class="kw">with bezier</span>(100, 100, fill=<span class="kw">None</span>, stroke=0, close=<span class="kw">False</span>) as path:
-    <span class="kw">curveto</span>(150, 100, 200, 200, 50, 400)
+<pre>with bezier(100, 100, fill=None, stroke=0, close=False) as path:
+    curveto(150, 100, 200, 200, 50, 400)
 </pre>
 
     <p>Draws the following curve:</p>
@@ -62,19 +61,19 @@
           </td></tr><tr>
             <td>
 <pre>
-<span class="kw">font</span><span class="s">(</span><span class="str">"Dolly-Bold"</span>, <span class="s">300</span><span class="s">)</span>
-path = <span class="kw">textpath</span><span class="s">(</span><span class="str">"e"</span>, <span class="s">200</span>, <span class="s">200</span><span class="s">)</span>
-<span class="kw">bezier</span>(path)
+font("Dolly-Bold", 300)
+path = textpath("e", 200, 200)
+bezier(path)
 </pre>
             </td><td>
 <pre>
-<span class="kw">font</span><span class="s">(</span><span class="str">"Dolly-Bold"</span>, <span class="s">300</span><span class="s">)</span>
-path = <span class="kw">textpath</span><span class="s">(</span><span class="str">"e"</span>, <span class="s">200</span>, <span class="s">200</span><span class="s">)</span>
-points = <span class="s">[</span><span class="s">]</span>
-<span class="kw">for</span> point <span class="kw">in</span> path:
-  point.<span class="s">y</span> += <span class="s">20</span> 
-  points.<span class="s">append</span><span class="s">(</span>point<span class="s">)</span> 
-<span class="kw">bezier</span>(points)
+font("Dolly-Bold", 300)
+path = textpath("e", 200, 200)
+points = []
+for point in path:
+  point.y += 20 
+  points.append(point) 
+bezier(points)
 </pre>
             </td></tr></tbody></table>
 
@@ -83,22 +82,21 @@ points = <span class="s">[</span><span class="s">]</span>
       <p>As the above example shows, you can easily manipulate a path by looping through all of the
       points in the path with a <a href="Repetition.html">for-loop</a>, before actually drawing the
       path.</p>
-<pre>path = <span class="kw">textpath</span><span class="s">(</span><span class="str">"hello"</span>, <span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
-points = <span class="s">[</span><span class="s">]</span>
-<span class="kw">for</span> point <span class="kw">in</span> path:
-  <span class="grey"># --&gt; Manipulate points here</span>
-  points.<span class="s">append</span><span class="s">(</span>point<span class="s">)</span>
-<span class="kw">bezier</span>(points)
+<pre>path = textpath("hello", 100, 100)
+points = []
+for point in path:
+  # --&gt; Manipulate points here
+  points.append(point)
+bezier(points)
 </pre>
-<pre>
-<span class="kw">with bezier</span>(100, 100, draw=<span class="kw">False</span>) as path:
-  <span class="kw">curveto</span><span class="s">(</span><span class="s">150</span>, <span class="s">100</span>, <span class="s">200</span>, <span class="s">200</span>, <span class="s">50</span>, <span class="s">400</span><span class="s">)</span>
+<pre>with bezier(100, 100, draw=False) as path:
+  curveto(150, 100, 200, 200, 50, 400)
 
-points = <span class="s">[</span><span class="s">]</span>
-<span class="kw">for</span> point <span class="kw">in</span> path:
-  <span class="grey"># --&gt; Manipulate points here</span>
-  points.<span class="s">append</span><span class="s">(</span>point<span class="s">)</span>
-<span class="kw">bezier</span>(points)
+points = []
+for point in path:
+  # --&gt; Manipulate points here
+  points.append(point)
+bezier(points)
 </pre>
 
       <h2>Manipulating points</h2>
@@ -122,10 +120,10 @@ points = <span class="s">[</span><span class="s">]</span>
       handle of a point controls how the curve connects to the previous point, the <i>ctrl2</i>
       handle how the curve connects to the next point.</p>
       <p>For example:</p>
-<pre>with <span class="kw">bezier</span>(100,100, fill=<span class="kw">None</span>, stroke=1, close=<span class="kw">False</span>) as path:
-    <span class="kw">curveto</span><span class="s">(</span><span class="s">150</span>, <span class="s">100</span>, <span class="s">200</span>, <span class="s">200</span>, <span class="s">150</span>, <span class="s">200</span><span class="s">)</span>
-    <span class="kw">curveto</span><span class="s">(</span><span class="s">100</span>, <span class="s">200</span>, <span class="s">200</span>, <span class="s">350</span>, <span class="s">300</span>, <span class="s">300</span><span class="s">)</span>
-<span class="kw">print</span> path<span class="s">[</span><span class="s">1</span><span class="s">]</span>.<span class="s">ctrl1</span>.<span class="s">x</span>
+<pre>with bezier(100,100, fill=None, stroke=1, close=False) as path:
+    curveto(150, 100, 200, 200, 150, 200)
+    curveto(100, 200, 200, 350, 300, 300)
+print path[1].ctrl1.x
 </pre>
 
       <p> </p>
@@ -139,20 +137,19 @@ points = <span class="s">[</span><span class="s">]</span>
       <p><br/>
       <span class="media"><img height="87" src="../etc/tut/paths-broken.jpg" width="334"/></span><br/>
       <br/></p>
-<pre>
-<span class="kw">font</span><span class="s">(</span><span class="str">"Dolly-Bold"</span>, <span class="s">100</span><span class="s">)</span>
-path = <span class="kw">textpath</span><span class="s">(</span><span class="str">"broken"</span>, <span class="s">200</span>, <span class="s">200</span><span class="s">)</span>
+<pre>font("Dolly-Bold", 100)
+path = textpath("broken", 200, 200)
  
-points = <span class="s">[</span><span class="s">]</span>
-<span class="kw">for</span> point <span class="kw">in</span> path:
+points = []
+for point in path:
  
-    <span class="kw">if</span> point.<span class="s">cmd</span> == <span class="kw">CURVETO</span>:
-        point.<span class="s">ctrl2</span>.<span class="s">x</span> += <span class="s">5</span>
-        point.<span class="s">ctrl2</span>.<span class="s">y</span> -= <span class="s">10</span>
-        point.<span class="s">y</span> += <span class="s">5</span>
-    points.<span class="s">append</span><span class="s">(</span>point<span class="s">)</span>
+    if point.cmd == CURVETO:
+        point.ctrl2.x += 5
+        point.ctrl2.y -= 10
+        point.y += 5
+    points.append(point)
  
-<span class="kw">bezier</span>(points)
+bezier(points)
 </pre>
     </div><a id="Path_Mathematics" name="Path_Mathematics"></a>
 
@@ -164,11 +161,11 @@ points = <span class="s">[</span><span class="s">]</span>
       that is not one of these, but somewhere in between? What is the location of <b>halfway the a
       curve</b> for example? A <a href="../ref/Drawing.html#BezierPath">path</a> in PlotDevice has
       some interesting methods we can use:</p>
-<pre>path.<span class="s">points</span><span class="s">(</span>amount=<span class="s">100</span><span class="s">)</span>
+<pre>path.points(amount=100)
 </pre>
-<pre>path.<span class="s">point</span><span class="s">(</span>t<span class="s">)</span>
+<pre>path.point(t)
 </pre>
-<pre>path.<span class="s">addpoint</span><span class="s">(</span>t<span class="s">)</span>
+<pre>path.addpoint(t)
 </pre>
 
       <p>The <i>path.points()</i> method returns a list containing <i>amount</i> points along the
@@ -196,20 +193,18 @@ points = <span class="s">[</span><span class="s">]</span>
       number between 0.0 and 1.0), which represents time on the path. When <i>t</i> is 0.5, this
       means halfway the path. 0.0 is the origin of the path, 1.0 the end.</p>
       <p>The code:</p>
-<pre>
-<span class="kw">with</span> <span class="kw">bezier</span>(100, 100, fill=<span class="kw">None</span>, stroke=0, close=<span class="kw">False</span>) as path:
-    <span class="kw">curveto</span>(150, 100, 200, 150, 150, 200)
-    <span class="kw">curveto</span>(50, 250, 200, 350, 400, 400)
+<pre>with bezier(100, 100, fill=None, stroke=0, close=False) as path:
+    curveto(150, 100, 200, 150, 150, 200)
+    curveto(50, 250, 200, 350, 400, 400)
  
-<span class="kw">for</span> t <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">11</span><span class="s">)</span>:
-    pt = path.<span class="s">point</span><span class="s">(</span><span class="s">0.1</span>*t<span class="s">)</span> 
-    <span class="kw">oval</span><span class="s">(</span>pt.<span class="s">x</span><span class="s">-2</span>, pt.<span class="s">y</span><span class="s">-2</span>, <span class="s">4</span>, <span class="s">4</span><span class="s">)</span>
+for t in range(11):
+    pt = path.point(0.1*t) 
+    oval(pt.x-2, pt.y-2, 4, 4)
 </pre>
 
       <p>And it’s even easier like this:</p>
-<pre>
-<span class="kw">for</span> pt <span class="kw">in</span> path.<span class="s">points</span><span class="s">(</span><span class="s">11</span><span class="s">)</span>:
-    <span class="kw">oval</span><span class="s">(</span>pt.<span class="s">x</span><span class="s">-2</span>, pt.<span class="s">y</span><span class="s">-2</span>, <span class="s">4</span>, <span class="s">4</span><span class="s">)</span>
+<pre>for pt in path.points(11):
+    oval(pt.x-2, pt.y-2, 4, 4)
 </pre>
 
       <p>It’s easy to create <b>path filters</b> this way (in analogy to image filters). Here are
@@ -217,15 +212,14 @@ points = <span class="s">[</span><span class="s">]</span>
       <h2>Inserting points on a path</h2>
 
       <p>Injecting new points in the path is equally easy:</p>
-<pre>
-<span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">with</span> <span class="kw">bezier</span>(100, 500, stroke=0.5, close=<span class="kw">False</span>) as path:
-    <span class="kw">curveto</span><span class="s">(</span><span class="s">200</span>,<span class="s">250</span>, <span class="s">600</span>,<span class="s">600</span>, <span class="s">400</span>,<span class="s">300</span><span class="s">)</span>
+<pre>nofill()
+with bezier(100, 500, stroke=0.5, close=False) as path:
+    curveto(200,250, 600,600, 400,300)
   
-path.<span class="s">addpoint</span><span class="s">(</span><span class="s">0.25</span><span class="s">)</span>
-<span class="kw">stroke</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
-<span class="kw">for</span> point <span class="kw">in</span> path:
-    <span class="kw">oval</span><span class="s">(</span>point.<span class="s">x</span><span class="s">-4</span>, point.<span class="s">y</span><span class="s">-4</span>, <span class="s">8</span>, <span class="s">8</span><span class="s">)</span>
+path.addpoint(0.25)
+stroke(0.2)
+for point in path:
+    oval(point.x-4, point.y-4, 8, 8)
 </pre>
 
       <p><img alt="pathmatics-split" src="../etc/tut/pathmatics-split.jpg"/><br/></p>
@@ -236,11 +230,10 @@ path.<span class="s">addpoint</span><span class="s">(</span><span class="s">0.25
       Character glyphs are a composite of contours (for example: the inner and outer oval of the
       character ‘o’ are two contours). In typography it’s often useful to get the separate
       contours.</p>
-<pre>
-<span class="kw">fontsize</span><span class="s">(</span><span class="s">50</span><span class="s">)</span>
-path = <span class="kw">textpath</span><span class="s">(</span><span class="str">"contours"</span>, <span class="s">10</span>, <span class="s">100</span><span class="s">)</span>
-<span class="kw">for</span> contour <span class="kw">in</span> path.<span class="s">contours</span>:
-    <span class="kw">bezier</span>(contour, stroke=<span class="kw">random</span>(0.5), fill=<span class="kw">None</span>)
+<pre>fontsize(50)
+path = textpath("contours", 10, 100)
+for contour in path.contours:
+    bezier(contour, stroke=random(0.5), fill=None)
 </pre>
 
       <p><img alt="pathmatics-contours" src="../etc/tut/pathmatics-contours.gif"/></p>
@@ -254,11 +247,11 @@ path = <span class="kw">textpath</span><span class="s">(</span><span class="str"
       create a shape from a combination of other shapes (like ovals and rectangles) and then
       flatten the group into a single path. Manipulating a single shape is much easier and faster
       than manipulating a group of shapes.</p>
-<pre>path1.<span class="s">union</span><span class="s">(</span>path2, flatness=<span class="s">0.6</span><span class="s">)</span>
+<pre>path1.union(path2, flatness=0.6)
 </pre>
-<pre>path1.<span class="s">intersect</span><span class="s">(</span>path2, flatness=<span class="s">0.6</span><span class="s">)</span>
+<pre>path1.intersect(path2, flatness=0.6)
 </pre>
-<pre>path1.<span class="s">difference</span><span class="s">(</span>path2, flatness=<span class="s">0.6</span><span class="s">)</span>
+<pre>path1.difference(path2, flatness=0.6)
 </pre>
 
       <p>Each of the three methods returns a new <a href="../ref/Drawing.html#BezierPath">path</a>
@@ -272,24 +265,24 @@ path = <span class="kw">textpath</span><span class="s">(</span><span class="str"
             </td><td>
               <p><b>Union</b> traces and merges the two paths, removing any overlapping parts.</p>
 <pre>
-<span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">stroke</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>
-path1 = <span class="kw">oval</span><span class="s">(</span><span class="s">40</span>, <span class="s">40</span>, <span class="s">80</span>, <span class="s">80</span>, draw=<span class="kw">False</span><span class="s">)</span>
-path2 = <span class="kw">oval</span><span class="s">(</span><span class="s">90</span>, <span class="s">40</span>, <span class="s">80</span>, <span class="s">80</span>, draw=<span class="kw">False</span><span class="s">)</span>
-compound = path1.<span class="s">union</span><span class="s">(</span>path2<span class="s">)</span>
-<span class="kw">bezier</span>(compound)
+nofill()
+stroke(0)
+path1 = oval(40, 40, 80, 80, draw=False)
+path2 = oval(90, 40, 80, 80, draw=False)
+compound = path1.union(path2)
+bezier(compound)
 </pre>
           </td></tr><tr>
             <td><img alt="paths-compound2" src="../etc/tut/paths-compound2.jpg"/>
             </td><td>
               <p><b>Intersect</b> traces the overlapping region and removes everything else.</p>
 <pre>
-<span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">stroke</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>
-path1 = <span class="kw">oval</span><span class="s">(</span><span class="s">40</span>, <span class="s">40</span>, <span class="s">80</span>, <span class="s">80</span>, draw=<span class="kw">False</span><span class="s">)</span>
-path2 = <span class="kw">oval</span><span class="s">(</span><span class="s">90</span>, <span class="s">40</span>, <span class="s">80</span>, <span class="s">80</span>, draw=<span class="kw">False</span><span class="s">)</span>
-compound = path1.<span class="s">intersect</span><span class="s">(</span>path2<span class="s">)</span>
-<span class="kw">bezier</span>(compound)
+nofill()
+stroke(0)
+path1 = oval(40, 40, 80, 80, draw=False)
+path2 = oval(90, 40, 80, 80, draw=False)
+compound = path1.intersect(path2)
+bezier(compound)
 </pre>
               <p> </p>
           </td></tr><tr>
@@ -297,12 +290,12 @@ compound = path1.<span class="s">intersect</span><span class="s">(</span>path2<s
             </td><td>
               <p><b>Difference</b> subtracts the second shape from the first shape.</p>
 <pre>
-<span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">stroke</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>
-path1 = <span class="kw">oval</span><span class="s">(</span><span class="s">40</span>, <span class="s">40</span>, <span class="s">80</span>, <span class="s">80</span>, draw=<span class="kw">False</span><span class="s">)</span>
-path2 = <span class="kw">oval</span><span class="s">(</span><span class="s">90</span>, <span class="s">40</span>, <span class="s">80</span>, <span class="s">80</span>, draw=<span class="kw">False</span><span class="s">)</span>
-compound = path1.<span class="s">difference</span><span class="s">(</span>path2<span class="s">)</span>
-<span class="kw">bezier</span>(compound)
+nofill()
+stroke(0)
+path1 = oval(40, 40, 80, 80, draw=False)
+path2 = oval(90, 40, 80, 80, draw=False)
+compound = path1.difference(path2)
+bezier(compound)
 </pre>
               <p> </p>
           </td></tr><tr>
@@ -310,12 +303,12 @@ compound = path1.<span class="s">difference</span><span class="s">(</span>path2<
             </td><td>
               <p> <b>XOR</b> traces non-overlapping regions, excluding any areas that overlap.</p>
 <pre>
-<span class="kw">fill</span><span class="s">(</span><span class="s">0.8</span><span class="s">)</span>
-<span class="kw">stroke</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>
-path1 = <span class="kw">oval</span><span class="s">(</span><span class="s">40</span>, <span class="s">40</span>, <span class="s">80</span>, <span class="s">80</span>, draw=<span class="kw">False</span><span class="s">)</span>
-path2 = <span class="kw">oval</span><span class="s">(</span><span class="s">90</span>, <span class="s">40</span>, <span class="s">80</span>, <span class="s">80</span>, draw=<span class="kw">False</span><span class="s">)</span>
-compound = path1.<span class="s">xor</span><span class="s">(</span>path2<span class="s">)</span>
-<span class="kw">bezier</span>(compound)
+fill(0.8)
+stroke(0)
+path1 = oval(40, 40, 80, 80, draw=False)
+path2 = oval(90, 40, 80, 80, draw=False)
+compound = path1.xor(path2)
+bezier(compound)
 </pre> 
             </td></tr></tbody></table>
 
@@ -331,14 +324,14 @@ compound = path1.<span class="s">xor</span><span class="s">(</span>path2<span cl
       <p>With a for-loop we can keep adding new paths to the compound path. In the example below,
       we create a number of circles varying in size, and append them to one flattened compound
       path:</p>
-<pre>compound = <span class="kw">None</span>
-<span class="kw">for</span> i <span class="kw">in</span> range(50):
-    r = <span class="kw">random</span>(75)
-    path = <span class="kw">oval</span>(<span class="kw">random</span>(300), <span class="kw">random</span>(200), r, r, draw=<span class="kw">False</span>)
-    <span class="kw">if not</span> compound:
+<pre>compound = None
+for i in range(50):
+    r = random(75)
+    path = oval(random(300), random(200), r, r, draw=False)
+    if not compound:
         compound = path
     compound = compound.union(path)
-<span class="kw">bezier</span>(compound, fill=<span class="kw">None</span>, stroke=0)
+bezier(compound, fill=None, stroke=0)
 </pre> 
 
       <p><img alt="paths-compound4" src="../etc/tut/paths-compound4.jpg"/></p>
@@ -349,31 +342,30 @@ compound = path1.<span class="s">xor</span><span class="s">(</span>path2<span cl
       we want to <b>rotate and scale the individual shapes</b> before flattening them? We can use
       the <a href="../ref/Transform.html#Transform">Transform</a> object in PlotDevice for this
       purpose.</p>
-<pre>
-<span class="grey"># We construct our indivual shape in the top-left corner.</span>
-<span class="grey"># This is where corner-mode transforms originate.</span>
-<span class="grey"># We'll later on place the eventual compound path </span>
-<span class="grey"># where we want it with translate().</span>
-path = <span class="kw">rect</span><span class="s">(</span><span class="s">-10</span>, <span class="s">0</span>, <span class="s">20</span>, <span class="s">100</span>, draw=<span class="kw">False</span><span class="s">)</span>
+<pre># We construct our indivual shape in the top-left corner.
+# This is where corner-mode transforms originate.
+# We'll later on place the eventual compound path 
+# where we want it with translate().
+path = rect(-10, 0, 20, 100, draw=False)
  
-<span class="grey"># Let's chip away small piece of the rectangle:</span>
-path = path.<span class="s">difference</span><span class="s">(</span><span class="kw">rect</span><span class="s">(</span><span class="s">-15</span>, <span class="s">80</span>, <span class="s">20</span>, <span class="s">15</span>, draw=<span class="kw">False</span><span class="s">)</span><span class="s">)</span>
+# Let's chip away small piece of the rectangle:
+path = path.difference(rect(-15, 80, 20, 15, draw=False))
  
-<span class="grey"># Create a rotation transform we'll repeatedly apply to a path</span>
-t = Transform<span class="s">(</span><span class="s">)</span>
-t.<span class="kw">rotate</span><span class="s">(</span><span class="s">20</span><span class="s">)</span>
+# Create a rotation transform we'll repeatedly apply to a path
+t = Transform()
+t.rotate(20)
 
 compound = path
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">17</span><span class="s">)</span>:    
-    <span class="grey"># Before adding the rectangle shape to</span>
-    <span class="grey"># the flattened compound, we rotate it a bit.</span>
-    path = t.<span class="s">apply</span><span class="s">(</span>path<span class="s">)</span>    
-    compound = compound.<span class="s">union</span><span class="s">(</span>path<span class="s">)</span>
+for i in range(17):    
+    # Before adding the rectangle shape to
+    # the flattened compound, we rotate it a bit.
+    path = t.apply(path)    
+    compound = compound.union(path)
  
-<span class="kw">translate</span><span class="s">(</span><span class="s">275</span>, <span class="s">275</span><span class="s">)</span>
-<span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">stroke</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>
-<span class="kw">bezier</span><span class="s">(</span>compound<span class="s">)</span>
+translate(275, 275)
+nofill()
+stroke(0)
+bezier(compound)
 </pre>
 
       <p><img alt="paths-compound5" src="../etc/tut/paths-compound5.jpg"/></p>
@@ -386,7 +378,7 @@ compound = path
       is adjusted the path will stretch accordingly. This reverse logic is useful in some
       situations where a path needs to exactly fit an area and we don’t want to be bothered with
       creating the shape in exactly the right proportions or at the right position.</p>
-<pre>path.<span class="s">fit</span><span class="s">(</span>x=<span class="kw">None</span>, y=<span class="kw">None</span>, width=<span class="kw">None</span>, height=<span class="kw">None</span>, stretch=<span class="kw">False</span><span class="s">)</span>
+<pre>path.fit(x=None, y=None, width=None, height=None, stretch=False)
 </pre>
 
       <p>All of the parameters are optional so you can define any combination of them:</p>

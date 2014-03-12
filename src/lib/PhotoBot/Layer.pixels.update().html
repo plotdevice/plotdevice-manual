@@ -6,7 +6,7 @@
 </head><body>
   <div class="article">
     <h2>Syntax</h2>
-<pre>canvas.<span class="s">layers</span><span class="s">[</span>i<span class="s">]</span>.<span class="s">pixels</span>.<span class="s">update</span><span class="s">(</span><span class="s">)</span>
+<pre>canvas.layers[i].pixels.update()
 </pre>
 
     <h2>Description</h2>
@@ -17,23 +17,23 @@
     <h2>Example</h2>
 
     <p>Remove all white pixels from the given image, with a feather at the edges of white areas:</p>
-<pre>photobot = <span class="kw">ximport</span><span class="s">(</span><span class="str">"photobot"</span><span class="s">)</span>
-canvas = photobot.<span class="s">canvas</span><span class="s">(</span><span class="s">200</span>,<span class="s">200</span><span class="s">)</span>
-canvas.<span class="s">layer</span><span class="s">(</span><span class="str">"smurf.gif"</span><span class="s">)</span>
+<pre>photobot = ximport("photobot")
+canvas = photobot.canvas(200,200)
+canvas.layer("smurf.gif")
  
-w = canvas.<span class="s">layers</span><span class="s">[</span><span class="s">1</span><span class="s">]</span>.<span class="s">w</span>
-feather = <span class="s">[</span>-w<span class="s">-1</span>, -w, -w<span class="s">+1</span>, <span class="s">-1</span>, <span class="s">1</span>, w<span class="s">-1</span>, w, w<span class="s">+1</span><span class="s">]</span>
+w = canvas.layers[1].w
+feather = [-w-1, -w, -w+1, -1, 1, w-1, w, w+1]
  
-pixels = canvas.<span class="s">layers</span><span class="s">[</span><span class="s">1</span><span class="s">]</span>.<span class="s">pixels</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">len</span><span class="s">(</span>pixels<span class="s">)</span><span class="s">)</span>:
-    r, g, b, a = pixels<span class="s">[</span>i<span class="s">]</span>
-    <span class="kw">if</span> r == g == b == <span class="s">255</span>: 
-        pixels<span class="s">[</span>i<span class="s">]</span> = r, g, b, <span class="s">0</span>
-        <span class="kw">for</span> j <span class="kw">in</span> feather:
-            r, g, b, a = pixels<span class="s">[</span>i+j<span class="s">]</span>
-            pixels<span class="s">[</span>i+j<span class="s">]</span> = r, g, b, a/<span class="s">2</span>            
+pixels = canvas.layers[1].pixels
+for i in range(len(pixels)):
+    r, g, b, a = pixels[i]
+    if r == g == b == 255: 
+        pixels[i] = r, g, b, 0
+        for j in feather:
+            r, g, b, a = pixels[i+j]
+            pixels[i+j] = r, g, b, a/2            
  
-pixels.<span class="s">update</span><span class="s">(</span><span class="s">)</span>
+pixels.update()
 </pre>
   </div>
 

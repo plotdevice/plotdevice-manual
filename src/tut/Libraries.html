@@ -31,18 +31,17 @@
     Python’s libraries in your PlotDevice projects.</p>
     <p>Take a look at the list of Python libraries <a href="http://docs.python.org/modindex.html">here</a>.</p>
     <p>You can import a library command into your script with the following statement:<br/></p>
-<pre>variable = <span class="kw">ximport</span><span class="s">(</span><span class="str">"library"</span><span class="s">)</span>
+<pre>variable = ximport("library")
 </pre>
 
     <p>For example, if you look at the <em>random</em> library on the above list of Python
     libraries, you see the <em>random</em> library has a <em>shuffle()</em> command to randomly
     reorder a <a href="Lists.html">list</a>. To use this command in a PlotDevice project:</p>
-<pre>
-<span class="s">list</span> = <span class="s">[</span><span class="s">1</span>, <span class="s">2</span>, <span class="s">3</span>, <span class="s">4</span>, <span class="s">5</span><span class="s">]</span>
-rnd = <span class="kw">ximport</span><span class="s">(</span><span class="str">"random"</span><span class="s">)</span>
-rnd.<span class="s">shuffle</span><span class="s">(</span><span class="s">list</span><span class="s">)</span> 
-<span class="kw">print</span> <span class="s">list</span>  
-&gt;&gt;&gt; <span class="s">[</span><span class="s">3</span>, <span class="s">4</span>, <span class="s">1</span>, <span class="s">5</span>, <span class="s">2</span><span class="s">]</span>
+<pre>list = [1, 2, 3, 4, 5]
+rnd = ximport("random")
+rnd.shuffle(list) 
+print list  
+&gt;&gt;&gt; [3, 4, 1, 5, 2]
 </pre>
 
     <p>You don’t need to install any files or anything, PlotDevice knows where the Python libraries

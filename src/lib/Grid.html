@@ -58,15 +58,14 @@
 
     <p>Put the <i>grid</i> library folder in the same folder as your script so PlotDevice can find the
     library. You can also put it in <i>~/Library/Application Support/PlotDevice/.</i></p>
-<pre>
-<span class="kw">grid</span> = <span class="kw">ximport</span><span class="s">(</span><span class="str">"grid"</span><span class="s">)</span>
+<pre>grid = ximport("grid")
 </pre>
 
     <p> </p>
     <hr size="2" width="100%"/>
 
     <h2><a id="create" name="create" title="create"></a>Creating a grid</h2>
-<pre>create<span class="s">(</span>rows=<span class="s">1</span>, columns=<span class="s">1</span>, width=<span class="kw">None</span>, height=<span class="kw">None</span><span class="s">)</span>
+<pre>create(rows=1, columns=1, width=None, height=None)
 </pre>
 
     <p>The <i>create()</i> command returns a new grid object, by default encompassing the entire
@@ -125,17 +124,14 @@
     <p>The <i>grid.draw()</i> method draws the grid to the canvas, calculating text flow and
     applying styles.<br/>
     The <i>grid.copy()</i> method returns a new grid object that is an exact copy of this one.<br/></p>
-<pre>
-<span class="kw">grid</span>.<span class="s">draw</span><span class="s">(</span>x=<span class="s">0</span>, y=<span class="s">0</span><span class="s">)</span>
+<pre>grid.draw(x=0, y=0)
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">copy</span><span class="s">(</span>parent=<span class="kw">None</span><span class="s">)</span>
+<pre>grid.copy(parent=None)
 </pre>
 
     <p>You can loop through the grid like a list of cells:</p>
-<pre>
-<span class="kw">for</span> cell <span class="kw">in</span> <span class="kw">grid</span>:
-    <span class="kw">print</span> cell.<span class="s">name</span>
+<pre>for cell in grid:
+    print cell.name
 </pre>   
 
     <p> </p>
@@ -146,11 +142,9 @@
     <p>The grid object has a <i>grid.split()</i> method that divides the grid into rows and columns
     of cells. It can be supplied an optional <a href="#proportion">proportion</a> and <a href="#style">style</a> name. The <i>grid.clear()</i> method removes all cells (but it retains the
     grid’s style, proportion and content).</p>
-<pre>
-<span class="kw">grid</span>.<span class="s">split</span><span class="s">(</span>rows, columns, proportion=<span class="kw">None</span>, style=<span class="kw">None</span><span class="s">)</span>
+<pre>grid.split(rows, columns, proportion=None, style=None)
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">clear</span><span class="s">(</span><span class="s">)</span>
+<pre>grid.clear()
 </pre>
 
     <p>To fully grasp the way a grid works you need to understand its recursive nature. A grid is
@@ -165,30 +159,26 @@
             <p><img alt="grid1" height="150" src="../etc/lib/grid1.jpg" width="150"/></p>
           </td><td>
 <pre>
-g = <span class="kw">grid</span>.<span class="s">create</span><span class="s">(</span><span class="s">2</span>, <span class="s">2</span>, <span class="s">150</span>, <span class="s">150</span><span class="s">)</span>
-g.<span class="s">cell</span><span class="s">(</span><span class="s">0</span>,<span class="s">0</span><span class="s">)</span>.<span class="s">split</span><span class="s">(</span><span class="s">2</span>, <span class="s">2</span><span class="s">)</span>
-g.<span class="s">styles</span>.<span class="s">margin</span> = <span class="s">1</span>
-g.<span class="s">styles</span>.<span class="kw">background</span> = <span class="s">(</span>
-    <span class="kw">color</span><span class="s">(</span><span class="s">0.5</span>, <span class="s">0.55</span>, <span class="s">0.6</span><span class="s">)</span>, 
-    <span class="kw">color</span><span class="s">(</span><span class="s">0.4</span>, <span class="s">0.45</span>, <span class="s">0.5</span><span class="s">)</span>
-<span class="s">)</span>
-g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
+g = grid.create(2, 2, 150, 150)
+g.cell(0,0).split(2, 2)
+g.styles.margin = 1
+g.styles.background = (
+    color(0.5, 0.55, 0.6), 
+    color(0.4, 0.45, 0.5)
+)
+g.draw()
 </pre>
           </td></tr></tbody></table></p>
     <p> </p>
     <p><span class="grey_box">Navigation</span><br/></p>
     <p>A grid has the following methods to retrieve a row, column or single cell:</p>
-<pre>
-<span class="kw">grid</span>.<span class="s">row</span><span class="s">(</span>i<span class="s">)</span>
+<pre>grid.row(i)
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">column</span><span class="s">(</span>j<span class="s">)</span>
+<pre>grid.column(j)
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">cell</span><span class="s">(</span>i,j<span class="s">)</span>
+<pre>grid.cell(i,j)
 </pre>
-<pre>
-<span class="kw">grid</span><span class="s">(</span>i,j<span class="s">)</span>
+<pre>grid(i,j)
 </pre>
 
     <p>Just as with lists the supplied indices start from zero (so the first row has index 0 and
@@ -206,31 +196,31 @@ g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
           <td class="small_text"><img alt="grid2" height="75" src="../etc/lib/grid2.jpg" width="75"/><br/>
           </td><td>
 <pre>
-g.<span class="s">column</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>
-g.<span class="s">left</span>
+g.column(0)
+g.left
 </pre>   
           </td><td><img alt="grid4" height="75" src="../etc/lib/grid4.jpg" width="75"/>
           </td><td>
 <pre>
-g.<span class="s">top</span>.<span class="s">right</span>
+g.top.right
 </pre>
         </td></tr><tr>
           <td><img alt="grid3" height="75" src="../etc/lib/grid3.jpg" width="75"/>
           </td><td>
 <pre>
-g.<span class="s">row</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>
-g.<span class="s">top</span>
+g.row(0)
+g.top
 </pre>
           </td><td><img alt="grid5" height="75" src="../etc/lib/grid5.jpg" width="75"/>
           </td><td>
 <pre>
-g.<span class="s">top</span>.<span class="s">left</span>.<span class="s">bottom</span>
+g.top.left.bottom
 </pre>
         </td></tr><tr>
           <td><img alt="grid6" height="125" src="../etc/lib/grid6.jpg" width="75"/>
           </td><td>
 <pre>
-g.<span class="s">rows</span>.<span class="s">second</span>
+g.rows.second
 </pre>
           </td><td> 
           </td><td> 
@@ -242,12 +232,12 @@ g.<span class="s">rows</span>.<span class="s">second</span>
     want to call the top part ‘header’ and work with that label from there on. Each named section
     in the grid (cell, row, column) automatically becomes available as a property. You can also
     retrieve named sections with the <i>grid.find()</i> method.<br/></p>
-<pre>g.<span class="s">top</span>.<span class="s">name</span> = <span class="str">"header"</span>
-g.<span class="s">header</span>.<span class="s">style</span> = <span class="str">"header_style"</span>
-s = g.<span class="s">styles</span>.<span class="s">create</span><span class="s">(</span><span class="str">"header_style"</span><span class="s">)</span> 
-s.<span class="kw">fontsize</span> = <span class="s">20</span>
+<pre>g.top.name = "header"
+g.header.style = "header_style"
+s = g.styles.create("header_style") 
+s.fontsize = 20
 </pre>
-<pre>cell = g.<span class="s">find</span><span class="s">(</span><span class="str">"header"</span><span class="s">)</span>
+<pre>cell = g.find("header")
 </pre>   
 
     <p><span class="grey_box">Highlight helper</span></p>
@@ -255,7 +245,7 @@ s.<span class="kw">fontsize</span> = <span class="s">20</span>
     structure of a grid. You call it after drawing the grid to the canvas. It will overlay the grid
     with indicators marking all the cells. When the optional <i>recursive</i> parameter is
     <i>True</i>, it will keep highlighting cells in cells, and so on.<br/></p>
-<pre>highlight<span class="s">(</span><span class="kw">grid</span>, clr=<span class="kw">None</span>, recursive=<span class="kw">False</span><span class="s">)</span>
+<pre>highlight(grid, clr=None, recursive=False)
 </pre>
 
     <p><img alt="grid8" height="295" src="../etc/lib/grid8.jpg" width="550"/><br/></p>
@@ -271,9 +261,9 @@ s.<span class="kw">fontsize</span> = <span class="s">20</span>
     <i>grid.content</i> property. The content automatically gets distributed among the grid’s rows
     and columns, following a ‘depletion’-approach: cells are filled until there is no content left.
     The <i>grid.flow</i> list determines which cells get content first (column-first by default).</p>
-<pre>g = <span class="kw">grid</span>.<span class="s">create</span><span class="s">(</span><span class="s">1</span>, <span class="s">3</span>, width=<span class="s">550</span>, height=<span class="s">200</span><span class="s">)</span>
-g.<span class="s">content</span> = <span class="kw">open</span><span class="s">(</span><span class="str">"alice.txt"</span><span class="s">)</span>.<span class="s">read</span><span class="s">(</span><span class="s">)</span> <span class="grey"># text from a file</span>
-g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
+<pre>g = grid.create(1, 3, width=550, height=200)
+g.content = open("alice.txt").read() # text from a file
+g.draw()
 </pre>
 
     <p><img alt="grid7" height="200" src="../etc/lib/grid7.jpg" width="550"/><br/></p>
@@ -298,35 +288,26 @@ g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
     </li></ul><br/>
 
     <p>Some methods you can use to retrieve content:</p>
-<pre>
-<span class="kw">grid</span>.<span class="s">content</span>.<span class="s">is_text</span><span class="s">(</span><span class="s">)</span>
+<pre>grid.content.is_text()
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">content</span>.<span class="s">is_number</span><span class="s">(</span><span class="s">)</span>
+<pre>grid.content.is_number()
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">content</span>.<span class="s">is_image</span><span class="s">(</span><span class="s">)</span>
+<pre>grid.content.is_image()
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">content</span>.<span class="s">is_command</span><span class="s">(</span><span class="s">)</span>
+<pre>grid.content.is_command()
 </pre>
-<pre>
-<span class="s">str</span><span class="s">(</span><span class="kw">grid</span>.<span class="s">content</span><span class="s">)</span>   <span class="grey"># retrieve the text content</span>
+<pre>str(grid.content)   # retrieve the text content
 </pre>
-<pre>
-<span class="s">int</span><span class="s">(</span><span class="kw">grid</span>.<span class="s">content</span><span class="s">)</span>   <span class="grey"># retrieve numeric content</span>
+<pre>int(grid.content)   # retrieve numeric content
 </pre>
-<pre>
-<span class="s">float</span><span class="s">(</span><span class="kw">grid</span>.<span class="s">content</span><span class="s">)</span> <span class="grey"># retrieve numeric content</span>
+<pre>float(grid.content) # retrieve numeric content
 </pre>
-<pre>
-<span class="s">list</span><span class="s">(</span><span class="kw">grid</span>.<span class="s">content</span><span class="s">)</span>  <span class="grey"># retrieve the list of images</span>
+<pre>list(grid.content)  # retrieve the list of images
 </pre>
 
     <p>Again, keep in mind that since each cell in a grid row or column is itself a grid object,
     you can add content (titles, subtitles, images, ...) to any individual cell.</p>
-<pre>
-<span class="kw">grid</span>.<span class="s">has_content</span><span class="s">(</span><span class="s">)</span>
+<pre>grid.has_content()
 </pre>
 
     <p>The <i>grid.has_content()</i> returns <i>True</i> if a cell has content, <i>False</i> if it
@@ -340,11 +321,9 @@ g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
     vertically from top to bottom (column-first), horizontally from left to right (row-first) or in
     your own custom way.</p>
     <p>The grid object has two methods for setting the flow:</p>
-<pre>
-<span class="kw">grid</span>.<span class="s">flow_vertical</span><span class="s">(</span>recursive=<span class="kw">True</span><span class="s">)</span>
+<pre>grid.flow_vertical(recursive=True)
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">flow_horizontal</span><span class="s">(</span>recursive=<span class="kw">True</span><span class="s">)</span>
+<pre>grid.flow_horizontal(recursive=True)
 </pre>
 
     <p>Additionally, any cells in a grid you add to the <i>grid.flow</i> list will get content
@@ -365,31 +344,31 @@ g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
             <p><img alt="grid9" height="90" src="../etc/lib/grid9.jpg" width="250"/></p>
           </td><td>
 <pre>
-g = <span class="kw">grid</span>.<span class="s">create</span><span class="s">(</span><span class="s">1</span>, <span class="s">1</span>, <span class="s">250</span>, <span class="s">90</span><span class="s">)</span>
-g.<span class="s">styles</span>.<span class="s">default</span>.<span class="s">fit</span> = <span class="kw">True</span>
-g.<span class="s">styles</span>.<span class="s">default</span>.<span class="kw">align</span> = <span class="str">"center"</span>
-g.<span class="s">content</span> = <span class="str">"heading"</span>
-g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
+g = grid.create(1, 1, 250, 90)
+g.styles.default.fit = True
+g.styles.default.align = "center"
+g.content = "heading"
+g.draw()
 </pre>
         </td></tr><tr>
           <td>
             <p><img alt="grid10" height="250" src="../etc/lib/grid10.jpg" width="250"/></p>
           </td><td>
 <pre>
-g = <span class="kw">grid</span>.<span class="s">create</span><span class="s">(</span><span class="s">2</span>, <span class="s">2</span>, <span class="s">250</span>, <span class="s">250</span><span class="s">)</span>
-g.<span class="s">top</span>.<span class="s">left</span>.<span class="s">split</span><span class="s">(</span><span class="s">2</span>, <span class="s">2</span><span class="s">)</span>
-g.<span class="s">top</span>.<span class="s">left</span>.<span class="s">bottom</span>.<span class="s">right</span>.<span class="s">split</span><span class="s">(</span><span class="s">2</span>, <span class="s">2</span><span class="s">)</span>
+g = grid.create(2, 2, 250, 250)
+g.top.left.split(2, 2)
+g.top.left.bottom.right.split(2, 2)
  
-<span class="grey"># fetch images from Morguefile.com</span>
-web = <span class="kw">ximport</span><span class="s">(</span><span class="str">"web"</span><span class="s">)</span>
-img = web.<span class="s">morguefile</span>.<span class="s">search</span><span class="s">(</span><span class="str">"ocean"</span><span class="s">)</span><span class="s">[</span>:<span class="s">5</span><span class="s">]</span>
-img = <span class="s">[</span>x.<span class="s">download</span><span class="s">(</span><span class="s">)</span> <span class="kw">for</span> x <span class="kw">in</span> img<span class="s">]</span>
-g.<span class="s">content</span> = images
-g.<span class="s">content</span>.<span class="s">repeat</span> = <span class="kw">True</span>
+# fetch images from Morguefile.com
+web = ximport("web")
+img = web.morguefile.search("ocean")[:5]
+img = [x.download() for x in img]
+g.content = images
+g.content.repeat = True
  
-g.<span class="s">styles</span>.<span class="s">margin</span> = <span class="s">1</span>
-g.<span class="s">styles</span>.<span class="s">fit</span> = <span class="kw">True</span>
-g.<span class="s">styles</span>.<span class="kw">align</span> = <span class="str">"center"</span>, <span class="str">"bottom"</span>
+g.styles.margin = 1
+g.styles.fit = True
+g.styles.align = "center", "bottom"
 </pre>
           </td></tr></tbody></table></p>
     <p> </p>
@@ -398,7 +377,7 @@ g.<span class="s">styles</span>.<span class="kw">align</span> = <span class="str
     This is great if you want to showcase different versions of generative artwork, add
     embellishments to the layout or document code, for example. The custom command takes the
     following form:</p>
-<pre>custom_content<span class="s">(</span>x, y, width, height, style=<span class="kw">None</span><span class="s">)</span>
+<pre>custom_content(x, y, width, height, style=None)
 </pre>
 
     <p>It receives the grid’s position, size and style as input parameters.
@@ -409,23 +388,23 @@ g.<span class="s">styles</span>.<span class="kw">align</span> = <span class="str
             <p><img alt="grid11" height="250" src="../etc/lib/grid11.jpg" width="250"/></p>
           </td><td>
 <pre>
-<span class="kw">def</span> <span class="rose">ovals</span><span class="s">(</span>x, y, w, h, style=<span class="kw">None</span><span class="s">)</span>:
-    <span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">20</span><span class="s">)</span>:
-        r = <span class="kw">random</span><span class="s">(</span><span class="s">5</span>, <span class="s">40</span><span class="s">)</span>
-        <span class="kw">stroke</span><span class="s">(</span><span class="s">0.1</span>, <span class="s">0.4</span><span class="s">)</span>
-        <span class="kw">strokewidth</span><span class="s">(</span><span class="s">0.5</span><span class="s">)</span>
-        <span class="kw">fill</span><span class="s">(</span><span class="kw">random</span><span class="s">(</span><span class="s">)</span>, <span class="s">0.1</span>, <span class="s">0.2</span>, <span class="s">0.4</span><span class="s">)</span>  
-        <span class="kw">oval</span><span class="s">(</span>
-            x + <span class="kw">random</span><span class="s">(</span>w<span class="s">)</span>  - r,
-            y + <span class="kw">random</span><span class="s">(</span>h<span class="s">)</span> - r,
-            r*<span class="s">2</span>, r*<span class="s">2</span>
-        <span class="s">)</span>
-g = <span class="kw">grid</span>.<span class="s">create</span><span class="s">(</span><span class="s">2</span>, <span class="s">2</span>, <span class="s">250</span>, <span class="s">250</span><span class="s">)</span>
-g.<span class="s">styles</span>.<span class="s">margin</span> = <span class="s">2</span>
-g.<span class="s">styles</span>.<span class="kw">stroke</span> = <span class="kw">color</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
-g.<span class="s">styles</span>.<span class="kw">strokewidth</span> = <span class="s">0.5</span>
-g.<span class="s">content</span> = ovals <span class="grey"># custom content!</span>
-g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
+def ovals(x, y, w, h, style=None):
+    for i in range(20):
+        r = random(5, 40)
+        stroke(0.1, 0.4)
+        strokewidth(0.5)
+        fill(random(), 0.1, 0.2, 0.4)  
+        oval(
+            x + random(w)  - r,
+            y + random(h) - r,
+            r*2, r*2
+        )
+g = grid.create(2, 2, 250, 250)
+g.styles.margin = 2
+g.styles.stroke = color(0.2)
+g.styles.strokewidth = 0.5
+g.content = ovals # custom content!
+g.draw()
 </pre>
           </td></tr></tbody></table></p>
     <p> </p>
@@ -436,11 +415,9 @@ g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
     <p>At the heart of the Grid library is the text module. It contains many useful commands for
     working with paragraphs of text, even outside the Grid library. These commands are likely to be
     in constant development.<br/></p>
-<pre>
-<span class="kw">text</span>.<span class="s">split</span><span class="s">(</span>txt, width, height, widows=<span class="s">1</span>, orphans=<span class="s">1</span>, forward=<span class="kw">True</span><span class="s">)</span>
+<pre>text.split(txt, width, height, widows=1, orphans=1, forward=True)
 </pre>
-<pre>
-<span class="kw">text</span>.<span class="s">divide</span><span class="s">(</span>txt, width, height, widows=<span class="s">1</span>, orphans=<span class="s">1</span>, forward=<span class="kw">True</span><span class="s">)</span>
+<pre>text.divide(txt, width, height, widows=1, orphans=1, forward=True)
 </pre>
 
     <p>The <i>text.split()</i> command returns a (<i>block</i>, <i>remainder</i>) tuple in which
@@ -455,14 +432,11 @@ g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
     the previous block and moved forward.</p>
     <p>Note that widow/orphan control won’t work with lists (i.e. single lines of text separated by
     a carriage return), so then you’ll need to turn it off.</p>
-<pre>
-<span class="kw">text</span>.<span class="s">legible_width</span><span class="s">(</span>txt, chars=<span class="s">70</span><span class="s">)</span>
+<pre>text.legible_width(txt, chars=70)
 </pre>
-<pre>
-<span class="kw">text</span>.<span class="s">fit_fontsize</span><span class="s">(</span><span class="s">str</span>, width, height<span class="s">)</span>
+<pre>text.fit_fontsize(str, width, height)
 </pre>
-<pre>
-<span class="kw">text</span>.<span class="s">fit_lineheight</span><span class="s">(</span><span class="s">str</span>, width, height<span class="s">)</span>
+<pre>text.fit_lineheight(str, width, height)
 </pre>
 
     <p>The <i>text.legible_width()</i> command returns a <b>good column width</b> for the given
@@ -479,34 +453,27 @@ g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
     <p>If you don’t have any text lying around, you can generate paragraphs of <a href="http://en.wikipedia.org/wiki/Lorem_ipsum">lorem ipsum</a> placeholder text right from the text
     module. Each command below returns a string of text containing words of different length,
     yielding a good visual representation of a real text will look like:</p>
-<pre>
-<span class="kw">text</span>.<span class="s">placeholder</span><span class="s">(</span>n=<span class="s">10</span><span class="s">)</span>                        <span class="grey"># a text with n paragraphs</span>
+<pre>text.placeholder(n=10)                        # a text with n paragraphs
 </pre>
-<pre>
-<span class="kw">text</span>.<span class="s">placeholder</span>.<span class="s">paragraph</span><span class="s">(</span>n=<span class="s">10</span>, first=<span class="kw">False</span><span class="s">)</span> <span class="grey"># a paragraph with n lines</span>
+<pre>text.placeholder.paragraph(n=10, first=False) # a paragraph with n lines
 </pre>
-<pre>
-<span class="kw">text</span>.<span class="s">placeholder</span>.<span class="s">sentence</span><span class="s">(</span>n=<span class="s">6</span><span class="s">)</span>                <span class="grey"># a line of n words</span>
+<pre>text.placeholder.sentence(n=6)                # a line of n words
 </pre>
-<pre>
-<span class="kw">print</span> <span class="kw">grid</span>.<span class="kw">text</span>.<span class="s">placeholder</span>.<span class="s">sentence</span><span class="s">(</span><span class="s">)</span> 
+<pre>print grid.text.placeholder.sentence() 
 &gt;&gt;&gt; Consectetur dolore sunt nisi, amet deserunt.
 </pre>
 
     <p>The text.placeholder.english() command generates readable text from the <a href="../ref/Utility.html#autotext()">Kant Generator</a>:<br/></p>
-<pre>
-<span class="kw">text</span>.<span class="s">placeholder</span>.<span class="s">english</span><span class="s">(</span><span class="s">)</span>
+<pre>text.placeholder.english()
 </pre>
 
     <p><br/>
     <span class="grey_box">Symbols</span><br/></p>
     <p>To create superscript numbers for footnotes, you can use the <i>text.superscript()</i>
     command. The text module also contains a small set of symbols that may be of use.</p>
-<pre>
-<span class="kw">print</span> <span class="str">"footnote"</span> + <span class="kw">grid</span>.<span class="kw">text</span>.<span class="s">superscript</span><span class="s">(</span><span class="s">1</span><span class="s">)</span>
+<pre>print "footnote" + grid.text.superscript(1)
 </pre>
-<pre>
-<span class="kw">print</span> <span class="str">"we "</span> + <span class="kw">grid</span>.<span class="kw">text</span>.<span class="s">heart</span> + <span class="str">" you"</span>
+<pre>print "we " + grid.text.heart + " you"
 &gt;&gt;&gt; we ❤ you
 </pre>
 
@@ -533,25 +500,22 @@ g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
     you can assign <b>the name of a style</b>. You can easily modify existing styles and create new
     ones.</p>
     <p>The <i>styles</i> dictionary has one predefined style:</p>
-<pre>
-<span class="kw">print</span> <span class="kw">grid</span>.<span class="s">styles</span>.<span class="s">keys</span><span class="s">(</span><span class="s">)</span>
-&gt;&gt;&gt; <span class="s">[</span><span class="str">'default'</span><span class="s">]</span>
+<pre>print grid.styles.keys()
+&gt;&gt;&gt; ['default']
 </pre>
 
     <p>You can change the properties of each of the individual style objects:</p>
-<pre>
-<span class="kw">grid</span>.<span class="s">styles</span>.<span class="s">default</span>.<span class="kw">fontsize</span> = <span class="s">10</span>
+<pre>grid.styles.default.fontsize = 10
 </pre>
 
     <p>Or set a property on all styles:</p>
-<pre>
-<span class="kw">grid</span>.<span class="s">styles</span>.<span class="s">margin</span> = <span class="s">5</span>
+<pre>grid.styles.margin = 5
 </pre>
 
     <p>Here’s an example of how to add your own custom style. Note the optional <i>template</i>
     parameter: we are creating a new style based on a copy of the default style:</p>
-<pre>s = <span class="kw">grid</span>.<span class="s">styles</span>.<span class="s">create</span><span class="s">(</span><span class="str">"header"</span>, template=<span class="str">"default"</span><span class="s">)</span>
-s.<span class="kw">background</span> = <span class="kw">color</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>
+<pre>s = grid.styles.create("header", template="default")
+s.background = color(0)
 </pre>   
 
     <p><span class="grey_box">Style properties</span><br/></p>
@@ -583,8 +547,8 @@ s.<span class="kw">background</span> = <span class="kw">color</span><span class=
     you want to draw a gradient you’ll need to have the <a href="Colors.html">Colors</a> library
     installed.</p>
     <p>For more complex gradients, use the following method:</p>
-<pre>style.<span class="kw">background</span>.<span class="s">gradientfill</span><span class="s">(</span><span class="s">self</span>, clr1, clr2, <span class="s">type</span>=<span class="str">"radial"</span>, 
-                              dx=<span class="s">0</span>, dy=<span class="s">0</span>, spread=<span class="s">1.0</span>, angle=<span class="s">0</span>, alpha=<span class="s">1.0</span><span class="s">)</span>
+<pre>style.background.gradientfill(self, clr1, clr2, type="radial", 
+                              dx=0, dy=0, spread=1.0, angle=0, alpha=1.0)
 </pre>
 
     <p>The <i>style.background</i> also has some properties to define how background images are
@@ -644,26 +608,26 @@ s.<span class="kw">background</span> = <span class="kw">color</span><span class=
     default style, and a style for the header. All the cells in the header assume the same ‘header’
     style.</p>
     <p><img alt="grid12" height="170" src="../etc/lib/grid12.jpg" width="550"/></p>
-<pre>g = <span class="kw">grid</span>.<span class="s">create</span><span class="s">(</span><span class="s">3</span>, <span class="s">1</span>, <span class="kw">WIDTH</span>, <span class="kw">HEIGHT</span><span class="s">)</span>
+<pre>g = grid.create(3, 1, WIDTH, HEIGHT)
  
-g.<span class="s">top</span>.<span class="s">name</span> = <span class="str">"header"</span>
-g.<span class="s">header</span>.<span class="s">split</span><span class="s">(</span><span class="s">1</span>, <span class="s">5</span><span class="s">)</span>
-g.<span class="s">header</span>.<span class="s">height</span> = <span class="s">40</span>
-g.<span class="s">header</span>.<span class="s">style</span> = <span class="str">"header"</span>
+g.top.name = "header"
+g.header.split(1, 5)
+g.header.height = 40
+g.header.style = "header"
  
-g.<span class="s">styles</span>.<span class="s">default</span>.<span class="s">margin</span> = <span class="s">1</span>
-g.<span class="s">styles</span>.<span class="s">default</span>.<span class="kw">background</span> = <span class="s">(</span>
-    <span class="kw">color</span><span class="s">(</span><span class="s">0.5</span>, <span class="s">0.55</span>, <span class="s">0.6</span><span class="s">)</span>, 
-    <span class="kw">color</span><span class="s">(</span><span class="s">0.4</span>, <span class="s">0.45</span>, <span class="s">0.5</span><span class="s">)</span>
-<span class="s">)</span>
+g.styles.default.margin = 1
+g.styles.default.background = (
+    color(0.5, 0.55, 0.6), 
+    color(0.4, 0.45, 0.5)
+)
  
-s = g.<span class="s">styles</span>.<span class="s">create</span><span class="s">(</span><span class="str">"header"</span>, template=<span class="str">"default"</span><span class="s">)</span>
-g.<span class="s">styles</span>.<span class="s">header</span>.<span class="kw">background</span> = <span class="s">(</span>
-    <span class="kw">color</span><span class="s">(</span><span class="s">0.45</span>, <span class="s">0.5</span>, <span class="s">0.6</span><span class="s">)</span>, 
-    <span class="kw">color</span><span class="s">(</span><span class="s">0.35</span>, <span class="s">0.4</span>, <span class="s">0.5</span><span class="s">)</span>
-<span class="s">)</span>
+s = g.styles.create("header", template="default")
+g.styles.header.background = (
+    color(0.45, 0.5, 0.6), 
+    color(0.35, 0.4, 0.5)
+)
  
-g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
+g.draw()
 </pre>
 
     <p>In some case however, style delegation works counter-intuitively. Suppose you wanted to
@@ -673,8 +637,7 @@ g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
     <p>To counter this, set <i>style.delegate</i> to <i>False</i>. The image (or color or border)
     is then applied only to the container. You’ll now have to create a second style for all the
     individual cells in the container though.</p>
-<pre>
-<span class="kw">grid</span>.<span class="s">has_style</span><span class="s">(</span><span class="s">)</span>
+<pre>grid.has_style()
 </pre>
 
     <p>The <i>grid.has_style()</i> returns <i>True</i> if a cell has a style set, <i>False</i> if
@@ -712,8 +675,8 @@ g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
           </td><td>
             The easiest way set a grid proportion:
 <pre>
-g = <span class="kw">grid</span>.<span class="s">create</span><span class="s">(</span><span class="s">3</span>, <span class="s">1</span>, width=<span class="s">125</span>, height=<span class="s">125</span><span class="s">)</span>
-g.<span class="s">proportion</span> = <span class="str">"fib"</span>
+g = grid.create(3, 1, width=125, height=125)
+g.proportion = "fib"
 </pre>
         </td></tr><tr>
           <td><img alt="grid15" height="125" src="../etc/lib/grid15.jpg" width="125"/><br/>
@@ -721,8 +684,8 @@ g.<span class="s">proportion</span> = <span class="str">"fib"</span>
             You can also supply a (<i>horizontal</i>, <i>vertical</i>) tuple. In this example we
             use a golden proportion for the rows, and an even proportion for the columns:
 <pre>
-g = <span class="kw">grid</span>.<span class="s">create</span><span class="s">(</span><span class="s">3</span>, <span class="s">2</span>, width=<span class="s">125</span>, height=<span class="s">125</span><span class="s">)</span>
-g.<span class="s">proportion</span> = <span class="str">"even, "</span>fib<span class="str">"</span>
+g = grid.create(3, 2, width=125, height=125)
+g.proportion = "even, "fib"
 </pre>
           </td></tr></tbody></table></p>
     <p> </p>
@@ -730,9 +693,9 @@ g.<span class="s">proportion</span> = <span class="str">"even, "</span>fib<span 
     <p>When you need something more elaborate (but not that elaborate that you’re going to define
     the width and height for each row and column yourself) you can work with the custom
     <i>proportion()</i> command:</p>
-<pre>proportion<span class="s">(</span>distribution=<span class="str">"even"</span>, 
-           <span class="s">sorted</span>=<span class="kw">False</span>, <span class="s">reversed</span>=<span class="kw">False</span>, shuffled=<span class="kw">False</span>, mirrored=<span class="kw">False</span>, 
-           repetition=<span class="s">1</span>, n=<span class="kw">None</span><span class="s">)</span>
+<pre>proportion(distribution="even", 
+           sorted=False, reversed=False, shuffled=False, mirrored=False, 
+           repetition=1, n=None)
 </pre>
 
     <p>The command will return something you can assign to the <i>grid.proportion</i> property (or
@@ -741,16 +704,16 @@ g.<span class="s">proportion</span> = <span class="str">"even, "</span>fib<span 
     <i>True</i>, small values in the sequence will be grouped in the middle surrounded by the
     larger ones. The <i>repetition</i> parameter defines how many times to repeat the pattern.</p>
     <p>For example:</p>
-<pre>g = <span class="kw">grid</span>.<span class="s">create</span><span class="s">(</span><span class="s">1</span>, <span class="s">7</span>, width=<span class="s">550</span>, height=<span class="s">150</span><span class="s">)</span>
-g.<span class="s">proportion</span> = <span class="kw">grid</span>.<span class="s">proportion</span><span class="s">(</span><span class="str">"fib"</span>, mirrored=<span class="kw">True</span>, repetition=<span class="s">2</span><span class="s">)</span> 
-g.<span class="s">styles</span>.<span class="s">default</span>.<span class="s">margin</span> = <span class="s">1</span>
-g.<span class="s">styles</span>.<span class="s">default</span>.<span class="kw">background</span>.<span class="s">gradientfill</span><span class="s">(</span>
-    <span class="kw">color</span><span class="s">(</span><span class="s">0.5</span>, <span class="s">0.55</span>, <span class="s">0.6</span><span class="s">)</span>, 
-    <span class="kw">color</span><span class="s">(</span><span class="s">0.4</span>, <span class="s">0.45</span>, <span class="s">0.5</span><span class="s">)</span>,
-    <span class="s">type</span>=<span class="str">"linear"</span>,
-    spread=<span class="s">int</span><span class="s">(</span>g.<span class="s">height</span><span class="s">)</span>
-<span class="s">)</span>
-g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
+<pre>g = grid.create(1, 7, width=550, height=150)
+g.proportion = grid.proportion("fib", mirrored=True, repetition=2) 
+g.styles.default.margin = 1
+g.styles.default.background.gradientfill(
+    color(0.5, 0.55, 0.6), 
+    color(0.4, 0.45, 0.5),
+    type="linear",
+    spread=int(g.height)
+)
+g.draw()
 </pre>
 
     <p><img alt="grid16" height="150" src="../etc/lib/grid16.jpg" width="550"/><br/></p>
@@ -763,8 +726,7 @@ g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
     <b>relative</b> value between 0.0 and 1.0. For example: the total relative width of all the
     columns in a grid is 1.0 (or 100%). If there are four even columns in the grid each column’s
     relative width is 0.25 (25%).<br/></p>
-<pre>
-<span class="kw">grid</span>.<span class="kw">size</span><span class="s">(</span>width, height, fixed=<span class="kw">False</span>, relative=<span class="kw">False</span><span class="s">)</span>
+<pre>grid.size(width, height, fixed=False, relative=False)
 </pre>
 
     <p>The following properties can also be used to resize a cell, column or row:</p>
@@ -780,8 +742,8 @@ g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
     </li></ul>
 
     <p>For example:</p>
-<pre>g = <span class="kw">grid</span>.<span class="s">create</span><span class="s">(</span><span class="s">2</span>, <span class="s">2</span>, <span class="kw">WIDTH</span>, <span class="kw">HEIGHT</span><span class="s">)</span>
-g.<span class="s">top</span>.<span class="s">relative_height</span> += <span class="s">0.25</span>
+<pre>g = grid.create(2, 2, WIDTH, HEIGHT)
+g.top.relative_height += 0.25
 </pre>
 
     <p>When you resize a cell in a grid, the other cells in the same row or column will contract or
@@ -797,83 +759,72 @@ g.<span class="s">top</span>.<span class="s">relative_height</span> += <span cla
 
     <p>Each grid, row and column has a number of properties for doing simple statistics on
     numerical cells:<br/></p>
-<pre>
-<span class="kw">grid</span>.<span class="s">count</span>    <span class="grey"># the number of cells</span>
+<pre>grid.count    # the number of cells
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">used</span>     <span class="grey"># the number of cells that have content</span>
+<pre>grid.used     # the number of cells that have content
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">empty</span>    <span class="grey"># the number of empty cells</span>
+<pre>grid.empty    # the number of empty cells
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">numeric</span>  <span class="grey"># the number of numeric cells in the grid</span>
+<pre>grid.numeric  # the number of numeric cells in the grid
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">numbers</span>  <span class="grey"># list of numerical values</span>
+<pre>grid.numbers  # list of numerical values
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">sum</span>      <span class="grey"># sum of all numerical values</span>
+<pre>grid.sum      # sum of all numerical values
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">avg</span>      <span class="grey"># average</span>
+<pre>grid.avg      # average
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">min</span>      <span class="grey"># lowest number in the set</span>
+<pre>grid.min      # lowest number in the set
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">max</span>      <span class="grey"># highest number in the set</span>
+<pre>grid.max      # highest number in the set
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">variance</span> <span class="grey"># how spread out is the distribution?</span>
+<pre>grid.variance # how spread out is the distribution?
 </pre>
-<pre>
-<span class="kw">grid</span>.<span class="s">stdev</span>    <span class="grey"># standard deviation</span>
+<pre>grid.stdev    # standard deviation
 </pre>
 
     <p>This allows you to quickly calculate the content of cells based on the numbers in other
     cells. The advantage is that you can create a spreadsheet template once, and then reuse it with
     other data or other visual cells.</p>
     <p><img alt="grid18" height="60" src="../etc/lib/grid18.jpg" width="550"/></p>
-<pre>downloads = <span class="s">{</span>
-    <span class="str">"2007"</span>: <span class="s">[</span><span class="s">622</span>, <span class="s">3384</span>, <span class="s">3856</span>, <span class="s">2024</span>, <span class="s">2027</span>, <span class="s">1593</span>, 
-             <span class="s">1352</span>, <span class="s">1326</span>, <span class="s">1309</span>, <span class="s">4822</span>, <span class="s">2988</span>, <span class="s">1536</span><span class="s">]</span>,
-    <span class="str">"2008"</span>: <span class="s">[</span><span class="s">961</span>, <span class="s">5207</span>, <span class="s">10980</span>, <span class="s">7221</span>, <span class="s">7797</span>, <span class="s">1975</span><span class="s">]</span>
-<span class="s">}</span>
+<pre>downloads = {
+    "2007": [622, 3384, 3856, 2024, 2027, 1593, 
+             1352, 1326, 1309, 4822, 2988, 1536],
+    "2008": [961, 5207, 10980, 7221, 7797, 1975]
+}
  
-g = <span class="kw">grid</span>.<span class="s">create</span><span class="s">(</span><span class="s">len</span><span class="s">(</span>downloads<span class="s">)</span><span class="s">+1</span>, <span class="s">12</span><span class="s">+2</span>, width=<span class="s">550</span>, height=<span class="s">60</span><span class="s">)</span>
-g.<span class="s">styles</span>.<span class="kw">font</span> = <span class="str">"Helvetica"</span>
-g.<span class="s">styles</span>.<span class="kw">background</span> = <span class="kw">color</span><span class="s">(</span><span class="s">0.5</span>, <span class="s">0.65</span>, <span class="s">0.8</span>, <span class="s">0.25</span><span class="s">)</span>
-g.<span class="s">styles</span>.<span class="kw">fill</span> = <span class="kw">color</span><span class="s">(</span><span class="s">0.4</span><span class="s">)</span>
-g.<span class="s">styles</span>.<span class="s">margin</span> = <span class="s">1</span>
-g.<span class="s">styles</span>.<span class="s">padding</span> = <span class="s">(</span><span class="s">4</span>, <span class="s">2</span>, <span class="s">0</span>, <span class="s">0</span><span class="s">)</span>
+g = grid.create(len(downloads)+1, 12+2, width=550, height=60)
+g.styles.font = "Helvetica"
+g.styles.background = color(0.5, 0.65, 0.8, 0.25)
+g.styles.fill = color(0.4)
+g.styles.margin = 1
+g.styles.padding = (4, 2, 0, 0)
  
-<span class="grey"># Table header.</span>
-months = <span class="s">[</span><span class="str">"jan"</span>, <span class="str">"feb"</span>, <span class="str">"mar"</span>, <span class="str">"apr"</span>, <span class="str">"may"</span>, <span class="str">"jun"</span>, 
-          <span class="str">"jul"</span>, <span class="str">"aug"</span>, <span class="str">"sep"</span>, <span class="str">"oct"</span>, <span class="str">"nov"</span>, <span class="str">"dec"</span><span class="s">]</span>
-s = g.<span class="s">styles</span>.<span class="s">create</span><span class="s">(</span><span class="str">"header"</span><span class="s">)</span>
-s.<span class="kw">font</span> = <span class="str">"Georgia-Bold"</span>
-g.<span class="s">top</span>.<span class="s">style</span> = s.<span class="s">name</span>
-g.<span class="s">top</span><span class="s">[</span><span class="s">0</span><span class="s">]</span>.<span class="s">content</span> = <span class="str">"downloads"</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">12</span><span class="s">)</span>:
-    g.<span class="s">top</span><span class="s">[</span>i<span class="s">+1</span><span class="s">]</span>.<span class="s">content</span> = months<span class="s">[</span>i<span class="s">]</span>
+# Table header.
+months = ["jan", "feb", "mar", "apr", "may", "jun", 
+          "jul", "aug", "sep", "oct", "nov", "dec"]
+s = g.styles.create("header")
+s.font = "Georgia-Bold"
+g.top.style = s.name
+g.top[0].content = "downloads"
+for i in range(12):
+    g.top[i+1].content = months[i]
  
-<span class="grey"># Each year is a row.</span>
-<span class="grey"># The leftmost column displays the current year.</span>
-<span class="grey"># The rightmost column displays the total per year.</span>
-<span class="kw">for</span> i, year <span class="kw">in</span> <span class="s">enumerate</span><span class="s">(</span>downloads<span class="s">)</span>:
-    row = g.<span class="s">rows</span><span class="s">[</span>i<span class="s">+1</span><span class="s">]</span>
-    row.<span class="s">left</span>.<span class="s">content</span> = year
-    <span class="kw">for</span> j, monthly <span class="kw">in</span> <span class="s">enumerate</span><span class="s">(</span>downloads<span class="s">[</span>year<span class="s">]</span><span class="s">)</span>:
-        row<span class="s">[</span>j<span class="s">+1</span><span class="s">]</span>.<span class="s">content</span> = monthly
-    row.<span class="s">right</span>.<span class="s">content</span> = row<span class="s">[</span><span class="s">1</span>:<span class="s">-1</span><span class="s">]</span>.<span class="s">sum</span>
+# Each year is a row.
+# The leftmost column displays the current year.
+# The rightmost column displays the total per year.
+for i, year in enumerate(downloads):
+    row = g.rows[i+1]
+    row.left.content = year
+    for j, monthly in enumerate(downloads[year]):
+        row[j+1].content = monthly
+    row.right.content = row[1:-1].sum
  
-g.<span class="s">left</span>.<span class="s">relative_width</span> = <span class="s">0.15</span>
-g.<span class="s">right</span>.<span class="s">relative_width</span> = <span class="s">0.1</span>
-g.<span class="s">draw</span><span class="s">(</span><span class="s">)</span> 
+g.left.relative_width = 0.15
+g.right.relative_width = 0.1
+g.draw() 
  
-g.<span class="s">column</span><span class="s">(</span><span class="s">1</span><span class="s">)</span>.<span class="s">name</span> = <span class="str">"jan"</span>
-<span class="kw">print</span> g.<span class="s">jan</span>.<span class="s">avg</span>
+g.column(1).name = "jan"
+print g.jan.avg
 </pre>   
 
     <p> </p>
@@ -882,10 +833,9 @@ g.<span class="s">column</span><span class="s">(</span><span class="s">1</span><
     <h2><a id="pages" name="pages" title="pages"></a>Multiple pages</h2>
 
     <p>The library has two commands to <b>store a grid in memory and reload it</b>:</p>
-<pre>
-<span class="kw">grid</span>.<span class="s">save</span><span class="s">(</span>grid_object<span class="s">)</span>
+<pre>grid.save(grid_object)
 </pre>
-<pre>g = <span class="kw">grid</span>.<span class="s">load</span><span class="s">(</span><span class="s">)</span>
+<pre>g = grid.load()
 </pre>
 
     <p>This is especially useful because the <i>grid.content.remainder</i> property will contain
@@ -893,23 +843,22 @@ g.<span class="s">column</span><span class="s">(</span><span class="s">1</span><
     <p>In the simple example below we create a grid with some content for the first page. The next
     pages we export (File &gt; Export as Image &gt; Number of Pages) will start from the remainder
     of text for which no room was left on the previous page.</p>
-<pre>
-<span class="kw">grid</span> =  <span class="kw">ximport</span><span class="s">(</span><span class="str">"grid"</span><span class="s">)</span>
-<span class="kw">size</span><span class="s">(</span><span class="s">400</span>, <span class="s">400</span><span class="s">)</span>
+<pre>grid =  ximport("grid")
+size(400, 400)
  
-<span class="kw">if</span> PAGENUM == <span class="s">1</span>:
-    g = <span class="kw">grid</span>.<span class="s">create</span><span class="s">(</span><span class="s">1</span>, <span class="s">2</span>, WIDTH<span class="s">-40</span>, HEIGHT<span class="s">-40</span><span class="s">)</span>
-    g.<span class="s">styles</span>.<span class="kw">background</span> = <span class="kw">color</span><span class="s">(</span><span class="s">0.5</span>, <span class="s">0.65</span>, <span class="s">0.8</span>, <span class="s">0.25</span><span class="s">)</span>
-    g.<span class="s">styles</span>.<span class="kw">fill</span> = <span class="kw">color</span><span class="s">(</span><span class="s">0.3</span><span class="s">)</span>
-    g.<span class="s">styles</span>.<span class="s">padding</span> = <span class="s">10</span>
-    g.<span class="s">styles</span>.<span class="s">margin</span> = <span class="s">2</span>
-    g.<span class="s">content</span> = <span class="kw">grid</span>.<span class="kw">text</span>.<span class="s">placeholder</span>.<span class="s">english</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">else</span>:
-    g = <span class="kw">grid</span>.<span class="s">load</span><span class="s">(</span><span class="s">)</span>
-    g.<span class="s">split</span><span class="s">(</span><span class="s">1</span>, <span class="kw">random</span><span class="s">(</span><span class="s">1</span>,<span class="s">3</span><span class="s">)</span><span class="s">)</span>
+if PAGENUM == 1:
+    g = grid.create(1, 2, WIDTH-40, HEIGHT-40)
+    g.styles.background = color(0.5, 0.65, 0.8, 0.25)
+    g.styles.fill = color(0.3)
+    g.styles.padding = 10
+    g.styles.margin = 2
+    g.content = grid.text.placeholder.english()
+else:
+    g = grid.load()
+    g.split(1, random(1,3))
  
-g.<span class="s">draw</span><span class="s">(</span><span class="s">20</span>, <span class="s">20</span><span class="s">)</span>
-<span class="kw">grid</span>.<span class="s">save</span><span class="s">(</span>g<span class="s">)</span>
+g.draw(20, 20)
+grid.save(g)
 </pre>   
   </div>
 

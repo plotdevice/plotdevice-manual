@@ -11,8 +11,7 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>
-<span class="kw">moveto</span><span class="s">(</span>x, y<span class="s">)</span>
+<pre>moveto(x, y)
 </pre>
       </div>
 
@@ -40,18 +39,18 @@
               <td><span class="image_border"><img src="../etc/ref/moveto.jpg"/></span>
               </td><td>
 <pre>
-<span class="kw">with bezier</span><span class="s">(10, 10, stroke=0.2) as path:</span>
-    <span class="kw">lineto</span><span class="s">(</span><span class="s">40</span>, <span class="s">10</span><span class="s">)</span>
-    <span class="kw">moveto</span><span class="s">(</span><span class="s">10</span>, <span class="s">20</span><span class="s">)</span>
-    <span class="kw">lineto</span><span class="s">(</span><span class="s">40</span>, <span class="s">80</span><span class="s">)</span>
+with bezier(10, 10, stroke=0.2) as path:
+    lineto(40, 10)
+    moveto(10, 20)
+    lineto(40, 80)
 </pre><em>or</em>
 <pre>
-<span class="kw">stroke</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
-<span class="kw">beginpath</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span><span class="s">)</span>
-<span class="kw">lineto</span><span class="s">(</span><span class="s">40</span>, <span class="s">10</span><span class="s">)</span>
-<span class="kw">moveto</span><span class="s">(</span><span class="s">10</span>, <span class="s">20</span><span class="s">)</span>
-<span class="kw">lineto</span><span class="s">(</span><span class="s">40</span>, <span class="s">80</span><span class="s">)</span>
-<span class="kw">endpath</span><span class="s">(</span><span class="s">)</span>
+stroke(0.2)
+beginpath(10, 10)
+lineto(40, 10)
+moveto(10, 20)
+lineto(40, 80)
+endpath()
 </pre>
               </td></tr></tbody></table>
       </div>

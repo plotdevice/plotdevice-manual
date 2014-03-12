@@ -11,8 +11,7 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>
-<span class="kw">BezierPath</span><span class="s">(</span><span class="s">)</span>
+<pre>BezierPath()
 </pre>
       </div>
 
@@ -28,38 +27,38 @@
       <h2>Properties</h2>
 
       <div class="row">
-<pre>path.<span class="s">bounds</span>
-path.<span class="s">length</span>
-path.<span class="s">contours</span>
+<pre>path.bounds
+path.length
+path.contours
 </pre>
       </div>
 
       <h2>Methods</h2>
 
       <div class="row">
-<pre>path<span class="s">[</span>i<span class="s">]</span>
-path.<span>moveto</span><span class="s">(</span>x, y<span class="s">)</span>
-path.<span>lineto</span><span class="s">(</span>x, y<span class="s">)</span>
-path.<span>curveto</span><span class="s">(</span>h1x, h1y, h2x, h2y, x, y<span class="s">)</span>
-path.<span>closepath</span><span class="s">(</span><span class="s">)</span>
-path.<span>rect</span><span class="s">(</span>x, y, width, height<span class="s">)</span>
-path.<span>oval</span><span class="s">(</span>x, y, width, height<span class="s">)</span>
+<pre>path[i]
+path.moveto(x, y)
+path.lineto(x, y)
+path.curveto(h1x, h1y, h2x, h2y, x, y)
+path.closepath()
+path.rect(x, y, width, height)
+path.oval(x, y, width, height)
 </pre>
-<pre>path.<span class="s">contains</span><span class="s">(</span>x, y<span class="s">)</span>
+<pre>path.contains(x, y)
 </pre>
-<pre>path.<span class="s">point</span><span class="s">(</span>t<span class="s">)</span>
-path.<span class="s">points</span><span class="s">(</span>amount=<span class="s">100</span><span class="s">)</span>
-path.<span class="s">addpoint</span><span class="s">(</span>t<span class="s">)</span>
-path.<span class="s">segmentlengths</span><span class="s">(</span>relative=<span class="kw">False</span>, n=<span class="s">10</span><span class="s">)</span>
+<pre>path.point(t)
+path.points(amount=100)
+path.addpoint(t)
+path.segmentlengths(relative=False, n=10)
 </pre>
-<pre>path.<span class="s">intersects</span><span class="s">(</span>path<span class="s">)</span>
-path.<span class="s">intersect</span><span class="s">(</span>path, flatness=<span class="s">0.6</span><span class="s">)</span>
-path.<span class="s">union</span><span class="s">(</span>path, flatness=<span class="s">0.6</span><span class="s">)</span>
-path.<span class="s">difference</span><span class="s">(</span>path, flatness=<span class="s">0.6</span><span class="s">)</span>
+<pre>path.intersects(path)
+path.intersect(path, flatness=0.6)
+path.union(path, flatness=0.6)
+path.difference(path, flatness=0.6)
 </pre>
-<pre>path.<span class="s">fit</span><span class="s">(</span>x=<span class="kw">None</span>, y=<span class="kw">None</span>, width=<span class="kw">None</span>, height=<span class="kw">None</span>, stretch=<span class="kw">False</span><span class="s">)</span>
+<pre>path.fit(x=None, y=None, width=None, height=None, stretch=False)
 </pre>
-<pre>path.<span class="s">copy</span><span class="s">(</span><span class="s">)</span>
+<pre>path.copy()
 </pre>
 
         <p>See the <a href="../tut/Paths.html">tutorial on paths</a> to learn about all the

@@ -35,27 +35,26 @@
     class is created</b>. The <i>__init__()</i> method sets all the starting values for an object’s
     properties.</p>
     <p>For example, here’s what a simple definition of a Creature class would look like:</p>
-<pre>
-<span class="kw">class</span> Creature:
+<pre>class Creature:
     
-    <span class="kw">def</span> <span class="red">__init__</span><span class="s">(</span><span class="s">self</span>, x, y, <span class="kw">speed</span>=<span class="s">1.0</span>, <span class="kw">size</span>=<span class="s">4</span><span class="s">)</span>:
+    def __init__(self, x, y, speed=1.0, size=4):
         
-        <span class="s">self</span>.<span class="s">x</span> = x
-        <span class="s">self</span>.<span class="s">y</span> = y
-        <span class="s">self</span>.<span class="kw">speed</span> = <span class="kw">speed</span>
-        <span class="s">self</span>.<span class="kw">size</span> = <span class="kw">size</span>
+        self.x = x
+        self.y = y
+        self.speed = speed
+        self.size = size
 </pre>
 
     <p>As you can see a creature has <i>x</i> and <i>y</i> properties (the location of the
     creature) and <i>speed</i> and <i>size</i> properties (which we’ll use to move the creature
     around). All of them can be set when a new creature is ‘instantiated’. The <i>speed</i> and
     <i>size</i> properties have default values so they are optional.</p>
-<pre>ant = Creature<span class="s">(</span><span class="s">100</span>, <span class="s">100</span>, <span class="kw">speed</span>=<span class="s">2.0</span><span class="s">)</span>
-dinosaur = Creature<span class="s">(</span><span class="s">200</span>, <span class="s">250</span>, <span class="kw">speed</span>=<span class="s">0.25</span>, <span class="kw">size</span>=<span class="s">45</span><span class="s">)</span>
+<pre>ant = Creature(100, 100, speed=2.0)
+dinosaur = Creature(200, 250, speed=0.25, size=45)
 </pre>
 
     <p>To change a property value for a creature later on we can simply do:</p>
-<pre>ant.<span class="kw">speed</span> = <span class="s">2.5</span>
+<pre>ant.speed = 2.5
 </pre>
 
     <p><u>Naming conventions:</u></p>
@@ -73,32 +72,31 @@ dinosaur = Creature<span class="s">(</span><span class="s">200</span>, <span cla
     class method looks exactly like a command definition but it always takes <i>self</i> as the
     first parameter. The <i>self</i> parameter is the current instance of the class. It allows you
     to access all of an object’s current property values and methods from inside the method.</p>
-<pre>
-<span class="kw">class</span> Creature: 
+<pre>class Creature: 
     
-    <span class="kw">def</span> <span class="red">__init__</span><span class="s">(</span><span class="s">self</span>, x, y, <span class="kw">speed</span>=<span class="s">1.0</span>, <span class="kw">size</span>=<span class="s">4</span><span class="s">)</span>:
+    def __init__(self, x, y, speed=1.0, size=4):
         
-        <span class="s">self</span>.<span class="s">x</span> = x
-        <span class="s">self</span>.<span class="s">y</span> = y
-        <span class="s">self</span>.<span class="kw">speed</span> = <span class="kw">speed</span>
-        <span class="s">self</span>.<span class="kw">size</span> = <span class="kw">size</span>
+        self.x = x
+        self.y = y
+        self.speed = speed
+        self.size = size
         
-        <span class="s">self</span>._vx = <span class="s">0</span>
-        <span class="s">self</span>._vy = <span class="s">0</span>
+        self._vx = 0
+        self._vy = 0
     
-    <span class="kw">def</span> <span class="red">roam</span><span class="s">(</span><span class="s">self</span><span class="s">)</span>:
+    def roam(self):
  
-        <span class="str">""</span><span class="str">" Creature changes heading aimlessly.
-        "</span><span class="str">""</span>
+        """ Creature changes heading aimlessly.
+        """
         
-        v = <span class="s">self</span>.<span class="kw">speed</span>
-        <span class="s">self</span>._vx += <span class="kw">random</span><span class="s">(</span>-v, v<span class="s">)</span>
-        <span class="s">self</span>._vy += <span class="kw">random</span><span class="s">(</span>-v, v<span class="s">)</span>
-        <span class="s">self</span>._vx = <span class="s">max</span><span class="s">(</span>-v, <span class="s">min</span><span class="s">(</span><span class="s">self</span>._vx, v<span class="s">)</span><span class="s">)</span>
-        <span class="s">self</span>._vy = <span class="s">max</span><span class="s">(</span>-v, <span class="s">min</span><span class="s">(</span><span class="s">self</span>._vy, v<span class="s">)</span><span class="s">)</span> 
+        v = self.speed
+        self._vx += random(-v, v)
+        self._vy += random(-v, v)
+        self._vx = max(-v, min(self._vx, v))
+        self._vy = max(-v, min(self._vy, v)) 
         
-        <span class="s">self</span>.<span class="s">x</span> += <span class="s">self</span>._vx
-        <span class="s">self</span>.<span class="s">y</span> += <span class="s">self</span>._vy
+        self.x += self._vx
+        self.y += self._vy
 </pre>
 
     <p>So now we have added two new properties to the class, <i>_vx</i> and <i>_vy,</i> which store
@@ -112,15 +110,15 @@ dinosaur = Creature<span class="s">(</span><span class="s">200</span>, <span cla
     by moving it to the new heading.</p>
     <p>Now we can create two ants (a small fast one and a big slow one). Because their size and
     speed differ they will roam in different ways.</p>
-<pre>ant1 = Creature<span class="s">(</span><span class="s">300</span>, <span class="s">300</span>, <span class="kw">speed</span>=<span class="s">2.0</span><span class="s">)</span>
-ant2 = Creature<span class="s">(</span><span class="s">300</span>, <span class="s">300</span>, <span class="kw">speed</span>=<span class="s">0.5</span>, <span class="kw">size</span>=<span class="s">8</span><span class="s">)</span>
+<pre>ant1 = Creature(300, 300, speed=2.0)
+ant2 = Creature(300, 300, speed=0.5, size=8)
  
-<span class="kw">speed</span><span class="s">(</span><span class="s">30</span><span class="s">)</span>
-<span class="kw">def</span> <span class="red">draw</span><span class="s">(</span><span class="s">)</span>:
-    ant1.<span class="s">roam</span><span class="s">(</span><span class="s">)</span>
-    ant2.<span class="s">roam</span><span class="s">(</span><span class="s">)</span>
-    <span class="kw">oval</span><span class="s">(</span>ant1.<span class="s">x</span>, ant1.<span class="s">y</span>, ant1.<span class="kw">size</span>, ant1.<span class="kw">size</span><span class="s">)</span>
-    <span class="kw">oval</span><span class="s">(</span>ant2.<span class="s">x</span>, ant2.<span class="s">y</span>, ant2.<span class="kw">size</span>, ant2.<span class="kw">size</span><span class="s">)</span>
+speed(30)
+def draw():
+    ant1.roam()
+    ant2.roam()
+    oval(ant1.x, ant1.y, ant1.size, ant1.size)
+    oval(ant2.x, ant2.y, ant2.size, ant2.size)
 </pre>
 
     <p><img alt="classes-creature1" height="200" src="../etc/tut/classes-creature1.jpg" width="550"/></p>
@@ -148,21 +146,19 @@ ant2 = Creature<span class="s">(</span><span class="s">300</span>, <span class="
     <p>We’ll start out by creating a World class which we can use to store a list of obstacles.
     Later on we can add all sorts of other stuff to the world (e.g. weather methods, colony
     location properties, etc...).</p>
-<pre>
-<span class="kw">class</span> World:    
-    <span class="kw">def</span> <span class="red">__init__</span><span class="s">(</span><span class="s">self</span><span class="s">)</span>:        
-        <span class="s">self</span>.<span class="s">obstacles</span> = <span class="s">[</span><span class="s">]</span>
+<pre>class World:    
+    def __init__(self):        
+        self.obstacles = []
 </pre> 
 
     <p><span class="orange_box">Obstacle class</span></p>
     <p>Next we’ll make an Obstacle class.<br/>
     An obstacle in the world is a basic object that has a position and a radius.</p>
-<pre>
-<span class="kw">class</span> Obstacle:    
-    <span class="kw">def</span> <span class="red">__init__</span><span class="s">(</span><span class="s">self</span>, x, y, radius<span class="s">)</span>:        
-        <span class="s">self</span>.<span class="s">x</span> = x
-        <span class="s">self</span>.<span class="s">y</span> = y
-        <span class="s">self</span>.<span class="s">radius</span> = radius
+<pre>class Obstacle:    
+    def __init__(self, x, y, radius):        
+        self.x = x
+        self.y = y
+        self.radius = radius
 </pre> 
 
     <p><span class="orange_box">Geometry</span></p>
@@ -171,26 +167,25 @@ ant2 = Creature<span class="s">(</span><span class="s">300</span>, <span class="
     the coordinates of the tip of the feeler. Luckily everything we need is already described in
     the tutorial on <a href="Math.html">math geometry</a>. We can copy-paste the commands and add
     them to our script:</p>
-<pre>
-<span class="kw">from</span> <span class="s">math</span> <span class="kw">import</span> degrees, atan2
-<span class="kw">from</span> <span class="s">math</span> <span class="kw">import</span> sqrt, <span class="s">pow</span>
-<span class="kw">from</span> <span class="s">math</span> <span class="kw">import</span> radians, sin, cos
+<pre>from math import degrees, atan2
+from math import sqrt, pow
+from math import radians, sin, cos
  
-<span class="kw">def</span> <span class="red">angle</span><span class="s">(</span>x0, y0, x1, y1<span class="s">)</span>:
-    <span class="str">""</span><span class="str">" Returns the angle between two points.
-    "</span><span class="str">""</span>
-    <span class="kw">return</span> degrees<span class="s">(</span> atan2<span class="s">(</span>y1-y0, x1-x0<span class="s">)</span> <span class="s">)</span>
+def angle(x0, y0, x1, y1):
+    """ Returns the angle between two points.
+    """
+    return degrees( atan2(y1-y0, x1-x0) )
  
-<span class="kw">def</span> <span class="red">distance</span><span class="s">(</span>x0, y0, x1, y1<span class="s">)</span>:
-    <span class="str">""</span><span class="str">" Returns the distance between two points.
-    "</span><span class="str">""</span>        
-    <span class="kw">return</span> sqrt<span class="s">(</span><span class="s">pow</span><span class="s">(</span>x1-x0, <span class="s">2</span><span class="s">)</span> + <span class="s">pow</span><span class="s">(</span>y1-y0, <span class="s">2</span><span class="s">)</span><span class="s">)</span>
+def distance(x0, y0, x1, y1):
+    """ Returns the distance between two points.
+    """        
+    return sqrt(pow(x1-x0, 2) + pow(y1-y0, 2))
  
-<span class="kw">def</span> <span class="red">coordinates</span><span class="s">(</span>x0, y0, distance, angle<span class="s">)</span>:
-    <span class="str">""</span><span class="str">" Returns the coordinates of given distance and angle from a point.
-    "</span><span class="str">""</span>
-    <span class="kw">return</span> <span class="s">(</span>x0 + cos<span class="s">(</span>radians<span class="s">(</span>angle<span class="s">)</span><span class="s">)</span> * distance, 
-            y0 + sin<span class="s">(</span>radians<span class="s">(</span>angle<span class="s">)</span><span class="s">)</span> * distance<span class="s">)</span>
+def coordinates(x0, y0, distance, angle):
+    """ Returns the coordinates of given distance and angle from a point.
+    """
+    return (x0 + cos(radians(angle)) * distance, 
+            y0 + sin(radians(angle)) * distance)
 </pre> 
 
     <p>With the above <i>coordinates()</i> command we can:<br/></p>
@@ -215,75 +210,74 @@ ant2 = Creature<span class="s">(</span><span class="s">300</span>, <span class="
       </li><li>if it is, check if the coordinates of the tip of the feeler are inside the obstacle,
       </li><li>and if so, steer away in the most logical direction.
     </li></ul>
-<pre>
-<span class="kw">class</span> Creature:
+<pre>class Creature:
     
-    <span class="kw">def</span> <span class="red">__init__</span><span class="s">(</span><span class="s">self</span>, world, x, y, <span class="kw">speed</span>=<span class="s">1.0</span>, <span class="kw">size</span>=<span class="s">4</span><span class="s">)</span>:
+    def __init__(self, world, x, y, speed=1.0, size=4):
         
-        <span class="s">self</span>.<span class="s">x</span> = x
-        <span class="s">self</span>.<span class="s">y</span> = y
-        <span class="s">self</span>.<span class="kw">speed</span> = <span class="kw">speed</span>
-        <span class="s">self</span>.<span class="kw">size</span> = <span class="kw">size</span>
+        self.x = x
+        self.y = y
+        self.speed = speed
+        self.size = size
         
-        <span class="s">self</span>.<span class="s">world</span> = world
-        <span class="s">self</span>.<span class="s">feeler_length</span> = <span class="s">25</span>
+        self.world = world
+        self.feeler_length = 25
         
-        <span class="s">self</span>._vx = <span class="s">0</span>
-        <span class="s">self</span>._vy = <span class="s">0</span>
+        self._vx = 0
+        self._vy = 0
     
-    <span class="kw">def</span> <span class="red">heading</span><span class="s">(</span><span class="s">self</span><span class="s">)</span>:
+    def heading(self):
         
-        <span class="str">""</span><span class="str">" Returns the creature's heading as angle in degrees.
-        "</span><span class="str">""</span>
+        """ Returns the creature's heading as angle in degrees.
+        """
         
-        <span class="kw">return</span> angle<span class="s">(</span><span class="s">self</span>.<span class="s">x</span>, <span class="s">self</span>.<span class="s">y</span>, <span class="s">self</span>.<span class="s">x</span>+<span class="s">self</span>._vx, <span class="s">self</span>.<span class="s">y</span>+<span class="s">self</span>._vy<span class="s">)</span>
+        return angle(self.x, self.y, self.x+self._vx, self.y+self._vy)
  
-    <span class="kw">def</span> <span class="red">avoid_obstacles</span><span class="s">(</span><span class="s">self</span>, m=<span class="s">0.4</span>, perimeter=<span class="s">4</span><span class="s">)</span>:
+    def avoid_obstacles(self, m=0.4, perimeter=4):
  
-        <span class="grey"># Find out where the creature is going.</span>
-        a = <span class="s">self</span>.<span class="s">heading</span><span class="s">(</span><span class="s">)</span>
+        # Find out where the creature is going.
+        a = self.heading()
         
-        <span class="kw">for</span> obstacle <span class="kw">in</span> <span class="s">self</span>.<span class="s">world</span>.<span class="s">obstacles</span>:
+        for obstacle in self.world.obstacles:
             
-            <span class="grey"># Calculate the distance between the creature and the obstacle.</span>
-            d = distance<span class="s">(</span><span class="s">self</span>.<span class="s">x</span>, <span class="s">self</span>.<span class="s">y</span>, obstacle.<span class="s">x</span>, obstacle.<span class="s">y</span><span class="s">)</span>
+            # Calculate the distance between the creature and the obstacle.
+            d = distance(self.x, self.y, obstacle.x, obstacle.y)
             
-            <span class="grey"># Respond faster if the creature is very close to an obstacle.</span>
-            <span class="kw">if</span> d - obstacle.<span class="s">radius</span> &lt; perimeter: m *= <span class="s">10</span>
+            # Respond faster if the creature is very close to an obstacle.
+            if d - obstacle.radius &lt; perimeter: m *= 10
             
-            <span class="grey"># Check if the tip of the feeler falls inside the obstacle.</span>
-            <span class="grey"># This is never true if the feeler length </span>
-            <span class="grey"># is smaller than the distance to the obstable.</span>
-            <span class="kw">if</span> d - obstacle.<span class="s">radius</span> &lt;= <span class="s">self</span>.<span class="s">feeler_length</span>:
-                tip_x, tip_y = coordinates<span class="s">(</span><span class="s">self</span>.<span class="s">x</span>, <span class="s">self</span>.<span class="s">y</span>, d, a<span class="s">)</span>    
-                <span class="kw">if</span> distance<span class="s">(</span>obstacle.<span class="s">x</span>, obstacle.<span class="s">y</span>, 
-                            tip_x, tip_y<span class="s">)</span> &lt; obstacle.<span class="s">radius</span>:
+            # Check if the tip of the feeler falls inside the obstacle.
+            # This is never true if the feeler length 
+            # is smaller than the distance to the obstable.
+            if d - obstacle.radius &lt;= self.feeler_length:
+                tip_x, tip_y = coordinates(self.x, self.y, d, a)    
+                if distance(obstacle.x, obstacle.y, 
+                            tip_x, tip_y) &lt; obstacle.radius:
                     
-                    <span class="grey"># Nudge the creature away from the obstacle.</span>
-                    m *= <span class="s">self</span>.<span class="kw">speed</span>
-                    <span class="kw">if</span> tip_x &lt; obstacle.<span class="s">x</span>: <span class="s">self</span>._vx -= <span class="kw">random</span><span class="s">(</span>m<span class="s">)</span>
-                    <span class="kw">if</span> tip_y &lt; obstacle.<span class="s">y</span>: <span class="s">self</span>._vy -= <span class="kw">random</span><span class="s">(</span>m<span class="s">)</span>
-                    <span class="kw">if</span> tip_x &gt; obstacle.<span class="s">x</span>: <span class="s">self</span>._vx += <span class="kw">random</span><span class="s">(</span>m<span class="s">)</span>
-                    <span class="kw">if</span> tip_y &gt; obstacle.<span class="s">y</span>: <span class="s">self</span>._vy += <span class="kw">random</span><span class="s">(</span>m<span class="s">)</span>
+                    # Nudge the creature away from the obstacle.
+                    m *= self.speed
+                    if tip_x &lt; obstacle.x: self._vx -= random(m)
+                    if tip_y &lt; obstacle.y: self._vy -= random(m)
+                    if tip_x &gt; obstacle.x: self._vx += random(m)
+                    if tip_y &gt; obstacle.y: self._vy += random(m)
  
-                    <span class="kw">if</span> d - obstacle.<span class="s">radius</span> &lt; perimeter: <span class="kw">return</span>
+                    if d - obstacle.radius &lt; perimeter: return
  
-    <span class="kw">def</span> <span class="red">roam</span><span class="s">(</span><span class="s">self</span><span class="s">)</span>:
+    def roam(self):
  
-        <span class="str">""</span><span class="str">" Creature changes heading aimlessly.
+        """ Creature changes heading aimlessly.
         With its feeler it will scan for obstacles and steer away.
-        "</span><span class="str">""</span>
+        """
         
-        <span class="s">self</span>.<span class="s">avoid_obstacles</span><span class="s">(</span><span class="s">)</span>
+        self.avoid_obstacles()
         
-        v = <span class="s">self</span>.<span class="kw">speed</span>
-        <span class="s">self</span>._vx += <span class="kw">random</span><span class="s">(</span>-v, v<span class="s">)</span>
-        <span class="s">self</span>._vy += <span class="kw">random</span><span class="s">(</span>-v, v<span class="s">)</span>
-        <span class="s">self</span>._vx = <span class="s">max</span><span class="s">(</span>-v, <span class="s">min</span><span class="s">(</span><span class="s">self</span>._vx, v<span class="s">)</span><span class="s">)</span>
-        <span class="s">self</span>._vy = <span class="s">max</span><span class="s">(</span>-v, <span class="s">min</span><span class="s">(</span><span class="s">self</span>._vy, v<span class="s">)</span><span class="s">)</span> 
+        v = self.speed
+        self._vx += random(-v, v)
+        self._vy += random(-v, v)
+        self._vx = max(-v, min(self._vx, v))
+        self._vy = max(-v, min(self._vy, v)) 
         
-        <span class="s">self</span>.<span class="s">x</span> += <span class="s">self</span>._vx
-        <span class="s">self</span>.<span class="s">y</span> += <span class="s">self</span>._vy
+        self.x += self._vx
+        self.y += self._vy
 </pre>
 
     <p><img alt="classes-creature3" height="200" src="../etc/tut/classes-creature3.jpg" width="550"/><br/>

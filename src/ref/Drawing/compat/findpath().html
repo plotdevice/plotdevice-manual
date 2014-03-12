@@ -11,8 +11,7 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>
-<span class="kw">findpath</span><span class="s">(</span><span class="s">list</span>, curvature =<span class="s">1.0</span><span class="s">)</span>
+<pre>findpath(list, curvature =1.0)
 </pre>
       </div>
 
@@ -46,15 +45,15 @@
               <td><span class="image_border"><img height="125" src="../etc/ref/findpath.jpg" width="125"/></span>
               </td><td>
 <pre>
-points = <span class="s">[</span><span class="s">(</span><span class="s">10</span>, <span class="s">10</span><span class="s">)</span>, <span class="s">(</span><span class="s">90</span>, <span class="s">90</span><span class="s">)</span>, <span class="s">(</span><span class="s">350</span>, <span class="s">200</span><span class="s">)</span><span class="s">]</span>
-<span class="kw">for</span> x, y <span class="kw">in</span> points:
-    <span class="kw">oval</span><span class="s">(</span>x<span class="s">-2</span>, y<span class="s">-2</span>, <span class="s">4</span>, <span class="s">4</span><span class="s">)</span>
+points = [(10, 10), (90, 90), (350, 200)]
+for x, y in points:
+    oval(x-2, y-2, 4, 4)
  
-<span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">stroke</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
-<span class="kw">autoclosepath</span><span class="s">(</span><span class="kw">False</span><span class="s">)</span>    
-path = <span class="kw">findpath</span><span class="s">(</span>points<span class="s">)</span>
-<span class="kw">drawpath</span><span class="s">(</span>path<span class="s">)</span>
+nofill()
+stroke(0.2)
+autoclosepath(False)    
+path = findpath(points)
+drawpath(path)
 </pre>
               </td></tr></tbody></table>
       </div>

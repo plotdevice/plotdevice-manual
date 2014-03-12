@@ -11,8 +11,7 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>
-<span class="kw">curveto</span><span class="s">(</span>h1x, h1y, h2x, h2y, x, y<span class="s">)</span>
+<pre>curveto(h1x, h1y, h2x, h2y, x, y)
 </pre>
       </div>
 
@@ -43,15 +42,15 @@
               </td><td>
               </td><td>
 <pre>
-<span class="kw">with bezier</span><span class="s">(stroke=0.2, fill=<span class="kw">None</span>) as path:</span>
-    <span class="kw">curveto</span><span class="s">(</span><span class="s">100</span>, <span class="s">100</span>, <span class="s">50</span>, <span class="s">0</span>, <span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
+with bezier(stroke=0.2, fill=None) as path:
+    curveto(100, 100, 50, 0, 100, 100)
 </pre><em>or</em>
 <pre>
-<span class="kw">nofill</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">stroke</span><span class="s">(</span><span class="s">0.2</span><span class="s">)</span>
-<span class="kw">beginpath</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span><span class="s">)</span>
-<span class="kw">curveto</span><span class="s">(</span><span class="s">100</span>, <span class="s">100</span>, <span class="s">50</span>, <span class="s">0</span>, <span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
-<span class="kw">endpath</span><span class="s">(</span><span class="s">)</span>
+nofill()
+stroke(0.2)
+beginpath(0, 0)
+curveto(100, 100, 50, 0, 100, 100)
+endpath()
 </pre>
               </td></tr></tbody></table>
       </div>

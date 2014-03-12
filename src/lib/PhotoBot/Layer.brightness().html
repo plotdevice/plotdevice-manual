@@ -6,7 +6,7 @@
 </head><body>
   <div class="article">
     <h2>Syntax</h2>
-<pre>canvas.<span class="s">layers</span><span class="s">[</span>i<span class="s">]</span>.<span class="s">brightness</span><span class="s">(</span>value=<span class="s">1.0</span><span class="s">)</span>
+<pre>canvas.layers[i].brightness(value=1.0)
 </pre>
 
     <h2>Description</h2>
@@ -15,10 +15,10 @@
     percentage to increase or decrease the image brightness, for example 0.8 means brightness at
     80%.</p>
     <h2>Example</h2>
-<pre>photobot = <span class="kw">ximport</span><span class="s">(</span><span class="str">"photobot"</span><span class="s">)</span>
-canvas = photobot.<span class="s">canvas</span><span class="s">(</span><span class="s">100</span>,<span class="s">100</span><span class="s">)</span>
-canvas.<span class="s">layer</span><span class="s">(</span><span class="str">"robot.jpg"</span><span class="s">)</span>
-canvas.<span class="s">layers</span><span class="s">[</span><span class="s">1</span><span class="s">]</span>.<span class="s">brightness</span><span class="s">(</span><span class="s">1.5</span><span class="s">)</span>
+<pre>photobot = ximport("photobot")
+canvas = photobot.canvas(100,100)
+canvas.layer("robot.jpg")
+canvas.layers[1].brightness(1.5)
 </pre>
 
     <div class="example">

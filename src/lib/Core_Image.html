@@ -56,7 +56,7 @@
 
     <p>Put the <i>coreimage</i> library folder in the same folder as your script so PlotDevice can
     find the library. It takes some time to load the library the first time.</p>
-<pre>coreimage = <span class="kw">ximport</span><span class="s">(</span><span class="str">"coreimage"</span><span class="s">)</span>
+<pre>coreimage = ximport("coreimage")
 </pre>
 
     <p> </p>
@@ -68,7 +68,7 @@
     <p>The <i>canvas()</i> command returns a new, empty canvas. It takes two parameters: the
     <i>width</i> and <i>height</i> of the canvas. You can set an optional <i>quality</i> parameter
     to ‘high’ to use 128-bit pixel depth but this is unnecessary in most cases.</p>
-<pre>canvas = coreimage.<span class="s">canvas</span><span class="s">(</span><span class="s">150</span>, <span class="s">150</span><span class="s">)</span>
+<pre>canvas = coreimage.canvas(150, 150)
 </pre>
 
     <p> </p>
@@ -85,27 +85,27 @@
     <p><span class="grey_box">canvas.append()</span></p>
     <p>The <i>canvas.append()</i> method adds a new layer to the top of the canvas. It is placed at
     the center of the canvas by default.</p>
-<pre>canvas.<span class="s">append</span><span class="s">(</span>filename<span class="s">)</span>
+<pre>canvas.append(filename)
 </pre>
-<pre>canvas.<span class="s">append</span><span class="s">(</span>clr<span class="s">)</span>
+<pre>canvas.append(clr)
 </pre>
-<pre>canvas.<span class="s">append</span><span class="s">(</span>clr1, clr2, <span class="s">type</span>=<span class="str">"linear"</span>, spread=<span class="s">0.0</span><span class="s">)</span>
+<pre>canvas.append(clr1, clr2, type="linear", spread=0.0)
 </pre>
-<pre>canvas.<span class="s">append</span><span class="s">(</span>path, <span class="kw">background</span>=<span class="kw">None</span>, <span class="kw">fill</span>=<span class="kw">None</span>, <span class="kw">stroke</span>=<span class="kw">None</span>, <span class="kw">strokewidth</span>=<span class="kw">None</span><span class="s">)</span>
+<pre>canvas.append(path, background=None, fill=None, stroke=None, strokewidth=None)
 </pre>
-<pre>canvas.<span class="s">append</span><span class="s">(</span><span class="s">[</span>clr1, clr2, clr3, ...<span class="s">]</span>, w, h<span class="s">)</span>
+<pre>canvas.append([clr1, clr2, clr3, ...], w, h)
 </pre>
-<pre>canvas.<span class="s">append</span><span class="s">(</span>layer<span class="s">)</span>
+<pre>canvas.append(layer)
 </pre>
-<pre>canvas.<span class="s">append</span><span class="s">(</span>canvas<span class="s">)</span>
+<pre>canvas.append(canvas)
 </pre>
-<pre>canvas.<span class="s">append</span><span class="s">(</span>layer.<span class="s">render</span><span class="s">(</span><span class="s">)</span><span class="s">)</span>
+<pre>canvas.append(layer.render())
 </pre>
-<pre>canvas.<span class="s">append</span><span class="s">(</span>canvas.<span class="s">flatten</span><span class="s">(</span><span class="s">)</span><span class="s">)</span>
+<pre>canvas.append(canvas.flatten())
 </pre>
-<pre>canvas.<span class="s">append</span><span class="s">(</span><span class="kw">open</span><span class="s">(</span>filename<span class="s">)</span>.<span class="s">read</span><span class="s">(</span><span class="s">)</span><span class="s">)</span>
+<pre>canvas.append(open(filename).read())
 </pre>
-<pre>canvas.<span class="s">append</span><span class="s">(</span>movieframe<span class="s">)</span>
+<pre>canvas.append(movieframe)
 </pre>
 
     <p> </p>
@@ -130,9 +130,9 @@
           </td><td>
             A canvas with two layers from image files is easy enough:
 <pre>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-canvas.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
+l = canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+canvas.draw()
 </pre>The <i>canvas.append()</i> method has four ptional parameters: the <i>x</i> and <i>
             y</i> position in pixels and <i>w</i> and <i>h</i> dimensions in pixels. The command
             returns the layer object.
@@ -142,7 +142,7 @@ canvas.<span class="s">draw</span><span class="s">(</span><span class="s">)</spa
             Opaque fill layers are created from a standard PlotDevice <a href="../ref/Line+Color.html#color()">color()</a>. The layer will fill the entire canvas by
             default.
 <pre>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">1.0</span>, <span class="s">0.0</span>, <span class="s">0.5</span><span class="s">)</span><span class="s">)</span>
+l = canvas.append(color(1.0, 0.0, 0.5))
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers3.jpg" width="150"/>
@@ -152,7 +152,7 @@ l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw"
             <i>background</i>, <i>stroke</i> (black, transparent and transparent colors by default)
             and <i>strokewidth</i>.
 <pre>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">1.0</span>, <span class="s">0.0</span>, <span class="s">0.5</span><span class="s">)</span><span class="s">)</span>
+l = canvas.append(color(1.0, 0.0, 0.5))
 </pre>font(’Georgia-Italic’, 40)<br/>
             p = textpath(’text’, 0, 0)<br/>
             l = canvas.append(p, fill=color(1))<br/>
@@ -161,7 +161,7 @@ l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw"
           </td><td>
             Linear gradients can be defined as two colors:<br/>
 <pre>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">1</span><span class="s">)</span>, <span class="kw">color</span><span class="s">(</span><span class="s">0</span><span class="s">)</span><span class="s">)</span>
+l = canvas.append(color(1), color(0))
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers5.jpg" width="150"/>
@@ -171,7 +171,7 @@ l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw"
             range of the gradient center with the optional <i>spread</i> parameter (between 0.0 and
             1.0).
 <pre>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">1</span><span class="s">)</span>, <span class="kw">color</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>, <span class="s">type</span>=<span class="str">"radial"</span><span class="s">)</span>
+l = canvas.append(color(1), color(0), type="radial")
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers6.jpg" width="150"/>
@@ -179,12 +179,12 @@ l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw"
             You can also pass another canvas as a new layer. This way you have a subgroup of layers
             that stick together.
 <pre>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">0</span><span class="s">)</span><span class="s">)</span>
-group = coreimage.<span class="s">canvas</span><span class="s">(</span><span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
-group.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-group.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l = canvas.<span class="s">appebd</span><span class="s">(</span>group<span class="s">)</span>
-l.<span class="kw">rotate</span><span class="s">(</span><span class="s">45</span><span class="s">)</span>
+l = canvas.append(color(0))
+group = coreimage.canvas(100, 100)
+group.append("leaf.jpg")
+group.append("lily.tif")
+l = canvas.appebd(group)
+l.rotate(45)
 </pre>
         </td></tr><tr>
           <td><img alt="coreimage-layers7b" height="150" src="../etc/lib/coreimage-layers7b.jpg" width="150"/><br/>
@@ -192,11 +192,11 @@ l.<span class="kw">rotate</span><span class="s">(</span><span class="s">45</span
             If you have some byte data, for example image data downloaded from a site with the
             <a href="Web.html">Web</a> library:
 <pre>
-web = <span class="kw">ximport</span><span class="s">(</span><span class="str">"web"</span><span class="s">)</span>
-url = <span class="str">"http://nodebox.net/code/g/header.jpg"</span>
-image_data = web.<span class="s">download</span><span class="s">(</span>url<span class="s">)</span>
-canvas = coreimage.<span class="s">canvas</span><span class="s">(</span><span class="s">150</span>, <span class="s">150</span><span class="s">)</span>
-canvas.<span class="s">append</span><span class="s">(</span>image_data, x=<span class="s">-190</span><span class="s">)</span>
+web = ximport("web")
+url = "http://nodebox.net/code/g/header.jpg"
+image_data = web.download(url)
+canvas = coreimage.canvas(150, 150)
+canvas.append(image_data, x=-190)
 </pre>
         </td></tr><tr>
           <td><img alt="coreimage-layers7c" height="150" src="../etc/lib/coreimage-layers7c.jpg" width="150"/>
@@ -204,23 +204,23 @@ canvas.<span class="s">append</span><span class="s">(</span>image_data, x=<span 
             A layer from individual pixels can be created by supplying a list of colors and a width
             and a height (thanks to Duane Bailey):
 <pre>
-<span class="kw">def</span> <span class="rose">fractal</span><span class="s">(</span>x, y, depth=<span class="s">64</span><span class="s">)</span>:
-    z = <span class="s">complex</span><span class="s">(</span>x, y<span class="s">)</span>
-    o = <span class="s">complex</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span><span class="s">)</span>
-    <span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span>depth<span class="s">)</span>:
-        <span class="kw">if</span> <span class="s">abs</span><span class="s">(</span>o<span class="s">)</span> &lt;= <span class="s">2</span>: o = o*o + z
-        <span class="kw">else</span>: 
-            <span class="kw">return</span> i
-    <span class="kw">return</span> <span class="s">0</span> <span class="grey">#default, black</span>
+def fractal(x, y, depth=64):
+    z = complex(x, y)
+    o = complex(0, 0)
+    for i in range(depth):
+        if abs(o) &lt;= 2: o = o*o + z
+        else: 
+            return i
+    return 0 #default, black
  
-pixels = <span class="s">[</span><span class="s">]</span>
-w = h = <span class="s">150</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span>w<span class="s">)</span>:
-    <span class="kw">for</span> j <span class="kw">in</span> <span class="s">range</span><span class="s">(</span>h<span class="s">)</span>:
-        v = fractal<span class="s">(</span><span class="s">float</span><span class="s">(</span>i<span class="s">)</span>/w, <span class="s">float</span><span class="s">(</span>j<span class="s">)</span>/h<span class="s">)</span>
-        pixels.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span>v/<span class="s">10.0</span>, v/<span class="s">20.0</span>, v/<span class="s">10.0</span><span class="s">)</span><span class="s">)</span>
+pixels = []
+w = h = 150
+for i in range(w):
+    for j in range(h):
+        v = fractal(float(i)/w, float(j)/h)
+        pixels.append(color(v/10.0, v/20.0, v/10.0))
  
-l = canvas.<span class="s">append</span><span class="s">(</span>pixels, w, h<span class="s">)</span>
+l = canvas.append(pixels, w, h)
 </pre>
           </td></tr></tbody></table></p>
     <p> </p>
@@ -232,14 +232,14 @@ l = canvas.<span class="s">append</span><span class="s">(</span>pixels, w, h<spa
     <p><span class="grey_box">Layer copies</span></p>
     <p>Existing layers in a canvas can be duplicated. The copy appears right above the duplicated
     layer:</p>
-<pre>l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-dupl = l.<span class="s">duplicate</span><span class="s">(</span><span class="s">)</span>
+<pre>l = canvas.append("leaf.jpg")
+dupl = l.duplicate()
 </pre>
 
     <p>You can copy layers from one canvas and append them to another canvas:</p>
-<pre>offscreen = coreimage.<span class="s">canvas</span><span class="s">(</span><span class="s">150</span>,<span class="s">150</span><span class="s">)</span>
-l = offscreen.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>.<span class="s">copy</span><span class="s">(</span><span class="s">)</span>
-canvas.<span class="s">append</span><span class="s">(</span>l<span class="s">)</span>
+<pre>offscreen = coreimage.canvas(150,150)
+l = offscreen.append("leaf.jpg").copy()
+canvas.append(l)
 </pre>
 
     <p>You can pre-render layers with <i>layer.render()</i> (or a canvas with
@@ -262,9 +262,9 @@ canvas.<span class="s">append</span><span class="s">(</span>l<span class="s">)</
       </li><li><i>layer.has_shadow</i>: a dropshadow will be rendered for this layer.<br/>
       </li><li><i>layer.is_mask</i>: a layer that is part of the alpha mask of another layer.
     </li></ul>
-<pre>l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-<span class="kw">print</span> l.<span class="s">is_file</span>
-&gt;&gt;&gt; <span class="kw">True</span>
+<pre>l = canvas.append("leaf.jpg")
+print l.is_file
+&gt;&gt;&gt; True
 </pre>
 
     <p> </p>
@@ -281,24 +281,24 @@ canvas.<span class="s">append</span><span class="s">(</span>l<span class="s">)</
           <td><img height="150" src="../etc/lib/coreimage-layers7.jpg" width="150"/>
           </td><td>
 <pre>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">20</span><span class="s">)</span>:
-    canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
+for i in range(20):
+    canvas.append("lily.tif")
  
-<span class="kw">for</span> layer <span class="kw">in</span> canvas:
-    layer.<span class="s">x</span> = <span class="kw">random</span><span class="s">(</span>canvas.<span class="s">w</span><span class="s">)</span>
-    layer.<span class="s">y</span> = <span class="kw">random</span><span class="s">(</span>canvas.<span class="s">h</span><span class="s">)</span>
+for layer in canvas:
+    layer.x = random(canvas.w)
+    layer.y = random(canvas.h)
 </pre>
           </td></tr></tbody></table></p>
     <p>Layers can be named and easily retrieved later on. The <i>canvas.append()</i> method has an
     optional <i>name</i> parameter. You can then search the canvas for layer names with the
     recursive <i>canvas.find()</i> command or address layers as canvas properties:</p>
-<pre>canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span>, name=<span class="str">"bg"</span><span class="s">)</span>
-l = canvas.<span class="s">find</span><span class="s">(</span><span class="str">"bg"</span><span class="s">)</span>
-<span class="kw">print</span> l.<span class="s">name</span>, l.<span class="s">x</span>, l.<span class="s">y</span>
-&gt;&gt;&gt; bg, <span class="s">75</span>, <span class="s">75</span>
+<pre>canvas.append("leaf.jpg", name="bg")
+l = canvas.find("bg")
+print l.name, l.x, l.y
+&gt;&gt;&gt; bg, 75, 75
 </pre>
-<pre>canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span>, name=<span class="str">"bg"</span><span class="s">)</span>
-l = canvas.<span class="s">bg</span>
+<pre>canvas.append("leaf.jpg", name="bg")
+l = canvas.bg
 </pre>             
 
     <p> </p>
@@ -319,23 +319,23 @@ l = canvas.<span class="s">bg</span>
           <td><img height="150" src="../etc/lib/coreimage-layers8.jpg" width="150"/>
           </td><td>
 <pre>
-back = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-front = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-back.<span class="s">to_front</span><span class="s">(</span><span class="s">)</span>
+back = canvas.append("leaf.jpg")
+front = canvas.append("lily.tif")
+back.to_front()
 </pre>
           </td></tr></tbody></table></p>
     <p>The <i>layer.index</i> property contains the layer’s position in the canvas. Like any list
     in PlotDevice the indices start from zero:</p>
-<pre>canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-<span class="kw">print</span> l.<span class="s">index</span>
-&gt;&gt;&gt; <span class="s">1</span>
+<pre>canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+print l.index
+&gt;&gt;&gt; 1
 </pre>
 
     <p>The <i>layer.hide()</i> method excludes the layer from the output:</p>
-<pre>canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">hide</span><span class="s">(</span><span class="s">)</span>
+<pre>canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.hide()
 </pre>
 
     <p> </p>
@@ -354,10 +354,10 @@ l.<span class="s">hide</span><span class="s">(</span><span class="s">)</span>
             properties store the layer’s position measured in pixels from the top-left of the
             canvas.
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">x</span> = <span class="s">0</span>
-l.<span class="s">y</span> = <span class="s">0</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.x = 0
+l.y = 0
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers10.jpg" width="150"/>
@@ -366,9 +366,9 @@ l.<span class="s">y</span> = <span class="s">0</span>
             accepts two parameters, either absolute pixel values or relative positions between 0.0
             and 1.0.
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="kw">translate</span><span class="s">(</span><span class="s">1.0</span>, <span class="s">1.0</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.translate(1.0, 1.0)
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers11.jpg" width="150"/>
@@ -376,21 +376,21 @@ l.<span class="kw">translate</span><span class="s">(</span><span class="s">1.0</
             You can scale images using pixel size or relative size. By supplying two parameters you
             can scale width and height individually.
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">10</span><span class="s">)</span>:
-    l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-    l.<span class="s">x</span> = i*<span class="s">20</span>
-    l.<span class="kw">scale</span><span class="s">(</span><span class="s">1.0</span> - i*<span class="s">0.1</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+for i in range(10):
+    l = canvas.append("lily.tif")
+    l.x = i*20
+    l.scale(1.0 - i*0.1)
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers12.jpg" width="150"/>
           </td><td>
             Rotating layers is just as easy:<br/>
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">10</span><span class="s">)</span>:
-    l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-    l.<span class="kw">rotate</span><span class="s">(</span>i*<span class="s">10</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+for i in range(10):
+    l = canvas.append("lily.tif")
+    l.rotate(i*10)
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers13.jpg" width="150"/>
@@ -398,8 +398,8 @@ canvas.<span class="s">append</span><span class="s">(</span><span class="str">"l
             There’s also the <i>layer.flip_vertical()</i> and <i>layer.flip_horizontal()</i>
             methods of course.
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>.<span class="s">flip_vertical</span><span class="s">(</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+canvas.append("lily.tif").flip_vertical()
 </pre>
             <p><i><br/></i></p>
         </td></tr><tr>
@@ -410,9 +410,9 @@ canvas.<span class="s">append</span><span class="s">(</span><span class="str">"l
             displacement of the left top, right top, right bottom and left bottom corners of the
             layer (in pixels or between 0.0 and 1.0).
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">distort</span><span class="s">(</span>dy0=<span class="s">-500</span>, dx2=<span class="s">-100</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.distort(dy0=-500, dx2=-100)
 </pre><br/>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers65" height="150" src="../etc/lib/coreimage-layers65.jpg" width="150"/></span><br/>
@@ -421,9 +421,9 @@ l.<span class="s">distort</span><span class="s">(</span>dy0=<span class="s">-500
             with the given width and height. Images are always cropped before they are rotated,
             scaled and distorted.
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">crop</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span>, <span class="s">80</span>, <span class="s">80</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.crop(0, 0, 80, 80)
 </pre>          
           </td></tr></tbody></table></p>
     <p> </p>
@@ -431,7 +431,7 @@ l.<span class="s">crop</span><span class="s">(</span><span class="s">0</span>, <
     <p>By default, all layer transformations originate from the layer’s center. However, you can
     change the layer’s origin point, have the layer rotate from the bottom right corner for
     example. Let’s turn on some of the visual aids in the Core Image library for a minute:</p>
-<pre>canvas.<span class="s">draw</span><span class="s">(</span>helper=<span class="kw">True</span><span class="s">)</span>
+<pre>canvas.draw(helper=True)
 </pre>
 
     <p> </p>
@@ -456,34 +456,31 @@ l.<span class="s">crop</span><span class="s">(</span><span class="s">0</span>, <
     </li></ul>
 
     <p>Or you can just use <i>layer.origin()</i> to set it yourself:</p>
-<pre>
-<span class="kw">print</span> l.<span class="s">origin</span><span class="s">(</span><span class="s">0.23</span>, <span class="s">1.07</span><span class="s">)</span>
-&gt;&gt;&gt; <span class="s">(</span><span class="s">0.23</span>, <span class="s">1.07</span><span class="s">)</span>
+<pre>print l.origin(0.23, 1.07)
+&gt;&gt;&gt; (0.23, 1.07)
 </pre>
 
     <p> </p>
     <p><span class="grey_box">Layer bounds</span></p>
     <p>To get the bounding box coordinates of layer, use <i>layer.bounds()</i>:</p>
-<pre>
-<span class="kw">print</span> l.<span class="s">bounds</span><span class="s">(</span><span class="s">)</span>
-&gt;&gt;&gt; <span class="s">(</span><span class="s">200.0</span>, <span class="s">78.647456721610681</span>, <span class="s">409.52033810627165</span>, <span class="s">288.167787843871</span><span class="s">)</span>
+<pre>print l.bounds()
+&gt;&gt;&gt; (200.0, 78.647456721610681, 409.52033810627165, 288.167787843871)
 </pre>
 
     <p>To get the width and height of a transformed layer, use <i>layer.size()</i> or the
     <i>width</i> and <i>height</i> properties. Note that when you manipulate the layer with filters
     the actual rendered pixels may fall beyond the given bounds.</p>
-<pre>w, h = l.<span class="kw">size</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">print</span> w, h
-&gt;&gt;&gt; <span class="s">(</span><span class="s">209.52033810627165</span>, <span class="s">209.5203311222603</span><span class="s">)</span>
+<pre>w, h = l.size()
+print w, h
+&gt;&gt;&gt; (209.52033810627165, 209.5203311222603)
 </pre>
-<pre>
-<span class="kw">print</span> l.<span class="s">width</span>
-<span class="kw">print</span> l.<span class="s">height</span>
+<pre>print l.width
+print l.height
 </pre>
 
     <p>You can easily position a layer at the center of the canvas with the <i>layer.center()</i>
     method:</p>
-<pre>l.<span class="s">center</span><span class="s">(</span><span class="s">)</span>
+<pre>l.center()
 </pre>           
 
     <p> </p>
@@ -501,48 +498,48 @@ l.<span class="s">crop</span><span class="s">(</span><span class="s">0</span>, <
           </td><td>
             The layer’s <i>brightness</i> property ranges between -1.0 and 1.0:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">brightness</span> = <span class="s">0.25</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.brightness = 0.25
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers19.jpg" width="150"/>
           </td><td>
             The layer’s <i>contrast</i> property ranges between 0.25 and 4.0:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">contrast</span> = <span class="s">1.5</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.contrast = 1.5
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers20.jpg" width="150"/>
           </td><td>
             The layer’s <i>saturation</i> property ranges between 0.0 and 2.0:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">saturation</span> = <span class="s">2.0</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.saturation = 2.0
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers21.jpg" width="150"/>
           </td><td>
             The <i>layer.desaturate()</i> method removes all color information:<br/>
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">desaturate</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">print</span> l.<span class="s">saturation</span>
-&gt;&gt;&gt; <span class="s">0.0</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.desaturate()
+print l.saturation
+&gt;&gt;&gt; 0.0
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers22.jpg" width="150"/>
           </td><td>
             The <i>layer.invert()</i> method inverts all colors in the layer:
 <pre>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l.<span class="s">invert</span><span class="s">(</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">invert</span><span class="s">(</span><span class="s">)</span>
+l = canvas.append("leaf.jpg")
+l.invert()
+l = canvas.append("lily.tif")
+l.invert()
 </pre>
           </td></tr></tbody></table></p>
     <p> </p>
@@ -566,33 +563,33 @@ l.<span class="s">invert</span><span class="s">(</span><span class="s">)</span>
             The <i>layer.blend()</i> command takes one parameter ranging between 0 and 100 or
             between 0.0 and 1.0:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">blend</span><span class="s">(</span><span class="s">25</span><span class="s">)</span>
-<span class="kw">print</span> l.<span class="s">opacity</span>
-&gt;&gt;&gt; <span class="s">0.25</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.blend(25)
+print l.opacity
+&gt;&gt;&gt; 0.25
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers24.jpg" width="150"/>
           </td><td>
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">10</span><span class="s">)</span>:
-    l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-    l.<span class="kw">scale</span><span class="s">(</span><span class="s">0.5</span><span class="s">)</span>
-    l.<span class="s">x</span> = <span class="kw">random</span><span class="s">(</span>canvas.<span class="s">w</span><span class="s">)</span>
-    l.<span class="s">y</span> = <span class="kw">random</span><span class="s">(</span>canvas.<span class="s">h</span><span class="s">)</span>
-    l.<span class="s">blend</span><span class="s">(</span><span class="kw">random</span><span class="s">(</span><span class="s">)</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+for i in range(10):
+    l = canvas.append("lily.tif")
+    l.scale(0.5)
+    l.x = random(canvas.w)
+    l.y = random(canvas.h)
+    l.blend(random())
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers25.jpg" width="150"/>
           </td><td>
             Screen blend displays pixels that are lighter than those underneath.
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span>, x=<span class="s">50</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span>, x=<span class="s">100</span><span class="s">)</span>
-l.<span class="s">blend_screen</span><span class="s">(</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+canvas.append("lily.tif", x=50)
+l = canvas.append("lily.tif", x=100)
+l.blend_screen()
 </pre>
             <p>A similar effect is <i>layer.blend_lighten()</i>.</p>
         </td></tr><tr>
@@ -600,10 +597,10 @@ l.<span class="s">blend_screen</span><span class="s">(</span><span class="s">)</
           </td><td>
             Multiply blend displays pixels that are darker than those underneath.
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span>, x=<span class="s">50</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span>, x=<span class="s">100</span><span class="s">)</span>
-l.<span class="s">blend_multiply</span><span class="s">(</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+canvas.append("lily.tif", x=50)
+l = canvas.append("lily.tif", x=100)
+l.blend_multiply()
 </pre>
             <p>A similar effect is <i>layer.blend_darken()</i>.</p>
         </td></tr><tr>
@@ -611,65 +608,64 @@ l.<span class="s">blend_multiply</span><span class="s">(</span><span class="s">)
           </td><td>
             Overlay uses a combination of screen and multiply.
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span>, x=<span class="s">50</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span>, x=<span class="s">100</span><span class="s">)</span>
-l.<span class="s">blend_overlay</span><span class="s">(</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+canvas.append("lily.tif", x=50)
+l = canvas.append("lily.tif", x=100)
+l.blend_overlay()
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers27b.jpg" width="150"/>
           </td><td>
             Soft light uses a combination of darken and lighten.
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span>, x=<span class="s">50</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span>, x=<span class="s">100</span><span class="s">)</span>
-l.<span class="s">blend_softlight</span><span class="s">(</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+canvas.append("lily.tif", x=50)
+l = canvas.append("lily.tif", x=100)
+l.blend_softlight()
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers27c.jpg" width="150"/>
           </td><td>
             Hard light uses a combination of screen and multiply.
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span>, x=<span class="s">50</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span>, x=<span class="s">100</span><span class="s">)</span>
-l.<span class="s">blend_hardlight</span><span class="s">(</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+canvas.append("lily.tif", x=50)
+l = canvas.append("lily.tif", x=100)
+l.blend_hardlight()
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers28.jpg" width="150"/>
           </td><td>
             Applying the hue of the blend layer to layers underneath:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">1.0</span>,<span class="s">0.0</span>,<span class="s">0.5</span><span class="s">)</span><span class="s">)</span>
-l.<span class="s">blend_hue</span><span class="s">(</span><span class="s">50</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+canvas.append("lily.tif")
+l = canvas.append(color(1.0,0.0,0.5))
+l.blend_hue(50)
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers29.jpg" width="150"/>
           </td><td>
             Applying the hue and saturation of the blend layer to layers underneath:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">1.0</span>,<span class="s">0.0</span>,<span class="s">0.5</span><span class="s">)</span><span class="s">)</span>
-l.<span class="s">blend_color</span><span class="s">(</span><span class="s">50</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+canvas.append("lily.tif")
+l = canvas.append(color(1.0,0.0,0.5))
+l.blend_color(50)
 </pre>
           </td></tr></tbody></table></p>
     <p> </p>
     <p>Use the <i>layer.blendmode</i> property to check what blending mode the layer is using.</p>
-<pre>
-<span class="kw">print</span> l.<span class="s">blendmode</span> 
+<pre>print l.blendmode 
 &gt;&gt;&gt; multiply
 </pre>
 
     <p>You can set the opacity and blend mode together with the <i>layer.blend()</i> command:</p>
-<pre>l.<span class="s">blend</span><span class="s">(</span><span class="s">25</span>, mode=<span class="str">"multiply"</span><span class="s">)</span>
-<span class="kw">print</span> l.<span class="s">opacity</span>, l.<span class="s">blendmode</span>
-&gt;&gt;&gt; <span class="s">0.25</span>, <span class="kw">color</span>
+<pre>l.blend(25, mode="multiply")
+print l.opacity, l.blendmode
+&gt;&gt;&gt; 0.25, color
 </pre>
-<pre>l.<span class="s">blend</span><span class="s">(</span><span class="str">"multiply"</span><span class="s">)</span>
+<pre>l.blend("multiply")
 </pre>
 
     <p>The <i>layer.blend_normal()</i> command removes any blend mode from the layer.</p>
@@ -690,46 +686,46 @@ l.<span class="s">blend_color</span><span class="s">(</span><span class="s">50</
           </td><td>
             Applying a linear gradient alpha mask to the lily:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-m = l.<span class="s">mask</span>.<span class="s">gradient</span><span class="s">(</span><span class="s">)</span>
-m.<span class="kw">rotate</span><span class="s">(</span><span class="s">45</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+m = l.mask.gradient()
+m.rotate(45)
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers31.jpg" width="150"/>
           </td><td>
             Using a PlotDevice path as a mask:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-<span class="kw">font</span><span class="s">(</span><span class="str">"Georgia-Italic"</span>, <span class="s">50</span><span class="s">)</span>
-p = <span class="kw">textpath</span><span class="s">(</span><span class="str">"text"</span>, <span class="s">0</span>, <span class="s">0</span><span class="s">)</span>
-m = l.<span class="s">mask</span>.<span class="s">append</span><span class="s">(</span>p<span class="s">)</span>
-m.<span class="s">y</span> += <span class="s">25</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+font("Georgia-Italic", 50)
+p = textpath("text", 0, 0)
+m = l.mask.append(p)
+m.y += 25
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers32.jpg" width="150"/>
           </td><td>
             Using the lily as a mask for a gradient layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">0.4</span>,<span class="s">0.0</span>,<span class="s">0.2</span><span class="s">)</span><span class="s">)</span>
-pink = <span class="kw">color</span><span class="s">(</span><span class="s">1.0</span>,<span class="s">0.0</span>,<span class="s">0.5</span><span class="s">)</span>
-white = <span class="kw">color</span><span class="s">(</span><span class="s">1.0</span>,<span class="s">1.0</span>,<span class="s">1.0</span><span class="s">)</span>
-l = canvas.<span class="s">gradient</span><span class="s">(</span>pink, white<span class="s">)</span>
-l.<span class="s">mask</span>.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
+canvas.append(color(0.4,0.0,0.2))
+pink = color(1.0,0.0,0.5)
+white = color(1.0,1.0,1.0)
+l = canvas.gradient(pink, white)
+l.mask.append("lily.tif")
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers33.jpg" width="150"/>
           </td><td>
             Complex mask made up of multiple layers:
 <pre>
-l = c.<span class="s">gradient</span><span class="s">(</span>pink, white<span class="s">)</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">3</span><span class="s">)</span>:
-    m = l.<span class="s">mask</span>.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-    m.<span class="kw">scale</span><span class="s">(</span><span class="s">1</span>-i*<span class="s">0.4</span><span class="s">)</span>
-    m.<span class="kw">rotate</span><span class="s">(</span><span class="s">20</span>*i<span class="s">)</span>
-    m.<span class="s">blend</span><span class="s">(</span><span class="str">"softlight"</span><span class="s">)</span>
-    m.<span class="s">filter</span><span class="s">(</span><span class="str">"zoomblur"</span>, amount=i*<span class="s">25</span><span class="s">)</span>
+l = c.gradient(pink, white)
+for i in range(3):
+    m = l.mask.append("lily.tif")
+    m.scale(1-i*0.4)
+    m.rotate(20*i)
+    m.blend("softlight")
+    m.filter("zoomblur", amount=i*25)
 </pre>
           </td></tr></tbody></table></p>
     <p> </p>
@@ -747,27 +743,27 @@ l = c.<span class="s">gradient</span><span class="s">(</span>pink, white<span cl
           </td><td>
             The <i>layer.blur</i> takes one parameter ranging between 0.0 and 100.0:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">blur</span> = <span class="s">2</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.blur = 2
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers35.jpg" width="150"/>
           </td><td>
             Sharpening the layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">sharpen</span> = <span class="s">10</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.sharpen = 10
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-layers36.jpg" width="150"/>
           </td><td>
             Other filters use the <i>layer.filter()</i> method:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"zoomblur"</span>, dx=<span class="s">25</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("zoomblur", dx=25)
 </pre>
           </td></tr></tbody></table></p>
     <p> </p>
@@ -779,80 +775,80 @@ l.<span class="s">filter</span><span class="s">(</span><span class="str">"zoombl
     <p><b>Zoom blur</b><br/>
     Simulates the effect of zooming the camera while capturing the layer. Parameters are <i>dx</i>,
     <i>dy</i> and <i>amount</i> ranging between 0.0 and 200.0.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"zoomblur"</span>, amount=<span class="s">20</span>, dx=<span class="s">0</span>, dy=<span class="s">0</span><span class="s">)</span>
+<pre>layer.filter("zoomblur", amount=20, dx=0, dy=0)
 </pre>
 
     <p><b>Motion blur</b><br/>
     Simulates a directional blur. Parameters are <i>radius</i> between 0.0 and 100.0 and
     <i>angle</i>.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"motionblur"</span>, radius=<span class="s">20</span>, angle=<span class="s">0</span><span class="s">)</span>
+<pre>layer.filter("motionblur", radius=20, angle=0)
 </pre>
 
     <p><b>Noise reduction</b><br/>
     Edges in the layer below a threshold are blurred, edges above are sharpened. Parameters are
     noise between 0.0 and0.1 and sharpness between 0.0 and 2.0.<br/></p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"noisereduction"</span>, noise=<span class="s">0.02</span>, sharpness=<span class="s">0.4</span>
+<pre>layer.filter("noisereduction", noise=0.02, sharpness=0.4
 </pre>
 
     <p><b>Bump distortion</b><br/>
     Creates a bump or pinch from a point in the layer. Parameters are <i>dx</i>, <i>dy</i>,
     <i>radius</i> between 0.0 and 600.0 and <i>scale</i> between -1.0 and 1.0.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"bumpdistortion"</span>, dx=<span class="s">0</span>, dy=<span class="s">0</span>, radius=<span class="s">300</span>, <span class="kw">scale</span>=<span class="s">0.5</span><span class="s">)</span>
+<pre>layer.filter("bumpdistortion", dx=0, dy=0, radius=300, scale=0.5)
 </pre>
 
     <p><b>Bump distortion</b> <b>linear | stretch</b> (Mac OS X 10.5 and up)<br/>
     Creates a bump or pinch from a line in the layer. Parameters are <i>dx</i>, <i>dy</i>,
     <i>radius</i> between 0.0 and 600.0,  <i>scale</i> between -1.0 and 1.0 and <i>angle</i>.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"stretch"</span>, dx=<span class="s">0</span>, dy=<span class="s">0</span>, radius=<span class="s">300</span>, <span class="kw">scale</span>=<span class="s">0.5</span>, angle=<span class="s">0</span><span class="s">)</span>
+<pre>layer.filter("stretch", dx=0, dy=0, radius=300, scale=0.5, angle=0)
 </pre>
 
     <p><b>Hole distortion</b><br/>
     Pushes the layer’s pixels outwards. Parameters are <i>dx</i>, <i>dy</i>, and a <i>radius</i>
     between 0.0 and 1000.0.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"holedistortion"</span>, dx=<span class="s">0</span>, dy=<span class="s">0</span>, radius=<span class="s">300</span><span class="s">)</span>
+<pre>layer.filter("holedistortion", dx=0, dy=0, radius=300)
 </pre>
 
     <p><b>Circle splash distortion</b><br/>
     Pushes the layer’s pixels outwards on a circle. Parameters are <i>dx</i>, <i>dy</i>,
     <i>radius</i> between 0.0 and 1000.0 .<br/></p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"circlesplash"</span>, dx=<span class="s">0</span>, dy=<span class="s">0</span>, radius=<span class="s">150</span><span class="s">)</span>
+<pre>layer.filter("circlesplash", dx=0, dy=0, radius=150)
 </pre>
 
     <p><b>Twirl distortion<br/></b>Generates a wave motion in the layer. Parameters are <i>dx</i>,
     <i>dy</i>, <i>radius</i> between 0.0 and 500.0 and <i>angle</i>.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"twirl"</span>, dx=<span class="s">0</span>, dy=<span class="s">0</span>, radius=<span class="s">150</span>, angle=<span class="s">100</span><span class="s">)</span>
+<pre>layer.filter("twirl", dx=0, dy=0, radius=150, angle=100)
 </pre>
 
     <p><b>Circular wrap</b><br/>
     Wraps the layer around a transparent circle. Parameters are <i>radius</i> between 0.0 and 500.0
     and <i>angle</i>.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"circularwrap"</span>, radius=<span class="s">150</span>, angle=<span class="s">100</span><span class="s">)</span>
+<pre>layer.filter("circularwrap", radius=150, angle=100)
 </pre>
 
     <p><b>Kaleidoscope</b><br/>
     Generates fractal-like output. Parameters are <i>dx</i>, <i>dy</i> and <i>count</i> between 0
     and 100.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"kaleidoscope"</span>, dx=<span class="s">0</span>, dy=<span class="s">0</span>, count=<span class="s">10</span><span class="s">)</span>
+<pre>layer.filter("kaleidoscope", dx=0, dy=0, count=10)
 </pre>
 
     <p><b>Triangle tile</b><br/>
     Generates fractal-like output. Parameters are <i>dx</i>, <i>dy</i> and <i>angle</i> and
     <i>width</i>.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"triangletile"</span>, dx=<span class="s">0</span>, dy=<span class="s">0</span>, angle=<span class="s">10</span>, width=<span class="s">100</span><span class="s">)</span>
+<pre>layer.filter("triangletile", dx=0, dy=0, angle=10, width=100)
 </pre>
 
     <p><b>Parallelogram tile</b> (Mac OS X 10.5 and up)<br/>
     Generates fractal-like output. Parameters are <i>dx</i>, <i>dy</i> and <i>angle</i>,
     <i>width</i> and <i>tilt</i> angle.<br/></p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"parallelogramtile"</span>, dx=<span class="s">0</span>, dy=<span class="s">0</span>, angle=<span class="s">10</span>, width=<span class="s">100</span>, tilt=<span class="s">90</span><span class="s">)</span>
+<pre>layer.filter("parallelogramtile", dx=0, dy=0, angle=10, width=100, tilt=90)
 </pre>
 
     <p><b>Perspective tile</b><br/>
     Distorts the base layer and copies that on a plane. Parameters are <i>dx0</i>, <i>dy0</i>,
     <i>dx1</i>, <i>dy1</i>, <i>dx2</i>, <i>dy2</i>, <i>dx3</i>, <i>dy3</i> representing the corners
     of the layer to distort.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"perspectivetile"</span>, dx0=<span class="s">0</span>, dy0=<span class="s">0</span>, dx1=<span class="s">0</span>, dy1=<span class="s">0</span>, 
-                                dx2=<span class="s">0</span>, dy2=<span class="s">0</span>, dx3=<span class="s">0</span>, dy3=<span class="s">0</span><span class="s">)</span>
+<pre>layer.filter("perspectivetile", dx0=0, dy0=0, dx1=0, dy1=0, 
+                                dx2=0, dy2=0, dx3=0, dy3=0)
 </pre>
 
     <p><b>Starshine generator</b><br/>
@@ -860,41 +856,41 @@ l.<span class="s">filter</span><span class="s">(</span><span class="str">"zoombl
     color). Parameters are <i>dx</i>, <i>dy</i>, <i>radius</i> between 0.0 and 300.0,
     <i>x_scale</i> between 0.0 and 100.0, <i>x_angle</i>, <i>x_width</i> and <i>epsilon</i> between
     -8.0 and 8.0.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"starshine"</span>, dx=<span class="s">0</span>, dy=<span class="s">0</span>, radius=<span class="s">25</span>, 
-                          x_scale=<span class="s">10</span>, x_angle=<span class="s">0</span>, x_width=<span class="s">0.5</span>, epsilon=<span class="s">-5.0</span><span class="s">)</span>
+<pre>layer.filter("starshine", dx=0, dy=0, radius=25, 
+                          x_scale=10, x_angle=0, x_width=0.5, epsilon=-5.0)
 </pre>
 
     <p><b>Checkerboard generator</b><br/>
     A generator that creates a checkerboard pattern on the layer (which is usually a transparent
     color). Parameters are clr1 and clr2 (black and white by default), width between 0.0 and 800.0,
     and sharpness between 0.0 and 1.0.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"checkerboard"</span>, clr1=<span class="kw">color</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>, clr2=<span class="kw">color</span><span class="s">(</span><span class="s">1</span><span class="s">)</span>,
-                             width=<span class="s">80</span>, sharpness=<span class="s">1.0</span><span class="s">)</span>
+<pre>layer.filter("checkerboard", clr1=color(0), clr2=color(1),
+                             width=80, sharpness=1.0)
 </pre>
 
     <p><b>Bloom</b><br/>
     Adds a hazy glow to the layer by softening the edges. Parameters are <i>radius</i> between 0.0
     and 100.0 and <i>intensity</i> between 0.0 and 1.0.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"bloom"</span>, radius=<span class="s">10</span>, intensity=<span class="s">1.0</span><span class="s">)</span>
+<pre>layer.filter("bloom", radius=10, intensity=1.0)
 </pre>
 
     <p><b>Pixelate</b><br/>
     Divides the image into rectangular cells. It takes one optional parameter <i>scale</i> between
     1.0 and 100.0</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"pixelate"</span>, <span class="kw">scale</span>=<span class="s">8</span><span class="s">)</span>
+<pre>layer.filter("pixelate", scale=8)
 </pre>
 
     <p><b>Crystallize</b><br/>
     Divides the image into polygonal cells. It takes one optional parameter <i>radius</i> between
     1.0 and 100.0</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"crystallize"</span>, radius=<span class="s">20</span><span class="s">)</span>
+<pre>layer.filter("crystallize", radius=20)
 </pre>
 
     <p><b>Dotscreen</b><br/>
     Simulates the dot patterns of a halftone screen. Parameters are <i>dx</i>, <i>dy</i>,
     <i>angle</i> between 0 and 360, <i>width</i> between 1 and 50, and <i>sharpness</i> between 0.0
     and 1.0.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"dotscreen"</span>, dx=<span class="s">0</span>, dy=<span class="s">0</span>, angle=<span class="s">0</span>, width=<span class="s">6</span>, sharpness=<span class="s">0.7</span><span class="s">)</span>
+<pre>layer.filter("dotscreen", dx=0, dy=0, angle=0, width=6, sharpness=0.7)
 </pre>
 
     <p><b>Lighting</b><br/>
@@ -902,24 +898,24 @@ l.<span class="s">filter</span><span class="s">(</span><span class="str">"zoombl
     and 1000 represting the height of the light source, <i>dx1</i> and <i>dy1</i> representing
     where the light is shining, <i>brightness</i> between 0.0 and 10.0, <i>concentration</i>
     between 0.0 and 1.0 representing the cone of the light beam and <i>color</i>.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"lighting"</span>, dx0=<span class="s">100</span>, dy0=<span class="s">100</span>, dz0=<span class="s">300</span>, dx1=<span class="s">0</span>, dy1=<span class="s">0</span>, 
-                         brightness=<span class="s">3.0</span>, concentration=<span class="s">0.3</span>, 
-                         <span class="kw">color</span>=<span class="kw">None</span>, helper=<span class="kw">False</span><span class="s">)</span>
+<pre>layer.filter("lighting", dx0=100, dy0=100, dz0=300, dx1=0, dy1=0, 
+                         brightness=3.0, concentration=0.3, 
+                         color=None, helper=False)
 </pre>
 
     <p><b>Shading</b><br/>
     Adds texturing to the layer. You can pass it a canvas object to apply as a texture. Parameters
     are <i>dx</i>, <i>dy</i>, <i>radius</i> between 0.0 and 300.0 and <i>texture</i> which is a
     canvas object.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"shading"</span>, radius=<span class="s">20</span>, texture=<span class="kw">None</span>, dx=<span class="s">0</span>, dy=<span class="s">0</span><span class="s">)</span>
+<pre>layer.filter("shading", radius=20, texture=None, dx=0, dy=0)
 </pre>
 
     <p><b>Line overlay</b> (Mac OS X 10.5 and up)<br/>
     Simulates a sketch of the layer by outlining the edges in black, after performing noise
     reduction. Parameters are <i>noise</i> between 0.0 and 0.01, <i>sharpness</i> between 0.0 and
     2.0, <i>intensity</i> between 0 and 200 and <i>contrast</i> between 25 and 200.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"lineoverlay"</span>, noise=<span class="s">0.07</span>, sharpness=<span class="s">0.71</span>
-                            intensity=<span class="s">1.0</span>, threshold=<span class="s">0.1</span>, contrast=<span class="s">50</span><span class="s">)</span>
+<pre>layer.filter("lineoverlay", noise=0.07, sharpness=0.71
+                            intensity=1.0, threshold=0.1, contrast=50)
 </pre>
 
     <p><b>Page curl</b><br/>
@@ -927,19 +923,19 @@ l.<span class="s">filter</span><span class="s">(</span><span class="str">"zoombl
     backside. By default the backside is a mirrored version of the layer. It can also be a color or
     ‘pattern’, in which case the backside is a triangle-tiled pattern. Parameters are <i>time</i>
     between 0.0 and 1.0, <i>radius</i> between 0 and 200 and <i>angle</i> between 0 and 360.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"pagecurl"</span>, <span class="s">time</span>=<span class="s">0.4</span>, radius=<span class="s">75</span>, angle=<span class="s">45</span>, back=<span class="kw">None</span><span class="s">)</span>
+<pre>layer.filter("pagecurl", time=0.4, radius=75, angle=45, back=None)
 </pre>
 
     <p><b>Levels</b><br/>
     Provides control over each RGBA color channel in the layer. Parameters are <i>r</i>, <i>g</i>,
     <i>b</i> and <i>a</i> which can be numbers between 0.0 and 1.0 or four-tuples if you want to do
     complex things like increase the blue inside the R channel.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"levels"</span>, r=<span class="s">1.0</span>, g=<span class="s">1.0</span>, b=.<span class="s">0</span>, a=.<span class="s">0</span><span class="s">)</span>
+<pre>layer.filter("levels", r=1.0, g=1.0, b=.0, a=.0)
 </pre>
 
     <p><b>Edges</b><br/>
     Finds all the edges in an image and displays them in a color.</p>
-<pre>layer.<span class="s">filter</span><span class="s">(</span><span class="str">"edges"</span>, intensity=<span class="s">1.0</span><span class="s">)</span>
+<pre>layer.filter("edges", intensity=1.0)
 </pre>             
 
     <table border="0">
@@ -949,249 +945,249 @@ l.<span class="s">filter</span><span class="s">(</span><span class="str">"zoombl
           </td><td>
             Applying the zoom blur to the layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"zoomblur"</span>, dy=<span class="s">25</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("zoomblur", dy=25)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img height="150" src="../etc/lib/coreimage-layers38.jpg" width="150"/></span>
           </td><td>
             Applying the motion blur to the layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"motionblur"</span>, angle=<span class="s">45</span>, radius=<span class="s">50</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("motionblur", angle=45, radius=50)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers38b" height="150" src="../etc/lib/coreimage-layers38b.jpg" width="150"/></span>
           </td><td>
              Applying noise reduction to the layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"noisereduction"</span>, noise=<span class="s">0.01</span>, sharpness=<span class="s">1.0</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("noisereduction", noise=0.01, sharpness=1.0)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img height="150" src="../etc/lib/coreimage-layers39.jpg" width="150"/></span>
           </td><td>
             Applying bump distortion to the layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"bumpdistortion"</span>, <span class="kw">scale</span>=<span class="s">0.75</span>, dy=<span class="s">-35</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("bumpdistortion", scale=0.75, dy=-35)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers38c" height="150" src="../etc/lib/coreimage-layers38c.jpg" width="150"/></span>
           </td><td>
              Applying linear bump distortion to the layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"stretch"</span>, radius=<span class="s">60</span>, <span class="kw">scale</span>=<span class="s">0.0</span>, dy=<span class="s">60</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("stretch", radius=60, scale=0.0, dy=60)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img height="150" src="../etc/lib/coreimage-layers39b.jpg" width="150"/></span>
           </td><td>
             Applying hole distortion to the layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"holedistortion"</span>, radius=<span class="s">40</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("holedistortion", radius=40)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers59" height="150" src="../etc/lib/coreimage-layers59.jpg" width="150"/></span><br/>
           </td><td>
             Applying circle splash distortion to the layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"circlesplash"</span>, radius=<span class="s">45</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("circlesplash", radius=45)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img height="150" src="../etc/lib/coreimage-layers40.jpg" width="150"/></span>
           </td><td>
             Applying the famous twirl filter to the layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"twirl"</span>, radius=<span class="s">150</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("twirl", radius=150)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers57" height="150" src="../etc/lib/coreimage-layers57.jpg" width="150"/></span><br/>
           </td><td>
             Applying the circular wrap filter to the layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"twirl"</span>, radius=<span class="s">150</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("twirl", radius=150)
 </pre>             
         </td></tr><tr>
           <td><span class="image_border"><img height="150" src="../etc/lib/coreimage-layers41.jpg" width="150"/></span>
           </td><td>
             Applying a kaleidoscope to the layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"kaleidoscope"</span>, count=<span class="s">5</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("kaleidoscope", count=5)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers42b" height="150" src="../etc/lib/coreimage-layers42b.jpg" width="150"/></span>
           </td><td>
             Applying a triangle tile to the layer:
 <pre>
-l = c.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"triangletile"</span>, dx=<span class="s">-30</span>, dy=<span class="s">-30</span>, width=<span class="s">40</span><span class="s">)</span>
+l = c.append("lily.tif")
+l.filter("triangletile", dx=-30, dy=-30, width=40)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers42c" height="150" src="../etc/lib/coreimage-layers42c.jpg" width="150"/></span><br/>
           </td><td>
              Applying a parallelogram tile to the layer:
 <pre>
-l = c.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"triangletile"</span>, dx=<span class="s">3</span>, width=<span class="s">40</span>, tilt=<span class="s">-45</span><span class="s">)</span>
+l = c.append("lily.tif")
+l.filter("triangletile", dx=3, width=40, tilt=-45)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img height="150" src="../etc/lib/coreimage-layers42.jpg" width="150"/></span>
           </td><td>
             Applying a perspective tile to the layer:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="kw">scale</span><span class="s">(</span><span class="s">0.6</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"perspectivetile"</span>, dx0=<span class="s">50</span>, dy1=<span class="s">30</span>, dy2=<span class="s">-50</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.scale(0.6)
+l.filter("perspectivetile", dx0=50, dy1=30, dy2=-50)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img height="150" src="../etc/lib/coreimage-layers43.jpg" width="150"/></span>
           </td><td>
             Generating starshine:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span><span class="s">)</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"starshine"</span>, x_width=<span class="s">0.3</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append(color(0, 0))
+l.filter("starshine", x_width=0.3)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers58" height="150" src="../etc/lib/coreimage-layers58.jpg" width="150"/></span><br/>
           </td><td>
             Generating a checkerboard pattern:
 <pre>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span><span class="s">)</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"checkerboard"</span>, clr1=<span class="kw">color</span><span class="s">(</span><span class="s">0.35</span><span class="s">)</span>, width=<span class="s">8</span><span class="s">)</span>
+l = canvas.append(color(0, 0))
+l.filter("checkerboard", clr1=color(0.35), width=8)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img height="150" src="../etc/lib/coreimage-layers44.jpg" width="150"/></span>
           </td><td>
             Applying a bloom filter:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"bloom"</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("bloom")
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers55" height="150" src="../etc/lib/coreimage-layers55.jpg" width="150"/></span><br/>
           </td><td>
             Applying rectangular pixelation:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"pixelate"</span>, <span class="kw">scale</span>=<span class="s">7</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("pixelate", scale=7)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers56" height="150" src="../etc/lib/coreimage-layers56.jpg" width="150"/></span>
           </td><td>
             Applying polygonal pixelation:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"crystallize"</span>, <span class="kw">scale</span>=<span class="s">15</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("crystallize", scale=15)
 </pre>
         </td></tr><tr>
           <td><img alt="coreimage-layers63" height="150" src="../etc/lib/coreimage-layers63.jpg" width="150"/><br/>
           </td><td>
             Applying halftone effect:
 <pre>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"dotscreen"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"coreimage-flower.png"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"dotscreen"</span><span class="s">)</span>
+l = canvas.append("leaf.jpg")
+l.filter("dotscreen")
+l = canvas.append("coreimage-flower.png")
+l.filter("dotscreen")
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img height="150" src="../etc/lib/coreimage-layers45.jpg" width="150"/></span>
           </td><td>
             Applying lighting:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">0</span><span class="s">)</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"lighting"</span>, dx1=<span class="s">-55</span>, dy0=<span class="s">55</span>, dz0=<span class="s">45</span><span class="s">)</span>
+canvas.append(color(0))
+l = canvas.append("lily.tif")
+l.filter("lighting", dx1=-55, dy0=55, dz0=45)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img height="150" src="../etc/lib/coreimage-layers46.jpg" width="150"/></span>
           </td><td>
             Applying shading:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">0</span><span class="s">)</span><span class="s">)</span>
-p = supershape.<span class="s">path</span><span class="s">(</span><span class="s">50</span>, <span class="s">60</span>, <span class="s">60</span>, <span class="s">60</span>, <span class="s">12</span>, <span class="s">2</span>, <span class="s">0.7</span>, <span class="s">-2</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span>p, <span class="kw">fill</span>=<span class="kw">color</span><span class="s">(</span><span class="s">1</span><span class="s">)</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"shading"</span>, dx=<span class="s">31</span>, radius=<span class="s">5.0</span><span class="s">)</span>
+canvas.append(color(0))
+p = supershape.path(50, 60, 60, 60, 12, 2, 0.7, -2)
+l = canvas.append(p, fill=color(1))
+l.filter("shading", dx=31, radius=5.0)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img height="150" src="../etc/lib/coreimage-layers47.jpg" width="150"/></span>
           </td><td>
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">0</span><span class="s">)</span><span class="s">)</span>
-p = supershape.<span class="s">path</span><span class="s">(</span><span class="s">50</span>, <span class="s">60</span>, <span class="s">60</span>, <span class="s">60</span>, <span class="s">12</span>, <span class="s">2</span>, <span class="s">0.7</span>, <span class="s">-2</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span>p, <span class="kw">fill</span>=<span class="kw">color</span><span class="s">(</span><span class="s">1</span><span class="s">)</span><span class="s">)</span>
-t = coreimage.<span class="s">canvas</span><span class="s">(</span><span class="s">150</span>, <span class="s">150</span><span class="s">)</span>
-t.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"shading"</span>, dx=<span class="s">31</span>, radius=<span class="s">20.0</span>, texture=t<span class="s">)</span>
+canvas.append(color(0))
+p = supershape.path(50, 60, 60, 60, 12, 2, 0.7, -2)
+l = canvas.append(p, fill=color(1))
+t = coreimage.canvas(150, 150)
+t.append("lily.tif")
+l.filter("shading", dx=31, radius=20.0, texture=t)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers64" height="150" src="../etc/lib/coreimage-layers64.jpg" width="150"/></span>
           </td><td>
             Applying line overay:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">0</span><span class="s">)</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"lineoverlay"</span>, noise=<span class="s">0.08</span>, sharpness=<span class="s">0.1</span>, 
-    threshold=<span class="s">0.3</span>, contrast=<span class="s">2</span>, intensity=<span class="s">1</span><span class="s">)</span>
+canvas.append(color(0))
+l = canvas.append("leaf.jpg")
+l.filter("lineoverlay", noise=0.08, sharpness=0.1, 
+    threshold=0.3, contrast=2, intensity=1)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers54" height="150" src="../etc/lib/coreimage-layers54.jpg" width="150"/></span>
           </td><td>
              Applying a page curl transition:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">0</span><span class="s">)</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"pagecurl"</span>, <span class="s">time</span>=<span class="s">0.55</span>, angle=<span class="s">45</span>, radius=<span class="s">60</span><span class="s">)</span>
+canvas.append(color(0))
+l = canvas.append("leaf.jpg")
+l.filter("pagecurl", time=0.55, angle=45, radius=60)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img height="150" src="../etc/lib/coreimage-layers48.jpg" width="150"/></span>
           </td><td>
             Applying color level adjustments:
 <pre>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"levels"</span>, g=<span class="s">0.6</span>, b=<span class="s">1.6</span><span class="s">)</span>
+l = canvas.append("leaf.jpg")
+l.filter("levels", g=0.6, b=1.6)
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers60" height="150" src="../etc/lib/coreimage-layers60.jpg" width="150"/></span>
           </td><td>
             Using levels for a custom dropshadow (with zoomblur for exanple):
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"levels"</span>, r=<span class="s">0</span>, g=<span class="s">0</span>, b=<span class="s">0</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"zoomblur"</span>, dx=<span class="s">-20</span>, dy=<span class="s">40</span><span class="s">)</span>
-l.<span class="s">blend</span><span class="s">(</span><span class="s">75</span><span class="s">)</span>
-l.<span class="s">x</span> += <span class="s">10</span>; l.<span class="s">y</span> += <span class="s">10</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
+canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.filter("levels", r=0, g=0, b=0)
+l.filter("zoomblur", dx=-20, dy=40)
+l.blend(75)
+l.x += 10; l.y += 10
+l = canvas.append("lily.tif")
 </pre>
         </td></tr><tr>
           <td><span class="image_border"><img alt="coreimage-layers62" height="150" src="../etc/lib/coreimage-layers62.jpg" width="150"/></span><br/>
           </td><td>
             Finding edges:
 <pre>
-canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">0</span><span class="s">)</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">filter</span><span class="s">(</span><span class="str">"edges"</span>, intensity=<span class="s">2.0</span><span class="s">)</span>
+canvas.append(color(0))
+l = canvas.append("lily.tif")
+l.filter("edges", intensity=2.0)
 </pre>
           </td></tr></tbody></table>
 
@@ -1199,17 +1195,16 @@ l.<span class="s">filter</span><span class="s">(</span><span class="str">"edges"
     <p><span class="grey_box">Filter aliases</span></p>
     <p>All the information about filters and their parameters is stored in the canvas renderer.
     Take a look at:</p>
-<pre>
-<span class="kw">print</span> canvas.<span class="s">renderer</span>.<span class="s">aliases</span>.<span class="s">keys</span><span class="s">(</span><span class="s">)</span>
-&gt;&gt;&gt; <span class="s">[</span><span class="str">'starshine'</span>, <span class="str">'shading'</span>, <span class="str">'bumpdistortion'</span>, <span class="str">'zoomblur'</span>, <span class="str">'motionblur'</span>, 
-&gt;&gt;&gt;  <span class="str">'levels'</span>, <span class="str">'twirl'</span>, <span class="str">'perspectivetile'</span>, <span class="str">'lighting'</span>, 
-&gt;&gt;&gt;  <span class="str">'bloom'</span>, <span class="str">'kaleidoscope'</span><span class="s">]</span>
+<pre>print canvas.renderer.aliases.keys()
+&gt;&gt;&gt; ['starshine', 'shading', 'bumpdistortion', 'zoomblur', 'motionblur', 
+&gt;&gt;&gt;  'levels', 'twirl', 'perspectivetile', 'lighting', 
+&gt;&gt;&gt;  'bloom', 'kaleidoscope']
  
-<span class="kw">print</span> canvas.<span class="s">renderer</span>.<span class="s">aliases</span><span class="s">[</span><span class="str">"levels"</span><span class="s">]</span>
+print canvas.renderer.aliases["levels"]
 &gt;&gt;&gt; CIColorMatrix
  
-<span class="kw">print</span> canvas.<span class="s">renderer</span>.<span class="s">filters</span><span class="s">[</span><span class="str">"CIColorMatrix"</span><span class="s">]</span>
-&gt;&gt;&gt; <span class="s">{</span><span class="str">'a'</span>: <span class="s">1.0</span>, <span class="str">'interface'</span>: <span class="kw">False</span>, <span class="str">'r'</span>: <span class="s">1.0</span>, <span class="str">'b'</span>: <span class="s">1.0</span>, <span class="str">'g'</span>: <span class="s">1.0</span><span class="s">}</span>
+print canvas.renderer.filters["CIColorMatrix"]
+&gt;&gt;&gt; {'a': 1.0, 'interface': False, 'r': 1.0, 'b': 1.0, 'g': 1.0}
 </pre>
 
     <p> </p>
@@ -1219,7 +1214,7 @@ l.<span class="s">filter</span><span class="s">(</span><span class="str">"edges"
 
     <p>You can add a shadow to each layer in the canvas, in the same way as you can add a shadow to
     PlotDevice primitives with the <a href="Colors.html">Colors</a> library:</p>
-<pre>layer.<span class="s">shadow</span><span class="s">(</span>dx=<span class="s">10</span>, dy=<span class="s">10</span>, alpha=<span class="s">0.75</span>, blur=<span class="s">8</span><span class="s">)</span>
+<pre>layer.shadow(dx=10, dy=10, alpha=0.75, blur=8)
 </pre>             
 
     <table>
@@ -1229,9 +1224,9 @@ l.<span class="s">filter</span><span class="s">(</span><span class="str">"edges"
           </td><td>
             Default dropshadow:<br/>
 <pre>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-l.<span class="s">shadow</span><span class="s">(</span><span class="s">)</span>
+l = canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+l.shadow()
 </pre>
           </td></tr></tbody></table>
 
@@ -1247,32 +1242,27 @@ l.<span class="s">shadow</span><span class="s">(</span><span class="s">)</span>
     list of colors with some extra methods: <i>pixels.min()</i>, <i>pixels.max()</i>,
     <i>pixels.average()</i>, and <i>pixels.</i><i>get_pixel()</i>, <i>pixels.</i><i>set_pixel()</i>
     and <i>pixels.</i><i>get_range().</i> These return a <a href="../ref/Line+Color.html#color()">color</a>.</p>
-<pre>l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-p = l.<span class="s">pixels</span><span class="s">(</span><span class="s">)</span>
+<pre>l = canvas.append("leaf.jpg")
+p = l.pixels()
 </pre>
-<pre>
-<span class="kw">print</span> p.<span class="s">is_rgb</span><span class="s">(</span><span class="s">)</span>
-&gt;&gt;&gt; <span class="kw">True</span>
+<pre>print p.is_rgb()
+&gt;&gt;&gt; True
 </pre>
-<pre>
-<span class="kw">print</span> p.<span class="s">has_alpha</span><span class="s">(</span><span class="s">)</span>
-&gt;&gt;&gt; <span class="kw">False</span>
+<pre>print p.has_alpha()
+&gt;&gt;&gt; False
 </pre>
-<pre>
-<span class="kw">print</span> <span class="str">"min:"</span>, p.<span class="s">min</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">print</span> <span class="str">"max:"</span>, p.<span class="s">max</span><span class="s">(</span><span class="s">)</span>
-<span class="kw">print</span> <span class="str">"avg:"</span>, p.<span class="s">average</span><span class="s">(</span><span class="s">)</span>
-&gt;&gt;&gt; <span class="s">min</span>: <span class="kw">color</span><span class="s">(</span><span class="s">0.02</span>, <span class="s">0.03</span>, <span class="s">0.00</span><span class="s">)</span>
-&gt;&gt;&gt; <span class="s">max</span>: <span class="kw">color</span><span class="s">(</span><span class="s">0.44</span>, <span class="s">0.54</span>, <span class="s">0.49</span><span class="s">)</span>
-&gt;&gt;&gt; avg: <span class="kw">color</span><span class="s">(</span><span class="s">0.18</span>, <span class="s">0.31</span>, <span class="s">0.19</span><span class="s">)</span>
+<pre>print "min:", p.min()
+print "max:", p.max()
+print "avg:", p.average()
+&gt;&gt;&gt; min: color(0.02, 0.03, 0.00)
+&gt;&gt;&gt; max: color(0.44, 0.54, 0.49)
+&gt;&gt;&gt; avg: color(0.18, 0.31, 0.19)
 </pre>
-<pre>
-<span class="kw">print</span> p.<span class="s">get_pixel</span><span class="s">(</span><span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
-&gt;&gt;&gt; <span class="kw">color</span><span class="s">(</span><span class="s">0.09</span>, <span class="s">0.11</span>, <span class="s">0.03</span><span class="s">)</span>
+<pre>print p.get_pixel(100, 100)
+&gt;&gt;&gt; color(0.09, 0.11, 0.03)
 </pre>
-<pre>
-<span class="kw">print</span> p.<span class="s">w</span>, p.<span class="s">h</span>
-&gt;&gt;&gt; <span class="s">150</span>, <span class="s">150</span>
+<pre>print p.w, p.h
+&gt;&gt;&gt; 150, 150
 </pre>
 
     <p>There’s also a <i>pixels.</i><i>set_pixel()</i>. It takes an <i>x</i> and <i>y</i> position
@@ -1280,9 +1270,9 @@ p = l.<span class="s">pixels</span><span class="s">(</span><span class="s">)</sp
     automatically be committed to the layer. You need to <b>explicitly call</b>
     <i>pixels.</i><i>update()</i> on the pixels object when you’re done modifying. Also, remember
     that pixel operations can be time and memory intensive.<br/></p>
-<pre>p = l.<span class="s">pixels</span><span class="s">(</span><span class="s">)</span>
-p.<span class="s">set_pixel</span><span class="s">(</span><span class="s">100</span>, <span class="s">100</span>, <span class="kw">color</span><span class="s">(</span><span class="s">0</span>,<span class="s">1</span>,<span class="s">0</span><span class="s">)</span><span class="s">)</span>
-p.<span class="s">update</span><span class="s">(</span><span class="s">)</span>
+<pre>p = l.pixels()
+p.set_pixel(100, 100, color(0,1,0))
+p.update()
 </pre>             
 
     <p>The <i>pixels.get_range()</i> method returns a list of colors. It takes <i>x</i> and
@@ -1322,42 +1312,42 @@ p.<span class="s">update</span><span class="s">(</span><span class="s">)</span>
           </td><td>
             A JPEG for the web with 40% compression:
 <pre>
-canvas = coreimage.<span class="s">canvas</span><span class="s">(</span><span class="s">150</span>, <span class="s">150</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-canvas.<span class="s">export</span><span class="s">(</span><span class="str">"flower.jpg"</span>, compression=<span class="s">0.6</span><span class="s">)</span>
+canvas = coreimage.canvas(150, 150)
+l = canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+canvas.export("flower.jpg", compression=0.6)
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-flower-tif.jpg" width="150"/>
           </td><td>
             A TIFF in CMYK with LZW-compression:
 <pre>
-canvas = coreimage.<span class="s">canvas</span><span class="s">(</span><span class="s">150</span>, <span class="s">150</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-canvas.<span class="s">export</span><span class="s">(</span><span class="str">"flower.tif"</span>, 
-              cmyk=<span class="kw">True</span>, compression=<span class="kw">True</span><span class="s">)</span>
+canvas = coreimage.canvas(150, 150)
+l = canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+canvas.export("flower.tif", 
+              cmyk=True, compression=True)
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-flower.png" width="150"/>
           </td><td>
             A PNG image with a transparent background:
 <pre>
-canvas = coreimage.<span class="s">canvas</span><span class="s">(</span><span class="s">150</span>, <span class="s">150</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-canvas.<span class="s">export</span><span class="s">(</span><span class="str">"flower.png"</span><span class="s">)</span>
+canvas = coreimage.canvas(150, 150)
+l = canvas.append("lily.tif")
+canvas.export("flower.png")
 </pre>
         </td></tr><tr>
           <td><img height="150" src="../etc/lib/coreimage-flower.gif" width="150"/>
           </td><td>
             A GIF image file:
 <pre>
-canvas = coreimage.<span class="s">canvas</span><span class="s">(</span><span class="s">150</span>, <span class="s">150</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="kw">color</span><span class="s">(</span><span class="s">1.0</span>, <span class="s">0.0</span>, <span class="s">0.5</span><span class="s">)</span><span class="s">)</span>
-<span class="kw">font</span><span class="s">(</span><span class="str">"Georgia-Italic"</span>, <span class="s">40</span><span class="s">)</span>
-p = <span class="kw">textpath</span><span class="s">(</span><span class="str">"text"</span>, <span class="s">0</span>, <span class="s">0</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span>p, <span class="kw">fill</span>=<span class="kw">color</span><span class="s">(</span><span class="s">1</span><span class="s">)</span><span class="s">)</span>
-canvas.<span class="s">export</span><span class="s">(</span><span class="str">"flower.gif"</span><span class="s">)</span>
+canvas = coreimage.canvas(150, 150)
+l = canvas.append(color(1.0, 0.0, 0.5))
+font("Georgia-Italic", 40)
+p = textpath("text", 0, 0)
+l = canvas.append(p, fill=color(1))
+canvas.export("flower.gif")
 </pre>
           </td></tr></tbody></table></p>
     <p> </p>
@@ -1380,10 +1370,10 @@ canvas.<span class="s">export</span><span class="s">(</span><span class="str">"f
     the canvas in PlotDevice</h2>
 
     <p>Merging all the layers in a canvas and drawing the result in PlotDevice is easy:</p>
-<pre>canvas = coreimage.<span class="s">canvas</span><span class="s">(</span><span class="s">150</span>, <span class="s">150</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-l = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"lily.tif"</span><span class="s">)</span>
-canvas.<span class="s">draw</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span><span class="s">)</span>
+<pre>canvas = coreimage.canvas(150, 150)
+l = canvas.append("leaf.jpg")
+l = canvas.append("lily.tif")
+canvas.draw(0, 0)
 </pre>
 
     <p>The <i>canvas.draw()</i> command takes two optional parameters: the x and y position.</p>
@@ -1425,9 +1415,8 @@ canvas.<span class="s">draw</span><span class="s">(</span><span class="s">0</spa
     <p>The <i>morguefile.search()</i> command returns a list of images on MorgueFile on the given
     query, It has an optional parameter <i>max</i> specifying the maximum number of images to
     return.</p>
-<pre>
-<span class="kw">from</span> coreimage <span class="kw">import</span> morguefile
-images = morguefile.<span class="s">search</span><span class="s">(</span><span class="str">"leaf"</span>, <span class="s">max</span>=<span class="s">10</span><span class="s">)</span>
+<pre>from coreimage import morguefile
+images = morguefile.search("leaf", max=10)
 </pre>
 
     <p>Each item in the returned list has a number of properties:</p>
@@ -1441,19 +1430,18 @@ images = morguefile.<span class="s">search</span><span class="s">(</span><span c
       </li><li><i>img</i>.views: the number of times the image has been viewed
       </li><li><i>img</i>.downloads: the number of times the image has been downloaded
     </li></ul>
-<pre>
-<span class="kw">for</span> img <span class="kw">in</span> images:
-    <span class="kw">print</span> img.<span class="s">name</span>, img.<span class="s">views</span>
-&gt;&gt;&gt; DSCN6707.<span class="s">JPG</span> <span class="s">8</span>
-&gt;&gt;&gt; keegan_2006_1015random0106.<span class="s">JPG</span> <span class="s">10</span>
-&gt;&gt;&gt; Img2006<span class="s">-10</span><span class="s">-08</span><span class="s">-132310</span>.<span class="s">jpg</span> <span class="s">611</span>
-&gt;&gt;&gt; climb_a_tree_2006_1015random0086.<span class="s">JPG</span> <span class="s">17</span>
-&gt;&gt;&gt; missyredboots111.<span class="s">jpg</span> <span class="s">14</span>
-&gt;&gt;&gt; IMG_6852.<span class="s">jpg</span> <span class="s">403</span>
-&gt;&gt;&gt; Fallen_Star.<span class="s">JPG</span> <span class="s">25</span>
-&gt;&gt;&gt; JGS_mF_FloatingInDarkness.<span class="s">jpg</span> <span class="s">30</span>
-&gt;&gt;&gt; leaf_n.<span class="s">JPG</span> <span class="s">18</span>
-&gt;&gt;&gt; drift_away__.<span class="s">jpg</span> <span class="s">103</span>
+<pre>for img in images:
+    print img.name, img.views
+&gt;&gt;&gt; DSCN6707.JPG 8
+&gt;&gt;&gt; keegan_2006_1015random0106.JPG 10
+&gt;&gt;&gt; Img2006-10-08-132310.jpg 611
+&gt;&gt;&gt; climb_a_tree_2006_1015random0086.JPG 17
+&gt;&gt;&gt; missyredboots111.jpg 14
+&gt;&gt;&gt; IMG_6852.jpg 403
+&gt;&gt;&gt; Fallen_Star.JPG 25
+&gt;&gt;&gt; JGS_mF_FloatingInDarkness.jpg 30
+&gt;&gt;&gt; leaf_n.JPG 18
+&gt;&gt;&gt; drift_away__.jpg 103
 </pre>
 
     <p>You can use the <i>img.download()</i> method with any of these image objects. This command
@@ -1462,9 +1450,8 @@ images = morguefile.<span class="s">search</span><span class="s">(</span><span c
     small thumbnail instead of the image itself.</p>
     <p>The command returns the pathname of the image, which is the specified <i>path</i> + the name
     of the author + the name of the image.</p>
-<pre>
-<span class="kw">print</span> images<span class="s">[</span><span class="s">0</span><span class="s">]</span>.<span class="s">download</span><span class="s">(</span><span class="str">"images"</span><span class="s">)</span>
-&gt;&gt;&gt; images/dineshtilva_DSCN6707.<span class="s">JPG</span>
+<pre>print images[0].download("images")
+&gt;&gt;&gt; images/dineshtilva_DSCN6707.JPG
 </pre>
 
     <p> </p>
@@ -1496,25 +1483,25 @@ images = morguefile.<span class="s">search</span><span class="s">(</span><span c
             <span class="image_border"><img alt="coreimage-dynamics2" height="149" src="../etc/lib/coreimage-dynamics2.jpg" width="149"/></span><br/></p>
           </td><td>
 <pre>
-<span class="kw">speed</span><span class="s">(</span><span class="s">30</span><span class="s">)</span>
-<span class="kw">def</span> <span class="rose">setup</span><span class="s">(</span><span class="s">)</span>:
-    <span class="kw">global</span> cache
-    cache = <span class="kw">None</span>
+speed(30)
+def setup():
+    global cache
+    cache = None
  
-<span class="kw">def</span> <span class="rose">draw</span><span class="s">(</span><span class="s">)</span>:
-    canvas = coreimage.<span class="s">canvas</span><span class="s">(</span><span class="kw">WIDTH</span>, <span class="kw">HEIGHT</span><span class="s">)</span>
-    <span class="kw">global</span> cache
-    <span class="kw">if</span> <span class="kw">not</span> cache:
-        cache = canvas.<span class="s">append</span><span class="s">(</span><span class="str">"leaf.jpg"</span><span class="s">)</span>
-    <span class="kw">else</span>:
-        cache = cache.<span class="s">render</span><span class="s">(</span><span class="s">)</span>
-        cache = canvas.<span class="s">append</span><span class="s">(</span>cache<span class="s">)</span>
-        cache.<span class="s">filter</span><span class="s">(</span><span class="str">"twirl"</span>, 
-                     radius=<span class="kw">random</span><span class="s">(</span><span class="s">30</span>,<span class="s">40</span><span class="s">)</span>,
-                     dx=<span class="kw">random</span><span class="s">(</span><span class="s">-40</span>,<span class="s">40</span><span class="s">)</span>, 
-                     dy=<span class="kw">random</span><span class="s">(</span><span class="s">-40</span>,<span class="s">40</span><span class="s">)</span><span class="s">)</span>
+def draw():
+    canvas = coreimage.canvas(WIDTH, HEIGHT)
+    global cache
+    if not cache:
+        cache = canvas.append("leaf.jpg")
+    else:
+        cache = cache.render()
+        cache = canvas.append(cache)
+        cache.filter("twirl", 
+                     radius=random(30,40),
+                     dx=random(-40,40), 
+                     dy=random(-40,40))
     
-    canvas.<span class="s">draw</span><span class="s">(</span><span class="s">)</span>
+    canvas.draw()
 </pre>
           </td></tr></tbody></table></p>
     <p>Try out some other examples bundled in the library download. You may notice that

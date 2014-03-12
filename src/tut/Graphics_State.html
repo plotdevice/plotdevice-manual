@@ -36,16 +36,14 @@
     y=0). The <a href="../ref/Transform.html#translate()">translate()</a> command lifts up the
     brush and puts it somewhere else. It changes the origin point.</p>
     <p>When you say:</p>
-<pre>
-<span class="kw">rect</span><span class="s">(</span><span class="s">20</span>, <span class="s">40</span>, <span class="s">80</span>, <span class="s">80</span><span class="s">)</span>
+<pre>rect(20, 40, 80, 80)
 </pre>
 
     <p>a rectangle with a width and a height of 80 will be positioned 20 to the right and 40 down
     from the top left corner of the canvas.</p>
     <p>But when you say:</p>
-<pre>
-<span class="kw">translate</span><span class="s">(</span><span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
-<span class="kw">rect</span><span class="s">(</span><span class="s">20</span>, <span class="s">40</span>, <span class="s">80</span>, <span class="s">80</span><span class="s">)</span>
+<pre>translate(100, 100)
+rect(20, 40, 80, 80)
 </pre>
 
     <p>the origin point is no longer at the top left (x=0 and y=0). We translated it to x=100 and
@@ -91,12 +89,11 @@
     <p>Color and text commands are not included in this resetting behavior.<br/></p>
     <p>Here’s a short example. Note that the last rectangle isn’t rotated. That’s because the
     rotation happens within the transform() block.</p>
-<pre>
-<span class="kw">rect</span>(20, 20, 40, 40)
-<span class="kw">with transform</span>():
-    <span class="kw">rotate</span>(45)
-    <span class="kw">rect</span>(120, 20, 40, 40)
-<span class="kw">rect</span>(220, 20, 40, 40)
+<pre>rect(20, 20, 40, 40)
+with transform():
+    rotate(45)
+    rect(120, 20, 40, 40)
+rect(220, 20, 40, 40)
 </pre>
 
     <p>Using a solar-system anaolgy, each transform() block is a bit like a moon orbiting around a
@@ -105,43 +102,42 @@
     for the moon.</p>
     <p><span class="image_border"><img alt="graphics_state5" height="445" src="../etc/tut/graphics_state5.gif" width="445"/></span><br/>
     <a href="http://nodebox.net/code/data/media/graphics_state5.mov">Play movie</a></p>
-<pre>
-<span class="kw">size</span><span class="s">(</span><span class="s">450</span>, <span class="s">450</span><span class="s">)</span>
-<span class="kw">speed</span><span class="s">(</span><span class="s">30</span><span class="s">)</span>
+<pre>size(450, 450)
+speed(30)
  
-<span class="kw">def</span> <span class="red">draw</span><span class="s">(</span><span class="s">)</span>:
+def draw():
     
-    <span class="kw">stroke</span><span class="s">(</span><span class="s">0</span><span class="s">)</span>
-    <span class="kw">transform</span><span class="s">(</span>CORNER<span class="s">)</span>
+    stroke(0)
+    transform(CORNER)
     
-    <span class="grey"># This is the starting origin point,</span>
-    <span class="grey"># where we place the sun.</span>
-    <span class="kw">translate</span><span class="s">(</span><span class="s">225</span>, <span class="s">225</span><span class="s">)</span>
-    <span class="kw">oval</span><span class="s">(</span><span class="s">-5</span>, <span class="s">-5</span>, <span class="s">10</span>, <span class="s">10</span><span class="s">)</span>
-    <span class="kw">text</span><span class="s">(</span><span class="str">"sun"</span>, <span class="s">10</span>, <span class="s">0</span><span class="s">)</span>
+    # This is the starting origin point,
+    # where we place the sun.
+    translate(225, 225)
+    oval(-5, -5, 10, 10)
+    text("sun", 10, 0)
     
-    <span class="kw">for</span> i <span class="kw">in</span> <span class="s">range</span><span class="s">(</span><span class="s">3</span><span class="s">)</span>:
+    for i in range(3):
         
-        <span class="grey"># Each planet acts as a local origin for the orbitting moon.</span>
-        <span class="grey"># Comment out the transform() statement and see what happens.</span>
-        <span class="kw">with transform</span>():
+        # Each planet acts as a local origin for the orbitting moon.
+        # Comment out the transform() statement and see what happens.
+        with transform():
         
-            <span class="grey"># This is a line with a length of 120,</span>
-            <span class="grey"># that starts at the sun and has an angle of i * 120.</span>
-            <span class="kw">rotate</span><span class="s">(</span>FRAME+i*<span class="s">120</span><span class="s">)</span>
-            <span class="kw">line</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span>, <span class="s">120</span>, <span class="s">0</span><span class="s">)</span>
+            # This is a line with a length of 120,
+            # that starts at the sun and has an angle of i * 120.
+            rotate(FRAME+i*120)
+            line(0, 0, 120, 0)
             
-            <span class="grey"># Move the origin to the end of the line.</span>
-            <span class="kw">translate</span><span class="s">(</span><span class="s">120</span>, <span class="s">0</span><span class="s">)</span>
-            <span class="kw">oval</span><span class="s">(</span><span class="s">-5</span>, <span class="s">-5</span>, <span class="s">10</span>, <span class="s">10</span><span class="s">)</span>
-            <span class="kw">text</span><span class="s">(</span><span class="str">"planet"</span>, <span class="s">10</span>, <span class="s">0</span><span class="s">)</span>
+            # Move the origin to the end of the line.
+            translate(120, 0)
+            oval(-5, -5, 10, 10)
+            text("planet", 10, 0)
             
-            <span class="grey"># Keep rotating around the local planet.</span>
-            <span class="kw">rotate</span><span class="s">(</span>FRAME*<span class="s">6</span><span class="s">)</span>
-            <span class="kw">line</span><span class="s">(</span><span class="s">0</span>, <span class="s">0</span>, <span class="s">30</span>, <span class="s">0</span><span class="s">)</span>
-            <span class="kw">text</span><span class="s">(</span><span class="str">"moon"</span>, <span class="s">32</span>, <span class="s">0</span><span class="s">)</span>
+            # Keep rotating around the local planet.
+            rotate(FRAME*6)
+            line(0, 0, 30, 0)
+            text("moon", 32, 0)
         
-        <span class="grey"># The origin moves back to the sun outside of the block.</span>
+        # The origin moves back to the sun outside of the block.
 </pre>  
 
     <h2>Breaking the state</h2>
@@ -151,28 +147,26 @@
     beginpath(), drawpath() and text() have three optional parameters: <i>fill</i>, <i>stroke</i>
     and <i>strokewidth</i>.</p>
     <p>So you could do:</p>
-<pre>
-<span class="kw">rect</span><span class="s">(</span><span class="s">20</span>, <span class="s">20</span>, <span class="s">100</span>, <span class="s">100</span>, <span class="kw">fill</span>=<span class="s">(</span><span class="s">1</span>, <span class="s">0</span>, <span class="s">0</span><span class="s">)</span><span class="s">)</span>
+<pre>rect(20, 20, 100, 100, fill=(1, 0, 0))
 </pre>
 
     <p>which is the same as</p>
-<pre>r = <span class="kw">rect</span><span class="s">(</span><span class="s">20</span>, <span class="s">20</span>, <span class="s">100</span>, <span class="s">100</span><span class="s">)</span>
-r.<span class="kw">fill</span> = <span class="kw">color</span><span class="s">(</span><span class="s">1</span>, <span class="s">0</span>, <span class="s">0</span><span class="s">)</span>
+<pre>r = rect(20, 20, 100, 100)
+r.fill = color(1, 0, 0)
 </pre>
 
     <p>and instantly draws a red rectangle regardless of the current state fill color.</p>
     <p>Likewise you could also:</p>
-<pre>r.<span class="kw">translate</span><span class="s">(</span>x, y=<span class="kw">None</span><span class="s">)</span>
-r.<span class="kw">rotate</span><span class="s">(</span>degrees=<span class="s">0</span>, radians=<span class="s">0</span><span class="s">)</span>
-r.<span class="kw">scale</span><span class="s">(</span>x, y=<span class="kw">None</span><span class="s">)</span>
-r.<span class="kw">skew</span><span class="s">(</span>x, y=<span class="kw">None</span><span class="s">)</span>
+<pre>r.translate(x, y=None)
+r.rotate(degrees=0, radians=0)
+r.scale(x, y=None)
+r.skew(x, y=None)
 </pre>
 
     <p>The transformations are then applied only to rectangle r.</p>
     <p>With the text() command you can also use the state-less <i>font</i> and <i>fontsize</i>
     parameters:</p>
-<pre>
-<span class="kw">text</span><span class="s">(</span><span class="str">"hello"</span>, <span class="s">20</span>, <span class="s">20</span>, <span class="kw">font</span>=<span class="str">"Helvetica"</span><span class="s">)</span>
+<pre>text("hello", 20, 20, font="Helvetica")
 </pre>
   </div>
 
