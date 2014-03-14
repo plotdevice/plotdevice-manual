@@ -2,3 +2,5 @@
 *.pyc
 doc/
 env/
+tmpl/_*
+src/etc/type
