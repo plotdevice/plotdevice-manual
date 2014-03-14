@@ -3,7 +3,7 @@
 """
 build.py
 
-Generate the PlotDevice Manual. 
+Generate the PlotDevice Manual.
 
 Created by Christian Swinehart on 2014/01/14.
 Copyright (c) 2014 Samizdat Drafting Co. All rights reserved.
@@ -47,7 +47,7 @@ def parse(fn):
   return BeautifulSoup(file(fn).read().decode('utf-8'), "html5lib")
 
 def tidy(html):
-  HTMLTIDY = '/usr/bin/tidy -q -i -w 100 -utf8 -omit -f /dev/null'.split()
+  HTMLTIDY = '/usr/bin/tidy -q -i -w 100 --doctype "html" -utf8 -omit -f /dev/null'.split()
   tidy = Popen(HTMLTIDY, stdin=PIPE, stdout=PIPE)
   (out, err) = tidy.communicate(html.encode('utf-8'))
   markup = u"\n".join(out.decode('utf-8').split(u"\n"))
@@ -64,7 +64,7 @@ def tidy(html):
       if '.html' in href and not href.startswith('http'):
         a['href'] = re.sub(r'\.html(?=#|$)', '', href)
 
-  # htmltidy leaves things too loose for my taste. step though all the 
+  # htmltidy leaves things too loose for my taste. step though all the
   # elts and zap any double-newlines outside of <pre> tags
   for tag in soup.find_all(recursive=True):
     for child in tag.children:
@@ -87,7 +87,7 @@ def tidy(html):
     if 'shell' in pre.get('class',()):
       continue
     pre.replace_with(syntax_color(pre.text))
-          
+
   # close <p> and </pre> at the end of the line rather than on a new one
   html = re.sub(r'\n( +)</p><',r'</p>\n\1<', unicode(soup))
   html = re.sub(r'\n( +)</li><',r'</li>\n\1<', html)
@@ -205,7 +205,7 @@ def lib():
 
   in_sub = False
   html = tmpls.get_template('article.html')
-  for lib in sorted(glob('src/lib/*.html') + glob('src/lib/*/*.html')): 
+  for lib in sorted(glob('src/lib/*.html') + glob('src/lib/*/*.html')):
     fname = 'doc/lib/' + lib.replace('src/lib/','')
     _mkdir(dirname(fname))
 
@@ -235,7 +235,7 @@ def toc():
   print "Table of Contents"
 
   # dump out the contents of the src/ref folders for a first pass at setting up the `ref` dict
-  # 
+  #
   # ref_sects = {}
   # for page in glob('src/ref/*'):
   #   cmd, typ, old = [map(lambda x:basename(x)[:-5], glob('%s/%s/*'%(page,s))) for s in ('commands','types','compat')]
@@ -250,32 +250,32 @@ def toc():
   print "- Reference"
   ref=odict()
   ref['Setup'] = {
-      'commands': ['canvas()', 'speed()', 'export()', 'background()'], 
-      'types': ['Constants'],
+      'commands': ['canvas()', 'speed()', 'export()', 'background()'],
+      'types': ['Canvas', None, 'Constants'],
       'compat': ['outputmode()', 'size()'] }
   ref['Primitives'] = {
-      'commands': ['image()', 'rect()',  'oval()', 'line()', 'arrow()', 'star()'], 
+      'commands': ['image()', 'rect()',  'oval()', 'line()', 'arrow()', 'star()'],
       'types': ['Image'],
       'compat': ['imagesize()'] }
   ref['Drawing'] = {
-      'commands': ['bezier()', 'moveto()', 'lineto()', 'curveto()', 'clip()', 'measure()', 'plot()', ], 
+      'commands': ['bezier()', 'moveto()', 'lineto()', 'curveto()', 'clip()', 'measure()', 'plot()', ],
       'types': ['Bezier', 'Curve'],
       'compat': ['autoclosepath()', 'beginclip()', 'beginpath()', 'drawpath()', 'endclip()', 'endpath()', 'findpath()'] }
   ref['Line+Color'] = {
-      'commands': ['plotstyle()', 'color()', 'pen()', 'fill()', 'stroke()', 'shadow()'], 
+      'commands': ['plotstyle()', 'color()', 'pen()', 'fill()', 'stroke()', 'shadow()'],
       'types': ['Color', 'Gradient'],
       'compat': ['capstyle()', 'colormode()', 'joinstyle()', 'nofill()', 'nostroke()', 'strokewidth()'] }
-  ref['Typography'] = {
-      'commands': ['font()', 'text()', 'align()', 'stylesheet()'], 
-      'types': ['Family', 'Font', 'Stylesheet', 'Text'],
-      'compat': ['fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textpath()', 'textwidth()'] }
   ref['Transform'] = {
-      'commands': ['transform()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', ], 
+      'commands': ['transform()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', ],
       'types': ['Transform'],
       'compat': ['pop()', 'push()'] }
+  ref['Typography'] = {
+      'commands': ['font()', 'text()', 'align()', 'stylesheet()'],
+      'types': ['Family', 'Font', 'Stylesheet', 'Text'],
+      'compat': ['fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textpath()', 'textwidth()'] }
   ref['Utility'] = {
-      'commands': ['read()', 'grid()', 'random()', ('choice()', 'shuffled()'), ('order()', 'ordered()'), ('files()', 'fonts()')], 
-      'types': ['dictionaries'],
+      'commands': ['read()', 'grid()', ('files()', 'fonts()'), ('random()', 'choice()'), ('shuffled()', 'ordered()')],
+      'types': ['Point', 'Size', 'Region', None, 'dictionaries', ],
       'compat': ['autotext()', 'open()'] }
 
   print "- Tutorials"
@@ -317,7 +317,7 @@ def check_media():
       src = absify(fn, elt['src'])
       if src.startswith('http'):
         outs.append(src)
-      elif src: 
+      elif src:
         media[src].append(fn)
 
   # broken images
