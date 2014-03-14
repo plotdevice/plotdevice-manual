@@ -11,20 +11,22 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>files(path)
+<pre>files(pattern, case=True)
 </pre>
       </div>
 
       <h2>Description</h2>
 
       <div class="row">
-        Retrieves all files from a given path and returns their names as a list.
+        Retrieves the names of all files at a given path matching a wildcard pattern. 
+        By default a case-sensitive search is performed but this can be relaxed by passing 
+        <code class="kw">False</code> as the <code>case</code> parameter.
       </div>
 
       <h2>Returns</h2>
 
       <div class="row">
-        a list with the names of the files in the given path
+        a list with the names of the files matching the given pattern
       </div>
 
       <h2>Example</h2>
@@ -35,7 +37,7 @@
             <tr>
               <td>
 <pre>
-f = files("images/*.jpg")
+f = files("~/Pictures/*.jpg")
 image(choice(f), 10, 10)
 </pre>
               </td></tr></tbody></table>

@@ -6,6 +6,52 @@
 </head><body>
   <div class="section">
     <h3>ordered()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>ordered(list, *names, reverse=False)
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        <p>Returns a sorted copy of a list of objects (similar to Python's built-in <a href="https://wiki.python.org/moin/HowTo/Sorting"><code>sorted</code></a> function). Lists of dictionaries or objects can be 
+        sorted based on a common key or attribute if one or more <code>name</code> arguments are provided.</p> 
+        
+        <p>Lists are returned in ascending order unless the <code>reverse</code> parameter is 
+           <code class="kw">True</code>.</p>
+      </div>
+
+      <h2>Returns</h2>
+
+      <div class="row">
+        a sorted copy of the original list
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Lists.html">Lists</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td>
+<pre>
+itemlst = [dict(foo=1, bar=10), dict(foo=12, bar=0), dict(foo=13, bar=1)]
+print ordered(itemlst, 'foo', reverse=True)
+
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
   </div>
 
 </body></html>

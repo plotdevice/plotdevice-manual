@@ -18,6 +18,9 @@
   {%- endif -%}
   {%- if types -%}
   <div class="types">
+    <div class="classic">
+      <p class="rose_text">Classes</p>
+    </div>
     {%- for typ in types -%}<a name="{{typ[0]}}"></a>{{typ[1]}}{%- endfor -%}
   </div>
   {%- endif -%}

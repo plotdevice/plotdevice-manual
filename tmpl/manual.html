@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>PlotDevice Manual</title>  
+  <title>PlotDevice Manual</title>
   <link rel="stylesheet" href="etc/manual.css" type="text/css" charset="utf-8">
 </head>
 <body class="commands">
@@ -15,7 +15,7 @@
     <h1>Reference</h1>
     <ul class="filter"><li class="commands active">Commands</li><li class='types'>Types</li><li class='compat'>Etc.</li></ul>
     <div class="nodebox">
-      <p>NodeBox commands drawn in cyan are supported but an alternate syntax is now available for each.</p>
+      <p>NodeBox commands drawn in cyan are supported but have been obviated by an alternate syntax.</p>
       <p>Consult their reference entries for details.</p>
     </div>
     <div class="sections">
@@ -27,6 +27,8 @@
           {% for link in links %}
           {% if isinstance(link, tuple) %}
           <li>{% for lnk in link %} <a href="ref/{{sect}}.html#{{lnk}}">{{lnk}}</a> {% endfor%} </li>
+          {% elif not link %}
+          <li><hr></li>
           {% else %}
           <li><a href="ref/{{sect}}.html#{{link}}">{{link}}</a></li>
           {% endif %}
