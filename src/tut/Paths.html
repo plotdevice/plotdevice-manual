@@ -42,7 +42,7 @@
 
       <p>Each of the PlotDevice shape commands (<a href="../ref/Primitives.html#oval()">oval()</a>,
       <a href="../ref/Primitives.html#rect()">rect()</a>, etc.) returns a path. This path is
-      actually <b>a list of points</b>, in which each point (or <a href="../ref/Drawing.html#PathElement">PathElement</a>) has certain properties that you can
+      actually <b>a list of points</b>, in which each point (or <a href="../ref/Drawing.html#Curve">Curve</a>) has certain properties that you can
       manipulate. This way you can retrieve or edit the coordinates for each point, the coordinates
       of its control handles, and the kind of points you are dealing with (straight line, curve,
       pen move).</p>
@@ -71,8 +71,8 @@ font("Dolly-Bold", 300)
 path = textpath("e", 200, 200)
 points = []
 for point in path:
-  point.y += 20 
-  points.append(point) 
+  point.y += 20
+  points.append(point)
 bezier(points)
 </pre>
             </td></tr></tbody></table>
@@ -101,17 +101,20 @@ bezier(points)
 
       <h2>Manipulating points</h2>
 
-      <p>Each point in the path is a <a href="../ref/Drawing.html#PathElement">PathElement</a>
+      <p>Each point in the path is a <a href="../ref/Drawing.html#Curve">Curve</a>
       object with the following attributes:</p>
       <ul>
         <li><i>point.x</i>: the x-coordinate or horizontal location.
         </li><li><i>point.y</i>: the y-coordinate or vertical location.<br/>
         </li><li><i>point.cmd</i>: the type of line segment, either <code class="kw">LINETO</code>,
-        <code class="kw">CURVETO</code>, <code class="kw">MOVETO</code> or <code class="kw">CLOSE</code>,
-        </li><li><i>point.ctrl1.x</i>: if <code class="kw">CURVETO</code>, the x-coordinate of the first
-        control handle of the curve.<br/>
-        </li><li><i>point.ctrl1.y</i>: if <code class="kw">CURVETO</code>, the y-coordinate of the first
-        control handle of the curve.<br/>
+        <code class="kw">CURVETO</code>, <code class="kw">MOVETO</code> or <code class="kw">CLOSE</code>.</li>
+    </ul>
+
+    <p>If <code>point.cmd</code> is <code class="kw">CURVETO</code>, a pair of
+      ‘control handles’ will also be defined:</p>
+    <ul>
+        </li><li><i>point.ctrl1.x</i>: the x-coordinate of the first control handle of the curve.<br/>
+        </li><li><i>point.ctrl1.y</i>: the y-coordinate of the first control handle of the curve.<br/>
         </li><li><i>point.ctrl2.x</i>: the x-coordinate of the second control handle.
         </li><li><i>point.ctrl2.y</i>: the y-coordinate of the second control handle.
       </li></ul>
@@ -139,16 +142,16 @@ print path[1].ctrl1.x
       <br/></p>
 <pre>font("Dolly-Bold", 100)
 path = textpath("broken", 200, 200)
- 
+
 points = []
 for point in path:
- 
+
     if point.cmd == CURVETO:
         point.ctrl2.x += 5
         point.ctrl2.y -= 10
         point.y += 5
     points.append(point)
- 
+
 bezier(points)
 </pre>
     </div><a id="Path_Mathematics" name="Path_Mathematics"></a>
@@ -196,9 +199,9 @@ bezier(points)
 <pre>with bezier(100, 100, fill=None, stroke=0, close=False) as path:
     curveto(150, 100, 200, 150, 150, 200)
     curveto(50, 250, 200, 350, 400, 400)
- 
+
 for t in range(11):
-    pt = path.point(0.1*t) 
+    pt = path.point(0.1*t)
     oval(pt.x-2, pt.y-2, 4, 4)
 </pre>
 
@@ -215,7 +218,7 @@ for t in range(11):
 <pre>nofill()
 with bezier(100, 500, stroke=0.5, close=False) as path:
     curveto(200,250, 600,600, 400,300)
-  
+
 path.addpoint(0.25)
 stroke(0.2)
 for point in path:
@@ -344,24 +347,24 @@ bezier(compound, fill=None, stroke=0)
       purpose.</p>
 <pre># We construct our indivual shape in the top-left corner.
 # This is where corner-mode transforms originate.
-# We'll later on place the eventual compound path 
+# We'll later on place the eventual compound path
 # where we want it with translate().
 path = rect(-10, 0, 20, 100, draw=False)
- 
+
 # Let's chip away small piece of the rectangle:
 path = path.difference(rect(-15, 80, 20, 15, draw=False))
- 
+
 # Create a rotation transform we'll repeatedly apply to a path
 t = Transform()
 t.rotate(20)
 
 compound = path
-for i in range(17):    
+for i in range(17):
     # Before adding the rectangle shape to
     # the flattened compound, we rotate it a bit.
-    path = t.apply(path)    
+    path = t.apply(path)
     compound = compound.union(path)
- 
+
 translate(275, 275)
 nofill()
 stroke(0)
