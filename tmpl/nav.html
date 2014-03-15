@@ -2,6 +2,7 @@
 {%- set section={None:'Manual', 'ref':'Reference', 'tut':"Tutorials", 'lib':"Libraries"}[sect] -%}
 {%- set home='' if not sect else ' href="%s../manual.html"'%root -%}
 {%- set navclass='link' if sect else 'nop' -%}
+{%- set siblings=["Setup", "Primitives", "Drawing", "Line+Color", "Typography", "Utility"] if sect=='ref' else None -%}
 {%- set book=["Introduction", "Environment", "Primitives", "Graphics_State", "Variables", "Lists", "Strings", "Repetition", "Commands", "Libraries", "Classes", "Animation", "Interaction", "Paths", "Color", "Math", "Extending", "Scripting", "plotdevice"] -%}
 
 {%- set next=book[book.index(tutorial)+1] if tutorial in book and tutorial!=book[-1] else None -%}
@@ -10,22 +11,22 @@
 
 
 <div id="nav" class="{{navclass}}">
-  <h1><a{{home}}>Plot&#8202;Device <span>{{section}}</span></a></h1>
+  <h1><a{{home}}>PlotDevice <span>{{section}}</span></a></h1>
   {%- if title and title=='plotdevice' -%}
   <h3 class="tt">{{title}}</h3>
   {%- elif title and title=='Extending' -%}
-  <h3>{{title}} Plot&#8202;Device</h3>
+  <h3>{{title}} PlotDevice</h3>
   {%- elif title and not siblings-%}
   <h3>{{title}}</h3>
-  {%- endif -%}  
+  {%- endif -%}
   {%- if siblings -%}
   <ul class="siblings">
   {% for sect in siblings %}
   {%- if sect==title -%}
   <li><h3 style="margin:0;">{{sect.replace('+',' &amp; ')}}</h3></li>
-  {%- else -%}  
+  {%- else -%}
   <li><a href="{{sect}}.html">{{sect.replace('+',' &amp; ')}}</a></li>
-  {%- endif -%}  
+  {%- endif -%}
   {%- endfor -%}
   </ul>
   {%- endif -%}
