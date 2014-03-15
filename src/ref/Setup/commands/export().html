@@ -9,8 +9,8 @@
 
     <div class="definition">
       <p class="pink_text">The <code>export</code> function is only of use to scripts that are
-      using PlotDevice externally via a <code><a href="../tut/Scripting.html#plotdevice.script">from
-      plotdevice.script import *</a></code> line. For scripts run within the application, use the
+      using PlotDevice externally via a <code><a href="../tut/Scripting.html#plotdevice-star">
+      from&nbsp;plotdevice import *</a></code> line. For scripts run within the application, use the
       Export as… commands in the file menu. Exports can also be batched using the <a href="../tut/plotdevice.html"><code>plotdevice</code></a> command.</p>
       <h2>Generating output from external scripts</h2>
 
@@ -20,7 +20,7 @@
       the correct sequence of <code>clear</code> and <code>save</code> calls are made to the
       <code><a href="#canvas">canvas</a></code> automatically. For instance these two methods of
       generating a png are equivalent:</p>
-<pre>from plotdevice.script import *
+<pre>from plotdevice import *
 
 # export an image
 canvas.clear()
@@ -29,7 +29,7 @@ canvas.save('output.png')
 
 # export an image
 # (with the context manager clearing and saving the canvas automatically)
-with export('output.png') as image:
+with export('output.png') as img:
     ... # (do some drawing)
 </pre>
 
@@ -98,16 +98,16 @@ with export('multipage.pdf') as pdf:
       characters, they will be replaced with the sequence number and zero padded to the same width:</p>
 <pre># export a sequence of images to output-0001.png, output-0002.png, ...
 #                                output-0099.png, output-0100.png
-with export('output.png') as image:
+with export('output.png') as img:
     for i in xrange(100):
-        with image.sequence:
+        with img.sequence:
             ... # draw the next image in the sequence
 
 # export a sequence of images to 01-img.png, 02-img.png, ...
 #                                99-img.png, 100-img.png
-with export('##-img.png') as image:
+with export('##-img.png') as img:
     for i in xrange(100):
-        with image.sequence:
+        with img.sequence:
             ... # draw the next image in the sequence
 </pre>
     </div>

@@ -16,18 +16,17 @@
     into a <a href="http://virtualenv.org">virtualenv</a> along with your other dependencies:</p>
     <pre class="shell"><span class="kw">$ </span>virtualenv env
 <span class="kw">$ </span>source ./env/bin/activate
-<span class="o">(</span>env<span class="o">)</span><span class="kw">$ </span>pip install https://github.com/samizdatco/plotdevice-pyobjc/archive/master.zip
+<span class="o">(</span>env<span class="o">)</span><span class="kw">$ </span>pip install plotdevice
 <span class="o">(</span>env<span class="o">)</span><span class="kw">$ </span>pip install requests envoy bs4 <span class="grey"># some other useful packages</span>
 </pre>
 
-    <h2><a href="#plotdevice.script" id="plotdevice.script" name="plotdevice.script"></a>Initializing a
-    graphics context with <code>plotdevice.script</code></h2>
+    <h2><a href="#plotdevice-star" id="plotdevice-star" name="plotdevice-star"></a>Initializing a graphics context from your script</h2>
 
-    <p>The <code>plotdevice.script</code> module initializes your script’s namespace with one
+    <p>The <code>plotdevice</code> module initializes your script’s namespace with one
     identical to a script running with the app or command line tool. For instance, the following
     will draw a few boxes:</p>
     <pre class="shell"><span class="grey">#!/usr/bin/env python</span>
-<span class="kw">from</span> <span class="nn">plotdevice.script</span> <span class="kw">import</span> <span class="o">*</span>
+<span class="kw">from</span> <span class="nn">plotdevice</span> <span class="kw">import</span> <span class="o">*</span>
 <span class="kw">for</span> <span class="kw">x</span><span class="s">,</span> <span class="kw">y</span> <span class="ow">in</span> <span class="kw">grid</span><span class="s">(</span><span class="mi">10</span><span class="s">,</span><span class="mi">10</span><span class="s">,</span><span class="mi">12</span><span class="s">,</span><span class="mi">12</span><span class="s">):</span>
     <span class="kw">rect</span><span class="s">(</span><span class="kw">x</span><span class="s">,</span><span class="kw">y</span><span class="s">,</span> <span class="mi">10</span><span class="s">,</span><span class="mi">10</span><span class="s">)</span>
 </pre>
