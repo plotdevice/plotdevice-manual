@@ -10,9 +10,11 @@ Copyright (c) 2014 Samizdat Drafting Co. All rights reserved.
 """
 
 from __future__ import with_statement, division
-from os.path import basename, abspath, dirname, join, relpath, exists
+from os.path import basename, abspath, dirname, join, relpath, exists, getmtime
 py_root = dirname(abspath(__file__))
 import sys, os, re
+from SocketServer import TCPServer
+from SimpleHTTPServer import SimpleHTTPRequestHandler as Handler
 from collections import defaultdict as ddict, OrderedDict as odict
 from glob import glob
 from pprint import pprint
@@ -27,10 +29,9 @@ from bs4 import BeautifulSoup, NavigableString
 ### the big red button ###
 
 def build(static=True):
-  if not static:
-    print "Building website...\n"
   # if True, will make sure every link points to a valid .html file path
   # if False, hrefs are shortened: Line+Color.html#fill() -> Line+Color#fill()
+  print "Building %s...\n" %('manual' if static else 'website')
   global file_urls
   file_urls = static
   toc()
@@ -38,6 +39,18 @@ def build(static=True):
   ref()
   tut()
   lib()
+
+### http server with live rebuilds ###
+
+class PlotDoxHandler(Handler):
+  def do_GET(self):
+    # run the build script before every pageload
+    if self.path.endswith('.html'):
+      print "regen for", self.path
+      sys.stdout, _out = file('/dev/null','w'), sys.stdout
+      build()
+      sys.stdout = _out
+    Handler.do_GET(self)
 
 ### utilities ###
 
@@ -97,6 +110,14 @@ def tidy(html):
   html = re.sub(r'<body><',r'<body>\n  <', html)
   return html
 
+def is_stale(dst, src, quiet=False):
+  if isinstance(src, basestring):
+    src = (src,)
+  stale = not exists(dst) or any(getmtime(dst) < getmtime(s) for s in src)
+  if stale or not quiet:
+    print ">" if stale else '-', namify(dst)
+  return stale
+
 def namify(fn):
   if fn.endswith('.html'):
     fn = fn[:-5]
@@ -148,8 +169,6 @@ class PlotDeviceLexer(PythonLexer):
       else:
         yield index, token, value
 
-
-
 ### handlers for each section of the site ###
 
 tmpls = Environment(loader=FileSystemLoader('%s/tmpl'%py_root))
@@ -157,96 +176,18 @@ tmpls = Environment(loader=FileSystemLoader('%s/tmpl'%py_root))
 def etc():
   # hardlink all the media files so we're not shuffling around megs
   # of images on every run (yes i know, whole MEGAbytes)
-  for sect in ('ref','tut','lib'):
-    _mkdir('doc/etc/%s'%sect)
-    os.system('ln -f src/etc/%s/* doc/etc/%s'%(sect,sect))
+  if not exists('doc/etc/ref'):
+    _mkdir('doc/etc/type')
+    os.system('ln -f src/etc/type/* doc/etc/type')
     os.system('ln -f tmpl/manual.css doc/etc/manual.css')
+    os.system('ln -f tmpl/typography.css doc/etc/type/typography.css')
     os.system('ln -f src/etc/zepto.min.js doc/etc/zepto.min.js')
-
-def ref():
-  print "\nReference"
-  _mkdir('doc/ref')
-
-  for page in glob('src/ref/*'):
-    cmd, typ, old = [map(get_sect, glob('%s/%s/*'%(page,s))) for s in ('commands','types','compat')]
-    sect = basename(page)
-    # print sect, map(len, (cmd, typ, old))
-    print "-", sect
-
-    html = tmpls.get_template('reference.html')
-    fname = 'doc/ref/%s.html' % sect
-    siblings = ["Setup", "Primitives", "Drawing", "Line+Color", "Typography", "Utility"]
-    info = dict(name=sect, commands=cmd, types=typ, compat=old, siblings=siblings)
-    markup = html.render(info)
-    with file(fname, 'w') as f:
-      f.write(tidy(markup).encode('utf-8'))
-
-def tut():
-  print "\nTutorials"
-  _mkdir('doc/tut')
-
-  html = tmpls.get_template('article.html')
-  for tut in sorted(glob('src/tut/*.html')):
-    soup = BeautifulSoup(file(tut).read().decode('utf-8'), "html5lib")
-    article = soup.find('div', class_='article')
-    api = namify(tut)
-    tut_name = basename(tut)[:-5]
-    print "-", api
-
-    fname = 'doc/tut/%s.html'%tut_name
-    info = dict(name=api, doc=article, sect='tut', tutorial=tut_name)
-    markup = html.render(info)
-    with file(fname, 'w') as f:
-      f.write(tidy(markup).encode('utf-8'))
-
-def lib():
-  print "\nLibraries"
-  _mkdir('doc/lib')
-
-  in_sub = False
-  html = tmpls.get_template('article.html')
-  for lib in sorted(glob('src/lib/*.html') + glob('src/lib/*/*.html')):
-    fname = 'doc/lib/' + lib.replace('src/lib/','')
-    _mkdir(dirname(fname))
-
-    pg_name = basename(fname).replace('.html','')
-    subdir = dirname(fname)!='doc/lib'
-    if subdir:
-      if not in_sub:
-        print "...",
-      print pg_name.split('.',1)[-1],
-      in_sub = True
-    else:
-      if in_sub:
-        print
-        in_sub = False
-      print "-", pg_name
-
-    soup = BeautifulSoup(file(lib).read().decode('utf-8'), "html5lib")
-    article = soup.find('div', class_='article')
-    api = namify(fname)
-
-    info = dict(name=api, doc=article, sect='lib', root='../' if subdir else '')
-    markup = html.render(info)
-    with file(fname, 'w') as f:
-      f.write(tidy(markup).encode('utf-8'))
+    for sect in ('ref','tut','lib'):
+      _mkdir('doc/etc/%s'%sect)
+      os.system('ln -f src/etc/%s/* doc/etc/%s'%(sect,sect))
 
 def toc():
   print "Table of Contents"
-
-  # dump out the contents of the src/ref folders for a first pass at setting up the `ref` dict
-  #
-  # ref_sects = {}
-  # for page in glob('src/ref/*'):
-  #   cmd, typ, old = [map(lambda x:basename(x)[:-5], glob('%s/%s/*'%(page,s))) for s in ('commands','types','compat')]
-  #   sect = basename(page)
-  #   ref_sects[sect] = (cmd, typ, old)
-  # ref = {}
-  # for sect in 'Setup','Line+Color','Typography','Transform','Primitives','Drawing','Utility':
-  #   print sect, ":", dict(zip(('commands','types','compat'),ref_sects[sect]))
-  #   ref[sect] = dict(zip(('commands','types','compat'),ref_sects[sect]))
-  # print ref
-
   print "- Reference"
   ref=odict()
   ref['Setup'] = {
@@ -262,7 +203,7 @@ def toc():
       'types': ['Bezier', 'Curve'],
       'compat': ['autoclosepath()', 'beginclip()', 'beginpath()', 'drawpath()', 'endclip()', 'endpath()', 'findpath()'] }
   ref['Line+Color'] = {
-      'commands': ['plotstyle()', 'color()', 'pen()', 'fill()', 'stroke()', 'shadow()'],
+      'commands': ['plotstyle()', 'pen()', 'stroke()', 'fill()', 'gradient()', 'shadow()', 'color()'],
       'types': ['Color', 'Gradient'],
       'compat': ['capstyle()', 'colormode()', 'joinstyle()', 'nofill()', 'nostroke()', 'strokewidth()'] }
   ref['Transform'] = {
@@ -303,6 +244,75 @@ def toc():
   _mkdir('doc')
   with file('doc/manual.html', 'w') as f:
     f.write(tidy(markup).encode('utf-8'))
+
+def ref():
+  print "\nReference"
+  _mkdir('doc/ref')
+
+  for page in glob('src/ref/*'):
+    sect = basename(page)
+    fname = 'doc/ref/%s.html' % sect
+    if is_stale(fname, glob('%s/*/*.html'%page)):
+      cmd, typ, old = [map(get_sect, glob('%s/%s/*'%(page,s))) for s in ('commands','types','compat')]
+      html = tmpls.get_template('reference.html')
+      info = dict(name=sect, commands=cmd, types=typ, compat=old)
+      markup = html.render(info)
+      with file(fname, 'w') as f:
+        f.write(tidy(markup).encode('utf-8'))
+
+def tut():
+  print "\nTutorials"
+  _mkdir('doc/tut')
+
+  html = tmpls.get_template('article.html')
+  for tut in sorted(glob('src/tut/*.html')):
+    api = namify(tut)
+    tut_name = basename(tut)[:-5]
+    fname = 'doc/tut/%s.html'%tut_name
+    if is_stale(fname, tut):
+      soup = BeautifulSoup(file(tut).read().decode('utf-8'), "html5lib")
+      article = soup.find('div', class_='article')
+      info = dict(name=api, doc=article, sect='tut', tutorial=tut_name)
+      markup = html.render(info)
+      with file(fname, 'w') as f:
+        f.write(tidy(markup).encode('utf-8'))
+
+def lib():
+  print "\nLibraries"
+  _mkdir('doc/lib')
+
+  in_sub = False
+  html = tmpls.get_template('article.html')
+  for lib in sorted(glob('src/lib/*.html') + glob('src/lib/*/*.html')):
+    fname = 'doc/lib/' + lib.replace('src/lib/','')
+    pg_name = basename(fname).replace('.html','')
+    subdir = dirname(fname)!='doc/lib'
+
+    if is_stale(fname, lib, quiet=subdir):
+      _mkdir(dirname(fname))
+      soup = BeautifulSoup(file(lib).read().decode('utf-8'), "html5lib")
+      article = soup.find('div', class_='article')
+      api = namify(fname)
+
+      info = dict(name=api, doc=article, sect='lib', root='../' if subdir else '')
+      markup = html.render(info)
+      with file(fname, 'w') as f:
+        f.write(tidy(markup).encode('utf-8'))
+
+### first-pass toc generator ###
+
+def scan_toc():
+  # dump out the contents of the src/ref folders for a first pass at setting up the `ref` dict
+  ref_sects = {}
+  for page in glob('src/ref/*'):
+    cmd, typ, old = [map(lambda x:basename(x)[:-5], glob('%s/%s/*'%(page,s))) for s in ('commands','types','compat')]
+    sect = basename(page)
+    ref_sects[sect] = (cmd, typ, old)
+  ref = {}
+  for sect in 'Setup','Line+Color','Typography','Transform','Primitives','Drawing','Utility':
+    print sect, ":", dict(zip(('commands','types','compat'),ref_sects[sect]))
+    ref[sect] = dict(zip(('commands','types','compat'),ref_sects[sect]))
+  print ref
 
 ### post-build validation ###
 
@@ -375,8 +385,17 @@ def code_blocks():
 
   print yack.get_style_defs()
 
+
 if __name__=='__main__':
-  build(static=not sys.argv[1:] or sys.argv[1]!='site')
+  if 'live' in sys.argv:
+    PORT = 9099
+    httpd = TCPServer(("", PORT), PlotDoxHandler)
+    print "Live version of the manual at http://127.0.0.1:%i/doc/manual.html"%PORT
+    httpd.serve_forever()
+
+  else:
+    build(static=not sys.argv[1:] or sys.argv[1]!='site')
+
   # check_media()
   # check_links()
   # code_blocks()
