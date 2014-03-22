@@ -5,27 +5,40 @@
 
 </head><body>
   <div class="section">
-    <h3>color()</h3>
+    <h3>color(<span class="args">*components,&thinsp;mode=RGB,&thinsp;range=1.0</span>)</h3>
 
     <div class="definition">
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>color(r, g, b, a)
-color(h, s, b, a)
-color(c, m, y, k, a)
-color(k, a)
+<pre>color(k, a=1)          # greyscale
+color(r, g, b, a=1)    # RGB mode
+color(h, s, b, a=1)    # HSB mode
+color(c, m, y, k, a=1) # CMYK mode
+</pre>
+<pre>
+color(HSB)             # have color commands expect HSB values
+color(range=255)       # use 0-255 component values rather than 0–1
+color(CMYK, range=100) # set both the current mode and range
 </pre>
       </div>
 
       <h2>Description</h2>
 
       <div class="row">
-        Returns a color. The color is either specified in terms of RGB, HSB, or CMYK depending on
-        the current <a href="#colormode()">colormode()</a>. The default colormode is RGB. Each RGB,
-        HSB, or CMYK parameter ranges between 0.0 and 1.0. The last parameter is optional and sets
-        the alpha (opacity) value. Additionally, color() can be called with just one parameter that
-        sets the gray value. The returned color can be supplied as parameter to the <a href="#fill()">fill()</a> or <a href="#stroke()">stroke()</a> command.
+        <p>Returns a color for use with the <a href="#fill()">fill()</a> , <a href="#stroke()">stroke()</a>,
+          and <a href="Typography.html#font()">font()</a> commands. The color is specified in terms
+          of <code class="kw">RGB</code> (the default), <code class="kw">HSB</code>, or
+          <code class="kw">CMYK</code> components depending on
+          the current color <code>mode</code>. Each component value is interpreted based on the current
+          color <code>range</code> (by default <code>0</code>–<code>1.0</code>). The mode and range can be passed as parameters
+          if you wish to e.g., create a <code>CMYK</code> color even though the current mode is <code>RGB</code>.</p>
+
+        <p>When called with just a <code>mode</code> or <code>range</code> parameter (and no component values), the <em>color()</em> command
+          will update the canvas's ‘current’ value for that parameter. Subsequent calls to <em>color()</em>, <em>stroke()</em>,
+          or <em>fill()</em> can then use the specified mode or range without including the parameters in every call.</p>
+
+
       </div>
 
       <h2>Returns</h2>
@@ -52,7 +65,7 @@ color(k, a)
 clr1 = color(1.0, 0.0, 0.5)
 fill(clr1)
 rect(10, 10, 25, 25)
- 
+
 clr2 = color(0.3, 0.0, 0.4)
 fill(clr2)
 oval(40, 40, 40, 40)

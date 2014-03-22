@@ -13,7 +13,7 @@ from __future__ import with_statement, division
 from os.path import basename, abspath, dirname, join, relpath, exists, getmtime
 py_root = dirname(abspath(__file__))
 import sys, os, re
-from SocketServer import TCPServer
+from SocketServer import TCPServer, ThreadingMixIn
 from SimpleHTTPServer import SimpleHTTPRequestHandler as Handler
 from collections import defaultdict as ddict, OrderedDict as odict
 from glob import glob
@@ -41,6 +41,16 @@ def build(static=True):
   lib()
 
 ### http server with live rebuilds ###
+
+class PlotDoxServer(ThreadingMixIn, TCPServer):
+    # Ctrl-C will cleanly kill all spawned threads
+    daemon_threads = True
+    # much faster rebinding
+    allow_reuse_address = True
+
+    def __init__(self, host, port):
+        print "Live version of the manual at http://127.0.0.1:%i/doc/manual.html"%PORT
+        TCPServer.__init__(self, (host, port), PlotDoxHandler)
 
 class PlotDoxHandler(Handler):
   def do_GET(self):
@@ -110,10 +120,14 @@ def tidy(html):
   html = re.sub(r'<body><',r'<body>\n  <', html)
   return html
 
-def is_stale(dst, src, quiet=False):
+def is_stale(dst, src, deps=[], quiet=False):
   if isinstance(src, basestring):
     src = (src,)
-  stale = not exists(dst) or any(getmtime(dst) < getmtime(s) for s in src)
+
+  # print src, deps
+  # print getmtime(src), [getmtime(dst), tuple([getmtime(d) for d in deps])]
+  newest = max(max(getmtime(s) for s in src), max(getmtime(d) for d in deps))
+  stale = not exists(dst) or getmtime(dst) < newest
   if stale or not quiet:
     print ">" if stale else '-', namify(dst)
   return stale
@@ -153,7 +167,7 @@ class PlotDeviceLexer(PythonLexer):
   filenames = []
 
   EXTRA_CLASSES = set("adict|odict|ddict|BezierPath|ClippingPath|Color|Context|Family|Font|Stylesheet|Grob|Image|NodeBoxError|Oval|PathElement|Point|Rect|Text|Transform|TransformContext|Variable".split("|"))
-  EXTRA_BUILTINS = set("plot|measure|stylesheet|order|ordered|shuffled|addvar|align|arrow|autoclosepath|autotext|background|beginclip|beginpath|bezier|canvas|capstyle|choice|clip|closepath|color|colormode|colorrange|colors|curveto|drawpath|ellipse|endclip|endpath|export|files|fill|findpath|findvar|font|fonts|fontsize|grid|image|imagesize|joinstyle|line|lineheight|lineto|moveto|pen|plotstyle|nofill|nostroke|outputmode|oval|pop|push|random|rect|reset|rotate|save|scale|size|skew|speed|star|state_vars|stroke|strokewidth|text|textheight|textmetrics|textpath|textwidth|transform|translate|var|ximport".split('|'))
+  EXTRA_BUILTINS = set("clear|plot|measure|stylesheet|order|ordered|shuffled|addvar|align|arrow|autoclosepath|autotext|background|beginclip|beginpath|bezier|canvas|capstyle|choice|clip|closepath|color|colormode|colorrange|colors|curveto|drawpath|ellipse|endclip|endpath|export|files|fill|findpath|findvar|font|fonts|fontsize|grid|image|imagesize|joinstyle|line|lineheight|lineto|moveto|pen|plotstyle|nofill|nostroke|outputmode|oval|pop|push|random|rect|reset|rotate|save|scale|size|skew|speed|star|state_vars|stroke|strokewidth|text|textheight|textmetrics|textpath|textwidth|transform|translate|var|ximport".split('|'))
   EXTRA_CONSTS = set("DEFAULT|FRAME|PAGE|BEVEL|BOOLEAN|BUTT|BUTTON|CENTER|CLOSE|CMYK|CORNER|CURVETO|DEFAULT_HEIGHT|DEFAULT_WIDTH|FORTYFIVE|HEIGHT|HSB|JUSTIFY|KEY_BACKSPACE|KEY_DOWN|KEY_ESC|KEY_LEFT|KEY_RIGHT|KEY_TAB|KEY_UP|LEFT|LINETO|MITER|MOVETO|NORMAL|NUMBER|RGB|GREY|RIGHT|ROUND|SQUARE|TEXT|WIDTH|DEGREES|RADIANS|PERCENT|cm|inch|mm|pi|tau".split('|'))
 
   def get_tokens_unprocessed(self, text):
@@ -190,42 +204,46 @@ def toc():
   print "Table of Contents"
   print "- Reference"
   ref=odict()
-  ref['Setup'] = {
-      'commands': ['canvas()', 'speed()', 'export()', 'background()'],
-      'types': ['Canvas', None, 'Constants'],
+  ref['Canvas'] = {
+      'commands': ['canvas()', 'speed()', 'background()', 'export()', 'clear()', 'plot()',],
+      'types': ['Constants'],
       'compat': ['outputmode()', 'size()'] }
   ref['Primitives'] = {
-      'commands': ['image()', 'rect()',  'oval()', 'line()', 'arrow()', 'star()'],
+      'commands': ['image()', 'rect()',  'oval()', 'poly()', 'line()', ],
       'types': ['Image'],
-      'compat': ['imagesize()'] }
+      'compat': ['arrow()', 'star()'] }
   ref['Drawing'] = {
-      'commands': ['bezier()', 'moveto()', 'lineto()', 'curveto()', 'clip()', 'measure()', 'plot()', ],
+      'commands': ['bezier()', 'moveto()', 'lineto()', 'arcto()', 'curveto()', ],
       'types': ['Bezier', 'Curve'],
       'compat': ['autoclosepath()', 'beginclip()', 'beginpath()', 'drawpath()', 'endclip()', 'endpath()', 'findpath()'] }
   ref['Line+Color'] = {
-      'commands': ['plotstyle()', 'pen()', 'stroke()', 'fill()', 'gradient()', 'shadow()', 'color()'],
-      'types': ['Color', 'Gradient'],
+      'commands': ['plotstyle()', 'stroke()', 'fill()', 'pen()', 'color()'],
+      'types': ['Color', 'Gradient', 'Pattern'],
       'compat': ['capstyle()', 'colormode()', 'joinstyle()', 'nofill()', 'nostroke()', 'strokewidth()'] }
   ref['Transform'] = {
       'commands': ['transform()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', ],
       'types': ['Transform'],
       'compat': ['pop()', 'push()'] }
+  ref['Compositing'] = {
+      'commands': ['effects()','alpha()', 'blend()', 'shadow()', 'clip()', ],
+      'types': ['Shadow', ],
+      'compat': ['noshadow()',] }
   ref['Typography'] = {
       'commands': ['font()', 'text()', 'align()', 'stylesheet()'],
       'types': ['Family', 'Font', 'Stylesheet', 'Text'],
       'compat': ['fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textpath()', 'textwidth()'] }
   ref['Utility'] = {
-      'commands': ['read()', 'grid()', ('files()', 'fonts()'), ('random()', 'choice()'), ('shuffled()', 'ordered()')],
+      'commands': ['read()', 'grid()', 'measure()', ('files()', 'fonts()'), ('random()', 'choice()'), ('shuffled()', 'ordered()')],
       'types': ['Point', 'Size', 'Region', None, 'dictionaries', ],
-      'compat': ['autotext()', 'open()'] }
+      'compat': ['imagesize()', 'autotext()', 'open()'] }
 
   print "- Tutorials"
   tut=odict()
   tut['Basics']=["Introduction", "Environment", "Primitives", "Graphics_State",]
-  tut['Data']=["Variables", "Lists", "Strings",]
-  tut['Strategy']=["Repetition", "Commands", "Libraries", "Classes",]
-  tut['Specifics']=["Animation", "Interaction", "Paths", "Color", "Math",]
-  tut['Advanced']=["Extending", "Scripting", "plotdevice",]
+  tut['Specifics']=["Animation", u"Bezier_Paths", "Color", "Math",]
+  tut['Data']=["Variables", "Lists", "Strings", "Serialization"]
+  tut['Structure']=["Repetition", "Commands", "Libraries", "Classes",]
+  tut['Advanced']=["Interaction", "Extending", "Scripting", "plotdevice",]
 
   print "- Libraries"
   lib=odict()
@@ -238,7 +256,8 @@ def toc():
   lib['Tangible']=["WiiNode", "TUIO", "OSC ",]
 
   html = tmpls.get_template('manual.html')
-  info = dict(ref=ref, tut=tut, lib=lib, isinstance=isinstance, tuple=tuple, len=len)
+  local = dict(isinstance=isinstance, tuple=tuple, len=len)
+  info = dict(ref=ref, tut=tut, lib=lib, **local)
   markup = html.render(info)
 
   _mkdir('doc')
@@ -252,7 +271,7 @@ def ref():
   for page in glob('src/ref/*'):
     sect = basename(page)
     fname = 'doc/ref/%s.html' % sect
-    if is_stale(fname, glob('%s/*/*.html'%page)):
+    if is_stale(fname, glob('%s/*/*.html'%page), deps=['tmpl/nav.html','tmpl/reference.html']):
       cmd, typ, old = [map(get_sect, glob('%s/%s/*'%(page,s))) for s in ('commands','types','compat')]
       html = tmpls.get_template('reference.html')
       info = dict(name=sect, commands=cmd, types=typ, compat=old)
@@ -269,7 +288,7 @@ def tut():
     api = namify(tut)
     tut_name = basename(tut)[:-5]
     fname = 'doc/tut/%s.html'%tut_name
-    if is_stale(fname, tut):
+    if is_stale(fname, tut, deps=['tmpl/nav.html','tmpl/article.html']):
       soup = BeautifulSoup(file(tut).read().decode('utf-8'), "html5lib")
       article = soup.find('div', class_='article')
       info = dict(name=api, doc=article, sect='tut', tutorial=tut_name)
@@ -288,7 +307,7 @@ def lib():
     pg_name = basename(fname).replace('.html','')
     subdir = dirname(fname)!='doc/lib'
 
-    if is_stale(fname, lib, quiet=subdir):
+    if is_stale(fname, lib, quiet=subdir, deps=['tmpl/nav.html','tmpl/article.html']):
       _mkdir(dirname(fname))
       soup = BeautifulSoup(file(lib).read().decode('utf-8'), "html5lib")
       article = soup.find('div', class_='article')
@@ -309,7 +328,7 @@ def scan_toc():
     sect = basename(page)
     ref_sects[sect] = (cmd, typ, old)
   ref = {}
-  for sect in 'Setup','Line+Color','Typography','Transform','Primitives','Drawing','Utility':
+  for sect in 'Canvas','Line+Color','Typography','Transform','Primitives','Drawing','Utility':
     print sect, ":", dict(zip(('commands','types','compat'),ref_sects[sect]))
     ref[sect] = dict(zip(('commands','types','compat'),ref_sects[sect]))
   print ref
@@ -366,7 +385,7 @@ def code_blocks():
   lexx = PlotDeviceLexer()
   yack = HtmlFormatter()
   render = lambda src: highlight(src, lexx, yack)
-
+  reload(__main__)
   classes = set()
   for fn in glob('doc/*/*.html') + glob('doc/*/*/*.html'):
     soup = parse(fn)
@@ -388,10 +407,12 @@ def code_blocks():
 
 if __name__=='__main__':
   if 'live' in sys.argv:
-    PORT = 9099
-    httpd = TCPServer(("", PORT), PlotDoxHandler)
-    print "Live version of the manual at http://127.0.0.1:%i/doc/manual.html"%PORT
-    httpd.serve_forever()
+    HOST, PORT = "", 9099
+    httpd = PlotDoxServer(HOST, PORT)
+    try:
+      httpd.serve_forever(.1)
+    except KeyboardInterrupt:
+      sys.exit(0)
 
   else:
     build(static=not sys.argv[1:] or sys.argv[1]!='site')

@@ -1,6 +1,20 @@
 {% from 'nav.html' import nav %}
 <!DOCTYPE html>
 
+{% set metamanagers = ['export()', 'bezier()', 'plotstyle()', 'transform()', 'effects()', 'font()', ]%}
+{% set managers =  ['clip()', 'stroke()', 'fill()', 'pen()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', 'alpha()', 'blend()', 'shadow()', ]%}
+
+{%- macro reference(sect, link) -%}
+{% if isinstance(link, tuple) %}
+<li>{% for lnk in link %} <a href="ref/{{sect}}.html#{{lnk}}">{{lnk}}</a> {% endfor%} </li>
+{% elif not link %}
+<li><hr></li>
+{% else %}
+{% set ctxclass=' class="cm"' if link in managers else ' class="cmm"' if link in metamanagers else '' %}
+<li{{ctxclass}}><a href="ref/{{sect}}.html#{{link}}">{{link}}</a></li>
+{% endif %}
+{%- endmacro %}
+
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -14,24 +28,29 @@
   <div class="toc ref">
     <h1>Reference</h1>
     <ul class="filter"><li class="commands active">Commands</li><li class='types'>Types</li><li class='compat'>Etc.</li></ul>
-    <div class="nodebox">
-      <p>NodeBox commands drawn in cyan are supported but have been obviated by an alternate syntax.</p>
-      <p>Consult their reference entries for details.</p>
+    <div class="sidebar">
+      <div class="commands">
+        <p>Commands marked with a dot support the python <a class="noexternal" title="a.k.a. ‘context managers’" href="http://python.org/dev/peps/pep-0343/"><code>with</code></a>
+           statement to <a title="PlotDevice Tutorial: Graphics State" href="tut/Graphics_State.html">limit their scope</a>.</p>
+        <p>Commands with open dots will also reset any changes made within the block. </p>
+      </div>
+      <div class="types">
+        <p>To create graphics objects without adding them to the canvas, instantiate them from their respective classes.</p>
+
+      </div>
+      <div class="compat">
+        <p>NodeBox commands drawn in cyan are supported but most have been obviated by an alternate syntax.</p>
+        <p>Consult their reference entries for details.</p>
+      </div>
     </div>
     <div class="sections">
       {% for sect, groups in ref.items() %}
       <div class="section {{sect.lower()}}">
-        <h2>{{sect.replace('+',' &amp; ')}}</h2>
+        <h2><a href="ref/{{sect}}.html">{{sect.replace('+',' &amp; ')}}</a></h2>
         {% for group, links in groups.items() %}
         <ul class="{{group}}">
           {% for link in links %}
-          {% if isinstance(link, tuple) %}
-          <li>{% for lnk in link %} <a href="ref/{{sect}}.html#{{lnk}}">{{lnk}}</a> {% endfor%} </li>
-          {% elif not link %}
-          <li><hr></li>
-          {% else %}
-          <li><a href="ref/{{sect}}.html#{{link}}">{{link}}</a></li>
-          {% endif %}
+          {{ reference(sect, link) }}
           {% endfor %}
         </ul>
         {% endfor %}
@@ -48,7 +67,7 @@
         <h2>{{sect}}</h2>
         <ul>
           {% for link in links %}
-          <li><a href="tut/{{link}}.html">{{link.replace('_',' ')}}</a></li>
+          <li><a href="tut/{{link}}.html">{{link.replace('_',' ').replace('Bezier','Bézier')}}</a></li>
           {% endfor %}
         </ul>
       </div>
@@ -88,13 +107,6 @@
         $('.filter li.active').removeClass('active')
         $('body').attr('class',elt.attr('class'))
         elt.addClass('active')
-      })
-
-      // handle n-more clicks within a ref section
-      $('.ref .sections').on('click', 'li.others', function(e){
-        var sect = $(e.target).closest('.section')
-        sect.toggleClass('compat')
-        console.log(sect)
       })
     })
   </script>

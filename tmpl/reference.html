@@ -10,7 +10,7 @@
 <body>
 
 {{nav('ref',name,root,siblings,tutorial)}}
-<div class="article">
+<div class="ref article">
   {%- if commands -%}
   <div class="commands">
     {%- for cmd in commands -%}<a name="{{cmd[0]}}"></a>{{cmd[1]}}{%- endfor -%}

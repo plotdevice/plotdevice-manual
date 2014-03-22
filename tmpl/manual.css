@@ -1,13 +1,12 @@
 /**************************************/
 /* TYPOGRAPHY */
 
-/*@import url(http://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,500italic,600italic,700italic);*/
 @import url("type/typography.css");
 
 body, table, td, input, select, option, textarea { font: 14px Georgia; line-height: 1.4em; }
-h1, h3 { font: bold 18px "Cabin"; /*letter-spacing: -1px;*/ }
+h1, h3 { font: bold 18px "Cabin"; }
 h3 { margin-top: 15px; }
-h2 { font: bold 14px "Cabin"; line-height: 1.5em; /*letter-spacing: -1px;*/ margin-top: 15px; }
+h2 { font: bold 14px "Cabin"; line-height: 1.5em; margin-top: 15px; }
 pre { font-size: 12px; font-family:"Courier Prime"; line-height: 1.4em; }
 code { font-family:"Courier Prime"; letter-spacing:0;}
 code.box{ padding:0 4px;}
@@ -254,6 +253,19 @@ a.noexternal { background-image:none !important; padding-right: 0; }
   margin:12px 0;
 }
 
+.ref.article .section h3{
+  font:italic bold 18px "Courier Prime";
+}
+
+.ref.article .section h3 span.args{
+  font-weight:normal;
+  /*font-family:Courier;*/
+  color:#aaa;
+}
+
+
+
+
 .toc .section h2{
   padding-top:1px;
   text-transform:uppercase;
@@ -263,6 +275,15 @@ a.noexternal { background-image:none !important; padding-right: 0; }
   color:#888;
 }
 
+.toc .section h2 a{
+  color:#888;
+  font-style:normal;
+}
+
+.toc .section h2 a:hover{
+  color:black;
+  text-decoration:none;
+}
 .toc .section ul hr{
   border:0;
   margin:2px 0 1px 0;
@@ -299,7 +320,7 @@ a.noexternal { background-image:none !important; padding-right: 0; }
 }
 
 .toc .section.utility ul.types li:last-child a,
-.toc .section.setup ul.types li:last-child a{
+.toc .section.canvas ul.types li:last-child a{
   text-transform:lowercase;
   font:italic 13px Georgia;
 }
@@ -311,6 +332,30 @@ a.noexternal { background-image:none !important; padding-right: 0; }
 .toc .section ul.commands{
   padding-left:3px;
   margin-left:-3px;
+}
+
+.toc li.cmm,
+.toc li.cm{
+  position:relative;
+}
+
+.toc li.cm:before{
+  content:"·";
+  position:absolute;
+  left:-11px;
+  width:10px;
+  text-align:center;
+  font-weight:900;
+  color:#aaa;
+}
+.toc li.cmm:before{
+  content:"°";
+  position:absolute;
+  margin-top:3px;
+  left:-11px;
+  width:10px;
+  text-align:center;
+  color:#999;
 }
 
 .toc .section ul li.others{
@@ -408,28 +453,37 @@ body.compat .toc ul.compat{
 }
 
 
-/* the text block explaining nodebox compatibility */
-.toc .nodebox{
-  font:italic 12px/18px Georgia !important;
+.toc .sidebar{
+ font:italic 12px/18px Georgia !important;
   position:absolute;
   top:63px;
   margin:0 0 0 14px;
   padding:0;
   width:180px;
   color:#888;
+}
+
+.toc .sidebar div{
+  position:absolute;
   opacity:0;
   pointer-events:none;
   -webkit-transition:opacity .333s;
 }
 
-body.compat .toc .nodebox{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.toc .nodebox p{
+.toc .sidebar p{
   margin:0 0 8px 0;
   width:160px;
+}
+
+.toc .sidebar a{
+  color:#555;
+}
+
+body.commands .toc .sidebar .commands,
+body.types .toc .sidebar .types,
+body.compat .toc .sidebar .compat{
+  opacity:1;
+  pointer-events:auto;
 }
 
 
@@ -440,6 +494,7 @@ body.compat .toc .nodebox{
   padding:7px 0 0 215px;
   border:0;
 }
+
 .toc.footer a{
   color:#888;
   -webkit-transition:color .2s;
@@ -484,6 +539,7 @@ body.compat .toc .nodebox{
   background:rgba(255,255,255,0.9);
   overflow:visible;
   z-index:10;
+  min-width:840px;
 }
 
 #nav h1{
@@ -499,10 +555,12 @@ body.compat .toc .nodebox{
 }
 /*#nav h1:hover{ cursor:default; }*/
 
+/* the active section in the refs siblings-bar or just the orange page title text */
 #nav h3{
   color:#bb4200;
   float:left;
   margin:9px 0;
+  font-weight:bold;
 }
 #nav h3.tt{
   font-family:"Courier Prime";
@@ -521,7 +579,6 @@ body.compat .toc .nodebox{
   pointer-events:none;
   left:110px;
   opacity:0;
-  /*color:#555;*/
   z-index:10;
   -webkit-transition:opacity .333s;
 }
@@ -532,6 +589,7 @@ body.compat .toc .nodebox{
 #nav.nop h1 a{ color:black; }
 #nav h1 a:hover{ text-decoration:none; }
 
+/* special handling for the section-based nav in ref pages */
 #nav ul.siblings{
   float:left;
   list-style:none;
@@ -540,9 +598,14 @@ body.compat .toc .nodebox{
 
 #nav.link ul.siblings li{
   float:left;
-  margin:9px 12px 9px 0;
+  margin:9px 9px 9px 0;
 }
 
+#nav.link ul.siblings li a{
+  font-weight:normal;
+}
+
+/* prev/next controls in the tutorial nav */
 #nav.link ul.chapter{
   /*background:red;*/
   position:absolute;
@@ -561,9 +624,7 @@ body.compat .toc .nodebox{
   padding-left:100px;
 }
 
-
 #nav.link li{
-  /*letter-spacing: -1px;*/
   font: 18px "Cabin";
   margin-bottom:1px;
 }
@@ -573,6 +634,7 @@ body.compat .toc .nodebox{
   text-decoration:none;
   color:#bb4200;
 }
+
 
 
 /***************************************/
