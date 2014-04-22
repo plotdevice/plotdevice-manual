@@ -29,9 +29,9 @@
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/grid.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/grid.zip">grid.zip</a> (60KB)<br/>
-          <i>Last updated for PlotDevice 1.9.4.2</i><br/>
+          <td><a href="http://plotdevice.io/libs/grid.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/grid.zip">grid.zip</a> (60KB)<br/>
+          <i>Last updated for NodeBox 1.9.4.2</i><br/>
           <i>Licensed under GPL<br/></i><i>Author: Tom De Smedt</i>
         </td></tr></tbody></table>
 
@@ -163,7 +163,7 @@ g = grid.create(2, 2, 150, 150)
 g.cell(0,0).split(2, 2)
 g.styles.margin = 1
 g.styles.background = (
-    color(0.5, 0.55, 0.6), 
+    color(0.5, 0.55, 0.6),
     color(0.4, 0.45, 0.5)
 )
 g.draw()
@@ -234,7 +234,7 @@ g.rows.second
     retrieve named sections with the <i>grid.find()</i> method.<br/></p>
 <pre>g.top.name = "header"
 g.header.style = "header_style"
-s = g.styles.create("header_style") 
+s = g.styles.create("header_style")
 s.fontsize = 20
 </pre>
 <pre>cell = g.find("header")
@@ -358,14 +358,14 @@ g.draw()
 g = grid.create(2, 2, 250, 250)
 g.top.left.split(2, 2)
 g.top.left.bottom.right.split(2, 2)
- 
+
 # fetch images from Morguefile.com
 web = ximport("web")
 img = web.morguefile.search("ocean")[:5]
 img = [x.download() for x in img]
 g.content = images
 g.content.repeat = True
- 
+
 g.styles.margin = 1
 g.styles.fit = True
 g.styles.align = "center", "bottom"
@@ -393,7 +393,7 @@ def ovals(x, y, w, h, style=None):
         r = random(5, 40)
         stroke(0.1, 0.4)
         strokewidth(0.5)
-        fill(random(), 0.1, 0.2, 0.4)  
+        fill(random(), 0.1, 0.2, 0.4)
         oval(
             x + random(w)  - r,
             y + random(h) - r,
@@ -459,7 +459,7 @@ g.draw()
 </pre>
 <pre>text.placeholder.sentence(n=6)                # a line of n words
 </pre>
-<pre>print grid.text.placeholder.sentence() 
+<pre>print grid.text.placeholder.sentence()
 &gt;&gt;&gt; Consectetur dolore sunt nisi, amet deserunt.
 </pre>
 
@@ -547,7 +547,7 @@ s.background = color(0)
     you want to draw a gradient you’ll need to have the <a href="Colors.html">Colors</a> library
     installed.</p>
     <p>For more complex gradients, use the following method:</p>
-<pre>style.background.gradientfill(self, clr1, clr2, type="radial", 
+<pre>style.background.gradientfill(self, clr1, clr2, type="radial",
                               dx=0, dy=0, spread=1.0, angle=0, alpha=1.0)
 </pre>
 
@@ -609,24 +609,24 @@ s.background = color(0)
     style.</p>
     <p><img alt="grid12" height="170" src="../etc/lib/grid12.jpg" width="550"/></p>
 <pre>g = grid.create(3, 1, WIDTH, HEIGHT)
- 
+
 g.top.name = "header"
 g.header.split(1, 5)
 g.header.height = 40
 g.header.style = "header"
- 
+
 g.styles.default.margin = 1
 g.styles.default.background = (
-    color(0.5, 0.55, 0.6), 
+    color(0.5, 0.55, 0.6),
     color(0.4, 0.45, 0.5)
 )
- 
+
 s = g.styles.create("header", template="default")
 g.styles.header.background = (
-    color(0.45, 0.5, 0.6), 
+    color(0.45, 0.5, 0.6),
     color(0.35, 0.4, 0.5)
 )
- 
+
 g.draw()
 </pre>
 
@@ -693,8 +693,8 @@ g.proportion = "even, "fib"
     <p>When you need something more elaborate (but not that elaborate that you’re going to define
     the width and height for each row and column yourself) you can work with the custom
     <i>proportion()</i> command:</p>
-<pre>proportion(distribution="even", 
-           sorted=False, reversed=False, shuffled=False, mirrored=False, 
+<pre>proportion(distribution="even",
+           sorted=False, reversed=False, shuffled=False, mirrored=False,
            repetition=1, n=None)
 </pre>
 
@@ -705,10 +705,10 @@ g.proportion = "even, "fib"
     larger ones. The <i>repetition</i> parameter defines how many times to repeat the pattern.</p>
     <p>For example:</p>
 <pre>g = grid.create(1, 7, width=550, height=150)
-g.proportion = grid.proportion("fib", mirrored=True, repetition=2) 
+g.proportion = grid.proportion("fib", mirrored=True, repetition=2)
 g.styles.default.margin = 1
 g.styles.default.background.gradientfill(
-    color(0.5, 0.55, 0.6), 
+    color(0.5, 0.55, 0.6),
     color(0.4, 0.45, 0.5),
     type="linear",
     spread=int(g.height)
@@ -787,20 +787,20 @@ g.top.relative_height += 0.25
     other data or other visual cells.</p>
     <p><img alt="grid18" height="60" src="../etc/lib/grid18.jpg" width="550"/></p>
 <pre>downloads = {
-    "2007": [622, 3384, 3856, 2024, 2027, 1593, 
+    "2007": [622, 3384, 3856, 2024, 2027, 1593,
              1352, 1326, 1309, 4822, 2988, 1536],
     "2008": [961, 5207, 10980, 7221, 7797, 1975]
 }
- 
+
 g = grid.create(len(downloads)+1, 12+2, width=550, height=60)
 g.styles.font = "Helvetica"
 g.styles.background = color(0.5, 0.65, 0.8, 0.25)
 g.styles.fill = color(0.4)
 g.styles.margin = 1
 g.styles.padding = (4, 2, 0, 0)
- 
+
 # Table header.
-months = ["jan", "feb", "mar", "apr", "may", "jun", 
+months = ["jan", "feb", "mar", "apr", "may", "jun",
           "jul", "aug", "sep", "oct", "nov", "dec"]
 s = g.styles.create("header")
 s.font = "Georgia-Bold"
@@ -808,7 +808,7 @@ g.top.style = s.name
 g.top[0].content = "downloads"
 for i in range(12):
     g.top[i+1].content = months[i]
- 
+
 # Each year is a row.
 # The leftmost column displays the current year.
 # The rightmost column displays the total per year.
@@ -818,11 +818,11 @@ for i, year in enumerate(downloads):
     for j, monthly in enumerate(downloads[year]):
         row[j+1].content = monthly
     row.right.content = row[1:-1].sum
- 
+
 g.left.relative_width = 0.15
 g.right.relative_width = 0.1
-g.draw() 
- 
+g.draw()
+
 g.column(1).name = "jan"
 print g.jan.avg
 </pre>   
@@ -845,7 +845,7 @@ print g.jan.avg
     of text for which no room was left on the previous page.</p>
 <pre>grid =  ximport("grid")
 size(400, 400)
- 
+
 if PAGENUM == 1:
     g = grid.create(1, 2, WIDTH-40, HEIGHT-40)
     g.styles.background = color(0.5, 0.65, 0.8, 0.25)
@@ -856,7 +856,7 @@ if PAGENUM == 1:
 else:
     g = grid.load()
     g.split(1, random(1,3))
- 
+
 g.draw(20, 20)
 grid.save(g)
 </pre>   

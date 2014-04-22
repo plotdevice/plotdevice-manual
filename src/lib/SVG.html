@@ -21,9 +21,9 @@
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/svg.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/svg.zip">svg.zip</a> (400KB)<br/>
-          <i>Last updated for PlotDevice 1.9.4.5<br/></i><i>Licensed under GPL</i><br/>
+          <td><a href="http://plotdevice.io/libs/svg.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/svg.zip">svg.zip</a> (400KB)<br/>
+          <i>Last updated for NodeBox 1.9.4.5<br/></i><i>Licensed under GPL</i><br/>
           <i>Author: Tom De Smedt</i><br/>
         </td></tr></tbody></table>
 
@@ -88,7 +88,7 @@
     <p><span class="media"><img height="668" src="../etc/lib/svg-illustrator.jpg" width="634"/></span></p>
 <pre>data = open("flower.svg").read()
 paths = svg.parse(data)
- 
+
 for path in paths:
   try:
     fill(path.fill)
@@ -125,19 +125,19 @@ for path in paths:
         if prev != None:
             beginpath(prev.x, prev.y)
             curveto(
-                pt.ctrl1.x - random(30), 
+                pt.ctrl1.x - random(30),
                 pt.ctrl1.y,
-                pt.ctrl2.x, 
+                pt.ctrl2.x,
                 pt.ctrl2.y + random(30),
-                pt.x, 
+                pt.x,
                 pt.y
             )
             curveto(
-                pt.ctrl1.x + random(10), 
+                pt.ctrl1.x + random(10),
                 pt.ctrl1.y,
-                pt.ctrl2.x, 
+                pt.ctrl2.x,
                 pt.ctrl2.y - random(10),
-                pt.x + random(-20, 20), 
+                pt.x + random(-20, 20),
                 pt.y + random(-20, 20)
             )
             endpath()
@@ -160,7 +160,7 @@ for path in paths:
 <pre>def bounds(paths=[]):
    """ Returns (x, y), (width, height) bounds for a group of paths.
    """
-   if len(paths) == 0: 
+   if len(paths) == 0:
        return (0,0), (0,0)
    l = t = float("inf")
    r = b = float("-inf")

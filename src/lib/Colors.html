@@ -25,19 +25,15 @@
       </li><li><b>Depth:</b> lighting, shadows and gradients.<br/>
     </li></ul>
 
-    <p>My personal favorites are <a href="#shade">shades</a> and <a href="#shadow">shadows and
-    gradient fills</a>.</p>
-    <p class="pink_text">If you have PlotDevice 1.10 or up, the library is integrated by default as
-    the <a href="../ref/Globals.html#colors">colors</a> object.</p>
-    <h2>Previous Version Download</h2>
+    <h2>Download</h2>
 
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/colors.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/colors.zip">colors.zip</a> (1.95MB)<br/>
-          <i>Last updated for PlotDevice 1.9.4.9<br/>
-          Licensed under GPL<br/></i><i>Authors: Tom De Smedt, Frederik De Bleser</i><br/>
+          <td><a href="http://plotdevice.io/libs/colors.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/colors.zip">colors.zip</a> (1.95MB)<br/>
+          <i>Last updated for PlotDevice 0.9<br/>
+          Licensed under GPL<br/></i><i>Authors: Tom De Smedt, Frederik De Bleser, Christian Swinehart</i><br/>
         </td></tr></tbody></table>
 
     <h2>Documentation</h2>
@@ -322,8 +318,8 @@ sea.swarm(50, 50)
           </td><td>
 <pre>
 clrs = colors.list(
-    colors.purple().darken(), 
-    colors.deeppink() 
+    colors.purple().darken(),
+    colors.deeppink()
 )
 clrs += colors.violet()
 clrs.swarm(50, 50)
@@ -408,8 +404,8 @@ print clrs.context
 <pre>rule(name, clr, angle=None, contrast=0.3, flip=False)
 </pre>
 <pre>print colors.rules
-&gt;&gt;&gt; ['complement', 'complementary', 'split complementary', 'left complement', 
-&gt;&gt;&gt;  'right complement', 'analogous', 'monochrome', 'triad', 'tetrad', 
+&gt;&gt;&gt; ['complement', 'complementary', 'split complementary', 'left complement',
+&gt;&gt;&gt;  'right complement', 'analogous', 'monochrome', 'triad', 'tetrad',
 &gt;&gt;&gt;  'compound', 'flipped compound']
 </pre>
 
@@ -491,32 +487,32 @@ nofill()
 stroke(0.4, 0.5, 0)
 strokewidth(0.1)
 autoclosepath(False)
- 
+
 clr = colors.rgb(0.6, 0.4, 0, 0.5)
- 
+
 background(colors.dark(clr).darken(0.1))
 colors.shadow(alpha=0.05, blur=0.2)
- 
+
 for i in range(50):
-    
+
     # Each strand of curves has an analogous color
     # (i.e. hues that are next to each other on the color wheel).
     # This yields a very natural effect.
     stroke(clr.analog(angle=10, d=0.3))
- 
+
     x0 = WIDTH/2
     y0 = HEIGHT/2
     vx0 = random(-200, 200)
     vy0 = random(-200, 200)
-    vx1 = random(-200, 200) 
+    vx1 = random(-200, 200)
     vy1 = random(-200, 200)
     x1 = choice((-10, WIDTH))
     y1 = random(HEIGHT)
     for j in range(100):
         beginpath(x0, y0)
         curveto(
-            x0+vx0+random(80), y0+vy0+random(80), 
-            x1+vx1, y1+vy1, 
+            x0+vx0+random(80), y0+vy0+random(80),
+            x1+vx1, y1+vy1,
             x1, y1
         )
         endpath()
@@ -547,7 +543,7 @@ for i in range(50):
 <pre>clr1 = colors.rgb(0.6, 0.8, 1.0)
 clr2 = colors.rgb(0.0, 0.2, 0.4)
 g = colors.gradient(clr1, clr2, steps=60)
- 
+
 for i in range(len(g)):
     fill(g[i])
     r = 700-i*10
@@ -560,10 +556,10 @@ for i in range(len(g)):
     I don’t need to create a new gradient. The same goes for the gradient <i>spread</i>.
     Additionaly, remember that <i>g</i> is a color list so I can use the <i>reverse()</i> method:</p>
 <pre># append this to the previous code:
- 
+
 g.steps = 200
 g = g.reverse()
- 
+
 colors.shadow(blur=12, alpha=0.3)
 transform(CORNER)
 translate(WIDTH/2, HEIGHT/2)
@@ -596,7 +592,7 @@ for i in range(len(g)):
 <pre>font("Georgia", 58)
 p = textpath("gradient text is back!", 10, 50)
 g = colors.gradient(color(1,0,0.5), color(0,0.5,1))
- 
+
 colors.outline(p, g)
 </pre>
 
@@ -609,7 +605,7 @@ colors.outline(p, g)
     <p>A color range is a set of indefinite <b>colors that have their hue, saturation and
     brightness constrained</b> between a minimum and maximum value. You can use color ranges to
     quickly describe fuzzy concepts like <i>dark</i> and <i>bright</i>.</p>
-<pre>range(h=(0.0,1.0), s=(0.0,1.0), b=(0.0,1.0), a=(1.0,1.0), 
+<pre>range(h=(0.0,1.0), s=(0.0,1.0), b=(0.0,1.0), a=(1.0,1.0),
       grayscale=False, name="", length=100)
 </pre>
 
@@ -628,7 +624,7 @@ colors.outline(p, g)
 r = colors.range(h=(0,0.2))
 r.swarm(50, 50)
 print r[0:2]
-&gt;&gt;&gt; [Color(0.287, 0.276, 0.252, 1.000), 
+&gt;&gt;&gt; [Color(0.287, 0.276, 0.252, 1.000),
      Color(0.089, 0.064, 0.026, 1.000)]
 </pre>
           </td></tr></tbody></table></p>
@@ -695,7 +691,7 @@ background( yellowgreenish() )
     defined by a combination of saturation and brightness.</p>
     <p>All of the shades are in the <i>shades</i> list:</p>
 <pre>print colors.shades
-&gt;&gt;&gt; [light, dark, bright, weak, neutral, fresh, soft, hard, warm, 
+&gt;&gt;&gt; [light, dark, bright, weak, neutral, fresh, soft, hard, warm,
 &gt;&gt;&gt;  cool, intense]
 </pre>    
 
@@ -829,7 +825,7 @@ sand.swatch(2, 2, w=7, h=7, padding=1)
 sand = colors.theme()
 sand.add_range("soft ivory", weight=0.5)
 sand.add_range("dark goldenrod", weight=0.25)
-sand.add_range("warm brown", weight=0.25) 
+sand.add_range("warm brown", weight=0.25)
 sand.swatch(2, 2, w=7, h=7, padding=1)
 </pre>
           </td></tr></tbody></table></p>
@@ -848,7 +844,7 @@ sand.swatch(2, 2, w=7, h=7, padding=1)
 <pre>size(550, 275)
 background( sand() )
 colors.shadow(alpha=0.4, dx=-40, blur=10)
- 
+
 for clr in sand:
     fill(clr)
     translate(10)
@@ -970,18 +966,18 @@ for i in range(3000):
 size(400, 400)
 bg = rect(0, 0, WIDTH, HEIGHT, draw=False)
 colors.gradientpath(bg, color(0.15,0.2,0), color(0,0,0))
- 
+
 colors.shadow()
-for i in range(800):    
+for i in range(800):
     x = random(400)
-    y = random(400)    
+    y = random(400)
     # A lightsource positioned at the centre of the canvas.
-    d = colors.shader(x, y, 200, 200, angle=None, radius=150)    
+    d = colors.shader(x, y, 200, 200, angle=None, radius=150)
     # Oval become smaller when further away from the light.
     # If they become too small, don't draw them.
     r = d*40
     if r &lt; 4: continue
-    p = oval(x, y, r*2, r*2, draw=False)    
+    p = oval(x, y, r*2, r*2, draw=False)
     # Two colors for an oval gradient fill.
     # The green becomes lighter and more opaque
     # when elements are nearer to the light.
@@ -1029,7 +1025,7 @@ for i in range(800):
 </pre>
 <pre>noshadow()
 </pre>
-<pre>gradientfill(path, clr1, clr2, type="radial", 
+<pre>gradientfill(path, clr1, clr2, type="radial",
              dx=0, dy=0, spread=1.0, angle=0, alpha=1.0)
 </pre>
 
@@ -1064,11 +1060,11 @@ for i in range(100):
     # The gradient fill.
     # Notice how the second color alters in each iteration.
     colors.gradientfill(
-        path, 
-        color(0.0, 0.6, 0.9, 0.25), 
-        color(0.18+i*0.03, 0.0, 0.1+i*0.01, 0.9-i*0.02), 
-        dx=88-i*10, dy=-25+i, 
-        spread=0.83, 
+        path,
+        color(0.0, 0.6, 0.9, 0.25),
+        color(0.18+i*0.03, 0.0, 0.1+i*0.01, 0.9-i*0.02),
+        dx=88-i*10, dy=-25+i,
+        spread=0.83,
         alpha=0.25
     )
 </pre>

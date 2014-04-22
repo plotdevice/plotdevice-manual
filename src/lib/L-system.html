@@ -20,9 +20,9 @@
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/lsystem.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/lsystem.zip">L-system</a> (5KB)<br/>
-          <i>Last updated for PlotDevice 1.9.3<br/></i><i>Author: Frederik De Bleser, Mark Meyer, Tom
+          <td><a href="http://plotdevice.io/libs/lsystem.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/lsystem.zip">L-system</a> (5KB)<br/>
+          <i>Last updated for NodeBox 1.9.3<br/></i><i>Author: Frederik De Bleser, Mark Meyer, Tom
           De Smedt<br/></i>
         </td></tr></tbody></table>
 
@@ -132,7 +132,7 @@
             ‘draw three segments’.
 <pre>
 tree = lsystem.create()
-tree.rules["1"] = "FFF" 
+tree.rules["1"] = "FFF"
 tree.draw(50, 150, 1)
 </pre>
         </td></tr><tr>
@@ -141,7 +141,7 @@ tree.draw(50, 150, 1)
             Draw two segments, rotate clockwise, then draw another segment:
 <pre>
 tree = lsystem.create()
-tree.rules["1"] = "FF-F" 
+tree.rules["1"] = "FF-F"
 tree.draw(50, 150, 1)
 </pre>
         </td></tr><tr>
@@ -152,7 +152,7 @@ tree.draw(50, 150, 1)
             more generations. This is a typical example of <a href="http://en.wikipedia.org/wiki/Recursion">recursion</a>.
 <pre>
 tree = lsystem.create()
-tree.rules["1"] = "FF-1" 
+tree.rules["1"] = "FF-1"
 tree.draw(50, 150, 6)
 </pre>
         </td></tr><tr>
@@ -162,7 +162,7 @@ tree.draw(50, 150, 6)
             segment, rotate counterclockwise, and draw another segment.
 <pre>
 tree = lsystem.create()
-tree.rules["1"] = "FF-[1]++F+F" 
+tree.rules["1"] = "FF-[1]++F+F"
 tree.draw(50, 150, 6)
 </pre>
         </td></tr><tr>
@@ -171,7 +171,7 @@ tree.draw(50, 150, 6)
             More recursion on the branches:
 <pre>
 tree = lsystem.create()
-tree.rules["1"] = "FF-[1]++F+F+1" 
+tree.rules["1"] = "FF-[1]++F+F+1"
 tree.draw(50, 150, 6)
 </pre>
         </td></tr><tr>
@@ -217,43 +217,43 @@ tree.draw(50, 150, 6)
     segment (like <a href="http://organisms.be/index.php/Fortis_Tree">here</a> for example).</p>
     <p>Now let’s define our own segment command!</p>
 <pre>size(550, 400)
- 
+
 lsystem = ximport("lsystem")
 tree = lsystem.create()
- 
+
 # We'll import the Colors library to do shadows
 # and a nice gradient background.
 colors = ximport("colors")
 clr = colors.rgb(0.1, 0.095, 0.075)
 p = rect(0, 0, WIDTH, HEIGHT, draw=False)
 colors.gradientfill(p, clr, clr.lighten(0.25))
- 
+
 # Use the Supershape library to create an organic segment.
 w = h = 65
 supershape = ximport("supershape")
 leaf = supershape.path(0, 0, w, h, 3, 0.22, 0.4, 0.4)
- 
+
 # What's the total amount of time we need to draw 8 generations?
 # We can then divide the time for each segment by this number
 # to get a value from 1.0 down to 0.0
 generations = 8
 done = tree.duration(generations)
- 
+
 # Here's our own segment function.
 # We'll use the relative time to individually color segments
 # (as time progresses we adjust the opacity).
 def segment(length, generation, time, id):
-    
+
     time /= done
     colors.shadow(dx=0, dy=-10-10*time, alpha=time*0.2)
     fill(0.9, 0.9, 0.9, 0.4*time)
- 
+
     push()
     rotate(90)
     scale(time+0.3)
     drawpath(leaf.copy())
     pop()
- 
+
 tree.segmentlength = w - 15
 tree.segment = segment
 tree.draw(275, 400, generations, time=done)
@@ -283,7 +283,7 @@ def draw():
 def wind(lsystem, generation, rule, angle, length, time):
     d = sin(FRAME*0.1) * 2
     rotate(d)
-    
+
 tree.commands["w"] = wind
 </pre>
 

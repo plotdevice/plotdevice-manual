@@ -21,8 +21,8 @@
       <tbody>
         <tr>
           <td><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/>
-          </td><td><a href="http://nodebox.net/code/data/media/database-ppc.zip">PowerPC</a> | <a href="http://nodebox.net/code/data/media/database-intel.zip">Intel</a> (140KB)<br/>
-          <i>Last updated for PlotDevice 1.9.2<br/></i><i>Author: Tom De Smedt</i><br/>
+          </td><td><a href="http://plotdevice.io/libs/database.zip">database.zip</a> (140KB)<br/>
+          <i>Last updated for NodeBox 1.9.2<br/></i><i>Author: Tom De Smedt</i><br/>
         </td></tr></tbody></table>
 
     <h2>Documentation</h2>
@@ -137,8 +137,8 @@ pages = book.pages # this is even easier
 <pre>book = database.create("book")
 book.create_table("pages", ["title", "text", "image", "pagenumber"])
 book.pages.append({
-    "title": "Chapter One", 
-    "text": "A short intro on databases in PlotDevice", 
+    "title": "Chapter One",
+    "text": "A short intro on databases in PlotDevice",
     "pagenumber": 2
 })
 </pre>
@@ -155,7 +155,7 @@ book.pages.append({
     <p>The <i>remove()</i> method deletes the record with the given <i>id</i> from the table. The
     <i>operator</i> parameter allows you to specify a different comparison than =, &gt;= or &lt;
     for example. The <i>key</i> parameter allows you to specify a different field to search in.</p>
-<pre># Delete the record with id 2: 
+<pre># Delete the record with id 2:
 book.pages.remove(2)
 # Delete all pages beyond the first:
 book.pages.delete(2, comparison="&gt;=", key="pagenumber")
@@ -187,8 +187,8 @@ for record in r:
   print record
 &gt;&gt;&gt; (1, u'Chapter One', u'A short intro on databases in PlotDevice', None, 2)
 &gt;&gt;&gt; (2, u'Chapter Two', u'', None, 3)
- 
-# As you see the returned value is a list of tuple-values, 
+
+# As you see the returned value is a list of tuple-values,
 # which is easy to unpack:
 for id, title, text, image, pagenumber  in r:
   print title

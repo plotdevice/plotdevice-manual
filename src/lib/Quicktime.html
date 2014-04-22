@@ -15,10 +15,10 @@
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/database.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/quicktime.zip">quicktime.zip</a>
+          <td><a href="http://plotdevice.io/libs/quicktime.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/quicktime.zip">quicktime.zip</a>
           (1.5MB)<br/>
-          <em>Last updated for PlotDevice 1.9.0<br/></em><em>Author: Tom De Smedt</em><br/>
+          <em>Last updated for NodeBox 1.9.0<br/></em><em>Author: Tom De Smedt</em><br/>
         </td></tr></tbody></table>
 
     <h2>Documentation</h2>
@@ -98,10 +98,10 @@ def draw():
     and effects to it:</p>
 <pre>coreimage = ximport("coreimage")
 quicktime = ximport("quicktime")
- 
+
 movie = quicktime.movie("twisted_world.mp4")
 frame = movie.frame(1.0)
- 
+
 canvas = coreimage.canvas(movie.width, movie.height)
 l = canvas.layer(frame)
 l.filter_zoomblur()

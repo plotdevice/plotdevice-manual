@@ -27,7 +27,7 @@
           <td><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/>
           </td><td>
             <p><b>Application</b>: <a href="http://nodebox.net/perception">http://nodebox.net/perception</a><br/>
-            <b>Library</b>: <a href="http://nodebox.net/code/data/media/perception.zip">perception.zip</a> (250KB)<br/>
+            <b>Library</b>: <a href="http://plotdevice.io/libs/perception.zip">perception.zip</a> (250KB)<br/>
             <b>Dependencies:</b> <a href="Graph.html">Graph</a> library (latest version)<i><br/>
             Beta version<br/></i><i>Licensed under GPL</i><br/>
             <i>Authors: Tom De Smedt, Frederik De Bleser<br/></i></p>
@@ -368,8 +368,8 @@ print g.hyponyms()
 print g.sun.properties()
 &gt;&gt;&gt; [yellow, red, hot, round, bright]
 print g.properties()
-&gt;&gt;&gt; [yellow, red, hot, bright, round, cyan, white, healthy, slow, blue, 
-     orange, intense, passionate, exotic, mysterious, dangerous, organic, 
+&gt;&gt;&gt; [yellow, red, hot, bright, round, cyan, white, healthy, slow, blue,
+     orange, intense, passionate, exotic, mysterious, dangerous, organic,
      dry, fast, chaotic, blond, important, warm]
 </pre>
 
@@ -405,7 +405,7 @@ print [node.id for node in g.sun.properties()]
     <p>The <i>range()</i> command returns a list of concepts that are of the given <i>type</i>. The
     <i>type</i> is expected to be a singular word, so you query for a <i>movie range</i> instead of
     a <i>movies range</i>. For example:</p>
-<pre>print perception.range("movie") 
+<pre>print perception.range("movie")
 &gt;&gt;&gt; ['Conan The Barbarian', 'Dawn of the Dead', 'Star Wars', 'The Matrix']
 </pre>
 
@@ -458,7 +458,7 @@ print perception.range("font")
     concept. The <i>index.sort_by_distance()</i> command returns the list of <i>concepts</i> sorted
     by distance from the <i>root</i> concept.</p>
     <p>For example, which is darker: being happy or being sad?</p>
-<pre>print perception.index.nearest("dark", ["happy", "sad"]) 
+<pre>print perception.index.nearest("dark", ["happy", "sad"])
 &gt;&gt;&gt; sad
 </pre>
 
@@ -534,10 +534,10 @@ print perception.solver.find("dark", concepts)
     want. In a hypothetical example, you could redefine the workings of the solver as follows:<br/></p>
 <pre>def my_analysis(graph):
     # Our own custom analysis!
-    # It is expected to yield a list of the nodes 
+    # It is expected to yield a list of the nodes
     # we find interesting in the graph.
     return graph.nodes_by_betweenness()[0:1]
- 
+
 perception.graph.add_method("my_analysis", my_analysis)
 perception.solver.index = "properties"
 perception.solver.method = "my_analysis"

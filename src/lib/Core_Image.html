@@ -19,10 +19,10 @@
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/coreimage.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/coreimage.zip">coreimage.zip</a>
+          <td><a href="http://plotdevice.io/libs/coreimage.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/coreimage.zip">coreimage.zip</a>
           (1.4MB)<br/>
-          <i>Last updated for PlotDevice 1.9.5<br/>
+          <i>Last updated for NodeBox 1.9.5<br/>
           Licensed under GPL<br/></i><i>Author: Tom De Smedt</i><br/>
         </td></tr></tbody></table>
 
@@ -209,17 +209,17 @@ def fractal(x, y, depth=64):
     o = complex(0, 0)
     for i in range(depth):
         if abs(o) &lt;= 2: o = o*o + z
-        else: 
+        else:
             return i
     return 0 #default, black
- 
+
 pixels = []
 w = h = 150
 for i in range(w):
     for j in range(h):
         v = fractal(float(i)/w, float(j)/h)
         pixels.append(color(v/10.0, v/20.0, v/10.0))
- 
+
 l = canvas.append(pixels, w, h)
 </pre>
           </td></tr></tbody></table></p>
@@ -283,7 +283,7 @@ print l.is_file
 <pre>
 for i in range(20):
     canvas.append("lily.tif")
- 
+
 for layer in canvas:
     layer.x = random(canvas.w)
     layer.y = random(canvas.h)
@@ -656,7 +656,7 @@ l.blend_color(50)
           </td></tr></tbody></table></p>
     <p> </p>
     <p>Use the <i>layer.blendmode</i> property to check what blending mode the layer is using.</p>
-<pre>print l.blendmode 
+<pre>print l.blendmode
 &gt;&gt;&gt; multiply
 </pre>
 
@@ -847,7 +847,7 @@ l.filter("zoomblur", dx=25)
     Distorts the base layer and copies that on a plane. Parameters are <i>dx0</i>, <i>dy0</i>,
     <i>dx1</i>, <i>dy1</i>, <i>dx2</i>, <i>dy2</i>, <i>dx3</i>, <i>dy3</i> representing the corners
     of the layer to distort.</p>
-<pre>layer.filter("perspectivetile", dx0=0, dy0=0, dx1=0, dy1=0, 
+<pre>layer.filter("perspectivetile", dx0=0, dy0=0, dx1=0, dy1=0,
                                 dx2=0, dy2=0, dx3=0, dy3=0)
 </pre>
 
@@ -856,7 +856,7 @@ l.filter("zoomblur", dx=25)
     color). Parameters are <i>dx</i>, <i>dy</i>, <i>radius</i> between 0.0 and 300.0,
     <i>x_scale</i> between 0.0 and 100.0, <i>x_angle</i>, <i>x_width</i> and <i>epsilon</i> between
     -8.0 and 8.0.</p>
-<pre>layer.filter("starshine", dx=0, dy=0, radius=25, 
+<pre>layer.filter("starshine", dx=0, dy=0, radius=25,
                           x_scale=10, x_angle=0, x_width=0.5, epsilon=-5.0)
 </pre>
 
@@ -898,8 +898,8 @@ l.filter("zoomblur", dx=25)
     and 1000 represting the height of the light source, <i>dx1</i> and <i>dy1</i> representing
     where the light is shining, <i>brightness</i> between 0.0 and 10.0, <i>concentration</i>
     between 0.0 and 1.0 representing the cone of the light beam and <i>color</i>.</p>
-<pre>layer.filter("lighting", dx0=100, dy0=100, dz0=300, dx1=0, dy1=0, 
-                         brightness=3.0, concentration=0.3, 
+<pre>layer.filter("lighting", dx0=100, dy0=100, dz0=300, dx1=0, dy1=0,
+                         brightness=3.0, concentration=0.3,
                          color=None, helper=False)
 </pre>
 
@@ -1147,7 +1147,7 @@ l.filter("shading", dx=31, radius=20.0, texture=t)
 <pre>
 canvas.append(color(0))
 l = canvas.append("leaf.jpg")
-l.filter("lineoverlay", noise=0.08, sharpness=0.1, 
+l.filter("lineoverlay", noise=0.08, sharpness=0.1,
     threshold=0.3, contrast=2, intensity=1)
 </pre>
         </td></tr><tr>
@@ -1196,13 +1196,13 @@ l.filter("edges", intensity=2.0)
     <p>All the information about filters and their parameters is stored in the canvas renderer.
     Take a look at:</p>
 <pre>print canvas.renderer.aliases.keys()
-&gt;&gt;&gt; ['starshine', 'shading', 'bumpdistortion', 'zoomblur', 'motionblur', 
-&gt;&gt;&gt;  'levels', 'twirl', 'perspectivetile', 'lighting', 
+&gt;&gt;&gt; ['starshine', 'shading', 'bumpdistortion', 'zoomblur', 'motionblur',
+&gt;&gt;&gt;  'levels', 'twirl', 'perspectivetile', 'lighting',
 &gt;&gt;&gt;  'bloom', 'kaleidoscope']
- 
+
 print canvas.renderer.aliases["levels"]
 &gt;&gt;&gt; CIColorMatrix
- 
+
 print canvas.renderer.filters["CIColorMatrix"]
 &gt;&gt;&gt; {'a': 1.0, 'interface': False, 'r': 1.0, 'b': 1.0, 'g': 1.0}
 </pre>
@@ -1325,7 +1325,7 @@ canvas.export("flower.jpg", compression=0.6)
 canvas = coreimage.canvas(150, 150)
 l = canvas.append("leaf.jpg")
 l = canvas.append("lily.tif")
-canvas.export("flower.tif", 
+canvas.export("flower.tif",
               cmyk=True, compression=True)
 </pre>
         </td></tr><tr>
@@ -1487,7 +1487,7 @@ speed(30)
 def setup():
     global cache
     cache = None
- 
+
 def draw():
     canvas = coreimage.canvas(WIDTH, HEIGHT)
     global cache
@@ -1496,11 +1496,11 @@ def draw():
     else:
         cache = cache.render()
         cache = canvas.append(cache)
-        cache.filter("twirl", 
+        cache.filter("twirl",
                      radius=random(30,40),
-                     dx=random(-40,40), 
+                     dx=random(-40,40),
                      dy=random(-40,40))
-    
+
     canvas.draw()
 </pre>
           </td></tr></tbody></table></p>

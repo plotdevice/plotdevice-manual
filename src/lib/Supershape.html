@@ -18,10 +18,10 @@
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/supershape.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/supershape.zip">supershape.zip</a>
+          <td><a href="http://plotdevice.io/libs/supershape.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/supershape.zip">supershape.zip</a>
           (11KB)<br/>
-          <i>Last updated for PlotDevice 1.9.4<br/></i><i>Author: Johan Gielis, Frederik De
+          <i>Last updated for NodeBox 1.9.4<br/></i><i>Author: Johan Gielis, Frederik De
           Bleser</i><br/>
         </td></tr></tbody></table>
 
@@ -62,7 +62,7 @@
 <pre>nofill()
 stroke(0)
 strokewidth(0.5)
- 
+
 x = y = 100
 w = h = 100
 p = supershape.path(x, y, w, h, 5, 0.3, 0.3, 0.3)
@@ -86,10 +86,10 @@ drawpath(p)
     and circles to <a href="../ref/Typography.html#textpath()">texpaths</a> and <a href="SVG.html">SVG</a>.<br/></p>
 <pre>nofill()
 stroke(0)
- 
+
 font("Times", 100)
 path = textpath("FUN!", 100, 150)
- 
+
 for contour in path.contours:
   contour = supershape.transform(contour, 50, 0.25, 3.5, 3.5)
   drawpath(contour)

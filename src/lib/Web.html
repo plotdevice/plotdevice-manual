@@ -27,9 +27,9 @@
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/web.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/web-1.9.4.6.zip">web.zip</a> (390KB)<br/>
-          <i>Last updated for PlotDevice 1.9.4.6<br/>
+          <td><a href="http://plotdevice.io/libs/web.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/web.zip">web.zip</a> (390KB)<br/>
+          <i>Last updated for NodeBox 1.9.4.6<br/>
           Licensed under GPL<br/></i><i>Author: Tom De Smedt</i><br/>
         </td></tr></tbody></table>
 
@@ -159,10 +159,10 @@
 <pre># Download an image from the PlotDevice Gallery.
 url = "http://nodebox.net/code/data/media/twisted-final.jpg"
 img = web.download(url)
- 
+
 # Display the image data in PlotDevice.
 image(None, 0, 0, data=img)
- 
+
 # Write the image data to a file.
 file = open("twisted.jpg", "w")
 file.write(img)
@@ -215,13 +215,13 @@ for i in range(10):
     <p>You can get the meta information in the HTML header with the returned object’s <i>title</i>,
     <i>description</i> and <i>keywords</i> properties:</p>
 <pre>html = web.page.parse("http://nodebox.net")
- 
+
 print html.description
-&gt;&gt;&gt; PlotDevice is a Mac OS X application that lets you create 2D visuals 
-&gt;&gt;&gt; (static, animated or interactive) using Python programming code 
-&gt;&gt;&gt; and export them as a PDF or a QuickTime movie. PlotDevice is free 
+&gt;&gt;&gt; PlotDevice is a Mac OS X application that lets you create 2D visuals
+&gt;&gt;&gt; (static, animated or interactive) using Python programming code
+&gt;&gt;&gt; and export them as a PDF or a QuickTime movie. PlotDevice is free
 &gt;&gt;&gt; and well-documented.
- 
+
 print html.keywords
 &gt;&gt;&gt;[u'PlotDevice', u'Home']
 </pre>
@@ -231,12 +231,12 @@ print html.keywords
     domains/websites.</p>
 <pre>html = web.page.parse("http://nodebox.net/code/index.php/About")
 print html.links()
-&gt;&gt;&gt; [u'http://research.nodebox.net', 
-&gt;&gt;&gt;  u'http://www.opensource.org/licenses/mit-license.php', 
-&gt;&gt;&gt;  u'http://www.python.org/', u'http://bert.debruijn.be/kgp/', 
-&gt;&gt;&gt;  u'http://diveintopython.org/xml_processing/', 
-&gt;&gt;&gt;  u'http://processing.org', 
-&gt;&gt;&gt;  u'http://www.freelists.org/archives/the_posthumans/', 
+&gt;&gt;&gt; [u'http://research.nodebox.net',
+&gt;&gt;&gt;  u'http://www.opensource.org/licenses/mit-license.php',
+&gt;&gt;&gt;  u'http://www.python.org/', u'http://bert.debruijn.be/kgp/',
+&gt;&gt;&gt;  u'http://diveintopython.org/xml_processing/',
+&gt;&gt;&gt;  u'http://processing.org',
+&gt;&gt;&gt;  u'http://www.freelists.org/archives/the_posthumans/',
 &gt;&gt;&gt;  u'http://research.nodebox.net'
 &gt;&gt;&gt; ]
 </pre>
@@ -244,29 +244,29 @@ print html.links()
     <p>The <i>find_all()</i> method returns a list of specific tags. The <i>find()</i> method just
     returns the first tag:</p>
 <pre>html = web.page.parse("http://nodebox.net/")
- 
+
 print html.find("title").string
 &gt;&gt;&gt; PlotDevice | Home
- 
+
 titles = html.find_all("h2")
 for title in titles:
     print title.string
 &gt;&gt;&gt; News
-&gt;&gt;&gt; Current projects 
+&gt;&gt;&gt; Current projects
 &gt;&gt;&gt; Gallery favorites
- 
+
 content = html.find(id="content")
 print web.html.plain(content)
-&gt;&gt;&gt; Welcome to PlotDevice PlotDevice is a Mac OS X application 
-&gt;&gt;&gt; that lets you create 2D visuals (static, animated or interactive) 
-&gt;&gt;&gt; using Python programming code and export them as a PDF or 
+&gt;&gt;&gt; Welcome to PlotDevice PlotDevice is a Mac OS X application
+&gt;&gt;&gt; that lets you create 2D visuals (static, animated or interactive)
+&gt;&gt;&gt; using Python programming code and export them as a PDF or
 &gt;&gt;&gt; a QuickTime movie. PlotDevice is free and well-documented.
-&gt;&gt;&gt; Read more 
-&gt;&gt;&gt; 
+&gt;&gt;&gt; Read more
+&gt;&gt;&gt;
 &gt;&gt;&gt; Download PlotDevice for Mac OS X (version 1.8.5) Universal Binary
-&gt;&gt;&gt; 
+&gt;&gt;&gt;
 &gt;&gt;&gt; Latest updates:
-&gt;&gt;&gt; 
+&gt;&gt;&gt;
 &gt;&gt;&gt; * Interactivity
 &gt;&gt;&gt; * Stop running scripts by hitting command-dot.
 &gt;&gt;&gt; ...
@@ -277,7 +277,7 @@ print web.html.plain(content)
     <i>find()</i> and <i>find_all()</i> too. Alternatively, you can also find tags more directly,
     for example: <i>html.body.p</i> returns a list of all p tags.</p>
 <pre>html = web.page.parse("http://nodebox.net/")
- 
+
 list = html.find(id="content").find("ul")
 print web.html.plain(list)
 &gt;&gt;&gt; * Interactivity
@@ -285,7 +285,7 @@ print web.html.plain(list)
 &gt;&gt;&gt; * Transparent PDFs with the background() command.
 &gt;&gt;&gt; * Fast, integrated path mathematics .
 &gt;&gt;&gt; * Store libaries centrally in the Application Support folder.
- 
+
 # These statements retrieve exactly the same.
 list = html.body(id="content")[0].ul
 list = html.body.ul
@@ -304,7 +304,7 @@ html.body.a["href"] # the first link's href attribute
 web.html.replace_entities(unicode, placeholder=" ")
 </pre>
 <pre># Removes all tags from HTML except those in the exclude list.
-web.html.strip_tags(html, exclude=[], linebreaks=False, 
+web.html.strip_tags(html, exclude=[], linebreaks=False,
                     blocks="\n", breaks="\n", columns="\n")
 </pre>
 <pre>web.html.strip_javascript(html)
@@ -360,10 +360,10 @@ print web.yahoo.license_key()
 <pre>results = web.yahoo.search("plotdevice", start=1, count=5, cached=False)
 for item in results:
     print item.title
-&gt;&gt;&gt; PlotDevice | Home 
-&gt;&gt;&gt; PlotDevice | Features 
-&gt;&gt;&gt; visualcomplexity.com | PlotDevice 
-&gt;&gt;&gt; PlotDevice - Wikipedia, the free encyclopedia 
+&gt;&gt;&gt; PlotDevice | Home
+&gt;&gt;&gt; PlotDevice | Features
+&gt;&gt;&gt; visualcomplexity.com | PlotDevice
+&gt;&gt;&gt; PlotDevice - Wikipedia, the free encyclopedia
 &gt;&gt;&gt; Nodebox - SWiK
 </pre>
 
@@ -397,9 +397,9 @@ for item in results:
     <i>fruit</i>. The <i>yahoo.search()</i> command has an optional <i>context</i> parameter which
     you can supply a description of what you mean exactly with <i>apple</i>:</p>
 <pre>ctx = '''
-The apple tree was perhaps the earliest tree to be cultivated, 
-and apples have remained an important food in all cooler climates. 
-To a greater degree than other tree fruit, except possibly citrus, 
+The apple tree was perhaps the earliest tree to be cultivated,
+and apples have remained an important food in all cooler climates.
+To a greater degree than other tree fruit, except possibly citrus,
 apples store for months while still retaining their nutritive value.
 We are not looking for a company named Apple.
 '''
@@ -512,14 +512,14 @@ for word, weight in sorted:
       </li><li><i>item.author</i>: the author of the news item
     </li></ul><br/>
 <pre>newsfeed = web.newsfeed.parse"http://www.whitehouse.gov/rss/news.xml")
- 
+
 print "Channel:", newsfeed.title
 print "Channel description:", newsfeed.description
- 
+
 for item in newsfeed.items:
     print "Title:", item.title
     print "Link:", item.link
-    print "Description", item.description    
+    print "Description", item.description
     print "Date:", item.date
     print "Author:", item.author
 </pre>
@@ -584,12 +584,12 @@ print article.title
 print article.links
 &gt;&gt;&gt; PlotDevice
 &gt;&gt;&gt; [u'2007', u'2D computer graphics', u'Adobe Photoshop', u'Animation',
-&gt;&gt;&gt;  u'CMYK', u'Computer animation', u'Core Image', u'DrawBot', 
-&gt;&gt;&gt;  u'February 27', u'Graphic design', u'HSV color space', 
-&gt;&gt;&gt;  u'MIT License', u'Mac OS X', u'OpenGL', u'Portable Document Format', 
-&gt;&gt;&gt;  u'PostScript', u'Processing (programming language)', 
-&gt;&gt;&gt;  u'Python (programming language)', u'QuickTime', u'RGB', u'SVG', 
-&gt;&gt;&gt;  u'WordNet', u'alpha transparency', u'artificial intelligence', 
+&gt;&gt;&gt;  u'CMYK', u'Computer animation', u'Core Image', u'DrawBot',
+&gt;&gt;&gt;  u'February 27', u'Graphic design', u'HSV color space',
+&gt;&gt;&gt;  u'MIT License', u'Mac OS X', u'OpenGL', u'Portable Document Format',
+&gt;&gt;&gt;  u'PostScript', u'Processing (programming language)',
+&gt;&gt;&gt;  u'Python (programming language)', u'QuickTime', u'RGB', u'SVG',
+&gt;&gt;&gt;  u'WordNet', u'alpha transparency', u'artificial intelligence',
 &gt;&gt;&gt;  u'collage', u'graphic design'
 &gt;&gt;&gt; ]
 </pre>                                                                                                      
@@ -600,7 +600,7 @@ print article.links
     Furthermore, a paragraph has a number of  properties. This code snippet loops through all
     the paragraphs:</p>
 <pre>article = web.wikipedia.search("plotdevice")
-for paragraph in article.paragraphs:    
+for paragraph in article.paragraphs:
     # A paragraph's depth determines
     # if it's a subparagraph or a top-level paragraph.
     if paragraph.depth &lt;= 1:
@@ -668,17 +668,17 @@ for img in article.images:
 <pre># 1) Get the image filename from the article.
 article = web.wikipedia.search("computer")
 img = article.images[0]
- 
+
 # 2) Get the HTML for the Wikipedia page displaying the full-size image
 img = img.path.replace(" ", "_")
 html = web.page.parse("http://en.wikipedia.org/wiki/Image:"+img)
- 
+
 # 3) Find the link in the HTML pointing to the image file.
 for a in html.find_all("a"):
     if a.has_key("href") and a["href"].endswith(img):
         img = a["href"]
         break
- 
+
 # 4) Download the image link.
 #    Pass the downloaded data to the image() command.
 img = web.download(img)
@@ -714,16 +714,16 @@ for row in table:
     <p>Text blocks in a Wikipedia paragraph can contain numerous references to websites, journal
     and footnotes. They are marked as a number between square brackets, e.g. [15].</p>
     <p>For example:</p>
-<pre>&gt;&gt;&gt; A key component common to all CPUs is the program counter, 
-&gt;&gt;&gt; a special memory cell (a register) that keeps track of which 
+<pre>&gt;&gt;&gt; A key component common to all CPUs is the program counter,
+&gt;&gt;&gt; a special memory cell (a register) that keeps track of which
 &gt;&gt;&gt; location in memory the next instruction is to be read from. [11]
 </pre>
 
     <p>corresponds to <i>article.references[10]</i> - keeping in mind that list indices start from
     0:</p>
 <pre>print article.references[10]
-&gt;&gt;&gt; Instructions often occupy more than one memory address, 
-&gt;&gt;&gt; so the program counters usually increases by the number of 
+&gt;&gt;&gt; Instructions often occupy more than one memory address,
+&gt;&gt;&gt; so the program counters usually increases by the number of
 &gt;&gt;&gt; memory locations required to store one instruction
 </pre>
 
@@ -754,7 +754,7 @@ language = "fr"
 if article.translations.has_key(language):
     translation = article.translations[language]
     article = web.wikipedia.search(translation, language)
-    print article.title 
+    print article.title
 &gt;&gt;&gt; Ordinateur
 </pre>
 
@@ -768,7 +768,7 @@ if article.translations.has_key(language):
 
     <p>A number of commands in the library can help you find out how to display content from
     Wikipedia in PlotDevice. There are commands to draw lists, math equations and tables.</p>
-<pre># Returns True if a given text block str in a paragraph 
+<pre># Returns True if a given text block str in a paragraph
 # is preformatted text, e.g. a programming code example.
 web.wikipedia.is_preformatted(str)
 </pre>
@@ -819,15 +819,15 @@ web.wikipedia.draw_table(table, x, y, w, padding=5)
 <pre>images = web.morguefile.search("leaf", max=10)
 for img in images:
     print img.name, img.views
-&gt;&gt;&gt; IMG_1662_d.JPG 
-&gt;&gt;&gt; fedegrafo_100_0221.jpg 
-&gt;&gt;&gt; cha827.jpg 
-&gt;&gt;&gt; Filiford_P1010003.JPG 
-&gt;&gt;&gt; IMG_8336.jpg 
-&gt;&gt;&gt; CIMG0012_s.JPG 
-&gt;&gt;&gt; Target_spot_disease_on_maple.JPG 
-&gt;&gt;&gt; IMG_1664.JPG 
-&gt;&gt;&gt; bumpy_leaf.JPG 
+&gt;&gt;&gt; IMG_1662_d.JPG
+&gt;&gt;&gt; fedegrafo_100_0221.jpg
+&gt;&gt;&gt; cha827.jpg
+&gt;&gt;&gt; Filiford_P1010003.JPG
+&gt;&gt;&gt; IMG_8336.jpg
+&gt;&gt;&gt; CIMG0012_s.JPG
+&gt;&gt;&gt; Target_spot_disease_on_maple.JPG
+&gt;&gt;&gt; IMG_1664.JPG
+&gt;&gt;&gt; bumpy_leaf.JPG
 &gt;&gt;&gt; Aztec_Grass.JPG
 </pre>
 
@@ -899,8 +899,8 @@ print img.author, img.path
 <pre>themes = web.kuler.search("banana")
 for r, g, b in themes[0]:
     print r, g, b
- 
-# The kuler.preview() command gives you an idea of the theme's colors. 
+
+# The kuler.preview() command gives you an idea of the theme's colors.
 web.kuler.preview(themes[0])
 </pre>                                                                               
 
@@ -1020,35 +1020,35 @@ print "done!"
     Yahoo! and when you click on a link, it displays the links in that web page, and so on.</p>
 <pre>from math import sin
 import web
- 
+
 # Get links from Yahoo!
 links = web.yahoo.search("plotdevice")
 from_yahoo = True
 retrieving = None
- 
+
 speed(20)
 def draw():
-    
+
     global links, from_yahoo, retrieving
-    
+
     background(0.2, 0.2, 0.15)
     y = 100
     fontsize(15)
-    
+
     # Traverse the current list of links.
     for link in links:
-        
+
         # Wave each line of text horizontally.
         x = 100 + sin(FRAME*y/5000.0)*50
-        
+
         # Yahoo!, our starting point,
         # has links in a slightly different format.
         if from_yahoo:
             link = link.url
-        
+
         # A link looks grey by default...
         fill(0.8)
-        
+
         # unless the mouse is hovering over it...
         if x &lt; MOUSEX &lt; x+textwidth(link) and \
            y-fontsize() &lt; MOUSEY &lt; y:
@@ -1059,11 +1059,11 @@ def draw():
             # start a download of the link in the background.
             if mousedown and retrieving == None:
                 retrieving = web.page.parse(link, asynchronous=True)
-        
+
         # Draw the link to the screen.
         text(link, x, y)
         y += fontsize() * 1.5
- 
+
     # If we are downloading something
     # and the download is ready,
     # parse that web page and get links from it.
@@ -1073,7 +1073,7 @@ def draw():
         from_yahoo = False
         # We are done downloading.
         retrieving = None
-    
+
     # We are busy downloading.
     if retrieving != None and not retrieving.done:
         fill(1, 1, 0)
@@ -1095,7 +1095,7 @@ def draw():
     <p>To clear individual caches:</p>
 <pre>web.yahoo.clear_cache()
 web.wikipedia.clear_cache()
-web.morguefile.clear_cache() 
+web.morguefile.clear_cache()
 # etc... clear_cache() is available for each service in the library
 </pre>                
     <hr size="2" width="100%"/>

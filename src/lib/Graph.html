@@ -30,9 +30,9 @@
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/graph.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/graph.zip">graph.zip</a> (32KB)<br/>
-          <i>Last updated for PlotDevice 1.9.5.6<br/></i><i>Licensed under GPL</i><br/>
+          <td><a href="http://plotdevice.io/libs/graph.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/graph.zip">graph.zip</a> (32KB)<br/>
+          <i>Last updated for PlotDevice 0.9<br/></i><i>Licensed under GPL</i><br/>
           <i>Author: Tom De Smedt<br/></i>
         </td></tr></tbody></table>
 
@@ -362,7 +362,7 @@ g.draw()
           </td><td><b>root</b>: a style that marks the root node in the graph.<br/>
         </td></tr></tbody></table></p>
 <pre>print graph.styles.keys()
-&gt;&gt;&gt; ['default', 'light', 'back', 'marked', 'dark', 
+&gt;&gt;&gt; ['default', 'light', 'back', 'marked', 'dark',
 &gt;&gt;&gt;  'important', 'highlight', 'root']
 </pre>
 
@@ -414,7 +414,7 @@ s.fill = color(1, 0, 0.25, 0.75)
 </pre>
 
     <p>The default rules in the guide are:</p>
-<pre>{ "light"     : lambda graph, node: graph.root in node.links 
+<pre>{ "light"     : lambda graph, node: graph.root in node.links
   "dark"      : lambda graph, node: len(node.links) &gt; 4
   "important" : lambda graph, node: node.weight &gt; 0.75
   "root"      : lambda graph, node: node == graph.root
@@ -438,7 +438,7 @@ s.fill = color(1, 0, 0.25, 0.75)
         for e in graph.edges: e.length = 4.0
     if len(node.links) == 1:
         graph.edge(node.id, node.links[0].id).length = 0.2
- 
+
 graph.styles.guide.append("cluster", cluster)
 </pre>
 
@@ -626,7 +626,7 @@ print path
     recalculate the proximity values:</p>
 <pre>graph.betweenness_centrality(directed=False)
 </pre>
-<pre>graph.eigenvector_centrality(reversed=True, rating={}, 
+<pre>graph.eigenvector_centrality(reversed=True, rating={},
                              start=None, iterations=100, tolerance=0.0001)
 </pre>
 
@@ -670,15 +670,15 @@ print path
     id. For example:</p>
 <pre>graph =  ximport("graph")
 g = graph.create(iterations=500, distance=0.8)
- 
+
 g.add_node("PlotDevice")
 g.add_node("Linguistics", category="library")
 g.add_node("WordNet", category="library")
- 
+
 g.add_edge("Linguistics", "PlotDevice", label="related-to")
 g.add_edge("WordNet", "PlotDevice", label="related-to")
 g.add_edge("WordNet", "Linguistics", label="part-of")
- 
+
 # subgraph containing only library nodes:
 g = g.sub(lambda node: node.category == "library", distance=0)
 g.distance = 1.4

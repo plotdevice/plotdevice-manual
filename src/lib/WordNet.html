@@ -18,9 +18,9 @@
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/wordnet2.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/wordnet.zip">wordnet.zip</a> (11.2MB)<br/>
-          <i>Last updated for PlotDevice 1.9.2</i>
+          <td><a href="http://plotdevice.io/libs/wordnet2.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/wordnet.zip">wordnet.zip</a> (11.2MB)<br/>
+          <i>Last updated for NodeBox 1.9.2</i>
         </td></tr></tbody></table>
 
     <p> </p>
@@ -40,7 +40,7 @@
     <p>WordNet describes semantic relations between synonym sets.</p>
     <p>The <i>noun_gloss()</i> command returns the dictionary description of a word:</p>
 <pre>print wordnet.noun_gloss("book")
-&gt;&gt;&gt; a written work or composition that has been published (printed on pages 
+&gt;&gt;&gt; a written work or composition that has been published (printed on pages
 &gt;&gt;&gt; bound together); "I am reading a good book on economics"
 </pre>
 
@@ -60,8 +60,8 @@
 
     <p>The <i>noun_hyponym()</i> command returns examples of the given word:</p>
 <pre>print wordnet.noun_hyponym("vehicle")
-&gt;&gt;&gt; [['bumper car', 'Dodgem'], ['craft'], ['military vehicle'], ['rocket', 
-&gt;&gt;&gt;  'projectile'], ['skibob'], ['sled', 'sledge', 'sleigh'], ['steamroller', 
+&gt;&gt;&gt; [['bumper car', 'Dodgem'], ['craft'], ['military vehicle'], ['rocket',
+&gt;&gt;&gt;  'projectile'], ['skibob'], ['sled', 'sledge', 'sleigh'], ['steamroller',
 &gt;&gt;&gt;  'road roller'], ['wheeled vehicle']]
 </pre>
 <pre>print wordnet.noun_hyponym("tree", sense=1)
@@ -78,17 +78,17 @@ print wordnet.noun_hypernym("earth", sense=1)
     <p>You can also execute a deep query with <i>noun_hypernyms()</i> and <i>noun_hyponyms()</i>.
     Notice how returned values become more and more abstract:</p>
 <pre>print wordnet.noun_hypernyms("vehicle", sense=0)
-&gt;&gt;&gt; [['vehicle'], ['conveyance', 'transport'], 
-&gt;&gt;&gt;  ['instrumentality', 'instrumentation'], 
-&gt;&gt;&gt;  ['artifact', 'artefact'], ['whole', 'unit'], 
-&gt;&gt;&gt;  ['object', 'physical object'], 
+&gt;&gt;&gt; [['vehicle'], ['conveyance', 'transport'],
+&gt;&gt;&gt;  ['instrumentality', 'instrumentation'],
+&gt;&gt;&gt;  ['artifact', 'artefact'], ['whole', 'unit'],
+&gt;&gt;&gt;  ['object', 'physical object'],
 &gt;&gt;&gt;  ['physical entity'], ['entity']]
 </pre>
 
     <p>The <i>noun_holonym()</i> command returns components of the given word:</p>
 <pre>print wordnet.noun_holonym("computer")
-&gt;&gt;&gt; [['busbar', 'bus'], ['cathode-ray tube', 'CRT'], 
-&gt;&gt;&gt;  ['central processing unit', 'CPU', 'C.P.U.', 'central processor', 
+&gt;&gt;&gt; [['busbar', 'bus'], ['cathode-ray tube', 'CRT'],
+&gt;&gt;&gt;  ['central processing unit', 'CPU', 'C.P.U.', 'central processor',
 &gt;&gt;&gt;   'processor', 'mainframe'] ...
 </pre>
 

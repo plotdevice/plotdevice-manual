@@ -24,9 +24,9 @@
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/boids.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/boids.zip">boids.zip</a> (5KB)<br/>
-          <i>Last updated for PlotDevice 1.9.2<br/></i><i>Licensed under GPL<br/></i><i>Author: Tom De
+          <td><a href="http://plotdevice.io/libs/boids.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/boids.zip">boids.zip</a> (5KB)<br/>
+          <i>Last updated for NodeBox 1.9.2<br/></i><i>Licensed under GPL<br/></i><i>Author: Tom De
           Smedt</i><br/>
         </td></tr></tbody></table>
 
@@ -73,8 +73,8 @@
     <p><br/>
     The returned flock object also has a number of methods. The primary method is
     <i>flock.update()</i>, which you usually call at each frame in an animation:</p>
-<pre>flock.update(shuffled=True, 
-             separation=10, alignment=5, cohension=100, 
+<pre>flock.update(shuffled=True,
+             separation=10, alignment=5, cohension=100,
              goal=20, limit=30)
 </pre>
 
@@ -111,7 +111,7 @@
 
     <p>A flock object returned from the <i>flock()</i> command is a list of individual boids. You
     can easily loop through it:</p>
-<pre>flock = boids.flock(10, 0, 0, WIDTH, HEIGHT) 
+<pre>flock = boids.flock(10, 0, 0, WIDTH, HEIGHT)
 for boid in flock:
     print boid.x, boid.y
 </pre>

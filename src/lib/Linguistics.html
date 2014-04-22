@@ -23,10 +23,10 @@
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/linguistics.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/linguistics.zip">linguistics.zip</a>
+          <td><a href="http://plotdevice.io/libs/linguistics.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/linguistics.zip">linguistics.zip</a>
           (15MB)<br/>
-          <i>Last updated for PlotDevice 1.9.4.2<br/></i><i>Licensed under GPL<br/>
+          <i>Last updated for NodeBox 1.9.4.2<br/></i><i>Licensed under GPL<br/>
           Author: Tom De Smedt<br/></i>
         </td></tr></tbody></table>
 
@@ -153,9 +153,9 @@ print en.list.conjunction(farm)
 <pre>print en.list.conjunction((1,2,3,4,5), generalize=True)
 print en.list.conjunction(en, generalize=True)
 &gt;&gt;&gt; several integers
-&gt;&gt;&gt; a number of modules, a number of functions, a number of strings, 
-&gt;&gt;&gt; a pair of lists, a pair of dictionaries, an en verb, an en sentence, 
-&gt;&gt;&gt; an en number, an en noun, an en list, an en content, an en adverb, 
+&gt;&gt;&gt; a number of modules, a number of functions, a number of strings,
+&gt;&gt;&gt; a pair of lists, a pair of dictionaries, an en verb, an en sentence,
+&gt;&gt;&gt; an en number, an en noun, an en list, an en content, an en adverb,
 &gt;&gt;&gt; an en adjective, a None type and a plotdevice graphics cocoa Context class
 </pre>
 
@@ -231,7 +231,7 @@ print en.noun.plural("part-of-speech")
     <p>WordNet describes semantic relations between synonym sets.</p>
     <p>The <i>noun.gloss()</i> command returns the dictionary description of a word:</p>
 <pre>print en.noun.gloss("book")
-&gt;&gt;&gt; a written work or composition that has been published (printed on pages 
+&gt;&gt;&gt; a written work or composition that has been published (printed on pages
 &gt;&gt;&gt; bound together); "I am reading a good book on economics"
 </pre>
 
@@ -251,8 +251,8 @@ print en.noun.plural("part-of-speech")
 
     <p>The <i>noun.hyponym()</i> command return examples of the given word:</p>
 <pre>print en.noun.hyponym("vehicle")
-&gt;&gt;&gt; [['bumper car', 'Dodgem'], ['craft'], ['military vehicle'], ['rocket', 
-&gt;&gt;&gt;  'projectile'], ['skibob'], ['sled', 'sledge', 'sleigh'], ['steamroller', 
+&gt;&gt;&gt; [['bumper car', 'Dodgem'], ['craft'], ['military vehicle'], ['rocket',
+&gt;&gt;&gt;  'projectile'], ['skibob'], ['sled', 'sledge', 'sleigh'], ['steamroller',
 &gt;&gt;&gt;  'road roller'], ['wheeled vehicle']]
 </pre>
 <pre>print en.noun.hyponym("tree", sense=1)
@@ -269,17 +269,17 @@ print en.noun.hypernym("earth", sense=1)
     <p>You can also execute a deep query on hypernyms and hyponyms. Notice how returned values
     become more and more abstract:</p>
 <pre>print en.noun.hypernyms("vehicle", sense=0)
-&gt;&gt;&gt; [['vehicle'], ['conveyance', 'transport'], 
-&gt;&gt;&gt;  ['instrumentality', 'instrumentation'], 
-&gt;&gt;&gt;  ['artifact', 'artefact'], ['whole', 'unit'], 
-&gt;&gt;&gt;  ['object', 'physical object'], 
+&gt;&gt;&gt; [['vehicle'], ['conveyance', 'transport'],
+&gt;&gt;&gt;  ['instrumentality', 'instrumentation'],
+&gt;&gt;&gt;  ['artifact', 'artefact'], ['whole', 'unit'],
+&gt;&gt;&gt;  ['object', 'physical object'],
 &gt;&gt;&gt;  ['physical entity'], ['entity']]
 </pre>
 
     <p>The <i>noun.holonym()</i> command returns components of the given word:</p>
 <pre>print en.noun.holonym("computer")
-&gt;&gt;&gt; [['busbar', 'bus'], ['cathode-ray tube', 'CRT'], 
-&gt;&gt;&gt;  ['central processing unit', 'CPU', 'C.P.U.', 'central processor', 
+&gt;&gt;&gt; [['busbar', 'bus'], ['cathode-ray tube', 'CRT'],
+&gt;&gt;&gt;  ['central processing unit', 'CPU', 'C.P.U.', 'central processor',
 &gt;&gt;&gt;   'processor', 'mainframe'] ...
 </pre>
 
@@ -359,9 +359,9 @@ print en.verb.past("be", person=1, negate=True)
 
     <p>A list of all possible tenses:</p>
 <pre>print en.verb.tenses()
-&gt;&gt;&gt; ['past', '3rd singular present', 'past participle', 'infinitive', 
-&gt;&gt;&gt;  'present participle', '1st singular present', '1st singular past', 
-&gt;&gt;&gt;  'past plural', '2nd singular present', '2nd singular past', 
+&gt;&gt;&gt; ['past', '3rd singular present', 'past participle', 'infinitive',
+&gt;&gt;&gt;  'present participle', '1st singular present', '1st singular past',
+&gt;&gt;&gt;  'past plural', '2nd singular present', '2nd singular past',
 &gt;&gt;&gt;  '3rd singular past', 'present plural']
 </pre>
 
@@ -443,9 +443,9 @@ pprint( en.sentence.chunk("we are going to school") )
     your own command chunk by chunk:</p>
 <pre>s = "we are going to school"
 def callback(chunk, token, tag):
-    if chunk != None : 
+    if chunk != None :
         print en.sentence.tag_description(chunk)[0].upper()
-    if chunk == None : 
+    if chunk == None :
         print token, "("+en.sentence.tag_description(tag)[0]+")"
 en.sentence.traverse(s, callback)
 &gt;&gt;&gt; SUBJECT PHRASE
@@ -464,7 +464,7 @@ en.sentence.traverse(s, callback)
     text in a sentence:</p>
 <pre>s = "The world is full of strange and mysterious things."
 print en.sentence.find(s, "JJ and JJ NN")
-&gt;&gt;&gt; [[('strange', 'JJ'), ('and', 'CC'), 
+&gt;&gt;&gt; [[('strange', 'JJ'), ('and', 'CC'),
 &gt;&gt;&gt;   ('mysterious', 'JJ'), ('things', 'NNS')]]
 </pre>
 
@@ -475,7 +475,7 @@ print en.sentence.find(s, "JJ and JJ NN")
 <pre>s = "The hairy hamsters visited the cruel dentist."
 matches = en.sentence.find(s, "JJ NN")
 print matches
-&gt;&gt;&gt; [[('hairy', 'JJ'), ('hamsters', 'NNS')], 
+&gt;&gt;&gt; [[('hairy', 'JJ'), ('hamsters', 'NNS')],
      [('cruel', 'JJ'), ('dentist', 'NN')]]
 </pre>
 
@@ -511,10 +511,10 @@ print en.sentence.find(s, "(extreme*) (JJ) NN", chunked=False)
     <p>So, assuming you would want to summarise web content you can do the following:</p>
 <pre>from urllib import urlopen
 html = urlopen("http://news.bbc.co.uk/").read()
-meta = ["news", "health", "uk", "version", "weather", 
+meta = ["news", "health", "uk", "version", "weather",
         "video", "sport", "return", "read", "help"]
 print sentence_keywords(html, filters=meta)
-&gt;&gt;&gt; [(6, 'funeral'), (5, 'beirut'), (3, 'war'), (3, 'service'), (3, 'radio'), 
+&gt;&gt;&gt; [(6, 'funeral'), (5, 'beirut'), (3, 'war'), (3, 'service'), (3, 'radio'),
 &gt;&gt;&gt;  (3, 'lebanon'), (3, 'islamist'), (3, 'function'), (3, 'female')]
 </pre>
 
@@ -567,11 +567,11 @@ for category in summary[:5]:
 </pre>
 <pre># Words in the top "instrumental behavior" category:
 print summary[0].words
-&gt;&gt;&gt; ['students', 'make', 'students', 'reached', 'countless', 
-&gt;&gt;&gt;  'student', 'workshop', 'workshop', 'students', 'finish', 
-&gt;&gt;&gt;  'spent', 'produce', 'using', 'work', 'students', 'successful', 
-&gt;&gt;&gt;  'workshop', 'students', 'pursue', 'skills', 'use', 
-&gt;&gt;&gt;  'craftsmanship', 'use', 'using', 'workshops', 'workshops', 
+&gt;&gt;&gt; ['students', 'make', 'students', 'reached', 'countless',
+&gt;&gt;&gt;  'student', 'workshop', 'workshop', 'students', 'finish',
+&gt;&gt;&gt;  'spent', 'produce', 'using', 'work', 'students', 'successful',
+&gt;&gt;&gt;  'workshop', 'students', 'pursue', 'skills', 'use',
+&gt;&gt;&gt;  'craftsmanship', 'use', 'using', 'workshops', 'workshops',
 &gt;&gt;&gt;  'result', 'students', 'workshops', 'student']
 </pre>
 

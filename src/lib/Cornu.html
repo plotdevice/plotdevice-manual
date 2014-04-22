@@ -17,9 +17,9 @@
     <table border="0">
       <tbody>
         <tr>
-          <td><a href="http://nodebox.net/code/data/media/cornu.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
-          </td><td><a href="http://nodebox.net/code/data/media/cornu.zip">cornu.zip</a> (6KB)<br/>
-          <i>Last updated for PlotDevice 1.9.5<br/></i><i>Author: Raph Levien</i><br/>
+          <td><a href="http://plotdevice.io/libs/cornu.zip"><img alt="download" height="20" src="../etc/lib/download.gif" width="20"/></a>
+          </td><td><a href="http://plotdevice.io/libs/cornu.zip">cornu.zip</a> (6KB)<br/>
+          <i>Last updated for NodeBox 1.9.5<br/></i><i>Author: Raph Levien</i><br/>
         </td></tr></tbody></table>
 
     <h2>Documentation</h2>
@@ -54,12 +54,12 @@
     the resulting path will be made up of very small straight line segments (by default the
     resulting path is made up of Bézier curves).</p>
 <pre>size(700,700)
-path = [(0.1,0.1), 
-        (0.15,0.35), 
-        (0.4, 0.2), 
-        (0.6, 0.6), 
+path = [(0.1,0.1),
+        (0.15,0.35),
+        (0.4, 0.2),
+        (0.6, 0.6),
         (0.4, 0.4)]
- 
+
 nofill()
 stroke(0)
 cornu.drawpath(path, tweaks=100, points=True)
