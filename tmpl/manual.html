@@ -1,16 +1,16 @@
 {% from 'nav.html' import nav %}
 <!DOCTYPE html>
 
-{% set metamanagers = ['export()', 'bezier()', 'plotstyle()', 'transform()', 'effects()', 'font()', ]%}
-{% set managers =  ['clip()', 'stroke()', 'fill()', 'pen()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', 'alpha()', 'blend()', 'shadow()', ]%}
+{% set metamanagers = ['export()', 'bezier()', 'plotstyle()', 'transform()', 'layer()', 'font()', 'color()',  ]%}
+{% set managers =  ['stroke()', 'fill()', 'pen()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', 'alpha()', 'blend()', 'shadow()', 'plot()', ('clip()', 'mask()'), ]%}
 
 {%- macro reference(sect, link) -%}
+{% set ctxclass=' class="cm"' if link in managers else ' class="cmm"' if link in metamanagers else '' %}
 {% if isinstance(link, tuple) %}
-<li>{% for lnk in link %} <a href="ref/{{sect}}.html#{{lnk}}">{{lnk}}</a> {% endfor%} </li>
+<li{{ctxclass}}>{% for lnk in link %} <a href="ref/{{sect}}.html#{{lnk}}">{{lnk}}</a> {% endfor%} </li>
 {% elif not link %}
 <li><hr></li>
 {% else %}
-{% set ctxclass=' class="cm"' if link in managers else ' class="cmm"' if link in metamanagers else '' %}
 <li{{ctxclass}}><a href="ref/{{sect}}.html#{{link}}">{{link}}</a></li>
 {% endif %}
 {%- endmacro %}
