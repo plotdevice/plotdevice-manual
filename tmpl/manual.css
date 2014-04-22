@@ -1,8 +1,6 @@
 /**************************************/
 /* TYPOGRAPHY */
 
-@import url("type/typography.css");
-
 body, table, td, input, select, option, textarea { font: 14px Georgia; line-height: 1.4em; }
 h1, h3 { font: bold 18px "Cabin"; }
 h3 { margin-top: 15px; }
@@ -733,4 +731,6 @@ body.compat .toc .sidebar .compat{
 
 
 
+
+@import url("type/typography.css");
 
