@@ -584,8 +584,11 @@ body.compat .toc .sidebar .compat{
   opacity:1;
   color:black;
 }
-#nav.nop h1 a{ color:black; }
+#nav.home h1 a{ color:black; }
 #nav h1 a:hover{ text-decoration:none; }
+
+#nav.home h1 span{opacity:1; -webkit-transition:opacity .333s;}
+#nav.home h1:hover span{ opacity:0; }
 
 /* special handling for the section-based nav in ref pages */
 #nav ul.siblings{

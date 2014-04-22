@@ -1,7 +1,7 @@
 {%- macro nav(sect=None, title=None, root='', siblings=[], tutorial=None) -%}
 {%- set section={None:'Manual', 'ref':'Reference', 'tut':"Tutorials", 'lib':"Libraries"}[sect] -%}
-{%- set home='' if not sect else ' href="%s../manual.html"'%root -%}
-{%- set navclass='link' if sect else 'nop' -%}
+{%- set home=' href="http://plotdevice.io"' if not sect else ' href="%s../manual.html"'%root -%}
+{%- set navclass='link' if sect else 'home' -%}
 {%- set siblings=["Canvas", "Primitives", "Drawing", "Line+Color", "Transform","Compositing","Typography", "Utility"] if sect=='ref' else None -%}
 {%- set book=['Introduction', 'Environment', 'Primitives', 'Graphics_State', 'Animation', 'Bezier_Paths', 'Color', 'Math', 'Variables', 'Lists', 'Strings', 'Serialization', 'Repetition', 'Commands', 'Libraries', 'Classes', 'Interaction', 'Extending', 'Scripting', 'plotdevice'] -%}
 
@@ -11,7 +11,7 @@
 
 
 <div id="nav" class="{{navclass}}">
-  <h1><a{{home}}>PlotDevice <span>{{section}}</span></a></h1>
+  <h1><a class="noexternal"{{home}}>PlotDevice <span>{{section}}</span></a></h1>
   {%- if title and title=='plotdevice' -%}
   <h3 class="tt">{{title}}</h3>
   {%- elif title and title in ('Extending', 'Scripting') -%}
