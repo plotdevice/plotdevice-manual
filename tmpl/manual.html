@@ -4,6 +4,12 @@
 {% set metamanagers = ['export()', 'bezier()', 'plotstyle()', 'transform()', 'layer()', 'font()', 'color()',  ]%}
 {% set managers =  ['stroke()', 'fill()', 'pen()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', 'alpha()', 'blend()', 'shadow()', 'plot()', ('clip()', 'mask()'), ]%}
 
+{%- macro sectionpage(src) -%}
+{%- set dst = 'Misc' if src in ('Entropy', 'Utility') else src -%}
+ref/{{dst}}.html
+{%- endmacro %}
+
+
 {%- macro reference(sect, link) -%}
 {% set ctxclass=' class="cm"' if link in managers else ' class="cmm"' if link in metamanagers else '' %}
 {% if isinstance(link, tuple) %}
@@ -11,7 +17,7 @@
 {% elif not link %}
 <li><hr></li>
 {% else %}
-<li{{ctxclass}}><a href="ref/{{sect}}.html#{{link}}">{{link}}</a></li>
+<li{{ctxclass}}><a href="{{sectionpage(sect)}}#{{link}}">{{link}}</a></li>
 {% endif %}
 {%- endmacro %}
 
@@ -46,7 +52,7 @@
     <div class="sections">
       {% for sect, groups in ref.items() %}
       <div class="section {{sect.lower()}}">
-        <h2><a href="ref/{{sect}}.html">{{sect.replace('+',' &amp; ')}}</a></h2>
+        <h2><a href="ref/{{sectionpage(sect)}}">{{sect.replace('+',' &amp; ')}}</a></h2>
         {% for group, links in groups.items() %}
         <ul class="{{group}}">
           {% for link in links %}

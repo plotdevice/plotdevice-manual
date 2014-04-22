@@ -29,10 +29,20 @@ ref['Typography'] = {
     'commands': ['font()', 'text()', 'align()', 'stylesheet()'],
     'types': ['Family', 'Font', 'Stylesheet', 'Text'],
     'compat': ['fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textpath()', 'textwidth()'] }
+# ref['Utility'] = {
+#     'commands': ['read()', 'grid()', 'measure()',('files()', 'fonts()'), ('random()', 'choice()'), ('shuffled()', 'ordered()')],
+#     'types': ['Point', 'Size', 'Region', None, 'dictionaries', ],
+#     'compat': ['imagesize()', 'autotext()', 'open()', 'var()', ] }
+
+ref['Entropy'] = {
+    'commands': ['random()', 'choice()', 'shuffled()', 'ordered()', 'grid()',  ],
+    'types': [ 'dictionaries', ],
+    'compat': ['autotext()', ] }
 ref['Utility'] = {
-    'commands': ['read()', 'grid()', 'measure()',('files()', 'fonts()'), ('random()', 'choice()'), ('shuffled()', 'ordered()')],
-    'types': ['Point', 'Size', 'Region', None, 'dictionaries', ],
-    'compat': ['imagesize()', 'autotext()', 'open()', 'var()', ] }
+    'commands': ['read()', 'measure()', 'files()', 'fonts()', 'var()',],
+    'types': ['Point', 'Size', 'Region', ],
+    'compat': ['imagesize()', 'open()', ] }
+
 
 tut=odict()
 tut['Basics']=["Introduction", "Environment", "Primitives", "Graphics_State",]

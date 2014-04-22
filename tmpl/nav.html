@@ -2,7 +2,7 @@
 {%- set section={None:'Manual', 'ref':'Reference', 'tut':"Tutorials", 'lib':"Libraries"}[sect] -%}
 {%- set home=' href="http://plotdevice.io"' if not sect else ' href="%s../manual.html"'%root -%}
 {%- set navclass='link' if sect else 'home' -%}
-{%- set siblings=["Canvas", "Primitives", "Drawing", "Line+Color", "Transform","Compositing","Typography", "Utility"] if sect=='ref' else None -%}
+{%- set siblings=["Canvas", "Line+Color", "Primitives", "Drawing", "Transform", "Compositing","Typography", "Misc"] if sect=='ref' else None -%}
 {%- set book=['Introduction', 'Environment', 'Primitives', 'Graphics_State', 'Animation', 'Bezier_Paths', 'Color', 'Math', 'Variables', 'Lists', 'Strings', 'Serialization', 'Repetition', 'Commands', 'Libraries', 'Classes', 'Interaction', 'Extending', 'Scripting', 'plotdevice'] -%}
 
 {%- set next=book[book.index(tutorial)+1].replace('é','e') if tutorial in book and tutorial!=book[-1] else None -%}
@@ -23,9 +23,9 @@
   <ul class="siblings">
   {% for sect in siblings %}
   {%- if sect==title -%}
-  <li><h3 style="margin:0;">{{sect.replace('+',' &amp; ').replace('ity','s').replace('ography','e')}}</h3></li>
+  <li><h3 style="margin:0;">{{sect.replace('+',' &amp; ').replace('Misc','Misc.').replace('ography','e')}}</h3></li>
   {%- else -%}
-  <li><a href="{{sect}}.html">{{sect.replace('+',' &amp; ').replace('ity','s').replace('ography','e')}}</a></li>
+  <li><a href="{{sect}}.html">{{sect.replace('+',' &amp; ').replace('Misc','Misc.').replace('ography','e')}}</a></li>
   {%- endif -%}
   {%- endfor -%}
   </ul>
