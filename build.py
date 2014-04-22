@@ -10,9 +10,9 @@ Copyright (c) 2014 Samizdat Drafting Co. All rights reserved.
 """
 
 from __future__ import with_statement, division
+import sys, os, re
 from os.path import basename, abspath, dirname, join, relpath, exists, getmtime
 py_root = dirname(abspath(__file__))
-import sys, os, re
 from SocketServer import TCPServer, ThreadingMixIn
 from SimpleHTTPServer import SimpleHTTPRequestHandler as Handler
 from collections import defaultdict as ddict, OrderedDict as odict
@@ -25,6 +25,8 @@ from pygments.lexers import PythonLexer
 from pygments.token import Punctuation, Keyword, Name, Number, Text
 from jinja2 import Environment, FileSystemLoader
 from bs4 import BeautifulSoup, NavigableString
+sys.path.append('%s/src'%py_root) # so we can pick up toc.py
+
 
 ### the big red button ###
 
@@ -166,9 +168,31 @@ class PlotDeviceLexer(PythonLexer):
   mimetypes = []
   filenames = []
 
-  EXTRA_CLASSES = set("adict|odict|ddict|BezierPath|ClippingPath|Color|Context|Family|Font|Stylesheet|Grob|Image|NodeBoxError|Oval|PathElement|Point|Rect|Text|Transform|TransformContext|Variable".split("|"))
-  EXTRA_BUILTINS = set("clear|plot|measure|stylesheet|order|ordered|shuffled|addvar|align|arrow|autoclosepath|autotext|background|beginclip|beginpath|bezier|canvas|capstyle|choice|clip|closepath|color|colormode|colorrange|colors|curveto|drawpath|ellipse|endclip|endpath|export|files|fill|findpath|findvar|font|fonts|fontsize|grid|image|imagesize|joinstyle|line|lineheight|lineto|moveto|pen|plotstyle|nofill|nostroke|outputmode|oval|pop|push|random|rect|reset|rotate|save|scale|size|skew|speed|star|state_vars|stroke|strokewidth|text|textheight|textmetrics|textpath|textwidth|transform|translate|var|ximport".split('|'))
-  EXTRA_CONSTS = set("DEFAULT|FRAME|PAGE|BEVEL|BOOLEAN|BUTT|BUTTON|CENTER|CLOSE|CMYK|CORNER|CURVETO|DEFAULT_HEIGHT|DEFAULT_WIDTH|FORTYFIVE|HEIGHT|HSB|JUSTIFY|KEY_BACKSPACE|KEY_DOWN|KEY_ESC|KEY_LEFT|KEY_RIGHT|KEY_TAB|KEY_UP|LEFT|LINETO|MITER|MOVETO|NORMAL|NUMBER|RGB|GREY|RIGHT|ROUND|SQUARE|TEXT|WIDTH|DEGREES|RADIANS|PERCENT|cm|inch|mm|pi|tau".split('|'))
+  EXTRA_CLASSES = [
+    'Bezier', 'BezierPath', 'Color', 'Curve', 'Effect', 'Family', 'Font',
+    'Gradient', 'Grob', 'Image', 'Mask', 'PathElement', 'Pattern', 'Point',
+    'Region', 'Shadow', 'Size', 'Stylesheet', 'Text', 'Transform', 'Variable',
+    'adict', 'ddict', 'odict']
+  EXTRA_CONSTS = [
+    'BEVEL', 'BOOLEAN', 'BUTT', 'BUTTON', 'CENTER', 'CLOSE', 'CMYK', 'CORNER',
+    'CURVETO', 'DEFAULT', 'DEGREES', 'FORTYFIVE', 'FRAME', 'GREY', 'HEIGHT', 'HSB',
+    'JUSTIFY', 'KEY_BACKSPACE', 'KEY_DOWN', 'KEY_ESC', 'KEY_LEFT', 'KEY_RIGHT',
+    'KEY_TAB', 'KEY_UP', 'LEFT', 'LINETO', 'MITER', 'MOVETO', 'NORMAL', 'NUMBER',
+    'PAGE', 'PERCENT', 'RADIANS', 'RGB', 'RIGHT', 'ROUND', 'SQUARE', 'TEXT', 'WIDTH',
+    'cm', 'inch', 'mm', 'pi', 'pica', 'px', 'tau']
+  EXTRA_BUILTINS = [
+    'align', 'alpha', 'arc', 'arcto', 'arrow', 'autoclosepath', 'autotext',
+    'background', 'beginclip', 'beginpath', 'bezier', 'blend', 'canvas',
+    'capstyle', 'choice', 'clear', 'clip', 'closepath', 'color', 'colormode',
+    'colorrange', 'curveto', 'drawpath', 'ellipse', 'endclip', 'endpath',
+    'export', 'files', 'fill', 'findpath', 'font', 'fonts', 'fontsize',
+    'geometry', 'grid', 'image', 'imagesize', 'joinstyle', 'line', 'lineheight',
+    'lineto', 'mask', 'measure', 'moveto', 'nofill', 'noshadow', 'nostroke',
+    'order', 'ordered', 'outputmode', 'oval', 'pen', 'plot', 'poly', 'pop',
+    'push', 'random', 'read', 'rect', 'reset', 'rotate', 'scale', 'shadow',
+    'shuffled', 'size', 'skew', 'speed', 'star', 'stroke', 'strokewidth',
+    'stylesheet', 'text', 'textheight', 'textmetrics', 'textpath', 'textwidth',
+    'transform', 'translate', "var", 'ximport']
 
   def get_tokens_unprocessed(self, text):
     for index, token, value in PythonLexer.get_tokens_unprocessed(self, text):
@@ -202,62 +226,11 @@ def etc():
 
 def toc():
   print "Table of Contents"
-  print "- Reference"
-  ref=odict()
-  ref['Canvas'] = {
-      'commands': ['canvas()', 'speed()', 'background()', 'export()', 'clear()', 'plot()',],
-      'types': ['Constants'],
-      'compat': ['outputmode()', 'size()'] }
-  ref['Primitives'] = {
-      'commands': ['image()', 'rect()',  'oval()', 'poly()', 'line()', ],
-      'types': ['Image'],
-      'compat': ['arrow()', 'star()'] }
-  ref['Drawing'] = {
-      'commands': ['bezier()', 'moveto()', 'lineto()', 'arcto()', 'curveto()', ],
-      'types': ['Bezier', 'Curve'],
-      'compat': ['autoclosepath()', 'beginclip()', 'beginpath()', 'drawpath()', 'endclip()', 'endpath()', 'findpath()'] }
-  ref['Line+Color'] = {
-      'commands': ['plotstyle()', 'stroke()', 'fill()', 'pen()', 'color()'],
-      'types': ['Color', 'Gradient', 'Pattern'],
-      'compat': ['capstyle()', 'colormode()', 'joinstyle()', 'nofill()', 'nostroke()', 'strokewidth()'] }
-  ref['Transform'] = {
-      'commands': ['transform()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', ],
-      'types': ['Transform'],
-      'compat': ['pop()', 'push()'] }
-  ref['Compositing'] = {
-      'commands': ['effects()','alpha()', 'blend()', 'shadow()', 'clip()', ],
-      'types': ['Shadow', ],
-      'compat': ['noshadow()',] }
-  ref['Typography'] = {
-      'commands': ['font()', 'text()', 'align()', 'stylesheet()'],
-      'types': ['Family', 'Font', 'Stylesheet', 'Text'],
-      'compat': ['fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textpath()', 'textwidth()'] }
-  ref['Utility'] = {
-      'commands': ['read()', 'grid()', 'measure()', ('files()', 'fonts()'), ('random()', 'choice()'), ('shuffled()', 'ordered()')],
-      'types': ['Point', 'Size', 'Region', None, 'dictionaries', ],
-      'compat': ['imagesize()', 'autotext()', 'open()'] }
-
-  print "- Tutorials"
-  tut=odict()
-  tut['Basics']=["Introduction", "Environment", "Primitives", "Graphics_State",]
-  tut['Specifics']=["Animation", u"Bezier_Paths", "Color", "Math",]
-  tut['Data']=["Variables", "Lists", "Strings", "Serialization"]
-  tut['Structure']=["Repetition", "Commands", "Libraries", "Classes",]
-  tut['Advanced']=["Interaction", "Extending", "Scripting", "plotdevice",]
-
-  print "- Libraries"
-  lib=odict()
-  lib['Design']=["Colors", "Grid", "Pixie", "Fatpath",]
-  lib['Pixels']=["PhotoBot", "Core Image", "iSight", "Quicktime",]
-  lib['Paths']=["Cornu", "SVG", "Supershape", "Bezier Editor",]
-  lib['Bytes']=["Database", "Web", ]
-  lib['Words']=["WordNet", "Keywords", "Graph", "Linguistics", "Perception",]
-  lib['Systems']=["Boids", "Ants", "L-system", "Noise",]
-  lib['Tangible']=["WiiNode", "TUIO", "OSC ",]
-
+  import toc
+  toc = reload(toc)
   html = tmpls.get_template('manual.html')
   local = dict(isinstance=isinstance, tuple=tuple, len=len)
-  info = dict(ref=ref, tut=tut, lib=lib, **local)
+  info = dict(ref=toc.ref, tut=toc.tut, lib=toc.lib, **local)
   markup = html.render(info)
 
   _mkdir('doc')
@@ -413,6 +386,8 @@ if __name__=='__main__':
       httpd.serve_forever(.1)
     except KeyboardInterrupt:
       sys.exit(0)
+  elif 'clean' in sys.argv:
+    os.system('rm -r %s/doc/*'%py_root)
 
   else:
     build(static=not sys.argv[1:] or sys.argv[1]!='site')
