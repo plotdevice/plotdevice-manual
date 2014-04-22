@@ -52,7 +52,7 @@
     <p>The NSSound object in AppKit provides a very easy way to play AIFF and WAV sound files in
     Mac applications. The class below is a PlotDevice wrapper for NSSound.</p>
 <pre>from AppKit import NSSound
- 
+
 class sound:
     def __init__(self, file):
         self._sound = NSSound.alloc()
@@ -76,8 +76,8 @@ woof.play()
     <p>The following class defines a simple sound mixer/timeline. It has a number of channels that
     play sounds at a defined time.</p>
 <pre>from time import time
- 
-class mixer:   
+
+class mixer:
     def __init__(self, channels=4):
         self.channels = [[] for i in range(channels)]
         self.start = time()
@@ -119,12 +119,12 @@ m.queue(1, 1.2, "meow.aiff")
     makes PlotDevice speak out a sentence. The optional <em>voice</em> parameter sets the voice you
     want to use.<br/></p>
 <pre>from AppKit import NSSpeechSynthesizer
- 
+
 def voices():
     voices = NSSpeechSynthesizer.availableVoices()
     voices = [x.split(".")[-1] for x in voices]
     return voices
-    
+
 def say(txt, voice=None):
     if voice in voices():
         voice = "com.apple.speech.synthesis.voice."+voice
@@ -144,34 +144,34 @@ def say(txt, voice=None):
     <p>The command below wraps the NSFontManager object. It returns a list with the PostScript name
     of each font installed on your system. Thanks to Mark for this one.</p>
 <pre>from AppKit import NSFontManager
- 
+
 def fonts():
     return NSFontManager.sharedFontManager().availableFonts()
 </pre>
 
     <p>Now you can do lots of fun typography:</p>
 <pre>background(0.15, 0.1, 0.1)
- 
+
 x, y, h = 0, 0, 0
 lineheight(1)
 fontsize(14)
 for f in fonts()[:250]:
- 
+
     font(f)
- 
-    # Random pink, blue or white color 
+
+    # Random pink, blue or white color
     fill(random(), random(0.5), 0.75)
     if random() &gt; 0.8: fill(1)
-    
-    # Wrap text to the next line 
+
+    # Wrap text to the next line
     if x + textwidth(f) &gt; WIDTH:
         x = 0
         y += h
         h = 0
- 
+
     text(f, x, y)
- 
-    # Line height is equal to biggest font 
+
+    # Line height is equal to biggest font
     h = max(h, textheight(f))
     x += textwidth(f)
 </pre>
@@ -190,7 +190,7 @@ for f in fonts()[:250]:
     path.path.setLineDash_count_phase_([segment, gap], 2, 0)
     return path
 </pre>
-<pre>p = line(0, 0, 200, 200, draw=False)
+<pre>p = line(0, 0, 200, 200, plot=False)
 linedash(p, segment=5)
 stroke(0)
 drawpath(p)
@@ -213,7 +213,7 @@ drawpath(p)
     <p>This is a typical example of what PlotDevice drawing commands look like (also see the <a href="http://dev.nodebox.net/browser/plotdevice/trunk/src/DrawingPrimitives.py">source</a>).</p>
 <pre>from AppKit import NSShadow, NSColor
 from plotdevice.graphics import Grob
- 
+
 class shadow(Grob):
     def __init__(self, x=10, y=10, alpha=0.25, blur=4.0):
         Grob.__init__(self, _ctx)
@@ -224,14 +224,14 @@ class shadow(Grob):
         self.draw()
     def _draw(self):
         self._shadow.set()
-        
+
 def noshadow():
     shadow(alpha=0)
 </pre>
 
     <p>Shadows work very well to create a feeling of depth:<br/></p>
 <pre>shadow(blur=10.0)
- 
+
 for i in range(30):
     fill(random(0.75), 0, random(0.25,0.75))
     r = random(50)

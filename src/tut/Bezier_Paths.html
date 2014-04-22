@@ -89,7 +89,7 @@ for point in path:
   points.append(point)
 bezier(points)
 </pre>
-<pre>with bezier(100, 100, draw=False) as path:
+<pre>with bezier(100, 100, plot=False) as path:
   curveto(150, 100, 200, 200, 50, 400)
 
 points = []
@@ -270,8 +270,8 @@ for contour in path.contours:
 <pre>
 nofill()
 stroke(0)
-path1 = oval(40, 40, 80, 80, draw=False)
-path2 = oval(90, 40, 80, 80, draw=False)
+path1 = oval(40, 40, 80, 80, plot=False)
+path2 = oval(90, 40, 80, 80, plot=False)
 compound = path1.union(path2)
 bezier(compound)
 </pre>
@@ -282,8 +282,8 @@ bezier(compound)
 <pre>
 nofill()
 stroke(0)
-path1 = oval(40, 40, 80, 80, draw=False)
-path2 = oval(90, 40, 80, 80, draw=False)
+path1 = oval(40, 40, 80, 80, plot=False)
+path2 = oval(90, 40, 80, 80, plot=False)
 compound = path1.intersect(path2)
 bezier(compound)
 </pre>
@@ -295,8 +295,8 @@ bezier(compound)
 <pre>
 nofill()
 stroke(0)
-path1 = oval(40, 40, 80, 80, draw=False)
-path2 = oval(90, 40, 80, 80, draw=False)
+path1 = oval(40, 40, 80, 80, plot=False)
+path2 = oval(90, 40, 80, 80, plot=False)
 compound = path1.difference(path2)
 bezier(compound)
 </pre>
@@ -308,8 +308,8 @@ bezier(compound)
 <pre>
 fill(0.8)
 stroke(0)
-path1 = oval(40, 40, 80, 80, draw=False)
-path2 = oval(90, 40, 80, 80, draw=False)
+path1 = oval(40, 40, 80, 80, plot=False)
+path2 = oval(90, 40, 80, 80, plot=False)
 compound = path1.xor(path2)
 bezier(compound)
 </pre> 
@@ -330,7 +330,7 @@ bezier(compound)
 <pre>compound = None
 for i in range(50):
     r = random(75)
-    path = oval(random(300), random(200), r, r, draw=False)
+    path = oval(random(300), random(200), r, r, plot=False)
     if not compound:
         compound = path
     compound = compound.union(path)
@@ -349,10 +349,10 @@ bezier(compound, fill=None, stroke=0)
 # This is where corner-mode transforms originate.
 # We'll later on place the eventual compound path
 # where we want it with translate().
-path = rect(-10, 0, 20, 100, draw=False)
+path = rect(-10, 0, 20, 100, plot=False)
 
 # Let's chip away small piece of the rectangle:
-path = path.difference(rect(-15, 80, 20, 15, draw=False))
+path = path.difference(rect(-15, 80, 20, 15, plot=False))
 
 # Create a rotation transform we'll repeatedly apply to a path
 t = Transform()

@@ -964,7 +964,7 @@ for i in range(3000):
     <p><img alt="colors-shader3" height="370" src="../etc/lib/colors-shader3.jpg" width="550"/></p>
 <pre># Deep green gradient background.
 size(400, 400)
-bg = rect(0, 0, WIDTH, HEIGHT, draw=False)
+bg = rect(0, 0, WIDTH, HEIGHT, plot=False)
 colors.gradientpath(bg, color(0.15,0.2,0), color(0,0,0))
 
 colors.shadow()
@@ -977,7 +977,7 @@ for i in range(800):
     # If they become too small, don't draw them.
     r = d*40
     if r &lt; 4: continue
-    p = oval(x, y, r*2, r*2, draw=False)
+    p = oval(x, y, r*2, r*2, plot=False)
     # Two colors for an oval gradient fill.
     # The green becomes lighter and more opaque
     # when elements are nearer to the light.

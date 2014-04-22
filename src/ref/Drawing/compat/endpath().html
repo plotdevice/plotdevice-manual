@@ -20,7 +20,7 @@
       <div class="row">
         The endpath() command is the companion to <a href="#beginpath()">beginpath()</a> and may
         only be called after the later. When endpath() is called, the path defined between
-        beginpath() and endpath() is drawn to the screen. Optionally, when endpath(draw=False) is
+        beginpath() and endpath() is drawn to the screen. Optionally, when endpath(plot=False) is
         called, the path is not drawn to the screen, but can be assigned to a variable and drawn to
         the screen at a later time with the <a href="#drawpath()">drawpath()</a> command. Check the
         <a href="../tut/Paths.html">tutorial on paths</a> for other possibilities with paths.
@@ -55,7 +55,7 @@ endpath()
 <pre>
 beginpath(10, 10)
 lineto(40, 10)
-p = endpath(draw=False)
+p = endpath(plot=False)
 drawpath(p)
 </pre>
               </td></tr></tbody></table>
