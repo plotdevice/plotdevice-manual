@@ -8,10 +8,16 @@
     <h3>export()</h3>
 
     <div class="definition">
-      <p class="pink_text">The <code>export</code> function is only of use to scripts that are
-      using PlotDevice externally via a <code><a href="../tut/Scripting.html#plotdevice-star">
-      from&nbsp;plotdevice import *</a></code> line. For scripts run within the application, use the
-      Export as… commands in the file menu. Exports can also be batched using the <a href="../tut/plotdevice.html"><code>plotdevice</code></a> command.</p>
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>export("spool.pdf")      # writes the canvas contents to an image file
+with export("anim.mov"): # write only what is drawn during the block
+</pre>
+      </div>
+
+      <p>You can call the export() function at any time in your scripts to write the accumulated set of graphics objects on the canvas to a single bitmap or vector image file. When running the PlotDevice application, you'll likely find it more convenient to use the Export as… menu items. Outside of the app, calling export() as part of a <code>with</code> statement will allow you to render single images, multi-page sequences, or animations.</p>
+
       <h2>Generating output from external scripts</h2>
 
       <p>The <code>export</code> function returns a <a href="http://docs.python.org/2/reference/compound_stmts.html#the-with-statement">context
@@ -23,9 +29,9 @@
 <pre>from plotdevice import *
 
 # export an image
-canvas.clear()
+clear(all)
 ... # (do some drawing)
-canvas.save('output.png')
+export('output.png')
 
 # export an image
 # (with the context manager clearing and saving the canvas automatically)
@@ -48,17 +54,17 @@ with export('output.png') as img:
 <pre># export a 100-frame movie
 movie = export('anim.mov', fps=50, bitrate=1.8)
 for i in xrange(100):
-    canvas.clear() # erase the previous frame from the canvas
-    ...            # (do some drawing)
-    movie.add()    # add the canvas to the movie
-movie.finish()     # wait for i/o to complete
+    clear(all)  # erase the previous frame from the canvas
+    ...         # (do some drawing)
+    movie.add() # add the canvas to the movie
+movie.finish()  # wait for i/o to complete
 
 # export a movie (with the context manager closing the file when done)
 with export('anim.mov', fps=50, bitrate=1.8) as movie:
     for i in xrange(100):
-        canvas.clear() # erase the previous frame from the canvas
-        ...            # (do some drawing)
-        movie.add()    # add the canvas to the movie
+        clear(all)  # erase the previous frame from the canvas
+        ...         # (do some drawing)
+        movie.add() # add the canvas to the movie
 
 # export a movie
 # (with the movie.frame context manager clearing and adding the frame)
@@ -77,10 +83,10 @@ with export('anim.mov', fps=50, bitrate=1.8) as movie:
 <pre># export a five-page pdf document
 pdf = export('multipage.pdf')
 for i in xrange(5):
-    canvas.clear() # erase the previous page's graphics from the canvas
-    ...            # (do some drawing)
-    pdf.add()      # add the canvas to the pdf as a new page
-pdf.finish()       # write the pdf document to disk
+    clear(all) # erase the previous page's graphics from the canvas
+    ...        # (do some drawing)
+    pdf.add()  # add the canvas to the pdf as a new page
+pdf.finish()   # write the pdf document to disk
 
 # export a pdf document more succinctly
 with export('multipage.pdf') as pdf:
@@ -93,8 +99,8 @@ with export('multipage.pdf') as pdf:
 
       <p>If you’re generating a series of images, <code>export</code> will automatically give them
       consecutive names derived from the filename you pass as an argument. If the filename is a
-      simple <code class="str">’name.ext’</code> string, the sequence number will be appended with
-      4 characters of padding (<code class="str">’name-0001.ext’</code>, <code class="str">’name-0002.ext’</code>, etc.). If the filename contains a block of <code>###</code>
+      simple <code class="str">"name.ext"</code> string, the sequence number will be appended with
+      4 characters of padding (<code class="str">"name-0001.ext"</code>, <code class="str">"name-0002.ext"</code>, etc.). If the filename contains a block of <code>###</code>
       characters, they will be replaced with the sequence number and zero padded to the same width:</p>
 <pre># export a sequence of images to output-0001.png, output-0002.png, ...
 #                                output-0099.png, output-0100.png

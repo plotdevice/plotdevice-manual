@@ -11,7 +11,7 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>findpath(list, curvature =1.0)
+<pre>findpath(list, curvature=1.0)
 </pre>
       </div>
 
@@ -27,7 +27,7 @@
       <h2>Returns</h2>
 
       <div class="row">
-        <a href="#BezierPath">BezierPath</a> containing the constructed path
+        a <a href="#Bezier">Bezier</a> object containing the constructed path
       </div>
 
       <h2>Tutorial</h2>
@@ -48,10 +48,10 @@
 points = [(10, 10), (90, 90), (350, 200)]
 for x, y in points:
     oval(x-2, y-2, 4, 4)
- 
+
 nofill()
 stroke(0.2)
-autoclosepath(False)    
+autoclosepath(False)
 path = findpath(points)
 drawpath(path)
 </pre>

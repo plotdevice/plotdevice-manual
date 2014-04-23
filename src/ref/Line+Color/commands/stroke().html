@@ -22,14 +22,11 @@ stroke(color)
       <h2>Description</h2>
 
       <div class="row">
-        Sets the current stroke color. The stroke color is used to draw lines around shapes, paths
-        and text. All shapes, paths and text following this command will be outlined in this stroke
-        color. The color is either specified in terms of RGB, HSB or CMYK depending on the current
-        <a href="#colormode()">colormode()</a>. Each RGB, HSB or CMYK parameter ranges between 0.0
-        and 1.0. The default colormode is RGB. The last parameter is optional and sets the alpha
-        (opacity) value. Additionally, stroke() can be called with just one parameter that sets the
-        gray value, or with the color value returned from the <a href="#color()">color()</a>
-        command.
+        <p>Arguments will be interpeted according to the canvas's current color-mode and range. For details see the <a href="#color()">color()</a> command.</p>
+
+        <p>Sets the current stroke color. The stroke is used to draw lines around shapes, paths and text. All drawing operations following this command will be outlined in this stroke color.</p>
+
+        <p>The color is specified in terms of <code class="kw">RGB</code>, <code class="kw">HSB</code> or <code class="kw">CMYK</code> depending on the canvas's current color-mode and range. For details see the <a href="#color()">color()</a> command. To disable stroke-drawing either call stroke() with <code>None</code> or use the <a href="#nostroke()">nostroke()</a> convenience method.</p>
       </div>
 
       <h2>Returns</h2>

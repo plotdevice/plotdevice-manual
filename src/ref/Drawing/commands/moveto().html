@@ -18,10 +18,10 @@
       <h2>Description</h2>
 
       <div class="row">
-        The moveto() command must be called within a <a href="#bezier()">bezier()</a> block (or
-        between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>). The
-        two parameters set the location of a new origin point for the path. This would be the same
-        as lifting the pen from a paper and putting it down somewhere else to continue drawing.
+        <p>Moves the ‘current’ point of the path to a new location (x,y) without drawing a line from the previous point. This is conceptually similar to lifting your pen from the page and putting it down somewhere else to continue drawing.</p>
+
+        <p>The moveto() command must be called inside a <a href="#bezier()">bezier()</a> context (or between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).</p>
+
       </div>
 
       <h2>Tutorial</h2>
@@ -40,16 +40,16 @@
               </td><td>
 <pre>
 with bezier(10, 10, stroke=0.2) as path:
-    lineto(40, 10)
-    moveto(10, 20)
-    lineto(40, 80)
+    lineto(50, 100)
+    moveto(60, 100)
+    lineto(100, 100)
 </pre><em>or</em>
 <pre>
 stroke(0.2)
 beginpath(10, 10)
-lineto(40, 10)
-moveto(10, 20)
-lineto(40, 80)
+lineto(50, 100)
+moveto(60, 100)
+lineto(100, 100)
 endpath()
 </pre>
               </td></tr></tbody></table>

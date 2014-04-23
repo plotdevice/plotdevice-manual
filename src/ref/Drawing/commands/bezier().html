@@ -14,7 +14,7 @@
 <pre>path = bezier(points=[], curvature=1.0, **opts)
 </pre>
 <pre>with bezier(x=0, y=0, **opts) as path:
-    # call moveto(), lineto(), or curveto() to add points to the path
+    # call moveto(), lineto(), arcto(), or curveto() to add points to the path
 </pre>
       </div>
 
@@ -35,33 +35,39 @@
 
       <h2>Optional Parameters</h2>
 
-      <p><code class="box"><span class="red">draw</span></code><br/>
+      <div class="row">
+      <p><code class="box"><span class="red">plot</span></code><br/>
       By default, paths are drawn as soon as the <code>with</code> block completes (or when
       bezier() returns if a <code>points</code> parameter was passed). By setting
       <code>plot=False</code>, the path will be returned but not drawn. You can then draw it
       manually by calling <code>path.draw()</code> on the returned <a href="#BezierPath">BezierPath</a> object.</p>
+
       <p><code class="box"><span class="red">close</span></code><br/>
       If <code>True</code>, connect the final point in the path back to the starting position after
       the final drawing command. If omitted, it defaults to <code>True</code> (or inherits the
       value from the last call to <a href="#autoclosepath()">autoclosepath()</a>).</p>
+
       <p><code class="box"><span class="red">fill</span></code> <span class="grey">/</span>
       <code class="box"><span class="red">stroke</span></code> <span class="grey">/</span>
-      <code class="box"><span class="red">strokewidth</span></code><br/>
+      <code class="box"><span class="red">nib</span></code><br/>
       Values passed to these parameters will override the state set in previous calls to the
-      corrseponding <a href="Line+Color.html#fill()">fill()</a>, <a href="Line+Color.html#stroke()">stroke()</a>, and <a href="Line+Color.html#strokewidth()">strokewidth()</a> commands. If omitted, the path will inherit
+      corrseponding <a href="Line+Color.html#fill()">fill()</a>, <a href="Line+Color.html#stroke()">stroke()</a>, and <a href="Line+Color.html#pen()">pen()</a> commands. If omitted, the path will inherit
       values from the global state when drawn.</p>
-      <p><code class="box"><span class="red">capstyle</span></code><br/>
-      Set the shape of the path’s endpoints to <code class="kw">BUTT</code>, <code class="kw">ROUND</code> or <code class="kw">SQUARE</code>. If omitted, the style defaults to
-      <code class="kw">BUTT</code> (or inherits the value from last call to <a href="Line+Color.html#capstyle()">capstyle()</a>).</p>
-      <p><code class="box"><span class="red">joinstyle</span></code><br/>
-      Set the shape of the path’s vertices to <code class="kw">MITER</code>, <code class="kw">ROUND</code> or <code class="kw">BEVEL</code>. If omitted, the style defaults to
-      <code class="kw">MITER</code> (or inherits the value from the last call to <a href="Line+Color.html#joinstyle()">joinstyle()</a>).</p>
+
+      <p><code class="box"><span class="red">cap</span></code><br/>
+      Set the shape of the path’s endpoints to <code class="kw">BUTT</code>, <code class="kw">SQUARE</code> or <code class="kw">ROUND</code>. If omitted, the style defaults to
+      <code class="kw">BUTT</code> (or inherits the value from the last call to <a href="Line+Color.html#pen()">pen()</a> that included a <code>cap</code> parameter).</p>
+
+      <p><code class="box"><span class="red">join</span></code><br/>
+      Set the shape of the path’s vertices to <code class="kw">MITER</code>, <code class="kw">BEVEL</code> or <code class="kw">ROUND</code>. If omitted, the style defaults to
+      <code class="kw">MITER</code> (or inherits the value from the last call to <a href="Line+Color.html#pen()">pen()</a> that included a <code>join</code> parameter).</p>
+
       <p><code class="box"><span class="red">curvature</span></code><br/>
       When bezier() is called with a list of more than three <code>(x,y)</code> tuples as
       <code>points</code>, the <code>curvature</code> parameter offers some control on how smoothly
       separate segments are stitched together: from straight lines (<code>0.0</code>) to smooth
-      curves (<code>1.0</code>). If omitted, curvature defaults to <code>1.0</code>.</p>
-      <div class="row"></div>
+      curves (<code>1.0</code>). If omitted, curvature defaults to <code>0</code>.</p>
+      </div>
 
       <h2>Tutorial</h2>
 

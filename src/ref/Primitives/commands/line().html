@@ -11,23 +11,20 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>line(x1, y1, x2, y2, draw=True)
+<pre>line(x1, y1, x2, y2, plot=True)
 </pre>
       </div>
 
       <h2>Description</h2>
 
       <div class="row">
-        Draws a line to the screen. A line is a straight path between two points. The first two
-        parameters set the location of the first point (origin), the following two parameters set
-        the location of the second point (destination). You will not notice a line if it’s <a href="Line+Color.html#stroke()">stroke()</a> is the same as the background color, or if the
-        line’s <a href="Line+Color.html#strokewidth()">strokewidth()</a> is zero.
+        <p>Draws a line to the screen. A line is a straight path between two points. The first two parameters set the location of the first point (origin), the following two parameters set the location of the second point (destination). You will not notice a line if its <a href="Line+Color.html#stroke()">stroke()</a> is <code>None</code> or the same as the background color (or if the <a href="Line+Color.html#pen()">pen()</a>'s <code>nib</code> is zero).</p>
       </div>
 
       <h2>Returns</h2>
 
       <div class="row">
-        <a href="Drawing.html#BezierPath">BezierPath</a> containing the line
+        a <a href="Drawing.html#Bezier">Bezier</a> object containing the line
       </div>
 
       <h2>Tutorial</h2>
@@ -45,8 +42,8 @@
               <td><span class="image_border"><img height="125" src="../etc/ref/line.jpg" width="125"/></span>
               </td><td>
 <pre>
+pen(2)
 stroke(0.2)
-strokewidth(2)
 line(10, 20, 80, 80)
 </pre>
               </td></tr></tbody></table>

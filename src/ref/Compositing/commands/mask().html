@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>mask()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+<pre>with mask(path):
+</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        Using the clip() command defines a clipping mask. The supplied parameter defines the path
+        to be used as a clipping mask. Each of the shape commands returns a path that can be used
+        with clip() – setting the <code>draw</code> parameter of a shape command to <code class="kw">False</code> simply returns the path without actually drawing the shape. Any shapes,
+        paths, texts and images drawn inside the clip() block are clipped, this means that any part
+        that falls outside the clipping mask path is not drawn. After completing the block,
+        subsequent shapes, paths, texts and images are no longer clipped to the path supplied to
+        clip().
+      </div>
+
+      <h2>Tutorial</h2>
+
+      <div class="row">
+        <a href="../tut/Paths.html">Paths</a>
+      </div>
+
+      <h2>Example</h2>
+
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><span class="image_border"><img alt="superfolia" src="../etc/ref/beginclip.jpg"/></span>
+              </td><td>
+<pre>
+p = oval(20, 20, 80, 80, plot=False)
+with clip(p):
+    image("header.jpg", -130, 0)
+</pre>
+              </td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>

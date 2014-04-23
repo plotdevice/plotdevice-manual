@@ -11,7 +11,7 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>arrow(x, y, width, type=NORMAL, draw=True)
+<pre>arrow(x, y, width, type=NORMAL, plot=True, **style)
 </pre>
       </div>
 
@@ -20,14 +20,14 @@
       <div class="row">
         Draws an arrow to the screen. The first two parameters set the location (measured from the
         arrow’s head), the third sets the width. Optionally you can define the arrow type with the
-        fourth parameter. By default the arrow type is NORMAL, but there is also a trendier
-        FORTYFIVE version.
+        fourth parameter. By default the arrow type is <code class="kw">NORMAL</code>, but there is also a trendier
+        <code class="kw">FORTYFIVE</code> version.
       </div>
 
       <h2>Returns</h2>
 
       <div class="row">
-        <a href="Drawing.html#BezierPath">BezierPath</a> containing the arrow
+        a <a href="Drawing.html#Bezier">Bezier</a> object containing the arrow
       </div>
 
       <h2>Tutorial</h2>
@@ -46,6 +46,10 @@
               </td><td>
 <pre>
 fill(0.2)
+arrow(50, 50, 50)
+
+rotate(180)
+fill('red')
 arrow(50, 50, 50)
 </pre>
               </td></tr></tbody></table>

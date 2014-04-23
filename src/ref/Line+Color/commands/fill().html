@@ -16,18 +16,20 @@ fill(h, s, b, a)
 fill(c, m, y, k, a)
 fill(k, a)
 fill(color)
+fill(*colors, angle=0, steps=[0,1], center=[0,0])
 </pre>
       </div>
 
       <h2>Description</h2>
 
       <div class="row">
-        Sets the current fill color. All shapes, paths and text following this command will be
-        drawn in this fill color. The color is either specified in terms of RGB, HSB or CMYK
-        depending on the current <a href="#colormode()">colormode()</a>. Each RGB, HSB or CMYK
-        parameter ranges between 0.0 and 1.0. The default colormode is RGB. The last parameter is
-        optional and sets the alpha (opacity) value. Additionally, fill() can be called with just
-        one parameter that sets the gray value, or with the color value returned from the <a href="#color()">color()</a> command.
+        <p>Arguments will be interpeted according to the canvas's current color-mode and range. For details see the <a href="#color()">color()</a> command.</p>
+
+        <p>If more than one color arg is included, a gradient will be drawn. Pass a list with the <code>steps</code> keyword arg to set the relative location of each color in the gradient (0-1.0). The relative locations are based on the bounding-box of the object being filled (not its convex hull). So for highly rounded objects, you'll need to adjust the steps to account for the dead-space in the corners of the bounds.</p>
+
+        <p>Including an <code>angle</code> keyword arg will draw a linear gradient at that orientation (otherwise it will be radial). Radial gradients will draw from the object center by default, but a relative center can be specified with the <code>center</code> keyword arg. If included, the center arg should be a 2-tuple with <code>x,y</code> values in the range -1 to +1.</p>
+
+        <p>In addition to colors, you can also call fill() with an <a href="Primitives.html#image()">image()</a> as its sole argument. In this case the image will be tiled to fit the object being filled.</p>
       </div>
 
       <h2>Returns</h2>

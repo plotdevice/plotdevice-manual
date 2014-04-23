@@ -11,22 +11,22 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>star(x, y, points=20, outer=100, inner=50, draw=True)
+<pre>star(x, y, points=20, outer=100, inner=50, plot=True, **style)
 </pre>
       </div>
 
       <h2>Description</h2>
 
       <div class="row">
-        Draws a star to the screen. The first two parameters set the location, measured from the
-        star’s center. There are three optional parameters that set the number of points, the outer
-        radius and the inner radius (the fill radius).
+        <p>Draws a star to the screen. The <code>x</code> and <code>y</code> parameters set the location of the star’s center. There are three optional parameters that set the number of points, the outer radius and the inner radius (the fill radius).</p>
+
+        <p>If the <code>inner</code> radius is omitted, one will be chosen such that the resulting star has regularized angles.</p>
       </div>
 
       <h2>Returns</h2>
 
       <div class="row">
-        <a href="Drawing.html#BezierPath">BezierPath</a> containing the star
+        a <a href="Drawing.html#Bezier">Bezier</a> object containing the star
       </div>
 
       <h2>Tutorial</h2>
@@ -45,7 +45,7 @@
               </td><td>
 <pre>
 fill(0.2)
-star(50, 50, 9, 40, 10)
+star(50, 50, points=5, outer=40)
 </pre>
               </td></tr></tbody></table>
       </div>

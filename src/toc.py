@@ -7,7 +7,7 @@ ref['Canvas'] = {
     'compat': ['outputmode()', 'ximport()'] }
 ref['Line+Color'] = {
     'commands': ['color()', 'stroke()', 'fill()', 'pen()', ],
-    'types': ['Color', 'Gradient', ],
+    'types': ['Color', ], # 'Gradient',
     'compat': ['capstyle()', 'colormode()', 'joinstyle()', 'nofill()', 'nostroke()', 'strokewidth()'] }
 ref['Primitives'] = {
     'commands': ['image()', 'rect()',  'oval()', 'poly()', 'arc()', 'line()',  ],
@@ -29,11 +29,7 @@ ref['Typography'] = {
     'commands': ['font()', 'text()', 'align()', 'stylesheet()'],
     'types': ['Family', 'Font', 'Stylesheet', 'Text'],
     'compat': ['fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textpath()', 'textwidth()'] }
-# ref['Utility'] = {
-#     'commands': ['read()', 'grid()', 'measure()',('files()', 'fonts()'), ('random()', 'choice()'), ('shuffled()', 'ordered()')],
-#     'types': ['Point', 'Size', 'Region', None, 'dictionaries', ],
-#     'compat': ['imagesize()', 'autotext()', 'open()', 'var()', ] }
-
+# grouped into Misc.html
 ref['Entropy'] = {
     'commands': ['random()', 'choice()', 'shuffled()', 'ordered()', 'grid()',  ],
     'types': [ 'dictionaries', ],

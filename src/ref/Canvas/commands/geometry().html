@@ -5,41 +5,47 @@
 
 </head><body>
   <div class="section">
-    <h3>plot()</h3>
+    <h3>geometry()</h3>
 
     <div class="definition">
       <h2>Syntax</h2>
 
       <div class="row">
-        <pre>plot(grob)</pre>
+<pre>geometry(units)
+</pre>
       </div>
 
       <h2>Description</h2>
+
       <div class="row">
-        The plot() command will add any PlotDevice primitive to the canvas. It's useful in combination
-        with the <code>plot=False</code> argument that can be passed to <code>rect()</code>, <code>oval()</code>, <code>text()</code>, and friends.
+        Sets the units for angles supplied to drawing commands. By default this is <code class="kw">DEGREES</code>, but you can also use either <code class="kw">RADIANS</code> or <code class="kw">PERCENT</code>
+
       </div>
 
       <h2>Tutorial</h2>
+
       <div class="row">
-        <a href="../tut/Strings.html">Strings</a>
+        <a href="../tut/Graphics_State.html">Graphics State</a>
       </div>
 
       <h2>Example</h2>
+
       <div class="row">
         <table border="0">
           <tbody>
             <tr>
-              <td><span class="image_border"><img height="125" src="../etc/ref/autotext.jpg" width="125"/></span>
-              </td><td>
-<pre>example code
+              <td>
+<pre>
+# turn the canvas 1/4 of the way around using radians
+geometry(RADIANS)
+rotate(pi/2)
+# do the opposite using degrees
+geometry(DEGREES)
+rotate(-90)
 </pre>
               </td></tr></tbody></table>
       </div>
-
     </div>
-
-
   </div>
 
 </body></html>

@@ -18,10 +18,10 @@
       <h2>Description</h2>
 
       <div class="row">
-        The lineto() command must be called within a <a href="#bezier()">bezier()</a> block (or
-        between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).
-        Draws a line between the current point in the path and a new destination point. The two
-        parameters set the location of the new destination point.
+        <p>Draws a line between the current point in the path and a new destination point. The two parameters set the location of the new destination point. If the <code>close</code> argument is set to <code>True</code>, a <a href="#lineto()">lineto()</a> command will be synthesized connecting the end of the line-segment to the origin point of the active subpath.</p>
+
+        <p>The lineto() command must be called inside a <a href="#bezier()">bezier()</a> context (or between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).</p>
+
       </div>
 
       <h2>Tutorial</h2>
