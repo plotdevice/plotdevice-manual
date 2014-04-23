@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="section">
+    <h3>plot()</h3>
+
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+        <pre>plot(grob)</pre>
+      </div>
+
+      <h2>Description</h2>
+      <div class="row">
+        <p>The plot() command will draw any PlotDevice primitive to the canvas. It's useful in combination with the <code>plot</code> argument that can be passed to <code>rect()</code>, <code>oval()</code>, <code>text()</code>, <code>image()</code>, and friends.</p>
+
+        <p>When you call a drawing-related function with <code>plot=False</code>, the object is created but not added to the canvas. You can save a reference to the object in a variable then pass it to plot() later to be drawn as-is or with additional styling in its keyword args.</p>
+
+        <p>The plot command can also be used as part of a <code>with</code> statement to set whether drawing commands affect the canvas by default. Using <code>with plot(False):</code> will disable drawing within the block (allowing you to omit the <code>plot</code> argument in the individual commands</p>
+      </div>
+
+      <h2>Tutorial</h2>
+      <div class="row">
+        <a href="../tut/Graphics_State.html">Graphics State</a>
+      </div>
+
+      <h2>Example</h2>
+      <div class="row">
+        <table border="0">
+          <tbody>
+            <tr>
+              <td>
+<pre>
+# create a shape (but don't draw it immediately)
+r = rect(20,20,40,40, plot=False)
+...
+# draw the saved shape (but override the canvas's fill color)
+plot(r, fill='red')
+</pre>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<pre>
+# the plot keyword arg prevents this from being drawn
+o = oval(0,0,100,100, plot=False)
+
+# the plot() command disables drawing for the entire block
+with plot(False):
+    o = oval(0,0,100,100)   # not drawn
+    s = rect(100,100,10,10) # same here
+</pre>
+              </td>
+            </tr>
+
+
+              </tbody></table>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</body></html>
