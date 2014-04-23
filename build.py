@@ -102,7 +102,7 @@ def tidy(html):
   for tag in soup.find_all(recursive=True):
     for child in tag.children:
       rents = [p.name for p in child.parents]
-      if type(child) is NavigableString and 'pre' not in rents and 'script' not in rents:
+      if type(child) is NavigableString and 'pre' not in rents and 'script' not in rents and 'code' not in rents:
         if "'" in child or '"' in child:
           # child.replace_with(child.replace(u"'",u"’").replace(u' "',u" “").replace(u'"',u'”'))
           child.replace_with(child.replace(u"'",u"’").replace(u' "',u" ‘").replace(u'"',u'’'))
@@ -214,15 +214,15 @@ tmpls = Environment(loader=FileSystemLoader('%s/tmpl'%py_root))
 def etc():
   # hardlink all the media files so we're not shuffling around megs
   # of images on every run (yes i know, whole MEGAbytes)
-  if not exists('doc/etc/ref'):
-    _mkdir('doc/etc/type')
-    os.system('ln -f src/etc/type/* doc/etc/type')
-    os.system('ln -f tmpl/manual.css doc/etc/manual.css')
-    os.system('ln -f tmpl/typography.css doc/etc/type/typography.css')
-    os.system('ln -f src/etc/zepto.min.js doc/etc/zepto.min.js')
-    for sect in ('ref','tut','lib'):
-      _mkdir('doc/etc/%s'%sect)
-      os.system('ln -f src/etc/%s/* doc/etc/%s'%(sect,sect))
+  # if not exists('doc/etc/ref'):
+  _mkdir('doc/etc/type')
+  os.system('ln -f src/etc/type/* doc/etc/type')
+  os.system('ln -f tmpl/manual.css doc/etc/manual.css')
+  os.system('ln -f tmpl/typography.css doc/etc/type/typography.css')
+  os.system('ln -f src/etc/zepto.min.js doc/etc/zepto.min.js')
+  for sect in ('ref','tut','lib'):
+    _mkdir('doc/etc/%s'%sect)
+    os.system('ln -f src/etc/%s/* doc/etc/%s'%(sect,sect))
 
 def toc():
   print "Table of Contents"
