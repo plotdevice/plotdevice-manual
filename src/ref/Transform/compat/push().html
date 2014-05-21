@@ -20,16 +20,22 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>PlotDevice is a so-called state-machine. For example, once <code>rotate(45)</code> is
+        <p>PlotDevice is a so-called state-machine in which certain types of modifications are cumulative. For example, once <code>rotate(45)</code> is
         called, all subsequent shapes, paths, text and images are rotated 45 degrees – the rotation
-        ‘state’ has been set to 45°. While the <a href="#transform()">transform()</a> command
-        provides a mechanism for controlling the scope of these state changes within blocks, the
-        push() &amp; pop() commands allow your script to save and restore the state manually.</p>
+        ‘state’ has been set to 45°. </p>
         <p>All transformations, such as <a href="#rotate()">rotate()</a> and <a href="#skew()">skew()</a>, defined between a push() and pop() call last only until pop() is
         called. Thereafter the previous state is used. For example, a rotate(-30) within a
         rotate(45) means a rotation state of 15 degrees until pop() is called and the rotation
         state becomes 45 degrees again.</p>
       </div>
+
+      <h2>PlotDevice Equivalent</h2>
+
+      <div class="row">
+        <p>While
+          push() &amp; pop() allow your script to save and restore the state manually, the <a href="#transform()">transform()</a> command provides a mechanism for controlling the scope of these state changes to a block of code.</p>
+      </div>
+
 
       <h2>Tutorial</h2>
 

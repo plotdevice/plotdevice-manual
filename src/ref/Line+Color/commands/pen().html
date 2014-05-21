@@ -60,24 +60,23 @@ nofill()
 stroke(0)
 pen(10, cap=BUTT)
 line(20,20, 50,20)
-pen(cap=ROUND)
-line(20,40, 50,40)
-pen(cap=SQUARE)
-line(20,60, 50,60)
+with pen(cap=ROUND):
+    line(20,40, 50,40)
+with pen(cap=SQUARE):
+    line(20,60, 50,60)
 </pre>
               </td></tr>
 
             <tr><td><span class="image_border"><img height="125" src="../etc/ref/joinstyle.png" width="125"/></span>
               </td><td>
 <pre>
-nofill()
-stroke(0)
-pen(10, join=MITER)
-bezier([(20,20), (40,40), (60,20)], curvature=0)
-pen(join=ROUND)
-bezier([(20,50), (40,70), (60,50)], curvature=0)
-pen(join=BEVEL)
-bezier([(20,80), (40,100), (60,80)], curvature=0)
+with nofill(), stroke(0), pen(10):
+    pen(join=MITER)
+    bezier([(20,20), (40,40), (60,20)])
+    pen(join=ROUND)
+    bezier([(20,50), (40,70), (60,50)])
+    pen(join=BEVEL)
+    bezier([(20,80), (40,100), (60,80)])
 </pre>
               </td></tr>
 

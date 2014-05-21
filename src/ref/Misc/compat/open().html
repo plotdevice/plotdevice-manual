@@ -18,15 +18,22 @@
       <h2>Description</h2>
 
       <div class="row">
-        The open() command opens a file specified by the path parameter. The open() command can be
-        used in two ways: open(path).read(), which returns the file’s text content as a string, or,
-        alternatively, open(path).readlines(), which returns a list of text lines.
+        <p>The open() command opens a file specified by the path parameter. The open() command can be used in two ways: open(path).read(), which returns the file’s text content as a string, or, alternatively, open(path).readlines(), which returns a list of text lines.</p>
+
+
+        <p>Note that open() is actually a part of the Python language. See the official docs for details on using <a href="https://docs.python.org/2/library/functions.html#open">open()</a> and dealing with the <a href="https://docs.python.org/2/library/stdtypes.html#bltin-file-objects">file</a> objects it returns.</p>
       </div>
 
       <h2>Returns</h2>
 
       <div class="row">
-        the file’s text content, as a string
+        a file object whose <code>read</code> method provides its contents as a string
+      </div>
+
+      <h2>PlotDevice Equivalent</h2>
+
+      <div class="row">
+        <p>A more convenient way to read the contents of a file into a string (or other data structure) is the new <a href="#read()">read()</a> command. It can handle text files as well as CSV- or JSON-formatted data.</p>
       </div>
 
       <h2>Tutorial</h2>
@@ -46,7 +53,7 @@
 # Prints the contents of sample.txt as a whole
 txt = open("sample.txt").read()
 print txt
- 
+
 # Prints the contents line per line
 txt = open("sample.txt").readlines()
 for line in txt:

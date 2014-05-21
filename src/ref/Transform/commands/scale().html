@@ -18,14 +18,13 @@
       <h2>Description</h2>
 
       <div class="row">
-        Increases, decreases or streches the size of all subsequent shape, path, text, image
-        commands. The first parameter sets the horizontal scale, the second parameter the vertical
-        scale. Additionally, the scale() command can be called with a single parameter that sets
-        both the horizontal and vertical scale. Scale values are specified as floating-point
-        (decimal) numbers. The scale() command works incrementally: if you call scale(0.5), and
-        later on call scale(0.2), all commands following that second scale() will be sized to 10
-        percent (0.2 of 0.5).
+        <p>Increases, decreases or streches the size of all subsequent shape, path, text, image commands. The first parameter sets the horizontal scale, the second parameter the vertical scale. Additionally, the scale() command can be called with a single parameter that sets both the horizontal and vertical scale.</p>
+        <p>Scale values are specified as floating-point (decimal) numbers. The scale() command works incrementally: if you call <code>scale(0.5)</code>, and later on call <code>scale(0.2)</code>, all subsequent drawing commands will be sized to 10% (0.2 of 0.5).</p>
       </div>
+
+      <h2>Context Manager</h2>
+
+      <p>As with the other transform commands, scale() can be used in a <code>with</code> statement to limit its scope to drawing commands within the following block of code.</p>
 
       <h2>Tutorial</h2>
 

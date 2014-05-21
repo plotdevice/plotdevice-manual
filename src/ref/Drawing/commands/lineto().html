@@ -11,7 +11,7 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>lineto(x, y)
+<pre>lineto(x, y, close=False)
 </pre>
       </div>
 
@@ -39,9 +39,11 @@
               <td><span class="image_border"><img src="../etc/ref/lineto.jpg"/></span>
               </td><td>
 <pre>
-with bezier(10, 10, stroke=0.2, fill=None) as path:
+nofill()
+with bezier(10, 10, stroke=0.2, close=True) as path:
     lineto(40, 40)
     lineto(80, 40)
+
 </pre><em>or</em>
 <pre>
 nofill()

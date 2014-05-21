@@ -5,36 +5,82 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>blend(arg)
+<pre>blend(mode)
 </pre>
       </div>
 
       <h2>Description</h2>
       <div class="row">
-        The blend() command is a NOP.
+        <p>Blending operations affect how ‘old’ content on the canvas shows through new content drawn on top of it. By default the canvas uses the traditional ‘painter's algorithm’ in which a new drawing operation obscures anything below it in proportion to its opacity. </p>
+
+        <p>Setting an alternate blend mode changes the rules for determining how colors combine. Different modes will use color, opacity, depth-ordering, or a combination of attributes. Call blend() with a mode-name string to set a custom blend mode.</p>
       </div>
 
-      <h2>Returns</h2>
+      <h2>Context Manager</h2>
       <div class="row">
-        the file’s text content, as a string
+        <p>When used as part of a <code>with</code> statement, blend() will first render the drawing within the block as a single layer (using the <code>normal</code> blend mode). The layer's contents are then composited to the canvas using the specified mode.</p>
       </div>
 
       <h2>Tutorial</h2>
       <div class="row">
-        <a href="../tut/Strings.html">Strings</a>
+        <a href="../tut/Graphics_State.html">Graphics State</a>
       </div>
 
       <h2>Example</h2>
       <div class="row">
+        <p>To demonstrate the different available modes, we'll repeatedly draw the same foreground and backdrop images atop one another, changing only the blend mode. Note that the current <a href="#alpha()">alpha()</a> level will also affect your results. Here the images are drawn at full opacity.</p>
         <table border="0">
           <tbody>
             <tr>
-              <td><span class="image_border"><img height="125" src="../etc/ref/autotext.jpg" width="125"/></span>
+              <td>
+                <span class="image_border transparency_grid"><img height="125" src="../etc/ref/blend-bg.png" width="125"/></span>
               </td><td>
-<pre>example code
+                <span class="image_border transparency_grid"><img height="125" src="../etc/ref/blend-fg.png" width="125"/></span>
+              </td><td>
+<pre>image("backdrop.png")
+blend("…")
+image("foreground.png")
 </pre>
-              </td></tr></tbody></table>
+              </td>
+            </tr>
+            <tr><td style='font:italic 13px "Cabin";'>backdrop.png</td><td style='font:italic 13px "Cabin";'>foreground.png</td></tr>
+          </tbody>
+        </table>
+
+        <p>Call blend() with one of the following strings as an argument to achieve the desired compositing effect:</p>
+        <div class="blend-modes">
+          <div class="mode"><div class="normal"></div><div class="label">normal</div></div>
+          <div class="mode"><div class="copy"></div><div class="label">copy</div></div>
+          <div class="mode"><div class="xor"></div><div class="label">xor</div></div>
+          <div class="mode"><div class="multiply"></div><div class="label">multiply</div></div>
+          <div class="mode"><div class="screen"></div><div class="label">screen</div></div>
+          <div class="mode"><div class="overlay"></div><div class="label">overlay</div></div>
+          <div class="mode"><div class="darken"></div><div class="label">darken</div></div>
+          <div class="mode"><div class="lighten"></div><div class="label">lighten</div></div>
+          <div class="mode"><div class="difference"></div><div class="label">difference</div></div>
+          <div class="mode"><div class="exclusion"></div><div class="label">exclusion</div></div>
+          <div class="mode"><div class="color-dodge"></div><div class="label">color-dodge</div></div>
+          <div class="mode"><div class="color-burn"></div><div class="label">color-burn</div></div>
+          <div class="mode"><div class="soft-light"></div><div class="label">soft-light</div></div>
+          <div class="mode"><div class="hard-light"></div><div class="label">hard-light</div></div>
+          <div class="mode"><div class="hue"></div><div class="label">hue</div></div>
+          <div class="mode"><div class="saturation"></div><div class="label">saturation</div></div>
+          <div class="mode"><div class="color"></div><div class="label">color</div></div>
+          <div class="mode"><div class="luminosity"></div><div class="label">luminosity</div></div>
+          <div class="mode"><div class="source-in"></div><div class="label">source-in</div></div>
+          <div class="mode"><div class="source-out"></div><div class="label">source-out</div></div>
+          <div class="mode"><div class="source-atop"></div><div class="label">source-atop</div></div>
+          <div class="mode"><div class="plus-darker"></div><div class="label">plus-darker</div></div>
+          <div class="mode"><div class="plus-lighter"></div><div class="label">plus-lighter</div></div>
+          <div class="mode"><div class="destination-over"></div><div class="label">destination-over</div></div>
+          <div class="mode"><div class="destination-in"></div><div class="label">destination-in</div></div>
+          <div class="mode"><div class="destination-out"></div><div class="label">destination-out</div></div>
+          <div class="mode"><div class="destination-atop"></div><div class="label">destination-atop</div></div>
+          <div class="mode"><div class="clear"></div><div class="label">clear</div></div>
+        </div>
+
       </div>
+
 
     </div>
 

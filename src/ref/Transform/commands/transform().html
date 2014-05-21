@@ -23,6 +23,11 @@
         <p>The <code>mode</code> parameter sets the registration point – the offset for <a href="#rotate()">rotate()</a>, <a href="#scale()">scale()</a> and <a href="#skew()">skew()</a>
         commands. By default, shapes, paths, text and images rotate around their own centerpoint.
         transform() can be called with an optional first-parameter of <code><span class="kw">CORNER</span></code> to rotate and skew around the canvas’s upper left corner.</p>
+      </div>
+
+      <h2>Context Manager</h2>
+
+      <div class="row">
         <p>When called as part of a <code class="kw">with</code> block, any subsequent
         transformation calls will apply only within the block. At the end of the block, the
         transformation state will be reset to what it was before the transform() call. This is
@@ -41,7 +46,7 @@ translate(100,20)
 line(0,0, 40,0)
 pop()
 transform(oldmode)
-            
+
 </pre>
               </td><td><em>simplifies to</em>
               </td><td>
@@ -108,8 +113,8 @@ print "new mode:", transform(CORNER)
 
         <p>Alternately, the <a href="#Transform"><code>Transform</code></a> assembled in a
         <code>with</code> block can be captured using the <code class="kw">as</code> construct and
-        can be applied to <a href="Drawing.html#BezierPath"><code>BezierPath</code></a> and
-        <code>Point</code> objects even after the block has completed:</p>
+        can be applied to <a href="Drawing.html#Bezier"><code>Bezier</code></a> and
+        <a href="Misc.html#Point"><code>Point</code></a> objects even after the block has completed:</p>
 <pre>with transform(CORNER) as t: # define a Transform object in the `t` variable
     skew(20.0)
 square = rect(20,20,40,40, fill=0.7) # a non-transfomed square
@@ -137,10 +142,10 @@ fill(0.2)
 fontsize(14)
 rotate(90)
 text("one", 40, 80)
- 
+
 with transform(rotate(-90)):
     text("two", 40, 40)
- 
+
 text("three", 50, 80)
 
 </pre>

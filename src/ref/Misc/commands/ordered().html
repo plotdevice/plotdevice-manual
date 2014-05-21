@@ -18,17 +18,16 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>Returns a sorted copy of a list of objects (similar to Python's built-in <a href="https://wiki.python.org/moin/HowTo/Sorting"><code>sorted</code></a> function). Lists of dictionaries or objects can be 
-        sorted based on a common key or attribute if one or more <code>name</code> arguments are provided.</p> 
-        
-        <p>Lists are returned in ascending order unless the <code>reverse</code> parameter is 
+        <p>Returns a sorted copy of a list of objects (similar to Python's built-in <a href="https://wiki.python.org/moin/HowTo/Sorting"><code>sorted</code></a> function). Lists of dictionaries or objects can be sorted based on a common key or attribute if any <code>name</code> strings are provided. If more than one name is present, they will be used (in order) as primary, secondary, tertiary, etc. sorting criteria.</p>
+
+        <p>Lists are returned in ascending order unless the <code>reverse</code> parameter is
            <code class="kw">True</code>.</p>
       </div>
 
       <h2>Returns</h2>
 
       <div class="row">
-        a sorted copy of the original list
+        a sorted copy of the original sequence
       </div>
 
       <h2>Tutorial</h2>
@@ -45,9 +44,16 @@
             <tr>
               <td>
 <pre>
-itemlst = [dict(foo=1, bar=10), dict(foo=12, bar=0), dict(foo=13, bar=1)]
-print ordered(itemlst, 'foo', reverse=True)
-
+students = [{"name":"Alice", "grade":95},
+            {"name":"Bob", "grade":60},
+            {"name":"Carol", "grade":88},
+            {"name":"Eve", "grade":95} ]
+for s in ordered(students, 'grade', 'name'):
+    print s['grade'], s['name']
+# 60 Bob
+# 88 Carol
+# 95 Alice
+# 95 Eve
 </pre>
               </td></tr></tbody></table>
       </div>

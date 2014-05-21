@@ -11,10 +11,10 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>fill(r, g, b, a)
-fill(h, s, b, a)
-fill(c, m, y, k, a)
-fill(k, a)
+<pre>fill(r, g, b, a=1.0)
+fill(h, s, b, a=1.0)
+fill(c, m, y, k, a=1.0)
+fill(k, a=1.0)
 fill(color)
 fill(*colors, angle=0, steps=[0,1], center=[0,0])
 </pre>
@@ -23,7 +23,7 @@ fill(*colors, angle=0, steps=[0,1], center=[0,0])
       <h2>Description</h2>
 
       <div class="row">
-        <p>Arguments will be interpeted according to the canvas's current color-mode and range. For details see the <a href="#color()">color()</a> command.</p>
+        <p>Sets the current fill color, interpeting the arguments according to the canvas's current color-mode and range. For details see the <a href="#color()">color()</a> command.</p>
 
         <p>If more than one color arg is included, a gradient will be drawn. Pass a list with the <code>steps</code> keyword arg to set the relative location of each color in the gradient (0-1.0). The relative locations are based on the bounding-box of the object being filled (not its convex hull). So for highly rounded objects, you'll need to adjust the steps to account for the dead-space in the corners of the bounds.</p>
 
@@ -35,7 +35,7 @@ fill(*colors, angle=0, steps=[0,1], center=[0,0])
       <h2>Returns</h2>
 
       <div class="row">
-        the current fill <a href="#Color">color</a>
+        a <a href="#Color">Color</a> object representing the current fill color
       </div>
 
       <h2>Tutorial</h2>

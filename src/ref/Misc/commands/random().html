@@ -18,17 +18,17 @@
       <h2>Description</h2>
 
       <div class="row">
-        Returns a random number that can be assigned to a variable or a parameter. When no
-        parameters are supplied, returns a floating-point (decimal) number between 0.0 and 1.0
-        (including 0.0 and 1.0). When one parameter is supplied, returns a number between 0 and
-        this parameter. When two parameters are supplied, returns a number between the first and
-        the second parameter. The random() command is useful for all sorts of operations, from
-        random colors to lines with a random width.
+        <p>Returns a random number that can be assigned to a variable or a parameter. The random() command is useful for all sorts of operations, from random colors to lines with a random width.</p>
 
-        <p>Note: new random values are returned each time the script runs. The variation can be
-        locked by supplying a custom random seed:<br/>
-        <span class="inline_code">from random import seed<br/>
-        seed(0)</span><br/></p>
+        <p>When no parameters are supplied, returns a floating-point (decimal) number between 0.0 and 1.0 (including 0.0 and 1.0). When one parameter is supplied, returns a number between 0 and this parameter. When two parameters are supplied, returns a number between the first and the second parameter.</p>
+
+        <p>New random values are returned each time the script runs. The variation can be
+        locked by supplying a custom random seed:</p>
+        <pre>
+from random import seed
+seed(0)
+</pre>
+<p> Note that whether the boundaries are integers or floating point values is <em>significant</em>. See the example code for the differing behaviors that result.</p>
       </div>
 
       <h2>Returns</h2>
@@ -52,12 +52,12 @@
               <td>
 <pre>
 r = random() # returns a float between 0 and 1
-r = random(2.5) # returns a float between 0 and 2.5 
+r = random(2.5) # returns a float between 0 and 2.5
 r = random(-1.0, 1.0) # returns a float between -1.0 and 1.0
 r = random(5) # returns an int between 0 and 5
 r = random(1, 10) # returns an int between 1 and 10
- 
-# sets the fill to anything from 
+
+# sets the fill to anything from
 # black (0.0,0,0) to red (1.0,0,0)
 fill(random(), 0, 0)
 </pre>

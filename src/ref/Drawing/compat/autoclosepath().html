@@ -18,10 +18,13 @@
       <h2>Description</h2>
 
       <div class="row">
-        The autoclosepath() command defines whether custom shapes created between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a> are automatically
-        closed by connecting the last point and the first point in the path with a line. It takes
-        one parameter which is a boolean (True or False). All shapes created with beginpath()
-        following this command will adhere to the setting.
+        <p>The autoclosepath() command defines whether custom shapes created between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a> are automatically closed by connecting the last point and the first point in the path with a line. It takes one parameter which is a boolean (True or False). All shapes created with beginpath() following this command will adhere to the setting.</p>
+      </div>
+
+      <h2>PlotDevice Equivalent</h2>
+
+      <div class="row">
+        <p>The new <a href="#bezier()">bezier()</a> command takes a keyword argument called <code>close</code> which, when set to <code>True</code> will close the path at the end of a <code>with</code> block. The <a href="#lineto()">lineto()</a>, <a href="#cuveto()">cuveto()</a>, and <a href="#arcto()">arcto()</a> commands will also accept a <code>close</code> argument allowing you to close the subpath after adding a line segment.</p>
       </div>
 
       <h2>Tutorial</h2>

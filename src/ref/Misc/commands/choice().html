@@ -11,21 +11,20 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>choice(list)
+<pre>choice(sequence)
 </pre>
       </div>
 
       <h2>Description</h2>
 
       <div class="row">
-        Returns one random item from the list supplied as parameter. Using the choice() command is
-        an alternative to the obscure <code>list[random(len(list)]</code> command.
+        <p>Returns one random item from the <code>sequence</code> parameter (a tuple, list, or string). The choice() command is syntactic sugar for the comparatively awkward <code>lst[random(len(lst)]</code> command.</p>
       </div>
 
       <h2>Returns</h2>
 
       <div class="row">
-        a random item from the given list
+        a random item from the given sequence
       </div>
 
       <h2>Tutorial</h2>
@@ -42,13 +41,12 @@
             <tr>
               <td>
 <pre>
-words = ["PlotDevice", "Ekky-ekky!", "z'Boing!"]
-c = choice(words) 
- 
+words = ["It is certain", "Reply hazy try again", "Outlook not so good"]
+c = choice(words)
 # Variable c contains a random item from the words list
-# So variable c might now be "PlotDevice"...
-# or "Ekky-ekky!"...
-# or "z'Boing!"
+# It might now be "It is certain"...
+# or "Reply hazy try again"...
+# or "Outlook not so good"
 </pre>
               </td></tr></tbody></table>
       </div>

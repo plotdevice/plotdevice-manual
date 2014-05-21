@@ -18,18 +18,19 @@
       <h2>Description</h2>
 
       <div class="row">
-        The endpath() command is the companion to <a href="#beginpath()">beginpath()</a> and may
-        only be called after the later. When endpath() is called, the path defined between
-        beginpath() and endpath() is drawn to the screen. Optionally, when endpath(plot=False) is
-        called, the path is not drawn to the screen, but can be assigned to a variable and drawn to
-        the screen at a later time with the <a href="#drawpath()">drawpath()</a> command. Check the
-        <a href="../tut/Paths.html">tutorial on paths</a> for other possibilities with paths.
+        <p>The endpath() command is the companion to <a href="#beginpath()">beginpath()</a> and may only be called after the later. When endpath() is called, the path defined between beginpath() and endpath() is drawn to the screen. Optionally, when <code>endpath(draw=False)</code> is called, the path is not drawn to the screen, but can be assigned to a variable and drawn to the screen at a later time with the <a href="#drawpath()">drawpath()</a> command.</p>
       </div>
 
       <h2>Returns</h2>
 
       <div class="row">
         a <a href="#Bezier">Bezier</a> object containing the constructed path
+      </div>
+
+      <h2>PlotDevice Equivalent</h2>
+
+      <div class="row">
+        <p>The endpath() command has been subsumed into the new <a href="#bezier()">bezier()</a> command. Rather than calling beginpath() and endpath() to construct beziers, you can call bezier() as part of a <code>with</code> statement.</p>
       </div>
 
       <h2>Tutorial</h2>
