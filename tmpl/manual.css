@@ -1,15 +1,18 @@
+
+@import url("type/typography.css");
+
 /**************************************/
 /* TYPOGRAPHY */
 
-body, table, td, input, select, option, textarea { font: 14px Georgia; line-height: 1.4em; }
+body, table, td, input, select, option, textarea { font: 14px Georgia; line-height: 20px; }
 h1, h3 { font: bold 18px "Cabin"; }
 h3 { margin-top: 15px; }
 h2 { font: bold 14px "Cabin"; line-height: 1.5em; margin-top: 15px; }
-pre { font-size: 12px; font-family:"Courier Prime"; line-height: 1.4em; }
-code { font-family:"Courier Prime"; letter-spacing:0;}
+pre { font-size: 12px; font-family:"Courier Prime"; line-height: 19px; }
+code { font-family:"Courier Prime"; letter-spacing:0; line-height: 16px;}
 code.box{ padding:0 4px;}
 p code { font-size:13px;}
-.message { font: bold 12px "Cabin"; line-height: 1.5em; }
+.message { font: bold 12px "Cabin"; line-height: 18px; }
 div#title h1 { line-height: 0.8em; margin: 0; padding: 0; font-size: 50px; letter-spacing: -3px; }
 
 /***************************************/
@@ -171,7 +174,7 @@ code.box { background:#edede6; color:#665; border: 1px solid #d3d3ba;}
 .big_text { font-size: 160%; line-height: 1.1em; }
 .small_text { font-size: 80%; }
 .image_border img, table span.image_border img, .border { border: 1px solid #888; }
-
+.transparency_grid img{ background:url("ref/transparency-grid.png"); }
 
 .rose_text,
 .pink_text { font-style:italic; position:relative;}
@@ -676,7 +679,7 @@ body.compat .toc .sidebar .compat{
 .article a:target + .section:before{
   content:"→";
   left:-30px;
-  top:-5px;
+  top:-2px;
   font:36px/36px "Monaco";
   position:absolute;
   width:42px;
@@ -723,6 +726,61 @@ body.compat .toc .sidebar .compat{
 }
 
 
+.article .definition .blend-modes{
+  overflow:hidden;
+  width:580px;
+}
+
+.article .definition .blend-modes .mode{
+  float:left;
+  margin:0 12px 20px 0;
+  font: 12px "Courier Prime";
+  background:url("ref/transparency-grid.png");
+  border:1px solid black;
+  position:relative;
+}
+.article .definition .blend-modes .mode > div.label{
+  position:absolute;
+  background:none;
+  top:127px;
+  left:0;
+}
+
+.article .definition .blend-modes .mode > div{
+  background:url("ref/blend-modes.png");
+  width:125px;
+  height:125px;
+  overflow:hidden;
+}
+
+.article .definition .blend-modes .mode .normal{background-position:-0px 0;}
+.article .definition .blend-modes .mode .copy{background-position:-125px 0;}
+.article .definition .blend-modes .mode .xor{background-position:-250px 0;}
+.article .definition .blend-modes .mode .multiply{background-position:-375px 0;}
+.article .definition .blend-modes .mode .screen{background-position:-500px 0;}
+.article .definition .blend-modes .mode .overlay{background-position:-625px 0;}
+.article .definition .blend-modes .mode .darken{background-position:-750px 0;}
+.article .definition .blend-modes .mode .lighten{background-position:-875px 0;}
+.article .definition .blend-modes .mode .difference{background-position:-1000px 0;}
+.article .definition .blend-modes .mode .exclusion{background-position:-1125px 0;}
+.article .definition .blend-modes .mode .color-dodge{background-position:-1250px 0;}
+.article .definition .blend-modes .mode .color-burn{background-position:-1375px 0;}
+.article .definition .blend-modes .mode .soft-light{background-position:-1500px 0;}
+.article .definition .blend-modes .mode .hard-light{background-position:-1625px 0;}
+.article .definition .blend-modes .mode .hue{background-position:-1750px 0;}
+.article .definition .blend-modes .mode .saturation{background-position:-1875px 0;}
+.article .definition .blend-modes .mode .color{background-position:-2000px 0;}
+.article .definition .blend-modes .mode .luminosity{background-position:-2125px 0;}
+.article .definition .blend-modes .mode .source-in{background-position:-2250px 0;}
+.article .definition .blend-modes .mode .source-out{background-position:-2375px 0;}
+.article .definition .blend-modes .mode .source-atop{background-position:-2500px 0;}
+.article .definition .blend-modes .mode .plus-darker{background-position:-2625px 0;}
+.article .definition .blend-modes .mode .plus-lighter{background-position:-2750px 0;}
+.article .definition .blend-modes .mode .destination-over{background-position:-2875px 0;}
+.article .definition .blend-modes .mode .destination-in{background-position:-3000px 0;}
+.article .definition .blend-modes .mode .destination-out{background-position:-3125px 0;}
+.article .definition .blend-modes .mode .destination-atop{background-position:-3250px 0;}
+.article .definition .blend-modes .mode .clear{background-position:-3375px 0;}
 /*.article .contents h2,*/
 /*
 .article .contents{
@@ -737,7 +795,4 @@ body.compat .toc .sidebar .compat{
 */
 
 
-
-
-@import url("type/typography.css");
 
