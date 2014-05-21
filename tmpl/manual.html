@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 {% set metamanagers = ['export()', 'bezier()', 'plotstyle()', 'transform()', 'layer()', 'font()', 'color()',  ]%}
-{% set managers =  ['stroke()', 'fill()', 'pen()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', 'alpha()', 'blend()', 'shadow()', 'plot()', ('clip()', 'mask()'), ]%}
+{% set managers =  ['stroke()', 'fill()', 'pen()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', 'alpha()', 'blend()', 'shadow()', 'plot()', ('plot()', 'clear()'), ('clip()', 'mask()'), ]%}
 
 {%- macro sectionpage(src) -%}
 {%- set dst = 'Misc' if src in ('Entropy', 'Utility') else src -%}

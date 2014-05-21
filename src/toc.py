@@ -2,7 +2,7 @@ from collections import OrderedDict as odict
 
 ref=odict()
 ref['Canvas'] = {
-    'commands': ['size()', 'speed()', 'background()', 'geometry()', 'export()', 'plot()', 'clear()', ],
+    'commands': ['size()', 'speed()', 'background()', 'geometry()', 'export()', ('plot()', 'clear()'), ],
     'types': ['Constants'],
     'compat': ['outputmode()', 'ximport()'] }
 ref['Line+Color'] = {
