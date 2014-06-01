@@ -18,9 +18,9 @@
       <h2>Description</h2>
 
       <div class="row">
-        Sets the alignment of text in a block. Text in a block wraps across multiple lines when the
-        width parameter of the <a href="#text()">text()</a> command is specified. The parameter for
-        align() can be either <code class="kw">LEFT</code>, <code class="kw">RIGHT</code>, <code class="kw">CENTER</code>, <code class="kw">JUSTIFY</code>.
+        <p>Sets the alignment used by the <a href="#text()">text()</a> command. Valid <code>style</code> arguments are <code class="kw">LEFT</code>, <code class="kw">RIGHT</code>, <code class="kw">CENTER</code>, or <code class="kw">JUSTIFY</code>. When calling text() without specifying a <code>width</code> argument, its x &amp; y coords will determine the left-, right-, or center-point of the line of text (based on the alignment).</p>
+
+        <p>Calling text() with a <code>width</code> argument will lay out a column of type. Text in a column wraps across multiple lines within the rectangle defined by the x/y/w/h dimensions and the align() setting controls how lines are broken within this block.</p>
       </div>
 
       <h2>Returns</h2>
@@ -34,17 +34,41 @@
       <div class="row">
         <table border="0">
           <tbody>
+
             <tr>
-              <td><span class="image_border"><img height="125" src="../etc/ref/align.jpg" width="125"/></span>
+              <td>
+                <span class="image_border"><img height="125" src="../etc/ref/align.png" width="125"/></span>
+              </td>
+              <td>
+<pre>
+font(12)
+x = 62
+line(x,10, x,115, dash=3, stroke=.7)
+align(RIGHT)
+text("Conapt", 62,25)
+align(LEFT)
+text("Kipple", 62,65)
+align(CENTER)
+text("Homeopape", 62,105)
+</pre>
+              </td>
+            </tr>
+
+            <tr>
+              <td><span class="image_border"><img height="125" src="../etc/ref/align-block.png" width="125"/></span>
               </td><td>
 <pre>
-fill(0.2)
-fontsize(16)
+quip = "Twas brillig and the slithy toves"
+x,y = 10,55
+font(16)
 align(RIGHT)
-quip = "If it ain't fun make it fun"
-text(quip, 10, 55, width=90)
+text(quip, x,y, width=90)
+with stroke(.7), nofill():
+    rect(x,y-font().size, 90, 70, dash=3)
 </pre>
-              </td></tr></tbody></table>
+              </td></tr>
+
+            </tbody></table>
       </div>
     </div>
   </div>

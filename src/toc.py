@@ -10,7 +10,7 @@ ref['Line+Color'] = {
     'types': ['Color', ], # 'Gradient',
     'compat': ['capstyle()', 'colormode()', 'joinstyle()', 'nofill()', 'nostroke()', 'strokewidth()'] }
 ref['Primitives'] = {
-    'commands': ['image()', 'rect()',  'oval()', 'poly()', 'arc()', 'line()',  ],
+    'commands': ['image()', 'line()', 'rect()',  'oval()', 'poly()', 'arc()', ],
     'types': ['Image'],
     'compat': ['arrow()', 'star()'] }
 ref['Drawing'] = {
@@ -26,9 +26,9 @@ ref['Compositing'] = {
     'types': ['Shadow', ],
     'compat': ['noshadow()', 'beginclip()', 'endclip()', ] }
 ref['Typography'] = {
-    'commands': ['font()', 'text()', 'align()', 'stylesheet()'],
-    'types': ['Family', 'Font', 'Stylesheet', 'Text'],
-    'compat': ['fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textpath()', 'textwidth()'] }
+    'commands': ['font()', 'align()', 'stylesheet()', 'textpath()', 'text()', ],
+    'types': ['Family', 'Font', 'Text'],
+    'compat': ['fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textwidth()'] }
 # grouped into Misc.html
 ref['Entropy'] = {
     'commands': ['random()', 'choice()', 'shuffled()', 'ordered()', 'grid()',  ],

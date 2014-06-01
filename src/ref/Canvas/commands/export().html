@@ -11,21 +11,26 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>export("spool.pdf")      # writes the canvas contents to an image file
-with export("anim.mov"): # write only what is drawn during the block
-</pre>
+<pre>... # draw to the canvas
+export("spool.pdf", mode=RGB) # write the contents to an image file</pre>
+<pre>with export("movie.mov", fps=30, bitrate=1.0):
+    ... # draw movie frames</pre>
+<pre>with export("anim.gif", fps=30, loop=0):
+    ... # draw gif frames</pre>
       </div>
 
-      <p>You can call the export() function at any time in your scripts to write the accumulated set of graphics objects on the canvas to a single bitmap or vector image file. When running the PlotDevice application, you'll likely find it more convenient to use the Export as… menu items. Outside of the app, calling export() as part of a <code>with</code> statement will allow you to render single images, multi-page sequences, or animations.</p>
+      <p>The export() command allows you to generate images and animations from within your scripts. Calling export() as part of a <code>with</code> statement will allow you to render single images, multi-page sequences, or animations. When running the PlotDevice application, you'll likely find it more convenient to use the <span class="message">File &rarr; Export as…</span> menu items (<span class="message">⌘P</span> and <span class="message">⇧⌘P</span> for images and animations respectively).</p>
 
-      <h2>Generating output from external scripts</h2>
+      <h2>Saving the canvas to an image</h2>
+
+      <p>You can call the export() function at any time in your scripts to write the current set of graphics objects on the canvas to a single bitmap or vector image file. The only required argument is a file path (whose extension will determine the format). The optional <code>mode</code> argument can be set to <code class="kw">RGB</code> (the default) or <code class="kw">CMYK</code> when exporting to a format that supports other colorspaces.</p>
+
+      <h2>Context Manager</h2>
 
       <p>The <code>export</code> function returns a <a href="http://docs.python.org/2/reference/compound_stmts.html#the-with-statement">context
       manager</a> that takes care of canvas-setup and file-generation for both single images and
       animations. By enclosing your drawing code in a <code>with</code> block, you can ensure that
-      the correct sequence of <code>clear</code> and <code>save</code> calls are made to the
-      <code><a href="#canvas">canvas</a></code> automatically. For instance these two methods of
-      generating a png are equivalent:</p>
+      the correct sequence of <code>clear</code> and <code>export</code> calls is made automatically. For instance these two methods of generating a png are equivalent:</p>
 <pre>from plotdevice import *
 
 # export an image

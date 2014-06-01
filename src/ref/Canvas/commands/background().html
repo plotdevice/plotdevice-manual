@@ -16,8 +16,9 @@ background(h, s, b, a=1.0)
 background(c, m, y, k, a=1.0)
 background(k, a=1.0)
 background(color)
-background(None)
-background(*colors, angle=0, steps=[0,1], center=[0,0])
+background(None) # transparent backdrop
+background(*colors, angle, steps=[0,1]) # axial gradient
+background(*colors, steps=[0,1], center=[0,0]) # radial gradient
 </pre>
       </div>
 

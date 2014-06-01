@@ -6,6 +6,36 @@
 </head><body>
   <div class="section">
     <h3>Family</h3>
+    <div class="definition">
+      <h2>Syntax</h2>
+
+      <div class="row">
+        <pre>Family(famname)</pre>
+      </div>
+
+      <h2>Description</h2>
+
+      <div class="row">
+        <p>Represents a family of font files installed on your system. Create a Family by passing a name string as the first argument. The name will be case-insensitively matched against the list returned by the <a href="Misc.html#fonts()">fonts()</a> command.</p>
+
+        <p>The object's properties allow you to examine available weights and styles, which can help you craft calls to the <a href="#font()">font()</a> command.</p>
+      </div>
+
+      <h2>Properties</h2>
+
+      <div class="row">
+        <pre>fam.name     # canonical family name
+fam.fonts    # dictionary of `face`-name keys and Font object values
+fam.weights  # tuple of valid weight names
+fam.widths   # tuple of valid widths (if any)
+fam.variants # tuple of valid variants (if any)
+fam.has_italic
+fam.encoding
+</pre>
+      </div>
+
+
+    </div>
   </div>
 
 </body></html>

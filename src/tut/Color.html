@@ -23,7 +23,7 @@
 <pre>for i in range(HEIGHT):
   c = color(random(), random(), random())
   c.saturation = 1.0
-  stroke(c)   
+  stroke(c)
   strokewidth(2)
   line(0, i, WIDTH, i)
 </pre>
@@ -52,7 +52,7 @@
     <h2>CMYK output?</h2>
 
     <p>But then what colorspace is used for output? In whatever way you use a <a href="../ref/Line+Color.html#colormode()">colormode()</a> in your script, the output adhers to
-    <a href="../ref/Setup.html#outputmode()">outputmode()</a>. This makes it easy when working with
+    <a href="../ref/Canvas.html#outputmode()">outputmode()</a>. This makes it easy when working with
     print documents as you don’t need to worry about the technical details, but can instead focus
     on the colors you like. Keep in mind that not all RGB colors are printable though.</p>
     <h2>Colors are stored in the graphics state</h2>
@@ -96,7 +96,7 @@ for i in range(10):
 c = color(0.5, 1, 1)
 for i in range(HEIGHT):
   c.a = 1.0 * i / HEIGHT
-  stroke(c) 
+  stroke(c)
   line(0, i, WIDTH, i)
 </pre>
 
