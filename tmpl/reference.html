@@ -13,13 +13,16 @@
 <div class="ref article">
   {%- if commands -%}
   <div class="commands">
+    <div class="classic">
+      <p>Commands</p>
+    </div>
     {%- for cmd in commands -%}<a name="{{cmd[0]}}"></a>{{cmd[1]}}{%- endfor -%}
   </div>
   {%- endif -%}
   {%- if types -%}
   <div class="types">
     <div class="classic">
-      <p class="rose_text">Classes</p>
+      <p>Types</p>
     </div>
     {%- for typ in types -%}<a name="{{typ[0]}}"></a>{{typ[1]}}{%- endfor -%}
   </div>
@@ -27,9 +30,7 @@
   {%- if compat -%}
   <div class="compat">
     <div class="classic">
-      <p class="pink_text">NodeBox Compatibility</p>
-      <p><em>Though their functionality has been subsumed by the commands listed above, the following NodeBox
-        {{name}} commands may also be used in your scripts.</em></p>
+      <p>NodeBox Compatibility</p>
     </div>
     {%- for old in compat -%}<a name="{{old[0]}}"></a>{{old[1]}}{%- endfor -%}
   </div>

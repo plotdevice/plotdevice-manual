@@ -12,7 +12,7 @@ pre { font-size: 12px; font-family:"Courier Prime"; line-height: 19px; }
 code { font-family:"Courier Prime"; letter-spacing:0; line-height: 16px;}
 code.box{ padding:0 4px;}
 p code { font-size:13px;}
-.message { font: bold 12px "Cabin"; line-height: 18px; }
+.message { font: bold 14px "Cabin"; line-height: 18px; }
 div#title h1 { line-height: 0.8em; margin: 0; padding: 0; font-size: 50px; letter-spacing: -3px; }
 
 /***************************************/
@@ -255,8 +255,9 @@ a.noexternal { background-image:none !important; padding-right: 0; }
 }
 
 .ref.article .section h3{
-  font:italic bold 18px "Courier Prime";
+  font:bold 18px "Courier Prime";
 }
+
 
 .ref.article .section h3 span.args{
   font-weight:normal;
@@ -666,8 +667,15 @@ body.compat .toc .sidebar .compat{
 }
 
 .article .classic{
-  margin-top:48px;
+  padding-top:4px;
+  width:200px;
+  text-indent:1px;
   border-top:1px solid #666;
+  position:absolute;
+  font:800 12px/18px "Cabin";
+  text-transform:uppercase;
+  letter-spacing:1px;
+  left:-200px;
 }
 
 
@@ -679,7 +687,7 @@ body.compat .toc .sidebar .compat{
 .article a:target + .section:before{
   content:"→";
   left:-30px;
-  top:-2px;
+  top:-1px;
   font:36px/36px "Monaco";
   position:absolute;
   width:42px;
@@ -692,7 +700,7 @@ body.compat .toc .sidebar .compat{
 }
 
 .article .section p{
-  max-width:520px;
+  max-width:530px;
 }
 
 .article .definition h2{
