@@ -43,9 +43,9 @@ ref['Utility'] = {
 tut=odict()
 tut['Basics']=["Introduction", "Environment", "Primitives", "Graphics_State",]
 tut['Specifics']=["Animation", u"Bezier_Paths", "Color", "Math",]
-tut['Data']=["Variables", "Lists", "Strings", "Serialization"]
-tut['Structure']=["Repetition", "Commands", "Libraries", "Classes",]
-tut['Advanced']=["Interaction", "Extending", "Scripting", "plotdevice",]
+tut['Data']=["Variables", "Strings", "Collections", "Serialization"]
+tut['Structure']=["Repetition", "Commands", "Classes", "Libraries", ]
+tut['Advanced']=["Interaction", "Extending", "plotdevice",]
 
 lib=odict()
 lib['Design']=["Colors", "Grid", "Pixie", "Fatpath",]

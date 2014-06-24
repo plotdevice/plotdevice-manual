@@ -175,7 +175,7 @@ class PlotDeviceLexer(PythonLexer):
     'adict', 'ddict', 'odict']
   EXTRA_CONSTS = [
     'BEVEL', 'BOOLEAN', 'BUTT', 'BUTTON', 'CENTER', 'CLOSE', 'CMYK', 'CORNER',
-    'CURVETO', 'DEFAULT', 'DEGREES', 'FORTYFIVE', 'FRAME', 'GREY', 'HEIGHT', 'HSB',
+    'CURVETO', 'DEFAULT', 'DEGREES', 'FORTYFIVE', 'FRAME', 'GREY', 'HEIGHT', 'HSB', 'HSV',
     'JUSTIFY', 'KEY_BACKSPACE', 'KEY_DOWN', 'KEY_ESC', 'KEY_LEFT', 'KEY_RIGHT',
     'KEY_TAB', 'KEY_UP', 'LEFT', 'LINETO', 'MITER', 'MOVETO', 'NORMAL', 'NUMBER',
     'PAGE', 'PERCENT', 'RADIANS', 'RGB', 'RIGHT', 'ROUND', 'SQUARE', 'TEXT', 'WIDTH',

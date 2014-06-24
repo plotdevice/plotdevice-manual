@@ -3,7 +3,7 @@
 {%- set home=' href="http://plotdevice.io"' if not sect else ' href="%s../manual.html"'%root -%}
 {%- set navclass='link' if sect else 'home' -%}
 {%- set siblings=["Canvas", "Line+Color", "Primitives", "Drawing", "Transform", "Compositing","Typography", "Misc"] if sect=='ref' else None -%}
-{%- set book=['Introduction', 'Environment', 'Primitives', 'Graphics_State', 'Animation', 'Bezier_Paths', 'Color', 'Math', 'Variables', 'Lists', 'Strings', 'Serialization', 'Repetition', 'Commands', 'Libraries', 'Classes', 'Interaction', 'Extending', 'Scripting', 'plotdevice'] -%}
+{%- set book=['Introduction', 'Environment', 'Primitives', 'Graphics_State', 'Animation', 'Bezier_Paths', 'Color', 'Math', 'Variables', 'Strings', 'Collections', 'Serialization', 'Repetition', 'Commands', 'Classes', 'Libraries', 'Interaction', 'Extending', 'plotdevice'] -%}
 
 {%- set next=book[book.index(tutorial)+1].replace('é','e') if tutorial in book and tutorial!=book[-1] else None -%}
 {%- set prev=book[book.index(tutorial)-1].replace('é','e') if tutorial in book and tutorial!=book[0] else None -%}
