@@ -5,54 +5,32 @@
 
 </head><body>
   <div class="article">
-    <p>PlotDevice not only exports to PDF documents and images, but handles animation as well, which
-    can be exported to QuickTime movies. Using the same syntax as drawing, your can turn your
-    script into an animation, doing all kinds of wonderful, lively things.</p>
-    <h2>The speed(), setup(), and draw() commands</h2>
+    <p>PlotDevice not only exports to PDF documents and images, but handles animation as well. Your code
+    can generate QuickTime movies or animated gifs as well as sequences of static image frames. Using the same syntax as drawing, your can turn your script into an animation, doing all kinds of wonderful, lively things.</p>
 
-    <p>For an animation to work, it requires three things:</p>
-    <ul>
-      <li><b>speed()</b>: the speed() command indicates the speed of the animation in frames per
-      second. Note that this is a maximum: big animations will require more work, and thus run
-      slower.
-      </li><li><b>setup()</b>: your own setup() definition, declaring global variables and initializing
-      them.
-      </li><li><b>draw()</b>: your own draw() definition, doing the actual drawing.
-    </li></ul>
-    <p>You can optionally provide:</p>
-    <ul><li><b>stop()</b>: your own stop() definition, which runs once the animation is halted.</li></ul>
 
-    <p> </p>
-    <p><span class="media"><img height="586" src="../etc/tut/animation-example.jpg" width="658"/></span></p>
-    <p> </p>
-    <p>You may already know a little bit about defining your own functions from the <a href="Commands.html">Commands</a> tutorial.</p>
-    <p>The setup() command is run once, at the beginning of the animation, and draw() is run on
-    each <i>frame</i>, or step, in the animation. Take a look at the example above. What I’m doing
-    there in the setup() definition, is declaring a <i>global variable</i> named <i>frame</i>,
-    which I’m going to use later on in the draw() to keep track of the animation frame being
-    rendered on the canvas. The variable needs to be a global, because otherwise setup() and draw()
-    can’t communicate, or <i>share</i> the variable.</p>
-    <p>Now examine the draw() definition. It’s a typical example of an animation script. The draw()
-    command is called repetively by PlotDevice, rendering frame after frame of animation. In the
-    example above, the draw() definition basically does four things:</p>
+    <h3>Basic Animations</h3>
+    <p>For PlotDevice to recognize your script as an animation, you must do two things:</p>
+    <ol style=>
+      <li>Call the <a href="../ref/Canvas.html#speed()">speed()</a> command with a frames-per-second value. The FPS will control the playback speed of any movies you export and sets a target limit for showing the animation in the app's graphics pane. Depending on the speed of your system and the complexity of your code, the actual frame rate may well be lower.</li>
+      <li>Define a function called <code>draw()</code> in your script. This function will be called repeatedly; once for each frame in the animation. To track the passage of time, read from the global <code class="kw">FRAME</code> variable. It starts at 1 and increments with each call to your draw() function.</li>
+    </ol>
+
+    <p>You'll likely want to keep more local state than this (and you can; see below), but it's surprising how much variety you can pull out of just the frame-number. In particular, try using the ever increasing <code class="kw">FRAME</code> with trigonometry functions and watch how the oscillations evolve over time: <div class="media" style="margin-left:-58px; margin-bottom:-20px;"><img height="433" src="../etc/tut/animation-example.png" width="785"/></div></p>
+
+    <p>The script above begins normally, with a call to size(). After setting the animation speed to 100 FPS we define a draw() function that does basically four things:</p>
     <ul>
-      <li>Increase the <i>frame</i> variable by one (this is my frame counter)
-      </li><li>Use a colored rectangle to draw a background
+      <li>Set the background color
+      </li><li>Set the fill, stroke, and pen styles
       </li><li>Draw thirty rotated curves
-      </li><li>Use the math sin() function to distort the curves fluidly
+      </li><li>Use the math module's sin() function to distort the curves fluidly
     </li></ul>
 
     <h2>Fluid movement</h2>
 
-    <p>Notice the use of a mathematical sine function in the draw() definition. A sine is an
-    <i>oscillating</i> function that yields values between -1.0 and 1.0 (and then back down to
-    -1.0), but not in a linear fashion. When it reaches -1 or 1, it goes slower, and goes fastest
-    when it crosses 0. This is useful for animation that <i>eases in</i> or <i>eases out</i>.</p>
-    <p>To use the <b>sin()</b> function, import it from the Python math package along with the
-    radians() function (sines work with radians like π). In the example above I supply the
-    <i>frame</i> variable as radians to the sine function and multiply it with a differnt number
-    for each curve, which gives me a fluid distortion vector that eases in and eases out each
-    curve.</p>
+    <p>Our draw function makes use of the <b>sin()</b> function from the Python <code>math</code> module. A sine is an <i>oscillating</i> function that yields values between -1.0 and 1.0 (and then back down to -1.0), but not in a linear fashion. When near to -1 or 1 it goes slower, then goes fastest as it crosses 0. This is useful for animation that <i>eases in</i> or <i>eases out</i>.</p>
+
+    <p>To use the sin() function, import it from the Python math package along with the radians() function (sines work with radians like π). In the example above the <code class="kw">FRAME</code> variable is passed (as radians) to the sine function then multiplied by a differnt number for each curve. This gives a fluid distortion vector that eases each curve back and forth.</p>
     <p>A sine function typically looks like this:</p>
 <pre>from math import sin, radians
 ease = sin(radians(x)) * y
@@ -61,8 +39,7 @@ ease = sin(radians(x)) * y
     <h2>Tips for speed optimization</h2>
 
     <ul>
-      <li>If you plan to use a lot of lines in your animation, group them in a single path with
-      <a href="../ref/Drawing.html#lineto()">lineto()</a> and <a href="../ref/Drawing.html#moveto()">moveto()</a>. A single big path renders faster than many small
+      <li>If you plan to use a lot of lines in your animation, group them in a single path by using the <a href="../ref/Drawing.html#bezier()">bezier()</a> command as part of a <code>with</code> statement and calling <a href="../ref/Primitives.html#line()">line()</a> or <a href="../ref/Drawing.html#lineto()">lineto()</a> &amp; <a href="../ref/Drawing.html#moveto()">moveto()</a> within the block. A single big path renders faster than many small
       paths. All the lines would have the same stroke color and width however.
       </li><li>If you plan to use a lot of text in your animation, create cached <a href="../ref/Typography.html#textpath()">textpath()</a> versions in the setup() command and
       <a href="../ref/Transform.html#translate()">translate()</a> those when drawing instead of
@@ -70,24 +47,85 @@ ease = sin(radians(x)) * y
       </li><li>Tune the speed() command to exactly the speed you need. Setting it as high as possible
       often works as a drawback because then PlotDevice would attempt to update too much.
       </li><li>Tune the <a href="../ref/Canvas.html#size()">size()</a> of the canvas to exactly what you
-      need - a smaller canvas means less screen to refresh.<br/>
+      need – a smaller canvas means less screen to refresh.<br/>
     </li></ul>
 
-    <h2>Exporting as a Quicktime movie</h2>
+    <h3>The Animation Lifecycle</h3>
+    <p>You'll notice that the TrigToy script calls rotate() repeatedly in the for loop and yet this doesn't carry over to subsequent frames. This is because after each of the calls to <code>draw()</code>, PlotDevice automatically clears the canvas and resets the color, transform, font, and compositing state. For the same reason, any calls to background() will apply only for the current frame and revert to white for the next draw cycle.</p>
 
-    <p>You can export an animation as a Quicktime movie. Select ‘Export as Quicktime Movie...’ from
-    the PlotDevice File menu, or press shift-apple-e. You can select a number of frames to export, and
-    a movie frame rate.</p>
-    <p>The Quicktime functionality in PlotDevice is based on <a href="http://undefined.org/python/">PyQTSequence</a> written by Bob Ippolito.</p>
-    <p> </p>
-    <p><span class="media"><img height="586" src="../etc/tut/animation-export.jpg" width="658"/></span></p>
-    <p> </p>
-    <p>The resulting movie is uncompressed, so it will likely be large in file size. You can
-    compress it if you have Quicktime Pro, or some other movie editor.</p>
-    <p>...and you have a movie to put on your website!</p>
-    <p> </p>
-    <p><a href="http://nodebox.net/code/data/media/sinfulCurves.mov"><img class="border" height="300" src="../etc/tut/animation-movie.gif" width="300"/></a><br/>
-    <a href="http://nodebox.net/code/data/media/sinfulCurves.mov">Play movie</a></p>
+    <p>In addition to this housekeeping between frames, PlotDevice also provides hooks to allow your script to execute code once at the beginning of an animation ‘run’ and once at the end. You can opt-into this behavior by defining a <code>setup()</code> function to handle initialization and/or a <code>stop()</code> function to clean up after the user hits <span class="message">⌘.</span> to halt the animation.</p>
+
+    <p>Altogether, the sequence of a run looks something like:</p>
+    <ol>
+      <li>Run all code at the root level of the script</li>
+      <li>Call the <code>setup()</code> function (if defined)</li>
+      <li>Clear the canvas and reset the graphics state to defaults</li>
+      <li>Call the <code>draw()</code> function</li>
+      <li>If user didn't press <span class="message">⌘.</span>, goto #3</li>
+      <li>Call the <code>stop()</code> function (if defined)</li>
+    </ol>
+
+    <h2>Animation state</h2>
+    <p>For all but the simplest animations you'll want a way to keep track of values that persist between calls to your draw() function. The most obvious solution to this problem would be to define global variables at the top of your script then refer to them from your animation functions. If you do this, don't forget to use the Python <a href="https://docs.python.org/2/reference/simple_stmts.html#the-global-statement"><code>global</code></a> statement inside any of the functions that refer to variables they need to modify. Otherwise you'll end up creating a local variable of the same name rather than updating the global:</p>
+<pre>limit = 0
+
+def setup():
+    global limit
+    limit = 100 # global is required for assignment to work
+
+def draw():
+    global limit
+    limit -= 1 # likewise for value overwriting
+
+def stop():
+    print limit # no need to use global here since we're only reading
+</pre>
+
+    <p>If the oddities of Python's global scope start getting you down, PlotDevice also offers an alternate way to share data between invocations of setup(), draw(), and stop(). If your function definitions include an argument, they will be passed a <a href="../ref/Misc.html#adict()">dictionary-like</a> object that persists throughout the run. You can name this object anything you like and access its fields using either dot-notation or traditional dictionary indexing.</p>
+
+    <p>This allows for a program-flow in which:</p>
+    <ol>
+      <li>setup() populates the dictionary</li>
+      <li>draw() uses those initial values and potentially updates them</li>
+      <li>stop() can print out summary information based on the final values</li>
+    </ol>
+
+    <p>Here's an example that draws random dots for a fixed duration of frames each. It keeps track of the current "population" of dots in a persistent dictionary called <code>anim</code>, though of course we could give this any name we like.</p>
+
+    <p>At each call to <i>draw()</i> a new random dot location and color are added to a persistent list called <code>anim.dots</code>, then a circle is drawn for each dot in the list. Dots will gradually fade over the course of their lifetimes as we incrementally turn down the <i>alpha</i> in the saved <a href="Color.html">Color</a> objects.</p>
+    <p>
+      If <i>draw()</i> has been called enough times that the list is longer than the <code>anim.limit</code> chosen in <i>setup()</i>, elements are dropped off the front until it's the right length.</p>
+
+    <pre>speed(30)
+
+def setup(anim):
+    anim.dots = []
+    anim.limit = 100
+
+def draw(anim):
+    x, y = random(WIDTH), random(HEIGHT)
+    dotcolor = color(HSV, random(), .6, .9)
+    anim.dots.append([x, y, dotcolor])
+
+    for x, y, clr in anim.dots:
+        clr.alpha -= 1.0/anim.limit
+        fill(clr)
+        arc(x, y, 20)
+    anim.dots = anim.dots[-anim.limit:]
+
+def stop(anim):
+    print "Final population:", len(anim.dots)
+</pre>
+    <span class="media" style="margin-left:-58px;"><img height="600" src="../etc/tut/animation-state.png" width="777"/></span>
+
+    <p>Since I ended this run after 81 frames, the <i>stop()</i> function reports having an identical number of items in its <code>dots</code> list. What would you expect it to print out if the animation ran for 100 frames? What about 101 or 1,000,000?</p>
+
+
+    <h3>Exporting an Animation</h3>
+
+    <p>In addition to exporting frames as static images, you can export an animation as an H.264-encoded Quicktime movie or an animated gif. Select the <span class="message">File &rarr; Export as Movie...</span> menu or press <span class="message">⇧⌘P</span>. You can specify a number of frames to export, and
+    a frame rate (which will override whatever you set with <i>speed()</i>). Video exports also allow you to affect compression quality by setting a target bitrate. Animated gifs will loop if the checkbox is active.
+    <span class="media"><img height="434" src="../etc/tut/animation-export.png" width="567"/></span></p>
   </div>
 
 </body></html>

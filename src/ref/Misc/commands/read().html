@@ -11,7 +11,7 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>read(path, format=None, encoding='utf-8', cols=None)
+<pre>read(path, format=None, encoding='utf-8', cols=None, dict=dict)
 </pre>
       </div>
 
@@ -23,7 +23,8 @@
 
         <p>The format will either be inferred from the file extension or can be set explicitly using the <code>format</code> arg. Text will be read using the specified <code>encoding</code> or default to UTF-8.</p>
 
-        <p>JSON files will be parsed and an appropriate python type will be selected based on the top-level object defined in the file. To preserve the ordering of keys, <code>{}</code>'s in the file will be represented as <a href="#odict()"><code>odict</code></a> objects.</p>
+        <p>JSON files will be parsed and an appropriate python type will be selected based on the top-level object defined in the file. The optional keyword argument <code>dict</code> can be set to <a href="#adict()">adict</a> or <a href="#odict()">odict</a> if you'd prefer not to use the standard python dictionary when decoding pairs of <code>{}</code>'s.</p>
+
 
         <p>CSV files will return a list of rows. By default each row will be an ordered list of column values. If the first line of the file defines column names, you can call read() with <code>cols=True</code> in which case each row will be a dictionary using those names as keys. If the file doesn't define its own column names, you can pass a list of strings as the <code>cols</code> parameter.</p>
 

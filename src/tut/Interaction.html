@@ -5,8 +5,7 @@
 
 </head><body>
   <div class="article">
-    <p>PlotDevice is designed to output PDF documents or images, when you want to do all sorts of
-    moving and interactive things you’re probably better off with a tool like <a href="http://processing.org/">Processing</a>.</p>
+    <p>PlotDevice is designed to output PDF documents, images, and movies. In general it takes the trade-off of making high-quality output over realtime responsiveness. If you're looking to make something with low-latency interactivity (or other general whizzy-ness) you’re probably better off with a tool like <a href="http://www.cityinabottle.org/nodebox/">NodeBox for OpenGL</a> or <a href="http://processing.org/">Processing</a>.</p>
     <p>However, if you do want to experiment with interactivity in PlotDevice, there’s some built-in
     support that might be of help to you. This assumes you already know how to make an <a href="Animation.html">animation</a> in PlotDevice.<br/></p>
     <h2>Interacting with the mouse</h2>
@@ -14,12 +13,12 @@
     <p>In a PlotDevice animation, there are three predefined variables that store the current position
     of the mouse cursor and the state of the mouse button:</p>
     <ul>
-      <li>MOUSEX: the horizontal location of the mouse cursor
-      </li><li>MOUSEY: the vertical location of the mouse cursor
-      </li><li>mousedown: is True when the mouse button is pressed, False otherwise
+      <li><code class="kw">MOUSEX</code>: the horizontal location of the mouse cursor
+      </li><li><code class="kw">MOUSEY</code>: the vertical location of the mouse cursor
+      </li><li><code class="kw">mousedown</code>: is True when the mouse button is pressed, False otherwise
     </li></ul>
 
-    <p>You would typically use the mousedown variable in an if-statement:</p>
+    <p>You would typically use the <code class="kw">mousedown</code> variable in an if-statement:</p>
 <pre>if mousedown:
      # do stuff when the mouse is pressed
 else:
@@ -30,49 +29,34 @@ else:
 
     <p>Three predefined variables store the keys a user is pressing during a PlotDevice animation:</p>
     <ul>
-      <li>key: the last key pressed
-      </li><li>keycode: the integer keycode of the last key pressed
-      </li><li>keydown: is True when a key is being pressed, False otherwise
+      <li><code class="kw">key</code>: the last key pressed
+      </li><li><code class="kw">keycode</code>: the integer keycode of the last key pressed
+      </li><li><code class="kw">keydown</code>: is True when a key is being pressed, False otherwise
     </li></ul>
 
-    <p>The key and keycode variables are updated as long as any key is being pressed.</p>
-    <p>KEY_UP, KEY_DOWN_ KEY_LEFT, KEY_RIGHT, KEY_BACKSPACE contain the keycodes for the arrow keys
-    and the backspace key.<br/></p>
+    <p>The <code class="kw">key</code> and <code class="kw">keycode</code> variables are updated as long as any key is being pressed.</p>
+    <p><code class="kw">KEY_UP</code>, <code class="kw">KEY_DOWN</code>, <code class="kw">KEY_LEFT</code>, <code class="kw">KEY_RIGHT</code> contain the keycodes for the arrow keys and the delete key is represented by <code class="kw">KEY_BACKSPACE</code>.<br/></p>
     <h2>Example</h2>
 
-    <p>A fun example is this little sketch application. Simply run the code and draw some stuff on
-    the canvas! <img alt="interaction-sketch" height="541" src="../etc/tut/interaction-sketch.gif" width="761"/></p>
-    <p><a href="http://nodebox.net/code/data/media/interaction-sketch.mov">Play movie</a></p>
+    <p>A fun example is this little sketch application. It builds up a list of points you've clicked-and-dragged over then draws a smooth bezier path connecting the vertices at every frame.</p>
 <pre>size(400 ,400)
 speed(30)
- 
-def setup():
-    
-    global path, d
-    path = []
- 
-def draw():
-    
-    global path
- 
+
+def setup(anim):
+    anim.path = []
+
+def draw(anim):
     nofill()
     stroke(0)
-    autoclosepath(False)
-    
+
     if mousedown:
         pt = Point(MOUSEX, MOUSEY)
-        path.append(pt)
-        
-    if len(path) &gt; 0:
-        first = True
-        for pt in path:
-            if first:
-                beginpath(pt.x, pt.y)
-                first = False
-            else:
-                lineto(pt.x, pt.y)
-        endpath()
+        anim.path.append(pt)
+
+    if anim.path:
+        bezier(anim.path, smooth=True)
 </pre>
+    <p><span class="media", style="margin-left:-58px;"><img alt="interaction-sketch" height="544" src="../etc/tut/interaction-sketch.png" width="710"/></span></p>
   </div>
 
 </body></html>

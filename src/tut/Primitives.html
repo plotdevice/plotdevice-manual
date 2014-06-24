@@ -5,37 +5,78 @@
 
 </head><body>
   <div class="article">
-    <p>The <em>drawing primitives</em> are the basic shapes available in PlotDevice: rectangles,
-    ovals, lines, curves, text and images. It’s a small set of programming
-    <strong>commands</strong> that is easy to use and easy to understand which you can use to
-    create visual output in PlotDevice. The <a href="../manual.html">reference</a> is all about the
-    drawing primitives: each of the commands and their usage is discussed thoroughly there. The
-    reference is something you’ll want to keep close by when you start learning PlotDevice. After a
-    bit of experimenting you’ll know all the drawing primitives by heart.</p>
-    <h2>Syntax</h2>
 
-    <p>Take a look at the <a href="../ref/Primitives.html#rect()">rect()</a> command for example.
-    This command (logically) draws a rectangle in PlotDevice. You’ll see a description of it’s
-    <em>syntax</em>, in other words, how exaclty you need to write down the command in PlotDevice for
-    it to work.</p>
+    <p>PlotDevice provides a set of commands for drawing basic geometric shapes, text, and images. All of these <a href="../ref/Primitives.html">drawing primitives</a> take a pair of x/y coordinates to set the position. But based on the command-type this will be interpreted as either the top-left corner location or the "origin" point. You'll find yourself using both kinds of positioning depending on what you're trying to accomplish.</p>
+
+    <h2>Corner-based</h2>
+
+    <table>
+    <tr><td><img src="../etc/tut/primitives-oval.png"></td>
+        <td><a href="../ref/Primitives.html#oval()">oval(<span class='grey'>x, y, width, height, …</span>)</a><pre>oval(75,25, 50,50)
+</pre></td></tr>
+    <tr><td><img src="../etc/tut/primitives-rect.png"></td>
+        <td><a href="../ref/Primitives.html#rect()">rect(<span class='grey'>x, y, width, height, …</span>)</a><pre>rect(75,25, 50,50)
+</pre></td></tr>
+    <tr><td><img src="../etc/tut/primitives-image.png"></td>
+        <td><a href="../ref/Primitives.html#image()">image(<span class='grey'>file, x, y, …</span>)</a><pre>image("~/Pictures/triforce.png", 75,25)
+</pre></td></tr>
+
+
+    <tr><td><h2>Origin-based</h2></td></tr>
+
+    <tr><td><img src="../etc/tut/primitives-arc.png"></td>
+        <td><a href="../ref/Primitives.html#arc()">arc(<span class="grey">x, y, radius, …</span>)</a><pre>arc(75,25, 25)
+</pre></td></tr>
+
+    <tr><td><img src="../etc/tut/primitives-square.png"></td>
+        <td><a href="../ref/Primitives.html#poly()">poly(<span class="grey">x, y, radius, …</span>)</a><pre>poly(75,25, 25)
+    </pre></td></tr>
+
+    <tr><td><img src="../etc/tut/primitives-poly.png"></td>
+        <td><a href="../ref/Primitives.html#poly()">poly(<span class="grey">x, y, radius, sides=, …</span>)</a><pre>poly(75,25, 25, sides=6)
+</pre></td></tr>
+
+    <tr><td><img src="../etc/tut/primitives-star.png"></td>
+        <td><a href="../ref/Primitives.html#poly()">poly(<span class="grey">x, y, radius, points=, …</span>)</a><pre>(75,25, 25, points=5)
+</pre></td></tr>
+
+
+
+    <tr><td><img src="../etc/tut/primitives-arrow.png"></td>
+        <td><a href="../ref/Primitives.html#arrow()">arrow(<span class="grey">x, y, width, …</span>)</a><pre>arrow(75,25, 50)
+</pre></td></tr>
+
+    <tr><td><img src="../etc/tut/primitives-text.png"></td>
+        <td><a href="../ref/Typography.html#text()">text(<span class='grey'>str, x, y, …</span>)</a><pre>text("xyzzy", 75,25)
+</pre></td></tr>
+
+    </table>
+
+
+    <h3>Syntax</h3>
+
+    <p>In the <a href="../ref/Primitives.html">Reference</a>, each drawing primitive and its usage is discussed thoroughly. The reference is something you’ll want to keep close by when you start learning PlotDevice. After a bit of experimenting you’ll know all the primitives by heart.</p>
+
+    <p>For example, take a look at documentation for the <a href="../ref/Primitives.html#rect()">rect()</a> command. As you might expect, this command draws a rectangle. At the top of the reference entry is a description of its <em>syntax</em>. The list of required and optional arguments provides the details you need to invoke the command in a way that PlotDevice understands.</p>
+
     <p>In case of the rect() command the syntax is:</p>
-<pre>rect(x, y, width, height, roundness=0.0, draw=True)
+<pre>rect(x, y, width, height, roundness=0.0, plot=True)
 </pre>
 
     <p>All commands in PlotDevice look like this: you have the <strong>name</strong> of the command
     (<em>rect</em> for example) which gives you a hint of what the command will do, and some stuff
-    <strong>between brackets</strong>. The stuff between brackets we call
-    <strong>parameters</strong>.</p>
+    between parentheses. The stuff between "parens" will be referred to as
+    <strong>parameters</strong> or <strong>arguments</strong> interchangeably.</p>
+
     <h2>Parameters</h2>
 
     <p>Now <em>rectangle</em> could mean a lot of things. Imagine a rectangle with an equal width
     and height, this would be a square. We could have a <em>square()</em> command in PlotDevice.
-    Imagine you would like a small rectangle at the bottom of the canvas... we could have a
-    <em>smallbottomrect()</em> command... we could define an infinite number of commands for
+    Imagine you would like a small rectangle at the bottom of the canvas ... we could have a
+    <em>smallbottomrect()</em> command ... we could define an infinite number of commands for
     rectangles in all sizes and flavors!</p>
-    <p>Instead of defining a tangle of commands, there is a single rect() command with
-    <em>parameters</em>. Parameters are things you can customize. You can supply numbers, <a href="Variables.html">variables</a>, <a href="Strings.html">strings</a> and other things as
-    parameters to a command to have it look exactly the way you want it to.</p>
+
+    <p>Instead of defining a tangle of commands, there is a single <i>rect()</i> command with <em>parameters</em>. Parameters are values you can customize to change the command's behavior. You can supply numbers, <a href="Variables.html">variables</a>, <a href="Strings.html">strings</a>, or even objects as parameters depending on what the command knows how to handle.</p>
     <p>For example, to draw a square in the top left of the canvas:</p>
 <pre>rect(0, 0, 40, 40)
 </pre>
@@ -43,13 +84,12 @@
     <p>Notice how we replaced the <em>x</em>, <em>y</em>, <em>width</em> and <em>height</em> from
     the syntax description with real numbers. These number parameters describe how our rectangle
     will look: it is positioned in the top left (x is 0 and y is 0) and has an equal width and
-    height of 40.</p>
-    <p> </p>
-    <p><span class="media"><img alt="" height="515" src="../etc/tut/primitives1.jpg" width="577"/></span></p>
-    <p> </p>
+    height of 40.
+    <span class="media" style="margin-left:-50px;"><img alt="" height="311" src="../etc/tut/primitives1.png" width="658"/> </p>
+
     <h2>Optional parameters</h2>
 
-    <p>You’ll notice some other parameters in the rect() syntax which we didn’t define, the
+    <p>You’ll notice some other parameters in the <i>rect()</i> syntax which we didn’t define, the
     <em>roundness=0.0</em> for example. If a parameter description has an <em>=something</em> next
     to it, this means it is optional. If we don’t define this parameter in our script, it’s default
     value is <em>something</em>. In case of the rectangle command, the corner roundness is 0 by
@@ -57,20 +97,22 @@
 <pre>rect(0, 0, 40, 40, roundness=0.5)
 </pre>
 
-    <p>Now we have a rectangle with 50% round corners.</p>
-    <p> </p>
-    <p><span class="media"><img alt="" height="513" src="../etc/tut/primitives2.jpg" width="583"/></span></p>
-    <p> </p>
-    <h2>Throttle</h2>
+    <p>Now we have a rectangle with 50% round corners:
+        <span class="media" style="margin-left:-50px;"><img alt="" height="311" src="../etc/tut/primitives2.png" width="658"/> </p>
 
-    <p>The reference describes what kind of values you can use for each parameter in each command.
-    If these are numbers, you can use the <em>throttle</em> to quickly change them, as described in
-    the <a href="Environment.html">environment</a> tutorial. This is an easy way to play around
-    with number parameters.</p>
-    <h2>Defining your own commands</h2>
 
-    <p>It’s not that difficult to create your own commands in PlotDevice, in the <a href="Commands.html">templating</a> tutorial you’ll see an example of how to create your own
-    <em>flower()</em> command for example.</p>
+    <h2>The "<code>plot</code>" parameter</h2>
+
+    <p>All of the primitives have an optional argument called <code>plot</code> that defaults to <code class="kw">True</code>. This is a hint that just by calling the command you'll be adding a new shape to the canvas. In general this is exactly what you intended, but there are certain special cases where you'll want to store a not-yet-drawn primitive in a <a href="Variables.html">variable</a> for use later on.</p>
+
+    <p>You can accomplish this by calling the command with an optional argument of <code>plot=<span class="kw">False</span></code>. When you're ready to add the primitive to the canvas, call the <a href="../ref/Canvas.html#plot()">plot()</a> command with the reference you saved as its sole parameter:</p>
+    <pre>square = rect(50,50, 100,100, plot=False) # don't draw yet
+... # do other things
+plot(square) # add the square to the canvas</pre>
+
+    <h2>Defining your own shape-drawing commands</h2>
+
+    <p>It’s not that difficult to create your own commands in PlotDevice. In the <a href="Commands.html">Commands</a> tutorial you’ll learn how to create a function that combines calls to the basic shapes to create more-complicated graphics. Also look at the tutorial on <a href="Bezier_Paths.html">Béziers</a> to see how you can draw freeform shapes of your choosing.</p>
   </div>
 
 </body></html>

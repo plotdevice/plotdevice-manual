@@ -20,16 +20,17 @@
       <div class="row">
         The color commands in PlotDevice (see for example, <a href="#color()">color()</a>, <a href="#fill()">fill()</a>, <a href="#stroke()">stroke()</a>, <a href="Canvas.html#background()">background()</a>) return a Color object. This object has a number
         of properties to manipulate indivdual color values in different spaces and can be passed to
-        the fill() and stroke() command.
+        the <i>fill()</i> and <i>stroke()</i> commands.
       </div>
 
       <h2>Methods</h2>
 
       <div class="row">
-<pre>clr.blend(clr)
+<pre>clr.blend(clr2, factor)
+clr.copy()
 </pre>
-<pre>clr.copy()
-</pre>
+      <p>The <i>blend()</i> method returns a new color that is a mixture of the object and another <i>Color</i> object. Set the <code>factor</code> argument to a value between 0 and 1.0 to control the proportions used for mixing the colors.</p>
+
       </div>
 
       <h2>Properties</h2>
@@ -42,7 +43,7 @@ clr.a # .alpha
 </pre><pre>
 clr.h # .hue
 clr.s # .saturation
-clr.v # .brightness
+clr.v # .value (or .brightness)
 </pre><pre>
 clr.c # .cyan
 clr.m # .magenta
@@ -53,9 +54,7 @@ clr.hex  # a string like "#f00" or '#ff0000'
 clr.hexa # a tuple like ("#aa99ff", .75)
 </pre>
 
-        <p>See the <a href="../tut/Color.html">tutorial on colors</a> to learn about all the
-        properties.</p>
-        <p>With the <i>blend()</i> method you can create an in-between of two colors.<br/></p>
+        <p>See the <a href="../tut/Color.html">tutorial on colors</a> to learn more about <i>Color</i> objects and their uses.</p>
       </div>
     </div>
   </div>

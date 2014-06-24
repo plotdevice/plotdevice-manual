@@ -12,31 +12,36 @@
     piece of text is the name of a variable, or something else.</p>
     <p>Consider the following example:</p>
 <pre>hello = 20
-str = hello
-print str
-&gt;&gt;&gt; 20
- 
-str = "hello"
-print str
-&gt;&gt;&gt; hello
+string = hello
+print string
+>>> 20
+
+string = "hello"
+print string
+>>> hello
 </pre>
 
     <h2>Strings are lists of characters</h2>
 
-    <p>A string is like a <a href="Lists.html">list</a> of individual characters. This way, you
-    could access each character in the string like any other list. In the example below, I make
-    handy use of this feature by selecting random characters from the <em>chars</em> string with
-    the <a href="../ref/Utility.html#choice()">choice()</a> command and drawing them to the screen
-    <a href="http://www.joshuadavis.com">Joshua Davis</a>-style.</p>
-    <p> </p>
-    <p><span class="media"><img alt="" height="510" src="../etc/tut/strings-characters.jpg" width="667"/></span></p>
-    <p> </p>
+    <p>A string is like a <a href="Collections.html#lists">list</a> of individual characters. You
+    can access each character in the string by putting the "index" number in brackets. You can also access substrings by passing a start- and end-index spearated by a colon. Note that just like "slices" of a list, the end-index is <em>not</em> included in the sub-range returned.</p>
+    <pre>alphabet = "abcdefghijklmnopqrstuvwxyz"
+print alphabet[0]   # 'a'
+print alphabet[-1]  # 'z'
+print alphabet[:4]  # 'abcd'
+print alphabet[1:4] # 'bcd'
+print alphabet[-3:] # 'xyz'
+</pre>
+
+    <p>The <a href="../ref/Utility.html#choice()">choice()</a> command selects either a random element from a list or a random character from a string (depending on which kind of value you pass to it). In the example below, we use <i>choice()</i> and <i>random()</i> to select 80 random characters from the alphabet and scatter them over the screen at random positions, sizes, and orientations.</p>
+    <p><span class="media" style="margin-left:-58px;"><img alt="" height="523" src="../etc/tut/strings-characters.png" width="764"/></span></p>
     <h2>Manipulating strings</h2>
 
     <p>Strings have a number of very useful methods:</p>
     <ul>
       <li><em>string</em>.upper(): returns the string in uppercase.
       </li><li><em>string</em>.lower(): returns the string in lowercase.
+      </li><li><em>string</em>.title(): returns the string with the first character of each word capitalized.
       </li><li><em>string</em>.capitalize(): returns the string with the first character capitalized.
       </li><li><em>string</em>.find(<em>text</em>, start=0): returns the index position of <em>text</em>
       in the string.
@@ -51,9 +56,9 @@ print str
     Remember, these are methods, so instead of saying <em>str = upper(str)</em> you need to say
     <em>str = str.upper()</em>.</p>
 <pre>str = "Kumquats, Kumquats! I must have my Kumquats! - Oscar Wilde"
-str = str.upper() 
-print str 
-&gt;&gt;&gt; KUMQUATS, KUMQUATS! I MUST HAVE MY KUMQUATS! - OSCAR WILDE
+str = str.upper()
+print str
+>>> KUMQUATS, KUMQUATS! I MUST HAVE MY KUMQUATS! - OSCAR WILDE
 </pre>
 
     <p>The <em>replace()</em> method is especially useful when you want to filter mistakes from the
@@ -63,24 +68,52 @@ str = str.replace("in", "in, like, ")
 str = str.replace(".", " dude.")
 str = str.replace("rotten", "way uncool")
 print str
-&gt;&gt;&gt; Something's way uncool in, like, the state of Denmark dude.
+>>> Something's way uncool in, like, the state of Denmark dude.
 </pre>
+    <p>If your search &amp; replace needs are more complex, Python has a powerful <a href="https://docs.python.org/2/library/re.html">Regular Expressions</a> library available to you. Add <code>import re</code> to the top of your script and you'll have access to useful methods like:</p>
+    <ul>
+        <li><a class="noexternal" href="https://docs.python.org/2/library/re.html#re.search">re.search</a><em>(regex, str)</em>: return a <a href="https://docs.python.org/2/library/re.html#re.MatchObject">match</a> if the pattern was found in <i>str</i> or <code class="kw">None</code> if it wasn't.</li>
+        <li><a class="noexternal" href="https://docs.python.org/2/library/re.html#re.sub">re.sub</a><em>(regex, new, orig)</em>: return a string derived from <i>orig</i> in which each occurrance of a pattern is replaced with <i>new</i>.</li>
+        <li><a class="noexternal" href="https://docs.python.org/2/library/re.html#re.split">re.split</a><em>(regex, str)</em>: return a list of substrings, using the pattern to divide the original string.</li>
+    </ul>
 
     <h2>Quotes in quotes</h2>
 
-    <p>Text data often contain quotes themselves, especially if the text contains dialogue. When
-    PlotDevice examines the string and encounters such a quote, it would logically assume that the
-    string is terminated here.</p>
-    <p>The following example won’t work, PlotDevice thinks <em>(On his death bed):</em> needs to be
-    assigned to <em>str</em>, followed by garbage statements it doesn’t understand:</p>
+    <p>Text strings often contain quotes characters as <em>content</em>, especially if the text contains dialogue. When PlotDevice examines the string and encounters such a quote, it would logically assume that the string is terminated here.</p>
+
+    <p>For instance, the following example won’t work. PlotDevice sees <code class="str">"(On his death bed): "</code> as a complete string followed by garbage statements it doesn’t understand:</p>
 <pre>str = "(On his death bed): "Those curtains are hideous." - Oscar Wilde"
 </pre>
 
-    <p>Instead, the string needs to be wrapped in triple quotes:</p>
-<pre>str = """(On his death bed): "Those curtains are hideous." - Oscar Wilde""" 
-print str 
-&gt;&gt;&gt; (On his death bed): "Those curtains are hideous." - Oscar Wilde
+    <p>Python allows you to take your pick of either double- or single-quotes when defining a string. Whichever one you start the string with will also be used for determining where the string ends. Since double-quotes are part of the <em>content</em> of our string, we could choose to wrap it in single-quotes (or vice versa):</p>
+    <pre>str = '(On his death bed): "Those curtains are hideous." - Oscar Wilde'
+str = "You can't you won't and you don't stop."</pre>
+
+    <p>But if our string contains both kinds of quotes, this approach doesn't help us. For these cases we can use triple-quotes to delimit the string and mix-and-match quotation marks within it:</p>
+
+    <pre>str = """John Cage's 4'33" (performed by the Boston Typewriter Orchestra)"""</pre>
+
+    <p>Triple-quoted strings are also unique in being able to span multiple lines. Each carriage return will be converted to a newline character in the string it assigns. Single- and double-quoted strings <em>must</em> begin and end on the same line of your script. If you want to include line breaks in a non-triple-quoted string, use the ‘escape’ code for the newline character: <code class="str">"\n"</code>.</p>
+
+    <h2>String formatting</h2>
+
+    <p>We've seen that the <code>print</code> statement allows you to combine multiple variables when generating output. It even adds a space character between terms separated by commas. But mixing strings and values like this gets hard to edit as your code gets more complex. An alternative approach is to use ‘string interpolation’ to generate a new string with your values inserted at specific locations according to a template.</p>
+
+    <p>Python has two syntaxes for this: the ‘new’ style using the string's <a href="https://docs.python.org/2/library/string.html#format-specification-mini-language">format()</a> method, and the ‘old’ style using printf-style escapes and the <a href="http://infohost.nmt.edu/tcc/help/pubs/python/web/old-str-format.html"><code>%</code> operator</a>. Personally, I still prefer the older approach, but your mileage may vary.</p>
+
+    <p>Here's an old-style formatting example. The basic usage is <code>template % values</code>. If you're inserting multiple values, be sure to wrap them in parentheses separated by commas:</p>
+    <pre>pastry = 'pie'
+num = [4, 20]
+price = 12.5
+str = '%i &amp; %i blackbirds baked in a %s: $%0.2f' % (num[0], num[1], pastry, price)
+print str
+>>> 4 &amp; 20 blackbirds baked in a pie: $12.50
 </pre>
+
+    <p>If you want your string to contain a literal <code class="str">"%"</code> character, put a <code class="str">"%%"</code> in your format instead:</p>
+    <pre>print "(plus %i%% sales tax)" % 5
+>>> (plus 5% sales tax)</pre>
+
 
     <h2>File input</h2>
 
@@ -118,14 +151,16 @@ text(str, 50, 200)
     <p><img alt="strings-unicode2" height="446" src="../etc/tut/strings-unicode2.jpg" width="657"/></p>
     <p> </p>
     <p>Then when you import the contents of the file into PlotDevice, you’ll have to
-    <strong>decode</strong> the text:</p>
+    <strong>decode</strong> the text from UTF-8 into unicode:</p>
 <pre>str = open("hebrew.txt").read()
 str = str.decode("utf-8")
 align(RIGHT)
 text(str, 100, 200)
 </pre>
 
-    <p> </p>
+    <p>PlotDevice provides a <a href="../ref/Misc.html#read()">read()</a> command that does the file i/o and unicode conversion for you. By default it will attempt to decode the file as UTF-8, but if you pass an optional <code>encoding</code> argument you can override this.</p>
+    <pre>str = read("hebrew.txt")
+str = read("ozu.txt", encoding="shift-jis")</pre>
   </div>
 
 </body></html>

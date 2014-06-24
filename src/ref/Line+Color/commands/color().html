@@ -14,11 +14,11 @@
 <pre>
 color(mode=RGB, range=1.0) # the default color mode and range
 color(range=255)           # use 0-255 component values rather than 0–1
-color(HSB)                 # color-related commands will expect HSB values
+color(HSV)                 # color-related commands will expect HSV values
 </pre>
-<pre>color(k, a=1)          # greyscale
+<pre>color(v, a=1)          # greyscale
 color(r, g, b, a=1)    # RGB mode
-color(h, s, b, a=1)    # HSB mode
+color(h, s, v, a=1)    # HSV mode
 color(c, m, y, k, a=1) # CMYK mode
 </pre>
       </div>
@@ -29,13 +29,13 @@ color(c, m, y, k, a=1) # CMYK mode
       <div class="row">
       <p>A number of plotdevice commands can take lists of numeric arguments to specify a color (see <a href="#stroke()">stroke()</a>, <a href="#fill()">fill()</a>, <a href="Canvas.html#background()">background()</a>, etc.). When called with keyword arguments alone, The color() command allows you to control how these numbers should be interpreted in subsequent color-modification commands.</p>
 
-      <p>By default, color commands interpret groups of 3 or more numbers as r/g/b triplets (with an optional, final alpha arg). If the <code>mode</code> keyword arg is set to <code class="kw">RGB</code>, <code class="kw">HSB</code>, or <code class="kw">CMYK</code>, subsequent color commands will interpret numerical arguments according to that colorspace instead.</p>
+      <p>By default, color commands interpret groups of 3 or more numbers as r/g/b triplets (with an optional, final alpha arg). If the <code>mode</code> keyword arg is set to <code class="kw">RGB</code>, <code class="kw">HSV</code>, or <code class="kw">CMYK</code>, subsequent color commands will interpret numerical arguments according to that colorspace instead.</p>
 
       <p>The <code>range</code> keyword arg sets the maximum value for color channels. By default this is 1.0, but 255 and 100 are also sensible choices.</p>
 
       <p>For instance here are three equivalent ways of setting the fill color to ‘blue’:</p>
 <pre>
-color(mode=HSB)
+color(mode=HSV)
 fill(.666, 1.0, .76)
 color(mode=RGB, range=255)
 fill(0, 0, 190)
@@ -63,7 +63,7 @@ fill(glossy_black)
 
       <p>You can also prefix the numeric args with a color mode as a convenience for setting one-off colors in a mode different from the current colorspace:</p>
 <pre>
-color(mode=HSB)                        # set mode to h/s/b
+color(mode=HSV)                        # set mode to h/s/b
 hsb_color = color(.7, 1, .8)           # uses current mode (h/s/b)
 cmyk_color = color(CMYK, 0, .7, .9, 0) # interpreted as c/m/y/k
 still_hsb = color(1, .5, .25)          # uses current mode (h/s/b)
@@ -89,7 +89,7 @@ stroke('chartreuse') # electric bile
       <h2>Returns</h2>
 
       <div class="row">
-        <a href="#Color">Color</a> containing the defined color values<a href="#Color"></a>
+        a <a href="#Color">Color</a> object containing the defined color values
       </div>
 
       <h2>Tutorial</h2>
@@ -98,25 +98,6 @@ stroke('chartreuse') # electric bile
         <a href="../tut/Color.html">Color</a>
       </div>
 
-      <h2>Example</h2>
-
-      <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td><span class="image_border"><img height="125" src="../etc/ref/color.jpg" width="125"/></span>
-              </td><td>
-<pre>
-clr1 = color(1.0, 0.0, 0.5)
-fill(clr1)
-rect(10, 10, 25, 25)
-
-clr2 = color(0.3, 0.0, 0.4)
-fill(clr2)
-oval(40, 40, 40, 40)
-</pre>
-              </td></tr></tbody></table>
-      </div>
     </div>
   </div>
 

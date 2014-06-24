@@ -5,39 +5,43 @@
 
 </head><body>
   <div class="article">
-    <p>PlotDevice is built on <a href="http://pyobjc.sourceforge.net/">PyObjC</a>, a bridge between
-    the Python and Objective-C programming languages. The primary usage of PyObjC is writing
-    <a href="http://developer.apple.com/cocoa/">Cocoa</a> applications for Mac OS X in pure python.
-    Cocoa is the programming environment on Mac OS X that allows developers to create graphical
-    applications with a typical Apple-look-and-feel.</p>
-    <p>Cocoa’s two main libraries (<em>Foundation Kit</em> and <em>Application Kit</em>) are
-    bundled with PlotDevice. If you know a little PyObjC it’s easy to start playing around with all
-    the magic in Mac OS X, right from your PlotDevice script.</p>
+    <p>PlotDevice is built on <a href="http://pyobjc.sourceforge.net/">PyObjC</a>, a bridge between the Python and Objective-C programming languages. PyObjC's main use is writing <a href="http://developer.apple.com/cocoa/">Cocoa</a> applications for OS X in pure Python.</p>
+
+    <p>Cocoa is a set of "frameworks" allows developers to create graphical applications with a typical Macintosh look-and-feel. Its two main libraries (<em>Foundation Kit</em> and <em>Application Kit</em>) are
+    bundled with the operating system. If you know a little PyObjC it’s easy to start playing around with all
+    the magic in OS X, right from your PlotDevice script.</p>
+
+    <hr/>
     <p class="pink_text"><em>This tutorial contains advanced material.</em></p>
     <hr/>
 
     <h2>AppKit manual</h2>
 
-    <p>The first thing you’ll notice about AppKit is that it has a <em>lot</em> of <em>long</em>
-    and <em>odd</em> objects all beginning with <em>NS</em>: NSBezierPath, NSRect, NSImage, and so
+    <p>The first thing you’ll notice about AppKit is that it has a <em>lot</em> of long, oddly-named classes all beginning with <em>NS</em>: NSBezierPath, NSRect, NSImage, and so
     on (the <em>NS</em> stems from the fact that AppKit is a direct descendant of NeXTSTEP, Steve
     Jobs’ technology that revived Apple).</p>
-    <p>Commands like <em>layoutManager.drawGlyphsForGlyphRange_atPoint_(glyphRange,
-    (x-dx,y-dy-self.font.defaultLineHeightForFont()))</em> are common. So the first thing to do is
+
+    <p>Crazily-verbose commands like </p>
+    <pre>layoutManager.drawGlyphsForGlyphRange_atPoint_(
+    glyphRange,
+    (x-dx, y-dy-self.font.defaultLineHeightForFont())
+)</pre>
+        <p> are common. So the first thing to do is
     get a manual. If you’ve installed Xcode, it provides a totally reasonable documentation viewer
     accessible through the Help menu. On the web you can find Apple’s <a href="https://developer.apple.com/library/mac/documentation/cocoa/reference/applicationkit/objc_classic/_index.html">
     AppKit</a> &amp; <a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/ObjC_classic/_index.html">
     Foundation</a> references.</p>
-    <hr/>
+
 
     <h2>AppKit rules of thumb</h2>
 
-    <p>Apple’s documentation lists all of the objects in their Objective-C form. To use them in
-    Python, a good rule of thumb is to <strong>replace the colon with an underscore</strong> (e.g.
-    <em>setShadowBlurRadius:(float)val</em> becomes <em>setShadowBlurRadius_(floatval)</em> ).</p>
-    <p>Another good thing to know is that you create AppKit objects with <em>object.alloc()</em>
-    and then initialise them with <em>object.init()</em> or
-    <em>object.initWithARangeOfParamaters()</em>.</p>
+    <p>Apple’s documentation lists all of the objects in their Objective-C form. To use them in Python, you have to do a bit of name-mangling to deal with the syntax differences. Each method's documentation begins with a "selector". For example, NSFontManager has a method with the selector:</p>
+    <pre>fontWithFamily:traits:weight:size:</pre>
+    <p>To figure out its PyObjC name, replace the colons with underscores, then pile all the arguments at the end (between parentheses). For instance, calling our NSFontManager would look like:</p>
+    <pre>NSFontManager.fontWithFamily_traits_weight_size_(fam, traits, wgt, sz)</pre>
+
+
+    <p>Another place where you need to work around the differences between Python and Obj-C is object instantiation. Cocoa objects use a two-phase procedure in which you first create an object with <em>object = Class.alloc()</em> and then initialise them with <em>object.init()</em> or a specialized initializer like <em>object.initWithARangeOfParamaters()</em>.</p>
     <p>Also note that some things that are in Foundation like NSSize or NSRect can usually be
     substituted by simple Python tuples.</p>
     <p>To start using AppKit in PlotDevice simply import the library:</p>
@@ -45,7 +49,7 @@
 </pre>
 
     <p>I’ll show you some examples of what you can do with AppKit.</p>
-    <hr/>
+
 
     <h2>Playing sounds in PlotDevice</h2>
 
@@ -99,7 +103,7 @@ class mixer:
         self.channels = [[] for ch in self.channels]
 </pre>
 
-    <p>Queueing multiple sounds is now very easy:<br/></p>
+    <p>Queueing multiple sounds is now very easy:</p>
 <pre>m = mixer(2)
 m.queue(0, 0.0, "woof.aiff")
 m.queue(0, 0.4, "woof.aiff")
@@ -109,15 +113,12 @@ m.queue(1, 0.4, "meow.aiff")
 m.queue(1, 1.2, "meow.aiff")
 </pre>
 
-    <p> </p>
-    <hr/>
-
     <h2>BabbleBox: speech synthesis in PlotDevice</h2>
 
     <p>The example below wraps the NSSpeechSynthesizer in two PlotDevice commands. The
     <em>voices()</em> command returns a list of all available voices. The <em>say()</em> command
     makes PlotDevice speak out a sentence. The optional <em>voice</em> parameter sets the voice you
-    want to use.<br/></p>
+    want to use.</p>
 <pre>from AppKit import NSSpeechSynthesizer
 
 def voices():
@@ -136,35 +137,33 @@ def say(txt, voice=None):
 
     <p>Now say <em>hello</em> in a random voice:</p>
 <pre>say("hello", voice=choice(voices()))
-</pre><br/>
-    <hr/>
+</pre>
 
-    <h2>All the fonts on your system</h2>
+    <h2>Every font on your system</h2>
 
     <p>The command below wraps the NSFontManager object. It returns a list with the PostScript name
-    of each font installed on your system. Thanks to Mark for this one.</p>
+    of each font installed on your system. It's similar to the built-in fonts() command, but it returns every individual weight and style rather than organizing things into "families". Thanks to Mark for this one. </p>
 <pre>from AppKit import NSFontManager
 
-def fonts():
+def everyfont():
     return NSFontManager.sharedFontManager().availableFonts()
 </pre>
 
     <p>Now you can do lots of fun typography:</p>
 <pre>background(0.15, 0.1, 0.1)
+font(14, leading=1.0)
 
 x, y, h = 0, 0, 0
-lineheight(1)
-fontsize(14)
-for f in fonts()[:250]:
-
+for f in everyfont()[:80]:
     font(f)
+    width, height = measure(f)
 
     # Random pink, blue or white color
     fill(random(), random(0.5), 0.75)
-    if random() &gt; 0.8: fill(1)
+    if random() > 0.8: fill(1)
 
     # Wrap text to the next line
-    if x + textwidth(f) &gt; WIDTH:
+    if x + width > WIDTH:
         x = 0
         y += h
         h = 0
@@ -172,75 +171,12 @@ for f in fonts()[:250]:
     text(f, x, y)
 
     # Line height is equal to biggest font
-    h = max(h, textheight(f))
-    x += textwidth(f)
+    h = max(h, height)
+    x += width
 </pre>
 
-    <p><img alt="pyobjc-fonts" height="550" src="../etc/tut/pyobjc-fonts.jpg" width="550"/><br/></p>
-    <p> </p>
-    <hr/>
+    <p><img alt="pyobjc-fonts" height="550" src="../etc/tut/pyobjc-fonts.jpg" width="550"/></p>
 
-    <h2>Dashed lines</h2>
-
-    <p>Obviously all of the commands in PlotDevice are wrappers to AppKit calls. In most cases you can
-    still manipulate them directly with PyObjC. For example, a BezierPath object has a
-    <em>path</em> property containing the actual NSBezierPath. This we can manipulate to create
-    some custom effects.<br/></p>
-<pre>def linedash(path, segment=10, gap=5):
-    path.path.setLineDash_count_phase_([segment, gap], 2, 0)
-    return path
-</pre>
-<pre>p = line(0, 0, 200, 200, plot=False)
-linedash(p, segment=5)
-stroke(0)
-drawpath(p)
-</pre>
-
-    <p><img alt="pyobjc-linedash" height="214" src="../etc/tut/pyobjc-linedash.jpg" width="222"/><br/></p>
-    <p> </p>
-    <hr/>
-
-    <h2>Dropshadows in PlotDevice</h2>
-
-    <p>Here I create a wrapper for NSShadow. The result are two commands, <em>shadow()</em> and
-    <em>noshadow()</em> that work like <a href="../ref/Line+Color.html#fill()">fill()</a> and
-    <a href="../ref/Line+Color.html#nofill()">nofill()</a>: every drawing command defined after
-    <em>shadow()</em> will have a dropshadow until you call <em>noshadow()</em>.</p>
-    <p>Note that the shadow class inherits from something called <em>Grob</em>. This is short for
-    <em>Graphic Object</em>. A Grob executes its <em>_draw()</em> method the moment it is drawn.
-    You need to initialise it with the current context (canvas) to draw in, that’s why we pass the
-    global <em>_ctx</em> to Grob.__init__(). The <em>_ctx</em> contains the current context.</p>
-    <p>This is a typical example of what PlotDevice drawing commands look like (also see the <a href="http://dev.nodebox.net/browser/plotdevice/trunk/src/DrawingPrimitives.py">source</a>).</p>
-<pre>from AppKit import NSShadow, NSColor
-from plotdevice.graphics import Grob
-
-class shadow(Grob):
-    def __init__(self, x=10, y=10, alpha=0.25, blur=4.0):
-        Grob.__init__(self, _ctx)
-        self._shadow = NSShadow.alloc().init()
-        self._shadow.setShadowOffset_((x, -y))
-        self._shadow.setShadowColor_(color(0, 0, 0, alpha)._rgb)
-        self._shadow.setShadowBlurRadius_(blur)
-        self.draw()
-    def _draw(self):
-        self._shadow.set()
-
-def noshadow():
-    shadow(alpha=0)
-</pre>
-
-    <p>Shadows work very well to create a feeling of depth:<br/></p>
-<pre>shadow(blur=10.0)
-
-for i in range(30):
-    fill(random(0.75), 0, random(0.25,0.75))
-    r = random(50)
-    oval(random(WIDTH), random(HEIGHT), r, r)
-</pre> 
-
-    <p><img alt="pybobjc-shadow" height="397" src="../etc/tut/pyobjc-shadow1.jpg" width="396"/></p>
-    <p> </p>
-    <p><img alt="pyobjc-shadow2" height="296" src="../etc/tut/pyobjc-shadow2.jpg" width="298"/><br/></p>
   </div>
 
 </body></html>

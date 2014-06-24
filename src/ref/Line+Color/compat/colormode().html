@@ -18,7 +18,7 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>Changes the way PlotDevice interprets color data. By default, <a href="#fill()">fill()</a> and <a href="#stroke()">stroke()</a> are set by values between 0.0 and 1.0 using the RGB color model. <code class="kw">RGB</code> corresponds to Red/Green/Blue. Alternatively <code class="kw">HSB</code> (Hue/Saturation/Brightness) or <code class="kw">CMYK</code> (Cyan/Magenta/Yellow/Black) can be specified.</p>
+        <p>Changes the way PlotDevice interprets color data. By default, <a href="#fill()">fill()</a> and <a href="#stroke()">stroke()</a> are set by values between 0.0 and 1.0 using the RGB color model. <code class="kw">RGB</code> corresponds to Red/Green/Blue. Alternatively <code class="kw">HSV</code> (Hue/Saturation/Brightness) or <code class="kw">CMYK</code> (Cyan/Magenta/Yellow/Black) can be specified.</p>
 
         <p>Regardless of which colormode is specified, PDF’s and images are exported in the specified <a href="Canvas.html#outputmode()">outputmode()</a>.</p>
 
@@ -29,7 +29,7 @@
       <h2>Returns</h2>
 
       <div class="row">
-        the current color mode (RGB, CMYK or HSB)
+        the current color mode (<code class="kw">RGB</code>, <code class="kw">CMYK</code> or <code class="kw">HSV</code>)
       </div>
 
       <h2>PlotDevice Equivalent</h2>
@@ -57,7 +57,7 @@ colormode(RGB)
 fill(0.25, 0.25, 0.25)
 rect(10, 10, 40, 40)
 
-colormode(HSB)
+colormode(HSV)
 fill(0, 0, 0.25)
 rect(60, 10, 40, 40)
 </pre>

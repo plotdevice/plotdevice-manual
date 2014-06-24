@@ -5,7 +5,7 @@
 
 </head><body>
   <div class="article">
-    <p>More often than not programming scripts in PlotDevice involves a little bit of mathematics.
+    <p>More often than not, your PlotDevice scripts will involve at least a bit of mathematics.
     Things like fluid motion, orbitting behavior and easing in and out all require math formulas.
     Since most of us probably weren’t paying any attention during math class, this document
     explains some useful math techniques.<a id="Geometry" name="Geometry"></a></p>
@@ -45,19 +45,11 @@
     return x, y
 </pre>
 
-      <p>To use fast, C-based versions of these commands in your script, they can be accessed
-      through the <code class="kw">geo</code> global:</p>
-<pre>geo.angle(x0, y0, x1, y1)
-geo.distance(x0, y0, x1, y1)
-geo.coordinates(x0, y0, distance, angle)
-geo.reflect(x0, y0, x1, y1, d=1.0, a=180)
-</pre>
+      <p>To use fast, C-based versions of these commands in your script, you can import them from the <code>plotdevice</code> module:</p>
+        <pre>from plotdevice.lib.geometry import angle, distance, coordinates, reflect</pre>
 
-      <p>Or you can simply import them:</p>
-<pre>from plotdevice.geo import angle, distance, coordinates, reflect
-</pre> 
+      <p>Or, more conveniently, you can use methods of the same names provided by the <a href="../ref/Misc.html#Point">Point</a> and <a href="../ref/Drawing.html#Curve">Curve</a> classes. For example:</p>
 
-      <p>Some examples:</p>
       <table border="0">
         <tbody>
           <tr>
@@ -65,54 +57,72 @@ geo.reflect(x0, y0, x1, y1, d=1.0, a=180)
             </td><td>
               <p>The direction from the center of random points.</p>
 <pre>
-x0, y0, r = WIDTH/2, HEIGHT/2, 2
- 
+r = 2.0
+origin = Point(WIDTH/2, HEIGHT/2)
+
 for i in range(5):
-    x1 = random(WIDTH)
-    y1 = random(HEIGHT)
-    oval(x1-r, y1-r, r*2, r*2)
-    a = angle(x0, y0, x1, y1)
-    transform(CORNER)
-    translate(x0, y0)
-    rotate(-a)
-    arrow(30, 0, 10)
-    reset()
+    pt = Point(random(WIDTH),
+               random(HEIGHT))
+    arc(pt.x, pt.y, r)
+    a = origin.angle(pt)
+    with transform(CORNER):
+        translate(origin.x, origin.y)
+        rotate(-a)
+        arrow(30, 0, 10)
 </pre>
           </td></tr><tr>
             <td><img alt="math-coordinates" height="260" src="../etc/tut/math-coordinates.jpg" width="260"/>
             </td><td>
-              <p>Orbiting around(x0, y0).</p>
+              <p>Orbiting around an origin point.</p>
 <pre>
-x0, y0, r = WIDTH/2, HEIGHT/2, 2
-oval(x0-r, y0-r, r*2, r*2)
- 
+r = 2.0
+origin = Point(WIDTH/2, HEIGHT/2)
+oval(origin.x-r, origin.y-r, r*2, r*2)
+
 for i in range(10):
     a = 36*i
-    x1, y1 = coordinates(x0, y0, 85, a)
-    oval(x1-r, y1-r, r*2, r*2)
-    line(x0, y0, x1, y1)
+    pt = origin.coordinates(85, a)
+    arc(pt.x, pt.y, r)
+    line(origin.x, origin.y, pt.x, pt.y)
 </pre>
           </td></tr><tr>
             <td><img alt="math-perpendicular" height="260" src="../etc/tut/math-perpendicular.jpg" width="260"/>
             </td><td>
-              <p>Perpendicular lines on a circle path:<br/>
-              angle between a point and its handle - 90 degrees.</p>
+              <p>Perpendicular lines on a circle path.</p>
 <pre>
 path = oval(100, 100, 105, 105)
 for t in range(50):
-    pt = path.point(float(t) / 50)
-    a = angle(pt.x, pt.y, 
-        pt.ctrl2.x, pt.ctrl2.y)
-    transform(CORNER)
-    push()
-    translate(pt.x, pt.y)
-    rotate(-a+90)
-    line(0, 0, 35, 0)
-    pop()
+    curve = path.point(t/50.0)
+    a = curve.angle(curve.ctrl2)
+    with transform(CORNER):
+        translate(curve.x, curve.y)
+        rotate(-a+90) # rotate by 90°
+        line(0, 0, 35, 0)
 </pre>
-            </td></tr></tbody></table><br/>
+            </td></tr></tbody></table>
+    <h2>Angle measurements</h2>
+    <p>As you may remember from trigonometry, there are two commonly used systems for expressing the size of angles. In day-to-day life we're most likey to encounter ‘degrees’ ranging from 0 to 360. In mathematics it's more traditional to use ‘radians’ ranging from 0 to 2&pi;. PlotDevice recognizes that different situations may call for different angle units and provides some utilities to make switching between them easy.</p>
 
-      <p> </p>
+    <p>A number of commands take an angle as one of the arguments. By default, you're expected to use degrees. But by calling the <a href="geometry()">geometry()</a> command with <code class="kw">DEGREES</code>, <code class="kw">RADIANS</code>, or <code class="kw">PERCENT</code> you can switch between modes on the fly.</p>
+
+    <p>Any subsequent call to a drawing or transformation command that deals with angles will then deal in the newly-specified units. The <i>angle()</i> and <i>coordinates()</i> methods discussed above also obey the <i>geometry()</i> setting – both for interpreting arguments and providing return values.</p>
+
+    <table>
+      <td><img src="../etc/tut/math-angles.png"></img></td>
+      <td>    <pre>
+with stroke(0), nofill():
+    arc(50,25, 25, range=180)
+
+    geometry(RADIANS)
+    arc(50,50, 25, range=pi)
+
+    geometry(PERCENT)
+    arc(50,75, 25, range=.5)</pre>
+</td>
+    </table>
+    <p>To make working with radians more convenient, PlotDevice provides a pair of global constants – <code class="kw">pi</code> and <code class="kw">tau</code> – representing a half- and full-circle respectively.
+      </p>
+
     </div><a id="Sequences" name="Sequences"></a>
 
     <div class="section">
@@ -128,7 +138,7 @@ for t in range(50):
     if n == 0: return 0
     if n == 1: return 1
     if n &gt;= 2: return fib(n-1) + fib(n-2)
- 
+
 def goldenratio(n, f=4):
     # Returns two proportional numbers whose sum is n.
     f = max(1, min(f, 10))
@@ -147,13 +157,13 @@ w1, w2 = goldenratio(260)
 h1, h2 = goldenratio(260)
 b1, b2 = goldenratio(1.0)
 b3, b4 = goldenratio(b1)
- 
+
 fill(0, b1/2, b1)
 rect(0, 0, w1, h1)
- 
+
 fill(0, b2/2, b2)
 rect(w1, 0, w2, h1)
- 
+
 fill(0, b4/2, b4)
 rect(0, h1, w1+w2, h2)
 </pre>
@@ -163,7 +173,7 @@ rect(0, h1, w1+w2, h2)
 <pre>
 x, y = 0, 0
 w, h = 260, 260
- 
+
 th = h # top height
 bh = 0 # bottom height
 for i in range(10):

@@ -12,7 +12,7 @@
     <p>It’s the same with variables. Each variable has a <i>name</i>, and a <i>value</i>. The name
     is like the label on a box: it’s a quick reminder of what item, or value, is inside the
     variable. Just like boxes, variables can hold all sorts of stuff useful in a PlotDevice script:
-    pieces of text, an important number, the name of a font, a <a href="Lists.html">list</a> of
+    pieces of text, an important number, the name of a font, a <a href="Collections.html">list</a> of
     colors, and so on.</p>
     <p>Another way to look at variables is to think of them as a sticky note.</p>
     <h2>Why use variables</h2>
@@ -66,7 +66,7 @@ example, a rectangle is drawn at (10,10), with width of 100 and height of 30.
 <pre>
 width = 100
 rect(10, 10, width, 30 )
- 
+
 width = 20
 rect(120, 10, width, 30)
 rect(330, 10, width, 30)
@@ -94,7 +94,7 @@ rect(330, 10, width, 30)
 count = 10
 print count
 &gt;&gt;&gt; 1
- 
+
 count += 5
 print count
 &gt;&gt;&gt; 15
@@ -107,8 +107,8 @@ x = 30
 y = 30
 quote = "Nicely on the left"
 text(quote, x, y)
-y += textheight(quote) 
-quote = "Nicely below each other" 
+y += textheight(quote)
+quote = "Nicely below each other"
 text(quote, x, y)
 </pre>
           </td></tr></tbody></table>
@@ -123,21 +123,21 @@ text(quote, x, y)
     <p>PlotDevice has a set of predefined variables that contain information about the state of your
     script. These variables can only be looked at, not modified.</p>
     <ul>
-      <li>WIDTH: the width of the drawing area
-      </li><li>HEIGHT: the height of the drawing area
-      </li><li>PAGENUM: the current page being exported in a multi-page export.
-      </li><li>FRAME: the current frame in an <a href="Animation.html">animation</a>.<br/>
+      <li><code class="kw">WIDTH</code>: the width of the drawing area
+      </li><li><code class="kw">HEIGHT</code>: the height of the drawing area
+      </li><li><code class="kw">PAGENUM</code>: the current page being exported in a multi-page export.
+      </li><li><code class="kw">FRAME</code>: the current frame in an <a href="Animation.html">animation</a>.<br/>
     </li></ul>
 
     <p>Some variables can be used to create interactive animations:</p>
     <ul>
-      <li>MOUSEX: the horizontal location of the mouse cursor
-      </li><li>MOUSEY: the vertical location of the mouse cursor
-      </li><li>mousedown: is True when the mouse button is pressed, False otherwise
-      </li><li>keydown: is True when a key is being pressed, False otherwise
-      </li><li>key: the last key pressed
-      </li><li>keycode: the integer keycode of the last key pressed
-      </li><li>KEY_UP, KEY_DOWN_ KEY_LEFT, KEY_RIGHT, KEY_BACKSPACE contain the keycodes for the arrow
+      <li><code class="kw">MOUSEX</code>: the horizontal location of the mouse cursor
+      </li><li><code class="kw">MOUSEY</code>: the vertical location of the mouse cursor
+      </li><li><code class="kw">mousedown</code>: is True when the mouse button is pressed, False otherwise
+      </li><li><code class="kw">keydown</code>: is True when a key is being pressed, False otherwise
+      </li><li><code class="kw">key</code>: the last key pressed
+      </li><li><code class="kw">keycode</code>: the integer keycode of the last key pressed
+      </li><li><code class="kw">KEY_UP</code>, <code class="kw">KEY_DOWN_</code> <code class="kw">KEY_LEFT</code>, <code class="kw">KEY_RIGHT</code>, <code class="kw">KEY_BACKSPACE</code> contain the keycodes for the arrow
       keys and the backspace key.
     </li></ul>
 
@@ -149,20 +149,20 @@ text(quote, x, y)
     retained as long as you don’t re-run your script. In other words, random values change when you
     run a script, but not when you change values or drag sliders in the variable panel.</p>
     <p><br/>
-    <span class="media"><img height="523" src="../etc/tut/variables.jpg" width="622"/></span></p>
-    <p>The command to add variables to the variable panel is the <b>var()</b> command.</p>
-    <ul>
-      <li>var(<i>name</i>, NUMBER, <i>default</i>, <i>min</i>, <i>max</i>)
-      </li><li>var(<i>name</i>, TEXT, <i>default=’hello’</i>)
-      </li><li>var(<i>name</i>, BOOLEAN)
-      </li><li>var(<i>command</i>, BUTTON)
-    </li></ul>
+    <span class="media" style="margin-left:-30px;"><img height="502" src="../etc/tut/variables.png" width="618"/></span></p>
+    <p>You can add user-controlled variables to the panel with the <a href="../ref/Misc.html#var()">var()</a> command.</p>
+    <pre>
+var(name, NUMBER, default, min, max)
+var(name, TEXT, default="hello")
+var(name, BOOLEAN, default=True)
+var(command, BUTTON)
+</pre>
 
     <p>You can then use the <i>name</i> variable in your script like any other variable. Numbers
     produce a slider, text an input field and booleans (<i>True</i> or <i>False</i>) a checkbox.
     The <i>command</i> parameter for buttons is the name of a command in your script to call when
     the button is pressed.</p>
-    <p>The variable panel is inspired on <a href="http://just.letterror.com/ltrwiki/BobIppolito">Bob Ippolito’s widget drawer</a> in the
+    <p>The variable panel is modeled on <a href="http://bob.ippoli.to">Bob Ippolito’s widget drawer</a> in the
     original DrawBot.</p>
   </div>
 

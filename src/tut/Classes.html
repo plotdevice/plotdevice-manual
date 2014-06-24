@@ -7,15 +7,17 @@
   <div class="article">
     <p>If you read about <a href="Variables.html">variables</a>, <a href="Repetition.html">repetition</a> and <a href="Commands.html">commands</a> you already know a
     great deal about how to keep your code tidy and organized. Variables can be used to store data,
-    commands to manipulate data, and for-loops to do things (e.g. traverse <a href="Lists.html">lists</a>) multiple times. As you move on to bigger projects you’ll probably want
+    commands to manipulate data, and for-loops to do things (e.g. traverse <a href="Collections.html">lists</a>) multiple times. As you move on to bigger projects you’ll probably want
     to learn about classes as well. A class is a programming convention that defines a thing (or
     <b>object</b>) together with all of the thing’s <b>properties</b> (e.g. variables) and behavior
     <b>methods</b> (e.g. commands). If you take a look at the source code of PlotDevice libraries
     you’ll notice that they are full of classes.</p>
+
     <p>For example, a <i>Creature</i> class would consist of all the traits shared by different
     creatures, such as <i>size, position</i>, <i>speed</i> and <i>direction</i> (properties), and
     <i>avoid_obstacle()</i>, <i>eat_food()</i> (methods).</p>
-    <p>We can then use the Creature class to define many different <b>instances</b> of a creature.
+
+    <p>We can then use the Creature class to generate many different <b>instances</b> of a creature.
     For example, an ant is a small and speedy creature that wanders around randomly looking for
     food, avoiding obstacles by going around them. A dinosaur is also a creature, but bigger and
     slower. It eats anything crossing its path and avoids obstacles by crashing through them.</p>
@@ -36,28 +38,26 @@
     properties.</p>
     <p>For example, here’s what a simple definition of a Creature class would look like:</p>
 <pre>class Creature:
-    
     def __init__(self, x, y, speed=1.0, size=4):
-        
         self.x = x
         self.y = y
         self.speed = speed
         self.size = size
 </pre>
 
-    <p>As you can see a creature has <i>x</i> and <i>y</i> properties (the location of the
-    creature) and <i>speed</i> and <i>size</i> properties (which we’ll use to move the creature
-    around). All of them can be set when a new creature is ‘instantiated’. The <i>speed</i> and
-    <i>size</i> properties have default values so they are optional.</p>
+    <p>As you can see, a creature has <i>x</i> and <i>y</i> properties (the location of the
+    creature) as well as <i>speed</i> and <i>size</i> properties (which we’ll use to move the creature
+    around). Since <i>speed</i> and <i>size</i> are defined with default values, they are optional when "instantiating" a new creature.</p>
+    <p>You create instances of a class by calling the class name as if it were a command, but including the parameters defined in its <i>__init__()</i> method. The one tricky bit is that you should ignore the <code>self</code> argument, since it will be filled in automatically (see below).</p>
 <pre>ant = Creature(100, 100, speed=2.0)
 dinosaur = Creature(200, 250, speed=0.25, size=45)
 </pre>
 
-    <p>To change a property value for a creature later on we can simply do:</p>
+    <p>To change a property value for a creature later on we can simply re-assign it:</p>
 <pre>ant.speed = 2.5
 </pre>
 
-    <p><u>Naming conventions:</u></p>
+    <p>As with <a href="Commands.html">command names</a>, Python has some conventions for naming classes that you should try to follow:</p>
     <ul>
       <li>Class names use <span class="inline_code">CamelCase</span> notation.
       </li><li>Properties that are only for private use inside the class start with _
@@ -72,29 +72,26 @@ dinosaur = Creature(200, 250, speed=0.25, size=45)
     class method looks exactly like a command definition but it always takes <i>self</i> as the
     first parameter. The <i>self</i> parameter is the current instance of the class. It allows you
     to access all of an object’s current property values and methods from inside the method.</p>
-<pre>class Creature: 
-    
+<pre>class Creature:
     def __init__(self, x, y, speed=1.0, size=4):
-        
         self.x = x
         self.y = y
         self.speed = speed
         self.size = size
-        
+
         self._vx = 0
         self._vy = 0
-    
+
     def roam(self):
- 
         """ Creature changes heading aimlessly.
         """
-        
+
         v = self.speed
         self._vx += random(-v, v)
         self._vy += random(-v, v)
         self._vx = max(-v, min(self._vx, v))
-        self._vy = max(-v, min(self._vy, v)) 
-        
+        self._vy = max(-v, min(self._vy, v))
+
         self.x += self._vx
         self.y += self._vy
 </pre>
@@ -103,22 +100,25 @@ dinosaur = Creature(200, 250, speed=0.25, size=45)
     a creature’s current heading. Both property names start with an underscore because they are for
     private use inside the class methods (e.g. no one should directly manipulate <i>ant._dx</i>
     from the outside).</p>
-    <p>Each time the <i>roam()</i> method is called we add or subtract something of the creature’s
-    speed to the heading, like a compass twirling around randomly. We also make sure the horizontal
-    and vertical heading do not exceed the creature’s speed. Otherwise the creature would start
+
+    <p>Each time the <i>roam()</i> method is called we add or subtract a random proportion of the creature’s
+    speed from its heading, like a compass twirling around randomly. We also make sure the horizontal
+    and vertical "velocities" don't exceed the creature’s maximum speed. Otherwise the creature would start
     going faster and faster which isn’t very realistic. Finally, we update the creature’s position
     by moving it to the new heading.</p>
+
     <p>Now we can create two ants (a small fast one and a big slow one). Because their size and
     speed differ they will roam in different ways.</p>
+
 <pre>ant1 = Creature(300, 300, speed=2.0)
 ant2 = Creature(300, 300, speed=0.5, size=8)
- 
+
 speed(30)
 def draw():
     ant1.roam()
     ant2.roam()
-    oval(ant1.x, ant1.y, ant1.size, ant1.size)
-    oval(ant2.x, ant2.y, ant2.size, ant2.size)
+    arc(ant1.x, ant1.y, radius=ant1.size)
+    arc(ant2.x, ant2.y, radius=ant2.size)
 </pre>
 
     <p><img alt="classes-creature1" height="200" src="../etc/tut/classes-creature1.jpg" width="550"/></p>
@@ -128,15 +128,15 @@ def draw():
 
     <h2>Taking it further: obstacle avoidance</h2>
 
-    <p>Now that we know the basics about classes, properties and methods we can take things a lot
+    <p>Now that we know the basics about classes, properties and methods, we can take things a lot
     further. We can define different classes for different things and have them interact with each
     other.</p>
     <p>If we want to have our little critters avoid obstacles while wandering around, they will
     need to have some sense of the world around them. Know where the obstacles are located. So
     we’ll need to keep track of obstacle instances. Then we’ll introduce the concept of a
-    <b>feeler</b>. A feeler could be the creature’s sight, hearing or antennae. Basically it is a
+    <b>feeler</b>. A feeler could be the creature’s sight, hearing, or antennae. Basically it is a
     point in front of where the creature is heading. If this point falls inside an obstacle, it’s
-    time for the creature to change its. direction.</p>
+    time for the creature to change its direction.</p>
     <p><img alt="classes-creature2" height="200" src="../etc/tut/classes-creature2.jpg" width="550"/></p>
     <p><i>The creature is heading into an obstacle - it can touch the obstacle with its forward
     feeler.<br/>
@@ -146,16 +146,16 @@ def draw():
     <p>We’ll start out by creating a World class which we can use to store a list of obstacles.
     Later on we can add all sorts of other stuff to the world (e.g. weather methods, colony
     location properties, etc...).</p>
-<pre>class World:    
-    def __init__(self):        
+<pre>class World:
+    def __init__(self):
         self.obstacles = []
 </pre> 
 
     <p><span class="orange_box">Obstacle class</span></p>
     <p>Next we’ll make an Obstacle class.<br/>
     An obstacle in the world is a basic object that has a position and a radius.</p>
-<pre>class Obstacle:    
-    def __init__(self, x, y, radius):        
+<pre>class Obstacle:
+    def __init__(self, x, y, radius):
         self.x = x
         self.y = y
         self.radius = radius
@@ -165,26 +165,26 @@ def draw():
     <p>To know if a creature is going to run into an obstacle we need to know <b>if the tip of its
     feeler intersects with an obstacle</b>. Obviously we’re going to need some math to calculate
     the coordinates of the tip of the feeler. Luckily everything we need is already described in
-    the tutorial on <a href="Math.html">math geometry</a>. We can copy-paste the commands and add
+    the tutorial on <a href="Math.html">geometry</a>. We can copy-paste the commands and add
     them to our script:</p>
 <pre>from math import degrees, atan2
 from math import sqrt, pow
 from math import radians, sin, cos
- 
+
 def angle(x0, y0, x1, y1):
     """ Returns the angle between two points.
     """
     return degrees( atan2(y1-y0, x1-x0) )
- 
+
 def distance(x0, y0, x1, y1):
     """ Returns the distance between two points.
-    """        
+    """
     return sqrt(pow(x1-x0, 2) + pow(y1-y0, 2))
- 
+
 def coordinates(x0, y0, distance, angle):
     """ Returns the coordinates of given distance and angle from a point.
     """
-    return (x0 + cos(radians(angle)) * distance, 
+    return (x0 + cos(radians(angle)) * distance,
             y0 + sin(radians(angle)) * distance)
 </pre> 
 
@@ -211,71 +211,67 @@ def coordinates(x0, y0, distance, angle):
       </li><li>and if so, steer away in the most logical direction.
     </li></ul>
 <pre>class Creature:
-    
+
     def __init__(self, world, x, y, speed=1.0, size=4):
-        
         self.x = x
         self.y = y
         self.speed = speed
         self.size = size
-        
+
         self.world = world
         self.feeler_length = 25
-        
+
         self._vx = 0
         self._vy = 0
-    
+
     def heading(self):
-        
         """ Returns the creature's heading as angle in degrees.
         """
-        
+
         return angle(self.x, self.y, self.x+self._vx, self.y+self._vy)
- 
+
     def avoid_obstacles(self, m=0.4, perimeter=4):
- 
         # Find out where the creature is going.
         a = self.heading()
-        
+
         for obstacle in self.world.obstacles:
-            
+
             # Calculate the distance between the creature and the obstacle.
             d = distance(self.x, self.y, obstacle.x, obstacle.y)
-            
+
             # Respond faster if the creature is very close to an obstacle.
             if d - obstacle.radius &lt; perimeter: m *= 10
-            
+
             # Check if the tip of the feeler falls inside the obstacle.
-            # This is never true if the feeler length 
+            # This is never true if the feeler length
             # is smaller than the distance to the obstable.
             if d - obstacle.radius &lt;= self.feeler_length:
-                tip_x, tip_y = coordinates(self.x, self.y, d, a)    
-                if distance(obstacle.x, obstacle.y, 
+                tip_x, tip_y = coordinates(self.x, self.y, d, a)
+                if distance(obstacle.x, obstacle.y,
                             tip_x, tip_y) &lt; obstacle.radius:
-                    
+
                     # Nudge the creature away from the obstacle.
                     m *= self.speed
                     if tip_x &lt; obstacle.x: self._vx -= random(m)
                     if tip_y &lt; obstacle.y: self._vy -= random(m)
                     if tip_x &gt; obstacle.x: self._vx += random(m)
                     if tip_y &gt; obstacle.y: self._vy += random(m)
- 
+
                     if d - obstacle.radius &lt; perimeter: return
- 
+
     def roam(self):
- 
         """ Creature changes heading aimlessly.
         With its feeler it will scan for obstacles and steer away.
         """
-        
+
         self.avoid_obstacles()
-        
+
         v = self.speed
         self._vx += random(-v, v)
         self._vy += random(-v, v)
         self._vx = max(-v, min(self._vx, v))
-        self._vy = max(-v, min(self._vy, v)) 
-        
+        self._vy = max(-v, min(self._vy, v))
+
         self.x += self._vx
         self.y += self._vy
 </pre>

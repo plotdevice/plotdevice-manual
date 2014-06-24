@@ -8,7 +8,7 @@
     <p>Aside from the predefined commands in the PlotDevice <a href="../manual.html">reference</a> you
     can also define your own custom commands. Creating a command is a design strategy in which you
     re-use certain actions or pieces of your script.</p>
-    <p><span class="media"><img alt="" height="509" src="../etc/tut/templating1.jpg" width="652"/></span></p>
+    <p><span class="media" style="margin-left:-58px;"><img alt="" height="536" src="../etc/tut/commands1.png" width="753"/></span></p>
     <p>For example, in the above example all the actions to draw a flower (ten red-pinkish ovals
     connected by lines) are grouped in a handy flower() command. This command can then be called
     one time, a hundred times, or a thousand times. We only need to define the actions to draw a
@@ -18,22 +18,22 @@
     of tools that you can apply to your creations over and over.<br/></p>
     <h2>Command definition</h2>
 
-    <p>As a simple example I’ve defined my own <em>header()</em> command below:</p>
+    <p>As a simple example I’ve defined a <em>header()</em> command that draws some text with some preset styling attributes:</p>
 <pre>def header(txt, x, y):
-  fill(1, 0, 0)
-  font("Dolly-Bold", 18)
-  text(txt, x, y)
+    fill("red")
+    font("Dolly", "bold", 18)
+    text(txt, x, y)
 </pre>
 
     <p>The definition of a command starts with <strong>def</strong>, followed by the name of the
-    command (pick a relevant name), and a list of <em>parameters</em>. Don’t forget the colon at
+    command (pick something short and relevant), and a list of <em>parameters</em>. Don’t forget the colon at
     the end of the line - this tells PlotDevice that the intented statements below are what the
     command does.</p>
-    <p><u>Naming conventions:</u></p>
+
+    <p>Though you can name commands any way you want, Python has some conventions that will make it easier for others to understand your code:</p>
     <ul>
       <li>Use a simple and relevant word that describes what the command does.
-      </li><li>Use <span class="inline_code">lower_case_with_underscores</span> (except for essential
-      commands like <span class="inline_code">imagesize</span>).
+      </li><li>Use <span class="inline_code">lower_case_with_underscores</span> (camelCase is <em>so</em> Java...).
       </li><li>Commands that return True or False start with <span class="inline_code">is</span>:
       <span class="inline_code">is_white</span>, <span class="inline_code">is_alive</span>,
       <span class="inline_code">is_big</span>, ...
@@ -43,11 +43,10 @@
     <h2>Parameters</h2>
 
     <p>Command definitions are not executed by themselves: you are instead teaching PlotDevice
-    something, for example, what a header is. Command definitions need to be <em>called</em> from
+    something – for example, what a "header" is. Command definitions need to be <em>called</em> from
     somewhere else in the script. This is where parameters come in: notice how the definition of
-    <em>header()</em> uses a <em>txt</em>, a <em>x</em>, and a <em>y</em> parameter. Theses are
-    used like <a href="Variables.html">variables</a> inside the definition. Once the command is
-    called, you supply real values for <em>txt</em>, <em>x</em> and <em>y</em>.</p>
+    <em>header()</em> uses a <code>txt</code>, an <code>x</code>, and a <code>y</code> parameter. Theses are
+    used like <a href="Variables.html">variables</a> inside the definition. When calling the command, you supply real values for <code>txt</code>, <code>x</code> and <code>y</code>.</p>
 <pre>header("Templating", 20, 40)
 </pre>
 
@@ -56,26 +55,27 @@
     <h2>Return value</h2>
 
     <p>You may have noticed that some commands in PlotDevice have a return value that you can store in
-    a variable. For example, <em>textheight(txt, w)</em> returns the height of a paragraph
-    displaying <em>txt</em> with a width of <em>w</em>.</p>
+    a variable. For example, <a href="../ref/Misc.html#measure()">measure(<span class="grey">txt, width</span>)</a> returns the height of a paragraph
+    displaying <em>txt</em> typeset with a column size of <em>width</em>.</p>
 <pre>def paragraph(txt, x, y, w):
-  fill(0.2)
-  font("Dolly-Roman", 14)
-  text(txt, x, y, w)
-  return textheight(txt, w)
+    fill(0.2)
+    font("Dolly", 14)
+    text(txt, x, y, w)
+    return measure(txt, w)
 </pre>
 
     <p>The <strong>return</strong> statement inside a definition returns a value. This can be any
-    number of things, a number, a <a href="Strings.html">string</a>, a <a href="Lists.html">list</a>. The return statement always comes last inside the definition.</p>
+    number of things, a number, a <a href="Strings.html">string</a>, a <a href="Collections.html">list</a>, or even an <a href="Classes.html">object</a>. The return statement always comes last inside the definition.</p>
     <h2>Example</h2>
 
     <p>In the example below, we put two identical scripts next to each other, one using plain
-    top-to-bottom scripting and one using templates. The first script is in fact less code, but
-    imagine it would draw not two but twenty paragraphs... then you would have to define fonts and
+    top-to-bottom scripting and one using templates. The first script is actually shorter, but
+    imagine if it were drawing not two but twenty paragraphs. Then you'd have to define fonts and
     colors over and over again, and probably end up feeling like a robot trying to explain
     something to another robot.</p>
+
     <p>Moreover, changing the header color or the horizontal margin is much easier in the second
-    script because we have to do it only once: by changing the code in the <em>header()</em>
+    script since we only have to do it once: by changing the code in the <em>header()</em>
     definition or by changing the value of the <em>x</em> variable.</p>
     <p> 
     <table border="0">
@@ -90,53 +90,55 @@
         </td></tr><tr>
           <td>
 <pre>
+font("Dolly", 14)
 fill(1, 0, 0.25)
-font("Dolly-Bold", 14)
+font("Dolly", "bold", 14)
 txt = "Without templating"
 text(txt, 20, 30, 200)
- 
+
 fill(0.2)
-font("Dolly-Roman", 14)
+font("Dolly", "roman", 14)
 txt = "Without templating, ..."
 text(txt, 20, 50, 200)
- 
+
 fill(1, 0, 0.25)
-font("Dolly-Bold", 14)
+font("Dolly", "bold", 14)
 txt = "Messy"
 text(txt, 20, 120, 200)
- 
+
 fill(0.2)
-font("Dolly-Roman", 14)
-txt = "This makes your script...."
+font("Dolly", "roman", 14)
+txt = "This makes your script..."
 text(txt, 20, 140, 200)
 </pre>
           </td><td>
 <pre>
 def header(txt, x, y):
     fill(1, 0, 0.25)
-    font("Dolly-Bold", 14)
-    text(txt, x, y, outline=True)
-    return textheight(txt)
- 
+    font("Dolly", "bold", 14)
+    text(txt, x, y)
+    return measure(txt).height
+
 def paragraph(txt, x, y, w):
     fill(0.2)
-    font("Dolly-Roman", 14)
-    text(txt, x, y, w, outline=True)
-    return textheight(txt, w)
- 
-x = 20
-y = 30
-w = 200
- 
-y += header("With templating", x, y)
+    font("Dolly", "roman", 14)
+    text(txt, x, y, w)
+    return measure(txt).height
+
+x, y, w = 20, 30, 200
+
+title = "With templating"
 txt = "With templating, ..."
+y += header(title, x, y)
 y += paragraph(txt, x, y, w) + 10
- 
-y += header("Clean", x, y)
+
+title = "Clean"
 txt = "This keeps your script..."
+y += header(title, x, y)
 paragraph(txt, x, y, w)
 </pre>
           </td></tr></tbody></table></p>
+
   </div>
 
 </body></html>
