@@ -55,7 +55,7 @@
 
         <p>When drawing an XML string, text() will ignore any tags that don't correspond to a definition in the stylesheet(). The string you pass must be valid XML, in particular you must <a href="http://en.wikipedia.org/wiki/XML#Escaping">escape</a> the control characters: <code>&amp;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&apos;</code>, and <code>&quot;</code>.</p>
 
-        <p class="pink_text">Note that for PlotDevice to recognize your string as XML it <strong>must</strong> begin and end with a <a href="http://en.wikipedia.org/wiki/Root_element">"root"</a> tag of your choosing. The root tag <strong>may</strong> correspond to a style, but it needn't. If the string isn't entirely enclosed in a root element, no parsing will occur and the text will be drawn verbatim:</p>
+        <p class="double-dagger">Note that for PlotDevice to recognize your string as XML it <strong>must</strong> begin and end with a <a href="http://en.wikipedia.org/wiki/Root_element">"root"</a> tag of your choosing. The root tag <strong>may</strong> correspond to a style, but it needn't. If the string isn't entirely enclosed in a root element, no parsing will occur and the text will be drawn verbatim:</p>
 
 <pre>
 stylesheet("em", italic=True)
