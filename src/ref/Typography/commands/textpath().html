@@ -18,8 +18,8 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>Works exactly like the <a href="#text()">text()</a> command, except it returns a <a href="Drawing.html#Bezier">Bezier</a> rather than drawing to the screen. You can use the Bezier with commands like <a href="Compositing.html#clip()">clip()</a>, <a href="Compositing.html#mask()">mask()</a>, or <a href="Canvas.html#plot()">plot()</a>. You can also access the inner and outer strokes of the individual glyphs by iterating through its <code>contours</code> property.</p>
-      </div>
+        <p>Works exactly like the <a href="#text()">text()</a> command, except it returns a <a href="Drawing.html#Bezier">Bezier</a> rather than drawing to the screen. You can use the Bezier with commands like <a href="Compositing.html#clip()">clip()</a>, <a href="Compositing.html#mask()">mask()</a>, or <a href="Canvas.html#plot()">plot()</a>. You can also access the inner and outer strokes of the individual glyphs by iterating through its <code>contours</code> property.
+      </p></div>
 
       <h2>Returns</h2>
 
@@ -30,14 +30,12 @@
       <h2>Alternate Syntax</h2>
 
       <div class="row">
-        <p>You can also generate a <a href="Drawing.html#Bezier">Bezier</a> with the <a href="#text()">text()</a> command's <code>outline</code> parameter:</p>
-<pre>
-pth = text("Antitoi Bros. Video", 20,100, outline=True, plot=False)
+        <p>You can also generate a <a href="Drawing.html#Bezier">Bezier</a> with the <a href="#text()">text()</a> command's <code>outline</code> parameter:
+        </p><pre>pth = text("Antitoi Bros. Video", 20,100, outline=True, plot=False)
 </pre>
 
-         <p>Alternatively, use a <a href="Drawing.html#bezier()">bezier()</a> context to capture the path in a local variable:</p>
-<pre>
-with bezier(20,100, plot=False) as pth:
+        <p>Alternatively, use a <a href="Drawing.html#bezier()">bezier()</a> context to capture the path in a local variable:
+        </p><pre>with bezier(20,100, plot=False) as pth:
   text("Enfield Tennis Acad.", 0,0)
 ... # use the Bezier object in pth
 </pre>
@@ -52,18 +50,14 @@ with bezier(20,100, plot=False) as pth:
       <h2>Example</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td><span class="image_border"><img height="125" src="../etc/ref/textpath.jpg" width="125"/></span>
-              </td><td>
-<pre>
-font("Helvetica", 65)
+        <div class="example">
+          <span><img height="125" src="../etc/ref/textpath.jpg" width="125"/></span>
+<pre>font("Helvetica", 65)
 path = textpath("clip", 10, 70)
 with clip(path):
     image("header.jpg", -300, -150)
 </pre>
-              </td></tr></tbody></table>
+        </div>
       </div>
     </div>
   </div>

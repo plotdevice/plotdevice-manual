@@ -34,38 +34,36 @@
       <h2>Example</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td><span class="image_border"><img src="../etc/ref/mask.png"/></span>
-              </td><td>
+
+        <div class="example">
+          <span><img src="../etc/ref/mask.png" width="125" height="125"/></span>
 <pre>
 with mask(poly(64,64, 50, sides=5)):
     image('plaid.png')
 </pre>
-              </td></tr>
-            <tr>
-              <td><span class="image_border"><img src="../etc/ref/mask-image.png"/></span>
-              </td><td>
+        </div>
+
+        <div class="example">
+          <span><img src="../etc/ref/mask-image.png" width="125" height="125"/></span>
 <pre>
 with mask(image('logo-stencil.png')):
     image('plaid.png')
 </pre>
 using the <a href="../etc/ref/logo-stencil.png">logo-stencil.png</a> image
-              </td></tr>
+        </div>
 
-            <tr>
-              <td><span class="image_border"><img src="../etc/ref/mask-text.png"/></span>
-              </td><td>
+        <div class="example">
+          <span><img src="../etc/ref/mask-text.png" width="125" height="125"/></span>
 <pre>
 font("Avenir", "bold", 112)
 with mask(text('Hi', 4, 112)):
     image('related/plaid.png')
 </pre>
-              </td></tr>
-            </tbody></table>
+        </div>
 
       </div>
+
+
     </div>
   </div>
 

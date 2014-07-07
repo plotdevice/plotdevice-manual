@@ -29,23 +29,23 @@
       </div>
 
       <h2>Example</h2>
+
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td>
-<pre>
+        <div class="example">
+          <span><img src="../etc/ref/plot-delay.png" width="125" height="125"/></span>
+          <pre>
 # create a shape (but don't draw it immediately)
 r = rect(20,20,40,40, plot=False)
 ...
 # draw the saved shape (but override the canvas's fill color)
 plot(r, fill='red')
 </pre>
-              </td>
-            </tr>
-            <tr>
-              <td>
-<pre>
+        </div>
+
+
+        <div class="example">
+          <span><img src="../etc/ref/plot-disable.png" width="125" height="125"/></span>
+          <pre>
 # the plot keyword arg prevents this from being drawn
 o = oval(0,0,100,100, plot=False)
 
@@ -54,16 +54,10 @@ with plot(False):
     o = oval(0,0,100,100)   # not drawn
     s = rect(100,100,10,10) # same here
 </pre>
-              </td>
-            </tr>
-
-
-              </tbody></table>
+        </div>
       </div>
 
     </div>
-
-
   </div>
 
 </body></html>

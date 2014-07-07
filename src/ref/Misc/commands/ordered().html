@@ -18,11 +18,9 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>Returns a sorted copy of a list of objects (similar to Python's built-in <a href="https://wiki.python.org/moin/HowTo/Sorting"><code>sorted</code></a> function). Lists of dictionaries or objects can be sorted based on a common key or attribute if any <code>name</code> strings are provided. If more than one name is present, they will be used (in order) as primary, secondary, tertiary, etc. sorting criteria.</p>
-
-        <p>Lists are returned in ascending order unless the <code>reverse</code> parameter is
-           <code class="kw">True</code>.</p>
-      </div>
+        <p>Returns a sorted copy of a list of objects (similar to Python's built-in <a href="https://wiki.python.org/moin/HowTo/Sorting"><code>sorted</code></a> function). Lists of dictionaries or objects can be sorted based on a common key or attribute if any <code>name</code> strings are provided. If more than one name is present, they will be used (in order) as primary, secondary, tertiary, etc. sorting criteria.
+        </p><p>Lists are returned in ascending order unless the <code>reverse</code> parameter is <code class="kw">True</code>.
+      </p></div>
 
       <h2>Returns</h2>
 
@@ -39,12 +37,8 @@
       <h2>Example</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td>
-<pre>
-students = [{"name":"Alice", "grade":95},
+        <div class="example">
+<pre>students = [{"name":"Alice", "grade":95},
             {"name":"Bob", "grade":60},
             {"name":"Carol", "grade":88},
             {"name":"Eve", "grade":95} ]
@@ -55,7 +49,7 @@ for s in ordered(students, 'grade', 'name'):
 # 95 Alice
 # 95 Eve
 </pre>
-              </td></tr></tbody></table>
+        </div>
       </div>
     </div>
   </div>

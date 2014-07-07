@@ -33,39 +33,38 @@
       </div>
 
       <h2>Example</h2>
-
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td><span class="image_border"><img src="../etc/ref/clip.png"/></span>
-              </td><td>
+
+        <div class="example">
+          <span><img src="../etc/ref/clip.png" width="125" height="125"/></span>
 <pre>
 with clip(poly(64,64, 50, sides=5)):
     image('plaid.png')
 </pre>
-            </td></tr>
-            <tr>
-              <td><span class="image_border"><img src="../etc/ref/clip-image.png"/></span>
-              </td><td>
+        </div>
+
+        <div class="example">
+          <span><img src="../etc/ref/clip-image.png" width="125" height="125"/></span>
 <pre>
 with clip(image('logo-stencil.png')):
     image('plaid.png')
 </pre>
 using the <a href="../etc/ref/logo-stencil.png">logo-stencil.png</a> image
-              </td></tr>
+        </div>
 
-            <tr>
-              <td><span class="image_border"><img src="../etc/ref/clip-text.png"/></span>
-              </td><td>
+        <div class="example">
+          <span><img src="../etc/ref/clip-text.png" width="125" height="125"/></span>
 <pre>
 font("Avenir", "bold", 112)
 with clip(text('Hi', 4, 112)):
     image('related/plaid.png')
 </pre>
-              </td></tr>
-            </tbody></table>
+        </div>
+
       </div>
+
+
+
     </div>
   </div>
 

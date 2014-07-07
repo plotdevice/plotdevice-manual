@@ -18,8 +18,8 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>Draws a full circle or partial arc centered at (x,y). The <code>range</code> argument allows you to draw only a portion of the circle. It can be either a number defining the angle (from 0°) or a 2-tuple with a start- and stop-angle. By default the endpoints of the range will be connected in a clockwise direction, but this can be inverted by passing <code>ccw=True</code>. If the <code>close</code> argument is set to <code>True</code>, the endpoints of the arc will be connected via a pie-slice through the origin.</p>
-      </div>
+        <p>Draws a full circle or partial arc centered at (x,y). The <code>range</code> argument allows you to draw only a portion of the circle. It can be either a number defining the angle (from 0°) or a 2-tuple with a start- and stop-angle. By default the endpoints of the range will be connected in a clockwise direction, but this can be inverted by passing <code>ccw=True</code>. If the <code>close</code> argument is set to <code>True</code>, the endpoints of the arc will be connected via a pie-slice through the origin.
+      </p></div>
 
       <h2>Returns</h2>
 
@@ -36,20 +36,16 @@
       <h2>Example</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td><span class="image_border"><img height="125" src="../etc/ref/arc.jpg" width="125"/></span>
-              </td><td>
-<pre>
-nofill()
+        <div class="example">
+          <span><img height="125" src="../etc/ref/arc.jpg" width="125"/></span>
+<pre>nofill()
 stroke(.2)
 arc(60,60, 40, range=180)
 arc(60,60, 30, range=90, ccw=True)
 stroke('red')
 arc(60,60, 20, range=270, close=True)
 </pre>
-              </td></tr></tbody></table>
+        </div>
       </div>
     </div>
   </div>

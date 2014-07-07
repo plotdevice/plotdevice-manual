@@ -34,11 +34,14 @@
         equivalent to calling <a href="#push()">push()</a> and <a href="#pop()">pop()</a> at the
         beginning and end of the block respectively, though transform() will also reset the
         <code>mode</code> on exit.</p>
-        <table border="0">
-          <tbody>
-            <tr>
-              <td>
-<pre>
+
+        <pre>
+with transform(CORNER):
+    translate(100,20)
+    line(0,0, 40,0)
+</pre>
+        <p><em>is equivalent to:</em></p>
+        <pre>
 oldmode = transform()
 transform(CORNER)
 push()
@@ -46,16 +49,8 @@ translate(100,20)
 line(0,0, 40,0)
 pop()
 transform(oldmode)
+</pre>
 
-</pre>
-              </td><td><em>simplifies to</em>
-              </td><td>
-<pre>
-with transform(CORNER):
-    translate(100,20)
-    line(0,0, 40,0)
-</pre>
-              </td></tr></tbody></table>
       </div>
 
       <h2>Inline Transformations</h2>
@@ -64,41 +59,30 @@ with transform(CORNER):
         <p>In addition to the optional <code>mode</code> parameter, the transform() function also
         accepts a sequence of transformation commands. These commands will affect the global state
         and are equivalent to calling them on separate lines of your script.</p>
-        <table border="0">
-          <tbody>
-            <tr>
-              <td>
-<pre>
+        <pre>
+transform(rotate(radians=pi/2), scale(2.0))
+</pre>
+        <p><em>is equivalent to:</em></p>
+        <pre>
 rotate(radians=pi/2)
 scale(2.0)
 </pre>
-              </td><td><em>or</em>
-              </td><td>
-<pre>
-transform(rotate(radians=pi/2), scale(2.0))
-</pre>
-              </td></tr></tbody></table>
 
         <p>When used in a <code>with</code>-statement, the commands will be applied at the
         beginning of the block and then reset at the end. For example, the following usages are
         equivalent:</p>
-        <table border="0">
-          <tbody>
-            <tr>
-              <td>
-<pre>
+        <pre>
+with transform(reset(), translate(40,40), rotate(45)):
+    rect(0,0,20,20)
+</pre>
+        <pre>
 with transform():
     reset()
     translate(40,40)
     rotate(45)
     rect(0,0,20,20)
 </pre>
-              </td><td>
-<pre>
-with transform(reset(), translate(40,40), rotate(45)):
-    rect(0,0,20,20)
-</pre>
-              </td></tr></tbody></table>
+
       </div>
 
       <h2>Returns</h2>
@@ -132,39 +116,23 @@ bezier(parallelogram, fill=None, stroke=0)
       <h2>Examples</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td><span class="image_border"><img height="125" src="../etc/ref/pop.jpg" width="125"/></span>
-              </td><td>
-<pre>
+
+        <div class="example">
+          <span><img height="125" src="../etc/ref/pop.jpg" width="125"/></span>
+          <pre>
 fill(0.2)
 fontsize(14)
 rotate(90)
 text("one", 40, 80)
 
-with transform(rotate(-90)):
+with transform():
+    rotate(-90)
     text("two", 40, 40)
 
 text("three", 50, 80)
-
 </pre>
-              </td><td><em>or</em>
-              </td><td>
-<pre>
-fill(0.2)
-fontsize(14)
-rotate(90)
-text("one", 40, 80)
+        </div>
 
-push()
-rotate(-90)
-text("two", 40, 40)
-pop()
-
-text("three", 50, 80)
-</pre>
-              </td></tr></tbody></table>
       </div>
     </div>
   </div>

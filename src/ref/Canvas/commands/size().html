@@ -18,14 +18,11 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>Sets the size of the canvas in your preferred measurement scale. If called with just <code>width</code> &amp; <code>height</code> values, the canvas will default to using Postscript points for measurement (a.k.a. <code>px</code>). If this command is used, it should generally be called at the very beginning of the script.</p>
-
-        <p>An important exception to this is the use of the <a href="#export()"><code>export()</code></a> command as part of a <code>with</code> statement. In this case it is perfectly valid to reset the size as the first line of the block.</p>
-
-        <p>If the optional <code>unit</code> arg is included, it should be one of: <code class="kw">px</code>, <code class="kw">pica</code>, <code class="kw">inch</code>, <code class="kw">cm</code>, or <code class="kw">mm</code>. Setting the canvas's ‘default unit’ in this manner causes all subsequent drawing commands to be interpreted at that scale. The unit types can also be used to multiply values from other systems to the canvas's units. For example <code>8.5*inch</code> will always be the width of a letter page (regardless of the canvas's unit).</p>
-
-        <p>The dynamic variables <code class="kw">WIDTH</code> and <code class="kw">HEIGHT</code> can be used to obtain the canvas size.</p>
-      </div>
+        <p>Sets the size of the canvas in your preferred measurement scale. If called with just <code>width</code> &amp; <code>height</code> values, the canvas will default to using Postscript points for measurement (a.k.a. <code>px</code>). If this command is used, it should generally be called at the very beginning of the script.
+        </p><p>An important exception to this is the use of the <a href="#export()"><code>export()</code></a> command as part of a <code>with</code> statement. In this case it is perfectly valid to reset the size as the first line of the block.
+        </p><p>If the optional <code>unit</code> arg is included, it should be one of: <code class="kw">px</code>, <code class="kw">pica</code>, <code class="kw">inch</code>, <code class="kw">cm</code>, or <code class="kw">mm</code>. Setting the canvas's ‘default unit’ in this manner causes all subsequent drawing commands to be interpreted at that scale. The unit types can also be used to multiply values from other systems to the canvas's units. For example <code>8.5*inch</code> will always be the width of a letter page (regardless of the canvas's unit).
+        </p><p>The dynamic variables <code class="kw">WIDTH</code> and <code class="kw">HEIGHT</code> can be used to obtain the canvas size.
+      </p></div>
 
       <h2>Tutorial</h2>
 
@@ -36,22 +33,12 @@
       <h2>Example</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td>
-<pre>
-size(400, 600)
-# the canvas is 400 X 600 points
-print WIDTH  # prints 400
-print HEIGHT # prints 600
-</pre>
-<pre>
-size(20, 20, cm)
+        <div class="example">
+<pre>size(20, 20, cm)
 # the canvas is 20 x 20 cm
 print 2*inch # prints 5.08...
 </pre>
-              </td></tr></tbody></table>
+        </div>
       </div>
     </div>
   </div>

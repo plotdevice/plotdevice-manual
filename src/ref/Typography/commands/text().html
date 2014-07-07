@@ -18,47 +18,30 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>Draws text to the screen, either as a single line, or a multi-line block. The first parameter is a string of unicode text to display. The x &amp; y parameters set the location of the text’s baseline. The optional <code>width</code> parameter specifies the width for a column of text and, if present, the <code>height</code> parameter sets maximum height for the column. Text in a column is wrapped across as many lines as will fit in the maximum height.</p>
-
-        <p>The alignment for text can be set with the <a href="#align()">align()</a> command. By default, text is not outlined when saved as a PDF. Calling text() with <code>outline=True</code> will convert the <a href="#Text">Text</a> object to a <a href="Drawing.html#Bezier">Bezier</a> before exporting the canvas.</p>
-
-        <p>Text will be drawn in the current <a href="Line+Color.html#fill()">fill()</a> color, but will not reflect the global <a href="Line+Color.html#pen()">pen()</a> and <a href="Line+Color.html#stroke()">stroke()</a> unless drawn as an <code>outline</code>. If the current fill() is a multi-color gradient, text() will use the first color in its range (unless outlined, in which case it will use the gradient fill).</p>
-      </div>
+        <p>Draws text to the screen, either as a single line, or a multi-line block. The first parameter is a string of unicode text to display. The x &amp; y parameters set the location of the text’s baseline. The optional <code>width</code> parameter specifies the width for a column of text and, if present, the <code>height</code> parameter sets maximum height for the column. Text in a column is wrapped across as many lines as will fit in the maximum height.
+        </p><p>The alignment for text can be set with the <a href="#align()">align()</a> command. By default, text is not outlined when saved as a PDF. Calling text() with <code>outline=True</code> will convert the <a href="#Text">Text</a> object to a <a href="Drawing.html#Bezier">Bezier</a> before exporting the canvas.
+        </p><p>Text will be drawn in the current <a href="Line+Color.html#fill()">fill()</a> color, but will not reflect the global <a href="Line+Color.html#pen()">pen()</a> and <a href="Line+Color.html#stroke()">stroke()</a> unless drawn as an <code>outline</code>. If the current fill() is a multi-color gradient, text() will use the first color in its range (unless outlined, in which case it will use the gradient fill).
+      </p></div>
 
       <h2>Optional Parameters</h2>
 
       <div class="row">
-        <p>
-          <code class="box"><span class="red">family</span></code>
-          <code class="box"><span class="red">weight</span></code>
-          <code class="box"><span class="red">size</span></code>
-          <code class="box"><span class="red">italic</span></code>
-          <code class="box"><span class="red">leading</span></code>
-          <!-- <code class="box"><span class="red">width</span></code> -->
-          <code class="box"><span class="red">variant</span></code>
-          <code class="box"><span class="red">face</span></code>
-        </p>
-        <p>You can override the current font settings for an individual text() invocation by including any of the keyword arguments supported by the <a href="#font()">font()</a> command. See its reference entry for details.</p>
-
-        <p> <code class="box"><span class="red">plot</span></code> </p>
-        <p>By default, the text() command will render to the canvas immediately. Passing <code>plot=False</code> will return the rendered Text or Bezier object without adding it to the canvas.</p>
-
-        <p> <code class="box"><span class="red">style</span></code> </p>
-        <p>If you have defined text styles using the <a href="#stylesheet()">stylesheet()</a> command, you can select one by passing a style-name as the <code>style</code> argument. The selected style will be applied to the entire run of text – use inline markup if you need greater granularity.</p>
-
-      </div>
+        <p><code class="box"><span class="red">family</span></code> <code class="box"><span class="red">weight</span></code> <code class="box"><span class="red">size</span></code> <code class="box"><span class="red">italic</span></code> <code class="box"><span class="red">leading</span></code> <!-- <code class="box"><span class="red">width</span></code> -->
+         <code class="box"><span class="red">variant</span></code> <code class="box"><span class="red">face</span></code>
+        </p><p>You can override the current font settings for an individual text() invocation by including any of the keyword arguments supported by the <a href="#font()">font()</a> command. See its reference entry for details.
+        </p><p><code class="box"><span class="red">plot</span></code>
+        </p><p>By default, the text() command will render to the canvas immediately. Passing <code>plot=False</code> will return the rendered Text or Bezier object without adding it to the canvas.
+        </p><p><code class="box"><span class="red">style</span></code>
+        </p><p>If you have defined text styles using the <a href="#stylesheet()">stylesheet()</a> command, you can select one by passing a style-name as the <code>style</code> argument. The selected style will be applied to the entire run of text – use inline markup if you need greater granularity.
+      </p></div>
 
       <h2>Inline Style Markup</h2>
 
       <div class="row">
-        <p>By default, text() will render the entire <code>txt</code> string in a single style (based on the canvas's current <a href="#font()">font()</a>, <a href="#align()">align()</a>, and <a href="#fill()">fill()</a> state). You can selectively style portions of the string if you format it as XML and use the <a href="#stylesheet()">stylesheet()</a> command to define styles for the tags you use in the markup. Stylesheet definitions behave similarly to CSS declarations in that more deeply nested styles will override attributes of less deeply nested ones.</p>
-
-        <p>When drawing an XML string, text() will ignore any tags that don't correspond to a definition in the stylesheet(). The string you pass must be valid XML, in particular you must <a href="http://en.wikipedia.org/wiki/XML#Escaping">escape</a> the control characters: <code>&amp;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&apos;</code>, and <code>&quot;</code>.</p>
-
-        <p class="double-dagger">Note that for PlotDevice to recognize your string as XML it <strong>must</strong> begin and end with a <a href="http://en.wikipedia.org/wiki/Root_element">"root"</a> tag of your choosing. The root tag <strong>may</strong> correspond to a style, but it needn't. If the string isn't entirely enclosed in a root element, no parsing will occur and the text will be drawn verbatim:</p>
-
-<pre>
-stylesheet("em", italic=True)
+        <p>By default, text() will render the entire <code>txt</code> string in a single style (based on the canvas's current <a href="#font()">font()</a>, <a href="#align()">align()</a>, and <a href="#fill()">fill()</a> state). You can selectively style portions of the string if you format it as XML and use the <a href="#stylesheet()">stylesheet()</a> command to define styles for the tags you use in the markup. Stylesheet definitions behave similarly to CSS declarations in that more deeply nested styles will override attributes of less deeply nested ones.
+        </p><p>When drawing an XML string, text() will ignore any tags that don't correspond to a definition in the stylesheet(). The string you pass must be valid XML, in particular you must <a href="http://en.wikipedia.org/wiki/XML#Escaping">escape</a> the control characters: <code>&amp;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>'</code>, and <code>"</code>.
+        </p><p class="double-dagger">Note that for PlotDevice to recognize your string as XML it <strong>must</strong> begin and end with a <a href="http://en.wikipedia.org/wiki/Root_element">"root"</a> tag of your choosing. The root tag <strong>may</strong> correspond to a style, but it needn't. If the string isn't entirely enclosed in a root element, no parsing will occur and the text will be drawn verbatim:
+        </p><pre>stylesheet("em", italic=True)
 text("&lt;xyz&gt;&lt;em&gt;slanted&lt;/em&gt; &amp;amp; enchanted&lt;/xyz&gt;") # XML: root tag w/o style
 text("&lt;em&gt;slanted &amp;amp; enchanted&lt;/em&gt;") # XML: root tag w/ associated style
 text("&lt;em&gt;slanted&lt;/em&gt; &amp;amp; enchanted") # Not XML: lacks a root element
@@ -80,18 +63,14 @@ text("&lt;em&gt;slanted&lt;/em&gt; &amp;amp; enchanted") # Not XML: lacks a root
       <h2>Example</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td><span class="image_border"><img height="125" src="../etc/ref/text.jpg" width="125"/></span>
-              </td><td>
-<pre>
-fill(0.2)
+        <div class="example">
+          <span><img height="125" src="../etc/ref/text.jpg" width="125"/></span>
+<pre>fill(0.2)
 font("Helvetica", 20)
 text("hello", 10, 50)
 text("goodbye", 10, 70)
 </pre>
-              </td></tr></tbody></table>
+        </div>
       </div>
     </div>
   </div>

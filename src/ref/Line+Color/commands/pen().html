@@ -38,11 +38,8 @@
       <h2>Example</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-
-            <tr><td><span class="image_border"><img height="125" src="../etc/ref/strokewidth.jpg" width="125"/></span>
-              </td><td>
+        <div class="example">
+          <span><img src="../etc/ref/strokewidth.jpg" width="125" height="125"/></span>
 <pre>
 nofill()
 stroke(0.2)
@@ -51,10 +48,10 @@ rect(10, 10, 20, 40)
 pen(3)
 rect(40, 10, 20, 40)
 </pre>
-              </td></tr>
+        </div>
 
-            <tr><td><span class="image_border"><img height="125" src="../etc/ref/capstyle.png" width="125"/></span>
-              </td><td>
+        <div class="example">
+          <span><img src="../etc/ref/capstyle.png" width="125" height="125"/></span>
 <pre>
 nofill()
 stroke(0)
@@ -65,10 +62,10 @@ with pen(cap=ROUND):
 with pen(cap=SQUARE):
     line(20,60, 50,60)
 </pre>
-              </td></tr>
+        </div>
 
-            <tr><td><span class="image_border"><img height="125" src="../etc/ref/joinstyle.png" width="125"/></span>
-              </td><td>
+        <div class="example">
+          <span><img src="../etc/ref/joinstyle.png" width="125" height="125"/></span>
 <pre>
 with nofill(), stroke(0), pen(10):
     pen(join=MITER)
@@ -78,10 +75,16 @@ with nofill(), stroke(0), pen(10):
     pen(join=BEVEL)
     bezier([(20,80), (40,100), (60,80)])
 </pre>
-              </td></tr>
-
-            </tbody></table>
+        </div>
       </div>
+
+
+
+
+
+
+
+
     </div>
   </div>
 

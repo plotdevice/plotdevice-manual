@@ -32,15 +32,9 @@
       <h2>Example</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-
-            <tr>
-              <td>
-                <span class="image_border"><img height="125" src="../etc/ref/align.png" width="125"/></span>
-              </td>
-              <td>
-<pre>
+        <div class="example">
+          <span><img height="125" src="../etc/ref/align.png" width="125"/></span>
+          <pre>
 font(12)
 x = 62
 line(x,10, x,115, dash=3, stroke=.7)
@@ -51,13 +45,11 @@ text("Kipple", 62,65)
 align(CENTER)
 text("Homeopape", 62,105)
 </pre>
-              </td>
-            </tr>
+        </div>
 
-            <tr>
-              <td><span class="image_border"><img height="125" src="../etc/ref/align-block.png" width="125"/></span>
-              </td><td>
-<pre>
+        <div class="example">
+          <span><img height="125" src="../etc/ref/align-block.png" width="125"/></span>
+          <pre>
 quip = "Twas brillig and the slithy toves"
 x,y = 10,55
 font(16)
@@ -66,10 +58,10 @@ text(quip, x,y, width=90)
 with stroke(.7), nofill():
     rect(x,y-font().size, 90, 70, dash=3)
 </pre>
-              </td></tr>
-
-            </tbody></table>
+        </div>
       </div>
+
+
     </div>
   </div>
 

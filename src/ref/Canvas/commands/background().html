@@ -25,10 +25,9 @@ background(*colors, steps=[0,1], center=[0,0]) # radial gradient
       <h2>Description</h2>
 
       <div class="row">
-        <p>Sets the canvas background color. This command works exactly like the <a href="Line+Color.html#fill()">fill()</a> or <a href="Line+Color.html#stroke()">stroke()</a> command. You can use it to set the PDF background to transparent by supplying <code>None</code> as parameter (so it imports more easily in Photoshop or Illustrator).</p>
-
-        <p>You can set the background to a gradient by passing more than one color value. For example <code>background('#600', 'white')</code> will draw a radial gradient ranging from dark red to white. Specifying an <code>angle</code> will render a linear gradient at that orientation. The optional <code>steps</code> parameter should be the same length as the number of colors in the gradient. Each entry defines the center of its corresponding color in the gradient in relative values ranging from 0–1.</p>
-      </div>
+        <p>Sets the canvas background color. This command works exactly like the <a href="Line+Color.html#fill()">fill()</a> or <a href="Line+Color.html#stroke()">stroke()</a> command. You can use it to set the PDF background to transparent by supplying <code>None</code> as parameter (so it imports more easily in Photoshop or Illustrator).
+        </p><p>You can set the background to a gradient by passing more than one color value. For example <code>background('#600', 'white')</code> will draw a radial gradient ranging from dark red to white. Specifying an <code>angle</code> will render a linear gradient at that orientation. The optional <code>steps</code> parameter should be the same length as the number of colors in the gradient. Each entry defines the center of its corresponding color in the gradient in relative values ranging from 0–1.
+      </p></div>
 
       <h2>Returns</h2>
 
@@ -45,16 +44,12 @@ background(*colors, steps=[0,1], center=[0,0]) # radial gradient
       <h2>Example</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td><span class="image_border"><img height="120" src="../etc/ref/background.gif" width="120"/></span>
-              </td><td>
-<pre>
-background(None)
+        <div class="example">
+          <span class="transparency_grid"><img height="125" src="../etc/ref/background.png" width="125"/></span>
+<pre>background(None)
 rect(10, 10, 50, 50)
 </pre>
-              </td></tr></tbody></table>
+        </div>
       </div>
     </div>
   </div>

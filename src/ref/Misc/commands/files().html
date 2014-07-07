@@ -18,8 +18,8 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>Retrieves the names of all files at a given path matching a wildcard pattern. By default a case-sensitive search is performed but this can be relaxed by passing <code class="kw">False</code> as the <code>case</code> parameter.</p>
-      </div>
+        <p>Retrieves the names of all files at a given path matching a wildcard pattern. By default a case-sensitive search is performed but this can be relaxed by passing <code class="kw">False</code> as the <code>case</code> parameter.
+      </p></div>
 
       <h2>Returns</h2>
 
@@ -30,15 +30,11 @@
       <h2>Example</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td>
-<pre>
-f = files("~/Pictures/*.jpg") # tilde expands to $HOME
+        <div class="example">
+<pre>f = files("~/Pictures/*.jpg") # tilde expands to $HOME
 image(choice(f), 10, 10)
 </pre>
-              </td></tr></tbody></table>
+        </div>
       </div>
     </div>
   </div>

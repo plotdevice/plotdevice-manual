@@ -25,27 +25,26 @@
       </div>
 
       <h2>Example</h2>
+
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td><span class="transparency_grid image_border"><img height="125" src="../etc/ref/alpha.png" width="125"/></span>
-              </td><td>
+        <div class="example">
+          <span class="transparency_grid"><img src="../etc/ref/alpha.png" width="125" height="125"/></span>
 <pre>
 rect(10,10, 50,50, fill='red') # at full opacity
 alpha(.5)
 rect(35,35, 50,50, fill='black') # half opacity
 </pre>
-              </td></tr>
-            <tr>
-              <td><span class="transparency_grid image_border"><img height="125" src="../etc/ref/alpha-layer.png" width="125"/></span>
-              </td><td>
+        </div>
+
+        <div class="example">
+          <span class="transparency_grid"><img src="../etc/ref/alpha-layer.png" width="125" height="125"/></span>
 <pre>
 with alpha(.5): # entire layer at half opacity
     rect(10,10, 50,50, fill='red')
     rect(35,35, 50,50, fill='black')
 </pre>
-              </td></tr></tbody></table>
+        </div>
+
       </div>
 
     </div>

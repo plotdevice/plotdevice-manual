@@ -41,46 +41,32 @@
       <h2>Example</h2>
 
       <div class="row">
-        <tbody>
-
-
-        <tr><td>
-<pre>
-lipsum = read('lorem.txt')
+        <div class="example">
+<pre>lipsum = read('lorem.txt')
 print lipsum[:11]        # lorem ipsum
 print lipsum.split()[:3] # [u'Lorem', u'ipsum', u'dolor']
 </pre>
-        </td></tr>
+        </div>
 
-
-        <tr><td>
-<pre>
-rows = read('related/months.csv', cols=True)
+        <div class="example">
+<pre>rows = read('related/months.csv', cols=True)
 print rows[0]['english'], rows[0]['days'] # January 31
 print rows[1]['french'] # Février
 print rows[2]['german'] # März
 </pre>
-        </td></tr>
+        </div>
 
-
-
-        <tr><td>
-<pre>
-oracle = read('8ball.json')
+        <div class="example">
+<pre>oracle = read('8ball.json')
 prognosis = choice(oracle.keys())
 outcome = choice(oracle[prognosis])
 print (prognosis, outcome) # (u'neutral', u'Better not tell you now')
 </pre>
-        </td></tr>
+        </div>
+
         <p>data: <a href="../etc/ref/lorem.txt">lorem.txt</a>, <a href="../etc/ref/months.csv">months.csv</a>, and <a href="../etc/ref/8ball.json">8ball.json</a></p>
-      </tbody></table>
 
-
-
-
-
-
-
+      </div>
 
     </div>
   </div>

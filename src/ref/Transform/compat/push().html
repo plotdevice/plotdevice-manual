@@ -20,22 +20,15 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>PlotDevice is a so-called state-machine in which certain types of modifications are cumulative. For example, once <code>rotate(45)</code> is
-        called, all subsequent shapes, paths, text and images are rotated 45 degrees – the rotation
-        ‘state’ has been set to 45°. </p>
-        <p>All transformations, such as <a href="#rotate()">rotate()</a> and <a href="#skew()">skew()</a>, defined between a push() and pop() call last only until pop() is
-        called. Thereafter the previous state is used. For example, a rotate(-30) within a
-        rotate(45) means a rotation state of 15 degrees until pop() is called and the rotation
-        state becomes 45 degrees again.</p>
-      </div>
+        <p>PlotDevice is a so-called state-machine in which certain types of modifications are cumulative. For example, once <code>rotate(45)</code> is called, all subsequent shapes, paths, text and images are rotated 45 degrees – the rotation ‘state’ has been set to 45°.
+        </p><p>All transformations, such as <a href="#rotate()">rotate()</a> and <a href="#skew()">skew()</a>, defined between a push() and pop() call last only until pop() is called. Thereafter the previous state is used. For example, a rotate(-30) within a rotate(45) means a rotation state of 15 degrees until pop() is called and the rotation state becomes 45 degrees again.
+      </p></div>
 
       <h2>PlotDevice Equivalent</h2>
 
       <div class="row">
-        <p>While
-          push() &amp; pop() allow your script to save and restore the state manually, the <a href="#transform()">transform()</a> command provides a mechanism for controlling the scope of these state changes to a block of code.</p>
-      </div>
-
+        <p>While push() &amp; pop() allow your script to save and restore the state manually, the <a href="#transform()">transform()</a> command provides a mechanism for controlling the scope of these state changes to a block of code.
+      </p></div>
 
       <h2>Tutorial</h2>
 
@@ -46,13 +39,9 @@
       <h2>Example</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td><span class="image_border"><img height="125" src="../etc/ref/push.jpg" width="125"/></span>
-              </td><td>
-<pre>
-fill(0.2)
+        <div class="example">
+          <span><img height="125" src="../etc/ref/push.jpg" width="125"/></span>
+<pre>fill(0.2)
 fontsize(14)
 rotate(90)
 text("one", 40, 80)
@@ -64,7 +53,7 @@ pop()
 
 text("three", 50, 80)
 </pre>
-              </td></tr></tbody></table>
+        </div>
       </div>
     </div>
   </div>

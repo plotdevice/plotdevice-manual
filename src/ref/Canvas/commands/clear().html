@@ -18,39 +18,35 @@ clear(*grobs) # remove specific objects from the canvas
       </div>
 
       <h2>Description</h2>
+
       <div class="row">
-        <p>The clear() command erases any prior drawing to the canvas and can optionally reset the transform, colors, and compositing state (when called with <code>all</code>). Passing references to previously-drawn objects will remove just those objects without affecting the drawing state.</p>
-      </div>
+        <p>The clear() command erases any prior drawing to the canvas and can optionally reset the transform, colors, and compositing state (when called with <code>all</code>). Passing references to previously-drawn objects will remove just those objects without affecting the drawing state.
+      </p></div>
 
       <h2>Returns</h2>
+
       <div class="row">
         the file’s text content, as a string
       </div>
 
       <h2>Tutorial</h2>
+
       <div class="row">
         <a href="../tut/Graphics_State.html">Graphics State</a>
       </div>
 
       <h2>Example</h2>
+
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td>
-<pre>
-r = rect(0,0,1,1) # add a rectangle
+        <div class="example">
+<pre>r = rect(0,0,1,1) # add a rectangle
 t = poly(0,0,1,3) # add a triangle
 c = oval(0,0,2,2) # add a circle
-clear(r, c)       # remove the rectangle & circle
+clear(r, c)       # remove the rectangle &amp; circle
 </pre>
-              </td></tr></tbody></table>
+        </div>
       </div>
-
     </div>
-
-
   </div>
-
 
 </body></html>

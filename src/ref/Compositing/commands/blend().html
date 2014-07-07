@@ -29,23 +29,22 @@
       <h2>Example</h2>
       <div class="row">
         <p>To demonstrate the different available modes, we'll repeatedly draw the same foreground and backdrop images atop one another, changing only the blend mode. Note that the current <a href="#alpha()">alpha()</a> level will also affect your results. Here the images are drawn at full opacity.</p>
-        <table border="0">
-          <tbody>
-            <tr>
-              <td>
-                <span class="image_border transparency_grid"><img height="125" src="../etc/ref/blend-bg.png" width="125"/></span>
-              </td><td>
-                <span class="image_border transparency_grid"><img height="125" src="../etc/ref/blend-fg.png" width="125"/></span>
-              </td><td>
-<pre>image("backdrop.png")
+
+
+        <div class="example">
+          <span class="transparency_grid"><img height="125" src="../etc/ref/blend-bg.png" width="125"/></span>
+          <span class="transparency_grid"><img height="125" src="../etc/ref/blend-fg.png" width="125"/></span>
+          <pre>image("backdrop.png")
 blend("…")
 image("foreground.png")
 </pre>
-              </td>
-            </tr>
-            <tr><td style='font:italic 13px "Cabin";'>backdrop.png</td><td style='font:italic 13px "Cabin";'>foreground.png</td></tr>
-          </tbody>
-        </table>
+        </div>
+      </div>
+        <div class="example">
+          <span style='width:135px; display:inline-block; font:italic 13px "Cabin";'>backdrop.png</span>
+          <span style='width:135px; display:inline-block; font:italic 13px "Cabin";'>foreground.png</span>
+        </div>
+
 
         <p>Call blend() with one of the following strings as an argument to achieve the desired compositing effect:</p>
         <div class="blend-modes">

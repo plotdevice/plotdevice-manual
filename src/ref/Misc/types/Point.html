@@ -1,3 +1,8 @@
+<html><head>
+
+  <title></title>
+
+</head><body>
   <div class="section">
     <h3>Point</h3>
 
@@ -12,8 +17,8 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>A named tuple representing an x/y coordinate. You can access its properties by name in addition to using the object as a ‘normal’ tuple. Point objects also provide utility methods for geometry calculations.</p>
-      </div>
+        <p>A named tuple representing an x/y coordinate. You can access its properties by name in addition to using the object as a ‘normal’ tuple. Point objects also provide utility methods for geometry calculations.
+      </p></div>
 
       <h2>Properties</h2>
 
@@ -22,20 +27,18 @@
 pt.y
 </pre>
 
+        <h2>Methods</h2>
 
-      <h2>Methods</h2>
+        <div class="consts">
+<pre>pt.angle(point) # or (x, y)
+</pre>
 
-      <div class="consts">
-        <pre>pt.angle(point) # or (x, y)</pre>
-        <p>Returns the angle from the object to a target Point or pair of (x,y) coordinates. By default, the angle will be represented in degrees, but this can be altered by setting an alternate unit with the <a href="Canvas.html#geometry()">geometry()</a> command.</p>
-      </div>
-      <table border="0">
-        <tbody>
-          <tr>
-            <td><span class="image_border"><img height="125" src="../etc/ref/point-angle.png" width="125"/></span>
-            </td><td>
-      <pre>
-src = Point(25,75)
+          <p>Returns the angle from the object to a target Point or pair of (x,y) coordinates. By default, the angle will be represented in degrees, but this can be altered by setting an alternate unit with the <a href="Canvas.html#geometry()">geometry()</a> command.
+        </p></div>
+
+        <div class="example">
+          <span><img height="125" src="../etc/ref/point-angle.png" width="125"/></span>
+<pre>src = Point(25,75)
 dst = Point(75,25)
 theta = src.angle(dst)
 arc(src.x, src.y, 4, fill='red')
@@ -44,19 +47,19 @@ with pen(dash=5), stroke(.5), nofill():
     arc(src.x, src.y, 32, range=theta)
 print theta # -45.0
 </pre>
-                    </td></tr></tbody></table>
+        </div>
 
-      <div class="consts">
-        <pre>pt.distance(point) # or (x, y)</pre>
-        <p>Returns the linear distance between the object and a second Point or pair of (x,y) coordinates.</p>
-      </div>
-      <table border="0">
-        <tbody>
-          <tr>
-            <td><span class="image_border"><img height="125" src="../etc/ref/point-distance.png" width="125"/></span>
-            </td><td>
-      <pre>
-src = Point(25,25)
+        <div class="consts">
+<pre>pt.distance(point) # or (x, y)
+</pre>
+
+          <p>Returns the linear distance between the object and a second Point or pair of (x,y) coordinates.
+        </p></div>
+
+
+        <div class="example">
+          <span><img height="125" src="../etc/ref/point-distance.png" width="125"/></span>
+<pre>src = Point(25,25)
 dst = Point(100,100)
 length = src.distance(dst)
 arc(src.x, src.y, 4, fill='red')
@@ -65,18 +68,20 @@ with pen(dash=5), stroke(.8):
     line(src.x, src.y, dst.x, dst.y)
 print length # 106.066017178
 </pre>
-                    </td></tr></tbody></table>
+        </div>
 
-      <div class="consts">
-        <pre>pt.reflect(point, d=1.0, a=180) # or (x, y, d, a)</pre>
-        <p>Uses the object as an ‘origin’ and returns a Point containing the reflection of a target Point or pair of (x,y) coordinates. The optional <code>d</code> parameter is a magnification factor relative to the distance between the mirror and the target point.</p>
-        <p>The <code>a</code> parameter controls the angle of reflection. When set to 180° (the default), the reflected point will be directly opposite the target, but other values will allow you to ‘ricochet’ the target point off of the mirror instead.</p>
-      </div>
-      <table border="0">
-        <tbody>
-          <tr>
-            <td><span class="image_border"><img height="125" src="../etc/ref/point-reflect.png" width="125"/></span>
-            </td><td>
+
+        <div class="consts">
+<pre>pt.reflect(point, d=1.0, a=180) # or (x, y, d, a)
+</pre>
+
+          <p>Uses the object as an ‘origin’ and returns a Point containing the reflection of a target Point or pair of (x,y) coordinates. The optional <code>d</code> parameter is a magnification factor relative to the distance between the mirror and the target point.
+          </p><p>The <code>a</code> parameter controls the angle of reflection. When set to 180° (the default), the reflected point will be directly opposite the target, but other values will allow you to ‘ricochet’ the target point off of the mirror instead.
+        </p></div>
+
+
+        <div class="example">
+          <span><img height="125" src="../etc/ref/point-reflect.png" width="125"/></span>
 <pre>
 origin = Point(50,50)
 src = Point(25,40)
@@ -85,18 +90,18 @@ arc(src.x, src.y, 4, fill='red')
 arc(dst.x, dst.y, 4, fill='orange')
 arc(origin.x, origin.y, 4, fill=.7)
 </pre>
-              </td></tr></tbody></table>
-      <div class="consts">
-        <pre>pt.coordinates(distance, angle)</pre>
-        <p>Uses the object as the ‘origin’ of a polar coordinate system and returns a Point at a given distance and orientation relative to the origin. The <code>distance</code> parameter uses the current canvas <a href="Canvas.html#size()">size()</a> unit and the <code>angle</code> should be expressed in the current <a href="Canvas.html#geometry()">geometry()</a> unit.</p>
-      </div>
+        </div>
 
 
-      <table border="0">
-        <tbody>
-          <tr>
-            <td><span class="image_border"><img height="125" src="../etc/ref/point-coordinates.png" width="125"/></span>
-            </td><td>
+        <div class="consts">
+<pre>pt.coordinates(distance, angle)
+</pre>
+
+          <p>Uses the object as the ‘origin’ of a polar coordinate system and returns a Point at a given distance and orientation relative to the origin. The <code>distance</code> parameter uses the current canvas <a href="Canvas.html#size()">size()</a> unit and the <code>angle</code> should be expressed in the current <a href="Canvas.html#geometry()">geometry()</a> unit.
+        </p></div>
+
+        <div class="example">
+          <span><img height="125" src="../etc/ref/point-coordinates.png" width="125"/></span>
 <pre>
 origin = Point(50,50)
 dst = origin.coordinates(50, 45)
@@ -105,14 +110,10 @@ arc(dst.x, dst.y, 4, fill='orange')
 with pen(dash=3), stroke(.5), nofill():
     arc(origin.x, origin.y, 25, range=45)
 </pre>
-              </td></tr></tbody></table>
-
-
-
-
-
-
+        </div>
 
       </div>
     </div>
   </div>
+
+</body></html>

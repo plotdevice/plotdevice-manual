@@ -18,13 +18,9 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>Returns the dimensions (width and height) of an image located at the given path.
-        Obtaining the size of an image is useful when the image needs to scaled to an exact size,
-        for example. The return value is a list with the image’s width and the image’s height.</p>
-        <p>Note that these dimensions may also be retrieved from the <code>size</code> property of
-        the <a href="#Image">Image</a> object returned by the <a href="#image()">image()</a>
-        command.</p>
-      </div>
+        <p>Returns the dimensions (width and height) of an image located at the given path. Obtaining the size of an image is useful when the image needs to scaled to an exact size, for example. The return value is a list with the image’s width and the image’s height.
+        </p><p>Note that these dimensions may also be retrieved from the <code>size</code> property of the <a href="#Image">Image</a> object returned by the <a href="#image()">image()</a> command.
+      </p></div>
 
       <h2>Returns</h2>
 
@@ -35,23 +31,18 @@
       <h2>PlotDevice Equivalent</h2>
 
       <div class="row">
-        <p>The width &amp; height of any graphical object (including Images) can be retrieved using the <a href="#measure()">measure()</a> command.</p>
-      </div>
-
+        <p>The width &amp; height of any graphical object (including Images) can be retrieved using the <a href="#measure()">measure()</a> command.
+      </p></div>
 
       <h2>Example</h2>
 
       <div class="row">
-        <table border="0">
-          <tbody>
-            <tr>
-              <td>
-<pre>
-w, h = imagesize("superfolia.jpg")
+        <div class="example">
+<pre>w, h = imagesize("superfolia.jpg")
 print w
 print h
 </pre>
-              </td></tr></tbody></table>
+        </div>
       </div>
     </div>
   </div>
