@@ -4,6 +4,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width = 700">
   <title>PlotDevice Reference: {{name.replace('+',' & ')}}</title>
   <link rel="stylesheet" href="{{root}}../etc/manual.css" type="text/css" charset="utf-8">
 </head>
@@ -13,25 +14,16 @@
 <div class="ref article">
   {%- if commands -%}
   <div class="commands">
-    <div class="classic">
-      <p>Commands</p>
-    </div>
     {%- for cmd in commands -%}<a name="{{cmd[0]}}"></a>{{cmd[1]}}{%- endfor -%}
   </div>
   {%- endif -%}
   {%- if types -%}
   <div class="types">
-    <div class="classic">
-      <p>Types</p>
-    </div>
     {%- for typ in types -%}<a name="{{typ[0]}}"></a>{{typ[1]}}{%- endfor -%}
   </div>
   {%- endif -%}
   {%- if compat -%}
   <div class="compat">
-    <div class="classic">
-      <p>NodeBox Compatibility</p>
-    </div>
     {%- for old in compat -%}<a name="{{old[0]}}"></a>{{old[1]}}{%- endfor -%}
   </div>
   {%- endif -%}

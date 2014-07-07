@@ -4,11 +4,13 @@
 /**************************************/
 /* TYPOGRAPHY */
 
-body, table, td, input, select, option, textarea { font: 14px Georgia; line-height: 20px; }
+body, table, td, input, select, option, textarea { font: 14px Georgia; line-height: 20px;}
+/*body { -webkit-text-size-adjust:100%;}*/
+
 h1, h3 { font: bold 18px "Cabin"; }
 h3 { margin-top: 15px; }
 h2 { font: bold 14px "Cabin"; line-height: 1.5em; margin-top: 15px; }
-pre { font-size: 12px; font-family:"Courier Prime"; line-height: 19px; }
+pre { font-size: 12px; font-family:"Courier Prime"; line-height: 19px; overflow:auto;}
 code { font-family:"Courier Prime"; letter-spacing:0; line-height: 16px;}
 code.box{ padding:0 4px;}
 p code { font-size:13px;}
@@ -176,10 +178,8 @@ code.box { background:#edede6; color:#665; border: 1px solid #d3d3ba;}
 .image_border img, table span.image_border img, .border { border: 1px solid #888; }
 .transparency_grid img{ background:url("ref/transparency-grid.png"); }
 
-.rose_text,
-.pink_text { font-style:italic; position:relative;}
-
-.pink_text:after{
+.double-dagger { font-style:italic; position:relative;}
+.double-dagger:after{
   content:"‡";
   position:absolute;
   left:-20px;
@@ -545,6 +545,7 @@ body.compat .toc .sidebar .compat{
   min-width:840px;
 }
 
+/* section title in the upper left */
 #nav h1{
   margin:9px 0 9px 22px;
   float:left;
@@ -556,7 +557,30 @@ body.compat .toc .sidebar .compat{
   -ms-user-select: none;
   user-select: none;
 }
-/*#nav h1:hover{ cursor:default; }*/
+#nav h1 a:hover{ text-decoration:none; }
+
+/* the backlink to the ToC (from a Section page) */
+#nav.link h1 a{ color:inherit; }
+#nav.link h1:after{
+  content:"Manual";
+  position:absolute;
+  pointer-events:none;
+  left:110px;
+  opacity:0;
+  z-index:10;
+  -webkit-transition:opacity .333s;
+}
+#nav.link{color:#555; }
+#nav.link h1{-webkit-transition:color .333s;}
+#nav.link h1 span{-webkit-transition:opacity .333s;}
+#nav.link h1:hover{color:black;}
+#nav.link h1:hover span{ opacity:0; }
+#nav.link h1:hover:after{ opacity:1; color:black; }
+
+/* the backlink to the homepage (from the ToC) */
+#nav.home h1 a{ color:black; }
+#nav.home h1 span{opacity:1; -webkit-transition:opacity .333s;}
+#nav.home h1:hover span{ opacity:0; }
 
 /* the active section in the refs siblings-bar or just the orange page title text */
 #nav h3{
@@ -569,31 +593,6 @@ body.compat .toc .sidebar .compat{
   font-family:"Courier Prime";
   margin-top:11px;
 }
-
-#nav.link{color:#555; }
-#nav.link h1 a{ color:#555; -webkit-transition:color .333s;}
-/*#nav.link:hover h1 a span{color:#555; }*/
-#nav.link h1:hover a{color:black; }
-#nav.link h1 span{opacity:1; -webkit-transition:opacity .333s;}
-#nav.link h1:hover span{ opacity:0; }
-#nav.link h1:after{
-  content:"Manual";
-  position:absolute;
-  pointer-events:none;
-  left:110px;
-  opacity:0;
-  z-index:10;
-  -webkit-transition:opacity .333s;
-}
-#nav.link h1:hover:after{
-  opacity:1;
-  color:black;
-}
-#nav.home h1 a{ color:black; }
-#nav h1 a:hover{ text-decoration:none; }
-
-#nav.home h1 span{opacity:1; -webkit-transition:opacity .333s;}
-#nav.home h1:hover span{ opacity:0; }
 
 /* special handling for the section-based nav in ref pages */
 #nav ul.siblings{
@@ -651,7 +650,6 @@ body.compat .toc .sidebar .compat{
   margin: 45px 0 48px 215px;
   border-bottom:1px solid #666;
 }
-
 .article a{
   font-style:italic;
 }
@@ -666,7 +664,24 @@ body.compat .toc .sidebar .compat{
   border-top:1px solid #666;
 }
 
+
+.article.ref > div:before{
+  padding-top:15px;
+  width:200px;
+  text-indent:1px;
+  border-top:1px solid #666;
+  position:absolute;
+  font:800 12px/18px "Cabin";
+  text-transform:uppercase;
+  letter-spacing:1px;
+  left:-200px;
+}
+.article.ref > div.commands:before{ content:"Commands"; }
+.article.ref > div.types:before{ content:"Types"; }
+.article.ref > div.compat:before{ content:"NodeBox Compatibility"; }
+
 .article .classic{
+  display:none;
   padding-top:4px;
   width:200px;
   text-indent:1px;
@@ -678,10 +693,10 @@ body.compat .toc .sidebar .compat{
   left:-200px;
 }
 
-
 .article .classic + div>.section{
   border-color:#ccc;
 }
+
 
 .article a:target + a + .section:before,
 .article a:target + .section:before{
@@ -707,13 +722,13 @@ body.compat .toc .sidebar .compat{
   color:#666;
 }
 
-.article .definition .row{
+/*.article .definition .row{
   margin-bottom:13px;
 }
 
 .article .definition .row pre{
   margin-top:0;
-}
+}*/
 
 
 .article .definition .consts{
@@ -804,3 +819,53 @@ body.compat .toc .sidebar .compat{
 
 
 
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) {
+  body, html, pre{
+    -webkit-text-size-adjust: 220%;
+  }
+
+  body.commands,
+  body.types,
+  body.compat{
+    -webkit-text-size-adjust: 100%;
+  }
+
+  #nav{
+    position:relative;
+    display:block;
+    min-width:inherit;
+    overflow:auto;
+  }
+  #nav.link ul.chapter{
+    position:relative;
+    left:auto;
+    width:auto;
+    float:left;
+    clear:both;
+  }
+  .article{
+    margin-left:20px;
+    /*max-width:800px;*/
+  }
+
+  .article{
+    width:auto;
+  }
+  .article .section .row p{
+  }
+
+  .section:before{
+    display:none;
+  }
+/*
+  body, table, td, input, select, option, textarea { font: 32px/42px Georgia;}
+  h1, h3 { font: bold 48px "Cabin"; }
+  h3 { margin-top: 36px; }
+  h2 { font: bold 32px/42px "Cabin"; margin-top: 15px; }
+  pre { font-size: 32px/38px; font-family:"Courier Prime"; overflow:auto;}
+  code { font-family:"Courier Prime"; letter-spacing:0; line-height: 42px;}
+  code.box{ padding:0 4px;}
+  p code { font-size:32px;}
+  .message { font: bold 32px/42px "Cabin"; }
+  div#title h1 { line-height: 0.8em; margin: 0; padding: 0; font-size: 50px; letter-spacing: -3px; }
+*/}
