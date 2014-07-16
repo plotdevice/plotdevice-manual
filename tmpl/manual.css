@@ -412,18 +412,18 @@ a.noexternal { background-image:none !important; padding-right: 0; }
   text-transform:none;
 }
 
-.article.tut h3{
+.article.tut h1{
   font: bold 24px/28px "Cabin";
   margin:44px 0 11px 0;
 }
 
-.article.ref h3{
+.article.ref h1{
   font:bold 18px "Courier Prime";
   margin:12px 0;
 }
 
 
-.article.ref .definition h3 span.args{
+.article.ref .definition h1 span.args{
   font-weight:normal;
   /*font-family:Courier;*/
   color:#aaa;
@@ -588,7 +588,7 @@ div.media{
 
   /* typography redefs */
   .article p{ font-size:16px; line-height:23px;}
-  .article h3 { margin: 30px 0 0 0; }
+  .article h1 { margin: 30px 0 0 0; }
   .article h2 { margin: 30px 0 0 0; }
   .article.tut h2 { line-height:22px; }
   .article p code, .article li code { font-size:13px;}

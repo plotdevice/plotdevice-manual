@@ -11,7 +11,7 @@
       </p>
 
 
-      <h3>Setting Colors</h3>
+      <h1>Setting Colors</h1>
       <p>The simplest way to call a color command is to pass it a string containing the name of a color. PlotDevice uses the same <a href="../lib/Colors/named_colors.html">set of names</a> supported by CSS. For instance, the following will set the color scheme to something truly blinding:</p>
       <pre>background('aqua')
 fill('lawngreen')
@@ -51,7 +51,7 @@ stroke(HSV, 0, 1, 1, .1)    # very faint red
 </pre>
 
 
-      <h3>Color State</h3>
+      <h1>Color State</h1>
       <p>Since including the colorspace in every call is a bit of a drag, PlotDevice keeps track of the ‘current’ color mode as part of the graphics state. If you call a color command without including a colorspace argument, the channel values you pass will be <b>interpreted according to the current color mode</b>.</p>
       <p>By defualt, the mode is <code class="kw">RGB</code>, but you can modify this by calling the <a href="../ref/Line+Color.html#color()">color()</a> command with the colorspace of your choosing:</p>
       <pre>
@@ -89,7 +89,7 @@ star(5,40, fill=.5, stroke=(CMYK, 1, 0, 0, 0))
 </pre>
       <p>If you can specify a color with a single value, you can omit the parentheses. Otherwise, enclose the set of args for the color in parens and separate them by commas.</p>
 
-      <h3>Gradients</h3>
+      <h1>Gradients</h1>
       <p>The <i>fill()</i> and <i>background()</i> commands are special in that if you pass them two or more colors, a gradient will be created. Using the optional <code>steps</code> argument allows you to control the ‘speed’ of the transition from color to color. If included, it should be a list of numbers ranging from 0 to 1.0 – one value for each color in the gradient.</p>
 
       <div class="example">
@@ -151,7 +151,7 @@ rect(100,100,75,75)
 
       <p>Keep in mind that PDF documents don't support transparent gradients (I know, right?), so try to reserve transparency for bitmap exports.</p>
 
-      <h3>Patterns</h3>
+      <h1>Patterns</h1>
       <p>In addition to "pure" colors, the <i>fill()</i> and <i>background()</i> commands can also work with <a href="../ref/Primitives.html#image()">image()</a> patterns. When you pass an <a href="../ref/Primitives.html#Image">Image</a> as part of a color-setting call, rather than being drawn to the canvas the image will be tiled to fit the shape being filled (or the entire canvas if used as a background pattern).</p>
 
       <p>Here's an example using a set of 16&times;16 px pattern images from yesteryear:</p>
@@ -166,7 +166,7 @@ with fill(image('macpaint-thatch.png')):
 </pre>
       </div>
 
-      <h3>Color objects</h3>
+      <h1>Color objects</h1>
       <p>In addition to letting you change the color mode &amp; range, the <a href="../ref/Line+Color.html#color()">color()</a> command is also a factory for <a href="../ref/Line+Color.html#Color">Color</a> objects that can be pre-calculated and reused. The objects it returns have a number of properties that allow you to think in different colorspaces at the same time. You can modify Color objects to your liking then pass them to any command that expects color arguments.</p>
 
       <p>For example, if we wanted to draw a grid of lines in random colors, we would use the following code:</p>
@@ -232,7 +232,7 @@ color.<span class="red">value</span>
       <p>Whenever one of these is modified in your script, the color will be recalculated (merging your changes with the values of the unaffected color channels).</p>
 
 
-      <h3>Harmonious Colors</h3>
+      <h1>Harmonious Colors</h1>
 
       <p>The key to generating harmonious and consistent colors is to make them not <em>entirely</em>
       random, but limited to a certain range. A common pitfall is to use <em>all</em> of the colors, since,

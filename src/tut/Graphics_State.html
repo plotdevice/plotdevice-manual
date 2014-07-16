@@ -13,7 +13,7 @@
     <p>So in PlotDevice you ‘paint’ with one color at a time. All of the elements you draw have the same color
     until you actively switch to a different one. Then all subsequent elements you draw will use that new color.</p>
 
-    <h3>Stateful Commands</h3>
+    <h1>Stateful Commands</h1>
 
     <p>When you run a script, PlotDevice reads the code from <b>top to bottom, like a recipe</b>. When
     it encounters certain state-changing commands, it responds not through any immediately visible change, but instead by silently updating the canvas's "current" state. When you then draw a primitive, it will "inherit" the graphics state, including your modification.</p>
@@ -90,7 +90,7 @@ r.reset()
 
 
 
-    <h3>Transformation State</h3>
+    <h1>Transformation State</h1>
 
     <p>When you draw primitives to the PlotDevice canvas, their position is specified relative to the "origin" in the upper left corner. By changing the "transformation state", you can modifiy the location of the origin point which will affect how all subsequent pairs of coordinates are translated into canvas positions.</p>
 
@@ -140,7 +140,7 @@ rect(20, 40, 80, 80)
     <div class="media"><img alt="" height="427" src="../etc/tut/graphics_state4.png" width="656"/></div>
 
 
-    <h3>Nested State</h3>
+    <h1>Nested State</h1>
 
     <p>In addition to allowing you to change the mode, the <i>transform()</i> command has special "clean up" behavior when used as part of a <code class="kw">with</code> block. It allows you to safely create state-in-a-state.</p>
 

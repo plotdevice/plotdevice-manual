@@ -32,7 +32,7 @@ with bezier(100,100, fill=None, stroke=0) as path:
 
 
     <a id="Manipulating_Paths" name="Manipulating_Paths"></a>
-      <h3>Manipulating Paths</h3>
+      <h1>Manipulating Paths</h1>
 
       <p>In PlotDevice, you have access to all the points on a path and to all of their control handles.
       This allows you to transform paths on the fly and even manipulate type (using the
@@ -149,7 +149,7 @@ bezier(curves)
 </pre>
 
     <a id="Path_Mathematics" name="Path_Mathematics"></a>
-      <h3>Path Mathematics</h3>
+      <h1>Path Mathematics</h1>
 
       <p>Each of the <i>Curve</i>s that makes up a <i>Bezier</i> path has a starting point, an ending point, and control handles. What if we want to know the location of a point on the path that is not one of these endpoints, but somewhere in between? What is the location of the <em>midpoint</em> of an arc for example? The <a href="../ref/Drawing.html#Bezier">Bezier</a> object has some interesting methods we can use:</p>
 
@@ -229,7 +229,7 @@ for curve in path:
 
 
     <a id="Compound_paths" name="Compound_paths"></a>
-      <h3>Compound Paths</h3>
+      <h1>Compound Paths</h1>
 
       <p>A path is basically made up of <b>segments</b>: two points and the curve in between. A
       group of segments that has a beginning and an ending (or is "closed") is called a sub-path or <b>contour</b>.
@@ -428,7 +428,7 @@ bezier(compound)
       <div class="media" style="margin:0;"><img alt="paths-compound5" src="../etc/tut/paths-flattened5.jpg"/></div>
 
     <a id="Clamping_paths" name="Clamping_paths"></a>
-    <h3>Clamping Paths</h3>
+    <h1>Clamping Paths</h1>
 
       <p>Paths can be <b>forced to fit</b> a bounding box. Then as the size of the box
       is adjusted the path will stretch accordingly. This "reverse" logic is useful in
