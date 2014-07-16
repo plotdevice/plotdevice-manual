@@ -14,26 +14,29 @@
 
     <a name="lists"></a>
     <h3>Lists</h3>
-    <p>A <b>list</b> in PlotDevice is no different from a list in real life: it can hold a summary of stuff
+    <p>A <b>list</b> in Python is no different from a list in real life: it can hold a summary of stuff
     to do, groceries to buy, a sheet of names and adressess. The main difference is that in real
-    life, we usually start counting from one, while lists in Python <strong>start from
+    life we usually start counting from one, while lists in Python <strong>start from
     zero</strong>.</p>
-    <p>The first element in a list has index zero, the second element in a list has index one.</p>
-    <p><span class="media"><img alt="" height="250" src="../etc/tut/lists-groceries.jpg" width="500"/></span></p>
+
+    <div class="example">
+        <span><img alt="" height="226" src="../etc/tut/lists-groceries.jpg" width="330"/></span>
+        <p><em>The first element in a list is at index zero; the second element is at index one.</em></p>
+    </div>
 
     <h2>Creating a list</h2>
 
     <p>So, what would the code equivalent of our grocery list look like? Below we've defined it as a Python <code>list</code> object. The list is defined between <strong>square brackets</strong>. Each item in the list is a piece of text (a <a href="Strings.html">string</a>) surrounded by quotes, and is separated from its neighbors by commas. The list is assigned to a variable named <code>groceries</code>, but we know that variables can have any name we like, so it could just as easily be named <code>g</code> or <code>stufftodo</code>.</p>
-<pre>groceries = ["apples", "pears", "carrots", "cucumber", "yoghurt", "milk"]
+    <pre>groceries = ["apples", "pears", "carrots", "cucumber", "yoghurt", "milk"]</pre>
+    <p>A list can contain any kind of data: strings, numbers, and even other lists. The <b>len</b> command returns the number of items in a list:</p>
+<pre>
 print len(groceries)
 >>> 6
 </pre>
 
-    <p>A list can contain any kind of data: strings, numbers, and even other lists. The <b>len</b> command returns the number of items in a list.</p>
     <h2>Retrieving and editing items in a list</h2>
 
-    <p>You can reference items in a list directly, by adding the index of the item you want to the
-    variable name, between square brackets:</p>
+    <p>You can reference items in a list directly using "index notation". Place a pair of square brackets after the variable name with a numerical index between them:</p>
 <pre>print groceries[0]
 >>> apples
 </pre>
@@ -54,52 +57,42 @@ print "penultimate:", groceries[-2]
 
     <h2>Adding items to the list</h2>
 
-    <p>Data in a list can change over the course of time. New items can be added to it, or old
-    items deleted from it, just like you can add stuff to buy to a grocery sticky-note, or scratch
-    out things.</p>
-    <table border="0">
-      <tbody>
-        <tr>
-          <td><img alt="" height="247" src="../etc/tut/lists-append.jpg" width="247"/>
-          </td><td>
-            <br/>
-            <br/>
-            To append an item to the end of the list:
-<pre>
+    <p>The contents of a list can be changed over time. New items can be added to it or old
+    items deleted from it – just like you can add entries to a grocery list and cross them out once they've been picked up.</p>
+
+    <div class="example">
+        <span><img alt="" height="247" src="../etc/tut/lists-append.jpg" width="247"/></span>
+        <p>To append an item to the end of the list:</p>
+        <pre>
 groceries.append("eggs")
 print groceries
 >>> ["apples", "pears",
 >>>  "carrots", "banana",
 >>>  "yoghurt", "milk",
 >>>  "eggs"]
-</pre>To remove the eggs from the list:
-<pre>
-del groceries[6]
 </pre>
-          </td></tr></tbody></table>
+        <p>To remove the eggs from the list:</p>
+        <pre>del groceries[6]</pre>
+    </div>
 
-    <p>Items can be inserted halfway the list with the <em>list</em>.insert(<em>i</em>,
+
+    <p>Items can be inserted partway through the list with the <em>list</em>.insert(<em>i</em>,
     <em>item</em>) command, where the <em>i</em> parameter is the position where you want the
-    element to be.</p>
+    element to be. Rather than overwriting the item that's currently the <i>i</i>'th element, the old items will be shifted back to make room for the insertion.</p>
 
     <h2>Iteration</h2>
 
-    <p>Looping through a list is the same as going to the mall and working off your
-    grocery list top to bottom: the first item to collect is <em>apples</em>, once you have those,
-    you need to fetch <em>pears</em>, and so on.</p>
+    <p>Looping through a list is the same as going to the store and working through your
+    grocery list top to bottom: the first item to collect is <em>apples</em>, next you'll need to fetch <em>pears</em>, and so on.</p>
     <p>Going through all the items in a list is one of the most essential things you do when
     working with data. You could retrieve the items in a list manually when there are only a few of
     them, but not when the list contains hundreds or even thousands of, for example, strings of
     text that you want to draw to the screen.</p>
-    <table border="0">
-      <tbody>
-        <tr>
-          <td><img alt="" height="244" src="../etc/tut/lists-loop.jpg" width="245"/>
-          </td><td>
-            <br/>
-            <br/>
-            Using the for-loop:
-<pre>
+
+    <div class="example">
+        <span><img alt="" height="244" src="../etc/tut/lists-loop.jpg" width="245"/></span>
+        <p>Using a for-loop:</p>
+        <pre>
 for item in groceries:
     print "buy some", item
 >>> buy some apples
@@ -110,9 +103,10 @@ for item in groceries:
 >>> buy some milk
 >>> buy some eggs
 </pre>
-          </td></tr></tbody></table>
+    </div>
 
-    <p>In the above example, the indented command(s) below the <em>for</em> command are executed
+
+    <p>Any indented commands below the <em>for</em> statement are executed
     for each item in the list. The <em>item</em> variable consecutively contains each item in the
     list. After that, the loop ends. Note that using a "for … in" loop only gives you the <em>values</em> from the list. If you also need the <em>index</em> within the loop, use the convenient <a href="https://docs.python.org/2/library/functions.html#enumerate">enumerate()</a> command. It provides you with a series of index/value pairs, one for each item in the list:</p>
     <pre>
@@ -127,8 +121,8 @@ for i, name in enumerate(shortlist):
 
     <h2>Random items from the list</h2>
 
-    <p>You can let the code decide on its own which items to draw from the list by using the
-    <a href="../ref/Utility.html#choice()">choice()</a> command. Each time you call choice() it returns a randomly selected value from the list. Since each of these "choices" is independent, it's quite possible that you'll receive the same value more than once during a sequnce of calls.</p>
+    <p>You can let the computer decide on its own which items to draw from the list by using the
+    <a href="../ref/Utility.html#choice()">choice()</a> command. Each time you call <i>choice()</i> it returns a randomly selected value from the list. Since each of these "choices" is independent, it's quite possible that you'll receive the same value more than once during a sequnce of calls.</p>
 
     <p>If your goal is to reorder the items in a list while ensuring that each element only appears once, use the <a href="../ref/Misc.html#shuffled()">shuffled()</a> command. Calling <i>shuffled()</i> doesn't actually modify the list you pass to it; instead it generates a new, permuted list with the same values as your original. You can store this permutation in another value, or iterate through it immediately:</p>
     <pre>
@@ -146,11 +140,8 @@ for letter in shuffled(alphabet):
 
     <h2>Putting it all together</h2>
 
-    <p>Here's a dead-simple example of how you would use random choice with small lists to generate compositions.
-    The script has a list of words it can use, and a list of colors it can use. After that, the
-    script is free to act on its own: it takes random words and colors from the two lists and draws
-    them to the screen in random sizes and rotations. It retains a certain coherence between
-    different runs because of its limited words and colors.</p>
+    <p>Here's a dead-simple example of how you would use random choice with small lists to generate compositions. The script defines a pair of lists; one of possible words, and another with selected colors. Everything beyond point in the script is entirely stochastic and will generate different output on every run.</p>
+    <p>It picks random words and colors from the two lists then draws them to the screen with random sizes and rotations. It retains a certain coherence between different runs because of the limited set of words and colors.</p>
 
     <pre>words = ["Lists", "are", "fun"]
 colors = [color(1,0,0), color(1,1,1), color(0,0,0)]
@@ -164,7 +155,7 @@ for i in range(40):
     fill(choice(colors))
     text(choice(words), x, y)
 </pre>
-    <p><span class="media"><img alt="" height="551" src="../etc/tut/lists-randloop.png" width="543"/></span></p>
+    <div class="media" style="margin:0;"><img height="551" src="../etc/tut/lists-randloop.png" width="543"/></div>
 
 
     <h2>Further reading</h2>
@@ -176,9 +167,9 @@ for i in range(40):
     <a name="dictionaries"></a>
     <h3>Dictionaries</h3>
 
-    <p>Dictionaries are an extremely versatile kind of list that lets you access elements via string indices, <em>keys</em>,
-    that you define yourself. Each key is unique and references an item in the list. Dictionaries
-    are created with <strong>curly braces</strong> instead of square brackets. You can assign and retrieve values from a dictionary using the same "index" syntax as for lists:</p>
+    <p>Dictionaries are an extremely versatile kind of list that lets you access elements via indices (known as "<em>keys</em>") that you define yourself. Each key is unique and references an item in the list. Unlike list indices, dictionary keys can be any datatype you want. String-based keys are a popular choice, but you could just as easily use numbers, booleans, or even <a href="https://docs.python.org/2/tutorial/datastructures.html#tuples-and-sequences">tuples</a>.</p>
+
+    <p>Dictionaries are created with <strong>curly braces</strong> instead of square brackets. You can assign and retrieve values from a dictionary using the same "index" syntax as for lists:</p>
 
 <pre>heading = {}
 heading["family"] = "Avenir Next"
@@ -199,16 +190,16 @@ print heading["fill"]
     "fill":color(1,0,0)
 }
 </pre>
-    <pre>heading = dict(family="Avenir Next", size=18, fill=color(1,0,0))</pre>
+    <pre class="manual">heading = <span class="nb">dict</span>(family=<span class="s">"Avenir Next"</span>, size=<span class="mi">18</span>, fill=<span class="nf">color</span>(<span class="mi">1</span>,<span class="mi">0</span>,<span class="mi">0</span>))</pre>
 
     <h2>Dictionaries are "random access"</h2>
-    <p>While the elements in a list have an implicit order, there's no obvious way to decide what the "next" element in a dictionary should be. Instead you can think of the dictionary as a soup of key/value pairs. To get a list of all the keys that have been added to a dictionary, use its keys() method. Note that the order of the keys has no relation to the order in which you defined them:</p>
+    <p>While the elements in a list have an implicit order, there's no obvious way to decide what the "next" element in a dictionary should be. Instead you can think of the dictionary as a soup of key/value pairs. To get a list of all the keys that have been added to a dictionary, use its <i>keys()</i> method. Note that the order of the keys has no relation to the order in which you defined them:</p>
     <pre>print heading.keys()
 >>> ["family", "fill", "size"] # even though we defined it with family, size, fill</pre>
     <p>If it's important for the key order to be preserved, you can use an <a href="../ref/Misc.html#odict()">odict</a> (a.k.a. an Ordered Dictionary) object instead.</p>
 
     <h2>Dealing with missing values</h2>
-    <p>To test whether a particular key has been defined in a dict, use an "if … in" statement.</p>
+    <p>To test whether a particular key has been defined in a dict, use an <i>"if … in"</i> statement.</p>
 
     <pre>if "fill" in heading:
     print "found fill!"

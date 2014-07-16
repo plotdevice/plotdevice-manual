@@ -6,7 +6,7 @@
 </head><body>
   <div class="article">
     <p>PlotDevice is a Mac OS X application in which you can write Python scripts that produce visual output. You can save the generated graphic as a PDF, an image, or a Quicktime/GIF <a href="Animation.html">animation</a>. Each script opened in PlotDevice has a separate window divided into three parts.<br>
-    <span class="media" style="margin-left:-50px;"><img alt="" height="621" src="../etc/tut/environment1.png" width="659"/></span>
+    <div class="media"><img height="526" src="../etc/tut/environment1.png" width="664"/></div>
     </p>
 
     <h2>Code, output, and messages</h2>
@@ -15,7 +15,7 @@
     <ul>
       <li>
         <p>The <strong>code</strong> you write goes in the top right area. Any keywords are
-        automatically colored (for example, all of the PlotDevice commands in <a href="../manual.html">the reference</a>).</p>
+        automatically colored (for example, all of the PlotDevice commands in <a href="../manual.html#ref">the reference</a>).</p>
       </li><li>
         <p>Once you have a script going, you can press <span class="message">⌘R</span> to have PlotDevice examine
         your script and generate visual <strong>output</strong>, in the left area. Don’t hesitate
@@ -46,17 +46,16 @@
     image document. For each page, PlotDevice reruns the script – this is especially useful if your
     script contains <a href="../ref/Misc.html#random()">random()</a> commands, since the output
     will then be different for each page.<br/>
-    <span class="media" style="margin-left:-50px;"><img alt="" height="621" src="../etc/tut/environment2.png" width="659"/>
-    </p>
+    <p><div class="media"><img height="521" src="../etc/tut/environment-export.png" width="664"/></div></p>
 
     <p>A multiple-page export of this example script generates random output. This is an important
     part of the PlotDevice-philosophy: you define the general <em>style</em> of the output in your
-    script, while having the option to retain a range of freedom in which choices are left up to
-    PlotDevice. In this way, you can quickly develop a consistent style that looks different each
+    script, while having the option to retain a range of freedom in which choices are left to
+    chance. In this way, you can quickly develop a consistent style that looks different each
     time, quickly test and asses your creations.</p>
     <p>A different composition of ovals could be used on each page, with the same ease as creating
     only a single page:</p>
-    <p><span class="media"><img alt="" height="548" src="../etc/tut/environment-balls.png" width="542"/></span></p>
+    <p><div class="media"  style="margin:0;"><img height="548" src="../etc/tut/environment-balls.png" width="542"/></div></p>
 
     <p>
     PDF documents can be opened in Adobe Illustrator (for example), where you can ungroup the
@@ -68,17 +67,6 @@
     apply it to different shapes or images for example. The script is a piece of your
     way-of-working stored on disk. Moreover, the script takes much less space on disk than the
     actual output.</p>
-    <h2>The coordinate system</h2>
-
-    <p>When you place an element on the canvas, you define its positions in terms of <em>x</em> and
-    <em>y</em> coordinates. The <em>x</em> is the horizontal position measured from the left of the
-    canvas, the <em>y</em> the vertical position measured from the top.</p>
-    <p>PlotDevice has an inverted coordinate system which might be confusing to DrawBot users. In a Cartesian coordinate system
-    going ‘down’ would mean that <em>y</em> becomes negative, while in PlotDevice <em>y</em>
-    gets bigger. I think this keeps things comprehensible when creating page layouts; because pages
-    work from top to bottom as well.<br/>
-    <span class="media" style="margin-left:-50px;"><img alt="" height="621" src="../etc/tut/environment3.png" width="658"/>
-</p>
 
   </div>
 

@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="article">
+    <p>More often than not, your PlotDevice scripts will involve at least a bit of mathematics.
+    Things like fluid motion, orbital behavior, and easing-in and -out all require a little number-crunching. But fear not, this chapter collects some of the more-useful math tools for dealing with 2D drawing.</p>
+
+      <a id="Point-Geometry" name="Point-Geometry"></a>
+      <h3>Point Geometry</h3>
+
+      <p>PlotDevice scripts are rife with x/y coordinate pairs. You use coordinates to place primitives on the canvas, add line segments to a <a href="Bezier_Paths.html">Bezier</a>, and more. Most of the time you can choose these "point" locations through intuition or trial and error. But occasionally you'll want to perform calculations on points to assemble your compositions in a <em>relative</em> manner.</p>
+
+      <p>Sometimes you'll be working with a pair of points and want to know the angle or distance between them. In other cases you may have a single point and need to calculate a second position relative to the first. To aid in these kinds of tasks, PlotDevice provides a simple class called <a href="../ref/Misc.html#Point">Point</a>. </p>
+
+
+      <h2>Point Objects</h2>
+      <p>You can create a <i>Point</i> by passing a pair of coordinate values to the constructor function and access its coordinates through the <code>x</code> and <code>y</code> attributes.</p>
+      <pre>pt = Point(13,37)
+print pt.y
+>>> 37</pre>
+      <p>You can also unpack it back into a pair of values through simple assignment:</p>
+      <pre>x, y = pt
+print x, y
+>>> 13 37</pre>
+
+
+
+  <h2>Point methods</h2>
+      <p>Once you have a <i>Point</i>, you can "ask" it all sorts of questions about how it relates to other points with a few useful (and speed-optimized) math methods.</p>
+
+
+
+
+
+        <div class="def-box">
+<pre class="manual">pt.<span class="red">angle</span>(point)
+</pre>
+
+          <p>Returns the angle from the object to a target Point or pair of (x,y) coordinates. By default, the angle will be represented in degrees, but this can be altered by setting an alternate unit with the <a href="Canvas.html#geometry()">geometry()</a> command.
+        </p></div>
+
+        <div class="example">
+          <span><img height="125" src="../etc/ref/point-angle.png" width="125"/></span>
+<pre>src = Point(25,75)
+dst = Point(75,25)
+theta = src.angle(dst)
+arc(src.x, src.y, 4, fill='red')
+arc(dst.x, dst.y, 4, fill='orange')
+with pen(dash=5), stroke(.5), nofill():
+    arc(src.x, src.y, 32, range=theta)
+print theta
+>>> -45.0
+</pre>
+        </div>
+
+        <div class="def-box">
+<pre class="manual">pt.<span class="red">distance</span>(point)
+</pre>
+
+          <p>Returns the linear distance between the object and a second Point or pair of (x,y) coordinates.
+        </p></div>
+
+
+        <div class="example">
+          <span><img height="125" src="../etc/ref/point-distance.png" width="125"/></span>
+<pre>src = Point(25,25)
+dst = Point(100,100)
+length = src.distance(dst)
+arc(src.x, src.y, 4, fill='red')
+arc(dst.x, dst.y, 4, fill='orange')
+with pen(dash=5), stroke(.8):
+    line(src.x, src.y, dst.x, dst.y)
+print length
+>>> 106.066017178
+</pre>
+        </div>
+
+
+        <div class="def-box">
+<pre class="manual">pt.<span class="red">reflect</span>(point, d=<span class="mi">1.0</span>, a=<span class="mi">180</span>)
+</pre>
+
+          <p>Uses the object as an ‘origin’ and returns a Point containing the reflection of a target Point or pair of (x,y) coordinates. The optional <code>d</code> parameter is a magnification factor relative to the distance between the mirror and the target point.
+          </p><p>The <code>a</code> parameter controls the angle of reflection. When set to 180° (the default), the reflected point will be directly opposite the target, but other values will allow you to ‘ricochet’ the target point off of the mirror instead.
+        </p></div>
+
+
+        <div class="example">
+          <span><img height="125" src="../etc/ref/point-reflect.png" width="125"/></span>
+<pre>
+origin = Point(50,50)
+src = Point(25,40)
+dst = origin.reflect(src, d=2.0)
+arc(src.x, src.y, 4, fill='red')
+arc(dst.x, dst.y, 4, fill='orange')
+arc(origin.x, origin.y, 4, fill=.7)
+</pre>
+        </div>
+
+
+        <div class="def-box">
+<pre class="manual">pt.<span class="red">coordinates</span>(distance, angle)
+</pre>
+
+          <p>Uses the object as the ‘origin’ of a polar coordinate system and returns a Point at a given distance and orientation relative to the origin. The <code>distance</code> parameter uses the current canvas <a href="Canvas.html#size()">size()</a> unit and the <code>angle</code> should be expressed in the current <a href="Canvas.html#geometry()">geometry()</a> unit.
+        </p></div>
+
+        <div class="example">
+          <span><img height="125" src="../etc/ref/point-coordinates.png" width="125"/></span>
+<pre>
+origin = Point(50,50)
+dst = origin.coordinates(50, 45)
+arc(origin.x, origin.y, 4, fill=.7)
+arc(dst.x, dst.y, 4, fill='orange')
+with pen(dash=3), stroke(.5), nofill():
+    arc(origin.x, origin.y, 25, range=45)
+</pre>
+        </div>
+
+
+      <hr>
+      <p class="double-dagger">If you'd rather work with raw numbers rather than Point objects, you can also import the numerical versions of these methods for use in your scripts:</p>
+      <pre>from plotdevice.lib.geometry import angle, distance, coordinates, reflect</pre>
+      <hr>
+
+
+        <h2>Drawing with computed points</h2>
+        <p>You can pull off some neat graphical tricks by combining the <i>Point</i> methods in your scripts. For instance, finding the angle from a central origin location to a randomly positioned point:</p>
+      <div class="example">
+        <span><img src="../etc/tut/math-angle.png" width="194" height="194"/></span>
+        <pre>
+r = 2.0
+origin = Point(WIDTH/2, HEIGHT/2)
+
+for i in range(5):
+    pt = Point(random(WIDTH),
+               random(HEIGHT))
+    arc(pt.x, pt.y, r)
+    a = origin.angle(pt)
+    with transform(CORNER):
+        translate(origin.x, origin.y)
+        rotate(-a)
+        arrow(30, 0, 10)
+</pre>
+      </div>
+
+
+      <p>Orbiting around an origin point:</p>
+      <div class="example">
+        <span><img src="../etc/tut/math-coordinates.png" width="194" height="194"/></span>
+        <pre>
+r = 2.0
+origin = Point(WIDTH/2, HEIGHT/2)
+oval(origin.x-r, origin.y-r, r*2, r*2)
+
+for i in range(10):
+    a = 36*i
+    pt = origin.coordinates(85, a)
+    arc(pt.x, pt.y, r)
+    line(origin.x, origin.y, pt.x, pt.y)
+</pre>
+      </div>
+
+      <p>Drawing perpendicular lines around a circular path:</p>
+      <div class="example">
+        <span><img src="../etc/tut/math-perpendicular.png" width="194" height="194"/></span>
+        <pre>
+path = oval(100, 100, 105, 105)
+for t in range(50):
+    curve = path.point(t/50.0)
+    a = curve.angle(curve.ctrl2)
+    with transform(CORNER):
+        translate(curve.x, curve.y)
+        rotate(-a+90) # rotate by 90°
+        line(0, 0, 35, 0)
+</pre>
+      </div>
+
+
+
+
+
+    <h2>Angle measurements</h2>
+    <p>As you may remember from trigonometry, there are two commonly used systems for expressing the size of angles. In day-to-day life we're most likely to encounter ‘degrees’ ranging from 0 to 360. In mathematics it's more traditional to use ‘radians’ ranging from 0 to 2<span style="font-family:Georgia; font-style:italic;">&pi;</span>. PlotDevice recognizes that different situations may call for different angle units and provides some utilities to make switching between them easy.</p>
+
+    <p>A number of commands take an angle as one of the arguments. By default, you're expected to use degrees. But by calling the <a href="geometry()">geometry()</a> command with <code class="kw">DEGREES</code>, <code class="kw">RADIANS</code>, or <code class="kw">PERCENT</code> you can switch between modes on the fly.</p>
+
+    <p>Any subsequent call to a drawing or transformation command that deals with angles will then deal in the newly-specified units. The <i>angle()</i> and <i>coordinates()</i> methods discussed above also obey the <i>geometry()</i> setting – both for interpreting arguments and providing return values.</p>
+
+    <div class="example">
+      <span><img src="../etc/tut/math-angles.png"></span>
+      <pre>
+with stroke(0), nofill():
+    arc(50,25, 25, range=180)
+
+    geometry(RADIANS)
+    arc(50,50, 25, range=pi)
+
+    geometry(PERCENT)
+    arc(50,75, 25, range=.5)
+</pre>
+    </div>
+
+    <p>To make working with radians more convenient, PlotDevice provides a pair of global constants – <code class="kw">pi</code> and <code class="kw">tau</code> – representing a half- and full-circle respectively.
+      </p>
+
+
+
+
+
+
+    <a id="Sequences" name="Sequences"></a>
+      <h3>Rational Proportions</h3>
+
+      <p>Sometimes you want to set the position or size of objects in such a way that they
+      interrelate to each other, creating a kind of "harmony" between them. For example, sine
+      waves are great for coordinating motion since they ease in and out.</p>
+
+      <p>Another interesting proportional principle is the so-called <i>golden ratio</i>, the 3-5-8 rule. It has been around in aesthetics for millennia, though its longevity seems to have more to do with <a href="http://vimeo.com/88132964">groupthink</a> than anything "fundamental" about the proportion.</p>
+      <p>For our purposes, the great thing about it is that it can be expressed as a mathematical series – the <a href="http://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci sequence</a>.</p>
+<pre>def fib(n):
+    if n == 0: return 0
+    if n == 1: return 1
+    if n &gt;= 2: return fib(n-1) + fib(n-2)
+
+def goldenratio(n, f=4):
+    # Returns two proportional numbers whose sum is n.
+    f = max(1, min(f, 10))
+    n /= float(fib(f+2))
+    return n*fib(f+1), n*fib(f)
+</pre> 
+
+      <p>Colored rectangles proportioned with the golden ratio:</p>
+      <div class="example">
+        <span><img height="242" src="../etc/tut/math-fib1.png" width="242"/></span>
+        <pre>
+w1, w2 = goldenratio(260)
+h1, h2 = goldenratio(260)
+b1, b2 = goldenratio(1.0)
+b3, b4 = goldenratio(b1)
+
+fill(0, b1/2, b1)
+rect(0, 0, w1, h1)
+
+fill(0, b2/2, b2)
+rect(w1, 0, w2, h1)
+
+fill(0, b4/2, b4)
+rect(0, h1, w1+w2, h2)
+</pre>
+      </div>
+      <div class="example">
+        <span><img height="242" src="../etc/tut/math-fib2.png" width="242"/></span>
+        <pre>
+x, y = 0, 0
+w, h = 260, 260
+
+th = h # top height
+bh = 0 # bottom height
+for i in range(10):
+    th, bh = goldenratio(th)
+    v = float(th)/w + 0.3
+    fill(0, v/2, v)
+    rect(x, y, w, th)
+    y += th
+    th = bh
+</pre>
+      </div>
+
+
+    <a id="Trigonometry" name="Trigonometry"></a>
+      <h3>Trigonometry Fundamentals</h3>
+
+      <p>A sine calculates the vertical distance between two points based on the angle. A cosine calculates the horizontal distance.</p>
+
+      <div class="example">
+        <span><img height="260" src="../etc/tut/math-trig1.jpg" width="260"/></span>
+          <p>Let’s say we have two points, <em>a</em> and <em>b</em>, connected by a line.</p>
+      </div>
+      <div class="example">
+        <span><img height="260" src="../etc/tut/math-trig2.jpg" width="260"/></span>
+          <p>Now let’s assume <em>a</em> is at the origin (or center) of a circle. The circle
+          has a radius equal to the length of the line connecting <em>a</em> and <em>b</em>.</p>
+          <p>So <em>b</em> is located somewhere on the circle’s circumference.</p>
+      </div>
+      <div class="example">
+        <span><img height="260" src="../etc/tut/math-trig3.jpg" width="260"/></span>
+          <p>There is a horizontal and vertical distance between <em>a</em> and <em>b</em>.</p>
+          <p>We can use <em>sine</em> and <em>cosine</em> to determine those distances.</p>
+      </div>
+      <div class="example">
+        <span><img height="260" src="../etc/tut/math-trig4.jpg" width="260"/></span>
+          <p>Each line from <em>a</em> to a point on the circle’s circumference (for example,
+          <em>b</em>) has an angle.</p>
+          <p>Measured counterclockwise, starting from 0°, a circle has a total circumference of
+          360°. So a line from <em>a</em> going straight up would have an angle of 90°.</p>
+          <p>In the case of the line between <em>a</em> and <em>b</em>, the angle is 60°.</p>
+      </div>
+      <div class="example">
+        <span><img height="260" src="../etc/tut/math-trig5.jpg" width="260"/></span>
+          <p>The cosine function calculates the <strong>horizontal</strong> distance between
+          <em>a</em> and <em>b</em> based on the angle.</p>
+          <p>The sine function calculates the <strong>vertical</strong> distance between
+          <em>a</em> and <em>b</em>.</p>
+          <p>In the case of an angle of 60°, the sine yields 0.5. So the horizontal distance
+          between <em>a</em> and <em>b</em> is half the length of the line between <em>a</em>
+          and <em>b</em>.</p>
+      </div>
+      <div class="example">
+        <span><img height="260" src="../etc/tut/math-trig6.jpg" width="260"/></span>
+        <div>
+          <p>With sine and cosine we can calculate the distance between <em>a</em> and
+          <em>b</em>.</p>
+          <p>This is useful if we have position coordinates for <em>a</em> and we need to
+          calculate the position of a point <em>b</em> that is orbiting around it.</p>
+          <p>For 60°, the sine yields 0.5, meaning half the length of the distance between
+          <em>a</em> and <em>b</em>. So the horizontal distance between <em>a</em> and
+          <em>b</em> is 70 &times; 0.5 or 35.</p>
+          <p>So <em>b</em>’s x equals <em>a</em>’s x plus 35.<br/></p>
+        </div>
+      </div>
+      <div class="example">
+        <span><img height="260" src="../etc/tut/math-trig7.jpg" width="260"/></span>
+          <p>The command in PlotDevice would look like this:</p>
+<pre>
+def coordinates(x0, y0, distance, angle):
+    from math import radians, sin, cos
+    angle = radians(angle)
+    x1 = x0 + cos(angle) * distance
+    y1 = y0 + sin(angle) * distance
+    return x1, y1
+</pre> 
+        </div>
+
+
+
+
+    </div>
+  </div>
+</body></html>

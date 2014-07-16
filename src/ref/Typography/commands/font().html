@@ -33,8 +33,6 @@
         </p><p>For families that provide a range of widths (e.g., "compressed", "condensed", or "extended"), the <code>width</code> argument allows you to select them by name.
         </p><p><code class="box"><span class="red">variant</span></code>
         </p><p>The vast majority of western typefaces use weight, width, and italicization as the "axes" for selecting fonts. Occasionally you will run into a family with a more idioscyncratic organization (c.f., Chalet's goofy city- and era-based <a href="http://www.houseind.com/fonts/chalet">scheme</a>). Strings passed as the <code>variant</code> arg allow you to select these sorts of non-standard names.
-        </p><p><code class="box"><span class="red">lighter</span></code> / <code class="box"><span class="red">heavier</span></code>
-        </p><p>Specifies a weight in relative terms using either the current font or the value passed in the <code>weight</code> argument as a basis. The value should be an integer specifying the number of "steps" to take in the given direction. Also note that negative values are legal, meaning <code>lighter=2</code> is equivalent to <code>heavier=-2</code>.
         </p><p><code class="box"><span class="red">face</span></code>
         </p><p>A typeface consists of a "family" of individual "fonts" which relate to one another along axes like weight or width. Typically you will select fonts by specifiying a family and a combination of attributes. You can also hard-code your selection by passing a so-called "PostScript Name" for a particular font weight &amp; style and passing that as the <code>face</code> parameter. For instance, the following are equivalent:
         </p><pre>font('avenir', 'heavy', italic=True)

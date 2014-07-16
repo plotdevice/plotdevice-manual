@@ -14,13 +14,13 @@
     class, <i>Plant</i>, defines a group of tendrils. It has some simple methods to grow and draw
     all the tendrils together.</p>
     <p> </p>
-    <p><img alt="tendrils1" height="550" src="../etc/tut/tendrils1.jpg" width="550"/></p>
+    <div class="media" style="margin:0;"><img alt="tendrils1" height="550" src="../etc/tut/tendrils1.jpg" width="550"/></div>
 <pre>size(600, 600)
- 
+
 from math import pi, sin, cos, radians
- 
+
 class Tendril:
-    
+
     def __init__(self, x, y, width=15):
         """ A new sinewy tendril at location x and y.
         Its segment width will gradually become smaller as it grows.
@@ -31,7 +31,7 @@ class Tendril:
         self.angle = random(2*pi) - pi # random angle in radians.
         self.segments = []
         self.v = 0
- 
+
     def grow(self, distance=3.0, curl=1.0, step=0.02):
         """ Tendril segment growth using fluid, spiral sine functions,
         taken from the ART+COM Tendrils class for Processing.
@@ -46,7 +46,7 @@ class Tendril:
         self.segments.append(
             (self.x, self.y, self.angle)
         )
-        
+
     def draw(self, path=None):
         """ Draws all the segments in the tendril,
         as separate ovals or as a single path if one is supplied.
@@ -58,32 +58,32 @@ class Tendril:
                 path.oval(x, y, r, r)
             else:
                 oval(x, y, r, r)
-        
+
 class Plant:
-    
+
     def __init__(self, x, y, tendrils=30, width=15):
         """ A collection of tendrils.
         """
         self.x = x
         self.y = y
         self.tendrils = []
-        for i in range(tendrils): 
+        for i in range(tendrils):
             self.tendrils.append(
                 Tendril(self.x, self.y, width)
             )
-    
+
     def grow(self, distance=3.0, curl=1.0, step=0.02):
         """ Grow a new segment on each of the plant's tendrils.
         """
         for b in self.tendrils:
             b.grow(distance, curl, step)
-            
+
     def draw(self):
         """ Draw the plant.
         """
         for tendril in self.tendrils:
             tendril.draw()
-        
+
     def path(self):
         """ Return the plant as a path consisting of ovals.
         """
@@ -91,16 +91,16 @@ class Plant:
         for tendril in self.tendrils:
             tendril.draw(path)
         return path
- 
+
 background(0.12, 0.12, 0.06)
 nofill()
 stroke(1, 0.5)
 strokewidth(0.5)
- 
+
 plant = Plant(WIDTH/2, HEIGHT/2, tendrils=20)
-for i in range(200): 
+for i in range(200):
     plant.grow(curl=1.0, step=0.02)
- 
+
 plant.draw()
 </pre> 
     <hr size="2" width="100%"/>
@@ -110,14 +110,14 @@ plant.draw()
     <p>With a simple adaption we can use the <i>plant.path()</i> method as input for <a href="../lib/Core_Image.html">Core Image</a>. This way we can transform the plant shape as a layer
     of pixel data. Simply add the lines of code below the image to the bottom of the script, and
     play around with the <i>curl</i> parameter a bit.</p>
-    <p> </p>
-    <p><img alt="tendrils2" height="550" src="../etc/tut/tendrils2.jpg" width="550"/></p>
+
+    <div class="media" style="margin:0;"><img alt="tendrils2" height="550" src="../etc/tut/tendrils2.jpg" width="550"/></div>
 <pre>coreimage = ximport("coreimage")
 canvas = coreimage.canvas(WIDTH, HEIGHT)
 layer = canvas.append(
-    plant.path(), 
-    fill=color(1,0), 
-    stroke=color(1,0.8), 
+    plant.path(),
+    fill=color(1,0),
+    stroke=color(1,0.8),
     strokewidth=0.2
 )
 layer.filter("zoomblur", amount=10)

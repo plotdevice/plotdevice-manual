@@ -14,7 +14,7 @@
 <pre>px, pica, inch, cm, mm
 </pre>
 
-        <p>scale factors used to set non-pixel dimensions with <a href="#size()"><code>size()</code></a></p>
+        <p>scale factors used to set non-pixel dimensions with <a href="#size()">size()</a></p>
       </div>
 
       <div class="def-box">
@@ -28,64 +28,64 @@
 <pre>RGB, HSV, CMYK
 </pre>
 
-        <p>color modes used by <a href="Line+Color.html#colormode()"><code>colormode()</code></a>,
-        <a href="#outputmode()"><code>outputmode()</code></a>, and others</p>
+        <p>color modes used by <a href="Line+Color.html#colormode()">colormode()</a>,
+        <a href="#outputmode()">outputmode()</a>, and others</p>
       </div>
 
       <div class="def-box">
 <pre>CENTER, CORNER
 </pre>
 
-        <p>transformation origins used by <a href="Transform.html#transform()"><code>transform()</code></a></p>
+        <p>transformation origins used by <a href="Transform.html#transform()">transform()</a></p>
       </div>
 
       <div class="def-box">
 <pre>DEGREES, RADIANS, PERCENT
 </pre>
 
-        <p>units understood by <a href="Canvas.html#geometry()"><code>geometry()</code></a></p>
+        <p>units understood by <a href="Canvas.html#geometry()">geometry()</a></p>
       </div>
 
       <div class="def-box">
 <pre>LEFT, RIGHT, CENTER, JUSTIFY
 </pre>
 
-        <p>text alignment modes used by <a href="Typography.html#align()"><code>align()</code></a></p>
+        <p>text alignment modes used by <a href="Typography.html#align()">align()</a></p>
       </div>
 
       <div class="def-box">
 <pre>MOVETO, LINETO, CURVETO, CLOSE
 </pre>
 
-        <p>types of <a href="Drawing.html#Curve"><code>Curve</code></a> in a <a href="Drawing.html#Bezier"><code>Bezier</code></a></p>
+        <p>types of <a href="Drawing.html#Curve">Curve</a> in a <a href="Drawing.html#Bezier">Bezier</a></p>
       </div>
 
       <div class="def-box">
 <pre>MITER, ROUND, BEVEL
 </pre>
 
-        <p>path line-join styles set by <a href="Line+Color.html#pen()"><code>pen(join=…)</code></a></p>
+        <p>path line-join styles set by <a href="Line+Color.html#pen()">pen(join=…)</a></p>
       </div>
 
       <div class="def-box">
 <pre>BUTT, ROUND, SQUARE
 </pre>
 
-        <p>path end-cap styles set by <a href="Line+Color.html#pen()"><code>pen(cap=…)</code></a></p>
+        <p>path end-cap styles set by <a href="Line+Color.html#pen()">pen(<span class="args">cap=…</span>)</a></p>
       </div>
 
       <div class="def-box">
 <pre>NORMAL, FORTYFIVE
 </pre>
 
-        <p>styles for the <a href="Primitives.html#arrow()"><code>arrow()</code></a> primitive</p>
+        <p>styles for the <a href="Primitives.html#arrow()">arrow()</a> primitive</p>
       </div>
 
       <div class="def-box">
 <pre>NUMBER, TEXT, BOOLEAN, BUTTON
 </pre>
 
-        <p>datatypes for specifying a dynamic <a href="Utility.html#var()"><code>var()</code></a></p>
+        <p>datatypes for specifying a dynamic <a href="Utility.html#var()">var()</a></p>
       </div>
 
       <h2>Global state</h2>
@@ -94,15 +94,14 @@
 <pre>WIDTH, HEIGHT
 </pre>
 
-        <p>the current size of the canvas in the wake of the most recent <a href="#size()"><code>size()</code></a> call</p>
+        <p>the current size of the canvas in the wake of the most recent <a href="#size()">size()</a> call</p>
       </div>
 
       <div class="def-box">
-<pre>FRAME, PAGE
+<pre>FRAME, PAGENUM
 </pre>
 
-        <p>the current iteration count in an <a href="../tut/Animation.html">animation</a> (note
-        that these are synonyms for the same value, counting up from 1)</p>
+        <p>the current iteration count in an <a href="../tut/Animation.html">animation</a> or multi-page export (respectively). The first iteration will be <code>1</code> and the counter increments from there.</p>
       </div>
 
       <div class="def-box">

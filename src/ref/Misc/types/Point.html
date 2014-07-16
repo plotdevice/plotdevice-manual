@@ -23,94 +23,20 @@
       <h2>Properties</h2>
 
       <div class="row">
-<pre>pt.x
-pt.y
+<pre class="manual">pt.<span class="red">x</span>
+pt.<span class="red">y</span>
 </pre>
 
         <h2>Methods</h2>
 
-        <div class="def-box">
-<pre>pt.angle(point) # or (x, y)
+        <pre class="manual">
+pt.<span class="red">angle</span>(point) <span class="grey"># or (x, y)</span>
+pt.<span class="red">distance</span>(point) <span class="grey"># or (x, y)</span>
+pt.<span class="red">reflect</span>(point, d=1.0, a=180) <span class="grey"># or (x, y, d, a)</span>
+pt.<span class="red">coordinates</span>(distance, angle)
 </pre>
+        <p>See the tutorial on <a href="../tut/Geometry.html#Point-Geometry">Point Geometry</a> to learn more about <i>Point</i> objects and their uses.</p>
 
-          <p>Returns the angle from the object to a target Point or pair of (x,y) coordinates. By default, the angle will be represented in degrees, but this can be altered by setting an alternate unit with the <a href="Canvas.html#geometry()">geometry()</a> command.
-        </p></div>
-
-        <div class="example">
-          <span><img height="125" src="../etc/ref/point-angle.png" width="125"/></span>
-<pre>src = Point(25,75)
-dst = Point(75,25)
-theta = src.angle(dst)
-arc(src.x, src.y, 4, fill='red')
-arc(dst.x, dst.y, 4, fill='orange')
-with pen(dash=5), stroke(.5), nofill():
-    arc(src.x, src.y, 32, range=theta)
-print theta # -45.0
-</pre>
-        </div>
-
-        <div class="def-box">
-<pre>pt.distance(point) # or (x, y)
-</pre>
-
-          <p>Returns the linear distance between the object and a second Point or pair of (x,y) coordinates.
-        </p></div>
-
-
-        <div class="example">
-          <span><img height="125" src="../etc/ref/point-distance.png" width="125"/></span>
-<pre>src = Point(25,25)
-dst = Point(100,100)
-length = src.distance(dst)
-arc(src.x, src.y, 4, fill='red')
-arc(dst.x, dst.y, 4, fill='orange')
-with pen(dash=5), stroke(.8):
-    line(src.x, src.y, dst.x, dst.y)
-print length # 106.066017178
-</pre>
-        </div>
-
-
-        <div class="def-box">
-<pre>pt.reflect(point, d=1.0, a=180) # or (x, y, d, a)
-</pre>
-
-          <p>Uses the object as an ‘origin’ and returns a Point containing the reflection of a target Point or pair of (x,y) coordinates. The optional <code>d</code> parameter is a magnification factor relative to the distance between the mirror and the target point.
-          </p><p>The <code>a</code> parameter controls the angle of reflection. When set to 180° (the default), the reflected point will be directly opposite the target, but other values will allow you to ‘ricochet’ the target point off of the mirror instead.
-        </p></div>
-
-
-        <div class="example">
-          <span><img height="125" src="../etc/ref/point-reflect.png" width="125"/></span>
-<pre>
-origin = Point(50,50)
-src = Point(25,40)
-dst = origin.reflect(src, d=2.0)
-arc(src.x, src.y, 4, fill='red')
-arc(dst.x, dst.y, 4, fill='orange')
-arc(origin.x, origin.y, 4, fill=.7)
-</pre>
-        </div>
-
-
-        <div class="def-box">
-<pre>pt.coordinates(distance, angle)
-</pre>
-
-          <p>Uses the object as the ‘origin’ of a polar coordinate system and returns a Point at a given distance and orientation relative to the origin. The <code>distance</code> parameter uses the current canvas <a href="Canvas.html#size()">size()</a> unit and the <code>angle</code> should be expressed in the current <a href="Canvas.html#geometry()">geometry()</a> unit.
-        </p></div>
-
-        <div class="example">
-          <span><img height="125" src="../etc/ref/point-coordinates.png" width="125"/></span>
-<pre>
-origin = Point(50,50)
-dst = origin.coordinates(50, 45)
-arc(origin.x, origin.y, 4, fill=.7)
-arc(dst.x, dst.y, 4, fill='orange')
-with pen(dash=3), stroke(.5), nofill():
-    arc(origin.x, origin.y, 25, range=45)
-</pre>
-        </div>
 
       </div>
     </div>

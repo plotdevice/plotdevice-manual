@@ -24,20 +24,22 @@ ref/{{dst}}.html
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width = 500">
+  <meta name="viewport" content="initial-scale=1.0">
+  <script type="text/javascript" src="//use.typekit.net/rlk5mlb.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <link rel="stylesheet" href="etc/toc.css" type="text/css" charset="utf-8">
   <title>PlotDevice Manual</title>
-  <link rel="stylesheet" href="etc/manual.css" type="text/css" charset="utf-8">
 </head>
 <body class="commands">
 
   {{nav()}}
 
-  <div class="toc ref">
+  <div id="ref" class="toc">
     <h1>Reference</h1>
     <ul class="filter"><li class="commands active">Commands</li><li class='types'>Types</li><li class='compat'>Etc.</li></ul>
     <div class="sidebar">
       <div class="commands">
-        <p>Commands marked with a dot support the python <a class="noexternal" title="a.k.a. ‘context managers’" href="http://python.org/dev/peps/pep-0343/"><code>with</code></a>
+        <p>Commands marked with a<br/>dot support the python <a class="noexternal" title="a.k.a. ‘context managers’" href="http://python.org/dev/peps/pep-0343/"><code>with</code></a>
            statement to <a title="PlotDevice Tutorial: Graphics State" href="tut/Graphics_State.html">limit their scope</a>.</p>
         <p>Commands with open dots will also reset any changes made within the block. </p>
       </div>
@@ -66,7 +68,7 @@ ref/{{dst}}.html
     </div>
   </div>
 
-  <div class="toc tut">
+  <div id="tut" class="toc">
     <h1>Tutorials</h1>
     <div class="sections">
       {% for sect, links in tut.items() %}
@@ -82,7 +84,7 @@ ref/{{dst}}.html
     </div>
   </div>
 
-  <div class="toc lib">
+  <div id="lib" class="toc">
     <h1>Libraries</h1>
     <div class="sections">
       {% for sect, links in lib.items() %}
@@ -98,7 +100,7 @@ ref/{{dst}}.html
     </div>
   </div>
 
-  <div class="toc footer">
+  <div id="footer" class="toc">
     Derived from <a class="noexternal" href="http://organisms.be">Tom De Smedt</a>’s manual for <a class="noexternal" href="http://nodebox.net/code">NodeBox</a>
     <a class="noexternal" href="http://www.emrg.be/" title="Experimental Media Research Group">© 2004-2012</a>.
     <br>

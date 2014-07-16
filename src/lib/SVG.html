@@ -9,7 +9,7 @@
 
     <p>The SVG library gives control over vector work imported into PlotDevice. Rectangles, circles
     and paths from an SVG file are imported as native PlotDevice paths, so their individual points and
-    colors can be manipulated (see the tutorial on <a href="../tut/Paths.html">Paths</a>).</p>
+    colors can be manipulated (see the tutorial on <a href="../tut/Bezier_Paths.html">Paths</a>).</p>
     <p>’SVG’ means Scalable Vector Graphics and is an XML format. You can save SVG files from
     <a href="http://www.inkscape.org/">Inkscape</a> and Illustrator. Hand-draw your shapes there
     and then manipulate them further in PlotDevice.</p>
@@ -68,7 +68,7 @@
 <pre>parse(str, cached=False)
 </pre>
 
-    <p>The <i>parse()</i> command reads SVG source and returns a list of <a href="../tut/Paths.html">paths</a> that are drawable with <a href="../ref/Drawing.html#drawpath()">drawpath()</a>. The command has an optional <i>cached</i>
+    <p>The <i>parse()</i> command reads SVG source and returns a list of <a href="../tut/Bezier_Paths.html">paths</a> that are drawable with <a href="../ref/Drawing.html#drawpath()">drawpath()</a>. The command has an optional <i>cached</i>
     parameter. When set to <i>True</i>, the SVG source is analyzed only once and the parsed paths
     stored in memory so they load faster.</p>
     <p>Each returned path in the list has the following properties:</p>
@@ -80,7 +80,7 @@
     </li></ul>
 
     <p>These can be used to copy color information from the original vector drawing. Read the
-    <a href="../tut/Paths.html">tutorial on paths</a> to see what you can do with the points of a
+    <a href="../tut/Bezier_Paths.html">tutorial on paths</a> to see what you can do with the points of a
     path.</p>
     <p>For example, here’s one of Ludivine Lechat’s Illustrator drawings. We can import the paths
     into PlotDevice. Those that have a fill color will retain their original fill.</p>
@@ -107,7 +107,7 @@ for path in paths:
     <h2><a id="furry" name="furry" title="furry"></a>A simple path filter</h2>
 
     <p>Since all of the imported artwork are standard PlotDevice paths, I can also manipulate them
-    with <a href="../tut/Paths.html#Path_Mathematics">path mathematics</a>, transform them like the
+    with <a href="../tut/Bezier_Paths.html#Path_Mathematics">path mathematics</a>, transform them like the
     <a href="../tut/LetterKnitter.html">LetterKnitter</a>. After some fumbling with paths and a
     nice gradient background, here is a hairy version of our flower. The bottom paths are darker to
     create a sense of depth.</p>

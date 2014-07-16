@@ -7,7 +7,7 @@ ref['Canvas'] = {
     'compat': ['outputmode()', 'ximport()'] }
 ref['Line+Color'] = {
     'commands': ['color()', 'stroke()', 'fill()', 'pen()', ],
-    'types': ['Color', ], # 'Gradient',
+    'types': ['Color', ],
     'compat': ['capstyle()', 'colormode()', 'joinstyle()', 'nofill()', 'nostroke()', 'strokewidth()'] }
 ref['Primitives'] = {
     'commands': ['image()', 'line()', 'rect()',  'oval()', 'poly()', 'arc()', ],
@@ -41,11 +41,11 @@ ref['Utility'] = {
 
 
 tut=odict()
-tut['Basics']=["Introduction", "Environment", "Primitives", "Graphics_State",]
-tut['Specifics']=["Animation", u"Bezier_Paths", "Color", "Math",]
+tut['Basics']=["Getting_Started", "Environment", "Primitives", "Graphics_State",]
+tut['Specifics']=["Animation", u"Bezier_Paths", "Geometry", "Color",]
 tut['Data']=["Variables", "Strings", "Collections", "Serialization"]
 tut['Structure']=["Repetition", "Commands", "Classes", "Libraries", ]
-tut['Advanced']=["Interaction", "Extending", "plotdevice",]
+tut['Advanced']=["Interaction", "Console", "Cocoa",]
 
 lib=odict()
 lib['Design']=["Colors", "Grid", "Pixie", "Fatpath",]

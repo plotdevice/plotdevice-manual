@@ -6,21 +6,21 @@
 </head><body>
   <div class="article">
 
-    <p>In the last few chapters we've seen how you can store values in variables and group them into collections of lists and dictionaries. As your scripts grow more complicated you'll find yourself working with a shared set of these datastructures that you access repeatedly.</p>
+    <p>In the last few chapters we've seen how you can store values in <a href="Variables.html">variables</a> and group them into collections of <a href="Collections.html#lists">lists</a> and <a href="Collections.html#dictionaries">dictionaries</a>. As your scripts grow more complicated you'll find yourself working with a shared set of these datastructures that you access repeatedly.</p>
 
-    <p>When just starting out, it's natural to include your data right in the script (for instance by building a list of words or a dictionary mapping names to coordinates). But once these intialization blocks pass a certain length, your script can get a little ungainly.</p>
+    <p>When just starting out, it's natural to include your data right in the script (for instance by building a list of words or a dictionary mapping names to coordinates). But after these intialization blocks grow beyond a certain size, your script can get a little ungainly.</p>
 
-    <p>Once your data has taken on a life of its own, it makes sense to "serialize" it (i.e., "write it out") to a file. You can think of the file as holding the freeze-dried version of a variable. PlotDevice gives you an easy way to "rehydrate" files using the <a href="../ref/Misc.html#read()">read()</a> command. In addition to reading unicode text, <i>read()</i> can also unpack structured data from a pair of useful formats:</p>
+    <p>Once your data has taken on a life of its own, it makes sense to "serialize" it (i.e., "write it out") to a file. You can think of the file as holding the freeze-dried version of a variable. PlotDevice gives you an easy way to "rehydrate" files using the <a href="../ref/Misc.html#read()">read()</a> command. In addition to reading <a href="Strings.html#Unicode">Unicode</a> text, <i>read()</i> can also unpack structured data from a pair of useful formats:</p>
     <ul>
       <li><span class="message">JSON</span> for arbitrarily-nested dictionaries &amp; lists</li>
       <li><span class="message">CSV</span> for speadsheet-style "tabular" data</li>
     </ul>
 
-    <p>When you call <i>read()</i> with a file path as its first arg, it will use the file exension to recognize <code>.json</code> or <code>.csv</code> files and gives you options for how they are unpacked into variables.</p>
+    <p>When you call <i>read()</i> with a file path as its first arg, it will use the file exension to recognize <code>.json</code> or <code>.csv</code> files and give you options for how they are unpacked into variables.</p>
 
 
     <h3>Using <code>json</code> for datastructures</h3>
-    <p>Over the last decade or so, the <a href="http://json.org">JSON</a> format has become something of a lingua-franca for exchanging structured data between systems. Its popularity owes a lot to how naturally its syntax and semantics map onto the native collection classes of so-called "dynamic" languages.</p>
+    <p>Over the last decade or so, the <a href="http://json.org">JSON</a> format has become something of a lingua-franca for exchanging structured data between systems. Its popularity owes a lot to how naturally its syntax and semantics map onto the native collection classes of the so-called "dynamic" languages.</p>
 
     <p>In fact, the representations of most values look <em>identical</em> to those used in Python literals. This makes json a great choice for moving custom data out of your scripts and into a file. For instance, here's a list of numbers in json:</p>
     <pre>[1, 2, 3, 4, 5]</pre>
@@ -70,12 +70,13 @@ print "ordered:", read("zork.json", dict=odict).keys()
 >>> normal: [u'player', u'moves', u'thief']
 >>> ordered: [u'player', u'thief', u'moves']
 </pre>
+    <hr/>
     <p class="double-dagger">Behind the scenes, the <i>read()</i> command is using the <code class="kw">json</code> module from the standard library. Take a look at the <a href="https://docs.python.org/2/library/json.html">official docs</a> to learn about generating json as well as parsing it.</p>
-
+    <hr/>
 
     <h3>Using <code>csv</code> for tabular data</h3>
 
-    <p>While json is great for the kinds of structured-data you generate through code, data that comes from the "real world" often started its life in a spreadsheet or SQL table. Rather than having a variable structure, these formats are rigidly row &amp; column-oriented. Comma-separated Value files represnt these row/column structures in a simple text format. Each line of text corresponds to a row, and columns are separated by <code class="str">","</code> characters.</p>
+    <p>While json is great for the kinds of structured-data you generate through code, data that comes from the "real world" often started its life in a spreadsheet or SQL table. Rather than having a variable structure, these formats are rigidly row &amp; column-oriented. Comma-separated Value files represnt these "tabular" structures in a simple text format. Each line of text corresponds to a row, and columns are separated by <code class="str">","</code> characters.</p>
 
     <h2>Reading from rows &amp; columns</h2>
 
@@ -92,9 +93,9 @@ print "ordered:", read("zork.json", dict=odict).keys()
 0, 9, 18, 27, 36, 45, 54, 63, 72, 81, 90
 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100</pre>
 
-    <p>When we load this file using read(), it returns a list with one element for each of the rows. Each row is itself a list containing the column values as its elements. You can then use list-index notation to read from particular a particular cell or even pull out a "slice" of values within a row:</p>
+    <p>When we load this file using <i>read()</i>, it returns a list with one element for each of the rows. Each row is itself a list containing the column values as its elements. You can then use list-index notation to read from particular a particular cell or even pull out a "slice" of values within a row:</p>
     <pre>mult = read('timestable.csv')
-print len(mult), "rows and", len(mult[0]), "columns"
+print "%i rows and %i columns" % (len(mult), len(mult[0]))
 print "6 times 8 is", mult[6][8]
 print "multiples of 9:", mult[9][2:10]
 >>> 11 rows and 11 columns
@@ -124,7 +125,7 @@ print "multiples of 9:", mult[9][2:10]
   <pre>
 year = read("months.csv", cols=True)
 dec = year[-1]
-print len(year), "months in a year"
+print "%i months in a year" % len(year)
 print "The month of", dec['english']
 print "lasts for %i hours" % (24 * int(dec['days']))
 >>> 12 months in a year
@@ -132,7 +133,7 @@ print "lasts for %i hours" % (24 * int(dec['days']))
 >>> lasts for 744 hours
 </pre>
 
-  <p>Just as with json files, you can tell read() to use a particular kind of dictionary if you don't want the standard one. An <a href="../ref/Misc.html#adict()">adict</a> will let you access the columns with dot-notation:</p>
+  <p>Just as with json files, you can tell <i>read()</i> to use a particular kind of dictionary if you don't want the standard one. An <a href="../ref/Misc.html#adict()">adict</a> will let you access the columns with dot-notation:</p>
   <pre>year = read("months.csv", cols=True, dict=adict)
 print year[9].german
 >>> Oktober

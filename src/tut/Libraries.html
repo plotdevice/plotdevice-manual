@@ -5,42 +5,24 @@
 
 </head><body>
   <div class="article">
-    <p>PlotDevice can be extended with a wealth of functionality (for example, HTTP requests, database support, or image manipulation) by importing the right external libraries. These specialized tools aren't included by default for the simple reason that it would make PlotDevice too unwieldy and complex. Instead, PlotDevice's commands apply to the general case and Libraries handle the specifics.</p>
+    <p>PlotDevice can be extended with a wealth of functionality by importing the right external libraries.
+        You can install Python libraries for making HTTP requests, running databases, processing images, and a million other problem-domains you'd never even considered.</p>
+        <p>
 
-    <h2>Libraries from the PlotDevice site</h2>
+        These specialized tools aren't included by default for the simple reason that it would make PlotDevice too unwieldy and complex. Instead, PlotDevice's commands apply to the general case and libraries handle the specifics.</p>
 
-    <p>The PlotDevice site has a lot of interesting libraries originally developed for <a href="http://nodebox.net/code/index.php/Library">NodeBox</a>. Libraries allow you to access <a href="../lib/WordNet.html">WordNet</a> functionality, or <a href="../lib/Core_Image.html">Core Image</a> filters, or even <a href="../lib/Colors.html">Color</a> math. A list of all libraries is <a href="../manual.html">here</a>.</p>
+    <h2>Python modules</h2>
 
-    <p>To use one of these libraries, you first need to download it to your computer. In most cases, the zip file you download will expand to a folder with the same name as the library. Then, you
-    need to place the whole folder (don't mess with its contents) in a known-location where your PlotDevice script can find it:</p>
-    <ul>
-        <li>in the same folder as your PlotDevice script, or</li>
-        <li>in the Application Support folder (~/Library/Application Support/PlotDevice/)</li>
-    </ul>
+    <p>Since the scripts you write in PlotDevice use <a href="http://www.python.org/">Python</a>, you can access and <b>import</b> any of the <b>modules</b> from the <a href="https://docs.python.org/2/library/">Standard Library</a> (a.k.a. the "stdlib") in your projects. The stdlib is almost preposterously extensive, reflecting Python's motto of "batteries included". A terrific set of tutorials for some of the most useful modules can be found at <a href="http://pymotw.com/2/contents.html">Python Module of the Week</a>.</p>
 
-    <p>Once the library is installed, you can use it in your script by calling the <i>ximport()</i> command. Here's an example using the WordNet library. Notice how the "wordnet" folder is in the same directory as the <em>dictscript</em> file (which we just created):</p>
-    <p>
-        <div class="media" style="margin:0 0 -30px -58px;"><img height="393" src="../etc/tut/libraries1.png" width="717"/></div></p>
-
-    <p>Now our script can access the library by calling <i>ximport()</i> with the library's folder name and assigning it to a local variable of our choosing. We can access properties and methods of that variable to trigger the various bits of functionality provided by the library:</p>
-    <p>
-        <div class="media" style="margin:0 0 0 -58px;"><img height="321" src="../etc/tut/libraries2.png" width="718"/></div>
-    </p>
-
-    <h2>Python "modules"</h2>
-
-    <p>Since he scripts you write in PlotDevice use <a href="http://www.python.org/">Python</a>, you can access and <code>import</code> any of the "modules" from the <a href="https://docs.python.org/2/library/">Standard Library</a> (a.k.a. the "stdlib") in your projects. The stdlib is almost preposterously extensive, reflecting Python's motto of "batteries included". A terrific set of tutorials for some of the most useful modules can be found at <a href="http://pymotw.com/2/contents.html">Python Module of the Week</a>.</p>
-
-    <p>Unlike libraries written specifically for PlotDevice (which require <i>ximport()</i>), plain-old Python modules can be included in your scripts by using the <code>import</code> statement. When you import a module, a variable with the same name is created and you access its functionality using dot-syntax of the form: <em>module.funcname()</em>.</p>
-
-    <p>For instance, you can import the <a href="https://docs.python.org/2/library/json.html"><code>json</code></a> module to serialize your data to a string:</p>
+    <p>For instance, you can <code>import</code> the <a href="https://docs.python.org/2/library/json.html"><code>json</code></a> module to serialize your data to a string:</p>
     <pre>import json
 data = dict(fingers=10, handedness="left", feathers=None)
 print json.dumps(data)
 >>> {"handedness": "left", "feathers": null, "fingers": 10}
 </pre>
 
-    <p>If you only need certain pieces of functionality from a module, you can import specific functions using the "<code>import … from …</code>" syntax. For instance, both of the following snippets make use of the <code>os</code> module's <code>basename</code> function. Use whichever approach makes your code easier to understand:</p>
+    <p>If you only need certain pieces of functionality from a module, you can import specific functions using the "<code>from … import …</code>" syntax. For example, both of the following snippets make use of the <code>os</code> module's <code>basename</code> function. Use whichever approach makes your code easier to understand:</p>
     <pre>import os
 print os.path.basename("/etc/passwd")
 </pre>
@@ -48,16 +30,29 @@ print os.path.basename("/etc/passwd")
 print basename("/etc/passwd")</pre>
 <pre>>>> passwd</pre>
 
-    <p>You don’t need to install any files or anything, PlotDevice knows where the Python libraries
-    are.</p>
-    <h2>For techies: why the ximport() command?</h2>
+    <p>You don’t need to install any files or configure anything; PlotDevice knows where the standard libraries are.</p>
 
-    <p>We prefer <em>ximport()</em> over the <em>import</em> statement, because it takes away a
-    step of having to explain why all commands have brackets, but not <em>import</em>. Furthermore,
-    <em>ximport()</em> passes the drawing context to a referenced library so that library can draw
-    stuff to the screen.</p>
-    <p>But for standard Python libraries, you can still use <em>import</em> and <em>from a import
-    b</em> if you like.</p>
+
+    <h2>Libraries from the PlotDevice site</h2>
+
+    <p>The PlotDevice site has a lot of interesting libraries originally developed for <a href="http://nodebox.net/code/index.php/Library">NodeBox</a>. Libraries allow you to access <a href="../lib/WordNet.html">natural language</a> processing, or <a href="../lib/Core_Image.html">Core Image</a> filters, or even <a href="../lib/Colors.html">Color</a> math. A list of all libraries is <a href="../manual.html#lib">here</a>.</p>
+
+    <p>To use one of these libraries, you first need to download it to your computer. In most cases, the zip file you download will expand to a folder with the same name as the library. Then, you
+    need to place the whole folder (don't mess with its contents) in a known-location where your PlotDevice script can find it:</p>
+    <ul>
+        <li>in the same folder as your PlotDevice script, or</li>
+        <li>in the shared folder <code>~/Library/Application Support/PlotDevice</code></li>
+    </ul>
+
+    <p>Once the library is installed, you can <code>import</code> it like any other Python module. Here's an example using the WordNet library. Notice how the <i>wordnet</i> folder is in the same directory as the <em>dictscript.pv</em> file (which we just created):</p>
+    <p>
+        <div class="media" style="margin-bottom:-30px;"><img height="393" src="../etc/tut/libraries1.png" width="717"/></div></p>
+
+    <p>Now our script can access the library by using the <a href="http://effbot.org/zone/import-confusion.htm"><code>import</code></a> statement along with the library's folder name (note the lack of quotes around the name). When you import a module, a variable with the same name is created and you access its functionality using dot-syntax of the form: <em>module.funcname()</em>. Let's try using the <i>WordNet</i> lib's "glossary" method:</p>
+
+        <div class="media" style="margin-bottom:-40px;"><img height="262" src="../etc/tut/libraries2.png" width="534"/></div>
+
+
   </div>
 
 </body></html>

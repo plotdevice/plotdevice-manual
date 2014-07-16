@@ -8,12 +8,12 @@
 
     <p>The PlotDevice canvas "remembers" the style and transformation settings used to draw primitives. These settings make up the "graphics state" and exist independently from the primitives you add to the canvas. This lets you keep drawing- and styling-related code separate and allows you to apply styles to groups of objects rather than needing to configure each one.</p>
 
-    <p>You can think of it like working an oil-painting. While at the easel, you can hold one type of brush and put one color of paint on it. All the strokes you paint on the canvas will have the same color and texture according to the thickness of the brush and color of paint. Naturally, you could paint with both hands and feet holding multiple brushes with multiple colors. But then things become chaotic.</p>
+    <p>You can think of it like working on an oil-painting. While at the easel, you can hold one type of brush and put one color of paint on it. All the strokes you paint on the canvas will have the same color and texture according to the thickness of the brush and color of paint. Naturally, you could paint with both hands and feet holding multiple brushes with multiple colors … but we wouldn't recommend it.</p>
 
     <p>So in PlotDevice you ‘paint’ with one color at a time. All of the elements you draw have the same color
     until you actively switch to a different one. Then all subsequent elements you draw will use that new color.</p>
 
-    <h3>Stateful commands</h3>
+    <h3>Stateful Commands</h3>
 
     <p>When you run a script, PlotDevice reads the code from <b>top to bottom, like a recipe</b>. When
     it encounters certain state-changing commands, it responds not through any immediately visible change, but instead by silently updating the canvas's "current" state. When you then draw a primitive, it will "inherit" the graphics state, including your modification.</p>
@@ -21,33 +21,41 @@
     <p>Quite a few commands affect the graphics state, but they fall into four general categories:</p>
     <ol>
         <li>Color &amp; line-style: <a href="../ref/Line+Color.html#color()">color()</a>, <a href="../ref/Line+Color.html#fill()">fill()</a>, <a href="../ref/Line+Color.html#stroke()">stroke()</a>, <a href="../ref/Line+Color.html#pen()">pen()</a></li>
-        <li>Transformations: <a href="../ref/Transform.html#transform()">transform()</a>, <a href="../ref/Transform.html#translate()">translate()</a>, <a href="../ref/Transform.html#rotate()">rotate()</a>, <a href="../ref/Transform.html#scale()">scale()</a>, <a href="../ref/Transform.html#skew()">skew()</a>, <a href="../ref/Transform.html#reset()">reset()</a></li>
-        <li>Typography: <a href="../ref/Typography.html#font()">font()</a>, <a href="../ref/Typography.html#align()">align()</a></li>
+
         <li>Compositing effects: <a href="../ref/Compositing.html#alpha()">alpha()</a>, <a href="../ref/Compositing.html#blend()">blend()</a>, <a href="../ref/Compositing.html#shadow()">shadow()</a></li>
+
+        <li>Transformations: <a href="../ref/Transform.html#transform()">transform()</a>, <a href="../ref/Transform.html#translate()">translate()</a>, <a href="../ref/Transform.html#rotate()">rotate()</a>, <a href="../ref/Transform.html#scale()">scale()</a>, <a href="../ref/Transform.html#skew()">skew()</a>, <a href="../ref/Transform.html#reset()">reset()</a></li>
+
+        <li>Typography: <a href="../ref/Typography.html#font()">font()</a>, <a href="../ref/Typography.html#stylesheet()">stylesheet()</a>, <a href="../ref/Typography.html#align()">align()</a></li>
     </ol>
 
+    <h2>Setting the state</h2>
 
-    <p>For example, observe the following script. We start by setting the current <em>fill</em> to red and
-    draw three red ovals. Then we change the <em>stroke</em> from transparent to black and the <em>fill</em> color to
-    transparent. After making this change, we draw two ovals more ovals (which inherit the new style):
-    <span class="media" style="margin-left:-50px;"><img alt="" height="621" src="../etc/tut/graphics_state1.png" width="658"/>
+    <p>At the beginning of your script, the state is initialized to a set of reasonable defaults. In particular, the color and line properties start out as follows:</p>
+    <ul>
+        <li>the <i>fill</i> color is black</li>
+        <li>the <i>stroke</i> color is transparent</li>
+        <li>the pen's <i>nib</i> size is 1 (though lines will only be drawn if the <i>stroke</i> is visible)</li>
+    </ul>
+
+    <p>All the primitives we draw to the canvas will use these defaults (until we overwrite them with new values). For example, observe the following script. We start by drawing a circular arc with the default color state. We then change the <em>fill</em> to red and
+    draw a pair of circles below the first. Finally we change the <em>stroke</em> from transparent to black and the <em>fill</em> color to transparent. After making this change, we draw two more circles (which inherit the new style):
     </p>
+    <div class="media"><img alt="" height="469" src="../etc/tut/graphics_state1.png" width="657"/></div>
 
-    <p>By default, the current fill color is black. The pen's default "nib" size is 1. However, pen strokes
-    won’t be visible until you define a current stroke color, which is transparent by default.</p>
 
-    <h2>The magical <code>with</code> statement</h2>
+    <h2>The magical "with" statement</h2>
 
     <p>Many PlotDevice commands support an optional "clean up" behavior. In fact nearly everything that affects the graphics state can be made into a temporary modification by calling the command as part of a <code class="kw">with</code> statement.</p>
     <p>You can even combine multiple commands (separated by commas) and their effects will be limited to the drawing that happens <em>inside</em> the indented code-block. Once you return to the outer indentation-level, it's as if you never changed the graphics state:
-    <span class="media" style="margin-left:-50px;"><img alt="" height="480" src="../etc/tut/graphics_state6.png" width="660"/>
+    <div class="media"><img alt="" height="483" src="../etc/tut/graphics_state6.png" width="662"/></div>
     </p>
 
-    <p>Commands that support the <code>with</code> statement are called "context managers" in Python lingo. Take a look at the Reference section's <a href="../manual.html">table of contents</a> to see which commands can be used in this manner (they're all marked with dots). Then read their reference entries for details on how the <code class="kw">with</code> usage changes their behavior.</p>
+    <p>Commands that support the <code>with</code> statement are called "context managers" in Python lingo. Take a look at the Reference section's <a href="../manual.html#ref">table of contents</a> to see which commands can be used in this manner (they're all marked with dots). Then read their reference entries for details on how the <code class="kw">with</code> usage changes their behavior.</p>
 
     <h2>Breaking the state</h2>
 
-    <p>If necessary, you can break away from the "current" state and colorize and transform elements individually. Each of the primitive commands accepts optional parameters corresponding to state-changing commands:</p>
+    <p>If necessary, you can break away from the "current" state and colorize or transform elements individually. Each of the drawing primitives accepts optional parameters that correspond to the state-changing commands:</p>
     <ul>
         <li><code>fill</code> and <code>stroke</code> for colors</li>
         <li><code>nib</code>, <code>join</code>, <code>cap</code>, and <code>dash</code> for line-drawing</li>
@@ -82,85 +90,80 @@ r.reset()
 
 
 
-    <h3>Transformation state</h3>
+    <h3>Transformation State</h3>
 
-    <p>You can think of the transformation state along the same lines as painting on a real-world canvas. The PlotDevice drawing canvas has an <b>origin point</b> at the top left corner (horizontal x=0 and vertical y=0). The <a href="../ref/Transform.html#translate()">translate()</a> command lifts up the brush and puts it somewhere else. It changes the origin point.</p>
-    <p>When you say:</p>
-<pre>rect(20, 40, 80, 80)
-</pre>
+    <p>When you draw primitives to the PlotDevice canvas, their position is specified relative to the "origin" in the upper left corner. By changing the "transformation state", you can modifiy the location of the origin point which will affect how all subsequent pairs of coordinates are translated into canvas positions.</p>
 
-    <p>a rectangle with a width and a height of 80 will be positioned 20 to the right and 40 down
-    from the top left corner of the canvas.</p>
+    <p>Perhaps it's easiest to think of transformation state in terms of a real-world pen &amp; paper analogy. When you move the pen to a pair of coordinates, your arm moves a relative distance from its starting point. When you change transformation state, you're picking up the pen and shifting the paper before making the same arm movements as before.</p>
+
+    <h2>Basic transformations</h2>
+
+    <p>To get a sense of how transformations interact with drawing commands, let's look at the <a href="../ref/Transform.html#translate()">translate()</a> command. It allows you to shift the canvas horizontally and vertically (but without changing its orientation or size). For instance, when you say:</p>
+    <pre>rect(20, 40, 80, 80)</pre>
+    <p>a rectangle with a width and a height of 80 will be positioned 20 to the right and 40 down from the top left corner of the canvas. We'll refer to its coordinates as (20,40) for short.</p>
+
     <p>But when you say:</p>
 <pre>translate(100, 100)
 rect(20, 40, 80, 80)
 </pre>
 
-    <p>the origin point is no longer at the top left (x=0 and y=0). We translated it to x=100 and
-    y=100. So the rectangle will be drawn 20 to the right and 40 down of the <i>new</i> origin
-    point. The rectangle ends up at x=120 and y=140. The <i>translate()</i> command <i>displaces the
-    current origin point relative to the previous origin point.</i>
-    <span class="media" style="margin-left:-50px;"><img alt="" height="621" src="../etc/tut/graphics_state2.png" width="658"/>
-</p>
+    <p>the origin point is no longer at the top left (0,0) since we translated it to (100,100). As a result, the <i>rect()</i> created in the second line will be drawn 20 to the right and 40 down of from the <b>new</b> origin point. Thus the rectangle's final resting place will be (120,140).</p>
 
-    <p>Rotation, scaling and skewing work <b>incrementally</b> as well. If you first rotate by 40
-    degrees, all the elements you subsequently draw will be rotated by 40 degrees. If you then
-    rotate by 30 degrees, the current rotation becomes 70 (40 + 30). All subsequent elements will
-    be rotated by 70 degrees.
-    <span class="media" style="margin-left:-50px;"><img alt="" height="621" src="../etc/tut/graphics_state3.png" width="658"/>
+    <p>The <i>translate()</i> command shifts the origin relative to the <b>current</b> origin point. Note how calling it repeatedly causes the rectangle – drawn at (20,40) in each instance – to be positioned further and further to the lower right:</i>
+    <div class="media"><img alt="" height="482" src="../etc/tut/graphics_state2.png" width="666"/></div>
+</p>
+    <p>The <a href="../ref/Transform.html#rotate()">rotate()</a>, <a href="../ref/Transform.html#scale()">scale()</a>, and <a href="../ref/Transform.html#skew()">skew()</a> commands also work <b>incrementally</b> based on the "current" transformation state. If you first rotate by 40&deg;, all the elements you subsequently draw will be rotated by 40&deg;. If you then
+    rotate by 30&deg;, the current rotation becomes the sum of the two rotations: 40&deg;+30&deg; = 70&deg;.
+    <div class="media"><img alt="" height="445" src="../etc/tut/graphics_state3.png" width="656"/></div>
 </p>
 
 
-    <p>Likewise, if you keep putting <span class="inline_code">scale(0.8)</span> in your script the
+    <p>Likewise, if you keep putting <code>scale(0.8)</code> in your script the
     elements on the canvas become smaller and smaller. The second time you scale, the current scale
-    becomes 0.64 (0.8 x 0.8), the third time it becomes 0.512 (0.64 x 0.8) and so on.</p>
+    becomes 0.64 (0.8 &times; 0.8), the third time it becomes 0.512 (0.64 &times; 0.8) and so on.</p>
+
+    <p>The <a href="../ref/Transform.html#reset()">reset()</a> command undoes any transformation changes from earlier in the script and repositions the origin at the canvas's top left corner.</p>
+
+
     <h2>Corner mode transformations</h2>
 
     <p>We haven’t discussed the <a href="../ref/Transform.html#transform()">transform()</a> command
-    yet. As you may have already read in the reference you can switch it between <code class="kw">CENTER</code> and <code class="kw">CORNER</code>.
+    yet. As you may have already read in the reference you can switch it between two "modes": <code class="kw">CENTER</code> and <code class="kw">CORNER</code>.
     Centered transformation means that all shapes, paths, text and images rotate scale and skew
     around their own center. As we would probably expect them to. Corner mode transformations means
     that elements <b>transform around the current origin point</b>. This can be a difficult concept
     to grasp.</p>
-    <p>By way of analogy, consider stars and planets. The sun is a star in space and our Earth orbits around it.
-    You could think of the sun as the current origin point on the canvas (remember that this is not
-    necessarily the top left) and the Earth as an oval that is rotating around it using a corner
-    mode transform.</p>
-    <p>In the example below, we move the origin point to x=100 and y=100 and have three pieces of
+
+    <p>In the example below, we move the origin point to (100,100) and have three pieces of
     text rotate around it. Without the corner mode transform, they would rotate around their own
-    center and it would be a lot more difficult to position them.
-    <span class="media" style="margin-left:-50px;"><img alt="" height="621" src="../etc/tut/graphics_state4.png" width="658"/>
-</p>
-
-    <p>The <a href="../ref/Transform.html#reset()">reset()</a> command will reset all
-    transformations from that point onward in your script.</p>
+    center and it would be a lot more difficult to position them. Since the corner mode rotation is relative to the origin, we can draw each piece of text at the same relative coordinates (15, 0):</p>
+    <div class="media"><img alt="" height="427" src="../etc/tut/graphics_state4.png" width="656"/></div>
 
 
-    <h2>Nested state</h2>
+    <h3>Nested State</h3>
 
-    <p>The <i>transform()</i> command can also be used as part of a <code class="kw">with</code> block,
-    allowing you to create a state in a state. Inside of the block, all subsequent <i>translate()</i>,
+    <p>In addition to allowing you to change the mode, the <i>transform()</i> command has special "clean up" behavior when used as part of a <code class="kw">with</code> block. It allows you to safely create state-in-a-state.</p>
+
+    <p>Inside the indentation block, any <i>translate()</i>,
     <i>rotate()</i>, <i>scale()</i> and <i>skew()</i> commands are valid only until the end of the block. Then the
-    transformation state reverts to how things where before the <code>transform()</code>. This way
-    you can <b>transform groups of elements that need to stay together</b>.</p>
+    transformation state reverts to how things were prior to the with-statement. This way
+    you can transform groups of elements that need to stay together.</p>
 
     <p>Here’s a short example. Notice that the last rectangle isn’t rotated? That’s because the <i>rotate()</i> call happens within the <i>transform()</i> block and is reset after drawing the second rectangle.</p>
 
-    <table>
-        <td><img src="../etc/tut/graphics_state7.png"></td>
-        <td><pre>rect(20, 20, 40, 40)
+    <div class="example">
+        <span><img src="../etc/tut/graphics_state7.png"></span>
+        <pre>rect(20, 20, 40, 40)
 with transform():
     rotate(45)
     rect(120, 20, 40, 40)
 rect(220, 20, 40, 40)
 </pre>
-</td>
-    </table>
+    </div>
 
+    <p>You can think of these nested states as analogous to the orbits of planets and moons in our solar system. The planets orbit a central origin point, the Sun, while the moons orbit around their respective planets. You can think of a <i>transform()</i> block as a shift in perspective – you're setting a new "local" origin point centered not on the Sun but on a particular planet. The planet's moons orbit this new, local origin (wherever this is), blissfully unaware of the massive star at the center of it all.</p>
 
-
-    <p>Using a solar-system anaolgy, each <i>transform()</i> block is a bit like a moon orbiting around a planet. The planets orbit around a shared origin point (the sun), but regardless of where this is, the moon is always orbiting around its planet. To put it another way, each planet is a "local" origin point for its moon.</p>
-    <p><span class="image_border"><img alt="graphics_state5" height="445" src="../etc/tut/graphics_state5.gif" width="445"/></span><br/>
+    <div class="media" style="margin:0;"><img height="445" src="../etc/tut/graphics_state5.gif" width="445"/></div>
     <a href="http://nodebox.net/code/data/media/graphics_state5.mov">Play movie</a></p>
 <pre>size(450, 450)
 speed(30)
@@ -169,11 +172,10 @@ def draw():
     stroke(0)
     transform(CORNER)
 
-    # This is the starting origin point,
-    # where we place the sun.
+    # This is the starting origin point (the heart of the Sun)
     translate(225, 225)
-    oval(-5, -5, 10, 10)
-    text("sun", 10, 0)
+    arc(0,0, 5)
+    text("sun", 10,0)
 
     for i in range(3):
 
@@ -184,11 +186,11 @@ def draw():
             # This is a line with a length of 120,
             # that starts at the sun and has an angle of i * 120.
             rotate(FRAME+i*120)
-            line(0, 0, 120, 0)
+            line(0,0, 120,0)
 
             # Move the origin to the end of the line.
             translate(120, 0)
-            oval(-5, -5, 10, 10)
+            arc(0,0, 5)
             text("planet", 10, 0)
 
             # Keep rotating around the local planet.
@@ -196,7 +198,7 @@ def draw():
             line(0, 0, 30, 0)
             text("moon", 32, 0)
 
-        # The origin moves back to the sun outside of the block.
+        # The origin moves back to the sun at the end of the block.
 </pre>  
 
 

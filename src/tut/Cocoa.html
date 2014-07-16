@@ -7,7 +7,7 @@
   <div class="article">
     <p>PlotDevice is built on <a href="http://pyobjc.sourceforge.net/">PyObjC</a>, a bridge between the Python and Objective-C programming languages. PyObjC's main use is writing <a href="http://developer.apple.com/cocoa/">Cocoa</a> applications for OS X in pure Python.</p>
 
-    <p>Cocoa is a set of "frameworks" allows developers to create graphical applications with a typical Macintosh look-and-feel. Its two main libraries (<em>Foundation Kit</em> and <em>Application Kit</em>) are
+    <p>Cocoa is a set of "frameworks" that allow developers to create graphical applications with a typical Macintosh look-and-feel. Its two main libraries (<em>Foundation Kit</em> and <em>Application Kit</em>) are
     bundled with the operating system. If you know a little PyObjC it’s easy to start playing around with all
     the magic in OS X, right from your PlotDevice script.</p>
 
@@ -18,8 +18,7 @@
     <h2>AppKit manual</h2>
 
     <p>The first thing you’ll notice about AppKit is that it has a <em>lot</em> of long, oddly-named classes all beginning with <em>NS</em>: NSBezierPath, NSRect, NSImage, and so
-    on (the <em>NS</em> stems from the fact that AppKit is a direct descendant of NeXTSTEP, Steve
-    Jobs’ technology that revived Apple).</p>
+    on (the <em>NS</em> stems from the fact that AppKit is a direct descendant of NeXTstep, the ’90s technology that revitalized Apple in the ’00s).</p>
 
     <p>Crazily-verbose commands like </p>
     <pre>layoutManager.drawGlyphsForGlyphRange_atPoint_(
@@ -142,7 +141,7 @@ def say(txt, voice=None):
     <h2>Every font on your system</h2>
 
     <p>The command below wraps the NSFontManager object. It returns a list with the PostScript name
-    of each font installed on your system. It's similar to the built-in fonts() command, but it returns every individual weight and style rather than organizing things into "families". Thanks to Mark for this one. </p>
+    of each font installed on your system. It's similar to the built-in <a href="../ref/Misc.html#fonts()">fonts()</a> command, but it returns every individual weight and style rather than organizing things into "families". Thanks to Mark for this one. </p>
 <pre>from AppKit import NSFontManager
 
 def everyfont():
@@ -175,7 +174,7 @@ for f in everyfont()[:80]:
     x += width
 </pre>
 
-    <p><img alt="pyobjc-fonts" height="550" src="../etc/tut/pyobjc-fonts.jpg" width="550"/></p>
+    <div class="media" style="margin:0;"><img height="550" src="../etc/tut/pyobjc-fonts.jpg" width="550"/></div>
 
   </div>
 

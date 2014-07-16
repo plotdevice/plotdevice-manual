@@ -5,11 +5,9 @@
 
 </head><body>
   <div class="article">
-    <p>If you read about <a href="Variables.html">variables</a>, <a href="Repetition.html">repetition</a> and <a href="Commands.html">commands</a> you already know a
+    <p>If you looked at the <a href="Variables.html">variables</a>, <a href="Repetition.html">repetition</a> and <a href="Commands.html">commands</a> chapters, you already know a
     great deal about how to keep your code tidy and organized. Variables can be used to store data,
-    commands to manipulate data, and for-loops to do things (e.g. traverse <a href="Collections.html">lists</a>) multiple times. As you move on to bigger projects you’ll probably want
-    to learn about classes as well. A class is a programming convention that defines a thing (or
-    <b>object</b>) together with all of the thing’s <b>properties</b> (e.g. variables) and behavior
+    commands to manipulate data, and for-loops to do things repeatedly. As you move on to bigger projects you’ll probably want to learn about classes as well. A class is a programming convention that defines a thing (or <b>object</b>) together with all of the thing’s <b>properties</b> (e.g. variables) and behavior
     <b>methods</b> (e.g. commands). If you take a look at the source code of PlotDevice libraries
     you’ll notice that they are full of classes.</p>
 
@@ -21,21 +19,22 @@
     For example, an ant is a small and speedy creature that wanders around randomly looking for
     food, avoiding obstacles by going around them. A dinosaur is also a creature, but bigger and
     slower. It eats anything crossing its path and avoids obstacles by crashing through them.</p>
-    <ul>
-      <li><b>class</b>: the abstract characteristics (properties and methods) of a thing.
-      </li><li><b>object</b>: one particular instance of a class.
-      </li><li><b>properties</b>: variables tied to an instance of a class.<br/>
-      </li><li><b>methods</b>: commands that manipulate an instance’s properties.
-    </li></ul>
 
-    <p> </p>
-    <hr size="2" width="100%"/>
+
+    <h3>Classes in Python</h3>
+
+    <p>As we saw in the <a href="Commands.html">Commands</a> chapter, there's a difference between <em>defining</em> something and <em>using</em> it. This same distinction also applies to classes: you first need to teach PlotDevice about your new object type, then later in the script you can "instantiate" as many of them as you want.</p>
+
+    <p>Class definitions have a syntax that looks quite similar to what we've seen before. There's an line name where we set the name for our new class, then an indented block of one or more method definitions:</p>
+    <pre>class ClassName:
+    ... # method defintions</pre>
+
 
     <h2>Class definition and initialization</h2>
 
-    <p>Each class has an <i>__init__()</i> method which is <b>executed once when an instance of the
-    class is created</b>. The <i>__init__()</i> method sets all the starting values for an object’s
-    properties.</p>
+    <p>Every class has a method named <i>__init__()</i> which is <b>executed once when an instance of the
+    class is created</b>. This method sets all the starting values for an object’s
+    properties and defines the parameters accepted when creating new objects.</p>
     <p>For example, here’s what a simple definition of a Creature class would look like:</p>
 <pre>class Creature:
     def __init__(self, x, y, speed=1.0, size=4):
@@ -45,8 +44,7 @@
         self.size = size
 </pre>
 
-    <p>As you can see, a creature has <i>x</i> and <i>y</i> properties (the location of the
-    creature) as well as <i>speed</i> and <i>size</i> properties (which we’ll use to move the creature
+    <p>As you can see, a creature has <i>x</i> and <i>y</i> properties (its location in space) as well as <i>speed</i> and <i>size</i> properties (which we’ll use to move the creature
     around). Since <i>speed</i> and <i>size</i> are defined with default values, they are optional when "instantiating" a new creature.</p>
     <p>You create instances of a class by calling the class name as if it were a command, but including the parameters defined in its <i>__init__()</i> method. The one tricky bit is that you should ignore the <code>self</code> argument, since it will be filled in automatically (see below).</p>
 <pre>ant = Creature(100, 100, speed=2.0)
@@ -59,12 +57,10 @@ dinosaur = Creature(200, 250, speed=0.25, size=45)
 
     <p>As with <a href="Commands.html">command names</a>, Python has some conventions for naming classes that you should try to follow:</p>
     <ul>
-      <li>Class names use <span class="inline_code">CamelCase</span> notation.
-      </li><li>Properties that are only for private use inside the class start with _
-    </li></ul>
+      <li>Class names use <code>CamelCase</code> notation.</li>
+      <li>Properties that are only for private use inside the class start with <code>_</code></li>
+  </ul>
 
-    <p> </p>
-    <hr size="2" width="100%"/>
 
     <h2>Methods and the self parameter</h2>
 
@@ -98,16 +94,16 @@ dinosaur = Creature(200, 250, speed=0.25, size=45)
 
     <p>So now we have added two new properties to the class, <i>_vx</i> and <i>_vy,</i> which store
     a creature’s current heading. Both property names start with an underscore because they are for
-    private use inside the class methods (e.g. no one should directly manipulate <i>ant._dx</i>
+    private use inside the class methods (i.e., no one should directly manipulate <i>ant._dx</i>
     from the outside).</p>
 
     <p>Each time the <i>roam()</i> method is called we add or subtract a random proportion of the creature’s
-    speed from its heading, like a compass twirling around randomly. We also make sure the horizontal
+    speed from its heading, like a pinwheel twirling around randomly. We also make sure the horizontal
     and vertical "velocities" don't exceed the creature’s maximum speed. Otherwise the creature would start
     going faster and faster which isn’t very realistic. Finally, we update the creature’s position
-    by moving it to the new heading.</p>
+    by stepping it toward the new heading.</p>
 
-    <p>Now we can create two ants (a small fast one and a big slow one). Because their size and
+    <p>Now we can create two ants (a small fast one and a big slow one). Since their size and
     speed differ they will roam in different ways.</p>
 
 <pre>ant1 = Creature(300, 300, speed=2.0)
@@ -121,39 +117,35 @@ def draw():
     arc(ant2.x, ant2.y, radius=ant2.size)
 </pre>
 
-    <p><img alt="classes-creature1" height="200" src="../etc/tut/classes-creature1.jpg" width="550"/></p>
+    <div class="media" style="margin:0;"><img alt="classes-creature1" height="200" src="../etc/tut/classes-creature1.jpg" width="550"/></div>
     <p><a href="http://nodebox.net/code/data/media/classes-creature1.mov">Play movie</a></p>
-    <p> </p>
-    <hr size="2" width="100%"/>
 
-    <h2>Taking it further: obstacle avoidance</h2>
+
+    <h3>Case Study: "Intelligent" Agents</h3>
 
     <p>Now that we know the basics about classes, properties and methods, we can take things a lot
     further. We can define different classes for different things and have them interact with each
     other.</p>
-    <p>If we want to have our little critters avoid obstacles while wandering around, they will
-    need to have some sense of the world around them. Know where the obstacles are located. So
-    we’ll need to keep track of obstacle instances. Then we’ll introduce the concept of a
-    <b>feeler</b>. A feeler could be the creature’s sight, hearing, or antennae. Basically it is a
-    point in front of where the creature is heading. If this point falls inside an obstacle, it’s
-    time for the creature to change its direction.</p>
-    <p><img alt="classes-creature2" height="200" src="../etc/tut/classes-creature2.jpg" width="550"/></p>
-    <p><i>The creature is heading into an obstacle - it can touch the obstacle with its forward
-    feeler.<br/>
-    It needs to adjust its bearing clockwise to avoid the obstacle.<br/>
-    <br/></i></p>
-    <p><span class="orange_box">World class</span></p>
+    <p>If we want to have our little critters avoid obstacles while wandering around, they will need to have some sense of the world around them. Our code will need to keep track of where the obstacles are located, and the creature will need to have some sort of "feeler" so it can detect looming collisions.</p>
+
+    <p>A feeler could be the creature’s sight, hearing, or antennae – it's really just a metaphor for the sensory feedback we'll be providing it from "the world". For our simple class it can represented as an <code>x</code>/<code>y</code> "test" point just in front of the creature's current heading. If this point falls inside an obstacle, it’s time for the creature to change its direction.</p>
+    <div class="media" style="margin:0;"><img alt="classes-creature2" height="200" src="../etc/tut/classes-creature2.jpg" width="550"/></div>
+    <p><i>The creature is heading into an obstacle – it can "sense" the obstacle with its
+    feeler and will need to adjust its bearing clockwise to avoid colliding with it.
+    </i></p>
+
+    <h2>World class</h2>
     <p>We’ll start out by creating a World class which we can use to store a list of obstacles.
     Later on we can add all sorts of other stuff to the world (e.g. weather methods, colony
-    location properties, etc...).</p>
+    location properties, etc.). Note that we're defining it as a class even though we'll only ever create <em>one</em> <code>World</code> object in any of our simulations.</p>
 <pre>class World:
     def __init__(self):
         self.obstacles = []
 </pre> 
 
-    <p><span class="orange_box">Obstacle class</span></p>
-    <p>Next we’ll make an Obstacle class.<br/>
-    An obstacle in the world is a basic object that has a position and a radius.</p>
+
+    <h2>Obstacle class</h2>
+    <p>Next we’ll define an Obstacle class. In our simulation we'll be creating a number of <code>Obstacle</code> objects and storing them in a shared <code>World</code> object. The <code>Obstacle</code> itself doesn't need to know about the world-at-large (since all it "does" is occupy space), so it only keeps track of its personal location and size:</p>
 <pre>class Obstacle:
     def __init__(self, x, y, radius):
         self.x = x
@@ -161,42 +153,45 @@ def draw():
         self.radius = radius
 </pre> 
 
-    <p><span class="orange_box">Geometry</span></p>
+    <h2>Geometry</h2>
     <p>To know if a creature is going to run into an obstacle we need to know <b>if the tip of its
     feeler intersects with an obstacle</b>. Obviously we’re going to need some math to calculate
     the coordinates of the tip of the feeler. Luckily everything we need is already described in
-    the tutorial on <a href="Math.html">geometry</a>. We can copy-paste the commands and add
-    them to our script:</p>
+    the tutorial on <a href="Geometry.html">geometry</a>. We could use the methods provided by <a href="../ref/Misc.html#Point">Point</a> objects, but instead lets define some equivalent geometry commands that let us work with plain-old numbers:</p>
 <pre>from math import degrees, atan2
 from math import sqrt, pow
 from math import radians, sin, cos
 
 def angle(x0, y0, x1, y1):
-    """ Returns the angle between two points.
-    """
+    """Returns the angle between two points."""
     return degrees( atan2(y1-y0, x1-x0) )
 
 def distance(x0, y0, x1, y1):
-    """ Returns the distance between two points.
-    """
+    """Returns the distance between two points."""
     return sqrt(pow(x1-x0, 2) + pow(y1-y0, 2))
 
 def coordinates(x0, y0, distance, angle):
-    """ Returns the coordinates of given distance and angle from a point.
-    """
+    """Returns the coordinates of given distance and angle from a point."""
     return (x0 + cos(radians(angle)) * distance,
             y0 + sin(radians(angle)) * distance)
+
+def reflect(x0, y0, x1, y1, d=1.0, a=180):
+    """Returns the coordinates of x1/y1 reflected through x0/y0"""
+    d *= distance(x0, y0, x1, y1)
+    a += angle(x0, y0, x1, y1)
+    x, y = coordinates(x0, y0, d, a)
+    return x, y
 </pre> 
 
     <p>With the above <i>coordinates()</i> command we can:<br/></p>
     <ul>
       <li>calculate the location of a point (tip of the feeler)<br/>
       </li><li>at a given distance (feeler length)<br/>
-      </li><li>under a given angle (creature heading)<br/>
+      </li><li>along a given angle (creature heading)<br/>
       </li><li>from a starting point (creature location).
     </li></ul><br/>
 
-    <p><span class="orange_box">Obstacle avoidance</span></p>
+    <h2>Obstacle avoidance</h2>
     <p>So first of all we’ll need to add a new <i>feeler_length</i> property to the Creature class,
     and a new <i>heading()</i> method that calculates the angle between a creature’s current
     position and its next position. We also add a new <i>world</i> property to the Creature class.
@@ -204,7 +199,7 @@ def coordinates(x0, y0, distance, angle):
     of the world’s obstacles in the <i>avoid_obstacles()</i> method.</p>
     <p>The <i>avoid_obstacles()</i> method will do the following:</p>
     <ul>
-      <li>calculate the direction angle of a creature,
+      <li>calculate the "heading" angle of a creature,
       </li><li>traverse all obstacles in the world,
       </li><li>for each obstacle, check if it is closer than the feeler length,
       </li><li>if it is, check if the coordinates of the tip of the feeler are inside the obstacle,
@@ -275,9 +270,8 @@ def coordinates(x0, y0, distance, angle):
         self.x += self._vx
         self.y += self._vy
 </pre>
-
-    <p><img alt="classes-creature3" height="200" src="../etc/tut/classes-creature3.jpg" width="550"/><br/>
-    <a href="http://nodebox.net/code/data/media/classes-creature3.mov">Play movie</a> | <a href="Obstacle_avoidance.html">view source code</a></p>
+    <div class="media" style="margin:0;"><img alt="classes-creature3" height="200" src="../etc/tut/classes-creature3.jpg" width="550"/></div>
+    <p><a href="http://nodebox.net/code/data/media/classes-creature3.mov">Play movie</a> | <a href="Obstacle_avoidance.html">view source code</a></p>
     <p>Another easy example of classes is the <a href="Tendrils.html">Tendrils</a> item in the
     gallery. </p>
   </div>

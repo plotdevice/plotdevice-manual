@@ -24,41 +24,66 @@
       <h2>Properties</h2>
 
       <div class="row">
-<pre>path.bounds
-path.length
-path.contours
+<pre class="manual">
+path.<span class="red">bounds</span>
+path.<span class="red">length</span>
+path.<span class="red">contours</span>
+path<span class="red">[</span>i<span class="red">]</span> <span class="grey"># list elements are Curve objects</span>
 </pre>
       </div>
 
       <h2>Methods</h2>
 
       <div class="row">
-<pre>path[i]
-path.moveto(x, y)
-path.lineto(x, y)
-path.curveto(h1x, h1y, h2x, h2y, x, y)
-path.closepath()
-path.rect(x, y, width, height)
-path.oval(x, y, width, height)
+        <div class="def-box">
+          <pre class="manual">
+path.<span class="red">moveto</span>(x, y)
+path.<span class="red">lineto</span>(x, y)
+path.<span class="red">curveto</span>(h1x, h1y, h2x, h2y, x, y)
+path.<span class="red">closepath</span>()
+path.<span class="red">rect</span>(x, y, width, height)
+path.<span class="red">oval</span>(x, y, width, height)
+path.<span class="red">arc</span>(x, y, radius)
+path.<span class="red">poly</span>(x, y, radius)
 </pre>
-<pre>path.contains(x, y)
+          <p>Adding line segments and shapes to the path</p>
+
+        </div>
+
+        <div class="def-box">
+          <pre class="manual">path.contains(x, y)</pre>
+          <p>Hit-testing</p>
+        </div>
+
+        <div class="def-box">
+          <pre class="manual">
+path.<span class="red">point</span>(t)
+path.<span class="red">points</span>(amount=100)
+path.<span class="red">addpoint</span>(t)
+path.<span class="red">segmentlengths</span>(relative=<span class="kw">False</span>, n=<span class="mi">10</span>)
 </pre>
-<pre>path.point(t)
-path.points(amount=100)
-path.addpoint(t)
-path.segmentlengths(relative=False, n=10)
+<p>Point interpolation (accessing and mutating coordinates within the Curve objects)</p>
+        </div>
+
+
+        <div class="def-box">
+          <pre class="manual">
+path.<span class="red">intersects</span>(pth)
+path.<span class="red">intersect</span>(pth, flatness=<span class="mi">0.6</span>)
+path.<span class="red">union</span>(pth, flatness=<span class="mi">0.6</span>)
+path.<span class="red">difference</span>(pth, flatness=<span class="mi">0.6</span>)
 </pre>
-<pre>path.intersects(path)
-path.intersect(path, flatness=0.6)
-path.union(path, flatness=0.6)
-path.difference(path, flatness=0.6)
-</pre>
-<pre>path.fit(x=None, y=None, width=None, height=None, stretch=False)
-</pre>
+          <p>Boolean logical operators</p>
+        </div>
+
+        <div class="def-box">
+          <pre>path.fit(x=None, y=None, width=None, height=None, stretch=False)</pre>
+          <p>Clamping the path to fit based on optional constraints</p>
+        </div>
 <pre>path.copy()
 </pre>
 
-        <p>See the <a href="../tut/Paths.html">tutorial on paths</a> to learn about all the
+        <p>See the <a href="../tut/Bezier_Paths.html">tutorial on paths</a> to learn about all the
         methods.</p>
         <p>With the <i>segmentlengths()</i> method you can define the math precision for
         <i>point()</i> and <i>points()</i> by making <i>n</i> a higher value (usually 10 is

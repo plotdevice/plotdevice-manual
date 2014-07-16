@@ -18,20 +18,21 @@
       <h2>Description</h2>
 
       <div class="row">
-        <p>Each element of a <a href="#Bezier">Bezier</a> is a <i>Curve</i> object representing a Postscript-style drawing command. This object has a number of properties that describe the coordinates and handles of the path element.</p>
+        <p>Each element of a <a href="#Bezier">Bezier</a> is a <i>Curve</i> object representing a PostScript-style drawing command. This object has a number of properties that describe the coordinates and handles of the path element.</p>
       </div>
-      <p>See the <a href="../tut/Paths.html">tutorial on paths</a> to learn about how <i>Curve</i> and <i>Bezier</i> objects interact.</p>
+      <p>See the <a href="../tut/Bezier_Paths.html">tutorial on paths</a> to learn about how <i>Curve</i> and <i>Bezier</i> objects interact.</p>
 
       <h2>Properties</h2>
 
       <div class="row">
-<pre>curve.cmd
-curve.x
-curve.y
-curve.ctrl1.x
-curve.ctrl1.y
-curve.ctrl2.x
-curve.ctrl2.y
+<pre class="manual">
+curve.<span class="red">cmd</span>
+curve.<span class="red">x</span>
+curve.<span class="red">y</span>
+curve.<span class="red">ctrl1.x</span>
+curve.<span class="red">ctrl1.y</span>
+curve.<span class="red">ctrl2.x</span>
+curve.<span class="red">ctrl2.y</span>
 </pre>
 
         <p>The <code>curve.cmd</code> property describes the type of line-segment this curve belongs to. Its value can
@@ -41,10 +42,11 @@ curve.ctrl2.y
       <h2>Methods</h2>
 
       <div class="row">
-<pre>curve.angle(point)
-curve.distance(point)
-curve.coordinates(distance, angle)
-curve.reflect(point, d=1.0, a=180)
+<pre class="manual">
+curve.<span class="red">angle</span>(point)
+curve.<span class="red">distance</span>(point)
+curve.<span class="red">coordinates</span>(distance, angle)
+curve.<span class="red">reflect</span>(point, d=1.0, a=180)
 </pre>
 
     <p>These geometry helper-methods behave the same as those supported by the <a href="Misc.html#Point">Point</a> object. They implicitly use the <i>Curve</i>'s <code>x</code> &amp; <code>y</code>. Be careful when using them on a <i>Curve</i> that has a <code class="kw">CLOSE</code> <code>cmd</code> since its coordinates will be (0,0), which might give you unexpected results.</p>

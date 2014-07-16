@@ -11,16 +11,29 @@
       <h2>Syntax</h2>
 
       <div class="row">
-<pre>
+        <div class="def-box">
+          <pre>
 color(mode=RGB, range=1.0) # the default color mode and range
 color(range=255)           # use 0-255 component values rather than 0–1
 color(HSV)                 # color-related commands will expect HSV values
 </pre>
-<pre>color(v, a=1)          # greyscale
+          <p>Update the graphics state's "current" color mode</p>
+        </div>
+
+        <div class="def-box">
+          <pre>
 color(r, g, b, a=1)    # RGB mode
 color(h, s, v, a=1)    # HSV mode
 color(c, m, y, k, a=1) # CMYK mode
 </pre>
+          <p>Create a Color object using the current color mode</p>
+        </div>
+
+        <div class="def-box">
+          <pre>color(v, a=1)</pre>
+          <p>Create a greyscale Color object (regardless of the current mode)</p>
+        </div>
+
       </div>
 
 

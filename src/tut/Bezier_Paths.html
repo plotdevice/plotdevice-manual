@@ -5,33 +5,34 @@
 
 </head><body>
   <div class="article">
-    <ul>
+    <!-- <ul>
       <li><a href="#Manipulating_Paths">Manipulating points on a path</a>
       </li><li><a href="#Path_Mathematics">Path mathematics</a>
       </li><li><a href="#Compound_paths">Compound paths: union, intersection, difference</a>
       </li><li><a href="#Clamping_paths">Clamping paths</a><br/>
       </li><li><a href="Path_Filters.html">Applying filter-like effects to paths</a>
-    </li></ul>
+    </li></ul> -->
 
-    <div class="section" style="border-color:transparent;" style="border:0;">
       <p>Paths in PlotDevice are made up of cubic <a href="http://en.wikipedia.org/wiki/B%e9zier_curve">Bezier
       curves</a>. Beziers are commonly used in computer graphics to draw smooth contours. A
       "curve" is defined by a starting point, an ending point, and two <i>control handles</i> that
-      describe those points’ vector. The first handle describes the forward curvature of the starting
-      point, the second handle the backward curvature of the second point.</p>
+      describe the curvature between the endpoints. The first handle describes the forward curvature of the starting point, the second handle the backward curvature of the ending point.</p>
       <p>For example:</p>
 <pre>
-with bezier(100, 100, fill=None, stroke=0) as path:
-    curveto(150, 100, 200, 200, 50, 400)
+with bezier(100,100, fill=None, stroke=0) as path:
+    curveto(150,100, 200,200, 50,400)
 </pre>
       <p>Draws the following curve:</p>
-      <p><span class="media"><img height="552" src="../etc/tut/paths-bezier.jpg" width="552"/></span><br/></p>
+      <div class="media" style="margin:0"><img height="364" src="../etc/tut/paths-bezier.png" width="346"/></div>
 
       <p>By default, the path would be filled black and drawn without a stroke color. The <code>fill</code> and <code>stroke</code> arguments override these to give us just the line itself.</p>
 
-      <p>Note that the initial point (100,100) is set as part of the bezier() call, while the destination point is the final pair of args passed to curveto(). Whenever you call lineto(), arcto(), or curveto() it <em>implicitly</em> uses the Bezier's "current pen position" as the starting point for the next line segment. </p>
+      <p>Note that the initial point (100,100) is set as part of the <i>bezier()</i> call, while the destination point is the final pair of args passed to <i>curveto()</i>. Whenever you call any of the "to" commands – <i>lineto()</i>, <i>arcto()</i>, or <i>curveto()</i> – it <em>implicitly</em> uses the Bezier's "current pen position" as the starting point for the next line segment. </p>
 
-      <h2>Bezier math in PlotDevice</h2>
+
+
+    <a id="Manipulating_Paths" name="Manipulating_Paths"></a>
+      <h3>Manipulating Paths</h3>
 
       <p>In PlotDevice, you have access to all the points on a path and to all of their control handles.
       This allows you to transform paths on the fly and even manipulate type (using the
@@ -39,34 +40,25 @@ with bezier(100, 100, fill=None, stroke=0) as path:
       perform a number of math operations on paths (for example finding out what the x and y
       coordinate would be of a point halfway down the path) and unite or intersect different
       paths.</p>
-</div>
 
-    <a id="Manipulating_Paths" name="Manipulating_Paths"></a>
-    <div class="section" style="border-color:transparent;">
-      <h3>Manipulating Paths</h3>
+      <p>Each of the PlotDevice shape commands (<a href="../ref/Primitives.html#arc()">arc()</a>,
+      <a href="../ref/Primitives.html#poly()">poly()</a>, etc.) returns a <a href="../ref/Drawing.html#Bezier">Bezier</a> object. This object is a list-like sequence of <a href="../ref/Drawing.html#Curve">Curve</a> objects that you can iterate over. Using the Curve's properties, you can retrieve or edit the vertices, control handles, and command-types (straight line, curve, move-pen, close) in the path.</p>
 
-      <p>Each of the PlotDevice shape commands (<a href="../ref/Primitives.html#oval()">oval()</a>,
-      <a href="../ref/Primitives.html#rect()">rect()</a>, etc.) returns a <a href="../ref/Drawing.html#Bezier">Bezier</a> object. This object is a list-like sequence of <a href="../ref/Drawing.html#Curve">Curve</a> objects that you can iterate over. Using the Curve's properties, you can retrieve or edit the vertices, control handles, and command-types (straight line, curve, move-pen, close) in the path.</p>
-      <table border="0">
-        <tbody>
-          <tr>
-            <td><img src="../etc/tut/paths-transform1.jpg"/><br/>
-            <br/>
-            This is the path returned from the textpath() command for the character
-            <i>e</i> in the Dolly typeface. Superimposed are its curves' control points.:
-            </td><td><img src="../etc/tut/paths-transform2.jpg"/><br/>
-            <br/>
-            This is the same path, but modified. The location of each curve's (x,y) point is
-            translated downwards.
-          </td></tr><tr>
-            <td>
-<pre>
+      <p>This is the path returned from the <i>textpath()</i> command for the character <i>e</i> in the Dolly typeface. Superimposed are its curves' control points:</p>
+
+      <div class="example">
+        <span><img src="../etc/tut/paths-transform-pre.png"/></span>
+        <pre>
 font("Dolly-Bold", 300)
 path = textpath("e", 200, 200)
 bezier(path)
 </pre>
-            </td><td>
-<pre>
+      </div>
+
+      <p>This is the same path, but modified. The location of each curve's (x,y) point is translated downwards:</p>
+      <div class="example">
+        <span><img src="../etc/tut/paths-transform-post.png"/></span>
+        <pre>
 font("Dolly-Bold", 300)
 path = textpath("e", 200, 200)
 curves = []
@@ -75,49 +67,53 @@ for curve in path:
     curves.append(curve)
 bezier(curves)
 </pre>
-            </td></tr></tbody></table>
-
-      <h2>Looping through all the curves</h2>
+      </div>
 
       <p>As the above example shows, you can easily manipulate a path by looping through all of the
       curves in the path with a <a href="Repetition.html">for-loop</a>, before actually drawing the
-      path.</p>
+      path. Here's a template you can use for writing your own letterform-manipulation code:</p>
 <pre>path = textpath("hello", 100, 100)
 curves = []
 for curve in path:
     # --&gt; Manipulate curves here
     curves.append(curve)
+
+# draw a new bezier (built from our list of Curve objects)
 bezier(curves)
 </pre>
-<pre>with bezier(100, 100, plot=False) as path:
-  curveto(150, 100, 200, 200, 50, 400)
+      <p>Note that our modifications to the <i>Curve</i> objects in the for-loop do <b>not</b> affect the original path. Instead we're saving the modified <i>Curves</i> and using them to generate a brand new <i>Bezier</i> in the final line.</p>
 
-curves = []
-for curve in path:
-    # --&gt; Manipulate curves here
-    curves.append(curve)
-bezier(curves)
-</pre>
+      <h2>Paths are iterable lists of Curves</h2>
 
-      <h2>Manipulating curves</h2>
 
-      <p>Each curve in the path is a <a href="../ref/Drawing.html#Curve">Curve</a>
+
+      <p>Each element in the path is a <a href="../ref/Drawing.html#Curve">Curve</a>
       object with the following attributes:</p>
-      <ul>
-        <li><i>curve.x</i>: the x-coordinate or horizontal location.
-        </li><li><i>curve.y</i>: the y-coordinate or vertical location.<br/>
-        </li><li><i>curve.cmd</i>: the type of line segment, either <code class="kw">LINETO</code>,
-        <code class="kw">CURVETO</code>, <code class="kw">MOVETO</code> or <code class="kw">CLOSE</code>.</li>
-    </ul>
+
+      <div class="def-box">
+        <pre class="manual">curve.<span class="red">x</span>
+curve.<span class="red">y</span></pre>
+        <p>the horizontal and vertical location (as floating point numbers).</p>
+      </div>
+      <div class="def-box">
+        <pre class="manual">curve.<span class="red">cmd</span></pre>
+        <p>the type of line segment, either <code class="kw">LINETO</code>,
+        <code class="kw">CURVETO</code>, <code class="kw">MOVETO</code> or <code class="kw">CLOSE</code></p>
+      </div>
 
     <p>If <code>curve.cmd</code> is <code class="kw">CURVETO</code>, a pair of
-      ‘control handles’ will also be defined:</p>
-    <ul>
-        </li><li><i>curve.ctrl1.x</i>: the x-coordinate of the first control handle of the curve.<br/>
-        </li><li><i>curve.ctrl1.y</i>: the y-coordinate of the first control handle of the curve.<br/>
-        </li><li><i>curve.ctrl2.x</i>: the x-coordinate of the second control handle.
-        </li><li><i>curve.ctrl2.y</i>: the y-coordinate of the second control handle.
-      </li></ul>
+      ‘control handles’ will also be defined. Each control handle is a simple <a href="../ref/Misc.html#Point">Point</a> object with <code>x</code> and <code>y</code> attributes:</p>
+
+      <div class="def-box">
+        <pre class="manual">curve.<span class="red">ctrl1</span>.x
+curve.<span class="red">ctrl1</span>.y</pre>
+        <p>the location of the first control handle</p>
+      </div>
+      <div class="def-box">
+        <pre class="manual">curve.<span class="red">ctrl2</span>.x
+curve.<span class="red">ctrl2</span>.y</pre>
+        <p>the location of the second control handle</p>
+      </div>
 
       <p>The handles are useful for paths that consist of multiple Bezier curves. The <i>ctrl1</i>
       handle controls how the curve connects to the previous point, the <i>ctrl2</i>
@@ -128,18 +124,16 @@ bezier(curves)
     curveto(100, 200, 200, 350, 300, 300)
 print path[1].ctrl1.x
 </pre>
+      <div class="media" style="margin:0;"><img height="256" src="../etc/tut/paths-ctrl1.png" width="280"/></div>
 
-      <p> </p>
-      <p><span class="media"><img height="256" src="../etc/tut/paths-ctrl1.jpg" width="341"/></span></p>
       <h2>Example</h2>
 
       <p>The following example manipulates a text path, letting each curving point <i>droop</i> a
       bit (let’s hope the guys at Underware don’t freak when they see what happened their beautiful
       typeface)! Some more advanced math could create a handwritten variation of the text, or a
       text in which character looks different each time.</p>
-      <p><br/>
-      <span class="media"><img height="87" src="../etc/tut/paths-broken.jpg" width="334"/></span><br/>
-      <br/></p>
+
+      <div class="media" style="margin:0;"><img height="87" src="../etc/tut/paths-broken.jpg" width="334"/></div>
 <pre>font("Dolly-Bold", 100)
 path = textpath("broken", 200, 200)
 
@@ -153,44 +147,55 @@ for curve in path:
 
 bezier(curves)
 </pre>
-    </div>
 
     <a id="Path_Mathematics" name="Path_Mathematics"></a>
-    <div class="section" style="border-color:transparent;">
       <h3>Path Mathematics</h3>
 
-      <p>Each of the curves that makes up a Bezier path has a starting point, an ending point, and control handles. What if we want to know the location of a point on the path that is not one of these endpoints, but somewhere in between? What is the location of the <em>midpoint</em> of an arc for example? A <a href="../ref/Drawing.html#Bezier">Bezier</a> path in PlotDevice has some interesting methods we can use:</p>
-<pre>path.points(amount=100)
-</pre>
-<pre>path.point(t)
-</pre>
-<pre>path.addpoint(t)
-</pre>
+      <p>Each of the <i>Curve</i>s that makes up a <i>Bezier</i> path has a starting point, an ending point, and control handles. What if we want to know the location of a point on the path that is not one of these endpoints, but somewhere in between? What is the location of the <em>midpoint</em> of an arc for example? The <a href="../ref/Drawing.html#Bezier">Bezier</a> object has some interesting methods we can use:</p>
 
-      <p>The <i>path.points()</i> method returns a list containing <i>amount</i> points along the
-      path. In the same way the <i>path.point()</i> method returns a single point at <i>t</i>,
-      which is a number between 0.0 and 1.0 representing the time on the path. The
-      <i>path.addpoint()</i> inserts a new point at <i>t</i> on the path.</p>
+      <div class="def-box">
+        <pre class="manual">path.<span class="red">points</span>(amount=<span class="mi">100</span>) </pre>
+        <p>Returns a list of <a href="../ref/Misc.html#Point">Point</a> objects, with the length of the list determined by <code>amount</code>.</p>
+      </p></div>
+
+
+      <div class="def-box">
+        <pre class="manual">path.<span class="red">point</span>(t) </pre>
+        <p>Returns a single Point located at a relative distance along the bezier. The <i>t</i> argument
+          should be a value between 0.0 and 1.0 representing the "time" on the path.</p>
+      </p></div>
+
+      <div class="def-box">
+        <pre class="manual">path.<span class="red">insert</span>(t) </pre>
+        <p>Inserts a new Point at relative-distance <i>t</i> into the path.</p>
+      </p></div>
+
       <p>A path also has the following properties:</p>
-      <ul>
-        <li><i>path.length</i>: returns the total length of the path.
-        </li><li><i>path.contours</i>: a list of separate contours in the path (these are Bezier objects too).<br/>
-      </li></ul>
+
+      <div class="def-box">
+        <pre class="manual">path.<span class="red">length</span></pre>
+        <p>The total length of the path (e.g., the circumference when the bezier is circular).</p>
+      </p></div>
+
+      <div class="def-box">
+        <pre class="manual">path.<span class="red">contours</span></pre>
+        <p>A list of separate "sub-paths" in the path (each represented as a distinct Bezier object). Sub-paths occur when one or more <code class="kw">CLOSE</code> Curves are found in a path. </p>
+      </p></div>
 
       <p>These speed-optimized commands are extremely useful when calculating orbits of animated
       elements moving down an invisible path in an animation, when creating custom type like the
       <a href="LetterKnitter.html">LetterKnitter</a>, when <a href="Path_Filters.html">growing cilia</a>
       on shapes, and so on.</p>
       <p>A special thanks goes to professor F. De Smedt at the Free University of Brussels for his
-      integration and interpolation algorithms (also check the <a href="http://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm">de Casteljau’s algorithm</a>).<br/></p>
-      <p><br/>
-      <span class="media"><img height="552" src="../etc/tut/paths-t.jpg" width="552"/></span><br/></p>
+      integration and interpolation algorithms (also check the <a href="http://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm">de Casteljau’s algorithm</a>).</p>
+
       <h2>Finding points on a path</h2>
 
-      <p>The example above is an illustration of how points on a path can be found with <i>t</i> (a
-      number between 0.0 and 1.0), which represents time on the path. When <i>t</i> is 0.5, this
-      means halfway the path. 0.0 is the origin of the path, 1.0 the end.</p>
-      <p>The code:</p>
+      <p>The example below is an illustration of how points on a path can be found with <i>t</i> (a
+      number between 0.0 and 1.0), which represents "time" on the path. When <i>t</i> is 0.5, this
+      means halfway down the path. The path's origin is at 0 and its end is at 1.</p>
+      <div class="media" style="margin:0;"><img src="../etc/tut/paths-t.png" width="366", height="345"></div>
+
 <pre>with bezier(100, 100, fill=None, stroke=0) as path:
     curveto(150, 100, 200, 150, 150, 200)
     curveto(50, 250, 200, 350, 400, 400)
@@ -200,7 +205,7 @@ for t in range(11):
     oval(pt.x-2, pt.y-2, 4, 4)
 </pre>
 
-      <p>And it’s even easier like this:</p>
+      <p>And it’s even easier using the path's <i>points()</i> method:</p>
 <pre>for pt in path.points(11):
     oval(pt.x-2, pt.y-2, 4, 4)
 </pre>
@@ -209,7 +214,8 @@ for t in range(11):
       some good <a href="Path_Filters.html">examples</a>.<br/></p>
       <h2>Inserting points on a path</h2>
 
-      <p>Injecting new points in the path is equally easy:</p>
+      <p>Injecting new points into the path is equally easy; just specify the <i>t</i> value where you'd like to create a new vertex. Note that this won't change the shape of the bezier, it just changes the number of elements you'll encounter when iterating through the path:</p>
+      <div class="media" style="margin:0;"><img alt="pathmatics-split" src="../etc/tut/pathmatics-split.jpg"/></div>
 <pre>nofill()
 with bezier(100, 500, stroke=0.5, close=False) as path:
     curveto(200,250, 600,600, 400,300)
@@ -220,43 +226,38 @@ for curve in path:
     oval(curve.x-4, curve.y-4, 8, 8)
 </pre>
 
-      <p><img alt="pathmatics-split" src="../etc/tut/pathmatics-split.jpg"/><br/></p>
-    </div>
+
 
     <a id="Compound_paths" name="Compound_paths"></a>
-    <div class="section" style="border-color:transparent;">
-      <h3>Compound paths</h3>
+      <h3>Compound Paths</h3>
 
       <p>A path is basically made up of <b>segments</b>: two points and the curve in between. A
-      group of segments that has a beginning and an ending, or is closed, is called a sub-path or <b>contour</b>.
+      group of segments that has a beginning and an ending (or is "closed") is called a sub-path or <b>contour</b>.
       Character glyphs are a composite of contours (for example: the inner and outer oval of the
       character ‘o’ are two contours). In typography it’s often useful to get the separate
       contours.</p>
 
 
-
-
-      <table>
-        <td><img src="../etc/tut/pathmatics-contours.png"/></td>
-        <td><pre>
+      <div class="example">
+        <span><img src="../etc/tut/pathmatics-contours.png"/></span>
+        <pre>
 font("Dolly", "bold", 50)
 with pen(2), nofill():
     path = textpath("@#$&amp;!", 10, 100)
     for contour in path.contours:
         stroke(HSV, random(), 1, .8)
         bezier(contour)
-</pre></td>
-      </table>
+</pre>
+      </div>
 
+      <p>But contours aren't limited to type. You can create your own compound paths by calling the shape primitives within a <i>bezier()</i> block. Rather than being drawn independently, drawing operations within the block are added to the bezier.</p>
 
+      <p>When the bezier is finally drawn (at the end of the indented block), all the curves will have the same fill and stroke and the path will be rendered in a single operation. You'll often find it more efficient to group similarly-styled shapes into a bezier rather than drawing each separately.</p>
 
-
-      <p>But contours aren't limited to type. You can create your own compound paths by calling the shape primitives within a bezier() block. Rather than being drawn independently, drawing operations within the block are added to the bezier. When the bezier is finally drawn, all the curves will have the same fill and stroke and the path will be rendered in a single operation. You'll often find it more efficient to group similarly-styled shapes into a bezier rather than drawing each separately.</p>
-
-      <p>Note how when the lines are grouped into a single Bezier, their translucent strokes no longer "overlap":</p>
-<table>
-  <td><img src="../etc/tut/paths-compound1.png"/></td>
-  <td><pre>
+      <p>Note how when the lines are grouped into a single <i>Bezier</i>, their translucent strokes no longer "overlap":</p>
+<div class="example">
+  <span><img src="../etc/tut/paths-compound1.png"/></span>
+  <pre>
 stroke(0, .3) # use a translucent black
 pen(4, cap=ROUND)
 
@@ -270,14 +271,14 @@ translate(0, 140)
 with bezier():
     for i in xrange(12):
         line(0, i*10, i*15, 120)
-</pre></td>
-</table>
+</pre>
+</div>
 
-<p> You can do more than group lines into a path though. In fact, you can call any of the primitives as well as the text() command inside a <code>bezier</code> block and they'll be added as sub-paths rather than drawn to the canvas:</p>
+<p> You can do more than group lines into a path though. In fact, you can call any of the shape-drawing primitives as well as the <i>text()</i> command inside a <i>bezier()</i> block and they'll be added as sub-paths rather than immediately drawn to the canvas:</p>
 
-<table>
-  <td><img src="../etc/tut/paths-compound2.png"/></td>
-  <td><pre>
+<div class="example">
+  <span><img src="../etc/tut/paths-compound2.png"/></span>
+  <pre>
 # capture the bezier into the `path` variable
 with bezier(plot=False) as path:
     for x,y in grid(10,10, 20,20):
@@ -287,8 +288,8 @@ with bezier(plot=False) as path:
 # apply a gradient fill color to the compound path
 fill('green', 'cyan')
 bezier(path)
-</pre></td>
-</table>
+</pre>
+</div>
 
 
 
@@ -300,73 +301,78 @@ bezier(path)
       <p>Paths can be combined using <a href="http://en.wikipedia.org/wiki/Boolean_algebra">boolean</a> set operations. This means you can create a
       new <b>compound path from a combination of other paths</b>. This is useful if you want to
       create a shape from a mixture of other shapes (like ovals and rectangles) and then
-      flatten the group into a single path (with no overlaps). Manipulating a single shape is much easier and faster
-      than manipulating a group of shapes.</p>
-<pre>path1.union(path2, flatness=0.6)
-</pre>
-<pre>path1.intersect(path2, flatness=0.6)
-</pre>
-<pre>path1.difference(path2, flatness=0.6)
-</pre>
+      flatten the group into a single path (with no overlaps). Manipulating a single shape is both faster and easier than manipulating a group of shapes.</p>
 
-      <p>Each of the three methods returns a new <a href="../ref/Drawing.html#Bezier">path</a>
-      combined from the two given paths. The way in which the new path is traced differs for each
-      method, as you can observe below:</p>
-      <p> </p>
-      <table>
-        <tbody>
-          <tr>
-            <td><img alt="paths-compound1" src="../etc/tut/paths-flattened1.jpg"/>
-            </td><td>
-              <p><b>Union</b> traces and merges the two paths, removing any overlapping parts.</p>
-<pre>
+      <p>Each of the following methods returns a new <a href="../ref/Drawing.html#Bezier">Bezier</a> created by
+      merging the two given paths. The manner in which the new path is traced differs for each
+      method:</p>
+
+      <div class="def-box">
+        <pre class="manual">path.<span class="red">union</span>(path2, flatness=<span class="mi">0.6</span>) </pre>
+        <p>Traces and merges the two paths, removing any overlapping parts.</p>
+      </p></div>
+
+      <div class="example">
+        <span><img src="../etc/tut/paths-flat-union.png"/></span>
+        <pre>
 path1 = oval(40, 40, 80, 80, plot=False)
 path2 = oval(90, 40, 80, 80, plot=False)
 compound = path1.union(path2)
 with stroke(0), nofill():
     bezier(compound)
 </pre>
-          </td></tr><tr>
-            <td><img alt="paths-compound2" src="../etc/tut/paths-flattened2.jpg"/>
-            </td><td>
-              <p><b>Intersect</b> traces the overlapping region and removes everything else.</p>
-<pre>
+      </div>
+
+      <div class="def-box">
+        <pre class="manual">path.<span class="red">intersect</span>(path2, flatness=<span class="mi">0.6</span>) </pre>
+        <p>Traces the overlapping region and removes everything else.</p>
+      </p></div>
+      <div class="example">
+        <span><img src="../etc/tut/paths-flat-intersect.png"/></span>
+        <pre>
 path1 = oval(40, 40, 80, 80, plot=False)
 path2 = oval(90, 40, 80, 80, plot=False)
 compound = path1.intersect(path2)
 with stroke(0), nofill():
     bezier(compound)
 </pre>
-              <p> </p>
-          </td></tr><tr>
-            <td><img alt="paths-compound3" src="../etc/tut/paths-flattened3.jpg"/><br/>
-            </td><td>
-              <p><b>Difference</b> subtracts the second shape from the first shape.</p>
-<pre>
+      </div>
+
+      <div class="def-box">
+        <pre class="manual">path.<span class="red">difference</span>(path2, flatness=<span class="mi">0.6</span>) </pre>
+        <p>Subtracts the second shape from the first shape.</p>
+      </p></div>
+      <div class="example">
+        <span><img src="../etc/tut/paths-flat-difference.png"/></span>
+        <pre>
 path1 = oval(40, 40, 80, 80, plot=False)
 path2 = oval(90, 40, 80, 80, plot=False)
 compound = path1.difference(path2)
 with stroke(0), nofill():
     bezier(compound)
 </pre>
-              <p> </p>
-          </td></tr><tr>
-            <td><img alt="paths-compound4b" src="../etc/tut/paths-flattened4b.jpg"/><br/>
-            </td><td>
-              <p> <b>XOR</b> traces non-overlapping regions, excluding any areas that overlap.</p>
-<pre>
+      </div>
+
+      <div class="def-box">
+        <pre class="manual">path.<span class="red">xor</span>(path2, flatness=<span class="mi">0.6</span>) </pre>
+        <p>Traces non-overlapping regions, excluding any areas that overlap.</p>
+      </p></div>
+      <div class="example">
+        <span><img src="../etc/tut/paths-flat-xor.png"/></span>
+        <pre>
 path1 = oval(40, 40, 80, 80, plot=False)
 path2 = oval(90, 40, 80, 80, plot=False)
 compound = path1.xor(path2)
 with stroke(0), fill(0.8):
     bezier(compound)
-</pre> 
-            </td></tr></tbody></table>
+</pre>
+      </div>
 
-      <p> </p>
-      <p>The returned path can be manipulated like any other path in PlotDevice, you can <a href="../ref/Line+Color.html#fill()">fill()</a> and <a href="../ref/Line+Color.html#stroke()">stroke()</a> it, <a href="../ref/Transform.html#rotate()">rotate()</a> it then draw it (or multiple copies of it)
+
+      <p>The returned path can be manipulated like any other <i>Bezier</i>. You can <a href="../ref/Line+Color.html#fill()">fill()</a> and <a href="../ref/Line+Color.html#stroke()">stroke()</a> it, <a href="../ref/Transform.html#rotate()">rotate()</a> it then draw it (or multiple copies of it)
       onscreen by passing it to <a href="../ref/Drawing.html#bezier()">bezier()</a>.</p>
-      <p>One thing to note is that the compound path will not contain any curves, rather, it is
+
+      <p>One thing to note is that the compound path will not contain any curves. Instead, it is
       made up of numerous straight line segments (we say that the path is <b>flattened</b>)<i>.</i>
       Each of the compound methods has an optional <i>flatness</i> parameter. The lower it gets,
       the more line segments will be drawn (and hence the smoother the resulting shape).</p>
@@ -386,14 +392,13 @@ for i in range(50):
 bezier(compound, fill=None, stroke=0)
 </pre> 
 
-      <p><img alt="paths-compound4" src="../etc/tut/paths-flattened4.jpg"/></p>
-      <p> </p>
+      <div class="media" style="margin:0;"><img alt="paths-compound4" src="../etc/tut/paths-flattened4.jpg"/></div>
+
       <h2>Using a Transform object</h2>
 
       <p>It’s easy enough to draw transformed and colored copies of the compound path, but what if
       we want to <b>rotate and scale the individual shapes</b> before flattening them? We can use
-      the <a href="../ref/Transform.html#Transform">Transform</a> object in PlotDevice for this
-      purpose.</p>
+      the <a href="../ref/Transform.html#Transform">Transform</a> object for this purpose.</p>
 <pre># We construct our indivual shape in the top-left corner.
 # This is where corner-mode transforms originate.
 # We'll later on place the eventual compound path
@@ -420,17 +425,22 @@ stroke(0)
 bezier(compound)
 </pre>
 
-      <p><img alt="paths-compound5" src="../etc/tut/paths-flattened5.jpg"/></p>
-    </div><a id="Clamping_paths" name="Clamping_paths"></a>
+      <div class="media" style="margin:0;"><img alt="paths-compound5" src="../etc/tut/paths-flattened5.jpg"/></div>
 
-    <div class="section" style="border-color:transparent;">
-      <h3>Clamping paths</h3>
+    <a id="Clamping_paths" name="Clamping_paths"></a>
+    <h3>Clamping Paths</h3>
 
       <p>Paths can be <b>forced to fit</b> a bounding box. Then as the size of the box
-      is adjusted the path will stretch accordingly. This reverse logic is useful in some
+      is adjusted the path will stretch accordingly. This "reverse" logic is useful in
       situations where a path needs to exactly fit an area and we don’t want to be bothered with
       creating the shape in exactly the right proportions or at the right position.</p>
-<pre>path.fit(x=None, y=None, width=None, height=None, stretch=False)
+
+      <div class="def-box">
+        <pre class="manual">path.<span class="red">fit</span>(x=<span class="bp">None</span>, y=<span class="bp">None</span>, width=<span class="bp">None</span>, height=<span class="bp">None</span>, stretch=<span class="bp">False</span>)</pre>
+        <p>Modifies the path to fit within the specified constraints.</p>
+      </p></div>
+
+<pre>
 </pre>
 
       <p>All of the parameters are optional so you can define any combination of them:</p>
@@ -439,12 +449,11 @@ bezier(compound)
         </li><li><i>y</i>: the path will be positioned at the specified y value.
         </li><li><i>width</i>: the path will be of the specified width.
         </li><li><i>height</i>: the path will be of the specified height.
-        </li><li><i>stretch</i>: if both width and height are defined, either stretch the path or keep
+        </li><li><i>stretch</i>: if both width and height are defined, either stretch the path or preserve
         the aspect ratio.
       </li></ul>
 
-      <p> </p>
-    </div>
+
   </div>
 
 </body></html>

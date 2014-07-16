@@ -1,46 +1,80 @@
-{%- macro nav(sect=None, title=None, root='', siblings=[], tutorial=None) -%}
+{%- macro chapters(tutorial, TUTS) -%}
+{%- set next=TUTS[TUTS.index(tutorial)+1].replace('é','e') if tutorial in TUTS and tutorial!=TUTS[-1] else None -%}
+{%- set prev=TUTS[TUTS.index(tutorial)-1].replace('é','e') if tutorial in TUTS and tutorial!=TUTS[0] else None -%}
+{%- set chapter="%i"%(TUTS.index(tutorial)+1) if tutorial in TUTS else None -%}
+
+<ul class="chapter{% if not chapter %} hidden{%- endif -%}">
+{% if next %}
+<li class="next"><a href="{{next}}.html">{{next.replace('_',' ').replace('Bezier','Bézier')}} &gt;</a></li>
+{%- endif -%}
+<li class="current">{{chapter}}</li>
+{% if prev %}
+<li class="prev"><a href="{{prev}}.html">&lt; {{prev.replace('_',' ').replace('Bezier','Bézier')}}</a></li>
+{%- endif -%}
+</ul>
+{%- endmacro %}
+
+
+
+{%- macro refcats(title, REFS) -%}
+<ul class="siblings">
+{% for sect in REFS %}
+{%- if sect==title -%}
+<li><h3 style="margin:0;">{{sect.replace('+',' &amp; ').replace('Misc','Misc.').replace('ography','e')}}</h3></li>
+{%- else -%}
+<li><a href="{{sect}}.html">{{sect.replace('+',' &amp; ').replace('Misc','Misc.').replace('ography','e')}}</a></li>
+{%- endif -%}
+{%- endfor -%}
+</ul>
+{%- endmacro %}
+
+{%- macro refchaps(title, REFS) -%}
+{%- set next=REFS[REFS.index(title)+1].replace('é','e') if title in REFS and title!=REFS[-1] else None -%}
+{%- set prev=REFS[REFS.index(title)-1].replace('é','e') if title in REFS and title!=REFS[0] else None -%}
+{%- set chapter="%i"%(REFS.index(title)+1) if title in REFS else None -%}
+<ul class="chapter">
+
+{% if next %}
+<li class="next"><a href="{{next}}.html">{{next.replace('+',' &amp; ')}} &gt;</a></li>
+{%- endif -%}
+<li class="current">{{title.replace('+',' &amp; ')}}</li>
+{% if prev %}
+<li class="prev"><a href="{{prev}}.html">&lt; {{prev.replace('+',' &amp; ')}}</a></li>
+{%- endif -%}
+</ul>
+{%- endmacro %}
+
+
+
+{%- macro nav(sect=None, title=None, root='', tutorial=None, siblings=None) -%}
 {%- set section={None:'Manual', 'ref':'Reference', 'tut':"Tutorials", 'lib':"Libraries"}[sect] -%}
 {%- set home=' href="http://plotdevice.io"' if not sect else ' href="%s../manual.html"'%root -%}
-{%- set navclass='link' if sect else 'home' -%}
-{%- set siblings=["Canvas", "Line+Color", "Primitives", "Drawing", "Transform", "Compositing","Typography", "Misc"] if sect=='ref' else None -%}
-{%- set book=['Introduction', 'Environment', 'Primitives', 'Graphics_State', 'Animation', 'Bezier_Paths', 'Color', 'Math', 'Variables', 'Strings', 'Collections', 'Serialization', 'Repetition', 'Commands', 'Classes', 'Libraries', 'Interaction', 'Extending', 'plotdevice'] -%}
-
-{%- set next=book[book.index(tutorial)+1].replace('é','e') if tutorial in book and tutorial!=book[-1] else None -%}
-{%- set prev=book[book.index(tutorial)-1].replace('é','e') if tutorial in book and tutorial!=book[0] else None -%}
-{%- set chapter="Chapter %i"%(book.index(tutorial)+1) if tutorial in book else None -%}
-
-
-<div id="nav" class="{{navclass}}">
+{%- set navclass=' class="%s"'%sect if sect else '' -%}
+<div id="nav"{{navclass}}>
   <h1><a class="noexternal"{{home}}>PlotDevice <span>{{section}}</span></a></h1>
   {%- if title and title=='plotdevice' -%}
   <h3 class="tt">{{title}}</h3>
-  {%- elif title and title in ('Extending', 'Scripting') -%}
-  <h3>{{title}} PlotDevice</h3>
-  {%- elif title and not siblings-%}
+  {%- elif title and sect!='ref' -%}
   <h3>{{title.replace('Bezier','Bézier')}}</h3>
   {%- endif -%}
-  {%- if siblings -%}
-  <ul class="siblings">
-  {% for sect in siblings %}
-  {%- if sect==title -%}
-  <li><h3 style="margin:0;">{{sect.replace('+',' &amp; ').replace('Misc','Misc.').replace('ography','e')}}</h3></li>
-  {%- else -%}
-  <li><a href="{{sect}}.html">{{sect.replace('+',' &amp; ').replace('Misc','Misc.').replace('ography','e')}}</a></li>
+
+  {%- if sect=='ref' -%}
+  {{refcats(title, siblings)}}
+  {{refchaps(title, siblings)}}
   {%- endif -%}
-  {%- endfor -%}
-  </ul>
-  {%- endif -%}
-  {%- if chapter -%}
-  <ul class="chapter">
-  {% if next %}
-  <li><a href="{{next}}.html">{{next.replace('_',' ').replace('Bezier','Bézier')}} &rarr;</a></li>
-  {%- endif -%}
-  <li>{{chapter}}</li>
-  {% if prev %}
-  <li><a href="{{prev}}.html">&larr; {{prev.replace('_',' ').replace('Bezier','Bézier')}}</a></li>
-  {%- endif -%}
-  </ul>
+
+  {%- if tutorial -%}
+  {{chapters(tutorial, siblings)}}
   {%- endif -%}
 
 </div>
+{%- endmacro %}
+
+
+{%- macro footer(tutorial=None, siblings=None) -%}
+{%- if tutorial -%}
+<div id="footer">
+{{chapters(tutorial, siblings)}}
+</div>
+{%- endif -%}
 {%- endmacro %}

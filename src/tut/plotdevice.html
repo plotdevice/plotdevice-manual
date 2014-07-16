@@ -5,23 +5,19 @@
 
 </head><body>
   <div class="article">
-    <h3><a class="anchor" href="#running-scripts" id="running-scripts" name="running-scripts"></a>Running scripts from the command line</h3>
 
-    <p>The PlotDevice application can be controlled by an external command line tool called
-    <code>plotdevice</code>. The command allows you to run scripts, coordinate with an external
-    editor, and export images, movies, or animated gifs.</p>
-    <h2>Installing the tool</h2>
+    <p>The scripts you write in PlotDevice can be run from the terminal using an external command line tool called <code>plotdevice</code>. The command allows you to run scripts, coordinate with an external editor, and export images, movies, or animated gifs.</p>
 
     <p>To install the tool, open the Preferences window and click the Install button:</p>
-    <p><img src="../etc/tut/plotdevice-tool-install.png"/></p>
+    <div class="media"><img src="../etc/tut/plotdevice-tool-install.png" width="481" height="326"/></div>
     <p>Select from the menu of folders in your path and the application will create a symlink from
     there to the script contained in the app bundle. If admin privileges are required to make the
     symlink you will be prompted for your password.</p>
-    <p> <img src="../etc/tut/plotdevice-tool-locate.png"/> </p>
+    <div class="media"> <img src="../etc/tut/plotdevice-tool-locate.png"/> </div>
     <p>After installation you should see the path to the tool and the port number it uses to
     communicate with the application. If this number is red (meaning something else is using that
     port), use the arrows to adjust it until you find an open channel.</p>
-    <p> <img src="../etc/tut/plotdevice-tool-success.png"/> </p>
+    <div class="media"> <img src="../etc/tut/plotdevice-tool-success.png"/> </div>
 
     <p>Note that since this connection involves a symlink, the <code>plotdevice</code> command will
     break if you move the application after installing the tool. If this happens, you will see an

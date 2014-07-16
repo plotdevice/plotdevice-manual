@@ -1,21 +1,20 @@
-
 @import url("type/typography.css");
 
 /**************************************/
 /* TYPOGRAPHY */
 
-body, table, td, input, select, option, textarea { font: 14px Georgia; line-height: 20px;}
-/*body { -webkit-text-size-adjust:100%;}*/
+
+/*body, table, td, input, select, option, textarea { font: 14px/20px "Zapfino";}*/
+body, table, td, input, select, option, textarea { font: 14px/20px "Georgia";}
 
 h1, h3 { font: bold 18px "Cabin"; }
 h3 { margin-top: 15px; }
-h2 { font: bold 14px "Cabin"; line-height: 1.5em; margin-top: 15px; }
+h2 { font: bold 14px/22px "Cabin"; margin-top: 15px; }
 pre { font-size: 12px; font-family:"Courier Prime"; line-height: 19px; overflow:auto;}
 code { font-family:"Courier Prime"; letter-spacing:0; line-height: 16px;}
 code.box{ padding:0 4px;}
-p code { font-size:13px;}
+p code, li code { font-size:15px;}
 .message { font: bold 14px "Cabin"; line-height: 18px; }
-div#title h1 { line-height: 0.8em; margin: 0; padding: 0; font-size: 50px; letter-spacing: -3px; }
 
 /***************************************/
 /* GLOBAL STYLING */
@@ -73,7 +72,7 @@ code.box { background:#edede6; color:#665; border: 1px solid #d3d3ba;}
 .s{    color: #555;}
 .grey{ color: #8a8a69;}
 
-
+pre .s{ font-weight:bold;}
 /* pygments */
 
 /* Keyword.Constant */       .kc { color: #366789; /*font-weight: bold*/ }
@@ -181,11 +180,11 @@ code.box { background:#edede6; color:#665; border: 1px solid #d3d3ba;}
 .double-dagger { font-style:italic; position:relative;}
 .double-dagger:after{
   content:"‡";
+  font:italic 24px/24px Georgia;
   position:absolute;
   left:-20px;
   top:1px;
   color:#bb4200;
-  font-size:24px;
 }
 
 /***************************************/
@@ -198,342 +197,10 @@ a[href^="http"] {
 }
 a.noexternal { background-image:none !important; padding-right: 0; }
 
-/***************************************/
-/* TABLE OF CONTENTS */
-
-/* row layout */
-.toc.ref{ margin-top:40px; margin-bottom:0;}
-.toc.lib{ padding-bottom:20px; }
-.toc.ref .section{ min-height:180px; }
-.toc.lib .section{ min-height:150px; }
-.toc.tut .section{ min-height:150px; }
-
-/* basic styles for each section's row */
-.toc{
-  overflow:auto;
-  padding-bottom:20px;
-  border-top:1px solid #666;
-  font-size:13px;
-  position:relative;
-}
-
-.toc h1{
-  position:absolute;
-  width:120px;
-  margin-left:14px;
-}
-
-.toc.tut h1{
-  height:100px;
-}
-
-.toc .sections{
-  padding-left:215px;
-  min-width:300px;
-  overflow:auto;
-}
-
-
-.toc .section{
-  float:left;
-  width:135px;
-  /*margin-right:15px;*/
-  position:relative;
-}
-
-.toc .section a{
-  font-style:italic;
-}
-
-.toc .section a[href="tut/plotdevice.html"]{
-  font-family:"Courier Prime";
-  font-style:normal;
-}
-
-.article .section h3{
-  margin:12px 0;
-}
-
-.ref.article .section h3{
-  font:bold 18px "Courier Prime";
-}
-
-
-.ref.article .section h3 span.args{
-  font-weight:normal;
-  /*font-family:Courier;*/
-  color:#aaa;
-}
-
-
-
-
-.toc .section h2{
-  padding-top:1px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  font-size:12px;
-  font-weight:700;
-  color:#888;
-}
-
-.toc .section h2 a{
-  color:#888;
-  font-style:normal;
-}
-
-.toc .section h2 a:hover{
-  color:black;
-  text-decoration:none;
-}
-.toc .section ul hr{
-  border:0;
-  margin:2px 0 1px 0;
-  max-width:120px;
-  background:#8bc;
-  height:1px;
-}
-
-.toc .section ul li{
-  max-width:130px;
-}
-
-
-/* draw slashes between reference links on the same line */
-.toc .section ul li a+a:before{
-  content:" / ";
-  color:#589;
-}
-
-
-/* overlapping command/type/compat-specific ul's in each section column */
-.toc .section ul{
-  list-style-type:none;
-  padding:0;
-  float:left;
-}
-
-.toc .section ul.types li{
-  max-height:18px;
-}
-.toc .section ul.types a{
-  font-family:"Courier Prime";
-  font-style:normal;
-}
-
-/*.toc .section.utility ul.types li:last-child a,*/
-.toc .section.entropy ul.types li:last-child a,
-.toc .section.canvas ul.types li:last-child a{
-  text-transform:lowercase;
-  font:italic 13px Georgia;
-}
-
-.toc .section ul.compat a{
-  color:#1f96b5;
-}
-
-.toc .section ul.commands{
-  padding-left:3px;
-  margin-left:-3px;
-}
-
-.toc li.cmm,
-.toc li.cm{
-  position:relative;
-}
-
-.toc li.cm:before{
-  content:"·";
-  position:absolute;
-  left:-11px;
-  width:10px;
-  text-align:center;
-  font-weight:900;
-  color:#aaa;
-}
-.toc li.cmm:before{
-  content:"°";
-  position:absolute;
-  margin-top:3px;
-  left:-11px;
-  width:10px;
-  text-align:center;
-  color:#999;
-}
-
-.toc .section ul li.others{
-  position:relative;
-  font-style:italic;
-  color:#666;
-}
-
-.toc .section ul li.others:hover{
-  text-decoration:underline;
-  cursor:pointer;
-}
-
-.toc .section ul.commands:hover li.others:before{
-  content:"+";
-  position:absolute;
-  left:-10px;
-  top:2px;
-}
-
-.toc .section ul.compat:hover li.others:before{
-  content:"×";
-  position:absolute;
-  left:-11px;
-  top:2px;
-}
-
-body.types .toc .section ul.commands,
-body.compat .toc .section ul.commands,
-body.commands .toc .section ul.types,
-body.compat .toc .section ul.types,
-body .toc .section ul.compat{
-  position:absolute;
-  pointer-events:none;
-  opacity:0;
-  -webkit-transition: opacity .333s;
-  background:white;
-}
-
-
-body.commands .toc ul.commands,
-body.types .toc ul.types,
-body.compat .toc ul.compat{
-  opacity:1;
-  pointer-events:auto;
-  -webkit-transition: opacity .333s;
-  background:white;
-}
-
-
-/* the Commands/Types/Etc. toggle */
-.toc ul.filter{
-  position:absolute;
-  left:14px;
-  margin-top:30px;
-  font:12px/19px "Cabin";
-  color:#888;
-  padding-left:0;
-  list-style:none;
-  width:200px;
-}
-
-.toc .filter li{
-  color:#666;
-  display:inline;
-}
-
-.toc .filter li+li{
-  margin-left:9px;
-  position:relative;
-}
-
-.toc .filter li+li:before{
-  content:" / ";
-  color:#589;
-  position:absolute;
-  left:-9px;
-  font-weight:normal;
-}
-
-.toc .filter li:hover{
-  text-decoration:underline;
-  cursor:pointer;
-  color:black;
-}
-
-.toc .filter li.active{
-  font-weight:bold;
-  pointer-events:none;
-  color:#333;
-}
-
-.toc .filter li.active:hover{
-  text-decoration:none;
-}
-
-
-.toc .sidebar{
- font:italic 12px/18px Georgia !important;
-  position:absolute;
-  top:63px;
-  margin:0 0 0 14px;
-  padding:0;
-  width:180px;
-  color:#888;
-}
-
-.toc .sidebar div{
-  position:absolute;
-  opacity:0;
-  pointer-events:none;
-  -webkit-transition:opacity .333s;
-}
-
-.toc .sidebar p{
-  margin:0 0 8px 0;
-  width:160px;
-}
-
-.toc .sidebar a{
-  color:#555;
-}
-
-body.commands .toc .sidebar .commands,
-body.types .toc .sidebar .types,
-body.compat .toc .sidebar .compat{
-  opacity:1;
-  pointer-events:auto;
-}
-
-
-/* acknowledgements */
-.toc.footer{
-  color:#888;
-  font: 14px/20px "Cabin";
-  padding:7px 0 0 215px;
-  border:0;
-}
-
-.toc.footer a{
-  color:#888;
-  -webkit-transition:color .2s;
-}
-
-.toc.footer:hover a{
-  color:#555;
-}
-
-
-/*
-.toc .section ul li,
-.toc .section ul hr{
-  display:none;
-}
-
-.toc .section ul hr ~li{
-  display:block;
-}
-.toc .section ul li em{
-  color:#589;
-}
-
-.toc .section ul li a[href='#']{
-  color:#29bae0;
-}
-.toc .section ul li a[href='#'],
-.toc .section ul li a[href='#'] ~ hr{
-  display:none;
-}
-*/
-
-
 
 /***************************************/
 /* NAV BAR */
+#footer{ display:none; }
 #nav{
   position:fixed;
   width:100%;
@@ -560,8 +227,8 @@ body.compat .toc .sidebar .compat{
 #nav h1 a:hover{ text-decoration:none; }
 
 /* the backlink to the ToC (from a Section page) */
-#nav.link h1 a{ color:inherit; }
-#nav.link h1:after{
+#nav h1 a{ color:inherit; }
+#nav h1:after{
   content:"Manual";
   position:absolute;
   pointer-events:none;
@@ -570,17 +237,12 @@ body.compat .toc .sidebar .compat{
   z-index:10;
   -webkit-transition:opacity .333s;
 }
-#nav.link{color:#555; }
-#nav.link h1{-webkit-transition:color .333s;}
-#nav.link h1 span{-webkit-transition:opacity .333s;}
-#nav.link h1:hover{color:black;}
-#nav.link h1:hover span{ opacity:0; }
-#nav.link h1:hover:after{ opacity:1; color:black; }
-
-/* the backlink to the homepage (from the ToC) */
-#nav.home h1 a{ color:black; }
-#nav.home h1 span{opacity:1; -webkit-transition:opacity .333s;}
-#nav.home h1:hover span{ opacity:0; }
+#nav{color:#555; }
+#nav h1{-webkit-transition:color .333s;}
+#nav h1 span{-webkit-transition:opacity .333s;}
+#nav h1:hover{color:black;}
+#nav h1:hover span{ opacity:0; }
+#nav h1:hover:after{ opacity:1; color:black; }
 
 /* the active section in the refs siblings-bar or just the orange page title text */
 #nav h3{
@@ -601,17 +263,17 @@ body.compat .toc .sidebar .compat{
   padding-left:0;
 }
 
-#nav.link ul.siblings li{
+#nav ul.siblings li{
   float:left;
   margin:9px 9px 9px 0;
 }
 
-#nav.link ul.siblings li a{
+#nav ul.siblings li a{
   font-weight:normal;
 }
 
 /* prev/next controls in the tutorial nav */
-#nav.link ul.chapter{
+#nav ul.chapter{
   /*background:red;*/
   position:absolute;
   list-style:none;
@@ -620,22 +282,36 @@ body.compat .toc .sidebar .compat{
   overflow:auto;
 }
 
-#nav.link ul.chapter li{
+#nav ul.chapter.hidden{
+  display:none;
+}
+
+#nav ul.chapter li{
   float:right;
   margin:9px 0 9px 6px;
 }
 
-#nav.link ul.chapter li.prev a{
-  padding-left:100px;
+#nav ul.chapter li.current:before{
+  content:"Chapter ";
 }
 
-#nav.link li{
+#nav ul.chapter li.prev a{
+  padding-left:20px; /* a bit more hover area */
+}
+
+#nav.ref ul.chapter{
+  display:none; /* only displayed on small-screens */
+}
+
+
+
+#nav li{
   font: 18px "Cabin";
   margin-bottom:1px;
 }
-#nav.link li a{ color:#bbb; font-weight:bold;}
-#nav.link .chapter li a{ color:#bbb; font-weight:normal;}
-#nav.link li a:hover{
+#nav li a{ color:#bbb; font-weight:bold;}
+#nav .chapter li a{ color:#bbb; font-weight:normal;}
+#nav li a:hover{
   text-decoration:none;
   color:#bb4200;
 }
@@ -655,7 +331,10 @@ body.compat .toc .sidebar .compat{
 }
 
 .article a[name]{
-  display: block; position: relative; top: -45px; visibility: hidden;
+  display: block;
+  position: relative;
+  top: -45px;
+  visibility: hidden;
 }
 
 
@@ -706,7 +385,7 @@ body.compat .toc .sidebar .compat{
   font:36px/36px "Monaco";
   position:absolute;
   width:42px;
-  height:32px;
+  height:36px;
   color:#bb4200;
 }
 
@@ -714,40 +393,103 @@ body.compat .toc .sidebar .compat{
   position:relative;
 }
 
-.article .section p{
-  max-width:530px;
+.article{
+  font:17px/25px "chaparral-pro", "Alegreya";
+  -webkit-font-feature-settings:"onum" 1;
 }
 
-.article .definition h2{
-  color:#666;
+.article.tut{
+  margin-top:80px;
 }
 
-/*.article .definition .row{
-  margin-bottom:13px;
+.article h2{
+  color:#555;
 }
 
-.article .definition .row pre{
-  margin-top:0;
-}*/
+.article.tut h2{
+  font: bold 14px/14px "Cabin";
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin:44px 0 11px 0;
+}
+
+.article.tut h2 code{
+  text-transform:none;
+}
+
+.article.tut h3{
+  font: bold 24px/28px "Cabin";
+  margin:44px 0 11px 0;
+}
+
+.article.ref h3{
+  font:bold 18px "Courier Prime";
+  margin:12px 0;
+}
 
 
-.article .definition .consts{
+.article.ref .section h3 span.args{
+  font-weight:normal;
+  /*font-family:Courier;*/
+  color:#aaa;
+}
+
+
+.article.tut ul{
+  padding-left:30px;
+  list-style-type:none;
+}
+
+.article.tut ul li:before{
+  content:"• ";
+  /*margin:0 4px 0 12px;*/
+  position:absolute;
+  left:14px;
+}
+
+.article .example{
+  overflow:auto;
+  margin-bottom:12px;
+}
+.article .example > pre{
+  display:block;
+  margin:0;
+}
+.article .example > span{
+  float:left;
+}
+
+.article .example > span img{
+  /*float:left;*/
+  margin:0 10px 0 0;
+}
+.article .definition .example > span img{
+  border: 1px solid #888;
+}
+
+
+
+
+.article .def-box{
   background:#f5f5f3;
   border:1px solid #d3d3ba;
   margin:0 0 14px 0;
 }
 
-.article .definition .consts pre{
+.article .def-box pre{
   margin:0;
   border:0;
   border-bottom:1px solid #d3d3ba;
 }
-.article .definition .consts p{
+.article .def-box p{
   margin:4px 5px 2px 5px;
   color:#3e3e06;
   font-style:italic;
 }
 
+div.media{
+  margin-left:-58px;
+}
 
 .article .definition .blend-modes{
   overflow:hidden;
@@ -818,54 +560,294 @@ body.compat .toc .sidebar .compat{
 */
 
 
+/*@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape){*/
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px)  {
+
+  #nav{
+    min-width:768px;
+    max-width:823px;
+  }
+
+  #nav ul.chapter {
+    position:static;
+    width:auto;
+    padding-right:10px;
+  }
+
+  #nav ul.siblings li a{
+    font-weight:normal;
+    font-size:17px;
+  }
+
+  .article a:target + a + .section:before,
+  .article a:target + .section:before{
+    top:1px;
+    font:36px/36px "Menlo";
+  }
+
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait){
+  #nav ul.siblings li a{
+    font-weight:normal;
+    font-size:15px;
+  }
+  div.media{
+    position:relative;
+    overflow:auto;
+  }
+}
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px) {
-  body, html, pre{
-    -webkit-text-size-adjust: 220%;
-  }
 
-  body.commands,
-  body.types,
-  body.compat{
-    -webkit-text-size-adjust: 100%;
-  }
+  /* make things a reasonable size (in tandem with the meta.viewport settings */
+  body, html, pre{ -webkit-text-size-adjust: 100%; }
 
+  /* Nav: Backlink & page title */
   #nav{
     position:relative;
     display:block;
     min-width:inherit;
     overflow:auto;
+    margin:auto;
   }
-  #nav.link ul.chapter{
+
+  #nav h1{
+    float:left;
+    width:auto;
+    margin:8px 0 ;
+  }
+
+  #nav.tut{
+    overflow:visible;
+  }
+
+  #nav h3{
+    float:right;
+    margin:8px 0;
+  }
+
+  #nav.ref .siblings{
+    display:none;
+  }
+
+  #nav h1:hover span{ opacity:1; }
+  #nav h1:hover:after{ opacity:0;}
+
+
+  #nav.ref ul.chapter{
+    display:block; /* prev-next for ref sections */
+  }
+
+  /* Nav: Tutorial chapters */
+  #nav ul.chapter{
+    background:#c0c0c0;
+    height:36px;
     position:relative;
+    top:auto;
     left:auto;
     width:auto;
-    float:left;
     clear:both;
+    overflow:visible;
+    margin:auto;
+    padding:0 10px;
   }
-  .article{
-    margin-left:20px;
-    /*max-width:800px;*/
+
+  #nav ul.chapter.hidden{
+    height:0;
+    display:block;
+  }
+
+
+
+  #nav ul.chapter li a{
+    text-transform:uppercase;
+    font-size:14px;
+    font-weight:bold;
+    color:white;
+  }
+
+  #nav ul.chapter li.prev a{
+    padding:0;
+
+  }
+  #nav ul.chapter li{
+    margin:6px 0 0 0;
+  }
+
+  #nav ul.chapter li:last-child{
+    float:left;
+  }
+  #nav ul.chapter li.current{
+    /*float:none;*/
+    position:absolute;
+    top:-30px;
+    right:0;
+    margin:0;
+  }
+
+  #nav.tut ul.chapter li.current{ display:none; }
+
+  #nav.tut ul.chapter li.current:before{
+    content:"§";
+  }
+  #nav.ref ul.chapter li.current:before{
+    content:none;
+  }
+  #nav ul.chapter li.current{
+    color:#bb4200;
+    font-weight:bold;
+  }
+
+  /* Nav: Reference sections */
+  #nav ul.siblings{
+    float:left;
+    list-style:none;
+    padding-left:0;
+    margin:10px 40px 20px 0;
+  }
+
+  #nav ul.siblings li{
+    float:none;
+    margin:9px 9px 9px 0;
+  }
+
+  #nav ul.siblings li a{
+    font-weight:normal;
+  }
+
+  #nav ul.siblings li h3{
+    float:none;
+    font-weight:bold;
+  }
+
+
+
+
+  /* Article layout */
+
+  .article.tut{
+    margin-top:30px;
+  }
+  .article.ref{
+   margin-top:30px;
   }
 
   .article{
+    margin:0 6px;
     width:auto;
   }
+
+  .article a[name]{
+    display: block;
+    position: relative;
+    top: 0;
+  }
   .article .section .row p{
+    max-width:none;
   }
 
   .section:before{
     display:none;
   }
-/*
-  body, table, td, input, select, option, textarea { font: 32px/42px Georgia;}
-  h1, h3 { font: bold 48px "Cabin"; }
-  h3 { margin-top: 36px; }
-  h2 { font: bold 32px/42px "Cabin"; margin-top: 15px; }
-  pre { font-size: 32px/38px; font-family:"Courier Prime"; overflow:auto;}
-  code { font-family:"Courier Prime"; letter-spacing:0; line-height: 42px;}
-  code.box{ padding:0 4px;}
-  p code { font-size:32px;}
-  .message { font: bold 32px/42px "Cabin"; }
-  div#title h1 { line-height: 0.8em; margin: 0; padding: 0; font-size: 50px; letter-spacing: -3px; }
-*/}
+
+  .article.ref > div:before{
+    padding:10px 0 8px 0;
+    width:auto;
+    display:block;
+    border-top:1px solid #666;
+    border-bottom:0;
+    position:relative;
+    left:auto;
+    color:#bb4200;
+  }
+
+  .article.ref .blend-modes{
+    /*overflow:auto;*/
+    max-width:100%;
+  }
+
+
+  /* fit full-width images in the tutorials */
+  div.media{
+    position:relative;
+    overflow:auto;
+    margin:0;
+  }
+
+  div.media img{
+    max-width:100%;
+    height:auto;
+  }
+
+  /* fit side-by-side examples in ref & tut*/
+  .article .example > span{
+    max-width:36%;
+    margin-right:8px;
+  }
+  .article .example > span img{
+    max-width:100%;
+    height:auto;
+  }
+
+   /* prev/next controls in the tutorial nav */
+   #footer{
+     display:block;
+   }
+
+   #footer ul.chapter{
+     list-style:none;
+     width:auto;
+     margin:0;
+     padding:0;
+     overflow:auto;
+     border-bottom:1px solid #666;
+     margin-bottom:40px;
+   }
+
+   #footer ul.chapter.hidden{
+     display:none;
+   }
+
+   #footer ul.chapter li{
+     float:right;
+     margin:9px 0 9px 6px;
+   }
+
+   #footer ul.chapter li a{
+     font: 16px "Cabin";
+  }
+
+   #footer ul.chapter li.current:before{
+     content:"Chapter ";
+   }
+
+
+   #footer ul.chapter li.current{
+     display:none;
+   }
+   #footer ul.chapter li.prev{
+     float:left;
+   }
+
+   .double-dagger {
+    padding-left:36px;
+   }
+   .double-dagger:after{
+     left:0px;
+   }
+
+
+  .article p{ font:16px/23px "chaparral-pro", "Alegreya"; }
+  .article h1, .article h3 { font: bold 18px "Cabin"; }
+  .article h3 { margin: 30px 0 0 0; }
+  .article h2 { font: bold 14px/20px "Cabin"; margin: 30px 0 0 0; }
+  .article pre { font-size: 12px; font-family:"Courier Prime"; line-height: 19px; overflow:auto;}
+  .article code { font-family:"Courier Prime"; letter-spacing:0; line-height: 16px;}
+  .article code.box{ padding:0 4px;}
+  .article p code { font-size:13px;}
+  .article .message { font: bold 14px "Cabin"; line-height: 18px; }
+
+
+  .article.tut h2 { font: bold 14px/22px "Cabin"; }
+}

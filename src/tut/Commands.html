@@ -5,48 +5,45 @@
 
 </head><body>
   <div class="article">
-    <p>Aside from the predefined commands in the PlotDevice <a href="../manual.html">reference</a> you
+    <p>Aside from the predefined commands in the PlotDevice <a href="../manual.html#ref">reference</a> you
     can also define your own custom commands. Creating a command is a design strategy in which you
     re-use certain actions or pieces of your script.</p>
-    <p><span class="media" style="margin-left:-58px;"><img alt="" height="536" src="../etc/tut/commands1.png" width="753"/></span></p>
+    <p><div class="media"><img alt="" height="536" src="../etc/tut/commands1.png" width="755"/></div></p>
+
     <p>For example, in the above example all the actions to draw a flower (ten red-pinkish ovals
-    connected by lines) are grouped in a handy flower() command. This command can then be called
-    one time, a hundred times, or a thousand times. We only need to define the actions to draw a
-    flower <strong>once</strong>. If we want to modify the way a flower is drawn, we only need to
-    modify the code <strong>at one location</strong>.</p>
-    <p>Defining your own commands is like composing your own <strong>toolbox</strong>, with a set
-    of tools that you can apply to your creations over and over.<br/></p>
+    connected by lines) are grouped in a handy <i>flower()</i> command.  The "recipe" for drawing a flower only need to be defined <em>once</em>, then we can use it to create one flower or an arbitrary number of them. It also means that we can modify the code in a <em>single location</em> and have its affects apply to the entire script.</p>
+
+    <p>Defining your own commands is like loading up a <strong>toolbox</strong> with the perfect set of tools for the project at hand.</p>
+
+
     <h2>Command definition</h2>
 
-    <p>As a simple example I’ve defined a <em>header()</em> command that draws some text with some preset styling attributes:</p>
+    <p>As a simple example let's define a <em>header()</em> command that draws a piece of text and applies some standardized styling attributes:</p>
 <pre>def header(txt, x, y):
     fill("red")
-    font("Dolly", "bold", 18)
+    font("Helvetica", "bold", 12)
     text(txt, x, y)
 </pre>
 
     <p>The definition of a command starts with <strong>def</strong>, followed by the name of the
-    command (pick something short and relevant), and a list of <em>parameters</em>. Don’t forget the colon at
-    the end of the line - this tells PlotDevice that the intented statements below are what the
+    command and a (parenthesized) list of <em>parameters</em>. Don’t forget the colon at
+    the end of the line – this tells PlotDevice that the intented statements below are what the
     command does.</p>
 
     <p>Though you can name commands any way you want, Python has some conventions that will make it easier for others to understand your code:</p>
     <ul>
       <li>Use a simple and relevant word that describes what the command does.
-      </li><li>Use <span class="inline_code">lower_case_with_underscores</span> (camelCase is <em>so</em> Java...).
-      </li><li>Commands that return True or False start with <span class="inline_code">is</span>:
-      <span class="inline_code">is_white</span>, <span class="inline_code">is_alive</span>,
-      <span class="inline_code">is_big</span>, ...
-      </li><li>Commands that <em>change and return</em> a value use a verb: <span class="inline_code">adjust_contrast</span>, <span class="inline_code">strip_tags</span>, ...<br/>
+      </li><li>Use lower case and separate words <code>with_underscores</code> (<code>camelCase</code> is <em>so</em> Java...).
+      </li><li>Commands that return <code class="kw">True</code> or <code class="kw">False</code> should start with "<code>is</code>":<br/><code>is_white</code>, <code>is_alive</code>,
+      <code>is_big</code>, etc.
+      </li><li>Commands that <em>change and return</em> a value should use a verb:<br/>
+      <code>adjust_contrast</code>, <code>strip_tags</code>, <code>reticulate_splines</code>, etc.
     </li></ul>
 
     <h2>Parameters</h2>
 
-    <p>Command definitions are not executed by themselves: you are instead teaching PlotDevice
-    something – for example, what a "header" is. Command definitions need to be <em>called</em> from
-    somewhere else in the script. This is where parameters come in: notice how the definition of
-    <em>header()</em> uses a <code>txt</code>, an <code>x</code>, and a <code>y</code> parameter. Theses are
-    used like <a href="Variables.html">variables</a> inside the definition. When calling the command, you supply real values for <code>txt</code>, <code>x</code> and <code>y</code>.</p>
+    <p>Command definitions don't "do" anything in and of themselves. Instead, you're <em>teaching</em> PlotDevice something – for example, what a "header" is. The commands you define need to be <em>called</em> from somewhere else in the script. This is where parameters come in: notice how the definition of <em>header()</em> uses a <code>txt</code>, an <code>x</code>, and a <code>y</code> parameter. Theses are used like <a href="Variables.html">variables</a> inside the definition.</p>
+    <p>When calling the command, you supply real values for <code>txt</code>, <code>x</code> and <code>y</code>:</p>
 <pre>header("Templating", 20, 40)
 </pre>
 
@@ -54,90 +51,80 @@
     <em>txt</em> being ‘Templating’, <em>x</em> being 20, and <em>y</em> being 40.</p>
     <h2>Return value</h2>
 
-    <p>You may have noticed that some commands in PlotDevice have a return value that you can store in
-    a variable. For example, <a href="../ref/Misc.html#measure()">measure(<span class="grey">txt, width</span>)</a> returns the height of a paragraph
-    displaying <em>txt</em> typeset with a column size of <em>width</em>.</p>
+    <p>You may have noticed that some commands in PlotDevice "return" a value that you can store in a variable. For example, <a href="../ref/Misc.html#measure()">measure(<span class="grey">txt, width</span>)</a> returns the dimensions of a paragraph displaying <em>txt</em> typeset with a column size of <em>width</em>.</p>
 <pre>def paragraph(txt, x, y, w):
     fill(0.2)
-    font("Dolly", 14)
+    font("Baskerville", 16)
     text(txt, x, y, w)
-    return measure(txt, w)
+    col_w, col_h = measure(txt, w)
+    return col_h
 </pre>
 
-    <p>The <strong>return</strong> statement inside a definition returns a value. This can be any
-    number of things, a number, a <a href="Strings.html">string</a>, a <a href="Collections.html">list</a>, or even an <a href="Classes.html">object</a>. The return statement always comes last inside the definition.</p>
+    <p>The <strong>return</strong> statement selects the value that will be passed back to the caller. This can be any datatype: a number, a <a href="Strings.html">string</a>, a <a href="Collections.html">list</a>, or even an <a href="Classes.html">object</a>. The return statement also signals immediate end of the command. It should almost always be the last line in a definition (since anything below it will never be reached).</p>
+
     <h2>Example</h2>
 
-    <p>In the example below, we put two identical scripts next to each other, one using plain
-    top-to-bottom scripting and one using templates. The first script is actually shorter, but
-    imagine if it were drawing not two but twenty paragraphs. Then you'd have to define fonts and
-    colors over and over again, and probably end up feeling like a robot trying to explain
-    something to another robot.</p>
+    <p>To see how moving repeated operations into their own commands can simplify your code, consider the (somewhat contrived) example of laying out boxes of differently-styled text. Let's first look at how you would do this the "naïve" way, using top-to-bottom logic and (re)defining the styles before every line of text is drawn:</p>
 
-    <p>Moreover, changing the header color or the horizontal margin is much easier in the second
-    script since we only have to do it once: by changing the code in the <em>header()</em>
-    definition or by changing the value of the <em>x</em> variable.</p>
-    <p> 
-    <table border="0">
-      <tbody>
-        <tr>
-          <td><img alt="" height="250" src="../etc/tut/templating2.jpg" width="250"/><br/>
-          <br/>
-          The script with plain top-to-bottom scripting. Notice its repetitiveness.
-          </td><td><img alt="" height="250" src="../etc/tut/templating3.jpg" width="250"/><br/>
-          <br/>
-          The same script with templates.
-        </td></tr><tr>
-          <td>
-<pre>
-font("Dolly", 14)
-fill(1, 0, 0.25)
-font("Dolly", "bold", 14)
+    <div class="example">
+      <span><img height="260" src="../etc/tut/templating2.png" width="210"/></span>
+      <pre>
+x, y = 20, 30
+w = 200
+
+fill("#c02")
+font("Helvetica", "bold", 12)
 txt = "Without templating"
-text(txt, 20, 30, 200)
+t = text(txt.upper(), x, y)
+y += measure(t).height + 4
 
 fill(0.2)
-font("Dolly", "roman", 14)
-txt = "Without templating, ..."
-text(txt, 20, 50, 200)
+font("Baskerville", "regular", 16)
+txt = "Styling and drawing logic..."
+t = text(txt, x, y, w)
+y += measure(t).height + 10
 
-fill(1, 0, 0.25)
-font("Dolly", "bold", 14)
+fill("#c02")
+font("Helvetica", "bold", 12)
 txt = "Messy"
-text(txt, 20, 120, 200)
+t = text(txt.upper(), x, y)
+y += measure(t).height + 4
 
 fill(0.2)
-font("Dolly", "roman", 14)
-txt = "This makes your script..."
-text(txt, 20, 140, 200)
-</pre>
-          </td><td>
-<pre>
+font("Baskerville", "regular", 16)
+txt = "This makes your script harder to..."
+text(txt, x, y, w)</pre>
+    </div>
+
+
+    <p>That's a lot of repetition even with only four text blocks, but imagine if it were drawing not two but twenty paragraphs. Then you'd have to define fonts and colors over and over again, and probably end up feeling like a robot trying to explain something to another robot.</p>
+
+
+    <p>The nicer alternative is to "factor out" the repetitive bits into a command to draw headings and another to draw paragraphs. We can define these commands at the top of the script and then use them below:</p>
+    <div class="example">
+      <span><img height="260" src="../etc/tut/templating3.png" width="210"/></span>
+
+      <pre>
 def header(txt, x, y):
-    fill(1, 0, 0.25)
-    font("Dolly", "bold", 14)
-    text(txt, x, y)
-    return measure(txt).height
+    font("Helvetica", "bold", 12)
+    t = text(txt.upper(), x, y, fill='#c02')
+    return measure(t).height + 4
 
-def paragraph(txt, x, y, w):
-    fill(0.2)
-    font("Dolly", "roman", 14)
-    text(txt, x, y, w)
-    return measure(txt).height
+def paragraph(txt, x, y, w=200):
+    font("Baskerville", "regular", 16)
+    t = text(txt, x, y, w, fill=.2)
+    return measure(t).height + 10
 
-x, y, w = 20, 30, 200
+x, y = 20, 30
 
-title = "With templating"
-txt = "With templating, ..."
-y += header(title, x, y)
-y += paragraph(txt, x, y, w) + 10
+y += header("With templating", x, y)
+y += paragraph("The mechanics of setting...", x, y)
 
-title = "Clean"
-txt = "This keeps your script..."
-y += header(title, x, y)
-paragraph(txt, x, y, w)
-</pre>
-          </td></tr></tbody></table></p>
+y += header("Clean", x, y)
+paragraph("This makes your script easier...", x, y)</pre>
+    </div>
+
+    <p>In addition to shortening the code a bit, you'll notice that the "flow" of our script now consists entirely of defining the headers and paragraphs we want to draw – all the styling has been abstracted away by the commands. This makes it easier to figure out what's going on when you return to a script you wrote weeks or months ago. It also simplifies the process of tweaking the style since you can change the color or font of <em>all</em> the headings by changing a single line in <i>header()</i> rather than requiring an error-prone search-and-replace across the whole script.</p>
 
   </div>
 

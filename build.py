@@ -21,11 +21,15 @@ from pprint import pprint
 from subprocess import Popen, PIPE
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
-from pygments.lexers import PythonLexer
-from pygments.token import Punctuation, Keyword, Name, Number, Text
+from pygments.lexers import PythonLexer, PythonConsoleLexer
+from pygments.token import Punctuation, Keyword, Name, Number, Text, Comment
 from jinja2 import Environment, FileSystemLoader
 from bs4 import BeautifulSoup, NavigableString
-sys.path.append('%s/src'%py_root) # so we can pick up toc.py
+file_urls=None
+
+# src/toc.py holds the manual's section/chapter structure
+sys.path.append('%s/src'%py_root)
+import toc as ToC
 
 
 ### the big red button ###
@@ -109,7 +113,7 @@ def tidy(html):
 
   # run all of the python blocks through pygments
   for pre in soup.find_all('pre'):
-    if 'shell' in pre.get('class',()):
+    if 'shell' in pre.get('class',()) or 'manual' in pre.get('class',()):
       continue
     pre.replace_with(syntax_color(pre.text))
 
@@ -172,13 +176,16 @@ class PlotDeviceLexer(PythonLexer):
     'Bezier', 'BezierPath', 'Color', 'Curve', 'Effect', 'Family', 'Font',
     'Gradient', 'Grob', 'Image', 'Mask', 'PathElement', 'Pattern', 'Point',
     'Region', 'Shadow', 'Size', 'Stylesheet', 'Text', 'Transform', 'Variable',
-    'adict', 'ddict', 'odict']
+    'halt', # not really a class, but should get extra-highlighted
+    'adict', 'ddict', 'odict',
+    ]
   EXTRA_CONSTS = [
     'BEVEL', 'BOOLEAN', 'BUTT', 'BUTTON', 'CENTER', 'CLOSE', 'CMYK', 'CORNER',
     'CURVETO', 'DEFAULT', 'DEGREES', 'FORTYFIVE', 'FRAME', 'GREY', 'HEIGHT', 'HSB', 'HSV',
     'JUSTIFY', 'KEY_BACKSPACE', 'KEY_DOWN', 'KEY_ESC', 'KEY_LEFT', 'KEY_RIGHT',
-    'KEY_TAB', 'KEY_UP', 'LEFT', 'LINETO', 'MITER', 'MOVETO', 'NORMAL', 'NUMBER',
-    'PAGE', 'PERCENT', 'RADIANS', 'RGB', 'RIGHT', 'ROUND', 'SQUARE', 'TEXT', 'WIDTH',
+    'KEY_TAB', 'KEY_UP', 'LEFT', 'LINETO', 'MITER', 'MOUSEX', 'MOUSEY', 'mousedown',
+    'MOVETO', 'NORMAL', 'NUMBER',
+    'PAGENUM', 'PERCENT', 'RADIANS', 'RGB', 'RIGHT', 'ROUND', 'SQUARE', 'TEXT', 'WIDTH',
     'cm', 'inch', 'mm', 'pi', 'pica', 'px', 'tau']
   EXTRA_BUILTINS = [
     'align', 'alpha', 'arc', 'arcto', 'arrow', 'autoclosepath', 'autotext',
@@ -206,7 +213,7 @@ class PlotDeviceLexer(PythonLexer):
         yield index, Text, value
       else:
         yield index, token, value
-
+PlotDeviceLexer.tokens['root'].insert(0, (r'^>>>.*$', Comment),)
 ### handlers for each section of the site ###
 
 tmpls = Environment(loader=FileSystemLoader('%s/tmpl'%py_root))
@@ -218,6 +225,7 @@ def etc():
   _mkdir('doc/etc/type')
   os.system('ln -f src/etc/type/* doc/etc/type')
   os.system('ln -f tmpl/manual.css doc/etc/manual.css')
+  os.system('ln -f tmpl/toc.css doc/etc/toc.css')
   os.system('ln -f tmpl/typography.css doc/etc/type/typography.css')
   os.system('ln -f src/etc/zepto.min.js doc/etc/zepto.min.js')
   for sect in ('ref','tut','lib'):
@@ -226,9 +234,8 @@ def etc():
 
 def toc():
   print "Table of Contents"
-  import toc
-  toc = reload(toc)
-  html = tmpls.get_template('manual.html')
+  toc = reload(ToC)
+  html = tmpls.get_template('toc.html')
   local = dict(isinstance=isinstance, tuple=tuple, len=len)
   info = dict(ref=toc.ref, tut=toc.tut, lib=toc.lib, **local)
   markup = html.render(info)
@@ -241,13 +248,17 @@ def ref():
   print "\nReference"
   _mkdir('doc/ref')
 
+  siblings = reload(ToC).ref.keys()
+
   for page in glob('src/ref/*'):
     sect = basename(page)
     fname = 'doc/ref/%s.html' % sect
-    if is_stale(fname, glob('%s/*/*.html'%page), deps=['tmpl/nav.html','tmpl/reference.html']):
+    if is_stale(fname, glob('%s/*/*.html'%page), deps=['tmpl/nav.html','tmpl/manpage.html']):
       cmd, typ, old = [map(get_sect, glob('%s/%s/*'%(page,s))) for s in ('commands','types','compat')]
-      html = tmpls.get_template('reference.html')
-      info = dict(name=sect, commands=cmd, types=typ, compat=old)
+
+      html = tmpls.get_template('manpage.html')
+      info = dict(name=sect, sect='ref', siblings=siblings, commands=cmd, types=typ, compat=old)
+
       markup = html.render(info)
       with file(fname, 'w') as f:
         f.write(tidy(markup).encode('utf-8'))
@@ -256,15 +267,18 @@ def tut():
   print "\nTutorials"
   _mkdir('doc/tut')
 
-  html = tmpls.get_template('article.html')
+  siblings = sum(reload(ToC).tut.values(), [])
+
+  html = tmpls.get_template('manpage.html')
   for tut in sorted(glob('src/tut/*.html')):
     api = namify(tut)
     tut_name = basename(tut)[:-5]
     fname = 'doc/tut/%s.html'%tut_name
-    if is_stale(fname, tut, deps=['tmpl/nav.html','tmpl/article.html']):
+    if is_stale(fname, tut, deps=['tmpl/nav.html','tmpl/manpage.html']):
       soup = BeautifulSoup(file(tut).read().decode('utf-8'), "html5lib")
       article = soup.find('div', class_='article')
-      info = dict(name=api, doc=article, sect='tut', tutorial=tut_name)
+      article['class'] = 'tut article'
+      info = dict(name=api, doc=article, sect='tut', siblings=siblings, tutorial=tut_name)
       markup = html.render(info)
       with file(fname, 'w') as f:
         f.write(tidy(markup).encode('utf-8'))
@@ -274,16 +288,17 @@ def lib():
   _mkdir('doc/lib')
 
   in_sub = False
-  html = tmpls.get_template('article.html')
+  html = tmpls.get_template('manpage.html')
   for lib in sorted(glob('src/lib/*.html') + glob('src/lib/*/*.html')):
     fname = 'doc/lib/' + lib.replace('src/lib/','')
     pg_name = basename(fname).replace('.html','')
     subdir = dirname(fname)!='doc/lib'
 
-    if is_stale(fname, lib, quiet=subdir, deps=['tmpl/nav.html','tmpl/article.html']):
+    if is_stale(fname, lib, quiet=subdir, deps=['tmpl/nav.html','tmpl/manpage.html']):
       _mkdir(dirname(fname))
       soup = BeautifulSoup(file(lib).read().decode('utf-8'), "html5lib")
       article = soup.find('div', class_='article')
+      article['class'] = 'lib article'
       api = namify(fname)
 
       info = dict(name=api, doc=article, sect='lib', root='../' if subdir else '')

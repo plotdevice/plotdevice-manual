@@ -11,7 +11,7 @@
       </p>
 
 
-      <h3>Setting colors</h3>
+      <h3>Setting Colors</h3>
       <p>The simplest way to call a color command is to pass it a string containing the name of a color. PlotDevice uses the same <a href="../lib/Colors/named_colors.html">set of names</a> supported by CSS. For instance, the following will set the color scheme to something truly blinding:</p>
       <pre>background('aqua')
 fill('lawngreen')
@@ -40,18 +40,19 @@ background(None)         # transparent</pre>
 
       <p>If you want to specify a non-greyscale color numerically, there are a number of ‘colorspaces’ to choose from. Include one of the colorspace constants as the first argument, then supply the appropriate number of ‘channel’ values to specify the color:</p>
       <pre>
-background(RGB, 0, 1.0, 0) # bright green
-fill(HSV, 0, 1.0, .25)     # super-saturated dark red
-stroke(CMYK, 1, 0, 0, .2)  # 100% cyan w/ 20% black
-</pre><pre>
-fill(CMYK,  0, 0, 0, 1, 0.9) # slightly transparent black
-stroke(HSV, 0, 1, 1, 0.1)    # very faint red
+background(RGB, 0, 1, 0)  # bright green
+fill(HSV, 0, 1, .25)      # super-saturated dark red
+stroke(CMYK, 1, 0, 0, .2) # 100% cyan w/ 20% black
 </pre>
       <p>Note that as in the prior example, you can optional add a final 0–1.0 arg to set the opacity to something other than the default (1.0).</p>
+<pre>
+fill(CMYK, 0, 0, 0, 1, 0.9) # slightly transparent black
+stroke(HSV, 0, 1, 1, .1)    # very faint red
+</pre>
 
 
-      <h3>Color state</h3>
-      <p>Since including the colorspace in every call is a bit of a drag, PlotDevice keeps track of the ‘current’ color mode as part of the graphics state. If you call a color command without including a colorspace argument, the channel values you pass will be interpreted according to the current color mode.</p>
+      <h3>Color State</h3>
+      <p>Since including the colorspace in every call is a bit of a drag, PlotDevice keeps track of the ‘current’ color mode as part of the graphics state. If you call a color command without including a colorspace argument, the channel values you pass will be <b>interpreted according to the current color mode</b>.</p>
       <p>By defualt, the mode is <code class="kw">RGB</code>, but you can modify this by calling the <a href="../ref/Line+Color.html#color()">color()</a> command with the colorspace of your choosing:</p>
       <pre>
 fill(0, 1, 0)    # pure green (interpreted as r/g/b)
@@ -60,7 +61,7 @@ fill(1, 1, 0)    # black (interpreted as h/s/v)
 color(CMYK)
 fill(0, 0, 1, 0) # pure yellow (interpreted as c/m/y/k)
 </pre>
-      <p>The color() command also allows you to change the range of values expected. By default, channel values run from 0–1.0. By passing a <code>range</code> argument, you can set the upper limit to whatever makes sense for your script. You can even change the <code>mode</code> and <code>range</code> in a single call:</p>
+      <p>The <i>color()</i> command also allows you to change the range of values expected. By default, channel values run from 0–1.0. By passing a <code>range</code> argument, you can set the upper limit to whatever makes sense for your script. You can even change the <code>mode</code> and <code>range</code> in a single call:</p>
       <pre>
 color(range=255)
 fill(127,127,255)      # violet (r/g/b)
@@ -71,29 +72,29 @@ fill(100, 100, 100, 0) # ‘process’ black (c/m/y/k)
 
       <h2>CMYK output?</h2>
 
-      <p>Since colorspaces are so fluid, you might wonder how colors are generated when you export a PDF. Regardless of what mode you set using the color() command, the output adheres to the mode passed to the <a href="../ref/Canvas.html#export()">export()</a> command. By default it will generate <code>RGB</code> documents, but you can call e.g., <code>export("output.pdf", mode=CMYK)</code> to override this.</p>
+      <p>Since colorspaces are so fluid, you might wonder how colors are generated when you export a PDF. Regardless of what mode you set using the <i>color()</i> command, the output adheres to the mode passed to the <a href="../ref/Canvas.html#export()">export()</a> command. By default it will generate <code>RGB</code> documents, but you can call e.g., <code>export("output.pdf", cmyk=True)</code> to override this. Within the application you can also set the output mode in the <span class="message">Export as Image…</span> dialog box.</p>
 
       <p>
-      This makes it easy to work with print documents since you don’t need to worry about the technical details, and can simply focus on finding the colors you like. Keep in mind though that not all <code class="kw">RGB</code> colors can be represented in <code class="kw">CMYK</code>, so your exports may lack some of the luster of their screen-based representation.</p>
+      This makes it easy to work with print documents since you don’t need to worry about the technical details, and can simply focus on finding the colors you like. Keep in mind that not all <code class="kw">RGB</code> colors can be represented in <code class="kw">CMYK</code>, so your exports may lack some of the luster of their screen-based representation.</p>
 
       <h2>"Active" colors are stored in the graphics state</h2>
 
-      <p>PlotDevice remembers the colors that you set and then keeps on using that fill or stroke color until you define a different one (see <a href="Graphics_State.html">Graphics State</a> for details). You can override these active colors on a per-object basis by including a <code>fill</code> or <code>stroke</code> keyword argument when calling a drawing command.</p>
+      <p>PlotDevice remembers the colors that you set and then keeps on using that <i>fill</i> or <i>stroke</i> color until you define a different one (see <a href="Graphics_State.html">Graphics State</a> for details). You can override these active colors on a per-object basis by including a <code>fill</code> or <code>stroke</code> keyword argument when calling a drawing command.</p>
 
       <p>The values passed for these arguments use the same format as the color commands:</p>
       <pre>
-rect(0,0, 10,10, fill=('black', 0.5), stroke=(1,0,0))
 arc(5, 20, 5, fill=None, stroke='green')
+rect(0,0, 10,10, fill=('black', 0.5), stroke=(1,0,0))
 star(5,40, fill=.5, stroke=(CMYK, 1, 0, 0, 0))
 </pre>
       <p>If you can specify a color with a single value, you can omit the parentheses. Otherwise, enclose the set of args for the color in parens and separate them by commas.</p>
 
       <h3>Gradients</h3>
-      <p>The fill() and background() commands are special in that if you pass them two or more colors, a gradient will be created. Using the optional <code>steps</code> argument allows you to control the ‘speed’ of the transition from color to color. If included, it should be a list of numbers ranging from 0 to 1.0 – one value for each color in the gradient.</p>
+      <p>The <i>fill()</i> and <i>background()</i> commands are special in that if you pass them two or more colors, a gradient will be created. Using the optional <code>steps</code> argument allows you to control the ‘speed’ of the transition from color to color. If included, it should be a list of numbers ranging from 0 to 1.0 – one value for each color in the gradient.</p>
 
-      <table>
-        <td><img src="../etc/tut/color-gradients1.png"></td>
-        <td><pre>
+      <div class="example">
+        <span><img src="../etc/tut/color-gradients1.png"></span>
+        <pre>
 stroke('#aaa')
 
 fill('black', 'white')
@@ -104,13 +105,14 @@ rect(20,110,75,75)
 
 fill('black', 'red', 'white', steps=[0,.3,.6])
 oval(20,200,75,75)
-</pre></td></table>
+</pre>
+      </div>
 
-      <p>As you can see, a <em>radial</em> gradient is used by default. To use an axial gradient instead, include an <code>angle</code> keyword argument. The <code>steps</code> argument can be used to adjust the color transitions in the same manner as for radial gradients. Here, we're using angles measured in <em>degrees</em>, but you can switch to other units (such as <em>radians</em>) with the <a href="../ref/Canvas.html#geometry()">geometry()</a> command.</p>
+      <p>As you can see, a <em>radial</em> gradient is produced by default. To use an axial gradient instead, include an <code>angle</code> keyword argument. The <code>steps</code> argument can be used to adjust the color transitions in the same manner as for radial gradients. Here, we're using angles measured in <em>degrees</em>, but you can switch to other units (such as <em>radians</em>) with the <a href="../ref/Canvas.html#geometry()">geometry()</a> command.</p>
 
-      <table>
-        <td><img src="../etc/tut/color-gradients2.png"></td>
-        <td><pre>
+      <div class="example">
+        <span><img src="../etc/tut/color-gradients2.png"></span>
+        <pre>
 stroke('#aaa')
 
 fill('black', 'white', angle=0)
@@ -121,15 +123,16 @@ rect(20,110,75,75)
 
 fill('black', 'red', 'white', angle=180, steps=[0,.3,.6])
 oval(20,200,75,75)
-</pre></td></table>
+</pre>
+      </div>
 
       <p>Radial gradients support an optional <code>center</code> argument which allows you to position the gradient using a relative coordinate scheme. Gradients always size themselves to <em>just</em> fit the bounding box of the <a href="Bezier_Paths.html">Bezier path</a> they're filling. By default, radial gradients are centered at (0,0), meaning the centroid of the bounding box. The <code>center</code> argument can be a list or tuple with values in the range (-1,-1) to (1,1) – top-left and bottom-right respectively.</p>
 
       <p>Here's an example that uses a different <code>center</code> value for each rectangle. Also note that the gradient ranges from black to ‘transparent black’, allowing the background pattern to show through.</p>
 
-      <table>
-        <td><span class="transparency_grid"><img src="../etc/tut/color-gradients3.png"></span></td>
-        <td><pre>
+      <div class="example">
+        <span><span class="transparency_grid"><img src="../etc/tut/color-gradients3.png"></span></span>
+        <pre>
 background(None)
 
 fill('black', ('black',0), center=[-1,-1])
@@ -143,26 +146,28 @@ rect(20,100,75,75)
 
 fill('black', ('black',0), center=[1,1])
 rect(100,100,75,75)
-</pre></td></table>
-    <p>Keep in mind that PDF documents don't support transparent gradients (I know, right?), so try to reserve transparency for bitmap exports.</p>
+</pre>
+      </div>
+
+      <p>Keep in mind that PDF documents don't support transparent gradients (I know, right?), so try to reserve transparency for bitmap exports.</p>
 
       <h3>Patterns</h3>
       <p>In addition to "pure" colors, the <i>fill()</i> and <i>background()</i> commands can also work with <a href="../ref/Primitives.html#image()">image()</a> patterns. When you pass an <a href="../ref/Primitives.html#Image">Image</a> as part of a color-setting call, rather than being drawn to the canvas the image will be tiled to fit the shape being filled (or the entire canvas if used as a background pattern).</p>
 
       <p>Here's an example using a set of 16&times;16 px pattern images from yesteryear:</p>
-      <table>
-        <td><img src="../etc/tut/color-pattern.png"></td>
-        <td><pre>
+      <div class="example">
+        <span><img src="../etc/tut/color-pattern.png"></span>
+        <pre>
 background(image('macpaint-dark.png'))
 with fill(image('macpaint-tile.png')):
     poly(45,45,25, sides=5)
 with fill(image('macpaint-thatch.png')):
     rect(80,20,50,50)
-</pre></td>
-      </table>
+</pre>
+      </div>
 
       <h3>Color objects</h3>
-      <p>In addition to letting you change the color mode &amp; range, the <a href="../ref/Line+Color.html#color()">color()</a> command is also a factory for <a href="../ref/Line+Color.html#Color">Color</a> objects that can be pre-calculated and reused. The objects it returns have a number of properties that allow you to think in different color spaces at the same time. You can modify Color objects to your liking then pass them to any command that expects color arguments.</p>
+      <p>In addition to letting you change the color mode &amp; range, the <a href="../ref/Line+Color.html#color()">color()</a> command is also a factory for <a href="../ref/Line+Color.html#Color">Color</a> objects that can be pre-calculated and reused. The objects it returns have a number of properties that allow you to think in different colorspaces at the same time. You can modify Color objects to your liking then pass them to any command that expects color arguments.</p>
 
       <p>For example, if we wanted to draw a grid of lines in random colors, we would use the following code:</p>
 
@@ -174,7 +179,7 @@ for i in range(HEIGHT):
     line(0, i, WIDTH, i)
 </pre>
 
-      <p>However, since each line now has a randomly sampled <code class="kw">RGB</code> color, some lines will tend to look dull and light. To crank up the colors, we can easily adjust the lines’ saturation without switching to a different color space. We'll also increase the pen's nib size to two since overlapping the lines makes them appear brighter as well.</p>
+      <p>However, since each line now has a randomly sampled <code class="kw">RGB</code> color, some lines will tend to look dull and light. To crank up the colors, we can easily adjust the lines’ saturation without switching to a different colorspace. We'll also increase the pen's nib size to two since overlapping the lines makes them appear brighter as well.</p>
   <pre>
 pen(2)
 for i in range(HEIGHT):
@@ -184,30 +189,50 @@ for i in range(HEIGHT):
     line(0, i, WIDTH, i)
 </pre>
 
-      <p><span class="media" style="margin-left:-58px;"><img height="621" src="../etc/tut/color-lines.png" width="722"/></span></p>
+      <p><div class="media"><img height="612" src="../etc/tut/color-lines.png" width="723"/></div></p>
       <h2>Color attributes</h2>
 
       <p>Colors objects have named properties for each of the color components. You can use either a single-character abbreviation or full name (e.g., <code>.k</code> or <code>.black</code>):</p>
-      <ul>
-        <li><i>color</i>.r: the RGB red component
-        </li><li><i>color</i>.g: the RGB green component
-        </li><li><i>color</i>.b: the RGB blue component
-        </li><li><i>color</i>.a: the alpha component
-        </li><li><i>color</i>.c: the CMYK cyan component
-        </li><li><i>color</i>.m: the CMYK magenta component
-        </li><li><i>color</i>.y: the CMYK yellow component
-        </li><li><i>color</i>.k: the CMYK black component
-        </li><li><i>color</i>.h: the HSV hue component
-        </li><li><i>color</i>.s: the HSV saturation component
-        </li><li><i>color</i>.v: the HSV value component
-        </li><li><i>color</i>.hex: an RGB color string like <code class="str">"#f00"</code> or <code class="str">"#ff0000"</code>
-        </li><li><i>color</i>.hexa: a tuple like (<code class="str">"#aa99ff"</code>, .75)
-      </li></ul>
+        <div class="def-box">
+          <pre class="manual">
+color.<span class="red">red</span>
+color.<span class="red">green</span>
+color.<span class="red">blue</span>
+</pre>
+          <p>the r/g/b components</p>
+        </div>
+
+        <div class="def-box">
+          <pre class="manual">
+color.<span class="red">cyan</span>
+color.<span class="red">magenta</span>
+color.<span class="red">yellow</span>
+color.<span class="red">black</span>
+</pre>
+          <p>the c/m/y/k components</p>
+        </div>
+
+        <div class="def-box">
+          <pre class="manual">
+color.<span class="red">hue</span>
+color.<span class="red">saturation</span>
+color.<span class="red">value</span>
+</pre>
+          <p>the h/s/v components</p>
+        </div>
+        <div class="def-box">
+          <pre class="manual">color.<span class="red">hex</span></pre>
+          <p>an RGB color string such as <code class="str">"#f00"</code> or <code class="str">"#ff0000"</code></p>
+        </div>
+        <div class="def-box">
+          <pre class="manual">color.<span class="red">hexa</span></pre>
+          <p>a tuple such as (<code class="str">"#aa99ff"</code>, .75)</p>
+        </div>
 
       <p>Whenever one of these is modified in your script, the color will be recalculated (merging your changes with the values of the unaffected color channels).</p>
 
 
-      <h3>Harmonious colors</h3>
+      <h3>Harmonious Colors</h3>
 
       <p>The key to generating harmonious and consistent colors is to make them not <em>entirely</em>
       random, but limited to a certain range. A common pitfall is to use <em>all</em> of the colors, since,
@@ -228,10 +253,10 @@ for i in range(10):
 <span class="media"><img height="132" src="../etc/tut/color-hue3.jpg" width="132"/></span>
 <span class="media"><img height="132" src="../etc/tut/color-hue4.jpg" width="132"/></span></p>
 
-      <p>The hue is always the same, 0.5 or a hue of 180, which is cyan. Only the saturation and
+      <p>The hue is always the same, 0.5 (a.k.a. 180&deg;), which is cyan. Only the saturation and
       brightness are varied a bit. This ensures we always have shades of blue, so they all fit
       together. Saturation is limited between 0.0 and 0.5, for a faded look. The brightness is
-      furthermore limited between 0.5 and 1.0 (fifty to a hundred percent) so we get bright colors.
+      furthermore limited between 0.5 and 1.0 (50–100%) so we get bright colors.
       Take a look at the <a href="../lib/Colors.html">Colors</a> library which has excellent support
       for these kind of ‘color ranges’.<br/></p>
 

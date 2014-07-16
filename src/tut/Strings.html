@@ -7,10 +7,8 @@
   <div class="article">
     <p><a href="Variables.html">Variables</a> often store pieces of text, called <em>strings</em>,
     that will be drawn to the screen.</p>
-    <p>When a piece of text, a string, is assigned to a variable, it needs to be <strong>wrapped in
-    quotes</strong>; it needs to start and end with a quote. Otherwise PlotDevice might think the
-    piece of text is the name of a variable, or something else.</p>
-    <p>Consider the following example:</p>
+    <p>When a string is assigned to a variable, the text needs to be <strong>wrapped in
+    quotes</strong>. You can use either <code class="str">'single'</code> or <code class="str">"double"</code> quotation marks. Otherwise PlotDevice will think the piece of text is the name of a variable:</p>
 <pre>hello = 20
 string = hello
 print string
@@ -34,66 +32,70 @@ print alphabet[-3:] # 'xyz'
 </pre>
 
     <p>The <a href="../ref/Utility.html#choice()">choice()</a> command selects either a random element from a list or a random character from a string (depending on which kind of value you pass to it). In the example below, we use <i>choice()</i> and <i>random()</i> to select 80 random characters from the alphabet and scatter them over the screen at random positions, sizes, and orientations.</p>
-    <p><span class="media" style="margin-left:-58px;"><img alt="" height="523" src="../etc/tut/strings-characters.png" width="764"/></span></p>
+    <div class="media"><img alt="" height="536" src="../etc/tut/strings-characters.png" width="767"/></div>
+
     <h2>Manipulating strings</h2>
 
-    <p>Strings have a number of very useful methods:</p>
-    <ul>
-      <li><em>string</em>.upper(): returns the string in uppercase.
-      </li><li><em>string</em>.lower(): returns the string in lowercase.
-      </li><li><em>string</em>.title(): returns the string with the first character of each word capitalized.
-      </li><li><em>string</em>.capitalize(): returns the string with the first character capitalized.
-      </li><li><em>string</em>.find(<em>text</em>, start=0): returns the index position of <em>text</em>
-      in the string.
-      </li><li><em>string</em>.replace(<em>old</em>, <em>new</em>): replaces all <em>old</em> text in
-      the string with <em>new</em>
-      </li><li><em>string</em>.split(): returns the string as a list of words.
-      </li><li><em>string</em>.join(<em>list</em>): concatenates a list of words.
-    </li></ul>
+    <p>Python strings have a number of very useful methods:</p>
 
-    <p>Strings can be converted to uppercase and lowercase with the <em>upper()</em> and
-    <em>lower()</em> methods, or have the first character capitalized with <em>capitalize</em>.
-    Remember, these are methods, so instead of saying <em>str = upper(str)</em> you need to say
-    <em>str = str.upper()</em>.</p>
-<pre>str = "Kumquats, Kumquats! I must have my Kumquats! - Oscar Wilde"
-str = str.upper()
-print str
+    <div class="def-box">
+      <pre class="manual">str.<span class="red">upper</span>()</pre>
+      <p>returns an uppercase copy of the string</p>
+    </div>
+    <div class="def-box">
+      <pre class="manual">str.<span class="red">lower</span>()</pre>
+      <p>returns an lowercase copy of the string</p>
+    </div>
+    <div class="def-box">
+      <pre class="manual">str.<span class="red">capitalize</span>()</pre>
+      <p>returns a copy of the string with the first character capitalized</p>
+    </div>
+    <div class="def-box">
+      <pre class="manual">str.<span class="red">title</span>()</pre>
+      <p>returns a copy of the string with the first character of each word capitalized</p>
+    </div>
+    <div class="def-box">
+      <pre class="manual">str.<span class="red">find</span>(txt, start=0)</pre>
+      <p>returns the index position of <code>txt</code> in the string</p>
+    </div>
+    <div class="def-box">
+      <pre class="manual">str.<span class="red">replace</span>(old, new)</pre>
+      <p>returns a copy of the string with all instances of <code>old</code> replaced by <code>new</code></p>
+    </div>
+    <div class="def-box">
+      <pre class="manual">str.<span class="red">split</span>()</pre>
+      <p>returns the list of words (separated by whitespace) in the string</p>
+    </div>
+    <div class="def-box">
+      <pre class="manual">str.<span class="red">join</span>(lst)</pre>
+      <p>returns a string formed by concatenating all the items of <code>lst</code> with <code>str</code> separating them</p>
+    </div>
+
+    <p>Strings can be converted to uppercase and lowercase with the <i>upper()</i> and
+    <i>lower()</i> methods or have their first character capitalized with <i>capitalize()</i>.
+    Remember, these are methods, so instead of saying <i>txt = upper(txt)</i> you need to say
+    <i>txt = txt.upper()</i>.</p>
+<pre>txt = "Kumquats, Kumquats! I must have my Kumquats! - Oscar Wilde"
+txt = txt.upper()
+print txt
 >>> KUMQUATS, KUMQUATS! I MUST HAVE MY KUMQUATS! - OSCAR WILDE
 </pre>
 
     <p>The <em>replace()</em> method is especially useful when you want to filter mistakes from the
     string, or when you want to alter portions of the content:</p>
-<pre>str = "Something's rotten in the state of Denmark."
-str = str.replace("in", "in, like, ")
-str = str.replace(".", " dude.")
-str = str.replace("rotten", "way uncool")
-print str
+<pre>txt = "Something's rotten in the state of Denmark."
+txt = txt.replace("in", "in, like, ")
+txt = txt.replace(".", " dude.").replace("rotten", "way uncool")
+print txt
 >>> Something's way uncool in, like, the state of Denmark dude.
 </pre>
-    <p>If your search &amp; replace needs are more complex, Python has a powerful <a href="https://docs.python.org/2/library/re.html">Regular Expressions</a> library available to you. Add <code>import re</code> to the top of your script and you'll have access to useful methods like:</p>
+    <p>If your search &amp; replace needs are more complex, Python has a powerful <a href="https://docs.python.org/2/library/re.html">Regular Expressions</a> library available to you. Add <code>import</code> <code>re</code> to the top of your script and you'll have access to useful methods like:</p>
+
     <ul>
         <li><a class="noexternal" href="https://docs.python.org/2/library/re.html#re.search">re.search</a><em>(regex, str)</em>: return a <a href="https://docs.python.org/2/library/re.html#re.MatchObject">match</a> if the pattern was found in <i>str</i> or <code class="kw">None</code> if it wasn't.</li>
         <li><a class="noexternal" href="https://docs.python.org/2/library/re.html#re.sub">re.sub</a><em>(regex, new, orig)</em>: return a string derived from <i>orig</i> in which each occurrance of a pattern is replaced with <i>new</i>.</li>
         <li><a class="noexternal" href="https://docs.python.org/2/library/re.html#re.split">re.split</a><em>(regex, str)</em>: return a list of substrings, using the pattern to divide the original string.</li>
     </ul>
-
-    <h2>Quotes in quotes</h2>
-
-    <p>Text strings often contain quotes characters as <em>content</em>, especially if the text contains dialogue. When PlotDevice examines the string and encounters such a quote, it would logically assume that the string is terminated here.</p>
-
-    <p>For instance, the following example won’t work. PlotDevice sees <code class="str">"(On his death bed): "</code> as a complete string followed by garbage statements it doesn’t understand:</p>
-<pre>str = "(On his death bed): "Those curtains are hideous." - Oscar Wilde"
-</pre>
-
-    <p>Python allows you to take your pick of either double- or single-quotes when defining a string. Whichever one you start the string with will also be used for determining where the string ends. Since double-quotes are part of the <em>content</em> of our string, we could choose to wrap it in single-quotes (or vice versa):</p>
-    <pre>str = '(On his death bed): "Those curtains are hideous." - Oscar Wilde'
-str = "You can't you won't and you don't stop."</pre>
-
-    <p>But if our string contains both kinds of quotes, this approach doesn't help us. For these cases we can use triple-quotes to delimit the string and mix-and-match quotation marks within it:</p>
-
-    <pre>str = """John Cage's 4'33" (performed by the Boston Typewriter Orchestra)"""</pre>
-
-    <p>Triple-quoted strings are also unique in being able to span multiple lines. Each carriage return will be converted to a newline character in the string it assigns. Single- and double-quoted strings <em>must</em> begin and end on the same line of your script. If you want to include line breaks in a non-triple-quoted string, use the ‘escape’ code for the newline character: <code class="str">"\n"</code>.</p>
 
     <h2>String formatting</h2>
 
@@ -105,8 +107,8 @@ str = "You can't you won't and you don't stop."</pre>
     <pre>pastry = 'pie'
 num = [4, 20]
 price = 12.5
-str = '%i &amp; %i blackbirds baked in a %s: $%0.2f' % (num[0], num[1], pastry, price)
-print str
+txt = '%i &amp; %i blackbirds baked in a %s: $%0.2f' % (num[0], num[1], pastry, price)
+print txt
 >>> 4 &amp; 20 blackbirds baked in a pie: $12.50
 </pre>
 
@@ -114,53 +116,77 @@ print str
     <pre>print "(plus %i%% sales tax)" % 5
 >>> (plus 5% sales tax)</pre>
 
+    <h2>Quotes in quotes</h2>
+
+    <p>Text strings often contain quotation marks as <em>content</em>, especially if the text contains dialogue. When PlotDevice examines the string and encounters such a quote, it would logically assume that the string is terminated here.</p>
+
+    <p>For instance, the following example won’t work:</p>
+<pre>txt = "(On his death bed): "Those curtains are hideous." - Oscar Wilde"</pre>
+
+    <p>PlotDevice sees <code class="str">"(On his death bed): "</code> as a complete string followed by garbage statements it doesn’t understand.</p>
+
+    <p>Python allows you to take your pick of either double- or single-quotes when defining a string. Whichever one you start the string with will also be used for determining where the string ends. If double-quotes are part of the <em>content</em> of our string, we might choose to wrap it in single-quotes (and vice versa):</p>
+    <pre>txt = '(On his death bed): "Those curtains are hideous." - Oscar Wilde'
+txt = "You can't / you won't / and you don't / stop."</pre>
+
+    <p>But if our string contains both kinds of quotes, this approach doesn't help us. For these cases we can use triple-quotes to delimit the string and mix-and-match quotation marks within it:</p>
+
+    <pre>txt = """John Cage's 4'33" (performed by the Boston Typewriter Orchestra)"""</pre>
+
+    <p>Triple-quoted strings are also unique in being able to span <b>multiple lines</b>. Each carriage return will be converted to a newline character in the string it assigns. Single- and double-quoted strings <em>must</em> begin and end on the same line of your script. If you want to include line breaks in a non-triple-quoted string, use the ‘escape’ code for the newline character: <code class="str">"\n"</code>.</p>
+
 
     <h2>File input</h2>
 
-    <p>When you’re going to use long paragraphs of text, it’s better to store the text in a
-    separate text file and assign that to a variable, this keeps your script clean, and you can
+    <p>When you’re going to typeset long paragraphs of text, it’s better to store the text in a
+    separate text file and assign that to a variable. This keeps your script clean, and you can
     edit the text separately from the script.</p>
-    <p> </p>
-    <p><span class="media"><img alt="" height="334" src="../etc/tut/strings-textedit.jpg" width="653"/></span></p>
-    <p><span class="media"><img alt="" height="504" src="../etc/tut/strings-file.jpg" width="659"/></span></p>
-    <p> </p>
-    <p>Simply put the text in TextEdit, <strong>make it plain text</strong>, and import it into
-    your script with the <a href="../ref/Utility.html#open()">open()</a> command.</p>
+
+    <p>The text file you create must be <em>plain</em> text devoid of styling (PlotDevice doesn't speak RTF or <code>.docx</code>). If you use a text-editor like <a href="http://www.sublimetext.com">Sublime Text</a>, <a href="http://macromates.com">TextMate</a>, or <a href="http://www.gnu.org/software/emacs/">Emacs</a> any files you create will be plaintext by default. If you're using the built-in TextEdit application, the first thing you'll need to do upon creating a new document is disable formatting:</p>
+    <div class="media" style="margin:0;"><img alt="" height="248" src="../etc/tut/strings-plaintext.png" width="247"/></div>
+
+    <p>You can then compose whatever text you'd like (or, if you're like me, lazily paste something in from Wikipedia). Save the file somewhere convenient and remember its file path so you can access it from your script:</p>
+
+
+    <div class="media"><img alt="" height="510" src="../etc/tut/strings-textedit.png" width="574"/></div>
+
+    <p>Within our PlotDevice script, we can read the contents of the file into a string using the <a href="../ref/Misc.html#read()">read()</a> command. Note that when we draw the string (by passing it to <a href="../ref/Typography.html#text()">text()</a>) we make sure to include a <code>width</code> argument. Otherwise there'd be no line-breaking and text would go spilling off the right side of the canvas:</p>
+
+    <div class="media"><img alt="" height="608" src="../etc/tut/strings-file.png" width="801"/></div>
+
+    <a name="Unicode"></a>
     <h2>Unicode characters</h2>
 
     <p><a href="http://en.wikipedia.org/wiki/Unicode">Unicode</a> is a character system that allows
     computers to use symbols from all of the writing systems in the world. If you’re going to use
     for example <em>suomi</em> or <em>Hebrew</em> in the output of your script, you’ll have to know
     about Unicode.</p>
-    <p>The first thing to make sure is that the <strong>typeface</strong> you are going to use
-    includes Unicode characters, so the text can be drawn in the font. Usually, large font families
-    like Helvetica include Unicode for almost any Unicode character.</p>
+
+    <p>The first thing to check is that the <strong>typeface</strong> you are going to use
+    includes Unicode characters. Large font families like Helvetica usually include glyphs for almost any Unicode character.</p>
     <p>Next, you’ll have to tell PlotDevice that a piece of text includes special characters. This is
     as simple as adding a ‘<strong>u’</strong> to the front of the string quotes.</p>
-<pre>str = u"?אתה מדבר אנגלית"
-text(str, 50, 200)
+<pre>the_rain_in_magyar = u"Az eső Spanyolországban esik főleg a síkságon"
+text(the_rain_in_magyar, 20,60, width=240)
 </pre>
 
-    <p> </p>
-    <p><img alt="strings-unicode1" height="459" src="../etc/tut/strings-unicode1.jpg" width="658"/></p>
-    <p> </p>
+    <div class="media"><img height="406" src="../etc/tut/strings-unicode1.png" width="748"/></div>
     <p>When you are going to import text from a text file there are two things to look out for.
     First, the text file needs to <strong>saved as Unicode</strong>. In TextEdit, apply the plain
     text format and when you save it, select ‘Unicode (UTF-8)’ from the Plain Text Encoding list.</p>
-    <p> </p>
-    <p><img alt="strings-unicode2" height="446" src="../etc/tut/strings-unicode2.jpg" width="657"/></p>
-    <p> </p>
+    <div class="media"><img height="556" src="../etc/tut/strings-unicode2.png" width="573"/></div>
+
     <p>Then when you import the contents of the file into PlotDevice, you’ll have to
     <strong>decode</strong> the text from UTF-8 into unicode:</p>
-<pre>str = open("hebrew.txt").read()
-str = str.decode("utf-8")
+<pre>txt = open("hebrew.txt").read()
+txt = txt.decode("utf-8")
 align(RIGHT)
-text(str, 100, 200)
+text(txt, 100, 200)
 </pre>
 
     <p>PlotDevice provides a <a href="../ref/Misc.html#read()">read()</a> command that does the file i/o and unicode conversion for you. By default it will attempt to decode the file as UTF-8, but if you pass an optional <code>encoding</code> argument you can override this.</p>
-    <pre>str = read("hebrew.txt")
-str = read("ozu.txt", encoding="shift-jis")</pre>
+    <pre>txt = read("hebrew.txt")
+txt = read("ozu.txt", encoding="shift-jis")</pre>
   </div>
 
 </body></html>

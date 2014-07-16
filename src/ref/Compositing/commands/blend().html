@@ -13,12 +13,12 @@
       <div class="row">
         <p>Blending operations affect how ‘old’ content on the canvas shows through new content drawn on top of it. By default the canvas uses the traditional ‘painter's algorithm’ in which each new drawing operation obscures anything below it in proportion to its opacity. </p>
 
-        <p>Setting an alternate blend mode changes the rules for determining how colors combine. Different modes will use color, opacity, depth-ordering, or a combination of attributes. Call blend() with a mode-name string to set a custom blend mode.</p>
+        <p>Setting an alternate blend mode changes the rules for determining how colors combine. Different modes will use color, opacity, depth-ordering, or a combination of attributes. Call <i>blend()</i> with a mode-name string to set a custom blend mode.</p>
       </div>
 
       <h2>Context Manager</h2>
       <div class="row">
-        <p>When used as part of a <code>with</code> statement, blend() will first render the drawing within the block as a single layer (using the <code>normal</code> blend mode). The layer's contents are then composited to the canvas using the specified mode.</p>
+        <p>When used as part of a <code>with</code> statement, <i>blend()</i> will first render the drawing within the block as a single layer (using the <code>normal</code> blend mode). The layer's contents are then composited to the canvas using the specified mode.</p>
       </div>
 
       <h2>Tutorial</h2>
@@ -28,16 +28,12 @@
 
       <h2>Example</h2>
       <div class="row">
-        <p>To demonstrate the different available modes, we'll repeatedly draw the same foreground and backdrop images atop one another, changing only the blend mode. Note that the current <a href="#alpha()">alpha()</a> level will also affect your results. Here the images are drawn at full opacity.</p>
+        <p>To demonstrate the different available modes, we'll repeatedly draw the same foreground and backdrop images atop one another, changing only the blend mode. Note that the current <a href="#alpha()">alpha()</a> level will also affect your results. Here's a pair of test images drawn at full opacity.</p>
 
 
         <div class="example" style="margin-bottom:0;">
           <span class="transparency_grid"><img height="125" src="../etc/ref/blend-bg.png" width="125"/></span>
           <span class="transparency_grid"><img height="125" src="../etc/ref/blend-fg.png" width="125"/></span>
-          <pre>image("backdrop.png")
-blend("…")
-image("foreground.png")
-</pre>
         </div>
         <div class="example">
           <span style='width:135px; display:inline-block; font:italic 13px "Cabin";'>backdrop.png</span>
@@ -46,7 +42,12 @@ image("foreground.png")
       </div>
 
 
-        <p>Call blend() with one of the following strings as an argument to achieve the desired compositing effect:</p>
+        <p>Call <i>blend()</i> with one of the following strings as an argument to achieve the desired compositing effect:</p>
+        <pre>image("backdrop.png")
+blend("…")
+image("foreground.png")
+</pre>
+
         <div class="blend-modes">
           <div class="mode"><div class="normal"></div><div class="label">normal</div></div>
           <div class="mode"><div class="copy"></div><div class="label">copy</div></div>

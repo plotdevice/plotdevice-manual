@@ -5,65 +5,56 @@
 
 </head><body>
   <div class="article">
+
     <p>A variable is a place to store a <i>value</i> in computer memory. You could think of a
     variable as a cardboard box. You can put something inside the box, put it away for storage, and
-    later on retrieve the item from the box. Usually, people put labels or some kind of code on
-    boxes to remember what is inside.</p>
-    <p>It’s the same with variables. Each variable has a <i>name</i>, and a <i>value</i>. The name
+    later on retrieve the item from the box. Usually, people put labels or some kind of marker on
+    boxes to remember what's inside.</p>
+
+    <p>Variables work the same way. Each variable has a <i>name</i>, and a <i>value</i>. The name
     is like the label on a box: it’s a quick reminder of what item, or value, is inside the
     variable. Just like boxes, variables can hold all sorts of stuff useful in a PlotDevice script:
     pieces of text, an important number, the name of a font, a <a href="Collections.html">list</a> of
     colors, and so on.</p>
-    <p>Another way to look at variables is to think of them as a sticky note.</p>
-    <h2>Why use variables</h2>
+    <p>Another way to look at variables is to think of them as sticky notes.</p>
+
+
+    <h3>Using variables</h3>
 
     <p>You store things in variables when you plan to <b>reuse</b> them. If each of ten rectangles
     you’re going to draw is a hundred pixels wide, it’s a good idea to declare a <i>width</i>
     variable that stores the number <i>100</i>, and tell each rectangle to go look what’s inside
     this <i>width</i> variable.</p>
     <p>This way, when you change your mind about the rectangle’s width, you only need to change the
-    contents of the <i>width</i> variable, since each rectangle is looking over there for it’s
-    width.</p>
+    contents of the <i>width</i> variable, since each rectangle is looking there for its
+    width. This is an example of <a href="http://en.wikipedia.org/wiki/Indirection">indirection</a>, a key concept in computer science.</p>
     <p>Don’t worry, things will clear up once we try some examples!</p>
     <h2>Declaring variables</h2>
 
     <p>You can declare a variable at any point in your script, and give it <b>any name you
     like</b>, except for names that PlotDevice has already claimed (like <i>rect</i>, or <i>for</i>).
-    Usually, you pick a name that tells something about what kind of information the variable is
+    It's best to pick a name that tells you something about the kind of information the variable is
     storing.</p>
-    <p>Try to come up with good, short names. No one likes to type <i>theWidthOfAllRectangles</i>
-    an dozen times, <i>width</i> says enough.</p>
-    <table border="0">
-      <tbody>
-        <tr>
-          <td><img height="272" src="../etc/tut/variables-width1.jpg" width="244"/>
-          </td><td>
-            <br/>
-            <br/>
-            It’s as easy as this: we think of a good name for a variable, and assign any value to
-            it we like. PlotDevice keeps a small sticky note reminder for itself to know what value is
-            inside the variable.
-<pre>
+    <p>Try to come up with good, short names. No one likes to type <code>theWidthOfAllTheRectangles</code> dozens of times; <code>width</code> says enough.</p>
+
+
+    <div class="example">
+      <span><img height="272" src="../etc/tut/variables-width1.jpg" width="244"/></span>
+      <p>It’s as easy as this: pick a good name for a variable, then assign it any value you like with the "<code>=</code>" operator. PlotDevice keeps a small sticky note reminder for itself that the variable "contains" the new value. You can then use the variable as a stand-in for the value when calling commands:</p>
+      <pre>
 width = 100
-rect(10, 10, width, 30)
-</pre>Variables can be used as parameters. <b>PlotDevice looks up what value it contains</b>. In this
-example, a rectangle is drawn at (10,10), with width of 100 and height of 30.
-          </td></tr></tbody></table>
+rect(10, 10, width, 30)</pre>
+    </div>
 
     <h2>Changing variables</h2>
 
     <p>You can change the value of a variable during the course of a script. When this happens, the
-    old value is thrown away, and from now on the variable contains the new value.</p>
-    <table border="0">
-      <tbody>
-        <tr>
-          <td><img height="272" src="../etc/tut/variables-width2.jpg" width="244"/>
-          </td><td>
-            <br/>
-            <br/>
-            The first rectangle’s width is 100, then the value of the variable changes to 20, so
-            the two following rectangles use that new value and have width 20.
-<pre>
+    old value is thrown away and the variable now contains the new value.</p>
+
+    <div class="example">
+      <span><img height="272" src="../etc/tut/variables-width2.jpg" width="244"/></span>
+      <p>The first rectangle is drawn when the width variable's value is 100. We then change the width to 20 and draw two more rectangles (which use the newly-set value).</p>
+      <pre>
 width = 100
 rect(10, 10, width, 30 )
 
@@ -71,10 +62,12 @@ width = 20
 rect(120, 10, width, 30)
 rect(330, 10, width, 30)
 </pre>
-        </td></tr><tr>
-          <td style="text-align: center"><img height="91" src="../etc/tut/variables-width3.jpg" width="160"/>
-          </td><td>The resulting output in PlotDevice.
-        </td></tr></tbody></table>
+    </div>
+
+    <div class="example">
+      <span style="padding-left:30px; width:224px;"><img height="91" src="../etc/tut/variables-width3.jpg" width="160"/></span>
+      <p>The resulting output in PlotDevice.</p>
+    </div>
 
     <h2>Calculations with variables</h2>
 
@@ -85,12 +78,10 @@ rect(330, 10, width, 30)
     along by itself.</p>
     <p>Thus, the paragraph’s vertical position should be <b>dependant</b> on the title’s vertical
     position.</p>
-    <table border="0">
-      <tbody>
-        <tr>
-          <td><img height="272" src="../etc/tut/variables-math1.jpg" width="244"/>
-          </td><td>
-<pre>
+
+    <div class="example">
+      <span><img height="272" src="../etc/tut/variables-math1.jpg" width="244"/></span>
+      <pre>
 count = 10
 print count
 &gt;&gt;&gt; 1
@@ -99,23 +90,24 @@ count += 5
 print count
 &gt;&gt;&gt; 15
 </pre>
-        </td></tr><tr>
-          <td><img height="85" src="../etc/tut/variables-math2.jpg" width="222"/>
-          </td><td>
-<pre>
+    </div>
+
+    <div class="example">
+      <span><img height="85" src="../etc/tut/variables-math2.jpg" width="222"/></span>
+      <pre>
 x = 30
 y = 30
 quote = "Nicely on the left"
 text(quote, x, y)
-y += textheight(quote)
+y += measure(quote).height
 quote = "Nicely below each other"
 text(quote, x, y)
 </pre>
-          </td></tr></tbody></table>
+    </div>
 
     <h2>Where do variables live?</h2>
 
-    <p>Each script has its own memory storage, it’s own warehouse of boxes and sticky notes. The
+    <p>Each script has its own memory storage – a private warehouse of boxes and sticky notes. The
     specific value of a variable is therefore only known inside the script where it is used, not in
     other scripts.</p>
     <h2>Predefined variables</h2>
@@ -144,18 +136,19 @@ text(quote, x, y)
     <h2>The variable panel</h2>
 
     <p>The variable panel displays script variables visually as sliders, fields, or check boxes.
-    When you drag variable sliders, its values change on the fly, changing the output in the
-    drawing area. Any <a href="../ref/Utility.html#random()">random()</a> values in your script are
+    When you drag a variable's slider, its value changes on the fly and will affect the output in the
+    drawing area. <!-- Any <a href="../ref/Utility.html#random()">random()</a> values in your script are
     retained as long as you don’t re-run your script. In other words, random values change when you
-    run a script, but not when you change values or drag sliders in the variable panel.</p>
-    <p><br/>
-    <span class="media" style="margin-left:-30px;"><img height="502" src="../etc/tut/variables.png" width="618"/></span></p>
+    run a script, but not when you change values or drag sliders in the variable panel. --></p>
+
+    <div class="media" style="margin-left:-30px;"><img height="502" src="../etc/tut/variables.png" width="618"/></div>
+
     <p>You can add user-controlled variables to the panel with the <a href="../ref/Misc.html#var()">var()</a> command.</p>
     <pre>
-var(name, NUMBER, default, min, max)
-var(name, TEXT, default="hello")
-var(name, BOOLEAN, default=True)
-var(command, BUTTON)
+var("name", NUMBER, default, min, max)
+var("name", TEXT, default="hello")
+var("name", BOOLEAN, default=True)
+var("command", BUTTON)
 </pre>
 
     <p>You can then use the <i>name</i> variable in your script like any other variable. Numbers

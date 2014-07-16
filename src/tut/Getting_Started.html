@@ -5,7 +5,7 @@
 
 </head><body>
   <div class="article">
-    <h1>Getting started using PlotDevice</h1>
+    <h3>Getting started using PlotDevice</h3>
 
     <p>The first thing you want to do once you’ve <a href="Download">downloaded</a> the application
     is run some example scrips. There’s a folder with tons of sample code which can be accessed from the app's <span class="message">Examples</span> menu. Select one of them and
@@ -13,9 +13,8 @@
     what happens.
     </p>
 
-    <hr size="2" width="100%"/>
     <h2>Reference</h2>
-    <p>Then you will want to have a look at the <a href="../manual.html">reference</a> to see what
+    <p>Then you will want to have a look at the <a href="../manual.html#ref">reference</a> to see what
     scripting commands are available. When you use a command you plug in <b>parameters</b> that
     define its behavior. For example, the reference may mention something like:</p>
 <pre>rect(x, y, width, height)
@@ -45,7 +44,6 @@
     rect(random(50), random(200), 20, 20)
 </pre> 
 
-  <hr size="2" width="100%"/>
     <h2>Tutorial</h2>
     <p>The tutorial contains essential tips on how commands work and how to write scripts.
     We recommend starting out as follows:</p>
@@ -67,9 +65,8 @@
     <p>At one point you’ll also discover how to work with <a href="../ref/Drawing.html#bezier()">Bézier paths</a>. This is where PlotDevice truly shines. All of
     the things you can do with paths are unlocked in the <a href="Paths.html">tutorial on
     paths</a>.</p>
-    <p> </p>
 
-    <hr size="2" width="100%"/>
+
     <h2>PlotDevice is Python</h2>
 
     <p>The programming language that drives PlotDevice is <a href="http://python.org/">Python</a>,
@@ -97,49 +94,8 @@
       command out of it.
       </li><li><b>Good variable names</b> are essential. A variable may appear throughout a script so
       pick a good name for it, something that explains what value is contained in the variable.
-    </li></ul><br/>
+    </li></ul>
 
-
-
-    <h3><a class="anchor" href="#using-plotdevice-as-a-module" id="using-plotdevice-as-a-module" name="using-plotdevice-as-a-module"></a>Using PlotDevice as a module in other scripts</h3>
-
-    <p>Though the <a href="plotdevice.html"><code>plotdevice</code></a> command provides a convenient way
-    to launch scripts with the PlotDevice interpreter, you may prefer to use the graphics context and
-    export functions from within your own module (and running whichever <code>python</code> binary
-    your system or virtualenv provides).</p>
-    <p>Detailed installation instructions can be found in the project’s <code><a href="https://github.com/samizdatco/plotdevice-pyobjc/blob/master/README.md">README</a></code> file. To
-    simplify the use of PlotDevice with other external libraries, we recommend installing the module
-    into a <a href="http://virtualenv.org">virtualenv</a> along with your other dependencies:</p>
-    <pre class="shell"><span class="kw">$ </span>virtualenv env
-<span class="kw">$ </span>source ./env/bin/activate
-<span class="o">(</span>env<span class="o">)</span><span class="kw">$ </span>pip install plotdevice
-<span class="o">(</span>env<span class="o">)</span><span class="kw">$ </span>pip install requests envoy bs4 <span class="grey"># some other useful packages</span>
-</pre>
-
-    <h2><a href="#plotdevice-star" id="plotdevice-star" name="plotdevice-star"></a>Initializing a graphics context from your script</h2>
-
-    <p>The <code>plotdevice</code> module initializes your script’s namespace with one
-    identical to a script running with the app or command line tool. For instance, the following
-    will draw a few boxes:</p>
-    <pre class="shell"><span class="grey">#!/usr/bin/env python</span>
-<span class="kw">from</span> <span class="nn">plotdevice</span> <span class="kw">import</span> <span class="o">*</span>
-<span class="kw">for</span> <span class="kw">x</span><span class="s">,</span> <span class="kw">y</span> <span class="ow">in</span> <span class="kw">grid</span><span class="s">(</span><span class="mi">10</span><span class="s">,</span><span class="mi">10</span><span class="s">,</span><span class="mi">12</span><span class="s">,</span><span class="mi">12</span><span class="s">):</span>
-    <span class="kw">rect</span><span class="s">(</span><span class="kw">x</span><span class="s">,</span><span class="kw">y</span><span class="s">,</span> <span class="mi">10</span><span class="s">,</span><span class="mi">10</span><span class="s">)</span>
-</pre>
-
-    <p>You can then generate output files using the global <code>canvas</code> object. Its
-    <code>save</code> method takes a file path as an argument and the format will be determined by
-    the file extension (<code>pdf</code>, <code>eps</code>, <code>png</code>, <code>jpg</code>,
-    <code>gif</code>, or <code>tiff</code>):</p>
-<pre>canvas.save('~/Pictures/output.pdf')
-</pre>
-
-    <p>If you’re generating multiple images, be sure to reset the graphics state in between frames:</p>
-<pre>canvas.clear()
-</pre>
-
-    <p>But if you plan to do more than generate a one-off, you’ll likely find the <a href="../ref/Canvas.html#export()"><code>export()</code></a> function more convenient. It provides
-    convenience methods for writing images, vector documents, and even animations.</p>
 
 
 
