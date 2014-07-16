@@ -32,14 +32,16 @@ ref/{{dst}}.html
 </head>
 <body class="commands">
 
-  {{nav()}}
+  <div id="nav">
+    <h1><a href="http://plotdevice.io">PlotDevice <span>Manual</span></a></h1>
+  </div>
 
   <div id="ref" class="toc">
     <h1>Reference</h1>
     <ul class="filter"><li class="commands active">Commands</li><li class='types'>Types</li><li class='compat'>Etc.</li></ul>
     <div class="sidebar">
       <div class="commands">
-        <p>Commands marked with a<br/>dot support the python <a class="noexternal" title="a.k.a. ‘context managers’" href="http://python.org/dev/peps/pep-0343/"><code>with</code></a>
+        <p>Commands marked with a<br/>dot support the python <a title="a.k.a. ‘context managers’" href="http://python.org/dev/peps/pep-0343/"><code>with</code></a>
            statement to <a title="PlotDevice Tutorial: Graphics State" href="tut/Graphics_State.html">limit their scope</a>.</p>
         <p>Commands with open dots will also reset any changes made within the block. </p>
       </div>
@@ -101,10 +103,10 @@ ref/{{dst}}.html
   </div>
 
   <div id="footer" class="toc">
-    Derived from <a class="noexternal" href="http://organisms.be">Tom De Smedt</a>’s manual for <a class="noexternal" href="http://nodebox.net/code">NodeBox</a>
-    <a class="noexternal" href="http://www.emrg.be/" title="Experimental Media Research Group">© 2004-2012</a>.
+    Derived from <a href="http://organisms.be">Tom De Smedt</a>’s manual for <a href="http://nodebox.net/code">NodeBox</a>
+    <a href="http://www.emrg.be/" title="Experimental Media Research Group">© 2004-2012</a>.
     <br>
-    Rewritten for <a class="noexternal" href="http://plotdevice.io">PlotDevice</a> by <a class="noexternal" href="http://samizdat.cc">Christian Swinehart</a> © 2014
+    Rewritten for <a href="http://plotdevice.io">PlotDevice</a> by <a href="http://samizdat.cc">Christian Swinehart</a> © 2014
   </div>
   <script src="etc/zepto.min.js"></script>
   <script>
