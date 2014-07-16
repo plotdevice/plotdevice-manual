@@ -1,84 +1,82 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>stylesheet()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>stylesheet("name", *font, **options) # define a style
 stylesheet("name") # retrieve a preexisting style
 stylesheet("name", None) # undefine a style
 
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Part of the canvas's state is the global stylesheet object which is used by the <a href="#text()">text()</a> command to format strings with XML-delimited inline styles. The stylesheet() command allows you associate font settings with names. You can then apply these attributes to a portion of your string by enclosing it in an XML element using the same name. The command allows you to both read and modify the global state depending on the number and style of arguments received.
-      </p></div>
+    <div class="row">
+      <p>Part of the canvas's state is the global stylesheet object which is used by the <a href="#text()">text()</a> command to format strings with XML-delimited inline styles. The stylesheet() command allows you associate font settings with names. You can then apply these attributes to a portion of your string by enclosing it in an XML element using the same name. The command allows you to both read and modify the global state depending on the number and style of arguments received.
+    </p></div>
 
-      <h2>Defining Styles</h2>
+    <h2>Defining Styles</h2>
 
-      <div class="row">
-        <p>The first argument is a string defining the new style's name. All subsequent arguments will be interpreted identically to the <a href="#font()">font()</a> command's syntax. You can use both positional and keyword arguments. For example the following are equivalent:
-        </p><pre>stylesheet('sans', 'gill sans', 'bold', 22, italic=True)
+    <div class="row">
+      <p>The first argument is a string defining the new style's name. All subsequent arguments will be interpreted identically to the <a href="#font()">font()</a> command's syntax. You can use both positional and keyword arguments. For example the following are equivalent:
+      </p><pre>stylesheet('sans', 'gill sans', 'bold', 22, italic=True)
 stylesheet('sans', size=22, family='gill sans', italic=True, weight='bold')
 </pre>
 
-        <p>You can then use this style when calling the text() command:
-        </p><pre>text("&lt;sans&gt;Ignite the seven cannons!&lt;/sans&gt;")
+      <p>You can then use this style when calling the text() command:
+      </p><pre>text("&lt;sans&gt;Ignite the seven cannons!&lt;/sans&gt;")
 </pre>
 
-        <p>Styles "cascade" in the same way as CSS definitons. Rather than fully specifying your styles, you can have each tag modify only a subset of attributes. Omitted attributes will be "inherited" from other enclosing styles or, ultimately, the canvas's current font() setting.
-      </p></div>
+      <p>Styles "cascade" in the same way as CSS definitons. Rather than fully specifying your styles, you can have each tag modify only a subset of attributes. Omitted attributes will be "inherited" from other enclosing styles or, ultimately, the canvas's current font() setting.
+    </p></div>
 
-      <h2>Accessing Styles</h2>
+    <h2>Accessing Styles</h2>
 
-      <div class="row">
-        <p>The stylesheet stores individual styles as dictionaries of attributes. If your script needs access to the properties set by a previously defined style, call stylesheet() with the style name as the sole argument. It will return the style dictionary associated with the name.
-        </p><pre>stylesheet('serif', 'Adobe Garamond', 'semibold', 11)
+    <div class="row">
+      <p>The stylesheet stores individual styles as dictionaries of attributes. If your script needs access to the properties set by a previously defined style, call stylesheet() with the style name as the sole argument. It will return the style dictionary associated with the name.
+      </p><pre>stylesheet('serif', 'Adobe Garamond', 'semibold', 11)
 print stylesheet('serif')
 # &gt;&gt;&gt; {'family': u'Adobe Garamond Pro', 'weight': 'semibold', 'size': 11}
 </pre>
 
-        <p>Since the return value is a dictionary, you can also pass style definitions to the font() command using the <code>**</code> operator to map the dictionary to keyword arguments:
-        </p><pre>rule = stylesheet('serif')
+      <p>Since the return value is a dictionary, you can also pass style definitions to the font() command using the <code>**</code> operator to map the dictionary to keyword arguments:
+      </p><pre>rule = stylesheet('serif')
 font(**rule)
 </pre>
-      </div>
+    </div>
 
-      <h2>Discarding Styles</h2>
+    <h2>Discarding Styles</h2>
 
-      <div class="row">
-        <p>Should you need to remove a style defined earlier in the script, call stylesheet() again with <code>None</code> as the new value for the tag name you're undefining:
-        </p><pre>stylesheet("big-mistake", None)
+    <div class="row">
+      <p>Should you need to remove a style defined earlier in the script, call stylesheet() again with <code>None</code> as the new value for the tag name you're undefining:
+      </p><pre>stylesheet("big-mistake", None)
 </pre>
-      </div>
+    </div>
 
-      <h2>Returns</h2>
+    <h2>Returns</h2>
 
-      <div class="row">
-        a dictionary containing the current attributes of the style named in the first argument
-      </div>
+    <div class="row">
+      a dictionary containing the current attributes of the style named in the first argument
+    </div>
 
-      <h2>Tutorial</h2>
+    <h2>Tutorial</h2>
 
-      <div class="row">
-        <a href="../tut/Strings.html">Strings</a>
-      </div>
+    <div class="row">
+      <a href="../tut/Strings.html">Strings</a>
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
-          <span><img height="125" src="../etc/ref/stylesheet-cascade.png" width="125"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/stylesheet-cascade.png" width="125"/></span>
 <pre>stylesheet("it", italic=True)
 stylesheet("bf", weight='black')
 xml = "&lt;it&gt;Bip &lt;bf&gt;Blip&lt;/bf&gt;&lt;/it&gt;"
@@ -87,7 +85,6 @@ with font("Georgia", 22):
 with font("Avenir", 18), fill('red'):
     text(xml, 20,80)
 </pre>
-        </div>
       </div>
     </div>
   </div>

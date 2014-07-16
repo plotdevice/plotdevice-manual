@@ -1,74 +1,61 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>read()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>read(path, format=None, encoding='utf-8', cols=None, dict=dict)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
+    <div class="row">
+      <p>Returns the contents of a file located at <code>path</code> into a unicode string or format-dependent data type (with special handling for <code>.json</code> and <code>.csv</code> files).
+      </p><p>The format will either be inferred from the file extension or can be set explicitly using the <code>format</code> arg. Text will be read using the specified <code>encoding</code> or default to UTF-8.
+      </p><p>JSON files will be parsed and an appropriate python type will be selected based on the top-level object defined in the file. The optional keyword argument <code>dict</code> can be set to <a href="#adict()">adict</a> or <a href="#odict()">odict</a> if you'd prefer not to use the standard python dictionary when decoding pairs of <code>{}</code>'s.
+      </p><p>CSV files will return a list of rows. By default each row will be an ordered list of column values. If the first line of the file defines column names, you can call read() with <code>cols=True</code> in which case each row will be a dictionary using those names as keys. If the file doesn't define its own column names, you can pass a list of strings as the <code>cols</code> parameter.
+    </p></div>
 
-        <p>Returns the contents of a file located at <code>path</code> into a unicode string or format-dependent data type (with special handling for <code>.json</code> and <code>.csv</code> files).</p>
+    <h2>Returns</h2>
 
-        <p>The format will either be inferred from the file extension or can be set explicitly using the <code>format</code> arg. Text will be read using the specified <code>encoding</code> or default to UTF-8.</p>
+    <div class="row">
+      <p>a unicode string, list of rows (for CSV files), or python collection object (for JSON)
+    </p></div>
 
-        <p>JSON files will be parsed and an appropriate python type will be selected based on the top-level object defined in the file. The optional keyword argument <code>dict</code> can be set to <a href="#adict()">adict</a> or <a href="#odict()">odict</a> if you'd prefer not to use the standard python dictionary when decoding pairs of <code>{}</code>'s.</p>
+    <h2>Example</h2>
 
-
-        <p>CSV files will return a list of rows. By default each row will be an ordered list of column values. If the first line of the file defines column names, you can call read() with <code>cols=True</code> in which case each row will be a dictionary using those names as keys. If the file doesn't define its own column names, you can pass a list of strings as the <code>cols</code> parameter.</p>
-
-
-      </div>
-
-      <h2>Returns</h2>
-
-      <div class="row">
-        <p>a unicode string, list of rows (for CSV files), or python collection object (for JSON)</p>
-      </div>
-
-
-      <h2>Example</h2>
-
-      <div class="row">
-        <div class="example">
+    <div class="row">
+      <div class="example">
 <pre>lipsum = read('lorem.txt')
 print lipsum[:11]        # lorem ipsum
 print lipsum.split()[:3] # [u'Lorem', u'ipsum', u'dolor']
 </pre>
-        </div>
+      </div>
 
-        <div class="example">
+      <div class="example">
 <pre>rows = read('related/months.csv', cols=True)
 print rows[0]['english'], rows[0]['days'] # January 31
 print rows[1]['french'] # Février
 print rows[2]['german'] # März
 </pre>
-        </div>
+      </div>
 
-        <div class="example">
+      <div class="example">
 <pre>oracle = read('8ball.json')
 prognosis = choice(oracle.keys())
 outcome = choice(oracle[prognosis])
 print (prognosis, outcome) # (u'neutral', u'Better not tell you now')
 </pre>
-        </div>
-
-        <p>data: <a href="../etc/ref/lorem.txt">lorem.txt</a>, <a href="../etc/ref/months.csv">months.csv</a>, and <a href="../etc/ref/8ball.json">8ball.json</a></p>
-
       </div>
 
-    </div>
+      <p>data: <a href="../etc/ref/lorem.txt">lorem.txt</a>, <a href="../etc/ref/months.csv">months.csv</a>, and <a href="../etc/ref/8ball.json">8ball.json</a>
+    </p></div>
   </div>
 
 </body></html>

@@ -1,70 +1,57 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>clip()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
-        <pre>with clip(stencil, channel="alpha"):</pre>
-      </div>
+    <div class="row">
+<pre>with clip(stencil, channel="alpha"):
+</pre>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Sets the clipping region for a block of drawing commands.</p>
+    <div class="row">
+      <p>Sets the clipping region for a block of drawing commands.
+      </p><p>All drawing operations within the block will be constrained by a <a href="Drawing.html#Bezier">Bezier</a>, <a href="Primitives.html#Image">Image</a>, or <a href="Typography.html#Text">Text</a> object passed as the <code>stencil</code> argument. If clipping to a path, only content <em>within</em> the filled bounds of the stencil path will be rendered (strokes will be ignored). When clipping to an image, drawing operations will have high opacity in places where the mask value is also high.
+      </p><p>The optional <code>channel</code> arg applies only to image-based stencils and specifies which component of the stencil's pixels should be used for this calculation. If omitted it defaults to <code class="str">"alpha"</code> (if available) or <code class="str">"black"</code> level (if the image is opaque).
+      </p><p>When an object is used as a <code>stencil</code> arg, it is ‘consumed’ by the operation and will not be directly visible on the canvas. As a result, it's perfectly safe to include calls to <a href="Primitives.html">Primitives</a> or the <a href="Primitives.html#image()">image()</a> command within the call to clip().
+    </p></div>
 
-        <p>All drawing operations within the block will be constrained by a <a href="Drawing.html#Bezier">Bezier</a>, <a href="Primitives.html#Image">Image</a>, or <a href="Typography.html#Text">Text</a> object passed as the <code>stencil</code> argument. If clipping to a path, only content <em>within</em> the filled bounds of the stencil path will be rendered (strokes will be ignored). When clipping to an image, drawing operations will have high opacity in places where the mask value is also high.</p>
+    <h2>See Also</h2>
 
-        <p>The optional <code>channel</code> arg applies only to image-based stencils and specifies which component of the stencil's pixels should be used for this calculation. If omitted it defaults to <code class="str">"alpha"</code> (if available) or <code class="str">"black"</code> level (if the image is opaque).</p>
+    <div class="row">
+      <p>The <a href="mask()">mask()</a> command uses the same syntax as clip() but has an opposite effect.
+    </p></div>
 
-        <p>When an object is used as a <code>stencil</code> arg, it is ‘consumed’ by the operation and will not be directly visible on the canvas. As a result, it's perfectly safe to include calls to <a href="Primitives.html">Primitives</a> or the <a href="Primitives.html#image()">image()</a> command within the call to clip().</p>
-      </div>
+    <h2>Example</h2>
 
-      <h2>See Also</h2>
-
-      <div class="row">
-        <p>The <a href="mask()">mask()</a> command uses the same syntax as clip() but has an opposite effect.</p>
-      </div>
-
-      <h2>Example</h2>
-      <div class="row">
-
-        <div class="example">
-          <span><img src="../etc/ref/clip.png" width="125" height="125"/></span>
-<pre>
-with clip(poly(64,64, 50, sides=5)):
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/clip.png" width="125"/></span>
+<pre>with clip(poly(64,64, 50, sides=5)):
     image('plaid.png')
 </pre>
-        </div>
+      </div>
 
-        <div class="example">
-          <span><img src="../etc/ref/clip-image.png" width="125" height="125"/></span>
-<pre>
-with clip(image('logo-stencil.png')):
+      <div class="example">
+        <span><img height="125" src="../etc/ref/clip-image.png" width="125"/></span>
+<pre>with clip(image('logo-stencil.png')):
     image('plaid.png')
-</pre>
-using the <a href="../etc/ref/logo-stencil.png">logo-stencil.png</a> image
-        </div>
+</pre>using the <a href="../etc/ref/logo-stencil.png">logo-stencil.png</a> image
+      </div>
 
-        <div class="example">
-          <span><img src="../etc/ref/clip-text.png" width="125" height="125"/></span>
-<pre>
-font("Avenir", "bold", 112)
+      <div class="example">
+        <span><img height="125" src="../etc/ref/clip-text.png" width="125"/></span>
+<pre>font("Avenir", "bold", 112)
 with clip(text('Hi', 4, 112)):
     image('related/plaid.png')
 </pre>
-        </div>
-
       </div>
-
-
-
     </div>
   </div>
 

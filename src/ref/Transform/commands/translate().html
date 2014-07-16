@@ -1,47 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>translate()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>translate(x, y)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Specifies the amount to move a subsequent shape, path, text, image on the screen. The first parameter sets the horizontal offset, the second parameter the vertical offset. Translating is the same as dragging something across the screen. Or the same as moving the canvas registration point, which is situated in the upper left corner by default.
-        </p><p>Once called, all commands following translate() are repositioned, which makes translate() useful for positioning whole compositions of multiple elements.
-      </p></div>
+    <div class="row">
+      <p>Specifies the amount to move a subsequent shape, path, text, image on the screen. The first parameter sets the horizontal offset, the second parameter the vertical offset. Translating is the same as dragging something across the screen. Or the same as moving the canvas registration point, which is situated in the upper left corner by default.
+      </p><p>Once called, all commands following translate() are repositioned, which makes translate() useful for positioning whole compositions of multiple elements.
+    </p></div>
 
-      <h2>Context Manager</h2>
+    <h2>Context Manager</h2>
 
-      <p>As with the other transform commands, translate() can be used in a <code>with</code> statement to limit its scope to drawing commands within the following block of code.
-      </p><h2>Tutorial</h2>
+    <p>As with the other transform commands, translate() can be used in a <code>with</code> statement to limit its scope to drawing commands within the following block of code.
+    </p><h2>Tutorial</h2>
 
-      <div class="row">
-        <a href="../tut/Graphics_State.html">Graphics State</a>
-      </div>
+    <div class="row">
+      <a href="../tut/Graphics_State.html">Graphics State</a>
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
-          <span><img height="125" src="../etc/ref/translate.jpg" width="125"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/translate.jpg" width="125"/></span>
 <pre>fill(0.2)
 arc(10,10, 20)
 translate(50, 50)
 arc(10,10, 20)
 </pre>
-        </div>
       </div>
     </div>
   </div>

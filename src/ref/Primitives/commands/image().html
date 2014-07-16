@@ -1,39 +1,36 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>image()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>image(path, x, y, width=None, height=None, data=None, plot=True, **style)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Draws an image to the screen. An image is a JPEG-, GIF-, PNG-, AI-, EPS-, TIF-, PSD-, or PDF-file stored on disk. For vector works, EPS is the best format to use. The first parameter sets the pathname of the image file. By default, PlotDevice looks for files in the folder where the PlotDevice file is saved. The following two parameters set the location of the image.
-        </p><p>The <code>width</code> and <code>height</code> parameters are optional and define the maximum width and height of the image. When set, the image is scaled to fit within the given width and height while maintaining its aspect ratio. The <code>alpha</code> and <code>blend</code> ‘style’ parameters are optional as well, and set the opacity and blend mode for compositing the image.
-        </p><p>The optional <code>data</code> parameter is used when supplying an image as a data stream instead of a file path. As with other primitives, setting the <code>plot</code> parameter to <code>False</code> will return a drawable object but not add it to the canvas.
-        </p><h2>Returns</h2>
+    <div class="row">
+      <p>Draws an image to the screen. An image is a JPEG-, GIF-, PNG-, AI-, EPS-, TIF-, PSD-, or PDF-file stored on disk. For vector works, EPS is the best format to use. The first parameter sets the pathname of the image file. By default, PlotDevice looks for files in the folder where the PlotDevice file is saved. The following two parameters set the location of the image.
+      </p><p>The <code>width</code> and <code>height</code> parameters are optional and define the maximum width and height of the image. When set, the image is scaled to fit within the given width and height while maintaining its aspect ratio. The <code>alpha</code> and <code>blend</code> ‘style’ parameters are optional as well, and set the opacity and blend mode for compositing the image.
+      </p><p>The optional <code>data</code> parameter is used when supplying an image as a data stream instead of a file path. As with other primitives, setting the <code>plot</code> parameter to <code>False</code> will return a drawable object but not add it to the canvas.
+      </p><h2>Returns</h2>
 
-        <p>an <a href="#Image">Image</a> object that can be passed to <a href="Canvas.html#background()">background()</a>, <a href="Line+Color.html#fill()">fill()</a>, <a href="Compositing.html#clip()">clip()</a>, and <a href="Compositing.html#mask()">mask()</a> among others.
-      </p></div>
+      <p>an <a href="#Image">Image</a> object that can be passed to <a href="Canvas.html#background()">background()</a>, <a href="Line+Color.html#fill()">fill()</a>, <a href="Compositing.html#clip()">clip()</a>, and <a href="Compositing.html#mask()">mask()</a> among others.
+    </p></div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
-          <span><img alt="superfolia" height="125" src="../etc/ref/superfolia.jpg" width="125"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img alt="superfolia" height="125" src="../etc/ref/superfolia.jpg" width="125"/></span>
 <pre>image("superfolia.jpg", 50, 0)
 </pre>
-        </div>
       </div>
     </div>
   </div>

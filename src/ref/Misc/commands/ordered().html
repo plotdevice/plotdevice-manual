@@ -1,55 +1,52 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>ordered()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>ordered(list, *names, reverse=False)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Returns a sorted copy of a list of objects (similar to Python's built-in <a href="https://wiki.python.org/moin/HowTo/Sorting"><code>sorted</code></a> function). Lists of dictionaries or objects can be sorted based on a common key or attribute if any <code>name</code> strings are provided. If more than one name is present, they will be used (in order) as primary, secondary, tertiary, etc. sorting criteria.
-        </p><p>Lists are returned in ascending order unless the <code>reverse</code> parameter is <code class="kw">True</code>.
-      </p></div>
+    <div class="row">
+      <p>Returns a sorted copy of a list of objects (similar to Python's built-in <a href="https://wiki.python.org/moin/HowTo/Sorting"><code>sorted</code></a> function). Lists of dictionaries or objects can be sorted based on a common key or attribute if any <code>name</code> strings are provided. If more than one name is present, they will be used (in order) as primary, secondary, tertiary, etc. sorting criteria.
+      </p><p>Lists are returned in ascending order unless the <code>reverse</code> parameter is <code class="kw">True</code>.
+    </p></div>
 
-      <h2>Returns</h2>
+    <h2>Returns</h2>
 
-      <div class="row">
-        <p>a sorted copy of the original sequence</p>
-      </div>
+    <div class="row">
+      <p>a sorted copy of the original sequence
+    </p></div>
 
-      <h2>Tutorial</h2>
+    <h2>Tutorial</h2>
 
-      <div class="row">
-        <a href="../tut/Collections.html">Lists</a>
-      </div>
+    <div class="row">
+      <a href="../tut/Collections.html">Lists</a>
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
+    <div class="row">
+      <div class="example">
 <pre>students = [{"name":"Alice", "grade":95},
             {"name":"Bob", "grade":60},
             {"name":"Carol", "grade":88},
             {"name":"Eve", "grade":95} ]
 for s in ordered(students, 'grade', 'name'):
     print s['grade'], s['name']
->>> 60 Bob
->>> 88 Carol
->>> 95 Alice
->>> 95 Eve
+&gt;&gt;&gt; 60 Bob
+&gt;&gt;&gt; 88 Carol
+&gt;&gt;&gt; 95 Alice
+&gt;&gt;&gt; 95 Eve
 </pre>
-        </div>
       </div>
     </div>
   </div>

@@ -1,66 +1,66 @@
-  <div class="section">
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="definition">
     <h3>shadow()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>shadow(color, blur=10, offset=(5,5))
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
-      <div class="row">
-        <p>Sets a global dropshadow style for drawing primitives. The <code>color</code> argument can be a single value, or a tuple containing valid args for the <a href="Line+Color#color()">color()</a> command. The optional <code>blur</code> argument controls the sharpness of the shadowed region.</p>
+    <h2>Description</h2>
 
-        <p>The <code>offset</code> arg, if specified, sets the relative position of the shadow. It can be either a single number (with positive values corresponding to down/right and negative to up/left) or a 2-tuple with separate x &amp; y offsets. If the offset is omitted, it will default to the same value as the <code>blur</code>.</p>
+    <div class="row">
+      <p>Sets a global dropshadow style for drawing primitives. The <code>color</code> argument can be a single value, or a tuple containing valid args for the <a href="Line+Color#color()">color()</a> command. The optional <code>blur</code> argument controls the sharpness of the shadowed region.
+      </p><p>The <code>offset</code> arg, if specified, sets the relative position of the shadow. It can be either a single number (with positive values corresponding to down/right and negative to up/left) or a 2-tuple with separate x &amp; y offsets. If the offset is omitted, it will default to the same value as the <code>blur</code>.
+      </p><p>Calling shadow() affects the global state. Any subsquent drawing operations will include a dropshadow until you call <a href="#noshadow()">noshadow()</a> or <code>shadow(None)</code> to disable the effect.
+    </p></div>
 
-        <p>Calling shadow() affects the global state. Any subsquent drawing operations will include a dropshadow until you call <a href="#noshadow()">noshadow()</a> or <code>shadow(None)</code> to disable the effect.</p>
-      </div>
+    <h2>Context Manager</h2>
 
-      <h2>Context Manager</h2>
-      <div class="row">
-        <p>When used as part of a <code>with</code> statement, the shadow() command's effects will be limited to drawing commands within the block. In addition, the shadow will be applied to drawing operations as a ‘layer’ rather than to the individual graphics objects.</p>
-      </div>
+    <div class="row">
+      <p>When used as part of a <code>with</code> statement, the shadow() command's effects will be limited to drawing commands within the block. In addition, the shadow will be applied to drawing operations as a ‘layer’ rather than to the individual graphics objects.
+    </p></div>
 
-      <h2>Tutorial</h2>
-      <div class="row">
-        <a href="../tut/Graphics_State.html">Graphics State</a>
-      </div>
+    <h2>Tutorial</h2>
 
-      <h2>Example</h2>
+    <div class="row">
+      <a href="../tut/Graphics_State.html">Graphics State</a>
+    </div>
 
+    <h2>Example</h2>
 
-      <div class="row">
-
-        <div class="example">
-          <span><img src="../etc/ref/shadow-multi.png" width="125" height="125"/></span>
-<pre>
-# draw each rect with its own dropshadow
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/shadow-multi.png" width="125"/></span>
+<pre># draw each rect with its own dropshadow
 pen(5, fill='#08a', stroke='#eee')
 shadow('#999', blur=6, offset=4)
 rect(60,10, 50,50)
 rect(10,10, 50,50)
 rect(35,35, 50,50, fill=None)
 </pre>
-        </div>
+      </div>
 
-        <div class="example">
-          <span><img src="../etc/ref/shadow-layer.png" width="125" height="125"/></span>
-<pre>
-# draw a single dropshadow for the entire layer
+      <div class="example">
+        <span><img height="125" src="../etc/ref/shadow-layer.png" width="125"/></span>
+<pre># draw a single dropshadow for the entire layer
 pen(5, fill='#08a', stroke='#eee')
 with shadow('#999', blur=6, offset=4):
     rect(60,10, 50,50)
     rect(10,10, 50,50)
     rect(35,35, 50,50, fill=None)
 </pre>
-        </div>
+      </div>
 
-        <div class="example">
-          <span><img src="../etc/ref/shadow.png" width="125" height="125"/></span>
-<pre>
-with shadow('green'):
+      <div class="example">
+        <span><img height="125" src="../etc/ref/shadow.png" width="125"/></span>
+<pre>with shadow('green'):
     poly(30,30, 15)
 with shadow(('black',.5), blur=5):
     poly(90,30, 15)
@@ -69,15 +69,8 @@ with shadow('red', blur=0, offset=(5,10)):
 with shadow('blue', blur=20, offset=0):
     poly(90,90, 15)
 </pre>
-        </div>
-
       </div>
-
-
-
-
-
     </div>
-
-
   </div>
+
+</body></html>

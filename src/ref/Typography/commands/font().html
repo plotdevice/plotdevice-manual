@@ -1,64 +1,62 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>font()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>font(family, weight, size, italic=False, **options)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Sets the font used by <a href="text()">text()</a> (or modifies selected attributes of the current font). The <code>family</code> and <code>weight</code> arguments are strings cooresponding to the name of a font family installed on the system and a weight name. If the family lacks the specified weight, the closest match will be used instead. If included, the <code>size</code> argument should be a number representing the desired point size. All three positional arguments are optional since unspecified attributes will use the current font as a basis for selecting a new one.
-        </p><p>You can retrieve a list of valid <code>family</code> names on your system using the <a href="Misc.html#fonts()">fonts()</a> command. To determine which weights &amp; styles are provided by a given family, either create a <a href="#Family">Family</a> object and inspect its properties, or take a look at the <code>weights</code>, <code>widths</code>, and <code>variants</code> properties of the current <a href="#Font">Font</a> object (returned by calling font() with no arguments).
-      </p></div>
+    <div class="row">
+      <p>Sets the font used by <a href="text()">text()</a> (or modifies selected attributes of the current font). The <code>family</code> and <code>weight</code> arguments are strings cooresponding to the name of a font family installed on the system and a weight name. If the family lacks the specified weight, the closest match will be used instead. If included, the <code>size</code> argument should be a number representing the desired point size. All three positional arguments are optional since unspecified attributes will use the current font as a basis for selecting a new one.
+      </p><p>You can retrieve a list of valid <code>family</code> names on your system using the <a href="Misc.html#fonts()">fonts()</a> command. To determine which weights &amp; styles are provided by a given family, either create a <a href="#Family">Family</a> object and inspect its properties, or take a look at the <code>weights</code>, <code>widths</code>, and <code>variants</code> properties of the current <a href="#Font">Font</a> object (returned by calling font() with no arguments).
+    </p></div>
 
-      <h2>Optional Parameters</h2>
+    <h2>Optional Parameters</h2>
 
-      <div class="row">
-        <p><code class="box"><span class="red">italic</span></code>
-        </p><p>A boolean value specifying whether to use the italic style of the current font family. Note that the family must provide an italic as it won't be algorithmically generated. If you're dead-set on hacking in a fake italic, try drawing the text as an <code>outline</code> and applying a <a href="Transform.html#skew">skew</a> transform to it.
-        </p><p><code class="box"><span class="red">leading</span></code>
-        </p><p>Controls the spacing from baseline-to-baseline in multi-line text runs. The value is a floating point number representing the distance as a multiple of the current font size. The default leading is 1.2 (120% of the font size), but you may wish to increase this when typesetting a particularly wide measure.
-        </p><p><code class="box"><span class="red">width</span></code>
-        </p><p>For families that provide a range of widths (e.g., "compressed", "condensed", or "extended"), the <code>width</code> argument allows you to select them by name.
-        </p><p><code class="box"><span class="red">variant</span></code>
-        </p><p>The vast majority of western typefaces use weight, width, and italicization as the "axes" for selecting fonts. Occasionally you will run into a family with a more idioscyncratic organization (c.f., Chalet's goofy city- and era-based <a href="http://www.houseind.com/fonts/chalet">scheme</a>). Strings passed as the <code>variant</code> arg allow you to select these sorts of non-standard names.
-        </p><p><code class="box"><span class="red">face</span></code>
-        </p><p>A typeface consists of a "family" of individual "fonts" which relate to one another along axes like weight or width. Typically you will select fonts by specifiying a family and a combination of attributes. You can also hard-code your selection by passing a so-called "PostScript Name" for a particular font weight &amp; style and passing that as the <code>face</code> parameter. For instance, the following are equivalent:
-        </p><pre>font('avenir', 'heavy', italic=True)
+    <div class="row">
+      <p><code class="box"><span class="red">italic</span></code>
+      </p><p>A boolean value specifying whether to use the italic style of the current font family. Note that the family must provide an italic as it won't be algorithmically generated. If you're dead-set on hacking in a fake italic, try drawing the text as an <code>outline</code> and applying a <a href="Transform.html#skew">skew</a> transform to it.
+      </p><p><code class="box"><span class="red">leading</span></code>
+      </p><p>Controls the spacing from baseline-to-baseline in multi-line text runs. The value is a floating point number representing the distance as a multiple of the current font size. The default leading is 1.2 (120% of the font size), but you may wish to increase this when typesetting a particularly wide measure.
+      </p><p><code class="box"><span class="red">width</span></code>
+      </p><p>For families that provide a range of widths (e.g., "compressed", "condensed", or "extended"), the <code>width</code> argument allows you to select them by name.
+      </p><p><code class="box"><span class="red">variant</span></code>
+      </p><p>The vast majority of western typefaces use weight, width, and italicization as the "axes" for selecting fonts. Occasionally you will run into a family with a more idioscyncratic organization (c.f., Chalet's goofy city- and era-based <a href="http://www.houseind.com/fonts/chalet">scheme</a>). Strings passed as the <code>variant</code> arg allow you to select these sorts of non-standard names.
+      </p><p><code class="box"><span class="red">face</span></code>
+      </p><p>A typeface consists of a "family" of individual "fonts" which relate to one another along axes like weight or width. Typically you will select fonts by specifiying a family and a combination of attributes. You can also hard-code your selection by passing a so-called "PostScript Name" for a particular font weight &amp; style and passing that as the <code>face</code> parameter. For instance, the following are equivalent:
+      </p><pre>font('avenir', 'heavy', italic=True)
 font(face='Avenir-HeavyOblique')
 </pre>
 
-        <p>To find the <code>face</code> name of a specific font, use the Show Font Info option in the Preview menu of <a href="http://support.apple.com/kb/HT2509?viewlocale=en_US&amp;locale=en_US">Font Book</a>.
-      </p></div>
+      <p>To find the <code>face</code> name of a specific font, use the Show Font Info option in the Preview menu of <a href="http://support.apple.com/kb/HT2509?viewlocale=en_US&amp;locale=en_US">Font Book</a>.
+    </p></div>
 
-      <h2>Context Manager</h2>
+    <h2>Context Manager</h2>
 
-      <div class="row">
-        <p>The font() command (and the Font object it returns) can both be used as part of a <code>with</code> statement. Changes to the current typeface will be applied at the beginning of the code block, then restored to the previous style at the end.
-      </p></div>
+    <div class="row">
+      <p>The font() command (and the Font object it returns) can both be used as part of a <code>with</code> statement. Changes to the current typeface will be applied at the beginning of the code block, then restored to the previous style at the end.
+    </p></div>
 
-      <h2>Returns</h2>
+    <h2>Returns</h2>
 
-      <div class="row">
-        a <a href="#Font">Font</a> object with the canvas's current font
-      </div>
+    <div class="row">
+      a <a href="#Font">Font</a> object with the canvas's current font
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
-          <span><img height="125" src="../etc/ref/font.png" width="125"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/font.png" width="125"/></span>
 <pre>fill(0.2)
 font("Helvetica", 35)
 text("hello", 10, 50)
@@ -66,7 +64,6 @@ with font("bold", 16, italic=True):
     text("cruel", 10, 69)
 text("world", 10, 95)
 </pre>
-        </div>
       </div>
     </div>
   </div>

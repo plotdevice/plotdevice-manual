@@ -5,7 +5,7 @@
 
 
 /*body, table, td, input, select, option, textarea { font: 14px/20px "Zapfino";}*/
-body, table, td, input, select, option, textarea { font: 14px/20px "Georgia";}
+body, table, td, input, select, option, textarea { font:17px/25px "chaparral-pro", "Alegreya";}
 
 h1, h3 { font: bold 18px "Cabin"; }
 h3 { margin-top: 15px; }
@@ -31,10 +31,6 @@ td { vertical-align: top; padding: 0 10px 2px 0; margin: 0;}
 a { color: #bb4200; text-decoration: none; }
 a:hover { text-decoration: underline; }
 a img { border: 0 }
-a.zip { background: url("../g/media/zip.png") no-repeat; padding: 0 0 48px 52px; }
-a.pdf { background: url("../g/media/pdf.png") no-repeat; padding: 0 0 48px 52px; }
-a.mov { background: url("../g/media/mov.png") no-repeat; padding: 0 0 48px 52px; }
-a.mp3 { background: url("../g/media/mp3.png") no-repeat; padding: 0 0 48px 52px; }
 
 /* Images */
 img { border: 0; }
@@ -167,8 +163,8 @@ pre .s{ font-weight:bold;}
 
 
 
-
-/* Style items */
+/***************************************/
+/* Old NodeBox styles (really just used in the libs pages now) */
 .orange_box { background: #bb4200; color: white; font-size: 85%; font-weight: bold; padding: 2px 4px 2px 4px; margin: 0 5px 0 0; }
 .grey_box { background: #666; color: white; font-size: 85%; font-weight: bold; padding: 2px 4px 2px 4px; margin: 0 5px 0 0; }
 .header_image { display: none; }
@@ -338,7 +334,7 @@ a.noexternal { background-image:none !important; padding-right: 0; }
 }
 
 
-.article .section{
+.article .definition{
   position:relative;
   border-top:1px solid #666;
 }
@@ -372,13 +368,13 @@ a.noexternal { background-image:none !important; padding-right: 0; }
   left:-200px;
 }
 
-.article .classic + div>.section{
+.article .classic + div>.definition{
   border-color:#ccc;
 }
 
 
-.article a:target + a + .section:before,
-.article a:target + .section:before{
+.article a:target + a + .definition:before,
+.article a:target + .definition:before{
   content:"→";
   left:-30px;
   top:-1px;
@@ -389,12 +385,11 @@ a.noexternal { background-image:none !important; padding-right: 0; }
   color:#bb4200;
 }
 
-.article .definition{
+.article .definition{ /*original .definition....*/
   position:relative;
 }
 
 .article{
-  font:17px/25px "chaparral-pro", "Alegreya";
   -webkit-font-feature-settings:"onum" 1;
 }
 
@@ -428,7 +423,7 @@ a.noexternal { background-image:none !important; padding-right: 0; }
 }
 
 
-.article.ref .section h3 span.args{
+.article.ref .definition h3 span.args{
   font-weight:normal;
   /*font-family:Courier;*/
   color:#aaa;
@@ -491,12 +486,12 @@ div.media{
   margin-left:-58px;
 }
 
-.article .definition .blend-modes{
+.blend-modes{
   overflow:hidden;
   width:580px;
 }
 
-.article .definition .blend-modes .mode{
+.blend-modes .mode{
   float:left;
   margin:0 12px 20px 0;
   font: 12px "Courier Prime";
@@ -504,60 +499,48 @@ div.media{
   border:1px solid black;
   position:relative;
 }
-.article .definition .blend-modes .mode > div.label{
+.blend-modes .mode > div.label{
   position:absolute;
   background:none;
   top:127px;
   left:0;
 }
 
-.article .definition .blend-modes .mode > div{
+.blend-modes .mode > div{
   background:url("ref/blend-modes.png");
   width:125px;
   height:125px;
   overflow:hidden;
 }
 
-.article .definition .blend-modes .mode .normal{background-position:-0px 0;}
-.article .definition .blend-modes .mode .copy{background-position:-125px 0;}
-.article .definition .blend-modes .mode .xor{background-position:-250px 0;}
-.article .definition .blend-modes .mode .multiply{background-position:-375px 0;}
-.article .definition .blend-modes .mode .screen{background-position:-500px 0;}
-.article .definition .blend-modes .mode .overlay{background-position:-625px 0;}
-.article .definition .blend-modes .mode .darken{background-position:-750px 0;}
-.article .definition .blend-modes .mode .lighten{background-position:-875px 0;}
-.article .definition .blend-modes .mode .difference{background-position:-1000px 0;}
-.article .definition .blend-modes .mode .exclusion{background-position:-1125px 0;}
-.article .definition .blend-modes .mode .color-dodge{background-position:-1250px 0;}
-.article .definition .blend-modes .mode .color-burn{background-position:-1375px 0;}
-.article .definition .blend-modes .mode .soft-light{background-position:-1500px 0;}
-.article .definition .blend-modes .mode .hard-light{background-position:-1625px 0;}
-.article .definition .blend-modes .mode .hue{background-position:-1750px 0;}
-.article .definition .blend-modes .mode .saturation{background-position:-1875px 0;}
-.article .definition .blend-modes .mode .color{background-position:-2000px 0;}
-.article .definition .blend-modes .mode .luminosity{background-position:-2125px 0;}
-.article .definition .blend-modes .mode .source-in{background-position:-2250px 0;}
-.article .definition .blend-modes .mode .source-out{background-position:-2375px 0;}
-.article .definition .blend-modes .mode .source-atop{background-position:-2500px 0;}
-.article .definition .blend-modes .mode .plus-darker{background-position:-2625px 0;}
-.article .definition .blend-modes .mode .plus-lighter{background-position:-2750px 0;}
-.article .definition .blend-modes .mode .destination-over{background-position:-2875px 0;}
-.article .definition .blend-modes .mode .destination-in{background-position:-3000px 0;}
-.article .definition .blend-modes .mode .destination-out{background-position:-3125px 0;}
-.article .definition .blend-modes .mode .destination-atop{background-position:-3250px 0;}
-.article .definition .blend-modes .mode .clear{background-position:-3375px 0;}
-/*.article .contents h2,*/
-/*
-.article .contents{
-  min-width:500px;
-  overflow:auto;
-}
-
-.article ul.methods{
-  width:120px;
-  float:left;
-}
-*/
+.blend-modes .mode .normal{background-position:-0px 0;}
+.blend-modes .mode .copy{background-position:-125px 0;}
+.blend-modes .mode .xor{background-position:-250px 0;}
+.blend-modes .mode .multiply{background-position:-375px 0;}
+.blend-modes .mode .screen{background-position:-500px 0;}
+.blend-modes .mode .overlay{background-position:-625px 0;}
+.blend-modes .mode .darken{background-position:-750px 0;}
+.blend-modes .mode .lighten{background-position:-875px 0;}
+.blend-modes .mode .difference{background-position:-1000px 0;}
+.blend-modes .mode .exclusion{background-position:-1125px 0;}
+.blend-modes .mode .color-dodge{background-position:-1250px 0;}
+.blend-modes .mode .color-burn{background-position:-1375px 0;}
+.blend-modes .mode .soft-light{background-position:-1500px 0;}
+.blend-modes .mode .hard-light{background-position:-1625px 0;}
+.blend-modes .mode .hue{background-position:-1750px 0;}
+.blend-modes .mode .saturation{background-position:-1875px 0;}
+.blend-modes .mode .color{background-position:-2000px 0;}
+.blend-modes .mode .luminosity{background-position:-2125px 0;}
+.blend-modes .mode .source-in{background-position:-2250px 0;}
+.blend-modes .mode .source-out{background-position:-2375px 0;}
+.blend-modes .mode .source-atop{background-position:-2500px 0;}
+.blend-modes .mode .plus-darker{background-position:-2625px 0;}
+.blend-modes .mode .plus-lighter{background-position:-2750px 0;}
+.blend-modes .mode .destination-over{background-position:-2875px 0;}
+.blend-modes .mode .destination-in{background-position:-3000px 0;}
+.blend-modes .mode .destination-out{background-position:-3125px 0;}
+.blend-modes .mode .destination-atop{background-position:-3250px 0;}
+.blend-modes .mode .clear{background-position:-3375px 0;}
 
 
 /*@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape){*/
@@ -579,8 +562,8 @@ div.media{
     font-size:17px;
   }
 
-  .article a:target + a + .section:before,
-  .article a:target + .section:before{
+  .article a:target + a + .definition:before,
+  .article a:target + .definition:before{
     top:1px;
     font:36px/36px "Menlo";
   }
@@ -602,6 +585,16 @@ div.media{
 
   /* make things a reasonable size (in tandem with the meta.viewport settings */
   body, html, pre{ -webkit-text-size-adjust: 100%; }
+
+  /* typography redefs */
+  .article p{ font-size:16px; line-height:23px;}
+  .article h3 { margin: 30px 0 0 0; }
+  .article h2 { margin: 30px 0 0 0; }
+  .article.tut h2 { line-height:22px; }
+  .article p code, .article li code { font-size:13px;}
+  .double-dagger{ padding-left:36px; }
+  .double-dagger:after{ left:0px; }
+
 
   /* Nav: Backlink & page title */
   #nav{
@@ -743,11 +736,11 @@ div.media{
     position: relative;
     top: 0;
   }
-  .article .section .row p{
+  .article .definition .row p{
     max-width:none;
   }
 
-  .section:before{
+  .definition:before{
     display:none;
   }
 
@@ -822,7 +815,6 @@ div.media{
      content:"Chapter ";
    }
 
-
    #footer ul.chapter li.current{
      display:none;
    }
@@ -830,24 +822,8 @@ div.media{
      float:left;
    }
 
-   .double-dagger {
-    padding-left:36px;
-   }
-   .double-dagger:after{
-     left:0px;
-   }
 
 
-  .article p{ font:16px/23px "chaparral-pro", "Alegreya"; }
-  .article h1, .article h3 { font: bold 18px "Cabin"; }
-  .article h3 { margin: 30px 0 0 0; }
-  .article h2 { font: bold 14px/20px "Cabin"; margin: 30px 0 0 0; }
-  .article pre { font-size: 12px; font-family:"Courier Prime"; line-height: 19px; overflow:auto;}
-  .article code { font-family:"Courier Prime"; letter-spacing:0; line-height: 16px;}
-  .article code.box{ padding:0 4px;}
-  .article p code { font-size:13px;}
-  .article .message { font: bold 14px "Cabin"; line-height: 18px; }
 
 
-  .article.tut h2 { font: bold 14px/22px "Cabin"; }
 }

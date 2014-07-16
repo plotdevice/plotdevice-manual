@@ -1,31 +1,29 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>Family</h3>
-    <div class="definition">
-      <h2>Syntax</h2>
 
-      <div class="row">
-        <pre>Family(famname)</pre>
-      </div>
+    <h2>Syntax</h2>
 
-      <h2>Description</h2>
+    <div class="row">
+<pre>Family(famname)
+</pre>
+    </div>
 
-      <div class="row">
-        <p>Represents a family of font files installed on your system. Create a Family by passing a name string as the first argument. The name will be case-insensitively matched against the list returned by the <a href="Misc.html#fonts()">fonts()</a> command.</p>
+    <h2>Description</h2>
 
-        <p>The object's properties allow you to examine available weights and styles, which can help you craft calls to the <a href="#font()">font()</a> command.</p>
-      </div>
+    <div class="row">
+      <p>Represents a family of font files installed on your system. Create a Family by passing a name string as the first argument. The name will be case-insensitively matched against the list returned by the <a href="Misc.html#fonts()">fonts()</a> command.
+      </p><p>The object's properties allow you to examine available weights and styles, which can help you craft calls to the <a href="#font()">font()</a> command.
+    </p></div>
 
-      <h2>Properties</h2>
+    <h2>Properties</h2>
 
-      <div class="row">
-        <pre class="manual">
-fam.<span class="red">name</span>     <span class="grey"># canonical family name</span>
+    <div class="row">
+      <pre class="manual">fam.<span class="red">name</span>     <span class="grey"># canonical family name</span>
 fam.<span class="red">fonts</span>    <span class="grey"># dictionary of `face`-name keys and Font object values</span>
 fam.<span class="red">weights</span>  <span class="grey"># tuple of valid weight names</span>
 fam.<span class="red">widths</span>   <span class="grey"># tuple of valid widths (if any)</span>
@@ -33,9 +31,6 @@ fam.<span class="red">variants</span> <span class="grey"># tuple of valid varian
 fam.<span class="red">has_italic</span>
 fam.<span class="red">encoding</span>
 </pre>
-      </div>
-
-
     </div>
   </div>
 

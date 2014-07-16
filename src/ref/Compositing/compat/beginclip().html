@@ -1,49 +1,46 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>beginclip()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>beginclip(path)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Using the beginclip() and <a href="#endclip()">endclip()</a> commands define a clipping mask. The supplied parameter defines the path to be used as a clipping mask. Each of the shape commands returns a path that can be used with beginclip() - setting the draw parameter of a shape command simply returns the path without actually drawing the shape. Any shapes, paths, texts and images between beginclip() and endclip() are clipped, this means that any part that falls outside the clipping mask path is not drawn.
-      </p></div>
+    <div class="row">
+      <p>Using the beginclip() and <a href="#endclip()">endclip()</a> commands define a clipping mask. The supplied parameter defines the path to be used as a clipping mask. Each of the shape commands returns a path that can be used with beginclip() - setting the draw parameter of a shape command simply returns the path without actually drawing the shape. Any shapes, paths, texts and images between beginclip() and endclip() are clipped, this means that any part that falls outside the clipping mask path is not drawn.
+    </p></div>
 
-      <h2>Returns</h2>
+    <h2>Returns</h2>
 
-      <div class="row">
-        <a href="Classes.html#ClippingPath">ClippingPath</a> containing the mask
-      </div>
+    <div class="row">
+      <a href="Classes.html#ClippingPath">ClippingPath</a> containing the mask
+    </div>
 
-      <h2>PlotDevice Equivalent</h2>
+    <h2>PlotDevice Equivalent</h2>
 
-      <div class="row">
-        <p>The beginclip() command has been subsumed into the new <a href="#clip()">clip()</a> command. Rather than calling beginclip() and endclip() to constrain the drawable area, you can call clip() as part of a <code>with</code> statement.
-      </p></div>
+    <div class="row">
+      <p>The beginclip() command has been subsumed into the new <a href="#clip()">clip()</a> command. Rather than calling beginclip() and endclip() to constrain the drawable area, you can call clip() as part of a <code>with</code> statement.
+    </p></div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
-          <span><img alt="superfolia" height="125" src="../etc/ref/beginclip.jpg" width="125"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img alt="superfolia" height="125" src="../etc/ref/beginclip.jpg" width="125"/></span>
 <pre>p = oval(20, 20, 80, 80, plot=False)
 beginclip(p)
 image("header.jpg", -130, 0)
 endclip()
 </pre>
-        </div>
       </div>
     </div>
   </div>

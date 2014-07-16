@@ -1,42 +1,39 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>grid()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>grid(cols, rows, colsize=1, rowsize=1)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>The grid() command returns an iteratable object, something that can be traversed in a for-loop (like the range() command for example). The grid() is a more complex, but very powerful command. The first two parameters define the number of columns and rows in the grid. The next two parameters are optional, and set the width and height of one cell in the grid. Each iteration in a for-loop, the offset for the current column and row is returned.
-      </p></div>
+    <div class="row">
+      <p>The grid() command returns an iteratable object, something that can be traversed in a for-loop (like the range() command for example). The grid() is a more complex, but very powerful command. The first two parameters define the number of columns and rows in the grid. The next two parameters are optional, and set the width and height of one cell in the grid. Each iteration in a for-loop, the offset for the current column and row is returned.
+    </p></div>
 
-      <h2>Returns</h2>
+    <h2>Returns</h2>
 
-      <div class="row">
-        tuples of x/y coordinates that can be used in a for-loop
-      </div>
+    <div class="row">
+      tuples of x/y coordinates that can be used in a for-loop
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
-          <span><img height="125" src="../etc/ref/grid.jpg" width="125"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/grid.jpg" width="125"/></span>
 <pre>fill(0.2)
 for x, y in grid(7, 5, 12, 12):
     rect(10+x, 10+y, 10, 10)
 </pre>
-        </div>
       </div>
     </div>
   </div>

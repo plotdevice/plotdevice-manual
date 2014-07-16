@@ -1,51 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>outputmode()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>outputmode(mode)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Changes the way colors are displayed. While the <a href="Line+Color.html#colormode()">colormode()</a> command specifies the input of colors, outpumode() specifies the output. By default, the output mode for colors is <code class="kw">RGB</code>, but you can also set it to <code class="kw">CMYK</code> so that exported PDF’s are ready for print. Output in RGB will look brighter on screen but to validate PDF documents the colors need to be in CMYK.
-      </p></div>
+    <div class="row">
+      <p>Changes the way colors are displayed. While the <a href="Line+Color.html#colormode()">colormode()</a> command specifies the input of colors, outpumode() specifies the output. By default, the output mode for colors is <code class="kw">RGB</code>, but you can also set it to <code class="kw">CMYK</code> so that exported PDF’s are ready for print. Output in RGB will look brighter on screen but to validate PDF documents the colors need to be in CMYK.
+    </p></div>
 
-      <h2>Returns</h2>
+    <h2>Returns</h2>
 
-      <div class="row">
-        the current output mode (RGB or CMYK)
-      </div>
+    <div class="row">
+      the current output mode (RGB or CMYK)
+    </div>
 
-      <h2>PlotDevice Equivalent</h2>
+    <h2>PlotDevice Equivalent</h2>
 
-      <div class="row">
-        <p>Choosing the output color mode now happens as part of the export process. If you include a <code>mode</code> argument when calling the <a href="#export()">export()</a> command, it will override the canvas's default mode. If the <code>mode</code> argument is omitted, exports will use the value most recently set using the outputmode() command (or <code class="kw">RGB</code> by default).
-      </p></div>
+    <div class="row">
+      <p>Choosing the output color mode now happens as part of the export process. If you include a <code>mode</code> argument when calling the <a href="#export()">export()</a> command, it will override the canvas's default mode. If the <code>mode</code> argument is omitted, exports will use the value most recently set using the outputmode() command (or <code class="kw">RGB</code> by default).
+    </p></div>
 
-      <h2>Tutorial</h2>
+    <h2>Tutorial</h2>
 
-      <div class="row">
-        <a href="../tut/Color.html">Color</a>
-      </div>
+    <div class="row">
+      <a href="../tut/Color.html">Color</a>
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
+    <div class="row">
+      <div class="example">
 <pre>outputmode(CMYK)
 </pre>
-        </div>
       </div>
     </div>
   </div>

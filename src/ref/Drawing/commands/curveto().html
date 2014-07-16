@@ -1,58 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>curveto()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>curveto(h1x, h1y, h2x, h2y, x, y, close=False)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Draws a curve between the current point in the active path and a new destination point. The last two positional args, <code>x</code> and <code>y</code>, set the location of the new destination point. The first &amp; second, and the third &amp; fourth parameters set the location of the two ‘control points’ of the curve. These control points, or handles in Illustrator nomenclature, define the edge and slant of the curve.</p>
+    <div class="row">
+      <p>Draws a curve between the current point in the active path and a new destination point. The last two positional args, <code>x</code> and <code>y</code>, set the location of the new destination point. The first &amp; second, and the third &amp; fourth parameters set the location of the two ‘control points’ of the curve. These control points, or handles in Illustrator nomenclature, define the edge and slant of the curve.
+      </p><p>If the <code>close</code> argument is set to <code>True</code>, a <a href="#lineto()">lineto()</a> command will be synthesized connecting the end of the curve to the origin point of the active subpath.
+      </p><p>The curveto() command must be called inside a <a href="#bezier()">bezier()</a> context (or between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).
+    </p></div>
 
-        <p>If the <code>close</code> argument is set to <code>True</code>, a <a href="#lineto()">lineto()</a> command will be synthesized connecting the end of the curve to the origin point of the active subpath.</p>
+    <h2>Tutorial</h2>
 
-        <p>The curveto() command must be called inside a <a href="#bezier()">bezier()</a> context (or between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).</p>
-      </div>
+    <div class="row">
+      <a href="../tut/Bezier_Paths.html">Paths</a>
+    </div>
 
-      <h2>Tutorial</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <a href="../tut/Bezier_Paths.html">Paths</a>
-      </div>
-
-      <h2>Example</h2>
-
-      <div class="row">
-        <div class="example">
-          <span><img src="../etc/ref/curveto.jpg" width="125" height="125"/></span>
-<pre>
-nofill()
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/curveto.jpg" width="125"/></span>
+<pre>nofill()
 stroke(0.2)
 with bezier(0,0, close=True) as path:
     curveto(100,100, 50,0, 100,100)
 </pre><em>or</em>
-<pre>
-nofill()
+<pre>nofill()
 stroke(0.2)
 beginpath(0, 0)
 curveto(100,100, 50,0, 100,100)
 path = endpath()
 </pre>
-        </div>
       </div>
-
-
     </div>
   </div>
 

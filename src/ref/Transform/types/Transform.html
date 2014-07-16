@@ -1,49 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>Transform</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>Transform()
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>A local transformation state (independent of the global, canvas transform) you can use to apply translation, rotation, scaling and skewing to a path before drawing it.</p>
-      </div>
+    <div class="row">
+      <p>A local transformation state (independent of the global, canvas transform) you can use to apply translation, rotation, scaling and skewing to a path before drawing it.
+    </p></div>
 
-      <h2>Methods</h2>
+    <h2>Methods</h2>
 
-      <div class="row">
-<pre class="manual">
-t.<span class="red">translate</span>(x=<span class="mi">0</span>, y=<span class="mi">0</span>)
+    <div class="row">
+      <pre class="manual">t.<span class="red">translate</span>(x=<span class="mi">0</span>, y=<span class="mi">0</span>)
 t.<span class="red">rotate</span>(degrees=<span class="mi">0</span>, radians=<span class="mi">0</span>)
 t.<span class="red">scale</span>(x=<span class="mi">1</span>, y=<span class="kw">None</span>)
 t.<span class="red">skew</span>(x=<span class="mi">0</span>, y=<span class="mi">0</span>)
 t.<span class="red">invert</span>()
 </pre>
-<pre class="manual">
-t.<span class="red">append</span>(t)
+      <pre class="manual">t.<span class="red">append</span>(t)
 t.<span class="red">prepend</span>(t)
 </pre>
-<pre class="manual">t.<span class="red">apply</span>(path_or_point)</pre>
-<pre class="manual">t.<span class="red">copy</span>()</pre>
+      <pre class="manual">t.<span class="red">apply</span>(path_or_point)
+</pre>
+      <pre class="manual">t.<span class="red">copy</span>()
+</pre>
 
-        <p>See the <a href="../tut/Bezier_Paths.html">tutorial on paths</a> to learn more about the
-        methods.</p>
-        <p>The <i>apply()</i> method returns a new <a href="Drawing.html#Bezier"><code>Bezier</code></a> or <a href="Misc.html#Point"><code>Point</code></a> with the
-        defined transformations applied to it.<br/></p>
-      </div>
-    </div>
+      <p>See the <a href="../tut/Bezier_Paths.html">tutorial on paths</a> to learn more about the methods.
+      </p><p>The <i>apply()</i> method returns a new <a href="Drawing.html#Bezier"><code>Bezier</code></a> or <a href="Misc.html#Point"><code>Point</code></a> with the defined transformations applied to it.<br/>
+    </p></div>
   </div>
 
 </body></html>

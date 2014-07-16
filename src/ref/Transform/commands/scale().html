@@ -1,47 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>scale()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>scale(x, y=None)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Increases, decreases or streches the size of all subsequent shape, path, text, image commands. The first parameter sets the horizontal scale, the second parameter the vertical scale. Additionally, the scale() command can be called with a single parameter that sets both the horizontal and vertical scale.
-        </p><p>Scale values are specified as floating-point (decimal) numbers. The scale() command works incrementally: if you call <code>scale(0.5)</code>, and later on call <code>scale(0.2)</code>, all subsequent drawing commands will be sized to 10% (0.2 of 0.5).
-      </p></div>
+    <div class="row">
+      <p>Increases, decreases or streches the size of all subsequent shape, path, text, image commands. The first parameter sets the horizontal scale, the second parameter the vertical scale. Additionally, the scale() command can be called with a single parameter that sets both the horizontal and vertical scale.
+      </p><p>Scale values are specified as floating-point (decimal) numbers. The scale() command works incrementally: if you call <code>scale(0.5)</code>, and later on call <code>scale(0.2)</code>, all subsequent drawing commands will be sized to 10% (0.2 of 0.5).
+    </p></div>
 
-      <h2>Context Manager</h2>
+    <h2>Context Manager</h2>
 
-      <p>As with the other transform commands, scale() can be used in a <code>with</code> statement to limit its scope to drawing commands within the following block of code.
-      </p><h2>Tutorial</h2>
+    <p>As with the other transform commands, scale() can be used in a <code>with</code> statement to limit its scope to drawing commands within the following block of code.
+    </p><h2>Tutorial</h2>
 
-      <div class="row">
-        <a href="../tut/Graphics_State.html">Graphics State</a> 
-      </div>
+    <div class="row">
+      <a href="../tut/Graphics_State.html">Graphics State</a> 
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
-          <span><img height="125" src="../etc/ref/scale.jpg" width="125"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/scale.jpg" width="125"/></span>
 <pre>fill(0.2)
 rect(10, 10, 40, 40)
 scale(0.5)
 rect(50, 10, 40, 40)
 </pre>
-        </div>
       </div>
     </div>
   </div>

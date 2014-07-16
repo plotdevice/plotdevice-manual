@@ -1,43 +1,41 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>arc()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>arc(x, y, radius, range=None, ccw=False, close=False, plot=True, **style)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Draws a full circle or partial arc centered at (x,y). The <code>range</code> argument allows you to draw only a portion of the circle. It can be either a number defining the angle (from 0°) or a 2-tuple with a start- and stop-angle. By default the endpoints of the range will be connected in a clockwise direction, but this can be inverted by passing <code>ccw=True</code>. If the <code>close</code> argument is set to <code>True</code>, the endpoints of the arc will be connected via a pie-slice through the origin.
-      </p></div>
+    <div class="row">
+      <p>Draws a full circle or partial arc centered at (x,y). The <code>range</code> argument allows you to draw only a portion of the circle. It can be either a number defining the angle (from 0°) or a 2-tuple with a start- and stop-angle. By default the endpoints of the range will be connected in a clockwise direction, but this can be inverted by passing <code>ccw=True</code>. If the <code>close</code> argument is set to <code>True</code>, the endpoints of the arc will be connected via a pie-slice through the origin.
+    </p></div>
 
-      <h2>Returns</h2>
+    <h2>Returns</h2>
 
-      <div class="row">
-        a <a href="Drawing.html#Bezier">Bezier</a> object containing the arc
-      </div>
+    <div class="row">
+      a <a href="Drawing.html#Bezier">Bezier</a> object containing the arc
+    </div>
 
-      <h2>Tutorial</h2>
+    <h2>Tutorial</h2>
 
-      <div class="row">
-        <a href="../tut/Primitives.html">Primitives</a>, <a href="../tut/Bezier_Paths.html">Paths</a>
-      </div>
+    <div class="row">
+      <a href="../tut/Primitives.html">Primitives</a>, <a href="../tut/Bezier_Paths.html">Paths</a>
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
-          <span><img height="125" src="../etc/ref/arc.jpg" width="125"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/arc.jpg" width="125"/></span>
 <pre>nofill()
 stroke(.2)
 arc(60,60, 40, range=180)
@@ -45,7 +43,6 @@ arc(60,60, 30, range=90, ccw=True)
 stroke('red')
 arc(60,60, 20, range=270, close=True)
 </pre>
-        </div>
       </div>
     </div>
   </div>

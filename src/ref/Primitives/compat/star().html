@@ -1,48 +1,45 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>star()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>star(x, y, points=20, outer=100, inner=50, plot=True, **style)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Draws a star to the screen. The <code>x</code> and <code>y</code> parameters set the location of the star’s center. There are three optional parameters that set the number of points, the outer radius and the inner radius (the fill radius).
-        </p><p>If the <code>inner</code> radius is omitted, one will be chosen such that the resulting star has regularized angles.
-      </p></div>
+    <div class="row">
+      <p>Draws a star to the screen. The <code>x</code> and <code>y</code> parameters set the location of the star’s center. There are three optional parameters that set the number of points, the outer radius and the inner radius (the fill radius).
+      </p><p>If the <code>inner</code> radius is omitted, one will be chosen such that the resulting star has regularized angles.
+    </p></div>
 
-      <h2>Returns</h2>
+    <h2>Returns</h2>
 
-      <div class="row">
-        a <a href="Drawing.html#Bezier">Bezier</a> object containing the star
-      </div>
+    <div class="row">
+      a <a href="Drawing.html#Bezier">Bezier</a> object containing the star
+    </div>
 
-      <h2>Tutorial</h2>
+    <h2>Tutorial</h2>
 
-      <div class="row">
-        <a href="../tut/Primitives.html">Primitives</a>, <a href="../tut/Bezier_Paths.html">Paths</a>
-      </div>
+    <div class="row">
+      <a href="../tut/Primitives.html">Primitives</a>, <a href="../tut/Bezier_Paths.html">Paths</a>
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
-          <span><img height="125" src="../etc/ref/star.jpg" width="125"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/star.jpg" width="125"/></span>
 <pre>fill(0.2)
 star(50, 50, points=5, outer=40)
 </pre>
-        </div>
       </div>
     </div>
   </div>

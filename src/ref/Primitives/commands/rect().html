@@ -1,49 +1,46 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>rect()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>rect(x, y, width, height, roundness=0.0, radius=None, plot=True, **style)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Draw a rectangle with a top-left corner of (x,y) and size of (width, height)
-        </p><p>The <code>roundness</code> arg lets you control corner radii in a size-independent way. It can range from 0 (sharp corners) to 1.0 (maximally round) and will ensure rounded corners are circular.
-        </p><p>The <code>radius</code> arg provides less abstract control over corner-rounding. It can be either a single float (specifying the corner radius in canvas units) or a 2-tuple with the radii for the x- and y-axis respectively.
-      </p></div>
+    <div class="row">
+      <p>Draw a rectangle with a top-left corner of (x,y) and size of (width, height)
+      </p><p>The <code>roundness</code> arg lets you control corner radii in a size-independent way. It can range from 0 (sharp corners) to 1.0 (maximally round) and will ensure rounded corners are circular.
+      </p><p>The <code>radius</code> arg provides less abstract control over corner-rounding. It can be either a single float (specifying the corner radius in canvas units) or a 2-tuple with the radii for the x- and y-axis respectively.
+    </p></div>
 
-      <h2>Returns</h2>
+    <h2>Returns</h2>
 
-      <div class="row">
-        a <a href="Drawing.html#Bezier">Bezier</a> object containing the rectangle
-      </div>
+    <div class="row">
+      a <a href="Drawing.html#Bezier">Bezier</a> object containing the rectangle
+    </div>
 
-      <h2>Tutorial</h2>
+    <h2>Tutorial</h2>
 
-      <div class="row">
-        <a href="../tut/Primitives.html">Primitives</a>, <a href="../tut/Bezier_Paths.html">Paths</a>
-      </div>
+    <div class="row">
+      <a href="../tut/Primitives.html">Primitives</a>, <a href="../tut/Bezier_Paths.html">Paths</a>
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
-          <span><img height="125" src="../etc/ref/rect.jpg" width="125"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/rect.jpg" width="125"/></span>
 <pre>fill(0.2)
 rect(10, 20, 60, 40)
 </pre>
-        </div>
       </div>
     </div>
   </div>

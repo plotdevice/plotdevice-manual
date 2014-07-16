@@ -1,54 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>color()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
-        <div class="def-box">
-          <pre>
-color(mode=RGB, range=1.0) # the default color mode and range
+    <div class="row">
+      <div class="def-box">
+<pre>color(mode=RGB, range=1.0) # the default color mode and range
 color(range=255)           # use 0-255 component values rather than 0–1
 color(HSV)                 # color-related commands will expect HSV values
 </pre>
-          <p>Update the graphics state's "current" color mode</p>
-        </div>
 
-        <div class="def-box">
-          <pre>
-color(r, g, b, a=1)    # RGB mode
+        <p>Update the graphics state's "current" color mode
+      </p></div>
+
+      <div class="def-box">
+<pre>color(r, g, b, a=1)    # RGB mode
 color(h, s, v, a=1)    # HSV mode
 color(c, m, y, k, a=1) # CMYK mode
 </pre>
-          <p>Create a Color object using the current color mode</p>
-        </div>
 
-        <div class="def-box">
-          <pre>color(v, a=1)</pre>
-          <p>Create a greyscale Color object (regardless of the current mode)</p>
-        </div>
+        <p>Create a Color object using the current color mode
+      </p></div>
 
-      </div>
+      <div class="def-box">
+<pre>color(v, a=1)
+</pre>
 
+        <p>Create a greyscale Color object (regardless of the current mode)
+      </p></div>
+    </div>
 
-      <h2>Color State</h2>
+    <h2>Color State</h2>
 
-      <div class="row">
-      <p>A number of plotdevice commands can take lists of numeric arguments to specify a color (see <a href="#stroke()">stroke()</a>, <a href="#fill()">fill()</a>, <a href="Canvas.html#background()">background()</a>, etc.). When called with keyword arguments alone, The color() command allows you to control how these numbers should be interpreted in subsequent color-modification commands.</p>
-
-      <p>By default, color commands interpret groups of 3 or more numbers as r/g/b triplets (with an optional, final alpha arg). If the <code>mode</code> keyword arg is set to <code class="kw">RGB</code>, <code class="kw">HSV</code>, or <code class="kw">CMYK</code>, subsequent color commands will interpret numerical arguments according to that colorspace instead.</p>
-
-      <p>The <code>range</code> keyword arg sets the maximum value for color channels. By default this is 1.0, but 255 and 100 are also sensible choices.</p>
-
-      <p>For instance here are three equivalent ways of setting the fill color to ‘blue’:</p>
-<pre>
-color(mode=HSV)
+    <div class="row">
+      <p>A number of plotdevice commands can take lists of numeric arguments to specify a color (see <a href="#stroke()">stroke()</a>, <a href="#fill()">fill()</a>, <a href="Canvas.html#background()">background()</a>, etc.). When called with keyword arguments alone, The color() command allows you to control how these numbers should be interpreted in subsequent color-modification commands.
+      </p><p>By default, color commands interpret groups of 3 or more numbers as r/g/b triplets (with an optional, final alpha arg). If the <code>mode</code> keyword arg is set to <code class="kw">RGB</code>, <code class="kw">HSV</code>, or <code class="kw">CMYK</code>, subsequent color commands will interpret numerical arguments according to that colorspace instead.
+      </p><p>The <code>range</code> keyword arg sets the maximum value for color channels. By default this is 1.0, but 255 and 100 are also sensible choices.
+      </p><p>For instance here are three equivalent ways of setting the fill color to ‘blue’:
+      </p><pre>color(mode=HSV)
 fill(.666, 1.0, .76)
 color(mode=RGB, range=255)
 fill(0, 0, 190)
@@ -56,9 +50,8 @@ color(mode=CMYK, range=100)
 fill(95, 89, 0, 0)
 </pre>
 
-      <p>Color mode &amp; range changes can be constrained to a block of code using the <code>with</code> statement. e.g.,</p>
-<pre>
-background(.5, .5, .6) # interpteted as r/g/b (the default)
+      <p>Color mode &amp; range changes can be constrained to a block of code using the <code>with</code> statement. e.g.,
+      </p><pre>background(.5, .5, .6) # interpteted as r/g/b (the default)
 with color(mode=CMYK): # temporarily change the mode:
     stroke(1, 0, 0, 0) # - interpteted as c/m/y/k
 fill(1, 0, 0)          # outside the block, the mode is restored to r/g/b
@@ -66,51 +59,42 @@ fill(1, 0, 0)          # outside the block, the mode is restored to r/g/b
 
       <h2>Making Colors</h2>
 
-      <p>When called with a sequence of color-channel values, color() will return a reusable <code>Color</code> object. These can be passed to color-related commands in lieu of numeric args. For example:</p>
-<pre>
-red = color(1, 0, 0)                   # r/g/b
+      <p>When called with a sequence of color-channel values, color() will return a reusable <code>Color</code> object. These can be passed to color-related commands in lieu of numeric args. For example:
+      </p><pre>red = color(1, 0, 0)                   # r/g/b
 glossy_black = color(15, 15, 15, 0.25) # r/g/b/a
 background(red)
 fill(glossy_black)
 </pre>
 
-      <p>You can also prefix the numeric args with a color mode as a convenience for setting one-off colors in a mode different from the current colorspace:</p>
-<pre>
-color(mode=HSV)                        # set mode to h/s/b
+      <p>You can also prefix the numeric args with a color mode as a convenience for setting one-off colors in a mode different from the current colorspace:
+      </p><pre>color(mode=HSV)                        # set mode to h/s/b
 hsb_color = color(.7, 1, .8)           # uses current mode (h/s/b)
 cmyk_color = color(CMYK, 0, .7, .9, 0) # interpreted as c/m/y/k
 still_hsb = color(1, .5, .25)          # uses current mode (h/s/b)
 </pre>
 
-      <p>Greyscale colors can be created regardless of the current mode by passing only one or two values (for the brightness and alpha respectively):</p>
-<pre>
-fill(1, .75) # translucent white
+      <p>Greyscale colors can be created regardless of the current mode by passing only one or two values (for the brightness and alpha respectively):
+      </p><pre>fill(1, .75) # translucent white
 stroke(0)    # opaque black
 </pre>
 
-      <p>If you pass a string to a color command, it must either be a hex-string (beginning with a <code>#</code>) or a valid CSS color-name. The string can be followed by an optional alpha argument:</p>
-<pre>
-background('#f00')   # blindingly red
+      <p>If you pass a string to a color command, it must either be a hex-string (beginning with a <code>#</code>) or a valid CSS color-name. The string can be followed by an optional alpha argument:
+      </p><pre>background('#f00')   # blindingly red
 fill('#74e9ff', 0.4) # translucent pale blue
 stroke('chartreuse') # electric bile
 </pre>
+    </div>
 
+    <h2>Returns</h2>
 
-      </div>
+    <div class="row">
+      a <a href="#Color">Color</a> object containing the defined color values
+    </div>
 
+    <h2>Tutorial</h2>
 
-      <h2>Returns</h2>
-
-      <div class="row">
-        a <a href="#Color">Color</a> object containing the defined color values
-      </div>
-
-      <h2>Tutorial</h2>
-
-      <div class="row">
-        <a href="../tut/Color.html">Color</a>
-      </div>
-
+    <div class="row">
+      <a href="../tut/Color.html">Color</a>
     </div>
   </div>
 

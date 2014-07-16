@@ -1,39 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>reset()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>reset()
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Resets the current transform to its default state (the identity matrix).
-        </p><p>Transformations in PlotDevice build up an incremental state. For example, once <code>rotate(90)</code> is called, all subsequent shapes, paths, text, and images are rotated 90 degrees (i.e., the rotation ‘state’ is 90°). If called again – e.g., <code>rotate(30)</code> – the rotation state becomes 120 degrees (90+30).
-        </p><p>Once reset() is called, the rotation state becomes 0 degrees (the default rotation) again. Since reset() affects the entire transform state, it will also wipe out any previously applied translations, skews, and scale-factors.
-      </p></div>
+    <div class="row">
+      <p>Resets the current transform to its default state (the identity matrix).
+      </p><p>Transformations in PlotDevice build up an incremental state. For example, once <code>rotate(90)</code> is called, all subsequent shapes, paths, text, and images are rotated 90 degrees (i.e., the rotation ‘state’ is 90°). If called again – e.g., <code>rotate(30)</code> – the rotation state becomes 120 degrees (90+30).
+      </p><p>Once reset() is called, the rotation state becomes 0 degrees (the default rotation) again. Since reset() affects the entire transform state, it will also wipe out any previously applied translations, skews, and scale-factors.
+    </p></div>
 
-      <h2>Tutorial</h2>
+    <h2>Tutorial</h2>
 
-      <div class="row">
-        <a href="../tut/Graphics_State.html">Graphics State</a> 
-      </div>
+    <div class="row">
+      <a href="../tut/Graphics_State.html">Graphics State</a> 
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
-          <span><img alt="GCD" height="125" src="../etc/ref/reset.jpg" width="125"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img alt="GCD" height="125" src="../etc/ref/reset.jpg" width="125"/></span>
 <pre>fill(0.2)
 fontsize(14)
 rotate(90)
@@ -43,7 +41,6 @@ text("two", 45, 80)
 reset()
 text("three", 70, 80)
 </pre>
-        </div>
       </div>
     </div>
   </div>

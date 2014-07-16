@@ -1,60 +1,54 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>ximport()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>libname = ximport("libname")
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>The <i>ximport()</i> command is of historical interest to NodeBox users and is no longer necessary in PlotDevice. It allowed for importing ‘Libraries’ that were been installed in the <code>~/Library/Application Support/PlotDevice</code> directory.</p>
+    <div class="row">
+      <p>The <i>ximport()</i> command is of historical interest to NodeBox users and is no longer necessary in PlotDevice. It allowed for importing ‘Libraries’ that were been installed in the <code>~/Library/Application Support/PlotDevice</code> directory.
+      </p><p>When called with a string whose value matches the name of an installed Library, the Library will be loaded and returned as a module. In addition, a reference to the current "graphics context" would be handed to the module, allowing it to change the <a href="../tut/Graphics_State.html">graphics state</a>, draw to the canvas, etc.
+      </p><p>You can assign the module to a variable of any name you choose. Most of the time it makes sense to use the same name as the Library, but you're free to pick something shorter if it's too much of a mouthful.
+    </p></div>
 
-        <p>When called with a string whose value matches the name of an installed Library, the Library will be loaded and returned as a module. In addition, a reference to the current "graphics context" would be handed to the module, allowing it to change the <a href="../tut/Graphics_State.html">graphics state</a>, draw to the canvas, etc.</p>
+    <h2>Returns</h2>
 
-        <p>You can assign the module to a variable of any name you choose. Most of the time it makes sense to use the same name as the Library, but you're free to pick something shorter if it's too much of a mouthful.</p>
+    <div class="row">
+      a module object
+    </div>
 
-      </div>
+    <h2>PlotDevice Equivalent</h2>
 
-      <h2>Returns</h2>
+    <div class="row">
+      <p>The PlotDevice Libraries have been updated to work with the standard Python <code><a href="https://docs.python.org/2/tutorial/modules.html">import</a></code> statement.
+    </p></div>
 
-      <div class="row">
-        a module object
-      </div>
+    <h2>Tutorial</h2>
 
-      <h2>PlotDevice Equivalent</h2>
+    <div class="row">
+      <a href="../tut/Libraries.html">Libraries</a>
+    </div>
 
-      <div class="row">
-        <p>The PlotDevice Libraries have been updated to work with the standard Python <code><a href="https://docs.python.org/2/tutorial/modules.html">import</a></code> statement.
-      </p></div>
+    <h2>Example</h2>
 
-      <h2>Tutorial</h2>
-
-      <div class="row">
-        <a href="../tut/Libraries.html">Libraries</a>
-      </div>
-
-      <h2>Example</h2>
-
-      <div class="row">
-        <div class="example">
-          <span><img src="../etc/ref/ximport-colors.png"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img src="../etc/ref/ximport-colors.png"/></span>
 <pre>colors = ximport("colors")
 background(colors.papayawhip())
 fill(colors.chocolate())
 rect(10, 10, 50, 50)
 </pre>
-        </div>
       </div>
     </div>
   </div>

@@ -153,6 +153,11 @@ def absify(rel, href):
     return href
   return relpath(join(reldir, href), '.')
 
+def get_def(fn):
+  soup = parse(fn)
+  sect = soup.find('div', class_='definition')
+  return namify(fn), sect
+
 def get_sect(fn):
   soup = parse(fn)
   sect = soup.find('div', class_='section')
@@ -248,18 +253,21 @@ def ref():
   print "\nReference"
   _mkdir('doc/ref')
 
-  siblings = reload(ToC).ref.keys()
+  # collapse the last two ToC categories into a single page
+  siblings = reload(ToC).ref.keys()[:-2] + ["Misc"]
 
   for page in glob('src/ref/*'):
-    sect = basename(page)
-    fname = 'doc/ref/%s.html' % sect
+    name = basename(page)
+    fname = 'doc/ref/%s.html' % name
     if is_stale(fname, glob('%s/*/*.html'%page), deps=['tmpl/nav.html','tmpl/manpage.html']):
-      cmd, typ, old = [map(get_sect, glob('%s/%s/*'%(page,s))) for s in ('commands','types','compat')]
+      cmd, typ, old = [map(get_def, glob('%s/%s/*'%(page,s))) for s in ('commands','types','compat')]
 
       html = tmpls.get_template('manpage.html')
-      info = dict(name=sect, sect='ref', siblings=siblings, commands=cmd, types=typ, compat=old)
+      info = dict(name=name, sect='ref', siblings=siblings, commands=cmd, types=typ, compat=old)
 
-      markup = html.render(info)
+      push = '<a name="push()"></a>'
+      pushpop = push + '<a name="pop()"></a>'
+      markup = html.render(info).replace(push, pushpop)
       with file(fname, 'w') as f:
         f.write(tidy(markup).encode('utf-8'))
 

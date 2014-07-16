@@ -1,57 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>moveto()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>moveto(x, y)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Moves the ‘current’ point of the path to a new location (x,y) without drawing a line from the previous point. This is conceptually similar to lifting your pen from the page and putting it down somewhere else to continue drawing.</p>
+    <div class="row">
+      <p>Moves the ‘current’ point of the path to a new location (x,y) without drawing a line from the previous point. This is conceptually similar to lifting your pen from the page and putting it down somewhere else to continue drawing.
+      </p><p>The moveto() command must be called inside a <a href="#bezier()">bezier()</a> context (or between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).
+    </p></div>
 
-        <p>The moveto() command must be called inside a <a href="#bezier()">bezier()</a> context (or between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).</p>
+    <h2>Tutorial</h2>
 
-      </div>
+    <div class="row">
+      <a href="../tut/Bezier_Paths.html">Paths</a>
+    </div>
 
-      <h2>Tutorial</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <a href="../tut/Bezier_Paths.html">Paths</a>
-      </div>
-
-      <h2>Example</h2>
-
-      <div class="row">
-        <div class="example">
-          <span><img src="../etc/ref/moveto.jpg" width="125" height="125"/></span>
-<pre>
-with bezier(10, 10, stroke=0.2) as path:
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/moveto.jpg" width="125"/></span>
+<pre>with bezier(10, 10, stroke=0.2) as path:
     lineto(50, 100)
     moveto(60, 100)
     lineto(100, 100)
 </pre><em>or</em>
-<pre>
-stroke(0.2)
+<pre>stroke(0.2)
 beginpath(10, 10)
 lineto(50, 100)
 moveto(60, 100)
 lineto(100, 100)
 endpath()
 </pre>
-        </div>
       </div>
-
     </div>
   </div>
 

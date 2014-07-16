@@ -1,46 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>dictionaries</h3>
 
-    <div class="definition">
-      <div class="row">
-        <p>Python's built-in <a href="https://docs.python.org/2/library/stdtypes.html#mapping-types-dict">dictionary</a> type has the advantages of being fast, versatile, and <em>standard</em>. But sometimes you'll come across situations where you wish it worked slightly differently. PlotDevice includes a handful of dict-like classes to make a few common access patterns easier or less verbose.
-      </p></div><a name="adict()"></a>
+    <div class="row">
+      <p>Python's built-in <a href="https://docs.python.org/2/library/stdtypes.html#mapping-types-dict">dictionary</a> type has the advantages of being fast, versatile, and <em>standard</em>. But sometimes you'll come across situations where you wish it worked slightly differently. PlotDevice includes a handful of dict-like classes to make a few common access patterns easier or less verbose.
+    </p></div><a name="adict()"></a>
 
-      <h2>Attribute Dictionary<br/>
-      <span style="font:italic 14px Georgia;">Derived from the <a href="http://webpy.org">web.py</a> project's <a href="https://github.com/webpy/webpy/blob/master/web/utils.py#L52">Storage</a> class.</span></h2>
+    <h2>Attribute Dictionary<br/>
+    <span style="font:italic 14px Georgia;">Derived from the <a href="http://webpy.org">web.py</a> project's <a href="https://github.com/webpy/webpy/blob/master/web/utils.py#L52">Storage</a> class.</span></h2>
 
-      <div class="row">
-        <p>The <code class="kw">adict()</code> command creates a dictionary whose items may also be accessed with dot notation. Items can be assigned using dot notation even if a dictionary method of the same name exists. Subsequently, dot notation will still reference the method, but the assigned value can be read out using traditional <code>d["name"]</code> syntax.
-      </p></div>
+    <div class="row">
+      <p>The <code class="kw">adict()</code> command creates a dictionary whose items may also be accessed with dot notation. Items can be assigned using dot notation even if a dictionary method of the same name exists. Subsequently, dot notation will still reference the method, but the assigned value can be read out using traditional <code>d["name"]</code> syntax.
+    </p></div>
 
-      <div class="row">
-        <div class="example">
+    <div class="row">
+      <div class="example">
 <pre>d = adict(torches=12, rations=3, potions=0)
 d.keys = 9
 print d.rations # 3
 print d.keys()  # ['keys', 'torches', 'potions', 'rations']
 print d['keys'] # 9
 </pre>
-        </div>
-      </div><a name="ddict()"></a>
+      </div>
+    </div><a name="ddict()"></a>
 
-      <h2>Default Dictionary<br/>
-      <span style="font:italic 14px Georgia;">A thin wrapper for <a href="https://docs.python.org/2/library/collections.html#defaultdict-objects">collections.defaultdict</a></span></h2>
+    <h2>Default Dictionary<br/>
+    <span style="font:italic 14px Georgia;">A thin wrapper for <a href="https://docs.python.org/2/library/collections.html#defaultdict-objects">collections.defaultdict</a></span></h2>
 
-      <div class="row">
-        <p>The <code class="kw">ddict()</code> command creates a dictionary with a default ‘factory’ function for lazily initializing items. When your code accesses a previously undefined key in the dictionary, the factory function is run and its return value is assigned to the specified key.
-      </p></div>
+    <div class="row">
+      <p>The <code class="kw">ddict()</code> command creates a dictionary with a default ‘factory’ function for lazily initializing items. When your code accesses a previously undefined key in the dictionary, the factory function is run and its return value is assigned to the specified key.
+    </p></div>
 
-      <div class="row">
-        <div class="example">
-<pre>
-normal_dict = {}
+    <div class="row">
+      <div class="example">
+<pre>normal_dict = {}
 normal_dict['foo'].append(42) # raises a KeyError
 
 lst_dict = ddict(list)
@@ -54,24 +51,22 @@ nest_dict = ddict(dict)
 nest_dict['apple']['color'] = 'green'
 print nset_dict               # prints ddict{'apple': {'color': 'green'}}
 </pre>
-        </div>
-
-      </div><a name="odict()"></a>
-
-      <h2>Ordered Dictionary<br/>
-      <span style="font:italic 14px Georgia;">A thin wrapper for <a href="https://docs.python.org/2/library/collections.html#ordereddict-examples-and-recipes">collections.OrderedDict</a></span></h2>
-
-      <div class="row">
-        <p>the <code class="kw">odict()</code> command creates a dictionary that remembers insertion order. When you iterate using its <code>keys()</code>, <code>values()</code>, or <code>items()</code> methods, the values will be returned in the order they were created (or, e.g., deserialized from JSON).
-        </p><p>Standard <code>dict</code> objects return keys in an arbitrary order. This poses a problem for initializing an <code>odict</code> since both <code>dict</code>-literals and keyword arguments will discard the ordering before the <code>odict</code> constructor can access them.
-        </p><p>To initialize an <code>odict</code> and not lose the key-order in the process, pass a list of (key,val) tuples:
-        </p><pre>odict([ ('foo',12), ('bar',14), ('baz', 33) ])
-</pre>
-
-        <p>or construct it as part of a generator expression:
-        </p><pre>odict( (k,other[k]) for k in ordered(other.keys()) )
-</pre>
       </div>
+    </div><a name="odict()"></a>
+
+    <h2>Ordered Dictionary<br/>
+    <span style="font:italic 14px Georgia;">A thin wrapper for <a href="https://docs.python.org/2/library/collections.html#ordereddict-examples-and-recipes">collections.OrderedDict</a></span></h2>
+
+    <div class="row">
+      <p>the <code class="kw">odict()</code> command creates a dictionary that remembers insertion order. When you iterate using its <code>keys()</code>, <code>values()</code>, or <code>items()</code> methods, the values will be returned in the order they were created (or, e.g., deserialized from JSON).
+      </p><p>Standard <code>dict</code> objects return keys in an arbitrary order. This poses a problem for initializing an <code>odict</code> since both <code>dict</code>-literals and keyword arguments will discard the ordering before the <code>odict</code> constructor can access them.
+      </p><p>To initialize an <code>odict</code> and not lose the key-order in the process, pass a list of (key,val) tuples:
+      </p><pre>odict([ ('foo',12), ('bar',14), ('baz', 33) ])
+</pre>
+
+      <p>or construct it as part of a generator expression:
+      </p><pre>odict( (k,other[k]) for k in ordered(other.keys()) )
+</pre>
     </div>
   </div>
 

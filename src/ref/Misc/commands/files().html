@@ -1,40 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>files()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>files(pattern, case=True)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Retrieves the names of all files at a given path matching a wildcard pattern. By default a case-sensitive search is performed but this can be relaxed by passing <code class="kw">False</code> as the <code>case</code> parameter.
-      </p></div>
+    <div class="row">
+      <p>Retrieves the names of all files at a given path matching a wildcard pattern. By default a case-sensitive search is performed but this can be relaxed by passing <code class="kw">False</code> as the <code>case</code> parameter.
+    </p></div>
 
-      <h2>Returns</h2>
+    <h2>Returns</h2>
 
-      <div class="row">
-        a list with the names of the files matching the given pattern
-      </div>
+    <div class="row">
+      a list with the names of the files matching the given pattern
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
+    <div class="row">
+      <div class="example">
 <pre>f = files("~/Pictures/*.jpg") # tilde expands to $HOME
 image(choice(f), 10, 10)
 </pre>
-        </div>
       </div>
     </div>
   </div>

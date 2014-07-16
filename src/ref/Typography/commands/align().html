@@ -1,41 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>align()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>align(style=LEFT)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Sets the alignment used by the <a href="#text()">text()</a> command. Valid <code>style</code> arguments are <code class="kw">LEFT</code>, <code class="kw">RIGHT</code>, <code class="kw">CENTER</code>, or <code class="kw">JUSTIFY</code>. When calling text() without specifying a <code>width</code> argument, its x &amp; y coords will determine the left-, right-, or center-point of the line of text (based on the alignment).</p>
+    <div class="row">
+      <p>Sets the alignment used by the <a href="#text()">text()</a> command. Valid <code>style</code> arguments are <code class="kw">LEFT</code>, <code class="kw">RIGHT</code>, <code class="kw">CENTER</code>, or <code class="kw">JUSTIFY</code>. When calling text() without specifying a <code>width</code> argument, its x &amp; y coords will determine the left-, right-, or center-point of the line of text (based on the alignment).
+      </p><p>Calling text() with a <code>width</code> argument will lay out a column of type. Text in a column wraps across multiple lines within the rectangle defined by the x/y/w/h dimensions and the align() setting controls how lines are broken within this block.
+    </p></div>
 
-        <p>Calling text() with a <code>width</code> argument will lay out a column of type. Text in a column wraps across multiple lines within the rectangle defined by the x/y/w/h dimensions and the align() setting controls how lines are broken within this block.</p>
-      </div>
+    <h2>Returns</h2>
 
-      <h2>Returns</h2>
+    <div class="row">
+      the current alignment
+    </div>
 
-      <div class="row">
-        the current alignment
-      </div>
+    <h2>Example</h2>
 
-      <h2>Example</h2>
-
-      <div class="row">
-        <div class="example">
-          <span><img height="125" src="../etc/ref/align.png" width="125"/></span>
-          <pre>
-font(12)
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/align.png" width="125"/></span>
+<pre>font(12)
 x = 62
 line(x,10, x,115, dash=3, stroke=.7)
 align(RIGHT)
@@ -45,12 +41,11 @@ text("Kipple", 62,65)
 align(CENTER)
 text("Homeopape", 62,105)
 </pre>
-        </div>
+      </div>
 
-        <div class="example">
-          <span><img height="125" src="../etc/ref/align-block.png" width="125"/></span>
-          <pre>
-quip = "Twas brillig and the slithy toves"
+      <div class="example">
+        <span><img height="125" src="../etc/ref/align-block.png" width="125"/></span>
+<pre>quip = "Twas brillig and the slithy toves"
 x,y = 10,55
 font(16)
 align(RIGHT)
@@ -58,10 +53,7 @@ text(quip, x,y, width=90)
 with stroke(.7), nofill():
     rect(x,y-font().size, 90, 70, dash=3)
 </pre>
-        </div>
       </div>
-
-
     </div>
   </div>
 

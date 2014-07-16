@@ -1,46 +1,31 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>measure()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>measure(grob)
 measure("text", width=None, height=None, **fontstyle)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Returns width &amp; height for graphics objects, strings, or file objects. If the first argument is a string, the size will reflect the current <a href="Typography.html#font()">font()</a> settings and will layout the text using the optional <code>width</code> and <code>height</code> arguments (as well as any keyword arguments supported by the <a href="Typography.html#text()">text()</a> command).</p>
+    <div class="row">
+      <p>Returns width &amp; height for graphics objects, strings, or file objects. If the first argument is a string, the size will reflect the current <a href="Typography.html#font()">font()</a> settings and will layout the text using the optional <code>width</code> and <code>height</code> arguments (as well as any keyword arguments supported by the <a href="Typography.html#text()">text()</a> command).
+      </p><p>If called with a <a href="https://docs.python.org/2/library/stdtypes.html#bltin-file-objects">file</a> object, PlotDevice will expect it to be an image file and return its pixel dimensions.
+    </p></div>
 
-        <p>If called with a <a href="https://docs.python.org/2/library/stdtypes.html#bltin-file-objects">file</a> object, PlotDevice will expect it to be an image file and return its pixel dimensions.</p>
-      </div>
+    <h2>Returns</h2>
 
-      <h2>Returns</h2>
-
-      <div class="row">
-        a <a href="#Point">Point</a> tuple with the object's dimensions
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-
+    <div class="row">
+      a <a href="#Point">Point</a> tuple with the object's dimensions
+    </div>
   </div>
 
 </body></html>

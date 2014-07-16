@@ -1,49 +1,47 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>findpath()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>findpath(list, curvature=1.0)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        Constructs a fluid path from a list of coordinates. Each element in the list is a 2-tuple defining the x-coordinate and the y-coordinate. If the curve has more than three points, the <i>curvature</i> parameter offers some control on how separate segments are stitched together: from straight lines (0.0) to smooth curves (1.0).
-      </div>
+    <div class="row">
+      Constructs a fluid path from a list of coordinates. Each element in the list is a 2-tuple defining the x-coordinate and the y-coordinate. If the curve has more than three points, the <i>curvature</i> parameter offers some control on how separate segments are stitched together: from straight lines (0.0) to smooth curves (1.0).
+    </div>
 
-      <h2>Returns</h2>
+    <h2>Returns</h2>
 
-      <div class="row">
-        a <a href="#Bezier">Bezier</a> object containing the constructed path
-      </div>
+    <div class="row">
+      a <a href="#Bezier">Bezier</a> object containing the constructed path
+    </div>
 
-      <h2>PlotDevice Equivalent</h2>
+    <h2>PlotDevice Equivalent</h2>
 
-      <div class="row">
-        <p>The findpath() command has been subsumed into the new <a href="#bezier()">bezier()</a> command, though note that it is in a simplified form. The boolean <code>smooth</code> argument to bezier() is equivalent to calling findpath() with a curvature of 1.0 or 0.
-      </p></div>
+    <div class="row">
+      <p>The findpath() command has been subsumed into the new <a href="#bezier()">bezier()</a> command, though note that it is in a simplified form. The boolean <code>smooth</code> argument to bezier() is equivalent to calling findpath() with a curvature of 1.0 or 0.
+    </p></div>
 
-      <h2>Tutorial</h2>
+    <h2>Tutorial</h2>
 
-      <div class="row">
-        <a href="../tut/Bezier_Paths.html">Paths</a>
-      </div>
+    <div class="row">
+      <a href="../tut/Bezier_Paths.html">Paths</a>
+    </div>
 
-      <h2>Example</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <div class="example">
-          <span><img height="125" src="../etc/ref/findpath.jpg" width="125"/></span>
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/findpath.jpg" width="125"/></span>
 <pre>points = [(10, 10), (90, 90), (350, 200)]
 for x, y in points:
     oval(x-2, y-2, 4, 4)
@@ -54,7 +52,6 @@ autoclosepath(False)
 path = findpath(points)
 drawpath(path)
 </pre>
-        </div>
       </div>
     </div>
   </div>

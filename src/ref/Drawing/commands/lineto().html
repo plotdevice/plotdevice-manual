@@ -1,55 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>lineto()</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>lineto(x, y, close=False)
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        <p>Draws a line between the current point in the path and a new destination point. The two parameters set the location of the new destination point. If the <code>close</code> argument is set to <code>True</code>, a <a href="#lineto()">lineto()</a> command will be synthesized connecting the end of the line-segment to the origin point of the active subpath.</p>
+    <div class="row">
+      <p>Draws a line between the current point in the path and a new destination point. The two parameters set the location of the new destination point. If the <code>close</code> argument is set to <code>True</code>, a <a href="#lineto()">lineto()</a> command will be synthesized connecting the end of the line-segment to the origin point of the active subpath.
+      </p><p>The lineto() command must be called inside a <a href="#bezier()">bezier()</a> context (or between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).
+    </p></div>
 
-        <p>The lineto() command must be called inside a <a href="#bezier()">bezier()</a> context (or between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).</p>
+    <h2>Tutorial</h2>
 
-      </div>
+    <div class="row">
+      <a href="../tut/Bezier_Paths.html">Paths</a>
+    </div>
 
-      <h2>Tutorial</h2>
+    <h2>Example</h2>
 
-      <div class="row">
-        <a href="../tut/Bezier_Paths.html">Paths</a>
-      </div>
-
-      <h2>Example</h2>
-
-      <div class="row">
-        <div class="example">
-          <span><img src="../etc/ref/lineto.jpg" width="125" height="125"/></span>
-<pre>
-nofill()
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/lineto.jpg" width="125"/></span>
+<pre>nofill()
 with bezier(10, 10, stroke=0.2, close=True) as path:
     lineto(40, 40)
     lineto(80, 40)
 </pre><em>or</em>
-<pre>
-nofill()
+<pre>nofill()
 stroke(0.2)
 beginpath(10, 10)
 lineto(40, 40)
 lineto(80, 40)
 endpath()
 </pre>
-        </div>
       </div>
     </div>
   </div>

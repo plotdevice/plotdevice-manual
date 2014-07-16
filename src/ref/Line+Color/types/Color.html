@@ -1,63 +1,57 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html><head>
 
   <title></title>
 
 </head><body>
-  <div class="section">
+  <div class="definition">
     <h3>Color</h3>
 
-    <div class="definition">
-      <h2>Syntax</h2>
+    <h2>Syntax</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>Color()
 </pre>
-      </div>
+    </div>
 
-      <h2>Description</h2>
+    <h2>Description</h2>
 
-      <div class="row">
-        The color commands in PlotDevice (see for example, <a href="#color()">color()</a>, <a href="#fill()">fill()</a>, <a href="#stroke()">stroke()</a>, <a href="Canvas.html#background()">background()</a>) return a Color object. This object has a number
-        of properties to manipulate indivdual color values in different spaces and can be passed to
-        the <i>fill()</i> and <i>stroke()</i> commands.
-      </div>
+    <div class="row">
+      The color commands in PlotDevice (see for example, <a href="#color()">color()</a>, <a href="#fill()">fill()</a>, <a href="#stroke()">stroke()</a>, <a href="Canvas.html#background()">background()</a>) return a Color object. This object has a number of properties to manipulate indivdual color values in different spaces and can be passed to the <i>fill()</i> and <i>stroke()</i> commands.
+    </div>
 
-      <h2>Methods</h2>
+    <h2>Methods</h2>
 
-      <div class="row">
+    <div class="row">
 <pre>clr.blend(clr2, factor)
 clr.copy()
 </pre>
-      <p>The <i>blend()</i> method returns a new color that is a mixture of the object and another <i>Color</i> object. Set the <code>factor</code> argument to a value between 0 and 1.0 to control the proportions used for mixing the colors.</p>
 
-      </div>
+      <p>The <i>blend()</i> method returns a new color that is a mixture of the object and another <i>Color</i> object. Set the <code>factor</code> argument to a value between 0 and 1.0 to control the proportions used for mixing the colors.
+    </p></div>
 
-      <h2>Properties</h2>
+    <h2>Properties</h2>
 
-      <div class="row">
-<pre class="manual">
-clr.<span class="red">r</span> <span class="grey"># .red</span>
+    <div class="row">
+      <pre class="manual">clr.<span class="red">r</span> <span class="grey"># .red</span>
 clr.<span class="red">g</span> <span class="grey"># .green</span>
 clr.<span class="red">b</span> <span class="grey"># .blue</span>
 clr.<span class="red">a</span> <span class="grey"># .alpha</span>
-</pre><pre class="manual">
-clr.<span class="red">h</span> <span class="grey"># .hue</span>
+</pre>
+      <pre class="manual">clr.<span class="red">h</span> <span class="grey"># .hue</span>
 clr.<span class="red">s</span> <span class="grey"># .saturation</span>
 clr.<span class="red">v</span> <span class="grey"># .value (or .brightness)</span>
-</pre><pre class="manual">
-clr.<span class="red">c</span> <span class="grey"># .cyan</span>
+</pre>
+      <pre class="manual">clr.<span class="red">c</span> <span class="grey"># .cyan</span>
 clr.<span class="red">m</span> <span class="grey"># .magenta</span>
 clr.<span class="red">y</span> <span class="grey"># .yellow</span>
 clr.<span class="red">k</span> <span class="grey"># .black</span>
-</pre><pre class="manual">
-clr.<span class="red">hex</span>  <span class="grey"># a string like "#f00" or '#ff0000'</span>
+</pre>
+      <pre class="manual">clr.<span class="red">hex</span>  <span class="grey"># a string like "#f00" or '#ff0000'</span>
 clr.<span class="red">hexa</span> <span class="grey"># a tuple like ("#aa99ff", .75)</span>
 </pre>
 
-        <p>See the <a href="../tut/Color.html">tutorial on colors</a> to learn more about <i>Color</i> objects and their uses.</p>
-      </div>
-    </div>
+      <p>See the <a href="../tut/Color.html">tutorial on colors</a> to learn more about <i>Color</i> objects and their uses.
+    </p></div>
   </div>
 
 </body></html>
