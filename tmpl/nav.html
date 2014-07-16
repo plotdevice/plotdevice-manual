@@ -48,7 +48,7 @@
 
 {%- macro nav(sect=None, title=None, root='', tutorial=None, siblings=None) -%}
 {%- set section={None:'Manual', 'ref':'Reference', 'tut':"Tutorials", 'lib':"Libraries"}[sect] -%}
-{%- set home=' href="http://plotdevice.io"' if not sect else ' href="%s../manual.html"'%root -%}
+{%- set home=' href="http://plotdevice.io"' if not sect else ' href="%s../manual.html#%s"'%(root,sect) -%}
 {%- set navclass=' class="%s"'%sect if sect else '' -%}
 <div id="nav"{{navclass}}>
   <h1><a class="noexternal"{{home}}>PlotDevice <span>{{section}}</span></a></h1>
