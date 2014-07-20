@@ -1,24 +1,55 @@
-{%- macro chapters(tutorial, TUTS) -%}
-{%- set next=TUTS[TUTS.index(tutorial)+1].replace('é','e') if tutorial in TUTS and tutorial!=TUTS[-1] else None -%}
-{%- set prev=TUTS[TUTS.index(tutorial)-1].replace('é','e') if tutorial in TUTS and tutorial!=TUTS[0] else None -%}
-{%- set chapter="%i"%(TUTS.index(tutorial)+1) if tutorial in TUTS else None -%}
+<!-- the backlink, title, and categories/chapters bar for ref/tut/lib pages -->
+{%- macro nav(sect=None, title=None, root='', tutorial=None, siblings=[]) -%}
+{%- set section={'ref':'Reference', 'tut':"Tutorials", 'lib':"Libraries"}[sect] -%}
+<nav class="{{sect}}">
+  <h1><a href="{{root}}../manual.html#{{sect}}">PlotDevice <span>{{section}}</span></a></h1>
+  {%- if title and title=='plotdevice' -%}
+  <h3 class="tt">{{title}}</h3>
+  {%- elif title and sect!='ref' -%}
+  <h3>{{title.replace('Bezier','Bézier')}}</h3>
+  {%- endif -%}
+  {%- if sect=='ref' -%}
+  {{categories(siblings, title)}}
+  {{chapters(siblings, ref=title)}}
+  {%- endif -%}
+  {%- if tutorial -%}
+  {{chapters(siblings, tut=tutorial)}}
+  {%- endif -%}
+</nav>
+{%- endmacro %}
 
-<ul class="chapter{% if not chapter %} hidden{%- endif -%}">
+<!-- the prev/next stepper at the foot of tutorial pages on mobile -->
+{%- macro footer(tutorial=None, siblings=[]) -%}
+{%- if tutorial -%}
+<footer>
+{{chapters(siblings, tut=tutorial)}}
+</footer>
+{%- endif -%}
+{%- endmacro %}
+
+<!-- the prev/next stepper in the tuts (as well as refs on mobile) -->
+{%- macro chapters(book, ref=None, tut=None) -%}
+{%- set title=tut if tut else ref -%}
+{%- set chapter="%i"%(book.index(title)+1) if tut in book else ref.replace('+',' &amp; ') if ref else None-%}
+{%- set next=book[book.index(title)+1].replace('é','e') if title in book and title!=book[-1] else None -%}
+{%- set nextname=next.replace('+',' &amp; ').replace('_',' ').replace('Bezier','Bézier') if next else None -%}
+{%- set prev=book[book.index(title)-1].replace('é','e') if title in book and title!=book[0] else None -%}
+{%- set prevname=prev.replace('+',' &amp; ').replace('_',' ').replace('Bezier','Bézier') if prev else None -%}
+<ul class="chapter">
 {% if next %}
-<li class="next"><a href="{{next}}.html">{{next.replace('_',' ').replace('Bezier','Bézier')}} &gt;</a></li>
+<li class="next"><a href="{{next}}.html">{{nextname}} &gt;</a></li>
 {%- endif -%}
 <li class="current">{{chapter}}</li>
 {% if prev %}
-<li class="prev"><a href="{{prev}}.html">&lt; {{prev.replace('_',' ').replace('Bezier','Bézier')}}</a></li>
+<li class="prev"><a href="{{prev}}.html">&lt; {{prevname}}</a></li>
 {%- endif -%}
 </ul>
 {%- endmacro %}
 
-
-
-{%- macro refcats(title, REFS) -%}
+<!-- the section-names navbar at the top of ref pages -->
+{%- macro categories(cats, title) -%}
 <ul class="siblings">
-{% for sect in REFS %}
+{% for sect in cats %}
 {%- if sect==title -%}
 <li><h3 style="margin:0;">{{sect.replace('+',' &amp; ').replace('Misc','Misc.').replace('ography','e')}}</h3></li>
 {%- else -%}
@@ -28,53 +59,3 @@
 </ul>
 {%- endmacro %}
 
-{%- macro refchaps(title, REFS) -%}
-{%- set next=REFS[REFS.index(title)+1].replace('é','e') if title in REFS and title!=REFS[-1] else None -%}
-{%- set prev=REFS[REFS.index(title)-1].replace('é','e') if title in REFS and title!=REFS[0] else None -%}
-{%- set chapter="%i"%(REFS.index(title)+1) if title in REFS else None -%}
-<ul class="chapter">
-
-{% if next %}
-<li class="next"><a href="{{next}}.html">{{next.replace('+',' &amp; ')}} &gt;</a></li>
-{%- endif -%}
-<li class="current">{{title.replace('+',' &amp; ')}}</li>
-{% if prev %}
-<li class="prev"><a href="{{prev}}.html">&lt; {{prev.replace('+',' &amp; ')}}</a></li>
-{%- endif -%}
-</ul>
-{%- endmacro %}
-
-
-
-{%- macro nav(sect=None, title=None, root='', tutorial=None, siblings=None) -%}
-{%- set section={None:'Manual', 'ref':'Reference', 'tut':"Tutorials", 'lib':"Libraries"}[sect] -%}
-{%- set home=' href="http://plotdevice.io"' if not sect else ' href="%s../manual.html#%s"'%(root,sect) -%}
-{%- set navclass=' class="%s"'%sect if sect else '' -%}
-<div id="nav"{{navclass}}>
-  <h1><a class="noexternal"{{home}}>PlotDevice <span>{{section}}</span></a></h1>
-  {%- if title and title=='plotdevice' -%}
-  <h3 class="tt">{{title}}</h3>
-  {%- elif title and sect!='ref' -%}
-  <h3>{{title.replace('Bezier','Bézier')}}</h3>
-  {%- endif -%}
-
-  {%- if sect=='ref' -%}
-  {{refcats(title, siblings)}}
-  {{refchaps(title, siblings)}}
-  {%- endif -%}
-
-  {%- if tutorial -%}
-  {{chapters(tutorial, siblings)}}
-  {%- endif -%}
-
-</div>
-{%- endmacro %}
-
-
-{%- macro footer(tutorial=None, siblings=None) -%}
-{%- if tutorial -%}
-<div id="footer">
-{{chapters(tutorial, siblings)}}
-</div>
-{%- endif -%}
-{%- endmacro %}

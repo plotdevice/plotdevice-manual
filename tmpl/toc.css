@@ -8,7 +8,6 @@ body, table, td, input, select, option, textarea {
   /*font: 16px/22px "Alegreya";*/
   font: 16px/22px "chaparral-pro", "Alegreya";
 }
-/*body { -webkit-text-size-adjust:100%;}*/
 
 h1, h3 { font: bold 18px "Cabin"; }
 h3 { margin-top: 15px; }
@@ -19,9 +18,6 @@ code.box{ padding:0 4px;}
 p code, li code { font-size:13px;}
 .message { font: bold 14px "Cabin"; line-height: 18px; }
 div#title h1 { line-height: 0.8em; margin: 0; padding: 0; font-size: 50px; letter-spacing: -3px; }
-
-/***************************************/
-/* GLOBAL STYLING */
 
 /* Paragraphs */
 p { margin: 10px 0 10px 0; }
@@ -34,18 +30,20 @@ a:hover { text-decoration: underline; }
 ul { margin: 0px; padding-left: 20px; }
 ul li { }
 
-/***************************************/
-/* TABLE OF CONTENTS */
 
-/* row layout */
+
+
+
+/***************************************/
+/* ToC Layout */
 #ref{ margin-top:40px; margin-bottom:0;}
 #lib{ padding-bottom:20px; }
 #ref .section{ min-height:180px; }
 #lib .section{ min-height:150px; }
 #tut .section{ min-height:150px; }
 
-/* basic styles for each section's row */
-#ref,#tut,#lib,#footer{
+/* basic styles for each third's row */
+#ref,#tut,#lib,footer{
   overflow:auto;
   padding-bottom:20px;
   border-top:1px solid #666;
@@ -65,6 +63,7 @@ h1{
 }
 
 
+/* the column-of-links used repeatedly in each third of the page */
 .section{
   float:left;
   width:135px;
@@ -74,16 +73,6 @@ h1{
 
 .section a{
   font-style:italic;
-}
-
-#tut .section a[href="tut/plotdevice.html"]{
-  font:13px/22px "Courier Prime";
-}
-
-#ref .section ul.commands{
-  /* deal with safari leaving clipped bits exposed when `hidden' */
-  padding-left:3px;
-  margin-left:-3px;
 }
 
 .section h2{
@@ -104,26 +93,15 @@ h1{
   color:black;
   text-decoration:none;
 }
-.section ul hr{
-  border:0;
-  margin:2px 0 1px 0;
-  max-width:120px;
-  background:#8bc;
-  height:1px;
-}
 
-.section ul li{
-  max-width:130px;
-}
-
-
-/* draw slashes between reference links on the same line */
 .section ul li a+a:before{
+  /* draw slashes between reference links on the same line */
   content:" / ";
-  color:#589;
+  color:#888;
+  font-weight:bold;
 }
 
-
+/***************************************/
 /* overlapping command/type/compat-specific ul's in each section column */
 .section ul{
   list-style-type:none;
@@ -131,12 +109,20 @@ h1{
   float:left;
 }
 
-.section ul.types li{
-  max-height:18px;
-}
+/* class names should be monospaced */
 .section ul.types a{
   font:13px/22px "Courier Prime";
 }
+.section ul.types li{
+  max-height:18px;
+}
+
+#ref .section ul.commands{
+  /* deal with safari leaving clipped bits exposed when the `commands' group is hidden */
+  padding-left:3px;
+  margin-left:-3px;
+}
+
 
 .section.entropy ul.types li:last-child a,
 .section.canvas ul.types li:last-child a{
@@ -149,8 +135,7 @@ h1{
   color:#1f96b5;
 }
 
-li.cmm,
-li.cm{
+li.cmm, li.cm{
   position:relative;
 }
 
@@ -201,6 +186,7 @@ body.compat #ref .sections ul.compat{
 }
 
 
+/***************************************/
 /* the Commands/Types/Etc. toggle */
 ul.filter{
   position:absolute;
@@ -285,7 +271,7 @@ body.compat .sidebar .compat{
 
 /***************************************/
 /* acknowledgements */
-#footer{
+footer{
   color:#888;
   /*font: 14px/20px "Cabin";*/
   font:italic 16px/22px "chaparral-pro", "Alegreya";
@@ -293,18 +279,18 @@ body.compat .sidebar .compat{
   border:0;
 }
 
-#footer a{
+footer a{
   color:#888;
 }
 
-#footer:hover a{
+footer:hover a{
   color:#555;
 }
 
 
 /***************************************/
 /* NAV BAR */
-#nav{
+nav{
   position:fixed;
   width:100%;
   top:0;
@@ -316,7 +302,7 @@ body.compat .sidebar .compat{
 }
 
 /* section title in the upper left */
-#nav h1{
+nav h1{
   position:relative;
   margin:9px 0 9px 22px;
   float:left;
@@ -328,17 +314,17 @@ body.compat .sidebar .compat{
   -ms-user-select: none;
   user-select: none;
 }
-#nav h1 a:hover{ text-decoration:none; }
+nav h1 a:hover{ text-decoration:none; }
 
 /* the backlink to the homepage (from the ToC) */
-#nav h1 a{ color:black; }
-#nav h1 span{opacity:1; -webkit-transition:opacity .333s;}
-#nav h1:hover span{ opacity:0; }
+nav h1 a{ color:black; }
+nav h1 span{opacity:1; -webkit-transition:opacity .333s;}
+nav h1:hover span{ opacity:0; }
 
 
 
-#nav h1 a{ color:inherit; }
-#nav h1:after{
+nav h1 a{ color:inherit; }
+nav h1:after{
   content:".io";
   position:absolute;
   pointer-events:none;
@@ -347,12 +333,12 @@ body.compat .sidebar .compat{
   z-index:10;
   -webkit-transition:opacity .333s;
 }
-#nav{color:#555; }
-#nav h1{-webkit-transition:color .333s;}
-#nav h1 span{-webkit-transition:opacity .333s;}
-#nav h1:hover{color:black;}
-#nav h1:hover span{ opacity:0; }
-#nav h1:hover:after{ opacity:1; color:black; }
+nav{color:#555; }
+nav h1{-webkit-transition:color .333s;}
+nav h1 span{-webkit-transition:opacity .333s;}
+nav h1:hover{color:black;}
+nav h1:hover span{ opacity:0; }
+nav h1:hover:after{ opacity:1; color:black; }
 
 
 
@@ -360,13 +346,13 @@ body.compat .sidebar .compat{
 
 
 /* the active section in the refs siblings-bar or just the orange page title text */
-#nav h3{
+nav h3{
   color:#bb4200;
   float:left;
   margin:9px 0;
   font-weight:bold;
 }
-#nav h3.tt{
+nav h3.tt{
   font-family:"Courier Prime";
   margin-top:11px;
 }
@@ -379,6 +365,7 @@ body.compat .sidebar .compat{
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px) {
   body, html, pre{
     -webkit-text-size-adjust: 100%;
+    /*font-size:15px;*/
   }
 
   /* row layout */
@@ -397,7 +384,7 @@ body.compat .sidebar .compat{
   }
 
   /* Nav: Backlink & page title */
-  #nav{
+  nav{
     position:relative;
     display:block;
     min-width:inherit;
@@ -405,14 +392,14 @@ body.compat .sidebar .compat{
     margin:auto;
   }
 
-  #nav h1{
+  nav h1{
     width:60%;
     margin:8px 0 12px 0;
   }
-  #nav h1 span{display:none};
+  nav h1 span{display:none};
 
 
-  #nav.link.tut h3{
+  nav.link.tut h3{
     position:absolute;
     left:6px;
     top:120px;
@@ -474,11 +461,11 @@ body.compat .sidebar .compat{
     margin-left:5px;*/
   }
 
-  #footer{
+  footer{
     padding:7px 0 0 0;
     -webkit-text-size-adjust: 100%;
   }
 
-  #footer br{
+  footer br{
     /*display:none;*/
   }

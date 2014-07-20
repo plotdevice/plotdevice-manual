@@ -76,10 +76,19 @@ def parse(fn):
   return BeautifulSoup(file(fn).read().decode('utf-8'), "html5lib")
 
 def tidy(html):
-  HTMLTIDY = '/usr/bin/tidy -q -i -w 100 --doctype "html" -utf8 -omit -f /dev/null'.split()
+  # swap our html5-isms for html2-isms (so htmltidy won't refuse to cooperate)
+  html = html.replace("<nav","<object").replace("</nav","</object")
+  html = html.replace("<footer","<embed").replace("</footer","</embed")
+  HTMLTIDY = '/usr/bin/tidy -q -i -w 1000 --doctype "html" -utf8 -omit -f /dev/null'.split()
   tidy = Popen(HTMLTIDY, stdin=PIPE, stdout=PIPE)
   (out, err) = tidy.communicate(html.encode('utf-8'))
+
+  # swap the fake tags back to their real nav/footer identities
   markup = u"\n".join(out.decode('utf-8').split(u"\n"))
+  markup = markup.replace("<object","<nav").replace("</object","</nav")
+  markup = markup.replace("<embed","<footer").replace("</embed","</footer")
+
+
   soup = BeautifulSoup(markup, "html5lib")
   for spam in soup.find_all('meta'):
     if spam.get('name')=='generator':
@@ -113,17 +122,18 @@ def tidy(html):
 
   # run all of the python blocks through pygments
   for pre in soup.find_all('pre'):
-    if 'shell' in pre.get('class',()) or 'manual' in pre.get('class',()):
+    pre_class = pre.get('class',())
+    if 'shell' in pre_class or 'manual' in pre_class:
       continue
     pre.replace_with(syntax_color(pre.text))
 
   # close <p> and </pre> at the end of the line rather than on a new one
   html = re.sub(r'\n( +)</p><',r'</p>\n\1<', unicode(soup))
   html = re.sub(r'\n( +)</li><',r'</li>\n\1<', html)
-  html = re.sub(r'<pre><',r'<pre>\n<', html)
+  # html = re.sub(r'<pre><',r'<pre>\n<', html)
+  # html = re.sub(r'( +)<pre>',r'<pre>', html)
   # html = re.sub(r'\n</pre>',r'</pre>\n', html)
-  html = re.sub(r'( +)<pre>',r'<pre>', html)
-  html = re.sub(r'<body><',r'<body>\n  <', html)
+  html = re.sub(r'<body([^>]*)>',r'\n<body\1>\n', html)
   return html
 
 def is_stale(dst, src, deps=[], quiet=False):

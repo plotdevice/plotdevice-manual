@@ -196,8 +196,8 @@ a.noexternal { background-image:none !important; padding-right: 0; }
 
 /***************************************/
 /* NAV BAR */
-#footer{ display:none; }
-#nav{
+
+nav{
   position:fixed;
   width:100%;
   top:0;
@@ -209,7 +209,7 @@ a.noexternal { background-image:none !important; padding-right: 0; }
 }
 
 /* section title in the upper left */
-#nav h1{
+nav h1{
   margin:9px 0 9px 22px;
   float:left;
   width:200px;
@@ -220,11 +220,11 @@ a.noexternal { background-image:none !important; padding-right: 0; }
   -ms-user-select: none;
   user-select: none;
 }
-#nav h1 a:hover{ text-decoration:none; }
+nav h1 a:hover{ text-decoration:none; }
 
 /* the backlink to the ToC (from a Section page) */
-#nav h1 a{ color:inherit; }
-#nav h1:after{
+nav h1 a{ color:inherit; }
+nav h1:after{
   content:"Manual";
   position:absolute;
   pointer-events:none;
@@ -233,43 +233,43 @@ a.noexternal { background-image:none !important; padding-right: 0; }
   z-index:10;
   -webkit-transition:opacity .333s;
 }
-#nav{color:#555; }
-#nav h1{-webkit-transition:color .333s;}
-#nav h1 span{-webkit-transition:opacity .333s;}
-#nav h1:hover{color:black;}
-#nav h1:hover span{ opacity:0; }
-#nav h1:hover:after{ opacity:1; color:black; }
+nav{color:#555; }
+nav h1{-webkit-transition:color .333s;}
+nav h1 span{-webkit-transition:opacity .333s;}
+nav h1:hover{color:black;}
+nav h1:hover span{ opacity:0; }
+nav h1:hover:after{ opacity:1; color:black; }
 
 /* the active section in the refs siblings-bar or just the orange page title text */
-#nav h3{
+nav h3{
   color:#bb4200;
   float:left;
   margin:9px 0;
   font-weight:bold;
 }
-#nav h3.tt{
+nav h3.tt{
   font-family:"Courier Prime";
   margin-top:11px;
 }
 
 /* special handling for the section-based nav in ref pages */
-#nav ul.siblings{
+nav ul.siblings{
   float:left;
   list-style:none;
   padding-left:0;
 }
 
-#nav ul.siblings li{
+nav ul.siblings li{
   float:left;
   margin:9px 9px 9px 0;
 }
 
-#nav ul.siblings li a{
+nav ul.siblings li a{
   font-weight:normal;
 }
 
 /* prev/next controls in the tutorial nav */
-#nav ul.chapter{
+nav ul.chapter{
   /*background:red;*/
   position:absolute;
   list-style:none;
@@ -278,39 +278,65 @@ a.noexternal { background-image:none !important; padding-right: 0; }
   overflow:auto;
 }
 
-#nav ul.chapter.hidden{
+nav ul.chapter.hidden{
   display:none;
 }
 
-#nav ul.chapter li{
+nav ul.chapter li{
   float:right;
   margin:9px 0 9px 6px;
 }
 
-#nav ul.chapter li.current:before{
+nav ul.chapter li.current:before{
   content:"Chapter ";
 }
 
-#nav ul.chapter li.prev a{
+nav ul.chapter li.prev a{
   padding-left:20px; /* a bit more hover area */
 }
 
-#nav.ref ul.chapter{
+nav.ref ul.chapter{
   display:none; /* only displayed on small-screens */
 }
 
 
 
-#nav li{
+nav li{
   font: 18px "Cabin";
   margin-bottom:1px;
 }
-#nav li a{ color:#bbb; font-weight:bold;}
-#nav .chapter li a{ color:#bbb; font-weight:normal;}
-#nav li a:hover{
+nav li a{ color:#bbb; font-weight:bold;}
+nav .chapter li a{ color:#bbb; font-weight:normal;}
+nav li a:hover{
   text-decoration:none;
   color:#bb4200;
 }
+
+
+footer{
+  max-width:600px;
+  margin: 0 0 48px 215px;
+}
+
+
+footer ul.chapter{
+  list-style:none;
+  width:auto;
+  margin:0;
+  padding:0;
+  overflow:auto;
+  border-top:1px solid #666;
+  border-bottom:1px solid #666;
+  margin-bottom:55px;
+}
+
+/*footer ul.chapter.hidden{display:none; }*/
+footer ul.chapter li{margin:9px 0; line-height:18px;}
+footer ul.chapter li a{font: 18px "Cabin"; }
+footer ul.chapter li.current{display:none; }
+footer ul.chapter li.next{float:right; }
+footer ul.chapter li.prev{float:left; }
+
 
 
 
@@ -395,6 +421,7 @@ a.noexternal { background-image:none !important; padding-right: 0; }
 
 .article.tut{
   margin-top:80px;
+  border-bottom:none;
 }
 
 .article h2{
@@ -546,18 +573,18 @@ div.media{
 /*@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape){*/
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)  {
 
-  #nav{
+  nav{
     min-width:768px;
     max-width:823px;
   }
 
-  #nav ul.chapter {
+  nav ul.chapter {
     position:static;
     width:auto;
     padding-right:10px;
   }
 
-  #nav ul.siblings li a{
+  nav ul.siblings li a{
     font-weight:normal;
     font-size:17px;
   }
@@ -571,7 +598,7 @@ div.media{
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait){
-  #nav ul.siblings li a{
+  nav ul.siblings li a{
     font-weight:normal;
     font-size:15px;
   }
@@ -597,7 +624,7 @@ div.media{
 
 
   /* Nav: Backlink & page title */
-  #nav{
+  nav{
     position:relative;
     display:block;
     min-width:inherit;
@@ -605,35 +632,35 @@ div.media{
     margin:auto;
   }
 
-  #nav h1{
+  nav h1{
     float:left;
     width:auto;
     margin:8px 0 ;
   }
 
-  #nav.tut{
+  nav.tut{
     overflow:visible;
   }
 
-  #nav h3{
+  nav h3{
     float:right;
     margin:8px 0;
   }
 
-  #nav.ref .siblings{
+  nav.ref .siblings{
     display:none;
   }
 
-  #nav h1:hover span{ opacity:1; }
-  #nav h1:hover:after{ opacity:0;}
+  nav h1:hover span{ opacity:1; }
+  nav h1:hover:after{ opacity:0;}
 
 
-  #nav.ref ul.chapter{
+  nav.ref ul.chapter{
     display:block; /* prev-next for ref sections */
   }
 
   /* Nav: Tutorial chapters */
-  #nav ul.chapter{
+  nav ul.chapter{
     background:#c0c0c0;
     height:36px;
     position:relative;
@@ -646,32 +673,32 @@ div.media{
     padding:0 10px;
   }
 
-  #nav ul.chapter.hidden{
+  nav ul.chapter.hidden{
     height:0;
     display:block;
   }
 
 
 
-  #nav ul.chapter li a{
+  nav ul.chapter li a{
     text-transform:uppercase;
     font-size:14px;
     font-weight:bold;
     color:white;
   }
 
-  #nav ul.chapter li.prev a{
+  nav ul.chapter li.prev a{
     padding:0;
 
   }
-  #nav ul.chapter li{
+  nav ul.chapter li{
     margin:6px 0 0 0;
   }
 
-  #nav ul.chapter li:last-child{
+  nav ul.chapter li:last-child{
     float:left;
   }
-  #nav ul.chapter li.current{
+  nav ul.chapter li.current{
     /*float:none;*/
     position:absolute;
     top:-30px;
@@ -679,37 +706,37 @@ div.media{
     margin:0;
   }
 
-  #nav.tut ul.chapter li.current{ display:none; }
+  nav.tut ul.chapter li.current{ display:none; }
 
-  #nav.tut ul.chapter li.current:before{
+  nav.tut ul.chapter li.current:before{
     content:"§";
   }
-  #nav.ref ul.chapter li.current:before{
+  nav.ref ul.chapter li.current:before{
     content:none;
   }
-  #nav ul.chapter li.current{
+  nav ul.chapter li.current{
     color:#bb4200;
     font-weight:bold;
   }
 
   /* Nav: Reference sections */
-  #nav ul.siblings{
+  nav ul.siblings{
     float:left;
     list-style:none;
     padding-left:0;
     margin:10px 40px 20px 0;
   }
 
-  #nav ul.siblings li{
+  nav ul.siblings li{
     float:none;
     margin:9px 9px 9px 0;
   }
 
-  #nav ul.siblings li a{
+  nav ul.siblings li a{
     font-weight:normal;
   }
 
-  #nav ul.siblings li h3{
+  nav ul.siblings li h3{
     float:none;
     font-weight:bold;
   }
@@ -784,46 +811,21 @@ div.media{
   }
 
    /* prev/next controls in the tutorial nav */
-   #footer{
-     display:block;
+   footer{
+     margin:0 6px;
    }
 
-   #footer ul.chapter{
+   footer ul.chapter{
      list-style:none;
      width:auto;
      margin:0;
      padding:0;
      overflow:auto;
      border-bottom:1px solid #666;
-     margin-bottom:40px;
+     margin-bottom:55px;
    }
 
-   #footer ul.chapter.hidden{
-     display:none;
-   }
-
-   #footer ul.chapter li{
-     float:right;
-     margin:9px 0 9px 6px;
-   }
-
-   #footer ul.chapter li a{
-     font: 16px "Cabin";
-  }
-
-   #footer ul.chapter li.current:before{
-     content:"Chapter ";
-   }
-
-   #footer ul.chapter li.current{
-     display:none;
-   }
-   #footer ul.chapter li.prev{
-     float:left;
-   }
-
-
-
+   footer ul.chapter li a{font: 16px "Cabin"; }
 
 
 }
