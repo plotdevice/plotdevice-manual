@@ -23,9 +23,9 @@
 
     <h1>Classes in Python</h1>
 
-    <p>As we saw in the <a href="Commands.html">Commands</a> chapter, there's a difference between <em>defining</em> something and <em>using</em> it. This same distinction also applies to classes: you first need to teach PlotDevice about your new object type, then later in the script you can "instantiate" as many of them as you want.</p>
+    <p>As we saw in the <a href="Commands.html">Commands</a> chapter, there's a difference between <em>defining</em> something and <em>using</em> it. This same distinction also applies to classes: you first need to teach PlotDevice about your new object type, then later in the script you can create as many "instance" of the type as you want.</p>
 
-    <p>Class definitions have a syntax that looks quite similar to what we've seen before. There's an line name where we set the name for our new class, then an indented block of one or more method definitions:</p>
+    <p>Class definitions have a syntax that looks quite similar to what we've seen before. There's a line starting with the <b>class</b> statement where we set the name for our new class, then an indented block of one or more method definitions. As always, don't forget the colon that begins the indented block:</p>
     <pre>class ClassName:
     ... # method defintions</pre>
 
@@ -45,7 +45,7 @@
 </pre>
 
     <p>As you can see, a creature has <i>x</i> and <i>y</i> properties (its location in space) as well as <i>speed</i> and <i>size</i> properties (which we’ll use to move the creature
-    around). Since <i>speed</i> and <i>size</i> are defined with default values, they are optional when "instantiating" a new creature.</p>
+    around). Since <i>speed</i> and <i>size</i> are defined with default values, they are optional when instantiating a new creature.</p>
     <p>You create instances of a class by calling the class name as if it were a command, but including the parameters defined in its <i>__init__()</i> method. The one tricky bit is that you should ignore the <code>self</code> argument, since it will be filled in automatically (see below).</p>
 <pre>ant = Creature(100, 100, speed=2.0)
 dinosaur = Creature(200, 250, speed=0.25, size=45)

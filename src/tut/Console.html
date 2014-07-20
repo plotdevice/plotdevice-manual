@@ -6,113 +6,116 @@
 </head><body>
   <div class="article">
 
-    <p>The PlotDevice core is now split off from the UI functionality, so you can use it in any
-    project. There are a few different ways of using PlotDevice.</p>
-    <h2>1. The easy way: from PlotDevice itself</h2>
+    <p>The PlotDevice application is a convenient environment for writing scripts and being able to quickly see how your edits affect the graphical output. But once you're happy with the state of a script, you can start to treat it as a program in its own right (rather than a mere "document" that only exists inside the app).</p>
 
-    <p>One of the new features in PlotDevice is that you can access the canvas object. It’s a
-    list-like structure, containing all your graphical objects (’grobs’). The canvas also has a
-    ‘save’ method, so anywhere in your script you can do:</p>
-<pre>canvas.save("partial.pdf")
+
+    <p>The graphics core used by the application is also available in a "console" setting, allowing you to run your scripts from the command line. It can even be used as a traditional Python module that you <code>import</code> into your own programs.</p>
+
+
+
+
+
+    <h1>The <code>plotdevice</code> command</h1>
+
+    <p>The scripts you write in PlotDevice can be run from the terminal using an external command line tool called <code>plotdevice</code>. The command allows you to run scripts, coordinate with an external editor, and export images, movies, or animated GIFs.</p>
+
+    <h2>Installing the tool</h2>
+
+
+    <p>In the application, open the Preferences window and click the Install button:</p>
+    <div class="media" style="margin:0;"><img src="../etc/tut/plotdevice-tool-install.png" width="481" height="326"/></div>
+    <p>Select a destination folder in your shell’s <code>PATH</code> and the application will create a symlink from there to the script contained in the app bundle. If admin privileges are required to access the selected folder, you will be prompted for your password.</p>
+
+    <p>Note that since this connection involves a symlink, the <code>plotdevice</code> command will
+    break if you move the application after installing the tool. If this happens, you will see an
+    error message in the Preferences window and can reinstall the link using the same procedure as
+    before.</p>
+
+    <h1>Running Scripts from the Command Line</h1>
+
+    <p>Once you have installed the <code>plotdevice</code> tool you can run any of the <em>".pv"</em> scripts you've written with the app. Running it without any arguments will display its output in a window, but with the right combination of command line switches you can export graphics to file using any of the supported image/video formats.</p>
+    <pre class="shell"><span class="kw">plotdevice</span> [<span class="red">-f</span>] [<span class="red">-b</span>] [<span class="red">--live</span>] [<span class="red">--virtualenv</span> PATH] [<span class="red">--args</span> [a [b ...]]]
+           [<span class="red">--export</span> FILE] [<span class="red">--frames</span> N or M-N] [<span class="red">--fps</span> N] [<span class="red">--rate</span> N] [<span class="red">--loop</span> [N]]
+           file
 </pre>
 
-    <p>And it will save what it has drawn <em>up until that point.</em> Do it at the end of your
-    script, and you get the full output.</p>
-    <p>After saving, you might want to clear out the canvas. You can:</p>
-<pre>canvas.clear()
+
+
+    <h2>Runtime arguments</h2>
+
+    <div class="def-box">
+        <pre class="manual"><span class="red">-f</span></pre>
+        <p>run full-screen</p>
+    </div>
+
+    <div class="def-box">
+        <pre class="manual"><span class="red">--virtualenv</span> PATH</pre>
+        <p>path to a virtualenv whose libraries you want to use (this should point to the top-level virtualenv directory)</p>
+    </div>
+
+    <div class="def-box">
+        <pre class="manual"><span class="red">--args</span> [a [b ...]]</pre>
+        <p> arguments to be passed to the script as <code>sys.argv</code></p>
+    </div>
+
+
+    <h2>External editor integration</h2>
+    <div class="def-box">
+        <pre class="manual"><span class="red">-b</span></pre>
+        <p>run PlotDevice in the background (i.e., don’t switch apps when the script is run)</p>
+    </div>
+    <div class="def-box">
+        <pre class="manual"><span class="red">--live</span></pre>
+        <p>re-render graphics each time the script file is saved</p>
+    </div>
+
+    <h2>Image/animation export</h2>
+
+    <div class="def-box">
+        <pre class="manual"><span class="red">--export</span> FILE</pre>
+        <p>a destination filename ending in <code>pdf</code>, <code>eps</code>, <code>png</code>, <code>tiff</code>, <code>jpg</code>, <code>gif</code>, or <code>mov</code></p>
+    </div>
+
+
+    <h2>Animation options</h2>
+    <div class="def-box">
+        <pre class="manual"><span class="red">--frames</span> N or M-N</pre>
+        <p>number of frames to render or a range specifying the first and last frames (default <code>1-150</code>)</p>
+    </div>
+    <div class="def-box">
+        <pre class="manual"><span class="red">--fps</span> N</pre>
+        <p>frames per second in exported video (default <code>30</code>)</p>
+    </div>
+    <div class="def-box">
+        <pre class="manual"><span class="red">--rate</span> N</pre>
+        <p>video bitrate in megabits per second (default <code>1</code>)</p>
+    </div>
+    <div class="def-box">
+        <pre class="manual"><span class="red">--loop</span> [N]</pre>
+        <p>number of times to loop an exported animated gif (omit <code>N</code> to loop forever)</p>
+    </div>
+
+
+
+    <h2>Usage examples</h2>
+    <pre class="shell"><span class="grey"># Run a script</span>
+<span class="kw">plotdevice</span> script.pv
+</pre><pre class="shell">
+<span class="grey"># Run fullscreen</span>
+<span class="kw">plotdevice</span> <span class="red">-f</span> script.pv
+</pre><pre class="shell">
+<span class="grey"># Save script's output to pdf</span>
+<span class="kw">plotdevice</span> script.pv <span class="red">--export</span> output.pdf
+</pre><pre class="shell">
+<span class="grey"># Create an animated gif that loops every 2 seconds</span>
+<span class="kw">plotdevice</span> script.pv <span class="red">--export</span> output.gif <span class="red">--frames</span> 60 <span class="red">--fps</span> 30 <span class="red">--loop</span>
+</pre><pre class="shell">
+<span class="grey"># Create a sequence of numbered png files – one for each frame in the animation</span>
+<span class="kw">plotdevice</span> script.pv <span class="red">--export</span> output.png <span class="red">--frames</span> 10
+</pre><pre class="shell">
+<span class="grey"># Create a 5 second long H.264 video at 2 megabits/sec</span>
+<span class="kw">plotdevice</span> script.pv <span class="red">--export</span> output.mov <span class="red">--frames</span> 150 <span class="red">--rate</span> 2.0
 </pre>
-
-    <p>This will remove all grobs already on the canvas; they will not show up in the render.</p>
-    <h2>2. Installing the PlotDevice module</h2>
-
-    <p>If you want to use PlotDevice from the command line, you will have to install it. We currently
-    recommend using <a href="http://subversion.tigris.org/" title="Subversion">Subversion</a> to
-    grab a copy:</p>
-<pre>svn co http://dev.nodebox.net/svn/plotdevice/trunk/ plotdevice
-cd libs/Numeric
-python setup.py install
-cd ../..
-
-cd libs/pathmatics
-python setup.py install
-cd ../..
-
-cd libs/polymagic
-python setup.py install
-cd ../..
-
-cd src
-python setup.py install
-</pre>
-
-    <p>The only outside dependency is <a href="http://pyobjc.sourceforge.net/" title="PyObjC">PyObjC</a>. We recommend the latest version from Subversion.</p>
-    <h2>3. Using the console runner</h2>
-
-    <p>When you have a set of PlotDevice scripts that you want to run to generate images or a movie,
-    use the following commands:</p>
-<pre>from plotdevice import console
-source = "size(200,200)\nrect(random(WIDTH), random(HEIGHT), 20, 20)"
-console.make_image(source, "rect.png")
-console.make_movie(source, "rect.mov", 20, fps=30)
-</pre>
-
-    <p>Currently, there is no way to run the console from the command line, but we’re working on
-    that.</p>
-    <h2>4. Accessing the context directly</h2>
-
-    <p>If you want to have direct access to PlotDevice’s drawing context, you can import everything
-    directly. The API remains the same, but you have to prefix everything with the context. Note
-    also the initialization of Cocoa, necessary for using the API.</p>
-<pre>from AppKit import NSApplication
-NSApplication.sharedApplication().activateIgnoringOtherApps_(0)
-
-from plotdevice.graphics import Context
-from plotdevice.util import random, choice, grid, files
-ctx = Context()
-ctx.size(200, 200)
-ctx.rect(random(ctx.WIDTH), random(ctx.HEIGHT), 100, 100)
-ctx.save("test.png")
-</pre>
-
-    <p>You can also make movies this way:</p>
-<pre>from AppKit import NSApplication
-NSApplication.sharedApplication().activateIgnoringOtherApps_(0)
-
-from plotdevice.graphics import Context
-from plotdevice.util import random, choice, grid, files
-from plotdevice.util.QTSupport import Movie
-
-movie = Movie("rects.mov")
-for i in range(10):
-   ctx = Context()
-    ctx.size(200, 200)
- ctx.rect(random(ctx.WIDTH), random(ctx.HEIGHT), 100, 100)
-  movie.add(ctx)
-movie.save()
-</pre>
-
-    <h2>5. Drawing in a Cocoa drawRect method</h2>
-
-    <p>If you want to implement your existing drawing using PlotDevice, you can do the following in
-    your class’s drawRect: method:</p>
-<pre>def drawRect_(self, rect):
-    from plotdevice.graphics import Context
-   from plotdevice.util import random
-    ctx.size(*rect[1])
- ctx.rect(random(ctx.WIDTH), random(ctx.HEIGHT), 100, 100)
-  ctx.canvas.draw()
-</pre>
-
-    <p>Note that creating the Context and drawing it are two separate steps:</p>
-    <ul>
-      <li>First, the context is created; all drawing commands are translated into graphic objects
-      (’grobs’) that are stored on the canvas.
-      </li><li>Then, the canvas is drawn; each grob now renders itself on the current Cocoa graphics
-      context.
-    </li></ul>
-
-    <p>This also means you can cache the context (or the canvas) and use it in a drawRect method
-    during a later stage.</p>
 
 
 
@@ -120,48 +123,84 @@ movie.save()
 
     <h1>Using PlotDevice as a Module</h1>
 
-    <p>Though the <a href="plotdevice.html"><code>plotdevice</code></a> command provides a convenient way
+    <p>Though the <code>plotdevice</code> command provides a convenient way
     to launch scripts with the PlotDevice interpreter, you may prefer to use the graphics context and
     export functions from within your own module (and running whichever <code>python</code> binary
-    your system or virtualenv provides).</p>
+    your system or <i>virtualenv</i> provides).</p>
+
+    <h2>Installing the module</h2>
+
     <p>Detailed installation instructions can be found in the project’s <code><a href="https://github.com/samizdatco/plotdevice-pyobjc/blob/master/README.md">README</a></code> file. To
     simplify the use of PlotDevice with other external libraries, we recommend installing the module
-    into a <a href="http://virtualenv.org">virtualenv</a> along with your other dependencies:</p>
+    into a <a href="http://virtualenv.org">virtualenv</a> alongside your script:</p>
     <pre class="shell"><span class="kw">$ </span>virtualenv env
 <span class="kw">$ </span>source ./env/bin/activate
 <span class="o">(</span>env<span class="o">)</span><span class="kw">$ </span>pip install plotdevice
+</pre>
+
+    <p>But you don't need to stop there. The <a href="http://pypi.python.org/">Python Package Index</a> has thousands of other modules your script can use. Install them into the <i>virtualenv</i> and your script will know just where to find them:</p>
+    <pre class="shell">
 <span class="o">(</span>env<span class="o">)</span><span class="kw">$ </span>pip install requests envoy bs4 <span class="grey"># some other useful packages</span>
 </pre>
 
-    <h2><a href="#plotdevice-star" id="plotdevice-star" name="plotdevice-star"></a>Initializing a graphics context from your script</h2>
+    <p>A nice side-effect of installing into a <i>virtualenv</i> is that it automatically creates a copy of the <code>plotdevice</code> command that's specific to that particular folder. When you "source" the <code>activate</code> file, your path is adjusted to let you run the <code>plotdevice</code> command without specifying its path:</p>
 
-    <p>The <code>plotdevice</code> module initializes your script’s namespace with one
-    identical to a script running with the app or command line tool. For instance, the following
-    will draw a few boxes:</p>
-    <pre class="shell"><span class="grey">#!/usr/bin/env python</span>
-<span class="kw">from</span> <span class="nn">plotdevice</span> <span class="kw">import</span> <span class="o">*</span>
-<span class="kw">for</span> <span class="kw">x</span><span class="s">,</span> <span class="kw">y</span> <span class="ow">in</span> <span class="kw">grid</span><span class="s">(</span><span class="mi">10</span><span class="s">,</span><span class="mi">10</span><span class="s">,</span><span class="mi">12</span><span class="s">,</span><span class="mi">12</span><span class="s">):</span>
-    <span class="kw">rect</span><span class="s">(</span><span class="kw">x</span><span class="s">,</span><span class="kw">y</span><span class="s">,</span> <span class="mi">10</span><span class="s">,</span><span class="mi">10</span><span class="s">)</span>
+    <pre class="shell">
+<span class="kw">$ </span>source ./env/bin/activate
+<span class="o">(</span>env<span class="o">)</span><span class="kw">$ </span>plotdevice myscript.pv <span class="grey"># uses the tool found at ./env/bin/plotdevice</span>
 </pre>
 
-    <p>You can then generate output files using the global <code>canvas</code> object. Its
-    <code>save</code> method takes a file path as an argument and the format will be determined by
-    the file extension (<code>pdf</code>, <code>eps</code>, <code>png</code>, <code>jpg</code>,
-    <code>gif</code>, or <code>tiff</code>):</p>
-<pre>canvas.save('~/Pictures/output.pdf')
+    <h2>Initializing a graphics context from your script</h2>
+
+    <p>The <code>plotdevice</code> module contains all the global commands and constants you're used to from the application. For instance, the following will draw a few boxes:</p>
+    <pre>#!/usr/bin/env python
+from plotdevice import *
+
+for x, y in grid(10,10,12,12):
+    rect(x,y, 10,10)
 </pre>
 
-    <p>If you’re generating multiple images, be sure to reset the graphics state in between frames:</p>
-<pre>canvas.clear()
+    <p class="double-dagger">Though using "<code>import *</code>" is generally frowned upon in the Python community, we feel like it's pretty easily justified in this case since PlotDevice's raison d'être is to make your drawing code short-and-sweet.</p>
+
+    <p>You can then generate output files using the <a href="../ref/Canvas.html#export()">export()</a> command. It takes a file path as an argument and the format will be determined by the file extension (<code>pdf</code>, <code>eps</code>, <code>png</code>, <code>jpg</code>, <code>gif</code>, or <code>tiff</code>):</p>
+    <pre>export('~/Pictures/output.pdf')</pre>
+
+    <p>If you’re generating multiple images, be sure to reset the graphics state in between frames with:</p>
+    <pre>clear(all)</pre>
+
+    <p>But if you plan to do more than generate a one-off, you’ll likely find the <a href="../ref/Canvas.html#export-context-manager">with export()</a> usage more convenient. The context-manager provides some handy methods for writing images, multi-page PDFs, and even animations.</p>
+
+
+
+
+    <h2>"PlotDevice scripts" vs "Python scripts"</h2>
+
+    <p>As you can see from the toy example above, Python scripts that use the <code>plotdeivce</code> module look a little different from scripts that run in the PlotDevice application. In particular, the lines at the very beginning of the Python script aren't necessary in the application since it provides all the graphics commands <em>implicitly</em> as part of the script's runtime environment.</p>
+
+    <p>In addition, scripts that run in the app or with the <code>plotdevice</code> command expect special handling relating to <a href="Animation.html">animations</a>. Just by defining a <i>draw()</i> method in your script, the viewer will repeatedly clear the canvas and call your method – even though the script itself doesn't explicity <em>call</em> it.</p>
+
+    <p>It's for this reason that the scripts you save from the application end with a <code class="kw">.pv</code> extension rather than a <code class="kw">.py</code>. The file extension is a small reminder that there are some missing pieces required to turn the file into full-fledged Python script.</p>
+
+    <p>Luckily, converting a <i>.pv</i> script to run without the <code>plotdevice</code> tool is as simple as changing its file extension to <i>py</i> and adding three lines to the top of the code:</p>
+
+    <pre>
+#!/usr/bin/env python
+# encoding: utf-8
+from plotdevice import *
 </pre>
 
-    <p>But if you plan to do more than generate a one-off, you’ll likely find the <a href="../ref/Canvas.html#export()"><code>export()</code></a> function more convenient. It provides
-    convenience methods for writing images, vector documents, and even animations.</p>
+    <p>Importing the module won't give you the default animation behavior (though you can easily create movies with the <i>export()</i> command), but it will add all the familiar PlotDevice commands to the script's namespace. In addition, it will load all the necessary C-extensions and other system dependencies.</p>
 
-
-
-
-
+    <p>If you'd prefer to keep your namespace tidy, you can also import the module as-is. Just remember to prefix all your commands with the module name:</p>
+    <pre>
+#!/usr/bin/env python
+# encoding: utf-8
+import plotdevice as pd
+pd.size(256, 256)
+pd.background('red')
+pd.rect(64,64, 128,128, fill='white')
+pd.export('white-box.png')
+</pre>
 
   </div>
 

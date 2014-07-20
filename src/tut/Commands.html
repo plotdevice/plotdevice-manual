@@ -42,7 +42,7 @@
 
     <h2>Parameters</h2>
 
-    <p>Command definitions don't "do" anything in and of themselves. Instead, you're <em>teaching</em> PlotDevice something – for example, what a "header" is. The commands you define need to be <em>called</em> from somewhere else in the script. This is where parameters come in: notice how the definition of <em>header()</em> uses a <code>txt</code>, an <code>x</code>, and a <code>y</code> parameter. Theses are used like <a href="Variables.html">variables</a> inside the definition.</p>
+    <p>Command definitions don't "do" anything in and of themselves. Instead, you're <em>teaching</em> PlotDevice something – for example, what a "header" is. The commands you define need to be <em>called</em> from somewhere else in the script. This is where parameters come in: notice how the definition of <em>header()</em> uses a <code>txt</code>, an <code>x</code>, and a <code>y</code> parameter. These are used like <a href="Variables.html">variables</a> inside the definition.</p>
     <p>When calling the command, you supply real values for <code>txt</code>, <code>x</code> and <code>y</code>:</p>
 <pre>header("Templating", 20, 40)
 </pre>
@@ -51,7 +51,7 @@
     <em>txt</em> being ‘Templating’, <em>x</em> being 20, and <em>y</em> being 40.</p>
     <h2>Return value</h2>
 
-    <p>You may have noticed that some commands in PlotDevice "return" a value that you can store in a variable. For example, <a href="../ref/Misc.html#measure()">measure(<span class="grey">txt, width</span>)</a> returns the dimensions of a paragraph displaying <em>txt</em> typeset with a column size of <em>width</em>.</p>
+    <p>You may have noticed that some commands in PlotDevice "return" a value that you can store in a variable. For example, <a href="../ref/Misc.html#measure()">measure(<span class="grey">txt, width</span>)</a> returns the dimensions of a paragraph displaying <em>txt</em> with a column size of <em>width</em> (typeset in the current <i>font()</i>).</p>
 <pre>def paragraph(txt, x, y, w):
     fill(0.2)
     font("Baskerville", 16)
@@ -60,7 +60,7 @@
     return col_h
 </pre>
 
-    <p>The <strong>return</strong> statement selects the value that will be passed back to the caller. This can be any datatype: a number, a <a href="Strings.html">string</a>, a <a href="Collections.html">list</a>, or even an <a href="Classes.html">object</a>. The return statement also signals immediate end of the command. It should almost always be the last line in a definition (since anything below it will never be reached).</p>
+    <p>The <strong>return</strong> statement selects the value that will be passed back to the caller. This can be any datatype: a number, a <a href="Strings.html">string</a>, a <a href="Collections.html">list</a>, or even an <a href="Classes.html">object</a>. The return statement also signals an immediate end to the command. It should almost always be the last line in a definition (since anything below it will never be reached).</p>
 
     <h2>Example</h2>
 

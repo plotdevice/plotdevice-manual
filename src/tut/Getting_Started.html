@@ -5,87 +5,82 @@
 
 </head><body>
   <div class="article">
-    <h1>Getting started using PlotDevice</h1>
 
-    <p>The first thing you want to do once you’ve <a href="Download">downloaded</a> the application
-    is run some example scrips. There’s a folder with tons of sample code which can be accessed from the app's <span class="message">Examples</span> menu. Select one of them and
-    press <span class="message">⌘R</span> to see it run (if the script is an animation, you can bring it to a halt by pressing <span class="message">⌘.</span>). Then try changing some numbers in the script and run it again to see
-    what happens.
+    <p>The first thing you'll want to do once you’ve downloaded <a href="http://plotdevice.io/get">the application</a> is run some example scrips. There’s a folder with tons of sample code which can be accessed from the app's <span class="message">Examples</span> menu. Select one of them and press <span class="message">⌘R</span> to see it run (if the script is an animation, you can bring it to a halt by pressing <span class="message">⌘.</span>). Then try changing some numbers in the script and run it again to see what happens.
     </p>
 
-    <h2>Reference</h2>
-    <p>Then you will want to have a look at the <a href="../manual.html#ref">reference</a> to see what
-    scripting commands are available. When you use a command you plug in <b>parameters</b> that
+    <h2>Commands</h2>
+    <p>Next you'll want to have a look at the <a href="../manual.html#ref">reference</a> to see what
+    scripting <b>commands</b> are available. When you use a command you plug in <b>parameters</b> that
     define its behavior. For example, the reference may mention something like:</p>
-<pre>rect(x, y, width, height)
-</pre>
+    <pre>rect(x, y, width, height)</pre>
 
-    <p>This means that <span class="inline_code">rect</span> is a command with <i>x</i>, <i>y</i>,
-    <i>width</i> and <i>height</i> parameters. The name of the command tells something about what
-    it is going to do (<i>rect</i> will probably draw a rectangle on the screen). The parameters
-    you replace with values of your own. For example:</p>
-<pre>rect(40, 80, 100, 50)
-</pre>
+    <p>This means that <i>rect</i> is a command with <i>x</i>, <i>y</i>,
+    <i>width</i> and <i>height</i> parameters. The name of the command tells us something about what
+    it will do when we "call" it (e.g., <i>rect</i> will probably draw a rectangle on the screen). Replace the parameters with values of your own. For example:</p>
+    <pre>rect(40, 80, 100, 50)</pre>
 
-    <p>This will draw a rectangle located 40 from the left edge of the canvas, 80 from the top of
-    the canvas, with a width of 100 and a height of 50. Go through the reference and try out each
-    command to get a general idea of what is possible. PlotDevice has commands to draw primitive
-    shapes (rectangles, ovals), create your own shapes with Bézier paths, transform shapes
-    (translate, rotate, scale, etc.), and work with image files and text.
+    <p>This will draw a rectangle located 40 pixels from the left edge of the canvas and 80 from the top (with a width of 100 and a height of 50). Go through the reference and try out some of the
+    commands to get a general idea of what's possible. PlotDevice commands let you draw primitive
+    shapes (<a href="../ref/Primitives.html#poly()">polygons</a>, <a href="../ref/Primitives.html#arc()">circles</a>), create your own shapes with <a href="../ref/Drawing.html#bezier()">Bézier paths</a>, transform shapes
+    (<a href="../ref/Transform.html#translate()">translate</a>, <a href="../ref/Transform.html#rotate()">rotate</a>, <a href="../ref/Transform.html#scale()">scale</a>, etc.), and work with <a href="../ref/Primitives.html#image()">image</a> files or <a href="Typography.html#text()">text</a>.
     </p>
-    <h2>Random loops</h2>
-    <p>To create a lot of rectangles at random positions, we use a <a href="Repetition.html">for-loop</a> and the <a href="../ref/Utility.html#random()">random()</a>
-    command. Both of these are essential concepts in PlotDevice. With a loop you can repeat actions
-    several times (up to hundreds of thousands of times). With randomness you can add subtle
-    variation to your script.</p>
-    <p>Commands ‘inside’ the loop are indented with the TAB-key. In this case we draw five
-    rectangles at a random position:</p>
-<pre>for i in range(5):
-    rect(random(50), random(200), 20, 20)
-</pre> 
 
     <h2>Tutorial</h2>
-    <p>The tutorial contains essential tips on how commands work and how to write scripts.
-    We recommend starting out as follows:</p>
+
+    <p>The tutorial contains essential tips on how commands work and how to write scripts. To really understand what's going on in your PlotDevice scripts, we recommend reading through at least:</p>
     <ul>
-      <li><a href="Environment.html">Environment</a>: the basics about the PlotDevice application.
-      </li><li><a href="Primitives.html">Primitives</a>: more information about command parameters.
-      </li><li><a href="Repetition.html">Repetition</a>: more information about loops.
+      <li><a href="Environment.html">Environment</a>: using the PlotDevice application to run scripts and export graphics.
+      </li><li><a href="Primitives.html">Primitives</a>: essential drawing commands and how to call them.
+      </li><li><a href="Graphics_State.html">Graphics State</a>: how primitives are colored and
+      transformed.
+    </li><li><a href="Color.html">Color</a>: the many ways to specify colors.
+    </li><li><a href="Bezier_Paths.html">Bézier Paths</a>: powerful (but low level) drawing commands
+    </li>
+
+
+
+
+
+  </ul>
+
+    <p>For readers who are new to programming, we also recommend the chapters dealing with the basics of "datatypes" and control structures:</p>
+    <ul>
       </li><li><a href="Variables.html">Variables</a>: instead of plugging numbers directly into a
       command, you can also store them in a <i>variable</i> and then use the variable throughout
       your script.
-      </li><li><a href="Collections.html">Lists</a>: lists are variables that contain more than a single
-      number. They can contain all sorts of things. If you really want to get your hands dirty a
-      good comprehension of lists is essential.
-      </li><li><a href="Graphics_State.html">Graphics state</a>: how primitives are rotated and
-      transformed. This tutorial may be a little bit hard to grasp at first, but very useful
-      nonetheless.
+      </li><li><a href="Collections.html">Collections</a>: "lists" &amp; "dictionaries" allow you to organize large amounts of information in a manageable way.
+      </li><li><a href="Repetition.html">Repetition</a>: putting "loops" in your code to do things more than once.
     </li></ul>
 
-    <p>At one point you’ll also discover how to work with <a href="../ref/Drawing.html#bezier()">Bézier paths</a>. This is where PlotDevice truly shines. All of
-    the things you can do with paths are unlocked in the <a href="Paths.html">tutorial on
-    paths</a>.</p>
-
+    <p>Seasoned Pythonistas will want to take a look at:</p>
+    <ul>
+      <li><a href="Console.html">Console</a>: running PlotDevice scripts from the command line and using the graphics routines from external Python scripts.</li>
+      <li><a href="Cocoa.html">Cocoa</a>: taking advantage of native frameworks using the PyObjC bridge.</li>
+    </ul>
 
     <h2>PlotDevice is Python</h2>
 
-    <p>The programming language that drives PlotDevice is <a href="http://python.org/">Python</a>,
-    written by Guido Van Rossum. Python emphasizes productivity and code readability. We think
-    it’s excellent choice for those just learning to program. You can find all the documentation and tutorials at <a href="http://python.org/doc/">python.org</a>.</p>
-    <p>We usually keep these under our pillow:</p>
+    <p>The programming language that underlies PlotDevice is <a href="http://python.org/">Python</a> (created by Guido van Rossum in the early 90s). Python emphasizes code readability and programmer productivity; qualities that make it an excellent choice for those just learning to program. These same traits also result in an expressive "sketching" language that makes it easy to experiment in your code without being weighed down by syntactic bookkeeping.</p>
+
+    <p>The <a href="https://docs.python.org/2/">official documentation</a> is thorough and highly-readable. If you're just starting out, the <a href="https://docs.python.org/2/tutorial/index.html">Python Tutorial</a> is a well-paced introduction to the language as well as general programming concepts. We like to keep these chapters under the pillow:</p>
     <ul>
-      <li>Information about for-loops, if-statements, def-commands: <a href="http://docs.python.org/tut/node6.html">http://docs.python.org/tut/node6.html</a>
-      </li><li>Interesting things you can do with Python lists:<br/>
-      <a href="http://docs.python.org/tut/node7.html">http://docs.python.org/tut/node7.html</a>
-      </li><li>Interesting things you can do with Python strings:<br/>
-      <a href="http://docs.python.org/lib/string-methods.html">http://docs.python.org/lib/string-methods.html</a>
+      <li><a href="https://docs.python.org/2/tutorial/controlflow.html">Control Flow</a>: for-loops, if-statements, and def-statements
+      </li><li><a href="https://docs.python.org/2/tutorial/datastructures.html#more-on-lists">More on Lists</a>: interesting things you can do with list objects
+      </li><li><a href="https://docs.python.org/2/library/stdtypes.html#string-methods">String Methods</a>: extremely helpful text-processing utilities
+    </li><li><a href="https://docs.python.org/2/library/functions.html">Built-ins</a>: functions for basic math, inspecting objects, and more
     </li></ul>
 
+    <p>Writing your scripts in Python also means being able to take advantage of the thousands of third-party libraries that have been written by the community. Try searching for a topic of interest at the <a href="https://pypi.python.org/pypi?%3Aaction=browse">Python Package Index</a>. We bet you'll be pleasantly surprised by the amount of code you <em>won't</em> have to write.</p>
+
+<!--
     <p>Python code in itself is very readable. It is part of your responsibility to keep it that
     way. You may want to share your scripts, and you may want to modify or expand it in a few
     months. A well-written script can last a lifetime – it’s not something you generate output from
     and then throw away.</p>
-    <p>Steps to keep your code clean and readable:</p>
+
+ -->
+<!--     <p>Steps to keep your code clean and readable:</p>
     <ul>
       <li><b>Comment your code</b>: add comments that describe (in English) the purpose of the code
       below.
@@ -95,7 +90,7 @@
       </li><li><b>Good variable names</b> are essential. A variable may appear throughout a script so
       pick a good name for it, something that explains what value is contained in the variable.
     </li></ul>
-
+ -->
 
 
 
