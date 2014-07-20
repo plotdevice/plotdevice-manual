@@ -25,7 +25,10 @@ export("spool.pdf", cmyk=False)
     </p><h2>Saving the canvas to an image</h2>
 
     <p>You can call <i>export()</i> at any time in your scripts to write the current set of graphics objects on the canvas to a single bitmap or vector image file. The only required argument is a file path (whose extension will determine the format). The optional <code>cmyk</code> argument can be set to <code class="kw">True</code> to use "process" colors when exporting to a PDF, EPS, or TIFF file.
-    </p><h2>Context Manager</h2>
+    </p>
+
+    <a name="export-context-manager"></a>
+    <h2>Context Manager</h2>
 
     <p>The <code>export</code> function returns a <a href="http://docs.python.org/2/reference/compound_stmts.html#the-with-statement">context manager</a> that takes care of canvas-setup and file-generation for both single images and animations. By enclosing your drawing code in a <code>with</code> block, you can ensure that the correct sequence of <code>clear</code> and <code>export</code> calls is made automatically. For instance these two methods of generating a PNG are functionally equivalent:
     </p><pre>from plotdevice import *
