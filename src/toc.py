@@ -10,7 +10,7 @@ ref['Line+Color'] = {
     'types': ['Color', ],
     'compat': ['capstyle()', 'colormode()', 'joinstyle()', 'nofill()', 'nostroke()', 'strokewidth()'] }
 ref['Primitives'] = {
-    'commands': ['image()', 'line()', 'rect()',  'oval()', 'poly()', 'arc()', ],
+    'commands': [('poly()', 'rect()'),  ('arc()', 'oval()'), 'image()', 'line()', ],
     'types': ['Image'],
     'compat': ['arrow()', 'star()'] }
 ref['Drawing'] = {
