@@ -21,33 +21,36 @@ export("spool.pdf", cmyk=False)
     </div>
 
     <p>The <i>export()</i> command allows you to generate images and animations from within your scripts. Calling <i>export()</i> as part of a <code>with</code> statement will allow you to render single images, multi-page sequences, or animations.
-    </p><p>When running the PlotDevice application, you'll likely find it more convenient to use the <span class="message">File → Export as…</span> menu items (<span class="message">⌘P</span> and <span class="message">⇧⌘P</span> for images and animations respectively). But for standalone scripts that import the <code>plotdevice</code> module, the <i>export()</i> command is the main avenue for generating graphics.
+    </p><p>When running the PlotDevice application, you'll likely find it more convenient to use the <span class="message">File → Export as…</span> menu items (<span class="message">⌘P</span> and <span class="message">⇧⌘P</span> for images and animations respectively). But for <a href="../tut/Console.html#standalone">standalone scripts</a> that import the <code>plotdevice</code> module, the <i>export()</i> command is the main avenue for generating graphics.
     </p><h2>Saving the canvas to an image</h2>
 
-    <p>You can call <i>export()</i> at any time in your scripts to write the current set of graphics objects on the canvas to a single bitmap or vector image file. The only required argument is a file path (whose extension will determine the format). The optional <code>cmyk</code> argument can be set to <code class="kw">True</code> to use "process" colors when exporting to a PDF, EPS, or TIFF file.
+    <p>You can call <i>export()</i> at any time to write the current set of graphics objects on the canvas to a single bitmap or vector image file. The only required argument is a file path (whose extension will determine the format). The optional <code>cmyk</code> argument can be set to <code class="kw">True</code> to use "process" colors when exporting to a PDF, EPS, or TIFF file.
     </p>
 
     <a name="export-context-manager"></a>
     <h2>Context Manager</h2>
 
-    <p>The <code>export</code> function returns a <a href="http://docs.python.org/2/reference/compound_stmts.html#the-with-statement">context manager</a> that takes care of canvas-setup and file-generation for both single images and animations. By enclosing your drawing code in a <code>with</code> block, you can ensure that the correct sequence of <code>clear</code> and <code>export</code> calls is made automatically. For instance these two methods of generating a PNG are functionally equivalent:
-    </p><pre>from plotdevice import *
-
-# export an image
+    <p>The <i>export()</i> command returns a <a href="http://docs.python.org/2/reference/compound_stmts.html#the-with-statement">context manager</a> that takes care of canvas-setup and file-generation for both single images and animations. By enclosing your drawing code in a <code>with</code> block, you can ensure that the correct sequence of <i>clear()</i> and <i>export()</i> calls is made automatically.</p>
+    <p>For instance these two methods of generating a PNG are functionally equivalent:
+    </p><pre>
 clear(all)
 ... # (do some drawing)
 export('output.png')
 
-# export an image
-# (with the context manager clearing and saving the canvas automatically)
-with export('output.png') as img:
+# let the context manager handle clearing and saving the canvas automatically
+with export('output.png'):
     ... # (do some drawing)
 </pre>
 
     <h2><a class="anchor" href="#animations" id="animations" name="animations"></a>Animations</h2>
 
-    <p>If you specify a filename ending in <code>mov</code> (or <code>gif</code> if you also pass a <code>loop</code> or <code>fps</code> argument), the <code>export</code> context manager will return a <code>Movie</code> object. Each time you call its <code>add</code> method, a new frame with the contents of the canvas will be added to the end of the animation. Once you’ve added the final frame, you must call <code>finish</code> to wait for the video encoder thread to complete its work.
-    </p><p>As with the single-image version of the <code>export</code> call, you can use the <code>with</code> statement in your code to tidy up some of the frame-drawing boilerplate. All three examples are equivalent (note the use of a nested <code>with</code> statement in the final example):
+    <p>If you specify a filename ending in <code>mov</code> (or <code>gif</code> if you also pass a <code>loop</code> or <code>fps</code> argument), the <i>export()</i> command will begin a multi-frame animation and return an object to help you coordinate things. You can "capture" this object and give it a name (for instance, <code>movie</code>) using Python's "<em>with … as …</em>" syntax.</p>
+
+
+    <p>Each time you call the <code>movie</code>'s <i>add()</i> method, a new frame with the contents of the canvas will be added to the end of the animation. Once you’ve added the <code>movie</code>'s final frame, you must call the <i>finish()</i> method to wait for the video encoder's background thread to complete its work.
+    </p>
+
+    <p>As with the single-image version of the <i>export()</i> call, you can use the <code>with</code> statement in your code to tidy up some of the frame-drawing boilerplate. All three examples below are equivalent. Note the use of the <code>movie</code> object's <i>frame</i> property (which is itself a context manager) in the final example:
     </p><pre># export a 100-frame movie
 movie = export('anim.mov', fps=50, bitrate=1.8)
 for i in xrange(100):
@@ -55,25 +58,46 @@ for i in xrange(100):
     ...         # (do some drawing)
     movie.add() # add the canvas to the movie
 movie.finish()  # wait for i/o to complete
-
-# export a movie (with the context manager closing the file when done)
+</pre><pre>
+# export a movie (with the context manager finishing the file when done)
 with export('anim.mov', fps=50, bitrate=1.8) as movie:
     for i in xrange(100):
         clear(all)  # erase the previous frame from the canvas
         ...         # (do some drawing)
         movie.add() # add the canvas to the movie
-
-# export a movie
-# (with the movie.frame context manager clearing and adding the frame)
+</pre><pre>
+# export a movie (with the context manager finishing the file when done)
+# let the movie.frame context manager call clear() and add() for us
 with export('anim.mov', fps=50, bitrate=1.8) as movie:
     for i in xrange(100):
         with movie.frame:
             ... # draw the next frame
 </pre>
 
+
+    <h2><a class="anchor" href="#image-sequences" id="image-sequences" name="image-sequences"></a>Image sequences</h2>
+
+    <p>If you’re generating a series of static images, <i>export()</i> will automatically give them consecutive names derived from the filename you pass as an argument. If the filename is a simple <code class="str">"name.ext"</code> string, the sequence number will be appended with 4 characters of padding (<code class="str">"name-0001.ext"</code>, <code class="str">"name-0002.ext"</code>, etc.).</p>
+    <p>If the filename contains a number between curly braces (e.g., <code class="str">"name-{4}.ext"</code>), that substring will be replaced with the sequence number and zero padded to the specified number of digits:
+    </p><pre># export a sequence of images to output-0001.png, output-0002.png, ...
+#                                output-0099.png, output-0100.png
+with export('output.png') as img:
+    for i in xrange(100):
+        with img.frame:
+            ... # draw the next image in the sequence
+
+# export a sequence of images to 01-img.png, 02-img.png, ...
+#                                99-img.png, 100-img.png
+with export('{2}-img.png') as img:
+    for i in xrange(100):
+        with img.frame:
+            ... # draw the next image in the sequence
+</pre>
+
+
     <h2><a class="anchor" href="#multi-page-pdfs" id="multi-page-pdfs" name="multi-page-pdfs"></a>Multi-page PDFs</h2>
 
-    <p>Creating PDF documents works the same way, letting you either manually <code>clear</code>, <code>add</code> and <code>finish</code> the export or take advantage of the <code>with</code> statement to hide the repetitive bits. Note that PDF exports use the <code>page</code> attribute rather than <code>frame</code>:
+    <p>Creating PDF documents works the same way, letting you either <i>clear()</i>, <i>add()</i>, and <i>finish()</i> the export manually or take advantage of the <code>with</code> statement to hide the repetitive bits. Note that PDF exports use the <code>page</code> attribute rather than <code>frame</code>:
     </p><pre># export a five-page pdf document
 pdf = export('multipage.pdf')
 for i in xrange(5):
@@ -89,23 +113,6 @@ with export('multipage.pdf') as pdf:
             ... # draw the next page
 </pre>
 
-    <h2><a class="anchor" href="#image-sequences" id="image-sequences" name="image-sequences"></a>Image sequences</h2>
-
-    <p>If you’re generating a series of images, <code>export</code> will automatically give them consecutive names derived from the filename you pass as an argument. If the filename is a simple <code class="str">"name.ext"</code> string, the sequence number will be appended with 4 characters of padding (<code class="str">"name-0001.ext"</code>, <code class="str">"name-0002.ext"</code>, etc.). If the filename contains a number between curly braces (e.g., <code class="str">"name-{4}.ext"</code>), that substring will be replaced with the sequence number and zero padded to the specified number of digits:
-    </p><pre># export a sequence of images to output-0001.png, output-0002.png, ...
-#                                output-0099.png, output-0100.png
-with export('output.png') as img:
-    for i in xrange(100):
-        with img.sequence:
-            ... # draw the next image in the sequence
-
-# export a sequence of images to 01-img.png, 02-img.png, ...
-#                                99-img.png, 100-img.png
-with export('{2}-img.png') as img:
-    for i in xrange(100):
-        with img.sequence:
-            ... # draw the next image in the sequence
-</pre>
   </div>
 
 </body></html>

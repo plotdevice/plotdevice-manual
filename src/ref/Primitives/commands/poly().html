@@ -9,14 +9,15 @@
     <h2>Syntax</h2>
 
     <div class="row">
-<pre>poly(self, x, y, radius, sides=3, plot=True, **style)
+<pre>poly(self, x, y, radius, sides=4, points=None, plot=True, **style)
 </pre>
     </div>
 
     <h2>Description</h2>
 
     <div class="row">
-      <p>Draws an n-sided regular polygon (by default a triangle) centered at (x,y) and sized according to <code>radius</code>. The <code>sides</code> argument sets the type of polygon to draw. Absent any <a href="Transform.html#rotate()">rotate()</a> transformations, the polygon will be oriented such that its base is horizontal.
+      <p>Draws an n-sided convex polygon (by default a square) centered at (x,y) and sized according to <code>radius</code>. The <code>sides</code> argument sets the type of polygon to draw. Absent any <a href="Transform.html#rotate()">rotate()</a> transformations, the shape will be oriented such that its base is horizontal.
+      </p><p>If you include a <code>points</code> argument (in lieu of <code>sides</code>), a concave "star" polygon with regularized angles will be drawn instead.
     </p></div>
 
     <h2>Returns</h2>
@@ -35,10 +36,21 @@
 
     <div class="row">
       <div class="example">
-        <span><img height="125" src="../etc/ref/poly.jpg" width="125"/></span>
-<pre>fill(0.2)
-poly(50,50, 40)
-</pre>
+        <span><img height="125" src="../etc/ref/poly-sides.png" width="125"/></span>
+<pre>fill(.2)
+poly(30,30, 20)
+poly(80,30, 20, sides=5)
+poly(30,80, 20, sides=6)
+poly(80,80, 20, sides=8)</pre>
+      </div>
+
+<div class="example">
+        <span><img height="125" src="../etc/ref/poly-points.png" width="125"/></span>
+        <pre>fill(.2)
+poly(30,30, 20, points=5)
+poly(80,30, 20, points=6)
+poly(30,80, 20, points=8)
+poly(80,80, 20, points=12)</pre>
       </div>
     </div>
   </div>

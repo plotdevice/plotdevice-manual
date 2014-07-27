@@ -16,9 +16,9 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Draws a curve between the current point in the active path and a new destination point. The last two positional args, <code>x</code> and <code>y</code>, set the location of the new destination point. The first &amp; second, and the third &amp; fourth parameters set the location of the two ‘control points’ of the curve. These control points, or handles in Illustrator nomenclature, define the edge and slant of the curve.
-      </p><p>If the <code>close</code> argument is set to <code>True</code>, a <a href="#lineto()">lineto()</a> command will be synthesized connecting the end of the curve to the origin point of the active subpath.
-      </p><p>The curveto() command must be called inside a <a href="#bezier()">bezier()</a> context (or between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).
+      <p>Draws a curve between the current point in the path and a new "destination" point. The pair of positional args, <code>x</code> and <code>y</code>, set the location of the destination point. The first two pairs of arguments set the location of the two ‘control points’ of the curve. These control points (or handles in Illustrator nomenclature) define the edge and slant of the curve.
+      </p><p>If the <code>close</code> argument is set to <code class="kw">True</code>, a <a href="#lineto()">lineto()</a> command will be synthesized connecting the end of the curve to the origin point of the active subpath.
+      </p><p>The <i>curveto()</i> command must be called inside a <a href="#bezier()">bezier()</a> context (or between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).
     </p></div>
 
     <h2>Tutorial</h2>
@@ -31,16 +31,17 @@
 
     <div class="row">
       <div class="example">
-        <span><img height="125" src="../etc/ref/curveto.jpg" width="125"/></span>
+        <span><img height="125" src="../etc/ref/curveto.png" width="125"/></span>
 <pre>nofill()
 stroke(0.2)
-with bezier(0,0, close=True) as path:
-    curveto(100,100, 50,0, 100,100)
+with bezier(10,50) as path:
+    curveto(10,0, 110,100, 110,50)
 </pre><em>or</em>
 <pre>nofill()
 stroke(0.2)
-beginpath(0, 0)
-curveto(100,100, 50,0, 100,100)
+autoclosepath(False)
+beginpath(10, 50)
+curveto(10,0, 110,100, 110,50)
 path = endpath()
 </pre>
       </div>

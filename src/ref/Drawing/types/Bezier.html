@@ -16,7 +16,7 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Each path in PlotDevice (see for example, <a href="Primitives.html#rect()">rect()</a>, <a href="Primitives.html#oval()">oval()</a>, <a href="#bezier()">bezier()</a>, <a href="Typography.html#textpath()">textpath()</a>) is a Bezier object. This object has a number of properties to manipulate indivdual points in the path and can be passed to the <a href="Canvas.html#plot()">plot()</a> command to draw it on the canvas.
+      <p>Every "shape" you create in PlotDevice (see for example, <a href="Primitives.html#rect()">rect()</a>, <a href="Primitives.html#oval()">oval()</a>, <a href="#bezier()">bezier()</a>, <a href="Typography.html#textpath()">textpath()</a>) is a <i>Bezier</i> object. This object has a number of properties to manipulate indivdual points in the path and can be passed to the <a href="Canvas.html#bezier()">bezier()</a> command to draw it on the canvas.
     </p></div>
 
     <h2>Properties</h2>
@@ -47,7 +47,7 @@ path.<span class="red">poly</span>(x, y, radius)
       </p></div>
 
       <div class="def-box">
-        <pre class="manual">path.contains(x, y)
+        <pre class="manual">path.<span class="red">contains</span>(x, y)
 </pre>
 
         <p>Hit-testing
@@ -57,7 +57,7 @@ path.<span class="red">poly</span>(x, y, radius)
         <pre class="manual">path.<span class="red">point</span>(t)
 path.<span class="red">points</span>(amount=100)
 path.<span class="red">addpoint</span>(t)
-path.<span class="red">segmentlengths</span>(relative=<span class="kw">False</span>, n=<span class="mi">10</span>)
+path.<span class="red">segmentlengths</span>(relative=<span class="bp">False</span>, n=<span class="mi">10</span>)
 </pre>
 
         <p>Point interpolation (accessing and mutating coordinates within the Curve objects)
@@ -74,13 +74,12 @@ path.<span class="red">difference</span>(pth, flatness=<span class="mi">0.6</spa
       </p></div>
 
       <div class="def-box">
-<pre>path.fit(x=None, y=None, width=None, height=None, stretch=False)
+<pre class="manual">path.<span class="red">fit</span>(x=<span class="bp">None</span>, y=<span class="bp">None</span>, width=<span class="bp">None</span>, height=<span class="bp">None</span>, stretch=<span class="bp">False</span>)
 </pre>
 
         <p>Clamping the path to fit based on optional constraints
       </p></div>
-<pre>path.copy()
-</pre>
+<pre class="manual">path.<span class="red">copy</span>()</pre>
 
       <p>See the <a href="../tut/Bezier_Paths.html">tutorial on paths</a> to learn about all the methods.
       </p><p>With the <i>segmentlengths()</i> method you can define the math precision for <i>point()</i> and <i>points()</i> by making <i>n</i> a higher value (usually 10 is fine).<br/>

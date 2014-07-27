@@ -16,8 +16,8 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Changes the way PlotDevice interprets color data. By default, <a href="#fill()">fill()</a> and <a href="#stroke()">stroke()</a> are set by values between 0.0 and 1.0 using the RGB color model. <code class="kw">RGB</code> corresponds to Red/Green/Blue. Alternatively <code class="kw">HSV</code> (Hue/Saturation/Brightness) or <code class="kw">CMYK</code> (Cyan/Magenta/Yellow/Black) can be specified.
-      </p><p>Regardless of which colormode is specified, PDF’s and images are exported in the specified <a href="Canvas.html#outputmode()">outputmode()</a>.
+      <p>Changes the way PlotDevice interprets color values. By default, <a href="#fill()">fill()</a> and <a href="#stroke()">stroke()</a> expect values between 0.0 and 1.0 using the RGB color model. <code class="kw">RGB</code> corresponds to Red/Green/Blue. Alternatively <code class="kw">HSV</code> (Hue/Saturation/Brightness) or <code class="kw">CMYK</code> (Cyan/Magenta/Yellow/Black) can be specified.
+      </p><p>Regardless of the active colormode, PDFs and images are exported in the specified <a href="Canvas.html#outputmode()">outputmode()</a>.
       </p><p>The optional range parameter specifies whether color values are defined between 0.0 and 1.0, or something else, 0 and 255 for example:
       </p><pre>colormode(range=255)
 </pre>
@@ -26,13 +26,13 @@
     <h2>Returns</h2>
 
     <div class="row">
-      the current color mode (<code class="kw">RGB</code>, <code class="kw">CMYK</code> or <code class="kw">HSV</code>)
+      <p>the current color mode (<code class="kw">RGB</code>, <code class="kw">CMYK</code> or <code class="kw">HSV</code>)</p>
     </div>
 
     <h2>PlotDevice Equivalent</h2>
 
     <div class="row">
-      <p>The mode used for interpreting color values is now set through the <a href="color()">color()</a> command. Color-related commands like fill(), stroke(), and background() can also take a mode as their first argument, specifying how the following args should be interpreted.
+      <p>The mode used for interpreting color values is now set through the <a href="color()">color()</a> command. Color-related commands like <i>fill()</i>, <i>stroke()</i>, and <i>background()</i> can also take a mode as their first argument, specifying how the numerical args should be interpreted.
     </p></div>
 
     <h2>Tutorial</h2>

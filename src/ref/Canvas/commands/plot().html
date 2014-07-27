@@ -16,10 +16,19 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>The plot() command will draw any PlotDevice primitive to the canvas. It's useful in combination with the <code>plot</code> argument that can be passed to <code>rect()</code>, <code>oval()</code>, <code>text()</code>, <code>image()</code>, and friends.
-      </p><p>When you call a drawing-related function with <code>plot=False</code>, the object is created but not added to the canvas. You can save a reference to the object in a variable then pass it to plot() later to be drawn as-is or with additional styling in its keyword args.
-      </p><p>The plot command can also be used as part of a <code>with</code> statement to set whether drawing commands affect the canvas by default. Using <code>with plot(False):</code> will disable drawing within the block (allowing you to omit the <code>plot</code> argument in the individual commands
-    </p></div>
+      <p>The <i>plot()</i> command will draw any PlotDevice primitive to the canvas. It's useful in combination with the <code>plot</code> argument that can be passed to <a href="Primitives.html#poly()">poly()</a>, <a href="Primitives.html#arc()">arc()</a>, <a href="Primitives.html#text()">text()</a>, <a href="Primitives.html#image()">image()</a>, and friends.
+      </p><p>When you call a drawing-related function with <code>plot=<code class="kw">False</code></code>, the object is created but not added to the canvas. You can save a reference to the object in a variable then pass it to <i>plot()</i> later to be drawn as-is or with additional styling in its keyword args.
+      </p>
+    </div>
+
+    <h2>Context Manager</h2>
+    <div class="row">
+      <p>The <i>plot()</i> command can also be used as part of a <code>with</code> statement to control whether drawing commands affect the canvas by default. For instance, you could suspend drawing inside an indented code block with:</p>
+      <pre>with plot(False):
+    p = poly(10,10, 30) # won't be drawn</pre>
+      <p>This allows you to omit the <code>plot=<span class="kw">False</span></code> argument in the individual commands, which can be convenient when creating a bunch of "template" objects ahead of time.</p>
+    </div>
+
 
     <h2>Tutorial</h2>
 

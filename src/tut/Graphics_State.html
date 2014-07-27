@@ -10,13 +10,13 @@
 
     <p>You can think of it like working on an oil-painting. While at the easel, you can hold one type of brush and put one color of paint on it. All the strokes you paint on the canvas will have the same color and texture according to the thickness of the brush and color of paint. Naturally, you could paint with both hands and feet holding multiple brushes with multiple colors … but we wouldn't recommend it.</p>
 
-    <p>So in PlotDevice you ‘paint’ with one color at a time. All of the elements you draw have the same color
+    <p>In PlotDevice you ‘paint’ with one color at a time. All of the elements you draw have the same color
     until you actively switch to a different one. Then all subsequent elements you draw will use that new color.</p>
 
     <h1>Stateful Commands</h1>
 
-    <p>When you run a script, PlotDevice reads the code from <b>top to bottom, like a recipe</b>. When
-    it encounters certain state-changing commands, it responds not through any immediately visible change, but instead by silently updating the canvas's "current" state. When you then draw a primitive, it will "inherit" the graphics state, including your modification.</p>
+    <p>When you run a script, PlotDevice reads the code from <b>top to bottom</b>, like a recipe. When
+    it encounters certain state-changing commands, it responds not through any immediately visible change, but instead by silently updating the canvas's "current" state. Afterwards, any primitives you draw will "inherit" the graphics state, including your modification.</p>
 
     <p>Quite a few commands affect the graphics state, but they fall into four general categories:</p>
     <ol>
@@ -39,15 +39,16 @@
     </ul>
 
     <p>All the primitives we draw to the canvas will use these defaults (until we overwrite them with new values). For example, observe the following script. We start by drawing a circular arc with the default color state. We then change the <em>fill</em> to red and
-    draw a pair of circles below the first. Finally we change the <em>stroke</em> from transparent to black and the <em>fill</em> color to transparent. After making this change, we draw two more circles (which inherit the new style):
+    draw a pair of circles below the first. Finally we change the <em>stroke</em> from transparent to black and the <em>fill</em> color to transparent. After making this change, we draw two more circles which inherit the new style:
     </p>
     <div class="media"><img alt="" height="469" src="../etc/tut/graphics_state1.png" width="657"/></div>
 
 
+    <a name="with"></a>
     <h2>The magical "with" statement</h2>
 
-    <p>Many PlotDevice commands support an optional "clean up" behavior. In fact nearly everything that affects the graphics state can be made into a temporary modification by calling the command as part of a <code class="kw">with</code> statement.</p>
-    <p>You can even combine multiple commands (separated by commas) and their effects will be limited to the drawing that happens <em>inside</em> the indented code-block. Once you return to the outer indentation-level, it's as if you never changed the graphics state:
+    <p>Many PlotDevice commands support an optional "clean up" behavior. In fact nearly everything that affects the graphics state can be made into a <em>temporary</em> modification by calling the command as part of a <code class="kw">with</code> statement.</p>
+    <p>You can even combine multiple commands (separated by commas) and their effects will be limited to the drawing that happens <em>inside</em> the indented code-block that follows. Once you return to the outer indentation-level, it's as if you never changed the graphics state:
     <div class="media"><img alt="" height="483" src="../etc/tut/graphics_state6.png" width="662"/></div>
     </p>
 
@@ -65,12 +66,12 @@
 
 
     <p>So you could "override" the canvas's fill color with:</p>
-<pre>rect(20, 20, 100, 100, fill=(1, 0, 0))
+<pre>rect(20, 20, 100, 100, fill="red")
 </pre>
 
-    <p>or equivalently, you can save a reference to the object, then set its properties after it's been created, but before the canvas is rendered to the screen:</p>
+    <p>or equivalently, you can save a reference to the object, then set its properties after it's been created (but before the canvas is rendered to the screen at the end of the script):</p>
 <pre>r = rect(20, 20, 100, 100)
-r.fill = color(1, 0, 0)
+r.fill = color("red")
 </pre>
 
     <p>Both approaches result in a red rectangle regardless of the current fill color. You can similarly override the current transform by calling methods on the object:</p>
@@ -118,9 +119,9 @@ rect(20, 40, 80, 80)
 </p>
 
 
-    <p>Likewise, if you keep putting <code>scale(0.8)</code> in your script the
-    elements on the canvas become smaller and smaller. The second time you scale, the current scale
-    becomes 0.64 (0.8 &times; 0.8), the third time it becomes 0.512 (0.64 &times; 0.8) and so on.</p>
+    <p>Likewise, if you keep calling <code>scale(0.8)</code> in your script the
+    elements on the canvas become smaller and smaller. The second time you call it, the current scale
+    becomes 0.64 (0.8 &times; 0.8), the third time it becomes 0.512 (0.64 &times; 0.8), and so on.</p>
 
     <p>The <a href="../ref/Transform.html#reset()">reset()</a> command undoes any transformation changes from earlier in the script and repositions the origin at the canvas's top left corner.</p>
 
@@ -130,8 +131,8 @@ rect(20, 40, 80, 80)
     <p>We haven’t discussed the <a href="../ref/Transform.html#transform()">transform()</a> command
     yet. As you may have already read in the reference you can switch it between two "modes": <code class="kw">CENTER</code> and <code class="kw">CORNER</code>.
     Centered transformation means that all shapes, paths, text and images rotate scale and skew
-    around their own center. As we would probably expect them to. Corner mode transformations means
-    that elements <b>transform around the current origin point</b>. This can be a difficult concept
+    around <b>their own center</b> (as we would probably expect them to). Using corner-mode transformations means
+    that elements transform around the <b>current origin point</b>. This can be a difficult concept
     to grasp.</p>
 
     <p>In the example below, we move the origin point to (100,100) and have three pieces of
@@ -144,7 +145,7 @@ rect(20, 40, 80, 80)
 
     <p>In addition to allowing you to change the mode, the <i>transform()</i> command has special "clean up" behavior when used as part of a <code class="kw">with</code> block. It allows you to safely create state-in-a-state.</p>
 
-    <p>Inside the indentation block, any <i>translate()</i>,
+    <p>Inside the indentated block, any <i>translate()</i>,
     <i>rotate()</i>, <i>scale()</i> and <i>skew()</i> commands are valid only until the end of the block. Then the
     transformation state reverts to how things were prior to the with-statement. This way
     you can transform groups of elements that need to stay together.</p>

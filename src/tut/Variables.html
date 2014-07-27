@@ -7,53 +7,54 @@
   <div class="article">
 
     <p>A variable is a place to store a <i>value</i> in computer memory. You could think of a
-    variable as a cardboard box. You can put something inside the box, put it away for storage, and
-    later on retrieve the item from the box. Usually, people put labels or some kind of marker on
-    boxes to remember what's inside.</p>
+    variable as a cardboard box. You can put an object inside the box, shove the box into a closet, then
+    eventually dig it out again and retrieve the item. Usually, people put a label or other kind of marker on
+    the outside of the box to remember what's inside.</p>
 
-    <p>Variables work the same way. Each variable has a <i>name</i>, and a <i>value</i>. The name
-    is like the label on a box: it’s a quick reminder of what item, or value, is inside the
-    variable. Just like boxes, variables can hold all sorts of stuff useful in a PlotDevice script:
-    pieces of text, an important number, the name of a font, a <a href="Collections.html">list</a> of
-    colors, and so on.</p>
-    <p>Another way to look at variables is to think of them as sticky notes.</p>
+    <p>Variables work the same way: each variable has a <i>name</i> and a <i>value</i>. The name is like the label on a box – a shorthand reminder of what the variable "contains". The value can be any piece of information your PlotDevice script needs to remember: an important number, a piece of <a href="Strings.html">text</a>, a <a href="Collections.html">list</a> of colors, and so on.</p>
+    <!-- <p>Another way to look at variables is to think of them as sticky notes.</p> -->
 
 
-    <h1>Using variables</h1>
+    <!-- <h2>Where do variables live?</h2> -->
 
-    <p>You store things in variables when you plan to <b>reuse</b> them. If each of ten rectangles
-    you’re going to draw is a hundred pixels wide, it’s a good idea to declare a <i>width</i>
-    variable that stores the number <i>100</i>, and tell each rectangle to go look what’s inside
-    this <i>width</i> variable.</p>
-    <p>This way, when you change your mind about the rectangle’s width, you only need to change the
-    contents of the <i>width</i> variable, since each rectangle is looking there for its
-    width. This is an example of <a href="http://en.wikipedia.org/wiki/Indirection">indirection</a>, a key concept in computer science.</p>
-    <p>Don’t worry, things will clear up once we try some examples!</p>
+    <p>Each script has its own memory storage for variables – a private warehouse of boxed-up values and labels. The
+    specific value of a variable is therefore only known inside the script where it is used, not in
+    other scripts.</p>
+
+    <h1>Using Variables</h1>
+
+    <p>You store things in variables when you plan to <b>reuse</b> them. If you're going to draw a dozen rectangles
+    where each one is a hundred pixels wide, it’s a good idea to declare a <i>width</i> variable that stores the number <i>100</i>. You can then the rectangles look at what’s inside the <i>width</i> variable (rather than typing the same <a href="http://en.wikipedia.org/wiki/Magic_number_(programming)#Unnamed_numerical_constants">magic number</a> in every call to the <i>rect()</i> command).</p>
+
+
+    <p>This way, when you change your mind about the rectangles' width, you only need to change the contents of the <em>variable</em>, since each rectangle is looking there for its width. This is an example of <a href="http://en.wikipedia.org/wiki/Indirection">indirection</a>, a key concept in computer science.</p>
+
     <h2>Declaring variables</h2>
 
-    <p>You can declare a variable at any point in your script, and give it <b>any name you
-    like</b>, except for names that PlotDevice has already claimed (like <i>rect</i>, or <i>for</i>).
-    It's best to pick a name that tells you something about the kind of information the variable is
-    storing.</p>
-    <p>Try to come up with good, short names. No one likes to type <code>theWidthOfAllTheRectangles</code> dozens of times; <code>width</code> says enough.</p>
+    <p>You can create a new variable at any point in your script and give it <b>any name you like</b>, though you should try to stay away from names that PlotDevice has already claimed (like <i>rect</i>, or <i>for</i>). It's best to pick a name that tells you something about the kind of information the variable is storing.</p>
 
+    <hr>
+    <p class="double-dagger">Try to come up with short, descriptive names. No one is happy about having to type <code>theWidthOfAllTheRectangles</code> dozens of times; especially when a simple name like <code>width</code> says enough.</p>
+    <hr>
+
+    <p>Once you've chosen a name you can "assign" any value you like to it with the "<code>=</code>" operator. You can then use the variable as a stand-in for the value when calling commands:</p>
 
     <div class="example">
-      <span><img height="272" src="../etc/tut/variables-width1.jpg" width="244"/></span>
-      <p>It’s as easy as this: pick a good name for a variable, then assign it any value you like with the "<code>=</code>" operator. PlotDevice keeps a small sticky note reminder for itself that the variable "contains" the new value. You can then use the variable as a stand-in for the value when calling commands:</p>
+      <span><img height="135" src="../etc/tut/variables-boxen-01.png" width="242"/></span>
+      <p><em>When you declare a new variable, PlotDevice sets aside a metaphorical storage box with a label to remind itself which variable "contains" the new value.</em></p>
       <pre>
 width = 100
 rect(10, 10, width, 30)</pre>
     </div>
 
+
     <h2>Changing variables</h2>
 
-    <p>You can change the value of a variable during the course of a script. When this happens, the
-    old value is thrown away and the variable now contains the new value.</p>
+    <p>You can change the value of a variable over the course of a script. When this happens, the old value is thrown away and the variable now contains the new value.</p>
 
     <div class="example">
-      <span><img height="272" src="../etc/tut/variables-width2.jpg" width="244"/></span>
-      <p>The first rectangle is drawn when the width variable's value is 100. We then change the width to 20 and draw two more rectangles (which use the newly-set value).</p>
+      <span><img height="185" src="../etc/tut/variables-boxen-02.png" width="242"/></span>
+      <p><em>The first rectangle is drawn when the <code>width</code> value is 100. We then change <code>width</code> to 20 and draw two more rectangles (which use the newly-set value).</em></p>
       <pre>
 width = 100
 rect(10, 10, width, 30 )
@@ -64,33 +65,31 @@ rect(330, 10, width, 30)
 </pre>
     </div>
 
-    <div class="example">
-      <span style="padding-left:30px; width:224px;"><img height="91" src="../etc/tut/variables-width3.jpg" width="160"/></span>
-      <p>The resulting output in PlotDevice.</p>
-    </div>
-
     <h2>Calculations with variables</h2>
 
-    <p>When you store numbers in variables, you can perform math operations on them, multiply them,
-    increase them, and so on. This is essential when positioning text for example: you don’t want
-    to calculate the position of each piece of text by yourself. Rather, paragraph text should go
-    neatly below the title - and when the title font size changes, the paragraph text should move
-    along by itself.</p>
-    <p>Thus, the paragraph’s vertical position should be <b>dependant</b> on the title’s vertical
-    position.</p>
-
+    <p>When you store numbers in variables you can perform calculations as though the variable <em>were</em> the actual number. To perform basic "calculator arithmetic", you can use the <code class="kw">+</code>, <code class="kw">-</code>, <code class="kw">*</code>, and <code class="kw">/</code> operators. You can also assign a new value that's <b>based on</b> the variable's current value by using one of the <a href="http://en.wikipedia.org/wiki/Augmented_assignment">augmented assignment</a> operators:</p>
     <div class="example">
-      <span><img height="272" src="../etc/tut/variables-math1.jpg" width="244"/></span>
-      <pre>
+      <span><img height="303" src="../etc/tut/variables-boxen-03.png" width="242"/></span>
+<pre>
 count = 10
-print count
-&gt;&gt;&gt; 1
+print "half of", count, "is", count/2
+>>> half of 10 is 5
 
-count += 5
+count += 5 # equivalent to: count = count+5
 print count
-&gt;&gt;&gt; 15
+>>> 15
+
+count *= 3 # equivalent to: count = count*3
+print count
+>>> 45
 </pre>
     </div>
+
+
+    <p>This comes up quite frequently when laying out sequential blocks of text since the lines' positions aren't truly independent. Ideally, paragraph text should go neatly below the title (and when the title font size changes the paragraph text should move along to match it).</p>
+
+    <p>Another way of saying this is that the paragraph’s vertical position should be calculated <b>relative to</b> the title’s vertical
+    position. In this example we use the <code>y</code> variable to position the title, then update its value to reflect the title's measured height:</p>
 
     <div class="example">
       <span><img height="85" src="../etc/tut/variables-math2.jpg" width="222"/></span>
@@ -105,23 +104,18 @@ text(quote, x, y)
 </pre>
     </div>
 
-    <h2>Where do variables live?</h2>
-
-    <p>Each script has its own memory storage – a private warehouse of boxes and sticky notes. The
-    specific value of a variable is therefore only known inside the script where it is used, not in
-    other scripts.</p>
-    <h2>Predefined variables</h2>
+    <h1>Predefined Variables</h1>
 
     <p>PlotDevice has a set of predefined variables that contain information about the state of your
     script. These variables can only be looked at, not modified.</p>
     <ul>
       <li><code class="kw">WIDTH</code>: the width of the drawing area
       </li><li><code class="kw">HEIGHT</code>: the height of the drawing area
-      </li><li><code class="kw">PAGENUM</code>: the current page being exported in a multi-page export.
+      </li><li><code class="kw">PAGENUM</code>: the current page in a multi-page export.
       </li><li><code class="kw">FRAME</code>: the current frame in an <a href="Animation.html">animation</a>.<br/>
     </li></ul>
 
-    <p>Some variables can be used to create interactive animations:</p>
+    <p>Other variables can be used to create interactive animations:</p>
     <ul>
       <li><code class="kw">MOUSEX</code>: the horizontal location of the mouse cursor
       </li><li><code class="kw">MOUSEY</code>: the vertical location of the mouse cursor
@@ -133,23 +127,23 @@ text(quote, x, y)
       keys and the backspace key.
     </li></ul>
 
-    <h2>The variable panel</h2>
+    <p>You can see the full list of global variables PlotDevice maintains for you in the reference section on <a href="../ref/Canvas.html#Constants">Constants</a>.</p>
 
-    <p>The variable panel displays script variables visually as sliders, fields, or check boxes.
+    <h1>The Variables Panel</h1>
+
+    <p>The variables panel displays script variables visually as sliders, fields, or check boxes.
     When you drag a variable's slider, its value changes on the fly and will affect the output in the
     drawing area. <!-- Any <a href="../ref/Utility.html#random()">random()</a> values in your script are
     retained as long as you don’t re-run your script. In other words, random values change when you
     run a script, but not when you change values or drag sliders in the variable panel. --></p>
 
-    <div class="media" style="margin-left:-30px;"><img height="502" src="../etc/tut/variables.png" width="618"/></div>
+    <div class="media"><img height="443" src="../etc/tut/variables-panel.png" width="669"/></div>
 
     <p>You can add user-controlled variables to the panel with the <a href="../ref/Misc.html#var()">var()</a> command.</p>
-    <pre>
-var("name", NUMBER, default, min, max)
-var("name", TEXT, default="hello")
-var("name", BOOLEAN, default=True)
-var("command", BUTTON)
-</pre>
+    <pre>var("name", NUMBER, default, min, max)</pre>
+    <pre>var("name", TEXT, default="hello")</pre>
+    <pre>var("name", BOOLEAN, default=True)</pre>
+    <pre>var("command", BUTTON) </pre>
 
     <p>You can then use the <i>name</i> variable in your script like any other variable. Numbers
     produce a slider, text an input field and booleans (<i>True</i> or <i>False</i>) a checkbox.

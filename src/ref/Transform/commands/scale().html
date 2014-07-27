@@ -16,13 +16,13 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Increases, decreases or streches the size of all subsequent shape, path, text, image commands. The first parameter sets the horizontal scale, the second parameter the vertical scale. Additionally, the scale() command can be called with a single parameter that sets both the horizontal and vertical scale.
-      </p><p>Scale values are specified as floating-point (decimal) numbers. The scale() command works incrementally: if you call <code>scale(0.5)</code>, and later on call <code>scale(0.2)</code>, all subsequent drawing commands will be sized to 10% (0.2 of 0.5).
+      <p>Increases, decreases, or streches the size of all subsequent drawing commands. The first parameter sets the horizontal scale and the optional second parameter the vertical scale. You can also call <i>scale()</i> with a single parameter that sets both the horizontal and vertical scale. Scale values are specified as floating-point (decimal) numbers with 1.0 corresponding to 100%.
+      </p><p>The <i>scale()</i> command works incrementally: if you call <code>scale(0.5)</code>, and later on call <code>scale(0.2)</code>, all subsequent drawing commands will be sized to 10% (0.2 of 0.5).
     </p></div>
 
     <h2>Context Manager</h2>
 
-    <p>As with the other transform commands, scale() can be used in a <code>with</code> statement to limit its scope to drawing commands within the following block of code.
+    <p>As with the other transform commands, <i>scale()</i> can be used in a <code>with</code> statement to limit its scope to drawing commands within the following block of code.
     </p><h2>Tutorial</h2>
 
     <div class="row">
@@ -33,12 +33,11 @@
 
     <div class="row">
       <div class="example">
-        <span><img height="125" src="../etc/ref/scale.jpg" width="125"/></span>
+        <span><img height="125" src="../etc/ref/scale.png" width="125"/></span>
 <pre>fill(0.2)
-rect(10, 10, 40, 40)
+poly(30,30, 20)
 scale(0.5)
-rect(50, 10, 40, 40)
-</pre>
+poly(70,30, 20)</pre>
       </div>
     </div>
   </div>

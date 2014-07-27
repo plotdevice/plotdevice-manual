@@ -9,36 +9,56 @@
     <h2>Syntax</h2>
 
     <div class="row">
-<pre>path = bezier(points=[], smooth=False, **opts)
-</pre>
-<pre>with bezier(x=0, y=0, **opts) as path:
-    # call moveto(), lineto(), arcto(), or curveto() to add points to the path
-</pre>
+      <div class="def-box">
+        <pre>bezier(points=[], smooth=False, **opts)</pre>
+        <p>Draw a path based on a list of <a href="Misc.html#Point">Point</a> or <a href="#Curve">Curve</a> objects (or x/y tuples)</p>
+      </div>
+
+      <div class="def-box">
+        <pre>bezier(path, **opts)</pre>
+        <p>Draw the provided Bezier object using the current <a href="../tut/Graphics_State.html">graphics state</a></p>
+      </div>
+
+      <div class="def-box">
+        <pre>with bezier(x=0, y=0, **opts) as path:
+    ... # drawing commands like moveto(), lineto(), arcto(), or curveto()</pre>
+        <p>Draw a path based on a starting point and a sequence of "to" commands</p>
+      </div>
+
     </div>
 
     <h2>Description</h2>
 
     <div class="row">
-      <p>The bezier() command allows the creation of custom shapes. The <code>x</code> &amp; <code>y</code> parameters set the location of the first point (origin) in the path. These parameters are optional. When not supplied, a starting location for the path should be given inside the <code>with</code> block using the <a href="#moveto()">moveto()</a> command.
-      </p><p>Inside the <code>with</code> block, a series of other path commands usually follow, for example <a href="#moveto()">moveto()</a>, <a href="#lineto()">lineto()</a>, or <a href="#curveto()">curveto()</a>. At the end of the block the path is drawn if the <code>draw</code> parameter has not been set to <code>False</code>. Otherwise you can use the variable captured in the <code>as</code> clause of the <code>with</code> statement after the block is complete.
-    </p></div>
+      <p>Draws custom shapes that you define point-by-point. When called with a list as the first argument, the path will be constructed by drawing lines between the points specified in the list's elements. </p>
+
+      <p>If the list contains more than three <i>Points</i> (or <code>x</code>/<code>y</code> tuples), the optional <code>smooth</code> argument controls how line-segments are stitched together. By default straight lines will be used, but if <code>smooth=<span class="kw">True</span></code> the control handles will be positioned to minimize sharpness at the vertices. </p>
+
+    </div>
+
+    <h2>Context Manager</h2>
+
+    <div class="row">
+      <p>When called as part of a <code>with</code> statement, the optional <code>x</code> &amp; <code>y</code> parameters set the location of the first point (origin) in the path. When not supplied in the call to <i>bezier()</i>, a starting location for the path should be given inside the indented block using the <a href="#moveto()">moveto()</a> command.
+      </p><p>Inside the <code>with</code> block, a series of other drawing commands usually follows. You can call any of the "to" commands (<a href="#moveto()">moveto()</a>, <a href="#lineto()">lineto()</a>, etc.) as well as any of the shape-drawing primitives (<a href="Primitives.html#arc">arc()</a>, <a href="Primitives.html#poly">poly()</a>, <a href="Primitives.html#line">line()</a>, and friends).</p>
+
+      <p>The path will be drawn after the last command in the indented block unless you set the <code>plot</code> argument to <code class="kw">False</code>. In these cases, you can <a href="Canvas.html#plot()">plot()</a> the path later on using the variable "captured" in the <code class="kw">as</code> clause of the <code>with</code> statement. Note that the captured path-variable continues to be valid even outside of the indented-block.</p>
+    </div>
 
     <h2>Optional Parameters</h2>
 
     <div class="row">
       <p><code class="box"><span class="red">plot</span></code><br/>
-      By default, paths are drawn as soon as the <code>with</code> block completes (or when bezier() returns if a <code>points</code> parameter was passed). By setting <code>plot=False</code>, the path will be returned but not drawn. You can then draw it manually by calling <code>path.draw()</code> on the returned <a href="#Bezier">Bezier</a> object.
+      By default, paths are drawn as soon as the <code>with</code> block completes (or immediately if a <code>points</code> list was provided). But when called with <code>plot=<span class="kw">False</span></code>, a reference to the path will be returned but <em>will not</em> be drawn. You can manually add it to the canvas later on by passing the reference to the <a href="Canvas.html#plot()">plot()</a> command.
       </p><p><code class="box"><span class="red">close</span></code><br/>
-      If <code>True</code>, connect the final point in the path back to the starting position after the final drawing command. If omitted, it defaults to <code>False</code> (or inherits the value from the last call to <a href="#autoclosepath()">autoclosepath()</a>).
+      If <code class="kw">True</code>, connect the final point in the path back to the starting position after the final drawing command. If omitted, it defaults to <code class="kw">False</code> (or inherits the value from the last call to <a href="#autoclosepath()">autoclosepath()</a>).
       </p><p><code class="box"><span class="red">fill</span></code> <span class="grey">/</span> <code class="box"><span class="red">stroke</span></code> <span class="grey">/</span> <code class="box"><span class="red">nib</span></code><br/>
-      Values passed to these parameters will override the state set in previous calls to the corrseponding <a href="Line+Color.html#fill()">fill()</a>, <a href="Line+Color.html#stroke()">stroke()</a>, and <a href="Line+Color.html#pen()">pen()</a> commands. If omitted, the path will inherit values from the global state when drawn.
+      Values passed to these parameters will override the state set in previous calls to the corrseponding <a href="Line+Color.html#fill()">fill()</a>, <a href="Line+Color.html#stroke()">stroke()</a>, and <a href="Line+Color.html#pen()">pen()</a> commands. If omitted, the path will inherit values from the <a href="../tut/Graphics_State.html">graphics state</a> when drawn.
       </p><p><code class="box"><span class="red">cap</span></code><br/>
       Set the shape of the path’s endpoints to <code class="kw">BUTT</code>, <code class="kw">SQUARE</code> or <code class="kw">ROUND</code>. If omitted, the style defaults to <code class="kw">BUTT</code> (or inherits the value from the last call to <a href="Line+Color.html#pen()">pen()</a> that included a <code>cap</code> parameter).
       </p><p><code class="box"><span class="red">join</span></code><br/>
       Set the shape of the path’s vertices to <code class="kw">MITER</code>, <code class="kw">BEVEL</code> or <code class="kw">ROUND</code>. If omitted, the style defaults to <code class="kw">MITER</code> (or inherits the value from the last call to <a href="Line+Color.html#pen()">pen()</a> that included a <code>join</code> parameter).
-      </p><p><code class="box"><span class="red">smooth</span></code><br/>
-      When bezier() is called with a list of more than three <code>(x,y)</code> tuples as the <code>points</code> arg, the <code>smooth</code> parameter offers some control on how separate segments are stitched together. By default straight lines will be used, but if <code>smooth=True</code> the control points will be set to minimize sharpness at the vertices.
-    </p></div>
+      </p></div>
 
     <h2>Tutorial</h2>
 

@@ -16,15 +16,15 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Sets a global dropshadow style for drawing primitives. The <code>color</code> argument can be a single value, or a tuple containing valid args for the <a href="Line+Color#color()">color()</a> command. The optional <code>blur</code> argument controls the sharpness of the shadowed region.
+      <p>Sets a global drop-shadow style for drawing primitives. The <code>color</code> argument can be a single value, or a tuple containing valid args for the <a href="Line+Color#color()">color()</a> command. The optional <code>blur</code> argument controls the sharpness of the shadowed region.
       </p><p>The <code>offset</code> arg, if specified, sets the relative position of the shadow. It can be either a single number (with positive values corresponding to down/right and negative to up/left) or a 2-tuple with separate x &amp; y offsets. If the offset is omitted, it will default to the same value as the <code>blur</code>.
-      </p><p>Calling shadow() affects the global state. Any subsquent drawing operations will include a dropshadow until you call <a href="#noshadow()">noshadow()</a> or <code>shadow(None)</code> to disable the effect.
+      </p><p>Calling <i>shadow()</i> affects the global state. Any subsquent drawing operations will include a drop-shadow until you call <a href="#noshadow()">noshadow()</a> or <code>shadow(None)</code> to disable the effect.
     </p></div>
 
     <h2>Context Manager</h2>
 
     <div class="row">
-      <p>When used as part of a <code>with</code> statement, the shadow() command's effects will be limited to drawing commands within the block. In addition, the shadow will be applied to drawing operations as a ‘layer’ rather than to the individual graphics objects.
+      <p>When used as part of a <code>with</code> statement, the <i>shadow()</i> command's effects will be limited to drawing commands within the block. In addition, the shadow will be applied to drawing operations as a ‘layer’ rather than to the individual graphics objects.
     </p></div>
 
     <h2>Tutorial</h2>

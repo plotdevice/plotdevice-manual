@@ -47,7 +47,7 @@ stroke(CMYK, 1, 0, 0, .2) # 100% cyan w/ 20% black
       <p>Note that as in the prior example, you can optional add a final 0–1.0 arg to set the opacity to something other than the default (1.0).</p>
 <pre>
 fill(CMYK, 0, 0, 0, 1, 0.9) # slightly transparent black
-stroke(HSV, 0, 1, 1, .1)    # very faint red
+stroke(HSV, 0, 1, 1, .1)    # the palest of reds
 </pre>
 
 
@@ -89,6 +89,7 @@ star(5,40, fill=.5, stroke=(CMYK, 1, 0, 0, 0))
 </pre>
       <p>If you can specify a color with a single value, you can omit the parentheses. Otherwise, enclose the set of args for the color in parens and separate them by commas.</p>
 
+      <a name="gradients"></a>
       <h1>Gradients</h1>
       <p>The <i>fill()</i> and <i>background()</i> commands are special in that if you pass them two or more colors, a gradient will be created. Using the optional <code>steps</code> argument allows you to control the ‘speed’ of the transition from color to color. If included, it should be a list of numbers ranging from 0 to 1.0 – one value for each color in the gradient.</p>
 
@@ -179,7 +180,7 @@ for i in range(HEIGHT):
     line(0, i, WIDTH, i)
 </pre>
 
-      <p>However, since each line now has a randomly sampled <code class="kw">RGB</code> color, some lines will tend to look dull and light. To crank up the colors, we can easily adjust the lines’ saturation without switching to a different colorspace. We'll also increase the pen's nib size to two since overlapping the lines makes them appear brighter as well.</p>
+      <p>However, since each line now has a randomly sampled <code class="kw">RGB</code> color, some lines will tend to look washed out and dull. To crank up the colors, we can easily adjust the lines’ saturation without switching to a different colorspace. We'll also increase the pen's nib size to two since overlapping the lines makes them appear brighter as well.</p>
   <pre>
 pen(2)
 for i in range(HEIGHT):
@@ -236,10 +237,9 @@ color.<span class="red">value</span>
 
       <p>The key to generating harmonious and consistent colors is to make them not <em>entirely</em>
       random, but limited to a certain range. A common pitfall is to use <em>all</em> of the colors, since,
-      you know, we <i>can</i>. But, more often than not, this doesn't result in a consistent design.</p>
+      you know, we <i>can</i>. But, more often than not, this doesn't result in a coherent palette.</p>
 
-      <p>The <code class="kw">HSV</code> color mode is excellent for creating color harmony.</p>
-      <p>Consider the following example:</p>
+      <p>The <code class="kw">HSV</code> color mode is excellent for creating color harmony. Consider the following:</p>
   <pre>color(HSV)
 nofill()
 for i in range(10):

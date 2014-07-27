@@ -19,7 +19,7 @@
     <p>When you call <i>read()</i> with a file path as its first arg, it will use the file exension to recognize <code>.json</code> or <code>.csv</code> files and give you options for how they are unpacked into variables.</p>
 
 
-    <h1>Using <code>json</code> for datastructures</h1>
+    <h1>Using <code>json</code> for Datastructures</h1>
     <p>Over the last decade or so, the <a href="http://json.org">JSON</a> format has become something of a lingua-franca for exchanging structured data between systems. Its popularity owes a lot to how naturally its syntax and semantics map onto the native collection classes of the so-called "dynamic" languages.</p>
 
     <p>In fact, the representations of most values look <em>identical</em> to those used in Python literals. This makes json a great choice for moving custom data out of your scripts and into a file. For instance, here's a list of numbers in json:</p>
@@ -28,7 +28,7 @@
     <pre>{"address":"123 Elm St.", "apt":null, "garage":false}</pre>
     <p>The structure of the dictionary itself looks just like Python's <code>{"key":val}</code> syntax, but you'll notice the values are "spelled" a little differently. First, Python's <code class="kw">None</code> value should be written as <code>null</code> inside the json file. Second, <code>true</code> &amp; <code>false</code> aren't capitalized. When you <i>read()</i> from the file, these will be translated back to their Python equivalents automatically. Also keep in mind that strings in json <em>always</em> use double-quotes.</p>
 
-    <p>Where things start to get interesting is when you combine nested containers to represent more-complex "records". For instance, if we were writing a nostalgic computer game, we might deal with data whose json representation looked like:</p>
+    <p>Things start to get interesting when you combine nested containers to represent more-complex "records". For instance, if we were writing a nostalgic computer game, we might deal with data whose json representation looked like:</p>
     <pre>
 {
   "player":{
@@ -74,7 +74,7 @@ print "ordered:", read("zork.json", dict=odict).keys()
     <p class="double-dagger">Behind the scenes, the <i>read()</i> command is using the <code class="kw">json</code> module from the standard library. Take a look at the <a href="https://docs.python.org/2/library/json.html">official docs</a> to learn about generating json as well as parsing it.</p>
     <hr/>
 
-    <h1>Using <code>csv</code> for tabular data</h1>
+    <h1>Using <code>csv</code> for Tabular Data</h1>
 
     <p>While json is great for the kinds of structured-data you generate through code, data that comes from the "real world" often started its life in a spreadsheet or SQL table. Rather than having a variable structure, these formats are rigidly row &amp; column-oriented. Comma-separated Value files represnt these "tabular" structures in a simple text format. Each line of text corresponds to a row, and columns are separated by <code class="str">","</code> characters.</p>
 

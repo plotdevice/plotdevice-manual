@@ -23,14 +23,14 @@ background(*colors, steps=[0,1], center=[0,0]) # radial gradient
     <h2>Description</h2>
 
     <div class="row">
-      <p>Sets the canvas background color. This command works exactly like the <a href="Line+Color.html#fill()">fill()</a> or <a href="Line+Color.html#stroke()">stroke()</a> command. You can use it to set the PDF background to transparent by supplying <code>None</code> as parameter (so it imports more easily in Photoshop or Illustrator).
+      <p>Sets the canvas background color using the same syntax as the <a href="Line+Color.html#fill()">fill()</a>, <a href="Line+Color.html#stroke()">stroke()</a>, and <a href="Line+Color.html#color()">color()</a> commands. You can set the background to transparent by supplying <code>None</code> as its sole parameter (making it easier to import into Photoshop or Illustrator).
       </p><p>You can set the background to a gradient by passing more than one color value. For example <code>background('#600', 'white')</code> will draw a radial gradient ranging from dark red to white. Specifying an <code>angle</code> will render a linear gradient at that orientation. The optional <code>steps</code> parameter should be the same length as the number of colors in the gradient. Each entry defines the center of its corresponding color in the gradient in relative values ranging from 0–1.
     </p></div>
 
     <h2>Returns</h2>
 
     <div class="row">
-      <a href="Line+Color.html#Color">Color</a> containing the defined color values<a href="Line+Color.html#Color"></a>
+      <p>a <a href="Line+Color.html#Color">Color</a> object containing the defined color values<a href="Line+Color.html#Color"></a></p>
     </div>
 
     <h2>Tutorial</h2>

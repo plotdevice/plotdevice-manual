@@ -36,13 +36,9 @@
 {%- set prev=book[book.index(title)-1].replace('é','e') if title in book and title!=book[0] else None -%}
 {%- set prevname=prev.replace('+',' &amp; ').replace('_',' ').replace('Bezier','Bézier') if prev else None -%}
 <ul class="chapter">
-{% if next %}
-<li class="next"><a href="{{next}}.html">{{nextname}} &gt;</a></li>
-{%- endif -%}
-<li class="current">{{chapter}}</li>
-{% if prev %}
-<li class="prev"><a href="{{prev}}.html">&lt; {{prevname}}</a></li>
-{%- endif -%}
+{% if next %} <li class="next"><a href="{{next}}.html">{{nextname}} &gt;</a></li> {%- endif -%}
+{% if chapter %}<li class="current">{{chapter}}</li> {%- endif -%}
+{% if prev %} <li class="prev"><a href="{{prev}}.html">&lt; {{prevname}}</a></li> {%- endif -%}
 </ul>
 {%- endmacro %}
 

@@ -16,13 +16,13 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Specifies the amount to move a subsequent shape, path, text, image on the screen. The first parameter sets the horizontal offset, the second parameter the vertical offset. Translating is the same as dragging something across the screen. Or the same as moving the canvas registration point, which is situated in the upper left corner by default.
-      </p><p>Once called, all commands following translate() are repositioned, which makes translate() useful for positioning whole compositions of multiple elements.
+      <p>Shifts the origin used when interpreting drawing commands' coordinates. The first parameter sets the horizontal offset, the second parameter the vertical offset. Translating is the same as dragging something across the screen. Or the same as moving the canvas registration point, which is situated in the upper left corner by default.
+      </p><p>After calling <i>translate()</i>, all subsequent drawing commands are shifted by the specified offsets. This can be useful when positioning <em>groups</em> of multiple elements.
     </p></div>
 
     <h2>Context Manager</h2>
 
-    <p>As with the other transform commands, translate() can be used in a <code>with</code> statement to limit its scope to drawing commands within the following block of code.
+    <p>As with the other transform commands, <i>translate()</i> can be used in a <code>with</code> statement to limit its scope to drawing commands within the following block of code.
     </p><h2>Tutorial</h2>
 
     <div class="row">

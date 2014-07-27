@@ -16,13 +16,13 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Slants the direction of all subsequent shape, path, text, image commands. The first parameter sets the horizontal skew. The second parameter is optional and sets the vertical skew.
-      </p><p>Skew values are expressed as angles in units set through the <a href="Canvas.html#geometry()">geometry()</a> command (<code class="kw">DEGREES</code> by default). The skew() command works incrementally: if you call <code>skew(10)</code>, and later on call <code>skew(20)</code>, all subsequent drawing commands will be skewed by 30° (10+20).
+      <p>Slants the direction of all subsequent drawing commands. The first parameter sets the horizontal skew. The second parameter is optional and sets the vertical skew.
+      </p><p>Skew values are expressed as angles using the current <a href="Canvas.html#geometry()">geometry()</a> unit (<code class="kw">DEGREES</code> by default). The <i>skew()</i> command works incrementally: if you call <code>skew(10)</code>, and later on call <code>skew(20)</code>, all subsequent drawing commands will be skewed by 30° (10+20).
     </p></div>
 
     <h2>Context Manager</h2>
 
-    <p>As with the other transform commands, skew() can be used in a <code>with</code> statement to limit its scope to drawing commands within the following block of code.
+    <p>As with the other transform commands, <i>skew()</i> can be used in a <code>with</code> statement to limit its scope to drawing commands within the indented block of code.
     </p><h2>Tutorial</h2>
 
     <div class="row">

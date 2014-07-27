@@ -4,7 +4,7 @@ ref=odict()
 ref['Canvas'] = {
     'commands': ['size()', 'speed()', 'background()', 'geometry()', 'export()', ('plot()', 'clear()'), ],
     'types': ['Constants'],
-    'compat': ['outputmode()', 'ximport()'] }
+    'compat': ['outputmode()', 'ximport()', 'halt()'] }
 ref['Line+Color'] = {
     'commands': ['color()', 'stroke()', 'fill()', 'pen()', ],
     'types': ['Color', ],
@@ -30,14 +30,14 @@ ref['Typography'] = {
     'types': ['Family', 'Font', 'Text'],
     'compat': ['fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textwidth()'] }
 # grouped into Misc.html
-ref['Entropy'] = {
-    'commands': ['random()', 'choice()', 'shuffled()', 'ordered()', 'grid()',  ],
-    'types': [ 'dictionaries', ],
-    'compat': ['autotext()', ] }
 ref['Utility'] = {
     'commands': ['read()', 'measure()', 'files()', 'fonts()', 'var()',],
     'types': ['Point', 'Size', 'Region', ],
     'compat': ['imagesize()', 'open()', ] }
+ref['Entropy'] = {
+    'commands': ['random()', 'choice()', 'shuffled()', 'ordered()', 'grid()',  ],
+    'types': [ 'dictionaries', ],
+    'compat': ['autotext()', ] }
 
 
 tut=odict()

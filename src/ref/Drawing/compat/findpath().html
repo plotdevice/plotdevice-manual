@@ -16,7 +16,7 @@
     <h2>Description</h2>
 
     <div class="row">
-      Constructs a fluid path from a list of coordinates. Each element in the list is a 2-tuple defining the x-coordinate and the y-coordinate. If the curve has more than three points, the <i>curvature</i> parameter offers some control on how separate segments are stitched together: from straight lines (0.0) to smooth curves (1.0).
+      Constructs a fluid path from a list of coordinates. Each element in the list is a 2-tuple defining the x-coordinate and the y-coordinate. If the list defines more than three points, the <i>curvature</i> parameter offers some control on how separate segments are stitched together: from straight lines (0.0) to smooth curves (1.0).
     </div>
 
     <h2>Returns</h2>
@@ -28,7 +28,7 @@
     <h2>PlotDevice Equivalent</h2>
 
     <div class="row">
-      <p>The findpath() command has been subsumed into the new <a href="#bezier()">bezier()</a> command, though note that it is in a simplified form. The boolean <code>smooth</code> argument to bezier() is equivalent to calling findpath() with a curvature of 1.0 or 0.
+      <p>The <i>findpath()</i> command has been subsumed into the new <a href="#bezier()">bezier()</a> command, though note that it gives you less control over curvature. The boolean <code>smooth</code> argument to <i>bezier()</i> is equivalent to calling <i>findpath()</i> with a curvature of 1.0 or 0.
     </p></div>
 
     <h2>Tutorial</h2>

@@ -17,9 +17,9 @@
     curves.</p>
     <div class="media" style="margin:0;"><img height="300" src="../etc/tut/pathfilter1.jpg" width="550"/></div>
 <pre>size(550, 300)
-background(0.23, 0.21, 0.15)
+background("#3a3526")
 
-font("Georgia-Bold", 175)
+font("georgia", "bold", 175)
 path = textpath("hairs", 40, 200)
 
 for contour in path.contours:
@@ -29,28 +29,26 @@ for contour in path.contours:
 
         nofill()
         stroke(1, 0.75)
-        strokewidth(random(0.25, 0.5))
+        pen(random(0.25, 0.5))
 
         if prev != None:
-            autoclosepath(False)
-            beginpath(prev.x, prev.y)
-            curveto(
-                pt.ctrl1.x - random(30),
-                pt.ctrl1.y,
-                pt.ctrl2.x,
-                pt.ctrl2.y + random(30),
-                pt.x,
-                pt.y
-            )
-            curveto(
-                pt.ctrl1.x + random(10),
-                pt.ctrl1.y,
-                pt.ctrl2.x,
-                pt.ctrl2.y - random(10),
-                pt.x + random(-20, 20),
-                pt.y + random(-10, 10)
-            )
-            endpath()
+            with bezier(prev.x, prev.y):
+                curveto(
+                    pt.ctrl1.x - random(30),
+                    pt.ctrl1.y,
+                    pt.ctrl2.x,
+                    pt.ctrl2.y + random(30),
+                    pt.x,
+                    pt.y
+                )
+                curveto(
+                    pt.ctrl1.x + random(10),
+                    pt.ctrl1.y,
+                    pt.ctrl2.x,
+                    pt.ctrl2.y - random(10),
+                    pt.x + random(-20, 20),
+                    pt.y + random(-10, 10)
+                )
 
         prev = pt
 </pre>
@@ -65,9 +63,9 @@ for contour in path.contours:
 <pre>from math import sqrt
 
 size(550, 300)
-background(0.23, 0.21, 0.15)
+background("#3a3526")
 
-font("Helvetica-Bold", 125)
+font("helvetica", "bold", 125)
 path = textpath("SPIDER", 20, 200)
 
 m = 2.0
@@ -80,19 +78,17 @@ for contour in path.contours:
         pt1 = choice(points)
 
         d = float("inf")
-        while d &gt; fontsize()/5:
+        while d > fontsize()/5:
             pt2  = choice(points)
             d = sqrt((pt2.x-pt1.x)**2 + (pt2.y-pt1.y)**2)
 
-        nofill()
-        stroke(1, 1, 1, 0.9)
-        strokewidth(0.35)
-        line(
-            pt1.x + random(-m, m),
-            pt1.y + random(-m, m),
-            pt2.x + random(-m, m),
-            pt2.y + random(-m, m)
-        )
+        with nofill(), stroke("white", 0.9), pen(0.35):
+            line(
+                pt1.x + random(-m, m),
+                pt1.y + random(-m, m),
+                pt2.x + random(-m, m),
+                pt2.y + random(-m, m)
+            )
 </pre>
 
 
@@ -104,9 +100,9 @@ for contour in path.contours:
     layers are drawn.</p>
     <div class="media" style="margin:0;"><img alt="pathfilter3" height="300" src="../etc/tut/pathfilter3.jpg" width="550"/></div>
 <pre>size(550, 300)
-background(0.23, 0.21, 0.15)
+background("#3a3526")
 
-font("Georgia-Bold", 175)
+font("georgia", "bold", 175)
 path = textpath("draft", 40, 200)
 
 m = 15
@@ -121,7 +117,7 @@ for i in range(m):
 
             nofill()
             stroke(1, 0.75)
-            strokewidth(0.25)
+            pen(0.25)
 
             if prev != None:
                 line(
@@ -153,9 +149,9 @@ from math import sqrt, pow
 from math import radians, sin, cos
 
 size(550, 300)
-background(0.23, 0.21, 0.15)
+background("#3a3526")
 
-font("Helvetica-Bold", 125)
+font("helvetica", "bold", 125)
 path = textpath("SPIKED", 40, 200)
 
 m = 5   # spike length
@@ -216,9 +212,9 @@ for contour in path.contours:
     <p>A path filter that trashes the path by inserting random line segments between two points.</p>
     <div class="media" style="margin:0;"><img alt="pathfilter5" height="300" src="../etc/tut/pathfilter5.jpg" width="550"/></div>
 <pre>size(550, 300)
-background(0.23, 0.21, 0.15)
+background("#3a3526")
 
-font("Georgia-Bold", 175)
+font("georgia", "bold", 175)
 path = textpath("trash", 40, 200)
 
 def trash(path, pt0, pt1, m=0.2, n=20, d=3.0):
@@ -240,7 +236,7 @@ def trash(path, pt0, pt1, m=0.2, n=20, d=3.0):
     if random() &lt; m*0.3:
         x = pt1.x - random(-d*4, d*4)
         y = pt1.y - random(-d*2, d*2)
-        blot = BezierPath()
+        blot = Bezier()
         blot.moveto(x, y)
         for i in range(random(n)):
             x += random(-d, d)
@@ -249,7 +245,7 @@ def trash(path, pt0, pt1, m=0.2, n=20, d=3.0):
         blot.closepath()
         return blot
 
-p = BezierPath()
+p = Bezier()
 extensions = []
 for contour in path.contours:
     prev = None

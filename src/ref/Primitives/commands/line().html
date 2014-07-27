@@ -16,7 +16,8 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Draws a line to the screen. A line is a straight path between two points. The first two parameters set the location of the first point (origin), the following two parameters set the location of the second point (destination). You will not notice a line if its <a href="Line+Color.html#stroke()">stroke()</a> is <code>None</code> or the same as the background color (or if the <a href="Line+Color.html#pen()">pen()</a>'s <code>nib</code> is zero).
+      <p>Draws a line-segment to the screen – a straight path between two points. The first pair of parameters sets the location of the "origin" point and the following pair sets the location of the "destination" point.</p>
+      <p>You will only be able to see the line segment if the <a href="Line+Color.html#stroke()">stroke()</a> is different from the current <a href="Canvas.html#background()">background()</a> color. Also note that lines will not be drawn if the <i>stroke()</i> is set to <code class="kw">None</code>.
     </p></div>
 
     <h2>Returns</h2>

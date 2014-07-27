@@ -32,7 +32,7 @@ curve.<span class="red">ctrl2.x</span>
 curve.<span class="red">ctrl2.y</span>
 </pre>
 
-      <p>The <code>curve.cmd</code> property describes the type of line-segment this curve belongs to. Its value can be <code class="kw">MOVETO</code>, <code class="kw">LINETO</code>, <code class="kw">CURVETO</code> or <code class="kw">CLOSE</code>. The <code>x</code> &amp; <code>y</code> properties will be defined for all <code>cmd</code> types except for <code class="kw">CLOSE</code>. The <code>ctrl1</code> &amp; <code>ctrl2</code> properties only apply if <code>cmd</code> is <code class="kw">CURVETO</code> (in which case, each is a <i>Point</i> object).
+      <p>The <code>cmd</code> property describes the type of line-segment this <i>Curve</i> belongs to. Its value can be <code class="kw">MOVETO</code>, <code class="kw">LINETO</code>, <code class="kw">CURVETO</code> or <code class="kw">CLOSE</code>. The <code>x</code> &amp; <code>y</code> properties will be defined for all <code>cmd</code> types except for <code class="kw">CLOSE</code>. The <code>ctrl1</code> &amp; <code>ctrl2</code> properties are only relevant if <code>cmd</code> is <code class="kw">CURVETO</code> (in which case, each property is a <i>Point</i> object).
     </p></div>
 
     <h2>Methods</h2>
@@ -44,7 +44,7 @@ curve.<span class="red">coordinates</span>(distance, angle)
 curve.<span class="red">reflect</span>(point, d=1.0, a=180)
 </pre>
 
-      <p>These geometry helper-methods behave the same as those supported by the <a href="Misc.html#Point">Point</a> object. They implicitly use the <i>Curve</i>'s <code>x</code> &amp; <code>y</code>. Be careful when using them on a <i>Curve</i> that has a <code class="kw">CLOSE</code> <code>cmd</code> since its coordinates will be (0,0), which might give you unexpected results.
+      <p>These geometry helper-methods behave the same as those supported by the <a href="Misc.html#Point">Point</a> object. They implicitly use the <i>Curve</i>'s <code>x</code> &amp; <code>y</code> properties. Be careful when blindly iterating through <i>Curves</i> since any with a <code>cmd</code> of <code class="kw">CLOSE</code> will have (0,0) coordinates (which might give you unexpected results).
     </p></div>
   </div>
 

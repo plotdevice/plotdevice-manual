@@ -58,7 +58,7 @@ print nset_dict               # prints ddict{'apple': {'color': 'green'}}
     <span style="font:italic 14px Georgia;">A thin wrapper for <a href="https://docs.python.org/2/library/collections.html#ordereddict-examples-and-recipes">collections.OrderedDict</a></span></h2>
 
     <div class="row">
-      <p>the <code class="kw">odict()</code> command creates a dictionary that remembers insertion order. When you iterate using its <code>keys()</code>, <code>values()</code>, or <code>items()</code> methods, the values will be returned in the order they were created (or, e.g., deserialized from JSON).
+      <p>the <code class="kw">odict()</code> command creates a dictionary that remembers insertion order. When you iterate using its <i>keys()</i>, <i>values()</i>, or <i>items()</i> methods, the values will be returned in the order they were created (or, e.g., deserialized from JSON).
       </p><p>Standard <code>dict</code> objects return keys in an arbitrary order. This poses a problem for initializing an <code>odict</code> since both <code>dict</code>-literals and keyword arguments will discard the ordering before the <code>odict</code> constructor can access them.
       </p><p>To initialize an <code>odict</code> and not lose the key-order in the process, pass a list of (key,val) tuples:
       </p><pre>odict([ ('foo',12), ('bar',14), ('baz', 33) ])
@@ -68,6 +68,14 @@ print nset_dict               # prints ddict{'apple': {'color': 'green'}}
       </p><pre>odict( (k,other[k]) for k in ordered(other.keys()) )
 </pre>
     </div>
+
+    <h2>Tutorials</h2>
+
+    <div class="row">
+      <p><a href="../tut/Collections.html">Collections</a>, <a href="../tut/Serialization.html">Serialization</a></p>
+    </div>
+
+
   </div>
 
 </body></html>

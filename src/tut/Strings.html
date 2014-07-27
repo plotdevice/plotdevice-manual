@@ -9,13 +9,11 @@
     that will be drawn to the screen.</p>
     <p>When a string is assigned to a variable, the text needs to be <strong>wrapped in
     quotes</strong>. You can use either <code class="str">'single'</code> or <code class="str">"double"</code> quotation marks. Otherwise PlotDevice will think the piece of text is the name of a variable:</p>
-<pre>hello = 20
-string = hello
-print string
->>> 20
-
-string = "hello"
-print string
+<pre class="manual">txt = hello
+<span class="grey">>>> </span><span class="red">NameError: name 'hello' is not defined</span>
+</pre><pre>
+txt = "hello"
+print txt
 >>> hello
 </pre>
 
@@ -24,14 +22,14 @@ print string
     <p>A string is like a <a href="Collections.html#lists">list</a> of individual characters. You
     can access each character in the string by putting the "index" number in brackets. You can also access substrings by passing a start- and end-index spearated by a colon. Note that just like "slices" of a list, the end-index is <em>not</em> included in the sub-range returned.</p>
     <pre>alphabet = "abcdefghijklmnopqrstuvwxyz"
-print alphabet[0]   # 'a'
-print alphabet[-1]  # 'z'
-print alphabet[:4]  # 'abcd'
-print alphabet[1:4] # 'bcd'
-print alphabet[-3:] # 'xyz'
+alphabet[0]   # returns 'a'
+alphabet[-1]  # 'z'
+alphabet[:4]  # 'abcd'
+alphabet[1:4] # 'bcd'
+alphabet[-3:] # 'xyz'
 </pre>
 
-    <p>The <a href="../ref/Utility.html#choice()">choice()</a> command selects either a random element from a list or a random character from a string (depending on which kind of value you pass to it). In the example below, we use <i>choice()</i> and <i>random()</i> to select 80 random characters from the alphabet and scatter them over the screen at random positions, sizes, and orientations.</p>
+    <p>The <a href="../ref/Utility.html#choice()">choice()</a> command selects either a random element from a list or a random character from a string (depending on which kind of value you pass to it). In the example below, we use <i>choice()</i> and <i>random()</i> to select 80 characters from the alphabet and scatter them over the screen at random positions, sizes, and orientations.</p>
     <div class="media"><img alt="" height="536" src="../etc/tut/strings-characters.png" width="767"/></div>
 
     <h2>Manipulating strings</h2>
@@ -44,7 +42,7 @@ print alphabet[-3:] # 'xyz'
     </div>
     <div class="def-box">
       <pre class="manual">str.<span class="red">lower</span>()</pre>
-      <p>returns an lowercase copy of the string</p>
+      <p>returns a lowercase copy of the string</p>
     </div>
     <div class="def-box">
       <pre class="manual">str.<span class="red">capitalize</span>()</pre>
@@ -71,23 +69,31 @@ print alphabet[-3:] # 'xyz'
       <p>returns a string formed by concatenating all the items of <code>lst</code> with <code>str</code> separating them</p>
     </div>
 
-    <p>Strings can be converted to uppercase and lowercase with the <i>upper()</i> and
-    <i>lower()</i> methods or have their first character capitalized with <i>capitalize()</i>.
-    Remember, these are methods, so instead of saying <i>txt = upper(txt)</i> you need to say
-    <i>txt = txt.upper()</i>.</p>
-<pre>txt = "Kumquats, Kumquats! I must have my Kumquats! - Oscar Wilde"
-txt = txt.upper()
+    <p>Keep in mind that these are <em>methods</em> of the string object itself, not commands. So rather than calling then with your string as an argument:</p>
+    <pre>lower(txt) # bzzzt, wrong</pre>
+
+    <p>you need to use "dot notation" to access the string's method instead:</p>
+    <pre>txt.lower() # hooray, success</pre>
+
+    <p>All the string methods leave your original string untouched and instead return a new copy that's been modified accordingly:</p>
+
+<pre>txt = "Ask me, ask me, ask me"
+print txt.title()
+print txt.upper()
 print txt
->>> KUMQUATS, KUMQUATS! I MUST HAVE MY KUMQUATS! - OSCAR WILDE
+>>> Ask Me, Ask Me, Ask Me
+>>> ASK ME, ASK ME, ASK ME
+>>> Ask me, ask me, ask me
 </pre>
 
+
     <p>The <em>replace()</em> method is especially useful when you want to filter mistakes from the
-    string, or when you want to alter portions of the content:</p>
-<pre>txt = "Something's rotten in the state of Denmark."
-txt = txt.replace("in", "in, like, ")
-txt = txt.replace(".", " dude.").replace("rotten", "way uncool")
+    string or otherwise alter portions of the content:</p>
+<pre>txt = "There's more to life than code, you know."
+txt = txt.replace("code", "books")
+txt = txt.replace(".", ". But not much more...")
 print txt
->>> Something's way uncool in, like, the state of Denmark dude.
+>>> There's more to life than books, you know. But not much more...
 </pre>
     <p>If your search &amp; replace needs are more complex, Python has a powerful <a href="https://docs.python.org/2/library/re.html">Regular Expressions</a> library available to you. Add <code>import</code> <code>re</code> to the top of your script and you'll have access to useful methods like:</p>
 
@@ -125,9 +131,10 @@ print txt
 
     <p>PlotDevice sees <code class="str">"(On his death bed): "</code> as a complete string followed by garbage statements it doesn’t understand.</p>
 
-    <p>Python allows you to take your pick of either double- or single-quotes when defining a string. Whichever one you start the string with will also be used for determining where the string ends. If double-quotes are part of the <em>content</em> of our string, we might choose to wrap it in single-quotes (and vice versa):</p>
-    <pre>txt = '(On his death bed): "Those curtains are hideous." - Oscar Wilde'
-txt = "You can't / you won't / and you don't / stop."</pre>
+    <p>To get around this, take your pick of either double- or single-quotes when defining a string. Whichever one you start the string with will also be used for determining where the string ends. If double-quotes are part of the <em>content</em> of our string, we might choose to wrap it in single-quotes (and vice versa):</p>
+    <pre>txt = '(On his death bed): "Those curtains are hideous." - Oscar Wilde'</pre>
+    <p>Or, if we've got a lot of single-quotes in the content, we can wrap it in double-quotes:</p>
+    <pre>txt = "You can't / you won't / and you don't / stop."</pre>
 
     <p>But if our string contains both kinds of quotes, this approach doesn't help us. For these cases we can use triple-quotes to delimit the string and mix-and-match quotation marks within it:</p>
 
@@ -139,13 +146,13 @@ txt = "You can't / you won't / and you don't / stop."</pre>
     <h2>File input</h2>
 
     <p>When you’re going to typeset long paragraphs of text, it’s better to store the text in a
-    separate text file and assign that to a variable. This keeps your script clean, and you can
+    separate text file and then read its contents into a variable. This keeps your script clean, and you can
     edit the text separately from the script.</p>
 
     <p>The text file you create must be <em>plain</em> text devoid of styling (PlotDevice doesn't speak RTF or <code>.docx</code>). If you use a text-editor like <a href="http://www.sublimetext.com">Sublime Text</a>, <a href="http://macromates.com">TextMate</a>, or <a href="http://www.gnu.org/software/emacs/">Emacs</a> any files you create will be plaintext by default. If you're using the built-in TextEdit application, the first thing you'll need to do upon creating a new document is disable formatting:</p>
     <div class="media" style="margin:0;"><img alt="" height="248" src="../etc/tut/strings-plaintext.png" width="247"/></div>
 
-    <p>You can then compose whatever text you'd like (or, if you're like me, lazily paste something in from Wikipedia). Save the file somewhere convenient and remember its file path so you can access it from your script:</p>
+    <p>You can then compose whatever text you'd like (or, if you're like me, lazily paste in something interesting from Wikipedia). Save the file to a convenient folder and remember its file path so you can access it from your script:</p>
 
 
     <div class="media"><img alt="" height="510" src="../etc/tut/strings-textedit.png" width="574"/></div>

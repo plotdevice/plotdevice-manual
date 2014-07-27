@@ -16,19 +16,19 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Changes the way colors are displayed. While the <a href="Line+Color.html#colormode()">colormode()</a> command specifies the input of colors, outpumode() specifies the output. By default, the output mode for colors is <code class="kw">RGB</code>, but you can also set it to <code class="kw">CMYK</code> so that exported PDF’s are ready for print. Output in RGB will look brighter on screen but to validate PDF documents the colors need to be in CMYK.
+      <p>Changes the way colors are displayed. While the <a href="Line+Color.html#colormode()">colormode()</a> command specifies the input of colors, <i>outpumode()</i> specifies the output. By default, the output mode for colors is <code class="kw">RGB</code>, but you can also set it to <code class="kw">CMYK</code> so that exported PDF’s are ready for print. Output in <code class="kw">RGB</code> will look brighter on screen, but for valid PDF documents the colors need to be in <code class="kw">CMYK</code>.
     </p></div>
 
     <h2>Returns</h2>
 
     <div class="row">
-      the current output mode (RGB or CMYK)
+      <p>the current output mode (<code class="kw">RGB</code> or <code class="kw">CMYK</code>)</p>
     </div>
 
     <h2>PlotDevice Equivalent</h2>
 
     <div class="row">
-      <p>Choosing the output color mode now happens as part of the export process. If you include a <code>mode</code> argument when calling the <a href="#export()">export()</a> command, it will override the canvas's default mode. If the <code>mode</code> argument is omitted, exports will use the value most recently set using the outputmode() command (or <code class="kw">RGB</code> by default).
+      <p>Choosing the output color-mode now happens as part of the application's <span class="message">Export as…</span> <a href="../tut/Environment.html#export">dialog box</a>. If you're calling the <a href="#export()">export()</a> command directly, you can include a <code>cmyk=<span class="kw">True</span></code> argument to override the canvas's default mode. Otherwise exports will default to <code class="kw">RGB</code>.
     </p></div>
 
     <h2>Tutorial</h2>

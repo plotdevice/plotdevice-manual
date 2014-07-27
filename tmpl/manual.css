@@ -4,7 +4,7 @@
 /* TYPOGRAPHY */
 
 
-/*body, table, td, input, select, option, textarea { font: 14px/20px "Zapfino";}*/
+/*body, table, td, input, select, option, textarea { font: 17px/25px "Zapfino";}*/
 body, table, td, input, select, option, textarea { font:17px/25px "chaparral-pro", "Alegreya";}
 
 h1, h3 { font: bold 18px "Cabin"; }
@@ -14,7 +14,7 @@ pre { font-size: 12px; font-family:"Courier Prime"; line-height: 19px; overflow:
 code { font-family:"Courier Prime"; letter-spacing:0; line-height: 16px;}
 code.box{ padding:0 4px;}
 p code, li code { font-size:15px;}
-.message { font: bold 14px "Cabin"; line-height: 18px; }
+.message { font: bold 15px "Cabin"; line-height: 18px; }
 
 /***************************************/
 /* GLOBAL STYLING */
@@ -426,6 +426,11 @@ footer ul.chapter li.prev{float:left; }
 
 .article h2{
   color:#555;
+}
+
+.article.ref h2{
+  font-size:16px;
+  font-weight:normal;
 }
 
 .article.tut h2{

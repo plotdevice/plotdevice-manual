@@ -5,15 +5,15 @@
 
 </head><body>
   <div class="article">
-    <p>Your PlotDevice scripts can generate not only single pages, but animations as well. Animations can be previewed on-screen then exported as QuickTime movies, animated GIFs or sequences of static image frames. With the same syntax used for drawing, your script can become an animation doing all kinds of wonderful, lively things.</p>
+    <p>Your PlotDevice scripts can generate not only static images, but animations as well. Animations can be previewed on-screen then exported as QuickTime movies, animated GIFs or sequentially named image files. With the same syntax used for drawing, your script can become an animation doing all kinds of wonderful, lively things.</p>
 
     <h1>Basic Animations</h1>
 
-    <p>For PlotDevice to recognize your script as an animation, simply <b>define a function called <i>draw()</i></b> somewhere in your code. This function will be called repeatedly; once for each frame in the animation.</p>
+    <p>For PlotDevice to recognize your script as an animation, simply <b>define a function</b> called <i>draw()</i> somewhere in your code. This function will be called repeatedly; once for each frame in the animation.</p>
 
     <p>You can optionally call the <a href="../ref/Canvas.html#speed()">speed()</a> command with a frames-per-second value. This sets a target playback speed for showing your animation in the app's output pane. But depending on the speed of your system and the complexity of your code, the actual frame rate may well be lower.</p>
 
-    <p> To track the passage of time, read from the global <code class="kw">FRAME</code> variable. It starts at 1 and increments with each call to your <i>draw()</i> function. You'll likely want to keep more local state than this (and you can; see below), but it's surprising how much variety you can pull out of just the frame-number. In particular, try using the ever increasing <code class="kw">FRAME</code> with trigonometry functions and watch how the oscillations evolve over time: <div class="media" style="margin-bottom:-20px;"><img height="391" src="../etc/tut/animation-example.png" width="721"/></div></p>
+    <p> To track the passage of time, read from the global <code class="kw">FRAME</code> variable. It starts at 1 and increments with each call to your <i>draw()</i> function. You'll likely want to keep more local state than this (and you can; see below), but it's surprising how much variety you can pull out of just the frame-number. In particular, try using the ever increasing <code class="kw">FRAME</code> with <a href="Geometry.html#trig">trigonometry</a> functions and watch how the oscillations evolve over time: <div class="media" style="margin-bottom:-20px;"><img height="391" src="../etc/tut/animation-example.png" width="721"/></div></p>
 
     <p>The script begins normally, with a call to <i>size()</i>. After setting the animation <i>speed()</i> to 50 FPS we define a <i>draw()</i> function that does basically four things:</p>
     <ol>
@@ -27,7 +27,7 @@
 
     <p>Our <i>draw()</i> method makes use of the <i>sin()</i> function from the Python <code>math</code> module. A sine is an <i>oscillating</i> function that yields values from -1.0 to 1.0 (then back down to -1.0), but not in a linear fashion. When near to -1 or 1 the value changes slowly, then goes faster as it crosses 0. This is useful for animation that "eases" in or out.</p>
 
-    <p>To use the <i>sin()</i> function, import it from the Python math package along with the <i>radians()</i> function (sines work with radians like <span style="font-style:italic; font-family:Georgia;">π</span>). Our <i>draw()</i> function passes the <code class="kw">FRAME</code> variable (as radians) to the <i>sin()</i> function then multiplies the sine by a differnt number for each curve. This produces a fluid distortion vector that eases each curve back and forth.</p>
+    <p>To use the <i>sin()</i> function, import it from the Python math package along with the <i>radians()</i> function (sines work with multiples of <span style="font-style:italic; font-family:Georgia;">π</span>). Our <i>draw()</i> function passes the <code class="kw">FRAME</code> variable (as radians) to the <i>sin()</i> function then multiplies the sine by a differnt number for each curve. This produces a fluid distortion vector that eases each curve back and forth.</p>
     <p>A sine function typically looks like this:</p>
 <pre>from math import sin, radians
 ease = sin(radians(x)) * y
@@ -43,13 +43,13 @@ ease = sin(radians(x)) * y
       <li>Execute all code at the script's top indentation-level</li>
       <li>Call the <i>setup()</i> function (if defined)</li>
       <li>Clear the canvas and reset the graphics state to defaults</li>
-      <li>Call the <i>draw()</i> function and plot the output to the screen</li>
+      <li>Call the <i>draw()</i> function and plot its output to the screen</li>
       <li>If user didn't press <span class="message">⌘.</span> goto #3</li>
       <li>Call the <i>stop()</i> function (if defined)</li>
     </ol>
 
     <h2>Global state</h2>
-    <p>For all but the simplest animations you'll want a way to keep track of values that persist between calls to your <i>draw()</i> function. The most obvious solution to this problem would be to define global variables at the top of your script then refer to them from your animation functions. If you do this, don't forget to use the Python <a href="https://docs.python.org/2/reference/simple_stmts.html#the-global-statement"><code>global</code></a> statement inside any of the functions that refer to variables they need to modify. Otherwise you'll end up creating a local variable of the same name rather than updating the global:</p>
+    <p>For all but the simplest animations you'll want a way to keep track of values that persist between calls to your <i>draw()</i> function. The most obvious solution to this problem would be to define global variables at the top of your script, then refer to them from your animation functions. If you do this, don't forget to use the Python <a href="https://docs.python.org/2/reference/simple_stmts.html#the-global-statement"><code>global</code></a> statement inside any of the functions that need to modify a variable. Otherwise you'll end up creating a local variable of the same name rather than updating the global:</p>
 <pre>limit = 0
 
 def setup():
@@ -110,7 +110,7 @@ def stop(anim):
 
     <p>The first is a special case of the <i>speed()</i> command. If you call it with an FPS of zero, only a single frame will be drawn before the animation halts itself:</p>
     <pre>speed(0)</pre>
-    <p>The second way to cut off an animation is to call the <i>halt()</i> command from within your <i>draw()</i> method. For instance, here's how you'd limit an animation to a dozen frames:</p>
+    <p>The second way to cut off an animation is to call the <a href="../ref/Canvas.html#halt()">halt()</a> command from within your <i>draw()</i> method. For instance, here's how you'd limit an animation to a dozen frames:</p>
     <pre>def draw():
     ... # normal drawing code
     if FRAME==12:
@@ -120,7 +120,7 @@ def stop(anim):
     <h2>Tips for speed optimization</h2>
 
     <ul>
-      <li>If you plan to use a lot of lines in your animation, group them in a single path by using the <a href="../ref/Drawing.html#bezier()">bezier()</a> command as part of a <code>with</code> statement and calling <a href="../ref/Primitives.html#line()">line()</a> or <a href="../ref/Drawing.html#lineto()">lineto()</a> &amp; <a href="../ref/Drawing.html#moveto()">moveto()</a> within the block. A single big path renders faster than many small
+      <li>If you plan to use a lot of lines in your animation, group them into a single path by using the <a href="../ref/Drawing.html#bezier()">bezier()</a> command as part of a <code>with</code> statement and calling <a href="../ref/Primitives.html#line()">line()</a> or <a href="../ref/Drawing.html#lineto()">lineto()</a> &amp; <a href="../ref/Drawing.html#moveto()">moveto()</a> within the block. A single big path renders faster than many small
       paths. But keep in mind that all the lines in the path will have the same stroke color and width.
       </li><li>If you plan to use a lot of text in your animation, create cached <a href="../ref/Typography.html#textpath()">textpath()</a> versions in your <i>setup()</i> routine and
       <a href="../ref/Transform.html#translate()">translate()</a> those when drawing instead of
@@ -133,7 +133,7 @@ def stop(anim):
 
     <h1>Exporting an Animation</h1>
 
-    <p>In addition to exporting frames as static images, you can export an animation as an H.264-encoded Quicktime movie or an animated gif. Select the <span class="message">File &rarr; Export as Movie...</span> menu or press <span class="message">⇧⌘P</span>. You can specify a number of frames to export and
+    <p>In addition to exporting frames as static images, you can export an animation as an H.264-encoded Quicktime movie or an animated GIF. Select the <span class="message">File &rarr; Export as Movie...</span> menu or press <span class="message">⇧⌘P</span>. You can specify a number of frames to export and
     a frame rate (which will override whatever you set with <i>speed()</i>). Video exports also allow you to set a target bitrate to control compression quality. Animated GIFs will loop if the checkbox is selected.
     <div class="media" style="margin:0"><img height="435" src="../etc/tut/animation-export.png" width="578"/></div></p>
   </div>

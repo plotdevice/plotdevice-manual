@@ -16,8 +16,8 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Sets the alignment used by the <a href="#text()">text()</a> command. Valid <code>style</code> arguments are <code class="kw">LEFT</code>, <code class="kw">RIGHT</code>, <code class="kw">CENTER</code>, or <code class="kw">JUSTIFY</code>. When calling text() without specifying a <code>width</code> argument, its x &amp; y coords will determine the left-, right-, or center-point of the line of text (based on the alignment).
-      </p><p>Calling text() with a <code>width</code> argument will lay out a column of type. Text in a column wraps across multiple lines within the rectangle defined by the x/y/w/h dimensions and the align() setting controls how lines are broken within this block.
+      <p>Sets the alignment used by the <a href="#text()">text()</a> command. Valid <code>style</code> arguments are <code class="kw">LEFT</code>, <code class="kw">RIGHT</code>, <code class="kw">CENTER</code>, or <code class="kw">JUSTIFY</code>. When calling <i>text()</i> without specifying a <code>width</code> argument, its x &amp; y coords will determine the left-, right-, or center-point of the line of text (based on the alignment).
+      </p><p>Calling <i>text()</i> with a <code>width</code> argument will lay out a column of type. Text in a column wraps across multiple lines within the rectangle defined by the x/y/w/h dimensions and the <i>align()</i> setting controls how lines are broken within this block.
     </p></div>
 
     <h2>Returns</h2>
@@ -31,15 +31,16 @@
     <div class="row">
       <div class="example">
         <span><img height="125" src="../etc/ref/align.png" width="125"/></span>
-<pre>font(12)
+<pre>
 x = 62
 line(x,10, x,115, dash=3, stroke=.7)
+font(12)
 align(RIGHT)
-text("Conapt", 62,25)
+text("Conapt", x,25)
 align(LEFT)
-text("Kipple", 62,65)
+text("Kipple", x,65)
 align(CENTER)
-text("Homeopape", 62,105)
+text("Homeopape", x,105)
 </pre>
       </div>
 

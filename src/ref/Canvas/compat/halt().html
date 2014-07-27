@@ -1,0 +1,42 @@
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="definition">
+    <h1>halt()</h1>
+
+    <h2>Syntax</h2>
+
+    <div class="row">
+<pre>halt()
+</pre>
+    </div>
+
+    <h2>Description</h2>
+
+    <div class="row">
+      <p>Immediately ends an <a href="../tut/Animation.html">animation</a> run.</p>
+
+      <p>Animations will typically run until you halt them manually using the <span class="message">⌘.</span> keyboard shortcut. The <i>halt()</i> command lets you "bail out" of an animation <em>from code</em>. This can be quite useful during debugging, but we discourage using it in scripts that you share with others.
+    </p></div>
+
+    <h2>Tutorial</h2>
+
+    <div class="row">
+      <a href="../tut/Animation.html">Animation</a>
+    </div>
+
+    <h2>Example</h2>
+
+    <div class="row">
+      <div class="example">
+<pre>def draw():
+    if FRAME==100:
+        halt()
+</pre>
+      </div>
+    </div>
+  </div>
+
+</body></html>

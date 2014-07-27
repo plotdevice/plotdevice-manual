@@ -6,10 +6,42 @@
 </head><body>
   <div class="article">
 
-    <p>At its core, PlotDevice is a set of graphics "commands" that operate on a virtual "canvas". Each of your scripts has its own private canvas which is created before the first line of code is executed. Some commands affect the canvas directly (such as those for setting its <a href="../ref/Canvas.html#size()">size()</a> and <a href="../ref/Canvas.html#background()">background()</a> color), while others allow you to add "graphics objects" to the canvas at specific positions.</p>
+    <p>At its core, PlotDevice is a set of graphics "commands" that operate on a virtual "canvas". Each of your scripts has its own private canvas which is created before the first line of code is executed. Some commands affect the canvas directly (such as those for setting its <a href="../ref/Canvas.html#size()">size()</a> and <a href="../ref/Canvas.html#background()">background()</a> color), while others allow you to add <em>graphics objects</em> at specific positions.</p>
     <h1>Drawing Basics</h1>
 
     <p>PlotDevice provides a set of commands for drawing text, images, and basic geometric shapes. Each of these <a href="../ref/Primitives.html">drawing primitives</a> takes a pair of <em>x</em>/<em>y</em> parameters to set its position. Based on the command-type this will be interpreted as either the top-left corner or a central "origin" point. You'll find yourself using both kinds of positioning depending on what you're trying to accomplish.</p>
+
+    <h2>Origin-based objects</h2>
+
+    <div class="example">
+    <span><img src="../etc/tut/primitives-arc.png"></span>
+        <a href="../ref/Primitives.html#arc()">arc(<span class="grey">x, y, radius, …</span>)</a>
+        <pre>arc(75,25, 25)</pre>
+    </div>
+
+    <div class="example">
+    <span><img src="../etc/tut/primitives-square.png"></span>
+        <a href="../ref/Primitives.html#poly()">poly(<span class="grey">x, y, radius, …</span>)</a>
+        <pre>poly(75,25, 25)</pre>
+    </div>
+
+    <div class="example">
+    <span><img src="../etc/tut/primitives-poly.png"></span>
+        <a href="../ref/Primitives.html#poly()">poly(<span class="grey">x, y, radius, sides, …</span>)</a>
+        <pre>poly(75,25, 25, sides=6)</pre>
+    </div>
+
+    <div class="example">
+    <span><img src="../etc/tut/primitives-star.png"></span>
+        <a href="../ref/Primitives.html#poly()">poly(<span class="grey">x, y, radius, points, …</span>)</a>
+        <pre>(75,25, 25, points=5)</pre>
+    </div>
+
+
+    <div class="example">
+    <span><img src="../etc/tut/primitives-arrow.png"></span>
+        <a href="../ref/Primitives.html#arrow()">arrow(<span class="grey">x, y, width, …</span>)</a><pre>arrow(75,25, 50)</pre>
+    </div>
 
     <h2>Corner-based objects</h2>
 
@@ -29,48 +61,18 @@
         <pre>image("~/Pictures/triforce.png", 75,25)</pre>
     </div>
 
-    <tr><td><h2>Origin-based objects</h2></td></tr>
-
-    <div class="example">
-    <span><img src="../etc/tut/primitives-arc.png"></span>
-        <a href="../ref/Primitives.html#arc()">arc(<span class="grey">x, y, radius, …</span>)</a>
-        <pre>arc(75,25, 25)</pre>
-    </div>
-
-    <div class="example">
-    <span><img src="../etc/tut/primitives-square.png"></span>
-        <a href="../ref/Primitives.html#poly()">poly(<span class="grey">x, y, radius, …</span>)</a>
-        <pre>poly(75,25, 25)</pre>
-    </div>
-
-    <div class="example">
-    <span><img src="../etc/tut/primitives-poly.png"></span>
-        <a href="../ref/Primitives.html#poly()">poly(<span class="grey">x, y, radius, sides=, …</span>)</a>
-        <pre>poly(75,25, 25, sides=6)</pre>
-    </div>
-
-    <div class="example">
-    <span><img src="../etc/tut/primitives-star.png"></span>
-        <a href="../ref/Primitives.html#poly()">poly(<span class="grey">x, y, radius, points=, …</span>)</a>
-        <pre>(75,25, 25, points=5)</pre>
-    </div>
-
-
-    <div class="example">
-    <span><img src="../etc/tut/primitives-arrow.png"></span>
-        <a href="../ref/Primitives.html#arrow()">arrow(<span class="grey">x, y, width, …</span>)</a><pre>arrow(75,25, 50)</pre>
-    </div>
-
     <div class="example">
     <span><img src="../etc/tut/primitives-text.png"></span>
         <a href="../ref/Primitives.html#text()">text(<span class='grey'>str, x, y, …</span>)</a><pre>text("xyzzy", 75,25)</pre>
     </div>
 
+
+
     <h2>The coordinate system</h2>
 
-    <p>When you place an element on the canvas, you define its positions in terms of <em>x</em> and
-    <em>y</em> coordinates. The <em>x</em> is the horizontal position measured from the left of the
-    canvas, the <em>y</em> the vertical position measured from the top.</p>
+    <p>When you place an element on the canvas, you define its position in terms of <em>x</em> and
+    <em>y</em> coordinates. The "<em>x</em>" is the horizontal position measured from the left of the
+    canvas and the "<em>y</em>" is the vertical position from the top.</p>
 
     <p>PlotDevice has an "inverted" coordinate system which might be confusing for those thinking back to their middle-school Algebra lessons. In a <a href="http://en.wikipedia.org/wiki/Cartesian_coordinate_system">Cartesian</a> coordinate system, moving a point lower on the graph means making its <i>y</i> value more <b>negative</b>. But in PlotDevice, downard movement means making <i>y</i> more <b>positive</b>.</p>
 
@@ -137,7 +139,7 @@ plot(square) # add the square to the canvas</pre>
 
     <h2>Defining your own shape-drawing commands</h2>
 
-    <p>It’s not that difficult to create your own commands in PlotDevice. In the <a href="Commands.html">Commands</a> tutorial you’ll learn how to create a function that combines calls to the basic shapes to create more-complicated graphics. Also look at the tutorial on <a href="Bezier_Paths.html">Béziers</a> to see how you can draw freeform shapes of your choosing.</p>
+    <p>It’s not that difficult to create your own commands in PlotDevice. In the <a href="Commands.html">Commands</a> tutorial you’ll learn how to create a function that combines calls to the basic shapes to create more-intricate graphics. Also look at the tutorial on <a href="Bezier_Paths.html">Béziers</a> to see how you can draw freeform shapes of your choosing.</p>
   </div>
 
 </body></html>

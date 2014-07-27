@@ -18,6 +18,7 @@
 
       <div class="def-box">
 <pre>with transform(mode=CENTER, *transforms) as t:
+    ... # drawing &amp; transformation commands
 </pre>
 
         <p>Change the mode (and optionally apply transforms) for the indented block
@@ -27,20 +28,20 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>The <code>mode</code> parameter sets the registration point – the offset for <a href="#rotate()">rotate()</a>, <a href="#scale()">scale()</a> and <a href="#skew()">skew()</a> commands. By default, shapes, paths, text and images rotate around their own centerpoint. transform() can be called with an optional first-parameter of <code><span class="kw">CORNER</span></code> to rotate and skew around the canvas’s upper left corner.
+      <p>The <code>mode</code> parameter sets the registration point – the offset for <a href="#rotate()">rotate()</a>, <a href="#scale()">scale()</a> and <a href="#skew()">skew()</a> commands. By default, primitives, text, and images rotate around their own centerpoints. But if you call <i>transform()</i> with <code><span class="kw">CORNER</span></code> as its <code>mode</code> parameter transformations will be applied relative to canvas’s upper left corner.
     </p></div>
 
     <h2>Context Manager</h2>
 
     <div class="row">
-      <p>When called as part of a <code class="kw">with</code> block, any subsequent transformation calls will apply only within the block. At the end of the block, the transformation state will be reset to what it was before the transform() call. This is equivalent to calling <a href="#push()">push()</a> and <a href="#pop()">pop()</a> at the beginning and end of the block respectively, though transform() will also reset the <code>mode</code> on exit.
+      <p>When called as part of a <code class="kw">with</code> block, any subsequent transformation calls will apply only within the block. At the end of the block, the transformation state will be reset to what it was before the <i>transform()</i> call. This is equivalent to calling <a href="#push()">push()</a> and <a href="#pop()">pop()</a> at the beginning and end of the block respectively, though <i>transform()</i> will also reset the <code>mode</code> on exit.
       </p><pre>with transform(CORNER):
     translate(100,20)
     line(0,0, 40,0)
 </pre>
 
       <p><em>is equivalent to:</em>
-      </p><pre>oldmode = transform()
+      </p><pre>oldmode = CENTER
 transform(CORNER)
 push()
 translate(100,20)
@@ -53,7 +54,7 @@ transform(oldmode)
     <h2>Inline Transformations</h2>
 
     <div class="row">
-      <p>In addition to the optional <code>mode</code> parameter, the transform() function also accepts a sequence of transformation commands. These commands will affect the global state and are equivalent to calling them on separate lines of your script.
+      <p>In addition to the optional <code>mode</code> parameter, the <i>transform()</i> function also accepts a sequence of transformation commands. These commands will affect the global state and are equivalent to calling them on separate lines of your script.
       </p><pre>transform(rotate(radians=pi/2), scale(2.0))
 </pre>
 
@@ -77,19 +78,15 @@ scale(2.0)
     <h2>Returns</h2>
 
     <div class="row">
-      <p>When called as a simple function, returns the current transform mode (<code class="kw">CORNER</code> or <code class="kw">CENTER</code>).
-      </p><pre>print "initial mode:", transform()
-print "new mode:", transform(CORNER)
-&gt;&gt;&gt; initial mode: CENTER
-&gt;&gt;&gt; new mode: CORNER
-</pre>
+      <p>a <a href="#Transform"><code>Transform</code></a> object with the canvas's "current" transformation state.</p>
 
-      <p>Alternately, the <a href="#Transform"><code>Transform</code></a> assembled in a <code>with</code> block can be captured using the <code class="kw">as</code> construct and can be applied to <a href="Drawing.html#Bezier"><code>Bezier</code></a> and <a href="Misc.html#Point"><code>Point</code></a> objects even after the block has completed:
-      </p><pre>with transform(CORNER) as t: # define a Transform object in the `t` variable
+      <p>When <i>transform()</i> is called as part of a <code>with</code> statement, you can "capture" the <i>Transform</i> object it creates by using the <code class="kw">as</code> construct. The captured object can then be applied to <a href="Drawing.html#Bezier"><code>Bezier</code></a> and <a href="Misc.html#Point"><code>Point</code></a> objects even after the block has completed:</p>
+      <pre>
+with transform() as t: # define a Transform object in the `t` variable
     skew(20.0)
-square = rect(20,20,40,40, fill=0.7) # a non-transfomed square
+square = poly(50,50, 20, fill=0.7) # a non-transfomed square
 parallelogram = t.apply(square) # create a skewed copy of the square
-bezier(parallelogram, fill=None, stroke=0)
+bezier(parallelogram)
 </pre>
     </div>
 

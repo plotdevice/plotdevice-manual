@@ -16,7 +16,7 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>The fonts() command searches the fonts installed on the system and can filter the list in a few ways. When called with no arguments, the list contains all fonts on the system with a latin character set. To retrieve the set of non-latin fonts, pass <code class="kw">False</code> as the <code>western</code> parameter. To filter the list through a (case-insensitive) font name match, pass a substring as the <code>like</code> parameter.
+      <p>Searches the fonts installed on the system and can filter the list in a few ways. When called with no arguments, the list contains all fonts on the system with a latin character set. To retrieve the set of non-latin fonts, pass <code class="kw">False</code> as the <code>western</code> parameter. To filter the list through a (case-insensitive) font name match, pass a substring as the <code>like</code> parameter.
     </p></div>
 
     <h2>Returns</h2>
@@ -28,7 +28,7 @@
     <h2>Example</h2>
 
     <div class="row">
-<pre>romans = fonts() # Get a list of all the text-friendly fonts on the system
+<pre>romans = fonts() # Get a list of all the text-friendly families on the system
 jenson = fonts(like="jenson") # returns ["Adobe Jenson Pro"]
 
 eastern = fonts(western=False) # all asian-character fonts, math fonts, etc.

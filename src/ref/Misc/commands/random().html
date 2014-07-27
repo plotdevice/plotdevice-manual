@@ -16,15 +16,19 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Returns a random number that can be assigned to a variable or a parameter. The random() command is useful for all sorts of operations, from random colors to lines with a random width.
-      </p><p>When no parameters are supplied, returns a floating-point (decimal) number between 0.0 and 1.0 (including 0.0 and 1.0). When one parameter is supplied, returns a number between 0 and this parameter. When two parameters are supplied, returns a number between the first and the second parameter.
-      </p><p>New random values are returned each time the script runs. The variation can be locked by supplying a custom random seed:
-      </p><pre>from random import seed
+      <p>Returns a random number that can be assigned to a variable or a parameter. The <i>random()</i> command is useful for all sorts of operations, from picking colors to setting pen widths.
+      </p>
+      <p>When no parameters are supplied, returns a floating-point (decimal) number between 0.0 and 1.0 (inclusive). When one parameter is supplied, returns a number between 0 and this parameter. When two parameters are supplied, returns a number between the first and the second parameter.
+      </p>
+      <hr>
+      <p class="double-dagger">Note that whether the boundaries are integers or floating point values is <em>significant</em>. See the example code for the differing behaviors that result.</p>
+      <hr>
+      <p>New random values are returned each time the script runs. A particular sequence of random values can be locked-in by supplying a custom random seed:
+      </p>
+      <pre>from random import seed
 seed(0)
 </pre>
-
-      <p>Note that whether the boundaries are integers or floating point values is <em>significant</em>. See the example code for the differing behaviors that result.
-    </p></div>
+    </div>
 
     <h2>Returns</h2>
 

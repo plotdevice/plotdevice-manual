@@ -16,13 +16,14 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>The alpha() command allows you to set the default opacity for all subsequent drawing operations. The new opacity value becomes part of the global state and can be reset to the default by calling <code>alpha(1.0)</code>. While other transparency effects can be achieved by setting the <a href="Line+Color.html#stroke()">stroke()</a> or <a href="Line+Color.html#fill()">fill()</a> color to a non-opaque value, the alpha() command affects the translucency of the object as if it were a layer in Illustrator (rather than affecting the stroke and fill independently).
+      <p>Sets the default opacity for all subsequent drawing operations. The new opacity value becomes part of the global state and can be reset to the default by calling <code>alpha(1.0)</code>.</p>
+      <p>While other transparency effects can be achieved by setting the <a href="Line+Color.html#stroke()">stroke()</a> or <a href="Line+Color.html#fill()">fill()</a> color to a non-opaque value, the <i>alpha()</i> command affects the translucency of the object as if it were a layer in Illustrator (rather than affecting the stroke and fill independently).
     </p></div>
 
     <h2>Context Manager</h2>
 
     <div class="row">
-      <p>When used as part of a <code>with</code> statement, alpha() treats all the drawing that occurs within the block as a single layer. As a result, overlapping objects will be flattened before the translucency is applied.
+      <p>When used as part of a <code>with</code> statement, <i>alpha()</i> treats all the drawing that occurs within the block as a single layer. As a result, overlapping objects will be flattened before the translucency is applied.
     </p></div>
 
     <h2>Tutorial</h2>

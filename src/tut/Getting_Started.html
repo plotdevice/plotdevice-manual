@@ -1,15 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head>
-
   <title></title>
 
 </head><body>
   <div class="article">
 
-    <p>The first thing you'll want to do once you’ve downloaded <a href="http://plotdevice.io/get">the application</a> is run some example scrips. There’s a folder with tons of sample code which can be accessed from the app's <span class="message">Examples</span> menu. Select one of them and press <span class="message">⌘R</span> to see it run (if the script is an animation, you can bring it to a halt by pressing <span class="message">⌘.</span>). Then try changing some numbers in the script and run it again to see what happens.
+    <p>The first thing you'll want to do once you’ve <a href="http://plotdevice.io/get">downloaded the application</a> is run some example scrips. There’s a folder with tons of sample code that can be accessed from the app's <span class="message">Examples</span> menu. Select one of them and press <span class="message">⌘R</span> to see it run (if the script is an animation, you can bring it to a halt by pressing <span class="message">⌘.</span>). Then try changing some numbers in the script and run it again to see what happens.
     </p>
 
-    <h2>Commands</h2>
+    <h2>First Steps</h2>
     <p>Next you'll want to have a look at the <a href="../manual.html#ref">reference</a> to see what
     scripting <b>commands</b> are available. When you use a command you plug in <b>parameters</b> that
     define its behavior. For example, the reference may mention something like:</p>
@@ -17,25 +16,29 @@
 
     <p>This means that <i>rect</i> is a command with <i>x</i>, <i>y</i>,
     <i>width</i> and <i>height</i> parameters. The name of the command tells us something about what
-    it will do when we "call" it (e.g., <i>rect</i> will probably draw a rectangle on the screen). Replace the parameters with values of your own. For example:</p>
+    it will do when we "call" it (e.g., something called "<i>rect</i>" would probably draw a rectangle on the screen).</p>
+
+    <p>When calling a command, replace its parameters with values of your own. For example, this will draw a rectangle located 40 pixels from the left edge of the canvas and 80 from the top (with a width of 100 and a height of 50):</p>
+
     <pre>rect(40, 80, 100, 50)</pre>
 
-    <p>This will draw a rectangle located 40 pixels from the left edge of the canvas and 80 from the top (with a width of 100 and a height of 50). Go through the reference and try out some of the
+
+    <p>Go through the reference and try out some of the
     commands to get a general idea of what's possible. PlotDevice commands let you draw primitive
-    shapes (<a href="../ref/Primitives.html#poly()">polygons</a>, <a href="../ref/Primitives.html#arc()">circles</a>), create your own shapes with <a href="../ref/Drawing.html#bezier()">Bézier paths</a>, transform shapes
-    (<a href="../ref/Transform.html#translate()">translate</a>, <a href="../ref/Transform.html#rotate()">rotate</a>, <a href="../ref/Transform.html#scale()">scale</a>, etc.), and work with <a href="../ref/Primitives.html#image()">image</a> files or <a href="Typography.html#text()">text</a>.
+    shapes (<a href="../ref/Primitives.html#poly()">polygons</a>, <a href="../ref/Primitives.html#arc()">circles</a>), create your own shapes (<a href="../ref/Drawing.html#bezier()">Bézier paths</a>), transform shapes
+    (<a href="../ref/Transform.html#translate()">translate</a>, <a href="../ref/Transform.html#rotate()">rotate</a>, <a href="../ref/Transform.html#scale()">scale</a>, etc.), and work with "content" (<a href="../ref/Primitives.html#image()">images</a> &amp; <a href="Typography.html#text()">text</a>).
     </p>
 
-    <h2>Tutorial</h2>
+    <h2>Learning the Ropes</h2>
 
-    <p>The tutorial contains essential tips on how commands work and how to write scripts. To really understand what's going on in your PlotDevice scripts, we recommend reading through at least:</p>
+    <p>After you've played around with the app for a bit, you should take a look at the Tutorial. Its chapters contain essential tips on how commands work and how to write scripts of your own. To really understand what's going on in your PlotDevice scripts, we recommend reading through at least:</p>
     <ul>
       <li><a href="Environment.html">Environment</a>: using the PlotDevice application to run scripts and export graphics.
-      </li><li><a href="Primitives.html">Primitives</a>: essential drawing commands and how to call them.
+      </li><li><a href="Primitives.html">Primitives</a>: the fundamental drawing commands and how to call them.
       </li><li><a href="Graphics_State.html">Graphics State</a>: how primitives are colored and
       transformed.
     </li><li><a href="Color.html">Color</a>: the many ways to specify colors.
-    </li><li><a href="Bezier_Paths.html">Bézier Paths</a>: powerful (but low level) drawing commands
+    </li><li><a href="Bezier_Paths.html">Bézier Paths</a>: powerful (but low level) drawing commands.
     </li>
 
 
@@ -44,26 +47,27 @@
 
   </ul>
 
-    <p>For readers who are new to programming, we also recommend the chapters dealing with the basics of "datatypes" and control structures:</p>
+    <p>Readers who are new to programming may also find the chapters on datatypes and control structures helpful:</p>
     <ul>
       </li><li><a href="Variables.html">Variables</a>: instead of plugging numbers directly into a
       command, you can also store them in a <i>variable</i> and then use the variable throughout
       your script.
       </li><li><a href="Collections.html">Collections</a>: "lists" &amp; "dictionaries" allow you to organize large amounts of information in a manageable way.
-      </li><li><a href="Repetition.html">Repetition</a>: putting "loops" in your code to do things more than once.
+      </li><li><a href="Repetition.html">Repetition</a>: "loops" let your code concisely do things more than once.
+      </li><li><a href="Commands.html">Commands</a>: defining custom "functions" can simplify common tasks.
     </li></ul>
 
-    <p>Seasoned Pythonistas will want to take a look at:</p>
+    <p>Seasoned Pythonistas (and <code>emacs</code> partisans) will want to take a look at:</p>
     <ul>
       <li><a href="Console.html">Console</a>: running PlotDevice scripts from the command line and using the graphics routines from external Python scripts.</li>
-      <li><a href="Cocoa.html">Cocoa</a>: taking advantage of native frameworks using the PyObjC bridge.</li>
+      <li><a href="Cocoa.html">Cocoa</a>: taking advantage of native frameworks using the <a href="https://pythonhosted.org/pyobjc/">PyObjC</a> bridge.</li>
     </ul>
 
     <h2>PlotDevice is Python</h2>
 
-    <p>The programming language that underlies PlotDevice is <a href="http://python.org/">Python</a> (created by Guido van Rossum in the early 90s). Python emphasizes code readability and programmer productivity; qualities that make it an excellent choice for those just learning to program. These same traits also result in an expressive "sketching" language that makes it easy to experiment in your code without being weighed down by syntactic bookkeeping.</p>
+    <p>The programming language that underlies PlotDevice is <a href="http://python.org/">Python</a> (created by Guido van Rossum in the early ’90s). Python emphasizes code readability and programmer productivity; qualities that make it an excellent choice for those just learning to program. These same traits also result in an expressive "sketching" language that makes it easy to experiment in your code without being weighed down by syntactic bookkeeping.</p>
 
-    <p>The <a href="https://docs.python.org/2/">official documentation</a> is thorough and highly-readable. If you're just starting out, the <a href="https://docs.python.org/2/tutorial/index.html">Python Tutorial</a> is a well-paced introduction to the language as well as general programming concepts. We like to keep these chapters under the pillow:</p>
+    <p>The <a href="https://docs.python.org/2/">official documentation</a> is thorough and highly-readable. If you're just starting out, the <a href="https://docs.python.org/2/tutorial/index.html">Python Tutorial</a> is a well-paced introduction to the language as well as general programming concepts. We like to keep these chapters on the nightstand:</p>
     <ul>
       <li><a href="https://docs.python.org/2/tutorial/controlflow.html">Control Flow</a>: for-loops, if-statements, and def-statements
       </li><li><a href="https://docs.python.org/2/tutorial/datastructures.html#more-on-lists">More on Lists</a>: interesting things you can do with list objects
@@ -72,27 +76,6 @@
     </li></ul>
 
     <p>Writing your scripts in Python also means being able to take advantage of the thousands of third-party libraries that have been written by the community. Try searching for a topic of interest at the <a href="https://pypi.python.org/pypi?%3Aaction=browse">Python Package Index</a>. We bet you'll be pleasantly surprised by the amount of code you <em>won't</em> have to write.</p>
-
-<!--
-    <p>Python code in itself is very readable. It is part of your responsibility to keep it that
-    way. You may want to share your scripts, and you may want to modify or expand it in a few
-    months. A well-written script can last a lifetime – it’s not something you generate output from
-    and then throw away.</p>
-
- -->
-<!--     <p>Steps to keep your code clean and readable:</p>
-    <ul>
-      <li><b>Comment your code</b>: add comments that describe (in English) the purpose of the code
-      below.
-      </li><li><b>Blocks of code</b> that peform a single action are kept together.
-      </li><li><b>Reuse code</b>: if a block of code is needed multiple times in a script, make a
-      command out of it.
-      </li><li><b>Good variable names</b> are essential. A variable may appear throughout a script so
-      pick a good name for it, something that explains what value is contained in the variable.
-    </li></ul>
- -->
-
-
 
 
   </div>

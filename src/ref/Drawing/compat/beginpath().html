@@ -16,13 +16,15 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Using the beginpath() and <a href="#endpath()">endpath()</a> commands allows creating custom shapes. The two parameters of beginpath() set the location of the first point (origin) in the path. These parameters are optional. When not supplied, a starting location for the path should be given with the <a href="#moveto()">moveto()</a> command. After calling the beginpath() command, a series of other path commands usually follow, for example moveto(), <a href="#lineto()">lineto()</a>, or <a href="#curveto()">curveto()</a>. Finally, the endpath() command draws the path to the screen.
+      <p>Using the <i>beginpath()</i> and <a href="#endpath()">endpath()</a> commands allows creating custom shapes. The two parameters of <i>beginpath()</i> set the location of the first point (origin) in the path. These parameters are optional. When not supplied, a starting location for the path should be given with the <a href="#moveto()">moveto()</a> command.</p>
+
+      <p>After calling the <i>beginpath()</i> command, a series of other path commands usually follows (for example <i>moveto()</i>, <a href="#lineto()">lineto()</a>, or <a href="#curveto()">curveto()</a>). Finally, the <i>endpath()</i> command draws the path to the screen.
     </p></div>
 
     <h2>PlotDevice Equivalent</h2>
 
     <div class="row">
-      <p>The beginpath() command has been subsumed into the new <a href="#bezier()">bezier()</a> command. Rather than calling beginpath() and endpath() to construct beziers, you can call bezier() as part of a <code>with</code> statement.
+      <p>The <i>beginpath()</i> command has been subsumed into the new <a href="#bezier()">bezier()</a> command. Rather than calling <i>beginpath()</i> and <i>endpath()</i> to construct beziers, you can call <i>bezier()</i> as part of a <code>with</code> statement.
     </p></div>
 
     <h2>Tutorial</h2>

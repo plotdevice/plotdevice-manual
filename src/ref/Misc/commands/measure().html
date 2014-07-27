@@ -17,14 +17,15 @@ measure("text", width=None, height=None, **fontstyle)
     <h2>Description</h2>
 
     <div class="row">
-      <p>Returns width &amp; height for graphics objects, strings, or file objects. If the first argument is a string, the size will reflect the current <a href="Typography.html#font()">font()</a> settings and will layout the text using the optional <code>width</code> and <code>height</code> arguments (as well as any keyword arguments supported by the <a href="Typography.html#text()">text()</a> command).
-      </p><p>If called with a <a href="https://docs.python.org/2/library/stdtypes.html#bltin-file-objects">file</a> object, PlotDevice will expect it to be an image file and return its pixel dimensions.
+      <p>Returns width &amp; height for graphics objects, strings, or images. If the first argument is a string, the size will reflect the current <a href="Typography.html#font()">font()</a> settings and will layout the text using the optional <code>width</code> and <code>height</code> arguments (as well as any keyword arguments supported by the <a href="Typography.html#text()">text()</a> command).
+      </p><p>If called with a <a href="https://docs.python.org/2/library/stdtypes.html#bltin-file-objects">file</a> object, PlotDevice will expect it to be an image file and return its pixel dimensions.</p>
+      <p>If called with a <a href="Drawing.html#Bezier">Bezier</a>, returns its "bounding box" dimensions.
     </p></div>
 
     <h2>Returns</h2>
 
     <div class="row">
-      a <a href="#Point">Point</a> tuple with the object's dimensions
+      <p>a <a href="#Point">Point</a> tuple with the object's dimensions</p>
     </div>
   </div>
 

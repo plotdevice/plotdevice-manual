@@ -16,8 +16,12 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Using the speed() command causes your script to be interpreted as an animation. In an animation, your drawing code does not live in the top-level of the script, but instead is factored into a trio of methods defined in the script: <code>setup()</code>, <code>draw()</code>, and <code>stop()</code>. The <code>setup</code> method is called once at the beginning of a run, and <code>stop</code> is called once the run is halted. The <code>draw</code> method is called repeatedly with the canvas being cleared between calls. The global variable called <code class="kw">FRAME</code> will be incremented before every <code>draw</code> and can be used to track progress.
-      </p><p>The <code>fps</code> argument specifies the maximum speed of the animation in frames per second. Note that this is only a maximum and complex animations will likely update less frequently.
+      <p>Sets the frame-rate for previewing animations in the application. The <code>fps</code> argument specifies the maximum speed of the animation in frames per second. Note that this is only a maximum and complex animations will likely update less frequently. Calling <i>speed()</i> only makes sense if your script has been written as an <a href="../tut/Animation.html">animation</a>. </p>
+
+      <p>In an animation, your drawing code does not live in the top-level of the script, but instead is factored into a trio of commands that you define yourself: <i>setup()</i>, <i>draw()</i>, and <i>stop()</i>. Your <i>setup()</i> command is called once at the beginning of a run, and <i>stop()</i> is called once the run is halted. The <i>draw()</i> command gets called repeatedly (with the canvas being cleared between calls).</p>
+
+      <p>The global variable called <code class="kw">FRAME</code> will be incremented before every <i>draw()</i> and can be used in your code to track the passage of "time".
+      </p><p>
     </p></div>
 
     <h2>Tutorial</h2>

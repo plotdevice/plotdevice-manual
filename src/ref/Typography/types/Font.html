@@ -16,14 +16,14 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Font objects are returned by the <a href="font()">font()</a> command or can be created directly using the same parameters &amp; options as font(). Once you have a reference to a Font object, its properties allow you to both read and modify attributes, potentially selecting another PostScript face in the process. When you set a new value for a modifiable property PlotDevice will try to preserve as many of the other axes as possible.
+      <p><i>Font</i> objects are returned by the <a href="font()">font()</a> command or can be created directly using the same parameters &amp; options as <i>font()</i>. Once you have a reference to a <i>Font</i> object, its properties allow you to both read and modify attributes, potentially selecting another PostScript face in the process. When you set a new value for a modifiable property PlotDevice will try to preserve as many of the other attributes as possible.
       </p><p>The object's read-only properties are aliases to the eponymous properties in the <a href="#Family">Family</a> type and will allow you to examine the set of weights and variants supported by the current font's family.
     </p></div>
 
     <h2>Context Manager</h2>
 
     <div class="row">
-      <p>Font objects support the Python <code>with</code> statement and will set the canvas's global font, font-size, leading, etc. for the duration of a block of code. At the end of the block, the canvas's font-state will be restored to its prior value.
+      <p><i>Font</i> objects support the Python <code>with</code> statement and will set the canvas's global font, font-size, leading, etc. for the duration of an indented block of code. At the end of the block, the canvas's font-state will be restored to its prior value.
     </p></div>
 
     <h2>Properties <span style="font-weight:normal; color:#999;">(Read &amp; Write)</span></h2>

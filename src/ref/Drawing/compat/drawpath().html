@@ -16,15 +16,16 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Draws a path to the screen. A path is a series of lines and curves defined between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>. Normally, endpath() draws the path to the screen, unless when calling endpath(plot=False). The path can then be assigned to a variable, and this variable used as a parameter for drawpath().
-      </p><p><u>Note</u>: if you have one path that you want to draw multiple times with drawpath(), for example each with its own rotation and position, you need to supply a copy:<br/>
-      <span style="font-family: Courier">drawpath(path.copy())</span>
+      <p>Draws a <i>Bezier</i> path to the screen. The path is a series of lines and curves defined between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>. Normally, <i>endpath()</i> draws the path to the screen, but this can be suppressed by calling it with <code>plot=<span class="kw">False</span></code>. The path can then be assigned to a variable, and this variable used as a parameter for <i>drawpath()</i>.
+      </p><p><u>Note</u>: if you have one path that you want to draw multiple times with <i>drawpath()</i>, for example each with its own rotation and position, you need to supply a copy:</p>
+      <pre>drawpath(path.copy())</pre>
+
     </p></div>
 
     <h2>PlotDevice Equivalent</h2>
 
     <div class="row">
-      <p>The new <a href="Canvas.html#plot()">plot()</a> command will draw <a href="#Bezier">Bezier</a> objects (as well as images and text) to the canvas.
+      <p>The new <a href="Canvas.html#plot()">plot()</a> command will draw <a href="#Bezier">Bezier</a> objects (as well as images and text) to the canvas. You can also pass a <i>Bezier</i> object to the <a href="#bezier()">bezier()</a> command and it will draw a new copy of it (inheriting the canvas's current <a href="../tut/Graphics_State.html">graphics state</a> in the process).
     </p></div>
 
     <h2>Tutorial</h2>

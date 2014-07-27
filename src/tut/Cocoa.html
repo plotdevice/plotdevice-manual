@@ -40,23 +40,22 @@
     <pre>NSFontManager.fontWithFamily_traits_weight_size_(fam, traits, wgt, sz)</pre>
 
 
-    <p>Another place where you need to work around the differences between Python and Obj-C is object instantiation. Cocoa objects use a two-phase procedure in which you first create an object with <em>object = Class.alloc()</em> and then initialise them with <em>object.init()</em> or a specialized initializer like <em>object.initWithARangeOfParamaters()</em>.</p>
-    <p>Also note that some things that are in Foundation like NSSize or NSRect can usually be
-    substituted by simple Python tuples.</p>
+    <p>Another place where you need to work around the differences between Python and Obj-C is object instantiation. Cocoa objects use a two-phase procedure in which you first create an object with <em>object = Class.alloc()</em> and then initialise them with <em>object.init()</em> or a specialized initializer like <em>object.initWithARangeOfParamaters_(…)</em>.</p>
+    <p>Also note that many struct-like things in Foundation (like NSSize or NSRect) can have simple Python tuples substituted for them.</p>
     <p>To start using AppKit in PlotDevice simply import the library:</p>
 <pre>from Appkit import *
 </pre>
 
-    <p>I’ll show you some examples of what you can do with AppKit.</p>
+    <p>Now let's look at some of the things you can do with AppKit.</p>
 
 
-    <h2>Playing sounds in PlotDevice</h2>
+    <h2>Playing sounds</h2>
 
     <p>The NSSound object in AppKit provides a very easy way to play AIFF and WAV sound files in
     Mac applications. The class below is a PlotDevice wrapper for NSSound.</p>
 <pre>from AppKit import NSSound
 
-class sound:
+class Sound:
     def __init__(self, file):
         self._sound = NSSound.alloc()
         self._sound.initWithContentsOfFile_byReference_(file, True)
@@ -65,14 +64,14 @@ class sound:
     def is_playing(self): return self._sound.isPlaying()
 </pre>
 
-    <p>As you can see our <em>sound()</em> command takes a <em>file</em> parameter (that is the
-    location of your sound file) and returns an object with a number of properties:</p>
+    <p>As you can see our <em>Sound</em> class takes a <em>file</em> parameter (that is the
+    location of your sound file) and returns an object with a number of methods:</p>
     <ul>
       <li><em>sound.play()</em>: start playing the sound
       </li><li><em>sound.stop()</em>: stop playing
       </li><li><em>sound.is_playing()</em>: returns True when playing
     </li></ul>
-<pre>woof = sound("dog.aiff")
+<pre>woof = Sound("dog.aiff")
 woof.play()
 </pre>
 
@@ -80,13 +79,13 @@ woof.play()
     play sounds at a defined time.</p>
 <pre>from time import time
 
-class mixer:
+class Mixer:
     def __init__(self, channels=4):
         self.channels = [[] for i in range(channels)]
         self.start = time()
         self.playing = []
     def queue(self, channel, time, file):
-        self.channels[channel].append( (time, sound(file)) )
+        self.channels[channel].append( (time, Sound(file)) )
         self.channels[channel].sort()
     def play(self):
         now = time() - self.start
@@ -103,16 +102,17 @@ class mixer:
 </pre>
 
     <p>Queueing multiple sounds is now very easy:</p>
-<pre>m = mixer(2)
+<pre>m = Mixer(2)
 m.queue(0, 0.0, "woof.aiff")
 m.queue(0, 0.4, "woof.aiff")
 m.queue(0, 0.8, "woof.aiff")
 m.queue(0, 1.2, "woof.aiff")
 m.queue(1, 0.4, "meow.aiff")
 m.queue(1, 1.2, "meow.aiff")
+m.play()
 </pre>
 
-    <h2>BabbleBox: speech synthesis in PlotDevice</h2>
+    <h2>speech synthesis</h2>
 
     <p>The example below wraps the NSSpeechSynthesizer in two PlotDevice commands. The
     <em>voices()</em> command returns a list of all available voices. The <em>say()</em> command
@@ -138,7 +138,7 @@ def say(txt, voice=None):
 <pre>say("hello", voice=choice(voices()))
 </pre>
 
-    <h2>Every font on your system</h2>
+    <h2>Ransom Note Typography</h2>
 
     <p>The command below wraps the NSFontManager object. It returns a list with the PostScript name
     of each font installed on your system. It's similar to the built-in <a href="../ref/Misc.html#fonts()">fonts()</a> command, but it returns every individual weight and style rather than organizing things into "families". Thanks to Mark for this one. </p>

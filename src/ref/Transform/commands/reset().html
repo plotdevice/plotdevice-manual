@@ -18,7 +18,7 @@
     <div class="row">
       <p>Resets the current transform to its default state (the identity matrix).
       </p><p>Transformations in PlotDevice build up an incremental state. For example, once <code>rotate(90)</code> is called, all subsequent shapes, paths, text, and images are rotated 90 degrees (i.e., the rotation ‘state’ is 90°). If called again – e.g., <code>rotate(30)</code> – the rotation state becomes 120 degrees (90+30).
-      </p><p>Once reset() is called, the rotation state becomes 0 degrees (the default rotation) again. Since reset() affects the entire transform state, it will also wipe out any previously applied translations, skews, and scale-factors.
+      </p><p>Once <i>reset()</i> is called, the rotation state becomes 0 degrees (the default rotation) again. Since <i>reset()</i> affects the entire transform state, it will also wipe out any previously applied translations, skews, and scale-factors.
     </p></div>
 
     <h2>Tutorial</h2>
@@ -32,8 +32,8 @@
     <div class="row">
       <div class="example">
         <span><img alt="GCD" height="125" src="../etc/ref/reset.jpg" width="125"/></span>
-<pre>fill(0.2)
-fontsize(14)
+<pre>font(14), fill(0.2)
+
 rotate(90)
 text("one", 30, 80)
 text("two", 45, 80)

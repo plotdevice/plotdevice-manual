@@ -15,7 +15,7 @@
 
 
 
-    <h1>The <code>plotdevice</code> command</h1>
+    <h1>The <code>plotdevice</code> Command</h1>
 
     <p>The scripts you write in PlotDevice can be run from the terminal using an external command line tool called <code>plotdevice</code>. The command allows you to run scripts, coordinate with an external editor, and export images, movies, or animated GIFs.</p>
 
@@ -31,13 +31,27 @@
     error message in the Preferences window and can reinstall the link using the same procedure as
     before.</p>
 
-    <h1>Running Scripts from the Command Line</h1>
+    <h2>Running Scripts from the Command Line</h2>
 
-    <p>Once you have installed the <code>plotdevice</code> tool you can run any of the <em>".pv"</em> scripts you've written with the app. Running it without any arguments will display its output in a window, but with the right combination of command line switches you can export graphics to file using any of the supported image/video formats.</p>
+    <p>Once you have installed the <code>plotdevice</code> tool you can run any of the <em>".pv"</em> scripts you've written with the app. Running one of the example scripts is as simple as opening a Terminal window and typing:</p>
+
+    <div class="media"><img src="../etc/tut/console-term.png" width="614" height="229"/></div>
+
+    <p>You'll see a new document icon appear in the Dock and the script's output will be displayed in a window:</p>
+    <div class="media"><img src="../etc/tut/console-runner.png" width="614" height="636"/></div>
+
+    <p>As in the PlotDevice application, you can use <span class="message">⌘R</span> and <span class="message">⌘.</span> to re-run and interrupt the script. The <span class="message">Export</span> menu items are also available to you.</p>
+
+    <h1>Command Syntax</h1>
+
+    <p>Running the command with just a filename argument will display its output in a window, but with the right combination of command line switches you can export graphics to file using any of the supported image/video formats.</p>
+
+    <p>There are quite a few optional switches:</p>
     <pre class="shell"><span class="kw">plotdevice</span> [<span class="red">-f</span>] [<span class="red">-b</span>] [<span class="red">--live</span>] [<span class="red">--virtualenv</span> PATH] [<span class="red">--args</span> [a [b ...]]]
            [<span class="red">--export</span> FILE] [<span class="red">--frames</span> N or M-N] [<span class="red">--fps</span> N] [<span class="red">--rate</span> N] [<span class="red">--loop</span> [N]]
            file
 </pre>
+    <p>But fear not; we'll walk through each of the options below.</p>
 
 
 
@@ -120,7 +134,7 @@
 
 
 
-
+    <a name="standalone"></a>
     <h1>Using PlotDevice as a Module</h1>
 
     <p>Though the <code>plotdevice</code> command provides a convenient way

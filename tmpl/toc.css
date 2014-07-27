@@ -333,7 +333,7 @@ nav h1:after{
   z-index:10;
   -webkit-transition:opacity .333s;
 }
-nav{color:#555; }
+/*nav{color:#555; }*/
 nav h1{-webkit-transition:color .333s;}
 nav h1 span{-webkit-transition:opacity .333s;}
 nav h1:hover{color:black;}
@@ -396,8 +396,7 @@ nav h3.tt{
     width:60%;
     margin:8px 0 12px 0;
   }
-  nav h1 span{display:none};
-
+  nav h1:hover span{ opacity:1; }
 
   nav.link.tut h3{
     position:absolute;
