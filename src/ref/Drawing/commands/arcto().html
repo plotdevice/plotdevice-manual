@@ -9,15 +9,24 @@
     <h2>Syntax</h2>
 
     <div class="row">
-<pre>arcto(x, y, cx, cy, radius, close=False)
-</pre>
+      <div class="def-box">
+        <pre>arcto(x, y, ccw=False, close=False)</pre>
+        <p>Draw a semicircular arc from the current pen location to the destination coordinates</p>
+      </div>
+
+      <div class="def-box">
+        <pre>arcto(cx, cy, x, y, radius, close=False)</pre>
+        <p>Draw a circular arc within the angle created by the current point, a control point, and the destination point</p>
+      </div>
     </div>
 
     <h2>Description</h2>
 
     <div class="row">
-      <p>Draws a circular arc at the corner of the triangle formed by the current point in the path, a destination point, and a ‘control’ point at the peak of the arc. Be sure to specify a <code>radius</code> that is small enough to fit within that angle. If the <code>close</code> argument is set to <code>True</code>, a <a href="#lineto()">lineto()</a> command will be synthesized connecting the end of the arc to the origin point of the active subpath.
-      </p><p>The <i>arcto()</i> command must be called inside a <a href="#bezier()">bezier()</a> context (or between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).
+      <p>Draws a circular arc between the current point in the path and a destination point. When called with a single pair of x/y arguments, a full semicircle will connect the points. The <code>ccw</code> argument can be set to <code class="kw">True</code> to draw a mirror image of the arc.</p>
+
+      <p>To draw more complex arcs, include an additional x/y point to specify where the arc should "peak" between the origin and destination points. An arc will be drawn at the corner of the triangle formed by the current point in the path, the control handle, and the destination point. Be sure to specify a <code>radius</code> that is small enough to fit within that angle.
+      </p><p>If the <code>close</code> argument is set to <code class="kw">True</code>, a <a href="#lineto()">lineto()</a> command will be synthesized connecting the end of the arc to the origin point of the active subpath. The <i>arcto()</i> command must be called inside a <a href="#bezier()">bezier()</a> context (or between <a href="#beginpath()">beginpath()</a> and <a href="#endpath()">endpath()</a>).
     </p></div>
 
     <h2>Tutorial</h2>
@@ -29,17 +38,21 @@
     <h2>Example</h2>
 
     <div class="row">
+
       <div class="example">
-        <span><img height="125" src="../etc/ref/arcto.jpg" width="125"/></span>
+        <span><img height="125" src="../etc/ref/arcto-simple.png" width="125"/></span>
+<pre>
+for i in range(9):
+    with bezier(50,120, stroke=0.2, fill=None):
+        arcto(100, 100-i*10)
+</pre>
+      </div>
+
+
+      <div class="example">
+        <span><img height="125" src="../etc/ref/arcto.png" width="125"/></span>
 <pre>with bezier(30, 50, stroke=0.2, fill=None):
-    arcto(80,50, 55,100, 10)
-</pre><em>or</em>
-<pre>nofill()
-stroke(0.2)
-autoclosepath(False)
-beginpath(30,50)
-arcto(80,50, 55,100, 10)
-endpath()
+    arcto(55,100, 80,50, 10)
 </pre>
       </div>
     </div>
