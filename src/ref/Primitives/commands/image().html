@@ -9,19 +9,24 @@
     <h2>Syntax</h2>
 
     <div class="row">
-<pre>image(path, x, y, width=None, height=None, data=None, plot=True, **style)
+<pre>image(src, x, y, width=None, height=None, data=None, plot=True, **style)
 </pre>
     </div>
 
     <h2>Description</h2>
 
     <div class="row">
-      <p>Draws an image to the screen. An image is a JPEG-, GIF-, PNG-, AI-, EPS-, TIF-, PSD-, or PDF-file stored on disk. The first parameter sets the pathname of the image file. By default, PlotDevice looks for files in the folder where the PlotDevice file is saved. The <code>x</code> and <code>y</code> parameters set the location of the image's upper left corner.
-      </p><p>The <code>width</code> and <code>height</code> parameters are optional and define the maximum width and height of the image. When set, the image is scaled to fit within the given width and height while maintaining its aspect ratio. The command also accepts optional <code>alpha</code> and <code>blend</code> keyword arguments which set the opacity and blend-mode for compositing the image.
-      </p><p>The optional <code>data</code> parameter can be used in lieu of <code>path</code> to supply an image as a stream of bytes (rather than being read from a file). As with other primitives, setting the <code>plot</code> parameter to <code>False</code> will return a drawable object but not add it to the canvas.
+      <p>Draws an image to the screen, optionally scaling and compositing it in the process.</p>
+
+      <p>The <code>src</code> parameter can be a string (containing the path to an image file), another <a href="#Image">Image</a> object, or even the global <code class="kw">canvas</code> object. The optional <code>data</code> parameter can be used in lieu of <code>src</code> to supply image data as either a stream of raw bytes from an image file or a base64-encoded string (prefixed with the characters <code class="s">"base64,"</code>).</p>
+
+      <p>The <code>x</code> and <code>y</code> parameters set the location of the image's upper left corner. The <code>width</code> and <code>height</code> parameters are optional and define the maximum width and height of the image. The image will be scaled to fit within the given <code>width</code> and <code>height</code> while maintaining its aspect ratio. The command also accepts optional <code>alpha</code> and <code>blend</code> keyword arguments which set the opacity and blend-mode for compositing the image. </p>
+
+
+      <p>As with other primitives, setting the <code>plot</code> parameter to <code class="kw">False</code> will return a drawable object but not add it to the canvas.
       </p><h2>Returns</h2>
 
-      <p>an <a href="#Image">Image</a> object that can be passed to <a href="Canvas.html#background()">background()</a>, <a href="Line+Color.html#fill()">fill()</a>, <a href="Compositing.html#clip()">clip()</a>, and <a href="Compositing.html#mask()">mask()</a> among others.
+      <p>an <a href="#Image">Image</a> object that can be passed to <a href="Canvas.html#background()">background()</a>, <a href="Line+Color.html#fill()">fill()</a>, <a href="Compositing.html#clip()">clip()</a>, <a href="Compositing.html#mask()">mask()</a>, and <a href="Canvas.html#plot()">plot()</a> among others.
     </p></div>
 
     <h2>Example</h2>
