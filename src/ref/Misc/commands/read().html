@@ -19,7 +19,7 @@
       <p>Returns the contents of a file located at <code>path</code> as a unicode string or format-dependent data type (with special handling for <code>.json</code> and <code>.csv</code> files).
       </p><p>The format will either be inferred from the file extension or can be set explicitly using the <code>format</code> arg. Text will be read using the specified <code>encoding</code> or default to UTF-8.
       </p><p>JSON files will be parsed and an appropriate <a href="../tut/Collections.html">collection</a> type will be selected based on the top-level object defined in the file. The optional keyword argument <code>dict</code> can be set to <a href="#adict()">adict</a> or <a href="#odict()">odict</a> if you'd prefer not to use the standard Python dictionary when decoding pairs of <code>{}</code>'s.
-      </p><p>CSV files will return a list of rows. By default each row will be an ordered list of column values. If the first line of the file defines column names, you can call read() with <code>cols=True</code> in which case each row will be a dictionary using those names as keys. If the file doesn't define its own column names, you can pass a list of strings as the <code>cols</code> parameter.
+      </p><p>CSV files will return a list of rows. By default each row will be an ordered list of column values. If the first line of the file defines column names, you can call <i>read()</i> with <code>cols=<span class="kw">True</span></code> in which case each row will be a dictionary using those names as keys. If the file doesn't define its own column names, you can pass a list of strings as the <code>cols</code> parameter.
     </p></div>
 
     <h2>Returns</h2>
