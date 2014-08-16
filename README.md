@@ -11,7 +11,7 @@ pages in the `doc` subdirectory:
 ```sh
 $ virtualenv env
 $ source ./env/bin/activate
-(env)$ pip -r requirements.txt # uses jinja, pygments, beautiful soup, & html5lib
-(env)$ python build.py         # build the manual
-(env)$ open doc/manual.html    # view the table of contents
+(env)$ pip install -r requirements.txt # uses jinja, pygments, bs4, & html5lib
+(env)$ python build.py                 # build the manual
+(env)$ open doc/manual.html            # view the table of contents
 ```
