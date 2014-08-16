@@ -38,7 +38,7 @@ color(c, m, y, k, a=1) # CMYK mode
     <h2>Color State</h2>
 
     <div class="row">
-      <p>A number of plotdevice commands can take lists of numeric arguments to specify a color (see <a href="#stroke()">stroke()</a>, <a href="#fill()">fill()</a>, <a href="Canvas.html#background()">background()</a>, etc.). When called with keyword arguments alone, The color() command allows you to control how these numbers should be interpreted in subsequent color-modification commands.
+      <p>A number of plotdevice commands can take lists of numeric arguments to specify a color (see <a href="#stroke()">stroke()</a>, <a href="#fill()">fill()</a>, <a href="Canvas.html#background()">background()</a>, etc.). When called with keyword arguments alone, The <i>color()</i> command allows you to control how these numbers should be interpreted in subsequent color-modification commands.
       </p><p>By default, color commands interpret groups of 3 or more numbers as r/g/b triplets (with an optional, final alpha arg). If the <code>mode</code> keyword arg is set to <code class="kw">RGB</code>, <code class="kw">HSV</code>, or <code class="kw">CMYK</code>, subsequent color commands will interpret numerical arguments according to that colorspace instead.
       </p><p>The <code>range</code> keyword arg sets the maximum value for color channels. By default this is 1.0, but 255 and 100 are also sensible choices.
       </p><p>For instance here are three equivalent ways of setting the fill color to ‘blue’:
@@ -59,7 +59,7 @@ fill(1, 0, 0)          # outside the block, the mode is restored to r/g/b
 
       <h2>Making Colors</h2>
 
-      <p>When called with a sequence of color-channel values, color() will return a reusable <code>Color</code> object. These can be passed to color-related commands in lieu of numeric args. For example:
+      <p>When called with a sequence of color-channel values, <i>color()</i> will return a reusable <code>Color</code> object. These can be passed to color-related commands in lieu of numeric args. For example:
       </p><pre>red = color(1, 0, 0)                   # r/g/b
 glossy_black = color(15, 15, 15, 0.25) # r/g/b/a
 background(red)

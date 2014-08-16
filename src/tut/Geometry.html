@@ -39,7 +39,7 @@ print x, y
 <pre class="manual">pt.<span class="red">angle</span>(point)
 </pre>
 
-          <p>Returns the angle from the object to a target Point or pair of (x,y) coordinates. By default, the angle will be represented in degrees, but this can be altered by setting an alternate unit with the <a href="Canvas.html#geometry()">geometry()</a> command.
+          <p>Returns the angle from the object to a target Point or pair of (x,y) coordinates. By default, the angle will be represented in degrees, but this can be altered by setting an alternate unit with the <a href="../ref/Canvas.html#geometry()">geometry()</a> command.
         </p></div>
 
         <div class="example">
@@ -105,7 +105,7 @@ arc(origin.x, origin.y, 4, fill=.7)
 <pre class="manual">pt.<span class="red">coordinates</span>(distance, angle)
 </pre>
 
-          <p>Uses the object as the ‘origin’ of a polar coordinate system and returns a Point at a given distance and orientation relative to the origin. The <code>distance</code> parameter uses the current canvas <a href="Canvas.html#size()">size()</a> unit and the <code>angle</code> should be expressed in the current <a href="Canvas.html#geometry()">geometry()</a> unit.
+          <p>Uses the object as the ‘origin’ of a polar coordinate system and returns a Point at a given distance and orientation relative to the origin. The <code>distance</code> parameter uses the current canvas <a href="../ref/Canvas.html#size()">size()</a> unit and the <code>angle</code> should be expressed in the current <a href="../ref/Canvas.html#geometry()">geometry()</a> unit.
         </p></div>
 
         <div class="example">
@@ -186,7 +186,7 @@ for t in range(50):
     <h2>Angle measurements</h2>
     <p>As you may remember from trigonometry, there are two commonly used systems for expressing the size of angles. In day-to-day life we're most likely to encounter ‘degrees’ ranging from 0 to 360. In mathematics it's more traditional to use ‘radians’ ranging from 0 to 2<span style="font-family:Georgia; font-style:italic;">&pi;</span>. PlotDevice recognizes that different situations may call for different angle units and provides some utilities to make switching between them easy.</p>
 
-    <p>A number of commands take an angle as one of the arguments. By default, you're expected to use degrees. But by calling the <a href="geometry()">geometry()</a> command with <code class="kw">DEGREES</code>, <code class="kw">RADIANS</code>, or <code class="kw">PERCENT</code> you can switch between modes on the fly.</p>
+    <p>A number of commands take an angle as one of the arguments. By default, you're expected to use degrees. But by calling the <a href="../ref/Canvas.html#geometry()">geometry()</a> command with <code class="kw">DEGREES</code>, <code class="kw">RADIANS</code>, or <code class="kw">PERCENT</code> you can switch between modes on the fly.</p>
 
     <p>Any subsequent call to a drawing or transformation command that deals with angles will then deal in the newly-specified units. The <i>angle()</i> and <i>coordinates()</i> methods discussed above also obey the <i>geometry()</i> setting – both for interpreting arguments and providing return values.</p>
 
