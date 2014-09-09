@@ -11,7 +11,8 @@ Copyright (c) 2014 Samizdat Drafting Co. All rights reserved.
 
 from __future__ import with_statement, division
 import sys, os, re
-from os.path import basename, abspath, dirname, join, relpath, exists, getmtime
+import json
+from os.path import basename, abspath, dirname, join, relpath, exists, getmtime, splitext
 py_root = dirname(abspath(__file__))
 from SocketServer import TCPServer, ThreadingMixIn
 from SimpleHTTPServer import SimpleHTTPRequestHandler as Handler
@@ -19,6 +20,7 @@ from collections import defaultdict as ddict, OrderedDict as odict
 from glob import glob
 from pprint import pprint
 from subprocess import Popen, PIPE
+from shutil import rmtree
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import PythonLexer, PythonConsoleLexer
@@ -31,6 +33,8 @@ file_urls=None
 sys.path.append('%s/src'%py_root)
 import toc as ToC
 
+# analytics
+ga = "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-631520-4', 'auto'); ga('send', 'pageview');</script>"
 
 ### the big red button ###
 
@@ -134,6 +138,8 @@ def tidy(html):
   # html = re.sub(r'( +)<pre>',r'<pre>', html)
   # html = re.sub(r'\n</pre>',r'</pre>\n', html)
   html = re.sub(r'<body([^>]*)>',r'\n<body\1>\n', html)
+  if not file_urls:
+    html = re.sub(r'</head>','  %s\n</head>'%ga, html)
   return html
 
 def is_stale(dst, src, deps=[], quiet=False):
@@ -229,6 +235,8 @@ class PlotDeviceLexer(PythonLexer):
       else:
         yield index, token, value
 PlotDeviceLexer.tokens['root'].insert(0, (r'^>>>.*$', Comment),)
+
+
 ### handlers for each section of the site ###
 
 tmpls = Environment(loader=FileSystemLoader('%s/tmpl'%py_root))
@@ -301,6 +309,7 @@ def tut():
       with file(fname, 'w') as f:
         f.write(tidy(markup).encode('utf-8'))
 
+
 def lib():
   print "\nLibraries"
   _mkdir('doc/lib')
@@ -323,6 +332,30 @@ def lib():
       markup = html.render(info)
       with file(fname, 'w') as f:
         f.write(tidy(markup).encode('utf-8'))
+
+def code():
+  _mkdir('doc/etc/code')
+
+  corpus = {}
+  for example in glob('../plotdevice/examples/*/*.pv'):
+    cat=basename(dirname(example))
+    title=splitext(basename(example))[0]
+    raw = file(example).read().decode('utf-8')
+    m = re.match(r'\s*"""(.*?)"""', raw, re.S)
+
+    docstring = m.group(1).strip()
+    src = raw[m.end():].strip()
+    code = syntax_color(src).encode('utf-8')
+
+    doc = [p.encode('utf-8') for p in m.group(1).strip().split('\n\n')]
+    headline = doc.pop(0).rstrip('.')
+    sidebar = '<p>'+ "</p><p>".join(doc) + "</p>"
+    corpus[title] = dict(code=code, head=headline, doc=sidebar)
+
+  with file('doc/etc/code/index.json','w') as f:
+    json.dump(corpus, f)
+
+
 
 ### first-pass toc generator ###
 
@@ -359,6 +392,14 @@ def check_media():
   for fn,info in media.items():
     if not os.path.exists(fn):
       print "!",fn,'<-',info
+
+  # unused images
+  # css=["doc/etc/ref/transparency-grid.png","doc/etc/ref/blend-modes.png"]
+  # used = [pth for pth in media.keys()+css if pth.startswith('doc')]
+  # extant = [fn for fn in glob('doc/etc/*/*.*') if splitext(fn)[1] not in ['.css','.ttf','.json','.csv']]
+  # stale = [fn for fn in extant if fn not in used]
+  # pprint(sorted(stale))
+
 
 def check_links():
   print "\nMissing Links"
@@ -410,6 +451,45 @@ def code_blocks():
 
   print yack.get_style_defs()
 
+def zap():
+  os.system('rm -rf %s/doc/*'%py_root)
+
+def ensite():
+  """
+  Creates the site-hosted version of the docs at <sitedir>/www/manual.html and zips up
+  a static version at <sitedir>/www/extras/plotdevice-docs.zip
+  """
+  cwd = os.getcwd()
+  os.chdir(py_root)
+  code()
+
+  # build & install hosted copy (with cleaner urls)
+  zap()
+  build(static=False)
+  if exists('../plotdevice-site/www/etc'):
+    for fn in glob('doc/etc/*'):
+      print 'sync', fn
+      os.system('rsync -avq %s ../plotdevice-site/www/etc/'%fn)
+
+  if exists('../plotdevice-site'):
+    for fn in 'ref','tut','lib','manual.html':
+      print 'sync', fn
+      os.system('rsync -avq doc/%s ../plotdevice-site/www/'%fn)
+
+  landing = file('doc/manual.html').read().decode('utf-8').replace('href="http://plotdevice.io"','href="/"',1)
+  with file('../plotdevice-site/www/manual.html', 'w') as f:
+    f.write(landing.encode('utf-8'))
+
+  # build & install plotdevice-docs.zip
+  if exists('../plotdevice-site/www/extras'):
+    zap()
+    build(static=True)
+    os.rename('doc','plotdevice-docs')
+    os.system('ditto -ck --keepParent plotdevice-docs plotdevice-docs.zip')
+    rmtree('plotdevice-docs')
+    os.system('mv plotdevice-docs.zip ../plotdevice-site/www/extras/plotdevice-docs.zip')
+
+  os.chdir(cwd)
 
 if __name__=='__main__':
   if 'live' in sys.argv:
@@ -420,11 +500,13 @@ if __name__=='__main__':
     except KeyboardInterrupt:
       sys.exit(0)
   elif 'clean' in sys.argv:
-    os.system('rm -r %s/doc/*'%py_root)
-
+    zap()
+  elif 'ensite' in sys.argv:
+    ensite()
   else:
-    build(static=not sys.argv[1:] or sys.argv[1]!='site')
+    build(static='site' not in sys.argv)
 
   # check_media()
   # check_links()
   # code_blocks()
+
