@@ -155,7 +155,7 @@ print txt
     <p>You can then compose whatever text you'd like (or, if you're like me, lazily paste in something interesting from Wikipedia). Save the file to a convenient folder and remember its file path so you can access it from your script:</p>
 
 
-    <div class="media"><img alt="" height="510" src="../etc/tut/strings-textedit.png" width="574"/></div>
+    <div class="media" style="margin-left:0;"><img alt="" height="510" src="../etc/tut/strings-textedit.png" width="574"/></div>
 
     <p>Within our PlotDevice script, we can read the contents of the file into a string using the <a href="../ref/Misc.html#read()">read()</a> command. Note that when we draw the string (by passing it to <a href="../ref/Typography.html#text()">text()</a>) we make sure to include a <code>width</code> argument. Otherwise there'd be no line-breaking and text would go spilling off the right side of the canvas:</p>
 
@@ -169,31 +169,27 @@ print txt
     for example <em>suomi</em> or <em>Hebrew</em> in the output of your script, you’ll have to know
     about Unicode.</p>
 
-    <p>The first thing to check is that the <strong>typeface</strong> you are going to use
-    includes Unicode characters. Large font families like Helvetica usually include glyphs for almost any Unicode character.</p>
-    <p>Next, you’ll have to tell PlotDevice that a piece of text includes special characters. This is
-    as simple as adding a ‘<strong>u’</strong> to the front of the string quotes.</p>
-<pre>the_rain_in_magyar = u"Az eső Spanyolországban esik főleg a síkságon"
-text(the_rain_in_magyar, 20,60, width=240)
-</pre>
+    <p>If you're going to import text from a text file, the first thing to ensure is that the file
+    has been saved in a compatible "text encoding". In the dark ages of the 1990s there were dozens of encodings in common usage – with most only being useful for one language or another. Thankfully, the world has mostly converged on <a href="http://en.wikipedia.org/wiki/UTF-8">UTF-8</a> as the <a href="http://xkcd.com/927/">One True Encoding</a> in recent years and we recommend that you use it for all your data and source code files.</p>
 
-    <div class="media"><img height="406" src="../etc/tut/strings-unicode1.png" width="748"/></div>
-    <p>When you are going to import text from a text file there are two things to look out for.
-    First, the text file needs to <strong>saved as Unicode</strong>. In TextEdit, apply the plain
-    text format and when you save it, select ‘Unicode (UTF-8)’ from the Plain Text Encoding list.</p>
-    <div class="media"><img height="556" src="../etc/tut/strings-unicode2.png" width="573"/></div>
 
-    <p>Then when you import the contents of the file into PlotDevice, you’ll have to
-    <strong>decode</strong> the text from UTF-8 into unicode:</p>
-<pre>txt = open("hebrew.txt").read()
-txt = txt.decode("utf-8")
-align(RIGHT)
+    <p>When saving a plain text document in TextEdit, make sure <span class="message">Unicode (UTF-8)</span> is selected in the <span class="message">Plain Text Encoding</span> list:</p>
+    <div class="media" style="margin-left:0;"><img height="556" src="../etc/tut/strings-unicode2.png" width="573"/></div>
+
+    <p>You can load the file's contents into by calling the <a href="../ref/Misc.html#read()">read()</a> command with a filename or url. It reads the file's raw bytes and decodes them, returning a unicode string.</p>
+    <pre>txt = read("proust.txt")</pre>
+    <p>By default it will attempt to decode the file as UTF-8, but if you pass an optional <code>encoding</code> argument you can override this.</p>
+    <pre>txt = read("ozu.txt", encoding="shift-jis")</pre>
+
+
+    <p>The <i>read()</i> command is just a convenience method. You can emulate its behavior using
+    standard Python functions if you'd rather do things by-the-book:</p>
+<pre>raw_bytes = file("hebrew.txt").read()
+txt = raw_bytes.decode("utf-8")
 text(txt, 100, 200)
 </pre>
 
-    <p>PlotDevice provides a <a href="../ref/Misc.html#read()">read()</a> command that does the file i/o and unicode conversion for you. By default it will attempt to decode the file as UTF-8, but if you pass an optional <code>encoding</code> argument you can override this.</p>
-    <pre>txt = read("hebrew.txt")
-txt = read("ozu.txt", encoding="shift-jis")</pre>
+
   </div>
 
 </body></html>
