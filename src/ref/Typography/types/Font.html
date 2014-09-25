@@ -9,14 +9,14 @@
     <h2>Syntax</h2>
 
     <div class="row">
-<pre>Font(*fam_weight_size, italic=False, **options)
+<pre>Font(psname, size=None, **features)
 </pre>
     </div>
 
     <h2>Description</h2>
 
     <div class="row">
-      <p><i>Font</i> objects are returned by the <a href="#font()">font()</a> command or can be created directly using the same parameters &amp; options as <i>font()</i>. Once you have a reference to a <i>Font</i> object, its properties allow you to both read and modify attributes, potentially selecting another PostScript face in the process. When you set a new value for a modifiable property PlotDevice will try to preserve as many of the other attributes as possible.
+      <p><i>Font</i> objects are returned by the <a href="#font()">font()</a> command or can be created directly by providing the "PostScript name" for a font installed on your system. Once you have a reference to a <i>Font</i> object, its properties allow you to both read and modify attributes, potentially selecting another PostScript face in the process. When you set a new value for a modifiable property PlotDevice will try to preserve as many of the other attributes as possible.
       </p><p>The object's read-only properties are aliases to the eponymous properties in the <a href="#Family">Family</a> type and will allow you to examine the set of weights and variants supported by the current font's family.
     </p></div>
 
@@ -26,29 +26,55 @@
       <p><i>Font</i> objects support the Python <code>with</code> statement and will set the canvas's global font, font-size, leading, etc. for the duration of an indented block of code. At the end of the block, the canvas's font-state will be restored to its prior value.
     </p></div>
 
-    <h2>Properties <span style="font-weight:normal; color:#999;">(Read &amp; Write)</span></h2>
-
+    <h2>Class Method</h2>
     <div class="row">
-      <pre class="manual">fnt.<span class="red">name</span>
-fnt.<span class="red">family</span>
-fnt.<span class="red">weight</span>
-fnt.<span class="red">width</span>
-fnt.<span class="red">variant</span>
-fnt.<span class="red">size</span>
-fnt.<span class="red">italic</span>
-fnt.<span class="red">face</span>
-</pre>
+      <div class="def-box"><pre class="manual"><span class="red">Font.select</span></pre>
+        <p>blah blah blah</p>
+      </div>
+      
     </div>
 
-    <h2>Properties <span style="font-weight:normal; color:#999;">(Read Only)</span></h2>
+    <h2>Properties <span style="font-weight:normal; color:#999;">(Font-specific)</span></h2>
 
     <div class="row">
-      <pre class="manual">fnt.<span class="red">weights</span>
-fnt.<span class="red">widths</span>
-fnt.<span class="red">variants</span>
-fnt.<span class="red">siblings</span>
-fnt.<span class="red">traits</span>
-</pre>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">family</span></pre>
+        <p>name of the font's family (e.g., "Avenir Next" or "Adobe Jenson Pro")</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">weight</span></pre>
+        <p>name of the font's current weight (e.g., "light", "semibold", "black")</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">width</span></pre>
+        <p>name of the font's width (e.g., "condensed") or <code class="kw">None</code> if only a single width is defined</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">variant</span></pre>
+        <p>the "non-standard" portion of the font's name (if it eschews the more typical weight, width, and italicization naming scheme)</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">size</span></pre>
+        <p>the font's "point size" as a floating point number</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">italic</span></pre>
+        <p>a boolean flag indicating italicization or obliqueness</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">face</span></pre>
+        <p>the "PostScript name" which uniquely identifies the font</p>
+      </div>
+    </div>
+
+    <h2>Properties <span style="font-weight:normal; color:#999;">(Family-specific)</span></h2>
+
+    <div class="row">
+      <div class="def-box"><pre class="manual">fnt.<span class="red">weights</span></pre>
+        <p>a list of all the valid weight names in the given font's family</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">widths</span></pre>
+        <p>a list of all the valid width names in the given font's family</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">variants</span></pre>
+        <p>a (possibly empty) list of other variants in the given font's family</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">siblings</span></pre>
+        <p>a dictionary of "PostScript names" and Font objects for the given font's family.</p>
+      </div>
     </div>
   </div>
 

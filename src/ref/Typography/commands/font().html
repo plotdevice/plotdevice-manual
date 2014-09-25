@@ -27,6 +27,8 @@
       </p><p>A boolean value specifying whether to use the italic style of the current font family. Note that the family must provide an italic as it won't be algorithmically generated. If you're dead-set on hacking in a fake italic, try drawing the text as an <code>outline</code> and applying a <a href="Transform.html#skew">skew</a> transform to it.
       </p><p><code class="box"><span class="red">leading</span></code>
       </p><p>Controls the spacing from baseline-to-baseline in multi-line text runs. The value is a floating point number representing the distance as a multiple of the current font size. The default leading is 1.2 (120% of the font size), but you may wish to increase this when typesetting a particularly wide measure.
+      </p><p><code class="box"><span class="red">tracking</span></code>
+      </p><p>Controls the letter-spacing of a run of text. The value is a positive or negative number in thousandths of an em and sets the amount of extra space added (or subtracted) between characters. The default value is zero, meaning no extra space will be added beyond what is specified in the font's kerning tables. To disable kerning altogether, set the value to <span class="kw"><code>None</code></span>.
       </p><p><code class="box"><span class="red">width</span></code>
       </p><p>For families that provide a range of widths (e.g., "compressed", "condensed", or "extended"), the <code>width</code> argument allows you to select them by name.
       </p><p><code class="box"><span class="red">variant</span></code>
@@ -36,9 +38,67 @@
       </p><pre>font('avenir', 'heavy', italic=True)
 font(face='Avenir-HeavyOblique')
 </pre>
-
       <p>To find the <code>face</code> name of a specific font, use the Show Font Info option in the Preview menu of <a href="http://support.apple.com/kb/HT2509?viewlocale=en_US&amp;locale=en_US">Font Book</a>.
-    </p></div>
+      </p><p><code class="box"><span class="red">align</span></code>
+      </p><p>Text can be aligned to the <code class="kw">LEFT</code>, <code class="kw">RIGHT</code>, or <code class="kw">CENTER</code> or spaced out to fill the entire width of the textblock via the <code class="kw">JUSTIFY</code> option. See the legacy <a href="#align()">align()</a> command for examples of each.</p>
+    </div>
+
+
+
+    <h2>OpenType Features</h2>
+
+
+    <div class="row">
+      <p>If the selected font is an OpenType file with support for advanced typographical features, you may pass any of the following optional arguments to enable or disable them. Note that these settings will only affect the typesetting if the font was designed to support OpenType or ‘AAT’ features.</p>
+      <p>Argument values may be either a boolean or the intergers <code>0</code> and <code>1</code>. Certain features also accept other integer values or the <span class="kw"><code>all</code></span> keyword as noted below.</p>
+  
+      <p><code class="box"><span class="red">lig</span></code>
+      </p><p>Enables or disables standard and "rare" ligatures. Defaults to <code class="kw">True</code>.</p>
+      <table class="argvals">
+        <tr><td><code class="kw">False</code> / <code>0</code></td><td>disable standard ligatures</td></tr>
+        <tr><td><code class="kw">True</code> / <code>1</code></td><td>enable standard ligatures</td></tr>
+        <tr><td><code class="kw">all</code></td><td>enable both standard and "rare" ligatures (if any are defined)</td></tr>
+      </table>
+
+      </p><p><code class="box"><span class="red">sc</span></code></p>
+      <p>Control how upper and lower case characters in the string are mapped to "small cap" styled glyphs. Defaults to <code class="kw">False</code>.</p>
+      <table class="argvals">
+        <tr><td><code class="kw">False</code> / <code>0</code></td><td>upper- &amp; lower-case characters rendered normally</td></tr>
+        <tr><td><code class="kw">True</code> / <code>1</code></td><td>lower-case characters will be drawn as small caps</td></tr>
+        <tr><td><code class="kw">all</code></td><td>all characters will be rendered as small caps</td></tr>
+        <tr><td><code>-1</code></td><td>upper-case characters will be rendered as small caps</td></tr>
+      </table>
+
+      <p><code class="box"><span class="red">osf</span></code>
+      </p><p>Selects whether to use "lining" or "old style figures" when drawing numbers. Defaults to whatever is defined in the font (typically lining numerals).</p>
+      <table class="argvals">
+        <tr><td><code class="kw">False</code> / <code>0</code></td><td>use lining (or "upper case") numerals</td></tr>
+        <tr><td><code class="kw">True</code> / <code>1</code></td><td>use old style (or "lower case") numerals</td></tr>
+      </table>
+
+      <p><code class="box"><span class="red">tab</span></code></p>
+      </p><p>Set the horizontal spacing used by runs of number characters. Fonts will typically default to proportional spacing, meaning the columns in sequential lines won't line up. Enabling "tabular" spacing will add extra space around narrow digits so everything lines up nicely.</p>
+      <table class="argvals">
+        <tr><td><code class="kw">False</code> / <code>0</code></td><td>use proportional spacing for numerals</td></tr>
+        <tr><td><code class="kw">True</code> / <code>1</code></td><td>use tabular (or "monospaced") numerals</td></tr>
+      </table>      
+      <p><code class="box"><span class="red">vpos</span></code>
+      </p><p>Set the vertical position of numbers (and possibly also letter characters). Many fonts allow you to draw "superscript" characters and a smaller number also support "subscripts".</p>
+      <table class="argvals">
+        <tr><td><code>1</code></td><td>draw superscripts</td></tr>
+        <tr><td><code>0</code></code></td><td>draw normal (vertically centered) characters</td></tr>
+        <tr><td><code>-1</code></td><td>draw subscripts (if supported)</td></tr>
+        <tr><td><code class="kw">ord</code></td><td>draw ordinals (if supported)</td></tr>
+      </table>
+
+      <p><code class="box"><span class="red">frac</span></code>
+      </p><p>Enable or disable "automatic fractions". If the font supports this, strings such as <span class="str"><code>"1/2"</code></span> or <span class="str"><code>"3/4"</code></span> will be converted to a single glyph with a diagonal solidus drawn between the numerator and denominator.
+      </p>
+      <table class="argvals">
+        <tr><td><code class="kw">False</code> / <code>0</code></td><td>Disable automatic fractions</td></tr>
+        <tr><td><code class="kw">True</code> / <code>1</code></td><td>Enable fractions</td></tr>
+      </table>      
+    </div>
 
     <h2>Context Manager</h2>
 

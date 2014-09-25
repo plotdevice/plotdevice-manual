@@ -16,28 +16,38 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Draws text to the screen, either as a single line or a multi-line block. The first parameter is a string of unicode text to display. The x &amp; y parameters set the location of the text’s baseline. The optional <code>width</code> parameter specifies the column-width for a multi-line textblock and, if present, the <code>height</code> parameter sets maximum height for the column. Text in a column is wrapped across as many lines as will fit in the maximum height. The text's alignment can be set with the <a href="#align()">align()</a> command.
-      </p><p>Text will be drawn in the current <a href="Line+Color.html#fill()">fill()</a> color, but will not reflect the global <a href="Line+Color.html#pen()">pen()</a> and <a href="Line+Color.html#stroke()">stroke()</a> unless drawn as an <code>outline</code>. If the current fill() is a multi-color gradient, text() will use the first color in its range (unless outlined, in which case it will use the gradient fill).
+      <p>Draws text to the screen, either as a single line or a multi-line block. The first parameter is a string of unicode text to display. The x &amp; y parameters set the location of the text’s baseline. The optional <code>width</code> parameter specifies the column-width for a multi-line textblock and, if present, the <code>height</code> parameter sets maximum height for the column. Text in a column is wrapped across as many lines as will fit in the maximum height. The text's alignment can be set with the <a href="#font()">font()</a> command or the optional <code>align</code> keyword argument.
+      </p><p>Text will be drawn in the current <a href="Line+Color.html#fill()">fill()</a> color, but will not reflect the global <a href="Line+Color.html#pen()">pen()</a> and <a href="Line+Color.html#stroke()">stroke()</a> unless drawn as an <code>outline</code>. If the current <i>fill()</i> is a multi-color gradient, <i>text()</i> will use the first color in its range (unless outlined, in which case it will use the gradient fill).
       </p><p> By default, text is not outlined (which may not be what you want when exporting to PDF). To "trace" the text into outlines, call <i>text()</i> with <code>outline=<span class="kw">True</span></code>. This will convert the <a href="#Text">Text</a> object to a <a href="Drawing.html#Bezier">Bezier</a> before adding it to the canvas.
     </p></div>
 
     <h2>Optional Parameters</h2>
 
     <div class="row">
-      <p><code class="box"><span class="red">family</span></code> <code class="box"><span class="red">weight</span></code> <code class="box"><span class="red">size</span></code> <code class="box"><span class="red">italic</span></code> <code class="box"><span class="red">leading</span></code> <!-- <code class="box"><span class="red">width</span></code> -->
+      <p><code class="box"><span class="red">family</span></code> <code class="box"><span class="red">weight</span></code> <code class="box"><span class="red">size</span></code> <code class="box"><span class="red">italic</span></code> <code class="box"><span class="red">leading</span></code> <code class="box"><span class="red">tracking</span></code>
        <code class="box"><span class="red">variant</span></code> <code class="box"><span class="red">face</span></code>
       </p><p>You can override the current font settings for an individual <i>text()</i> invocation by including any of the keyword arguments supported by the <a href="#font()">font()</a> command.
-      </p><p><code class="box"><span class="red">plot</span></code>
+      </p>
+
+      <p><code class="box"><span class="red">lig</span></code> <code class="box"><span class="red">sc</span></code> <code class="box"><span class="red">osf</span></code> <code class="box"><span class="red">tab</span></code> <code class="box"><span class="red">vpos</span></code> <code class="box"><span class="red">frac</span></code></p>
+      <p>The current OpenType Feature settings from prior calls to the <i>font()</i> command may also be overridden for an individual <i>text()</i> call.</p>
+
+      <p><code class="box"><span class="red">plot</span></code>
       </p><p>By default, the <i>text()</i> command will render to the canvas immediately. Passing <code>plot=<span class="kw">False</span></code> will return the rendered Text or Bezier object without adding it to the canvas.
       </p><p><code class="box"><span class="red">style</span></code>
       </p><p>If you have defined text styles using the <a href="#stylesheet()">stylesheet()</a> command, you can select one by passing a style-name as the <code>style</code> argument. The selected style will be applied to the entire run of text – use inline markup if you need greater granularity.
-    </p></div>
+      </p><p><code class="box"><span class="red">align</span></code>
+      </p><p>Overrides the current text alignment set through the <i>font()</i> or <a href="#align()">align()</a> command. 
+      </p>
+
+
+    </div>
 
     <h2>Inline Style Markup</h2>
 
     <div class="row">
       <p>By default, <i>text()</i> will render the entire <code>txt</code> string in a single style (based on the canvas's current <a href="#font()">font()</a>, <a href="#align()">align()</a>, and <a href="#fill()">fill()</a> state). You can selectively style portions of the string if you format it as XML and use the <a href="#stylesheet()">stylesheet()</a> command to define styles for the tags you use in the markup. Stylesheet definitions behave similarly to CSS declarations in that more deeply nested styles will override attributes of less deeply nested ones.
-      </p><p>When drawing an XML string, <i>text()</i> will ignore any tags that don't correspond to a definition in the stylesheet(). The string you pass must be valid XML, in particular you must <a href="http://en.wikipedia.org/wiki/XML#Escaping">escape</a> the control characters: <code class="s">&amp;</code>, <code class="s">&lt;</code>, <code class="s">&gt;</code>, <code class="s">'</code>, and <code class="s">"</code>.
+      </p><p>When drawing an XML string, <i>text()</i> will ignore any tags that don't correspond to a definition in the <i>stylesheet()</i>. The string you pass must be valid XML, in particular you must <a href="http://en.wikipedia.org/wiki/XML#Escaping">escape</a> the control characters: <code class="s">&amp;</code>, <code class="s">&lt;</code>, <code class="s">&gt;</code>, <code class="s">'</code>, and <code class="s">"</code>.
       </p>
 
       <hr>
