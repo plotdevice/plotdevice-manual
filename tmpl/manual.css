@@ -13,7 +13,10 @@ h2 { font: bold 14px/22px "Cabin"; margin-top: 15px; }
 pre { font-size: 12px; font-family:"Courier Prime"; line-height: 19px; overflow:auto;}
 code { font-family:"Courier Prime"; letter-spacing:0; line-height: 16px;}
 code.box{ padding:0 4px;}
-p code, li code { font-size:15px;}
+p code, li code{ font-size:15px; }
+.argvals td{font-style:italic;}
+.argvals td code{ font-style:normal; font-size:15px; font-weight:bold; color:#444;}
+.argvals td code.kw{color: #366789; font-weight:bold;}
 .message { font: bold 15px "Cabin"; line-height: 18px; }
 
 /***************************************/
