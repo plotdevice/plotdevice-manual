@@ -24,20 +24,21 @@
     <h2>Optional Parameters</h2>
 
     <div class="row">
-      <p><code class="box"><span class="red">family</span></code> <code class="box"><span class="red">weight</span></code> <code class="box"><span class="red">size</span></code> <code class="box"><span class="red">italic</span></code> <code class="box"><span class="red">leading</span></code> <code class="box"><span class="red">tracking</span></code>
-       <code class="box"><span class="red">variant</span></code> <code class="box"><span class="red">face</span></code>
-      </p><p>You can override the current font settings for an individual <i>text()</i> invocation by including any of the keyword arguments supported by the <a href="#font()">font()</a> command.
-      </p>
+      <p><code class="box"><span class="red">family</span></code> <code class="box"><span class="red">weight</span></code> <code class="box"><span class="red">size</span></code> <code class="box"><span class="red">italic</span></code> <code class="box"><span class="red">variant</span></code> <code class="box"><span class="red">face</span></code> </p>
 
-      <p><code class="box"><span class="red">lig</span></code> <code class="box"><span class="red">sc</span></code> <code class="box"><span class="red">osf</span></code> <code class="box"><span class="red">tab</span></code> <code class="box"><span class="red">vpos</span></code> <code class="box"><span class="red">frac</span></code></p>
+      <p>You can override the current font settings for an individual <i>text()</i> invocation by including any of the keyword arguments supported by the <a href="#font()">font()</a> command.</p>
+
+      <p><code class="red box"><span class="red">leading</span></code> <code class="box"><span class="red">tracking</span></code> <code class="box"><span class="red">hyphenate</span></code> <code class="box"><span class="red">align</span></code></p>
+
+      <p>Likewise, the current text-layout settings can be changed for an individual <i>text()</i> invocation by including any of the layout arguments supported by <i>font()</i>.</p>
+
+      <p><code class="box"><span class="red">lig</span></code> <code class="box"><span class="red">sc</span></code> <code class="box"><span class="red">osf</span></code> <code class="box"><span class="red">tab</span></code> <code class="box"><span class="red">vpos</span></code> <code class="box"><span class="red">frac</span></code> <code class="box"><span class="red">ss</span></code></p>
       <p>The current OpenType Feature settings from prior calls to the <i>font()</i> command may also be overridden for an individual <i>text()</i> call.</p>
 
       <p><code class="box"><span class="red">plot</span></code>
       </p><p>By default, the <i>text()</i> command will render to the canvas immediately. Passing <code>plot=<span class="kw">False</span></code> will return the rendered Text or Bezier object without adding it to the canvas.
       </p><p><code class="box"><span class="red">style</span></code>
       </p><p>If you have defined text styles using the <a href="#stylesheet()">stylesheet()</a> command, you can select one by passing a style-name as the <code>style</code> argument. The selected style will be applied to the entire run of text – use inline markup if you need greater granularity.
-      </p><p><code class="box"><span class="red">align</span></code>
-      </p><p>Overrides the current text alignment set through the <i>font()</i> or <a href="#align()">align()</a> command. 
       </p>
 
 
