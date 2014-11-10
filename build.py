@@ -216,8 +216,8 @@ class PlotDeviceLexer(PythonLexer):
     'export', 'files', 'fill', 'findpath', 'font', 'fonts', 'fontsize',
     'geometry', 'grid', 'image', 'imagesize', 'joinstyle', 'line', 'lineheight',
     'lineto', 'mask', 'measure', 'moveto', 'nofill', 'noshadow', 'nostroke',
-    'order', 'ordered', 'outputmode', 'oval', 'pen', 'plot', 'poly', 'pop',
-    'push', 'random', 'read', 'rect', 'reset', 'rotate', 'scale', 'shadow',
+    'order', 'ordered', 'outputmode', 'oval', 'paginate', 'pen', 'plot', 'poly',
+    'pop', 'push', 'random', 'read', 'rect', 'reset', 'rotate', 'scale', 'shadow',
     'shuffled', 'size', 'skew', 'speed', 'star', 'stroke', 'strokewidth',
     'stylesheet', 'text', 'textheight', 'textmetrics', 'textpath', 'textwidth',
     'transform', 'translate', "var", 'ximport']

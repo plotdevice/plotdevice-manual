@@ -1,0 +1,85 @@
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="definition">
+    <h1>paginate()</h1>
+
+    <h2>Syntax</h2>
+
+    <div class="row">
+      <div class="def-box">
+        <pre>paginate(str, x, y, width, height, **options)</pre>
+        <p>Generate Text objects for a string with the given x/y and width/height</p>
+      </div>
+      <div class="def-box">
+        <pre>paginate(x, y, width, height, str="", **options)</pre>
+        <p>The string can be omitted as the first arg if provided as a keyword argument</p>
+      </div>
+      <div class="def-box">
+        <pre>paginate(x, y, width, height, xml="", **options)</pre>
+        <p>If an xml string is passed as a keyword argument, its tags will be mapped to font definitions in the canvas's Stylesheet</p>
+      </div>
+      <div class="def-box">
+        <pre>paginate(x, y, width, height, src="&lt;path or url&gt;", **options)</pre>
+        <p>Load the file pointed to by the src argument and draw its contents</p>
+      </div>
+      <div class="def-box">
+        <pre>paginate(Text, folio=1, verso=None)</pre>
+        <p>Generate pages from an existing Text object</p>
+      </div>
+    </div>
+
+    <h2>Description</h2>
+
+    <div class="row">
+      <p>Returns a list of one or more <a href="#Text">Text</a> objects with a fixed position and size. The syntax is identical to that of the <a href="#text()">text()</a> command, but rather than drawing to the canvas it returns the resulting <i>Text</i> objects for your script to <a href="Canvas.html#plot()">plot()</a> manually.</p>
+
+      <p>The <i>paginate()</i> command can be useful when drawing long passages of text that may not fit in a single text block (or on a single canvas frame). The objects it returns are standard <i>Text</i> objects but contain three additional "counter" attributes that may be useful during layout:</p>
+
+      <pre class="manual">
+txt.<span class="red">folio</span> <span class="grey"># the "page number" of the object (typically counting from one)</span>
+txt.<span class="red">pg</span>    <span class="grey"># the index of the object in the series (counting from zero)</span>
+txt.<span class="red">pp</span>    <span class="grey"># the total number of pages in the series</span>
+</pre>
+    </div>
+
+
+    <h2>Optional Parameters</h2>
+
+    <div class="row">
+
+      <p><code class="box"><span class="red">folio</span></code></p>
+      <p>Sets the "page number" of the first <i>Text</i> object in the sequence – accessible through its corresponding .folio attribute. Subsequent objects in the sequence count up from there. Defaults to 1 if omitted.</p>
+
+      <p><code class="box"><span class="red">verso</span></code></p>
+      <p>Pass a 2-tuple to set x/y coordinates for "even" pages in the sequence. If omitted, all the <i>Text</i> objects will use the same x/y position as defined in the positional arguments.</p>
+    </div>
+
+    <h2>Returns</h2>
+
+    <div class="row">
+      <p>a list of <a href="#Text">Text</a> objects (as many as needed to fully lay out the string)</p>
+    </div>
+
+
+    <h2>Example</h2>
+
+    <div class="row">
+      <p></p>
+
+      <pre>
+with export('~/book.pdf') as book:
+    size(340, 450)
+
+    for txt in paginate(40,40, 600,800, src='~/Documents/war-and-peace.txt'):
+        with book.page:
+            plot(txt)
+            text(WIDTH/2, 430, align=CENTER, size=9, str=txt.pg+1)
+</pre>
+    </div>
+
+  </div>
+
+</body></html>
