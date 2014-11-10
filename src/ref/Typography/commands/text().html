@@ -9,8 +9,22 @@
     <h2>Syntax</h2>
 
     <div class="row">
-<pre>text(txt, x, y, width=None, height=1000000, outline=False, plot=True, **options)
-</pre>
+      <div class="def-box">
+        <pre>text(str, x, y, width=None, height=None, outline=False, plot=True, **options)</pre>
+        <p>Draw a string at x/y (while optionally setting its maximum width and height)</p>
+      </div>
+      <div class="def-box">
+        <pre>text(x, y, width=None, height=None, str="", **options)</pre>
+        <p>The string can be omitted as the first arg if provided as a keyword argument</p>
+      </div>
+      <div class="def-box">
+        <pre>text(x, y, width=None, height=None, xml="", **options)</pre>
+        <p>If an xml string is passed as a keyword argument, its tags will be mapped to font definitions in the canvas's Stylesheet</p>
+      </div>
+      <div class="def-box">
+        <pre>text(x, y, width=None, height=None, src="&lt;path or url&gt;", **options)</pre>
+        <p>Load the file pointed to by the src argument and draw its contents</p>
+      </div>
     </div>
 
     <h2>Description</h2>
