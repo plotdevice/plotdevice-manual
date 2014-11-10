@@ -519,6 +519,14 @@ footer ul.chapter li.prev{float:left; }
   font-style:italic;
 }
 
+.article .def-box p ~ p{
+  margin-top:6px;
+}
+.article .def-box p ~ pre{
+  background:inherit;
+  border:0;
+  margin-top:4px;
+}
 div.media{
   margin-left:-58px;
 }
