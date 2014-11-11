@@ -45,7 +45,7 @@ tut['Basics']=["Getting_Started", "Environment", "Primitives", "Graphics_State",
 tut['Specifics']=["Animation", u"Bezier_Paths", "Geometry", "Color",]
 tut['Data']=["Variables", "Strings", "Collections", "Serialization"]
 tut['Structure']=["Repetition", "Commands", "Classes", "Libraries", ]
-tut['Advanced']=["Interaction", "Console", "Cocoa",]
+tut['Advanced']=["Typography", "Interaction", "Console", "Cocoa",]
 
 lib=odict()
 lib['Design']=["Colors", "Grid", "Pixie", "Fatpath",]
