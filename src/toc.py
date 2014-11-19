@@ -27,7 +27,7 @@ ref['Compositing'] = {
     'compat': ['noshadow()', 'beginclip()', 'endclip()', ] }
 ref['Typography'] = {
     'commands': ['text()', 'textpath()', 'paginate()', 'stylesheet()', 'font()'],
-    'types': ['Text', 'TextFrame', 'Family', 'Font', ],
+    'types': ['Text', 'TextFrame', 'TextMatch', 'LineFragment', ('Font', 'Family'), ],
     'compat': ['align()', 'fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textwidth()'] }
 # grouped into Misc.html
 ref['Utility'] = {

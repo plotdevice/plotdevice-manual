@@ -1,0 +1,56 @@
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="definition">
+    <h1>LineFragment</h1>
+
+    <h2>Description</h2>
+
+    <div class="row">
+      <p>The <a href="#Text">Text</a>, <a href="#TextMatch">TextMatch</a>, and <a href="#TextFrame">TextFrame</a> objects all provide a property called <i>lines</i> which returns a list of one or more <i>LineFragment</i> objects. Each <i>LineFragment</i> includes character and layout information for a single line's-worth of text.</p>
+
+      <hr>
+      <p class="double-dagger">Typically, a <i>LineFragment</i> describes the full set of characters visible on a given line, but in cases where you're examining a <i>TextMatch</i>, the <code>bounds</code> and <code>baseline</code> properties will only apply to the matched text, not any characters before or after it on the line.</p>
+      <hr>
+
+    </div>
+
+    <h2>Geometry Properties <span class="grey">(read-only)</span></h2>
+    <div class="row">
+      <pre class="manual">
+fmt.<span class="red">layout</span> <span class="grey"># a Region with the maximal size before word-wrapping breaks the line</span>
+fmt.<span class="red">bounds</span> <span class="grey"># the Region of the line occupied by characters</span>
+fmt.<span class="red">baseline</span> <span class="grey"># the origin Point of the first character in the line</span>
+</pre>
+  </div>
+
+    <h2>Text Properties <span class="grey">(read-only)</span></h2>
+    <div class="row">
+      <pre class="manual">
+fmt.<span class="red">span</span> <span class="grey"># a tuple with the start and end indices for characters in the fragment</span>
+fmt.<span class="red">text</span> <span class="grey"># a string representation of the line's characters</span>
+fmt.<span class="red">frame</span> <span class="grey"># the TextFrame object in which the line is contained</span>
+</pre>
+  </div>
+
+  <h2>Example</h2>
+
+  <div class="row">
+    <div class="example">
+      <span><img height="150" src="../etc/ref/line-fragment.png" width="270"/></span>
+<pre>
+font('avenir', 32)
+t = text(20,60, 230, str='Blixa Bargeld, poet laureate')
+
+nofill()
+for slug in t.lines:
+    rect(slug.layout, stroke=.9)
+    rect(slug.bounds, stroke=.6)
+    arc(slug.baseline, 4, fill='red')
+</pre>
+    </div>
+  </div>
+
+</body></html>

@@ -19,7 +19,7 @@
       </div>
       <div class="def-box">
         <pre>text(x, y, width=None, height=None, xml="", **options)</pre>
-        <p>If an xml string is passed as a keyword argument, its tags will be mapped to font definitions in the canvas's Stylesheet</p>
+        <p>If an xml string is passed as a keyword argument, its tags will be accessible through the select() method and the tag names will be mapped to font definitions in the <a href="#stylesheet()">stylesheet()</a></p>
       </div>
       <div class="def-box">
         <pre>text(x, y, width=None, height=None, src="&lt;path or url&gt;", **options)</pre>
@@ -61,20 +61,23 @@
     <h2>Inline Style Markup</h2>
 
     <div class="row">
-      <p>By default, <i>text()</i> will render the entire <code>txt</code> string in a single style (based on the canvas's current <a href="#font()">font()</a>, <a href="#align()">align()</a>, and <a href="#fill()">fill()</a> state). You can selectively style portions of the string if you format it as XML and use the <a href="#stylesheet()">stylesheet()</a> command to define styles for the tags you use in the markup. Stylesheet definitions behave similarly to CSS declarations in that more deeply nested styles will override attributes of less deeply nested ones.
-      </p><p>When drawing an XML string, <i>text()</i> will ignore any tags that don't correspond to a definition in the <i>stylesheet()</i>. The string you pass must be valid XML, in particular you must <a href="http://en.wikipedia.org/wiki/XML#Escaping">escape</a> the control characters: <code class="s">&amp;</code>, <code class="s">&lt;</code>, <code class="s">&gt;</code>, <code class="s">'</code>, and <code class="s">"</code>.
+      <p>By default, <i>text()</i> will render the entire <code>str</code> argument in a single style (based on the canvas's current <a href="#font()">font()</a>, <a href="#align()">align()</a>, and <a href="#fill()">fill()</a> state). You can selectively style portions of the string if you format it as XML and use the <a href="#stylesheet()">stylesheet()</a> command to define styles for the tags you use in the markup. Stylesheet definitions behave similarly to CSS declarations in that more deeply nested styles will override attributes of less deeply nested ones.
       </p>
 
       <hr>
-      <p class="double-dagger">Note that for PlotDevice to recognize your string as XML it <strong>must</strong> begin and end with a <a href="http://en.wikipedia.org/wiki/Root_element">"root"</a> tag of your choosing. The root tag <strong>may</strong> correspond to a style, but it needn't. If the string isn't entirely enclosed in a root element, no parsing will occur and the text will be drawn verbatim:
+      <p class="double-dagger">Note that for PlotDevice to recognize your string as XML it <strong>must</strong> be passed as the <code>xml</code> keyword argument – passing it as the first positional argument will display the raw markup verbatim.
       </p>
-
-      <pre>stylesheet("em", italic=True)
-text("&lt;xyz&gt;&lt;em&gt;slanted&lt;/em&gt; &amp;amp; enchanted&lt;/xyz&gt;") # XML: root tag w/o style
-text("&lt;em&gt;slanted &amp;amp; enchanted&lt;/em&gt;") # XML: root tag w/ associated style
-text("&lt;em&gt;slanted&lt;/em&gt; &amp;amp; enchanted") # Not XML: lacks a root element
-</pre>
       <hr>
+
+      <p>When drawing an XML string, <i>text()</i> will ignore any tags that don't correspond to a definition in the <i>stylesheet()</i> (though such unstyled tags can still be accessed with the <i>Text</i> object's <i>select()</i> method). The string you pass must be valid XML, in particular you must <a href="http://en.wikipedia.org/wiki/XML#Escaping">escape</a> the control characters: <code class="s">&amp;</code>, <code class="s">&lt;</code>, <code class="s">&gt;</code>, <code class="s">'</code>, and <code class="s">"</code>.
+      </p>
+    </div>
+
+    <h2>Reading Text from Files and URLs</h2>
+
+    <div class="row">
+      <p>If you pass a <code>src</code> keyword argument to <i>text()</i>, PlotDevice will treat it as either a file path or (if it begins with <code class="s">"http://"</code> or <code class="s">"https://"</code>) a URL to be fetched. If the file name ends with <code class="s">".xml"</code>, the contents will be parsed for inline styling; otherwise the text read from the file will be displayed without further processing.</p>
+
     </div>
 
     <h2>Returns</h2>

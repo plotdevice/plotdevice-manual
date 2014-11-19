@@ -9,7 +9,7 @@
     <h2>Syntax</h2>
 
     <div class="row">
-<pre>Font(psname, size=None, **features)
+      <pre class="manual"><span class="nf">Font</span>(family, weight, size, italic=<span class="bp">False</span>, **options) </pre>
 </pre>
     </div>
 
@@ -26,17 +26,44 @@
       <p><i>Font</i> objects support the Python <code>with</code> statement and will set the canvas's global font, font-size, leading, etc. for the duration of an indented block of code. At the end of the block, the canvas's font-state will be restored to its prior value.
     </p></div>
 
-    <h2>Class Method</h2>
-    <div class="row">
-      <div class="def-box"><pre class="manual"><span class="red">Font.select</span></pre>
-        <p>blah blah blah</p>
+    <h2>Font Metric Properties</h2>
+    <div class="defs-row">
+      <div class="def-box"><pre class="manual">fnt.<span class="red">ascender</span></pre>
+        <p>the distance (in points) from the baseline to the tallest ascender in the font</p>
       </div>
-      
+      <div class="def-box"><pre class="manual">fnt.<span class="red">descender</span></pre>
+        <p>the distance from the baseline to the bottom of the lowest descender in the font</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">xheight</span></pre>
+        <p>the distance from the baseline to the tops of lower-case letters</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">capheight</span></pre>
+        <p>the distance from the baseline to the tops of upper-case letters</p>
+      </div>
     </div>
 
-    <h2>Properties <span style="font-weight:normal; color:#999;">(Font-specific)</span></h2>
+    <h2>Line Layout Properties</h2>
+    <div class="defs-row">
+      <div class="def-box"><pre class="manual">fnt.<span class="red">size</span></pre>
+        <p>the font's point size (a.k.a. "1 em") as a floating point number</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">leading</span></pre>
+        <p>the distance from baseline to baseline (expressed in multiples of an em)</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">tracking</span></pre>
+        <p>the amount of extra space to insert between characters (in thousandths of an em)</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">hyphenate</span></pre>
+        <p>a number between 0 and 1 dictating how eagerly hyphens should be inserted to break lines</p>
+      </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">align</span></pre>
+        <p>the text alignment (either <code class="kw">LEFT</code>, <code class="kw">RIGHT</code>, <code class="kw">CENTER</code>, or <code class="kw">JUSTIFY</code>)</p>
+      </div>
+    </div>
 
-    <div class="row">
+    <h2>Typeface Properties</h2>
+
+    <div class="defs-row">
       <div class="def-box"><pre class="manual">fnt.<span class="red">family</span></pre>
         <p>name of the font's family (e.g., "Avenir Next" or "Adobe Jenson Pro")</p>
       </div>
@@ -49,20 +76,20 @@
       <div class="def-box"><pre class="manual">fnt.<span class="red">variant</span></pre>
         <p>the "non-standard" portion of the font's name (if it eschews the more typical weight, width, and italicization naming scheme)</p>
       </div>
-      <div class="def-box"><pre class="manual">fnt.<span class="red">size</span></pre>
-        <p>the font's "point size" as a floating point number</p>
-      </div>
       <div class="def-box"><pre class="manual">fnt.<span class="red">italic</span></pre>
         <p>a boolean flag indicating italicization or obliqueness</p>
       </div>
       <div class="def-box"><pre class="manual">fnt.<span class="red">face</span></pre>
         <p>the "PostScript name" which uniquely identifies the font</p>
       </div>
+      <div class="def-box"><pre class="manual">fnt.<span class="red">features</span></pre>
+        <p>a dictionary of OpenType "features" that have been enabled for the font</p>
+      </div>
     </div>
 
-    <h2>Properties <span style="font-weight:normal; color:#999;">(Family-specific)</span></h2>
+    <h2>Family Properties</span></h2>
 
-    <div class="row">
+    <div class="defs-row">
       <div class="def-box"><pre class="manual">fnt.<span class="red">weights</span></pre>
         <p>a list of all the valid weight names in the given font's family</p>
       </div>

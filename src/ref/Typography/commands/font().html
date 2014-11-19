@@ -16,7 +16,7 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Sets the font used by <a href="#text()">text()</a> (or modifies selected attributes of the current font). The <code>family</code> and <code>weight</code> arguments are strings cooresponding to the name of a font family installed on the system and a weight name. If the family lacks the specified weight, the closest match will be used instead. If included, the <code>size</code> argument should be a number representing the desired point size. All three positional arguments are optional since unspecified attributes will use the current font as a basis for selecting a new one.
+      <p>Sets the font used by <a href="#text()">text()</a> (or modifies selected attributes of the current font). The <code>family</code> and <code>weight</code> arguments are strings corresponding to the name of a font family installed on the system and a weight name. If the family lacks the specified weight, the closest match will be used instead. If included, the <code>size</code> argument should be a number representing the desired point size. All three positional arguments are optional since unspecified attributes will use the current font as a basis for selecting a new one.
       </p><p>You can retrieve a list of valid <code>family</code> names on your system using the <a href="Misc.html#fonts()">fonts()</a> command. To determine which weights &amp; styles are provided by a given family, either create a <a href="#Family">Family</a> object and inspect its properties, or take a look at the <code>weights</code>, <code>widths</code>, and <code>variants</code> properties of the current <a href="#Font">Font</a> object (returned by calling <i>font()</i> with no arguments).
     </p></div>
 
@@ -59,7 +59,7 @@ font(face='Avenir-HeavyOblique')
     <div class="row">
       <p>If the selected font is an OpenType file with support for advanced typographical features, you may pass any of the following optional arguments to enable or disable them. Note that these settings will only affect the typesetting if the font was designed to support OpenType or ‘AAT’ features.</p>
       <p>Argument values may be either a boolean or the intergers <code>0</code> and <code>1</code>. Certain features also accept other integer values or the <span class="kw"><code>all</code></span> keyword as noted below.</p>
-  
+
 
       <div class="def-box">
         <pre class="red shell">lig</pre>
@@ -123,7 +123,7 @@ font(face='Avenir-HeavyOblique')
         <table class="argvals">
           <tr><td><code class="kw">False</code> / <code>0</code></td><td>Disable automatic fractions</td></tr>
           <tr><td><code class="kw">True</code> / <code>1</code></td><td>Enable fractions</td></tr>
-        </table>      
+        </table>
       </div>
 
       <div class="def-box">
@@ -134,58 +134,9 @@ font(face='Avenir-HeavyOblique')
           <tr><td><code class="kw">1-20</code></td><td>Enable the n'th set (and disable all others)</td></tr>
           <tr><td><code class="kw">[1,5,…]</code></td><td>Enable multiple stylistic sets</td></tr>
           <tr><td><code class="kw">all</code></td><td>Enable all sets supported by the font</td></tr>
-        </table>      
+        </table>
       </div>
 
-      <!-- 
-      <p><code class="box"><span class="red">lig</span></code>
-      </p><p>Enables or disables standard and "rare" ligatures. Defaults to <code class="kw">True</code>.</p>
-      <table class="argvals">
-        <tr><td><code class="kw">False</code> / <code>0</code></td><td>disable standard ligatures</td></tr>
-        <tr><td><code class="kw">True</code> / <code>1</code></td><td>enable standard ligatures</td></tr>
-        <tr><td><code class="kw">all</code></td><td>enable both standard and "rare" ligatures (if any are defined)</td></tr>
-      </table>
-
-      </p><p><code class="box"><span class="red">sc</span></code></p>
-      <p>Control how upper and lower case characters in the string are mapped to "small cap" styled glyphs. Defaults to <code class="kw">False</code>.</p>
-      <table class="argvals">
-        <tr><td><code class="kw">False</code> / <code>0</code></td><td>upper- &amp; lower-case characters rendered normally</td></tr>
-        <tr><td><code class="kw">True</code> / <code>1</code></td><td>lower-case characters will be drawn as small caps</td></tr>
-        <tr><td><code class="kw">all</code></td><td>all characters will be rendered as small caps</td></tr>
-        <tr><td><code>-1</code></td><td>upper-case characters will be rendered as small caps</td></tr>
-      </table>
-
-      <p><code class="box"><span class="red">osf</span></code>
-      </p><p>Selects whether to use "lining" or "old style figures" when drawing numbers. Defaults to whatever is defined in the font (typically lining numerals).</p>
-      <table class="argvals">
-        <tr><td><code class="kw">False</code> / <code>0</code></td><td>use lining (or "upper case") numerals</td></tr>
-        <tr><td><code class="kw">True</code> / <code>1</code></td><td>use old style (or "lower case") numerals</td></tr>
-      </table>
-
-      <p><code class="box"><span class="red">tab</span></code></p>
-      </p><p>Set the horizontal spacing used by runs of number characters. Fonts will typically default to proportional spacing, meaning the columns in sequential lines won't line up. Enabling "tabular" spacing will add extra space around narrow digits so everything lines up nicely.</p>
-      <table class="argvals">
-        <tr><td><code class="kw">False</code> / <code>0</code></td><td>use proportional spacing for numerals</td></tr>
-        <tr><td><code class="kw">True</code> / <code>1</code></td><td>use tabular (or "monospaced") numerals</td></tr>
-      </table>      
-      <p><code class="box"><span class="red">vpos</span></code>
-      </p><p>Set the vertical position of numbers (and possibly also letter characters). Many fonts allow you to draw "superscript" characters and a smaller number also support "subscripts".</p>
-      <table class="argvals">
-        <tr><td><code>1</code></td><td>draw superscripts</td></tr>
-        <tr><td><code>0</code></code></td><td>draw normal (vertically centered) characters</td></tr>
-        <tr><td><code>-1</code></td><td>draw subscripts (if supported)</td></tr>
-        <tr><td><code class="kw">ord</code></td><td>draw ordinals (if supported)</td></tr>
-      </table>
-
-      <p><code class="box"><span class="red">frac</span></code>
-      </p><p>Enable or disable "automatic fractions". If the font supports this, strings such as <span class="str"><code>"1/2"</code></span> or <span class="str"><code>"3/4"</code></span> will be converted to a single glyph with a diagonal solidus drawn between the numerator and denominator.
-      </p>
-      <table class="argvals">
-        <tr><td><code class="kw">False</code> / <code>0</code></td><td>Disable automatic fractions</td></tr>
-        <tr><td><code class="kw">True</code> / <code>1</code></td><td>Enable fractions</td></tr>
-      </table>      
-    </div>
-    -->
 
     <h2>Context Manager</h2>
 
