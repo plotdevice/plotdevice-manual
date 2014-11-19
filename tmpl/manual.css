@@ -501,6 +501,9 @@ footer ul.chapter li.prev{float:left; }
 
 
 
+.article .defs-row{
+  margin-bottom:32px;
+}
 
 .article .def-box{
   background:#f5f5f3;
