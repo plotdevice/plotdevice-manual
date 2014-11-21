@@ -41,13 +41,13 @@ fmt.<span class="red">frame</span> <span class="grey"># the TextFrame object in 
     <div class="example">
       <span><img height="150" src="../etc/ref/line-fragment.png" width="270"/></span>
 <pre>
-font('avenir', 32)
+font('avenir', 32, leading=1.6)
 t = text(20,60, 230, str='Blixa Bargeld, poet laureate')
 
 nofill()
 for slug in t.lines:
-    rect(slug.layout, stroke=.9)
-    rect(slug.bounds, stroke=.6)
+    rect(slug.bounds, stroke=.9)
+    rect(slug.layout, stroke=.6)
     arc(slug.baseline, 4, fill='red')
 </pre>
     </div>
