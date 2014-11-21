@@ -75,6 +75,7 @@ txt<span class="red">[<span class="s">start</span>:<span class="s">stop</span>]<
     <div class="row">
       <pre class="manual">
 txt.<span class="red">bounds</span> <span class="c"># the rectangle in which text is laid out</span>
+txt.<span class="red">layout</span> <span class="c"># rectangle within the bounds that contains actual text</span>
 txt.<span class="red">metrics</span> <span class="c"># the size of the text within the bounds rectangle</span>
 txt.<span class="red">frames</span> <span class="c"># a list of one or more TextFrames defining text-column geometry</span>
 txt.<span class="red">lines</span> <span class="c"># a list of <a href="#LineFragment">LineFragment</a> objects describing each typeset line</span>
@@ -100,10 +101,11 @@ txt.<span class="red">append</span>(xml=<span class="s">""</span>, **options)
       </div>
 
       <div class="def-box">
-        <pre class="manual">txt.<span class="red">flow</span>(layout=<span class="bp">None</span>)</pre>
+        <pre class="manual">txt.<span class="red">flow</span>(columns=<span class="kw">all</span>, layout=<span class="bp">None</span>)</pre>
         <p>If the <code>Text</code> object has both a fixed <code>width</code> and <code>height</code>, it's possible that the string won't fit entirely inside its bounds. Iterating over the return value of flow() will step through as many <a href="#TextFrame">TextFrame</a> objects as are necessary to fully present the text.</p>
 
        <p>Within your loop you can set the <code>x</code>, <code>y</code>, <code>width</code>, and <code>height</code> of each frame in turn (starting from the first "overflow" frame). The <code>x</code> and <code>y</code> coordinates are relative to the Text object's position, so setting them to zero moves you back to the original origin.</p>
+
 
         <p>Each frame uses the dimensions of the prior frame as its default, so it's totally reasonable to e.g., set positions using relative values:</p>
        <pre>
@@ -111,6 +113,8 @@ txt.<span class="red">append</span>(xml=<span class="s">""</span>, **options)
   for frame in txt.flow():
       frame.x += frame.width + 50
 </pre>
+
+       <p>By default the flow loop will continue until the entire string has been laid-out. But if you know ahead of time that you only want a specific number of columns, pass an integer as the <code>column</code> arg to set the total number of desired frames (including the initial frame defined by the Text object).</p>
         <p>The optional <code>layout</code> argument allows you to pass a reference to a function that accepts a single TextFrame. The function will be called once for each frame in the sequence:</p>
        <pre>
   def rightward(frame):
