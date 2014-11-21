@@ -26,7 +26,7 @@ ref['Compositing'] = {
     'types': ['Shadow', ],
     'compat': ['noshadow()', 'beginclip()', 'endclip()', ] }
 ref['Typography'] = {
-    'commands': ['text()', 'textpath()', 'paginate()', 'stylesheet()', 'font()'],
+    'commands': [ 'font()', 'text()', 'textpath()', 'paginate()', 'stylesheet()',],
     'types': ['Text', 'TextFrame', 'TextMatch', 'LineFragment', ('Font', 'Family'), ],
     'compat': ['align()', 'fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textwidth()'] }
 # grouped into Misc.html
