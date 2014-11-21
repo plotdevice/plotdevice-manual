@@ -34,8 +34,10 @@ txt.<span class="red">size</span> <span class="c"># the frame's width/height as 
 
     <h2>Properties <span class="grey">(read-only)</span></h2>
     <pre class="manual">
-txt.<span class="red">idx</span> <span class="c"># the frame's order within the flow sequence</span>
-txt.<span class="red">text</span> <span class="c"># the portion of the Text's string displayed in the frame</span>
+txt.<span class="red">idx</span> <span class="c"># the frame's order within the flow sequence (as an integer)</span>
+txt.<span class="red">text</span> <span class="c"># the string (or substring) displayed in the frame</span>
+txt.<span class="red">bounds</span> <span class="c"># a Region with the frame's screen position and size </span>
+txt.<span class="red">layout</span> <span class="c"># the Region within the bounds that is actually filled with text </span>
 txt.<span class="red">metrics</span> <span class="c"># the <a href="Misc.html#Size">Size</a> of the text being displayed in the frame</span>
 txt.<span class="red">lines</span> <span class="c">a list of LineFragments describing each typeset line within the frame</span>
 </pre>
