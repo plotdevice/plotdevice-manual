@@ -25,16 +25,16 @@ stylesheet("name", None) # undefine a style
     <h2>Defining Styles</h2>
 
     <div class="row">
-      <p>The first argument is a string defining the new style's <code>name</code>. All subsequent arguments will be interpreted identically to the <a href="#font()">font()</a> command's syntax. You can use both positional and keyword arguments. For example the following are equivalent:
-      </p><pre>stylesheet('title', 'gill sans', 'bold', 22, italic=True)
-stylesheet('title', size=22, family='gill sans', italic=True, weight='bold')
-</pre>
+      <p>The first argument is a string defining the new style's <code>name</code>. All subsequent arguments will be interpreted identically to the <a href="#font()">font()</a> command's syntax. You can use both positional and keyword arguments. For example the following are equivalent:</p>
+      <pre>stylesheet('title', 'gill sans', 'bold', 22, italic=True)</pre>
+      <pre>stylesheet('title', size=22, family='gill sans', italic=True, weight='bold')</pre>
 
-      <p>You can then use this style when calling the <i>text()</i> command:
-      </p><pre>text("&lt;title&gt;Ignite the seven cannons!&lt;/title&gt;")
-</pre>
+      <p>You can then use this style when calling the <i>text()</i> command, either by using the style name as a tag within some xml input, or by passing a <code>style</code> keyword argument to be applied to an entire string:</p>
+      <pre>text(40,40, xml="&lt;title&gt;Ignite the seven cannons!&lt;/title&gt;")</pre>
+      <pre>text(40,40, str="Ignite the seven cannons!", style="title")</pre>
 
-      <p>Styles "cascade" in the same way as CSS definitons. Rather than fully specifying your styles, you can have each tag modify only a subset of attributes. Omitted attributes will be "inherited" from other enclosing styles or, ultimately, the canvas's current <i>font()</i> setting.
+
+      <p>Styles "cascade" in the same way as CSS definitons. Rather than fully specifying your styles, you can have each tag modify only a subset of attributes. Omitted attributes will be "inherited" from other enclosing style tags or, ultimately, the canvas's current <i>font()</i> setting.
     </p></div>
 
     <h2>Accessing Styles</h2>
@@ -77,13 +77,14 @@ font(**rule)
     <div class="row">
       <div class="example">
         <span><img height="125" src="../etc/ref/stylesheet-cascade.png" width="125"/></span>
-<pre>stylesheet("it", italic=True)
+<pre>
+markup = "&lt;it&gt;Bip &lt;bf&gt;Blip&lt;/bf&gt;&lt;/it&gt;"
+stylesheet("it", italic=True)
 stylesheet("bf", weight='black')
-xml = "&lt;it&gt;Bip &lt;bf&gt;Blip&lt;/bf&gt;&lt;/it&gt;"
 with font("Georgia", 22):
-    text(xml, 20,40)
+    text(20,40, xml=markup)
 with font("Avenir", 18), fill('red'):
-    text(xml, 20,80)
+    text(20,80, xml=markup)
 </pre>
       </div>
     </div>
