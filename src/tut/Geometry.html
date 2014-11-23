@@ -33,7 +33,12 @@ print pt * 2        # Point(20, 40)
 print pt / 2        # Point(5, 10)
 print pt + 5        # Point(15, 25)
 print pt + (40, 30) # Point(50, 50)
-pt + Size(200,200)  # Point(210, 220)
+</pre>
+<pre>
+pt = Point(10, 20)
+sz = Size(200,200)
+print pt + sz       # Point(210, 220)
+print pt + sz/2     # Point(110, 120)
 </pre>
 
 
