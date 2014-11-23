@@ -44,13 +44,74 @@ r.<span class="red">w</span>/<span class="red">h</span>/<span class="red">t</spa
 
     <h2>Methods</h2>
     <div class="row">
-      <pre class="manual">
-r.<span class="red">union</span>(region) <span class="c"># return the union of the Region object and another</span>
-r.<span class="red">intersect</span>(region) <span class="c"># return the overlapping portion of the Region and another</span>
-r.<span class="red">offset</span>(point) <span class="c"># return a copy of the Region with its origin shifted by a point</span>
-r.<span class="red">inset</span>(dx, dy) <span class="c"># return a shrunken or enlarged copy of the Region</span>
+
+        <div class="def-box">
+          <pre class="manual">r.<span class="red">intersect</span>(region)</pre>
+          <p>return a new Region describing the overlapping portions of the existing Region object and a second Region</p>
+        </div>
+        <div class="example">
+          <span><img height="125" src="../etc/ref/region-intersect.png" width="125"/></span>
+<pre>
+r1 = Region(20,20, 40,30)
+r2 = Region(40,40, 30,40)
+overlap = r1.intersect(r2)
+with nofill(), stroke(.7):
+    rect(r1)
+    rect(r2)
+    rect(overlap, stroke='red', dash=3)
 </pre>
+        </div>
+
+        <div class="def-box">
+          <pre class="manual">r.<span class="red">union</span>(region)</pre>
+          <p>return a new Region that contains the combined bounds of the existing Region object and a second Region</p>
+        </div>
+        <div class="example">
+          <span><img height="125" src="../etc/ref/region-union.png" width="125"/></span>
+<pre>
+r1 = Region(20,20, 40,30)
+r2 = Region(40,40, 30,40)
+union = r1.union(r2)
+with nofill(), stroke(.7):
+    rect(r1)
+    rect(r2)
+    rect(union, stroke='red', dash=3)
+</pre>
+        </div>
+
+        <div class="def-box">
+          <pre class="manual">r.<span class="red">offset</span>(point)</pre>
+          <p>return a copy of the Region with its origin shifted by a Point</p>
+        </div>
+        <div class="example">
+          <span><img height="125" src="../etc/ref/region-offset.png" width="125"/></span>
+<pre>
+r = Region(20,20, 40,30)
+shifted = r.offset(20,15)
+nofill()
+rect(r, stroke=.7)
+rect(shifted, stroke='red', dash=3)
+</pre>
+        </div>
+
+        <div class="def-box">
+          <pre class="manual">r.<span class="red">inset</span>(dx, dy)</pre>
+          <p>return a copy of the Region whose horizontal dimensions have been shrunk by <code>dx</code> and vertical by <code>dy</code>. If <code>dy</code> is omitted, shrink both dimensions by <code>dx</code>. Passing a negative value for <code>dx</code> or <code>dy</code> will enlarge the dimension rather than shrinking it.</p>
+        </div>
     </div>
+        <div class="example">
+          <span><img height="125" src="../etc/ref/region-inset.png" width="125"/></span>
+<pre>
+r = Region(30,40, 60,40)
+shrunk = r.inset(20,5)
+grown = r.inset(-20)
+nofill()
+rect(r, stroke=.7)
+rect(shrunk, stroke='orange', dash=3)
+rect(grown, stroke='red', dash=3)
+</pre>
+        </div>
+
 
     <h2>Tutorial</h2>
     <p><a href="../tut/Geometry.html">Geometry</a></p>
