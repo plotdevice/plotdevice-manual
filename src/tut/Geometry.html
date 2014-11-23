@@ -21,114 +21,28 @@
       <pre>pt = Point(13,37)
 print pt.y
 >>> 37</pre>
-      <p>You can also unpack it back into a pair of values through simple assignment:</p>
+      <p>You can unpack it back into a pair of values through simple assignment:</p>
       <pre>x, y = pt
 print x, y
 >>> 13 37</pre>
 
-
-
-  <h2>Point methods</h2>
-      <p>Once you have a <i>Point</i>, you can "ask" it all sorts of questions about how it relates to other points with a few useful (and speed-optimized) math methods.</p>
-
-
-
-
-
-        <div class="def-box">
-<pre class="manual">pt.<span class="red">angle</span>(point)
+      <p><i>Point</i> objects support basic arithmetic operators (as does the similar <a href="../ref/Misc.html#Size">Size</a> object):</p>
+      <pre>
+pt = Point(10, 20)
+print pt * 2        # Point(20, 40)
+print pt / 2        # Point(5, 10)
+print pt + 5        # Point(15, 25)
+print pt + (40, 30) # Point(50, 50)
+pt + Size(200,200)  # Point(210, 220)
 </pre>
 
-          <p>Returns the angle from the object to a target Point or pair of (x,y) coordinates. By default, the angle will be represented in degrees, but this can be altered by setting an alternate unit with the <a href="../ref/Canvas.html#geometry()">geometry()</a> command.
-        </p></div>
-
-        <div class="example">
-          <span><img height="125" src="../etc/ref/point-angle.png" width="125"/></span>
-<pre>src = Point(25,75)
-dst = Point(75,25)
-theta = src.angle(dst)
-arc(src.x, src.y, 4, fill='red')
-arc(dst.x, dst.y, 4, fill='orange')
-with pen(dash=5), stroke(.5), nofill():
-    arc(src.x, src.y, 32, range=theta)
-print theta
->>> -45.0
-</pre>
-        </div>
-
-        <div class="def-box">
-<pre class="manual">pt.<span class="red">distance</span>(point)
-</pre>
-
-          <p>Returns the linear distance between the object and a second Point or pair of (x,y) coordinates.
-        </p></div>
 
 
-        <div class="example">
-          <span><img height="125" src="../etc/ref/point-distance.png" width="125"/></span>
-<pre>src = Point(25,25)
-dst = Point(100,100)
-length = src.distance(dst)
-arc(src.x, src.y, 4, fill='red')
-arc(dst.x, dst.y, 4, fill='orange')
-with pen(dash=5), stroke(.8):
-    line(src.x, src.y, dst.x, dst.y)
-print length
->>> 106.066017178
-</pre>
-        </div>
+      <h2>Drawing with computed points</h2>
 
+      <p>Once you have a <i>Point</i>, you can "ask" it all sorts of questions about how it relates to other points with a few useful (and speed-optimized) <a href="../ref/Misc.html#Point-methods">math methods</a>. You can pull off some neat graphical tricks by combining the <i>Point</i> methods in your scripts.</p>
 
-        <div class="def-box">
-<pre class="manual">pt.<span class="red">reflect</span>(point, d=<span class="mi">1.0</span>, a=<span class="mi">180</span>)
-</pre>
-
-          <p>Uses the object as an ‘origin’ and returns a Point containing the reflection of a target Point or pair of (x,y) coordinates. The optional <code>d</code> parameter is a magnification factor relative to the distance between the mirror and the target point.
-          </p><p>The <code>a</code> parameter controls the angle of reflection. When set to 180° (the default), the reflected point will be directly opposite the target, but other values will allow you to ‘ricochet’ the target point off of the mirror instead.
-        </p></div>
-
-
-        <div class="example">
-          <span><img height="125" src="../etc/ref/point-reflect.png" width="125"/></span>
-<pre>
-origin = Point(50,50)
-src = Point(25,40)
-dst = origin.reflect(src, d=2.0)
-arc(src.x, src.y, 4, fill='red')
-arc(dst.x, dst.y, 4, fill='orange')
-arc(origin.x, origin.y, 4, fill=.7)
-</pre>
-        </div>
-
-
-        <div class="def-box">
-<pre class="manual">pt.<span class="red">coordinates</span>(distance, angle)
-</pre>
-
-          <p>Uses the object as the ‘origin’ of a polar coordinate system and returns a Point at a given distance and orientation relative to the origin. The <code>distance</code> parameter uses the current canvas <a href="../ref/Canvas.html#size()">size()</a> unit and the <code>angle</code> should be expressed in the current <a href="../ref/Canvas.html#geometry()">geometry()</a> unit.
-        </p></div>
-
-        <div class="example">
-          <span><img height="125" src="../etc/ref/point-coordinates.png" width="125"/></span>
-<pre>
-origin = Point(50,50)
-dst = origin.coordinates(50, 45)
-arc(origin.x, origin.y, 4, fill=.7)
-arc(dst.x, dst.y, 4, fill='orange')
-with pen(dash=3), stroke(.5), nofill():
-    arc(origin.x, origin.y, 25, range=45)
-</pre>
-        </div>
-
-
-      <hr>
-      <p class="double-dagger">If you'd rather work with raw numbers rather than Point objects, you can also import the numerical versions of these methods for use in your scripts:</p>
-      <pre>from plotdevice.lib.geometry import angle, distance, coordinates, reflect</pre>
-      <hr>
-
-
-        <h2>Drawing with computed points</h2>
-        <p>You can pull off some neat graphical tricks by combining the <i>Point</i> methods in your scripts. For instance, finding the angle from a central origin location to a randomly positioned point:</p>
+      <p>Finding the angle from a central origin to a randomly positioned point:</p>
       <div class="example">
         <span><img src="../etc/tut/math-angle.png" width="194" height="194"/></span>
         <pre>
@@ -136,9 +50,9 @@ r = 2.0
 origin = Point(WIDTH/2, HEIGHT/2)
 
 for i in range(5):
-    pt = Point(random(WIDTH),
-               random(HEIGHT))
-    arc(pt.x, pt.y, r)
+    pt = Point(random(WIDTH), random(HEIGHT))
+    arc(pt, r)
+
     a = origin.angle(pt)
     with transform(CORNER):
         translate(origin.x, origin.y)
@@ -154,13 +68,13 @@ for i in range(5):
         <pre>
 r = 2.0
 origin = Point(WIDTH/2, HEIGHT/2)
-oval(origin.x-r, origin.y-r, r*2, r*2)
+arc(origin, r) # a.k.a. arc(origin.x, origin.y, r)
 
 for i in range(10):
     a = 36*i
     pt = origin.coordinates(85, a)
-    arc(pt.x, pt.y, r)
-    line(origin.x, origin.y, pt.x, pt.y)
+    arc(pt, r)
+    line(origin, pt)
 </pre>
       </div>
 

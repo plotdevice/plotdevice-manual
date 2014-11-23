@@ -10,29 +10,51 @@
 
     <div class="row">
 <pre>Region(x, y, w, h)
-Region((x,y), (w,h))
+Region(Point, Size)
 </pre>
     </div>
 
     <h2>Description</h2>
 
     <div class="row">
-      A named tuple representing a rectangular box.
+      <p>An origin <i>Point</i> and a <i>Size</i> which together describe a rectangular region. <i>Region</i> objects have properties to read and modify the rectangle geometry. Methods allow you to generate new regions from combinations of old ones or by systematically shifting their values.</p>
+
+      <p>PlotDevice commands that take <code>x</code>/<code>y</code>/<code>w</code>/<code>h</code> arguments (e.g., <a href="Primitives.html#rect()">rect()</a>, <a href="Primitives.html#oval()">oval()</a>, <a href="Primitives.html#image()">image()</a>) will also accept a <i>Region</i> object in their place.</p>
     </div>
 
-    <h2>Properties</h2>
+
+    <h2>Geometry Properties</h2>
 
     <div class="row">
-      <pre class="manual">r.<span class="red">x</span>
-r.<span class="red">y</span>
-r.<span class="red">w</span>
-r.<span class="red">h</span>
-r.<span class="red">origin</span> <span class="grey"># Point(r.x, r.y)</span>
-r.<span class="red">size</span>   <span class="grey"># Size(r.w, r.h)</span>
-r.<span class="red">width</span>  <span class="grey"># alias for r.w</span>
-r.<span class="red">height</span> <span class="grey"># alias for r.h</span>
+      <pre class="manual">
+r.<span class="red">x</span>, r.<span class="red">y</span> <span class="c"># position</span>
+r.<span class="red">w</span>, r.<span class="red">h</span> <span class="c"># dimensions</span>
+r.<span class="red">origin</span> <span class="c"># Point(r.x, r.y)</span>
+r.<span class="red">size</span>   <span class="c"># Size(r.w, r.h)</span>
 </pre>
     </div>
+
+    <h2>Convenience Properties</h2>
+    <div class="row">
+      <pre class="manual">
+r.<span class="red">top</span>, r.<span class="red">bottom</span>, r.<span class="red">left</span>, r.<span class="red">right</span> <span class="c"># edge positions</span>
+r.<span class="red">w</span>/<span class="red">h</span>/<span class="red">t</span>/<span class="red">b</span>/<span class="red">l</span>/<span class="red">r</span> <span class="c"># shorthand aliases</span>
+</pre>
+    </div>
+
+    <h2>Methods</h2>
+    <div class="row">
+      <pre class="manual">
+r.<span class="red">union</span>(region) <span class="c"># return the union of the Region object and another</span>
+r.<span class="red">intersect</span>(region) <span class="c"># return the overlapping portion of the Region and another</span>
+r.<span class="red">offset</span>(point) <span class="c"># return a copy of the Region with its origin shifted by a point</span>
+r.<span class="red">inset</span>(dx, dy) <span class="c"># return a shrunken or enlarged copy of the Region</span>
+</pre>
+    </div>
+
+    <h2>Tutorial</h2>
+    <p><a href="../tut/Geometry.html">Geometry</a></p>
+
   </div>
 
 </body></html>
