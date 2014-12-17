@@ -70,7 +70,7 @@ code.box { background:#edede6; color:#665; border: 1px solid #d3d3ba;}
 .kw{   color: #366789; font-weight:bold;}
 .red{  color: #bb4200; font-weight:bold;}
 .str{  color: #366789; }
-.s{    color: #555;}
+.off, .s{    color: #555;}
 .grey{ color: #8a8a69;}
 
 pre .s{ font-weight:bold;}

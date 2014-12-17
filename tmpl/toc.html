@@ -1,7 +1,7 @@
 {% from 'nav.html' import nav %}
 <!DOCTYPE html>
 
-{% set metamanagers = ['export()', 'bezier()', 'plotstyle()', 'transform()', 'layer()', 'font()', 'color()',  ]%}
+{% set metamanagers = ['export()', 'bezier()', 'plotstyle()', 'transform()', 'layer()', 'font()', 'layout()', 'color()',  ]%}
 {% set managers =  ['stroke()', 'fill()', 'pen()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', 'alpha()', 'blend()', 'shadow()', 'plot()', ('plot()', 'clear()'), ('clip()', 'mask()'), ]%}
 
 {%- macro sectionpage(src) -%}
@@ -11,7 +11,8 @@ ref/{{dst}}.html
 
 
 {%- macro reference(sect, link) -%}
-{% set ctxclass=' class="cm"' if link in managers else ' class="cmm"' if link in metamanagers else '' %}
+{% set ctxclass=' class="cm"' if link in managers+metamanagers else '' %}
+{# {% set ctxclass=' class="cm"' if link in managers else ' class="cmm"' if link in metamanagers else '' %} #}
 {% if isinstance(link, tuple) %}
 <li{{ctxclass}}>{% for lnk in link %} <a href="ref/{{sect}}.html#{{lnk}}">{{lnk}}</a> {% endfor%} </li>
 {% elif not link %}
@@ -43,7 +44,6 @@ ref/{{dst}}.html
       <div class="commands">
         <p>Commands marked with a<br/>dot support the python <a title="a.k.a. ‘context managers’" href="http://python.org/dev/peps/pep-0343/"><code>with</code></a>
            statement to <a href="tut/Graphics_State.html#with">limit their scope</a>.</p>
-        <p>Commands with open dots will also reset any changes made within the block. </p>
       </div>
       <div class="types">
         <p>To create graphics objects without adding them to the canvas, instantiate them from their respective classes.</p>
