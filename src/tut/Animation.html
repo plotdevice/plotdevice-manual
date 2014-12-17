@@ -124,7 +124,7 @@ def stop(anim):
       paths. But keep in mind that all the lines in the path will have the same stroke color and width.
       </li><li>If you plan to use a lot of text in your animation, create cached <a href="../ref/Typography.html#textpath()">textpath()</a> versions in your <i>setup()</i> routine and
       <a href="../ref/Transform.html#translate()">translate()</a> those when drawing instead of
-      repeatedly calling <a href="../ref/Typography.html#text()">text()</a> in the <i>draw()</i> command.
+      repeatedly calling <a href="../ref/Primitives.html#text()">text()</a> in the <i>draw()</i> command.
       </li><li>Don't get too irrationally exuberant with the <i>speed()</i> command. Cranking it up is often counterproductive since PlotDevice will attempt to update the screen faster than the hardware can support. In particular, if you're not using a CRT there's basically no reason to go above 60 Hz.
       </li><li>Tune the <a href="../ref/Canvas.html#size()">size()</a> of the canvas to exactly what you
       need – a smaller canvas means less screen to refresh.<br/>

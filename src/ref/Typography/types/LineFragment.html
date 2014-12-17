@@ -21,7 +21,7 @@
     <div class="row">
       <pre class="manual">
 fmt.<span class="red">bounds</span> <span class="grey"># a Region with the full size of the line</span>
-fmt.<span class="red">layout</span> <span class="grey"># the Region within the line bounds occupied by characters</span>
+fmt.<span class="red">used</span> <span class="grey"># the Region within the line bounds occupied by characters</span>
 fmt.<span class="red">baseline</span> <span class="grey"># the origin Point of the first character in the line</span>
 </pre>
   </div>
@@ -46,8 +46,8 @@ t = text(20,60, 230, str='Blixa Bargeld, poet laureate')
 
 nofill()
 for slug in t.lines:
-    rect(slug.bounds, stroke=.9)
-    rect(slug.layout, stroke=.6)
+    rect(slug.used, stroke=.6)   # dark
+    rect(slug.bounds, stroke=.9) # faint
     arc(slug.baseline, 4, fill='red')
 </pre>
     </div>

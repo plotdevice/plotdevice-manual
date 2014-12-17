@@ -1,0 +1,76 @@
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="definition">
+    <h1>layout()</h1>
+
+    <h2>Syntax</h2>
+
+    <div class="row">
+      <pre>layout(**options)</pre>
+    </div>
+
+    <h2>Description</h2>
+
+    <div class="row">
+      <p>Sets the layout behavior used by <a href="#text()">text()</a> for multi-line blocks of type. Parameters set through <i>layout()</i> apply to entire "paragraphs" within the source text (as separated by <code class="str">"\n"</code> characters in the string being drawn). Note that as with the <a href="#font()">font()</a> command, any of these keyword arguments can be passed to the <a href="Primitives.html#text()">text()</a> command directly to override the global state. You can also include <i>layout()</i> parameters when defining a <a href="#stylesheet()">stylesheet()</a> tag, but their effect will only be seen when applied to the <em>first</em> character in a given paragraph.
+    </p></div>
+
+    <h2>Parameters</h2>
+    <div class="row">
+      <p><code class="box"><span class="red">align</span></code></p>
+      <p>Text can be aligned to the <code class="kw">LEFT</code>, <code class="kw">RIGHT</code>, or <code class="kw">CENTER</code> or spaced out to fill the entire width of the textblock via the <code class="kw">JUSTIFY</code> option. See the legacy <a href="#align()">align()</a> command for examples of each.</p>
+
+      <p><code class="box"><span class="red">indent</span></code></p>
+      <p>Controls the amount of indentation space for a paragraph. The value is a floating point number that specifies the indentation of the paragraph's first line in em-units. If the value is negative, the paragraph's first line will be flush with the margin and all <em>subsequent</em> lines in the paragraph will be indented by that measure.</p>
+
+      <p><code class="box"><span class="red">hyphenate</span></code></p>
+      <p>Controls whether line-breaking operates on the level of words or syllables. If set to <code class="kw">True</code>, the layout engine will attempt to break lines even mid-word in order to create a nicer rag. Hyphenation is especially useful when drawing text with an alignment of <code class="kw">JUSTIFY</code> since word spacing can get comically loose without it. For more fine-grained control, pass a number between 0 and 1.0 to set how hyphen-happy the typesetter should be.</p>
+
+      <p><code class="box"><span class="red">margin</span></code></p>
+      <p>Sets the internal margin within a <i>TextFrame</i>, effectively "squeezing" the width of the <i>Text</i> object by a given number of canvas units. Passing a floating point value move the left margin "inward" by that distance. Passing a list or tuple of two floats will inset the left and right margins respectively. Make sure your combined margins are smaller than your <i>Text</i>'s <code>width</code> or glyph-salad will result.</p>
+
+      <p><code class="box"><span class="red">spacing</span></code></p>
+      <p>Controls the amount of vertical space added before and after each paragraph (note that this is in addition to the current line-to-line leading). Passing a floating point value will add that many em-units of padding to the top of the paragraph. Passing a list of two floats will set the top- and bottom-padding respectively.</p>
+
+      <p><code class="box"><span class="red">leading</span></code></p>
+      <p>Controls the spacing from baseline-to-baseline in multi-line text runs. The value is a floating point number representing the distance as a multiple of the current font size. The default leading is 1.2 (120% of the font size), but you may wish to increase this when typesetting a particularly wide measure.</p>
+
+
+
+
+
+
+
+    </div>
+    <h2>Context Manager</h2>
+
+    <div class="row">
+      <p>The <i>layout()</i> command (and the <i>Font</i> object it returns) can both be used as part of a <code>with</code> statement. Changes to the layout-style will be applied at the beginning of the code block, then restored to the previous style at the end.
+    </p></div>
+
+    <h2>Returns</h2>
+
+    <div class="row">
+      a <a href="#Font">Font</a> object with the canvas's current font and layout settings
+    </div>
+
+    <h2>Example</h2>
+
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/font.png" width="125"/></span>
+<pre>fill(0.2)
+font("Helvetica", 35)
+text("hello", 10, 50)
+with font("bold", 16, italic=True):
+    text("cruel", 10, 69)
+text("world", 10, 95)
+</pre>
+      </div>
+    </div>
+  </div>
+
+</body></html>

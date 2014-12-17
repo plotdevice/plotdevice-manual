@@ -26,7 +26,7 @@
 
         <li>Transformations: <a href="../ref/Transform.html#transform()">transform()</a>, <a href="../ref/Transform.html#translate()">translate()</a>, <a href="../ref/Transform.html#rotate()">rotate()</a>, <a href="../ref/Transform.html#scale()">scale()</a>, <a href="../ref/Transform.html#skew()">skew()</a>, <a href="../ref/Transform.html#reset()">reset()</a></li>
 
-        <li>Typography: <a href="../ref/Typography.html#font()">font()</a>, <a href="../ref/Typography.html#stylesheet()">stylesheet()</a></li>
+        <li>Typography: <a href="../ref/Typography.html#font()">font()</a>, <a href="../ref/Typography.html#layout()">layout()</a>, <a href="../ref/Typography.html#stylesheet()">stylesheet()</a></li>
     </ol>
 
     <h2>Setting the state</h2>
@@ -85,8 +85,8 @@ r.reset()
     <p>The transformations are then applied only to rectangle r. Since each of the transform methods returns a reference to the primitive, you can even "chain" these calls:</p>
     <pre>r.reset().translate(100, 50).rotate(45)
 </pre>
-    <p>With the <i>text()</i> command you can also override the global font() settings using the <i>family</i>, <i>weight</i>, <i>size</i> and <i>italic</i> parameters:</p>
-<pre>text("hello", 20, 20, family="Baskerville", size=24, italic=True)
+    <p>With the <i>text()</i> command you can also override the global <a href="../ref/Typography.html#font()">font()</a> and <a href="../ref/Typography.html#layout()">layout()</a> settings by including any of the parameters supported by the respective commands (<i>family</i>, <i>weight</i>, <i>size</i>, <i>tracking</i>, <i>leading</i>, etc.):</p>
+<pre>text("hello", 200, 200, family="Baskerville", size=24, italic=True, align=CENTER)
 </pre>
 
 

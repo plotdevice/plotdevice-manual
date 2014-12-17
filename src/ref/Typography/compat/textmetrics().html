@@ -16,19 +16,19 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Returns what would be the width and height of a text block drawn with the <a href="#text()">text()</a> command, in the current <a href="#font()">font()</a>, <a href="#fontsize()">fontsize()</a> and <a href="#lineheight()">lineheight()</a>. The first parameter sets the text string to measure, the second parameter sets the width of a line of text in block.
+      <p>Returns what would be the width and height of a text block drawn with the <a href="Primitives.html#text()">text()</a> command given the current <a href="#font()">font()</a> and <a href="#layout()">layout()</a> settings. The first parameter sets the text string to measure. The optional second parameter sets a word-wrap margin and measures the resulting text block. The <i>textmetrics()</i> command also accepts the same optional keyword arguments as the <i>text()</i> command.
     </p></div>
 
     <h2>Returns</h2>
 
     <div class="row">
-      a tuple containing the width and height of the text block
+      a <a href="Misc.html#Size">Size</a> object containing the width and height of the text block
     </div>
 
     <h2>PlotDevice Equivalent</h2>
 
     <div class="row">
-      <p>The <a href="Misc.html#measure()">measure()</a> command will return a (width, height) tuple when called with a string or a <a href="#Text">Text</a> object as its first argument.
+      <p>The <a href="Misc.html#measure()">measure()</a> command will return a <a href="Misc.html#Size">Size</a> when called with a string or a <a href="#Text">Text</a> object as its first argument.
     </p></div>
 
     <h2>Example</h2>

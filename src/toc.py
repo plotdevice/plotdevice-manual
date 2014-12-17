@@ -10,7 +10,7 @@ ref['Line+Color'] = {
     'types': ['Color', ],
     'compat': ['capstyle()', 'colormode()', 'joinstyle()', 'nofill()', 'nostroke()', 'strokewidth()'] }
 ref['Primitives'] = {
-    'commands': [('poly()', 'rect()'),  ('arc()', 'oval()'), 'image()', 'line()', ],
+    'commands': [('poly()', 'rect()'),  ('arc()', 'oval()'), 'line()', 'image()', 'text()', ],
     'types': ['Image'],
     'compat': ['arrow()', 'star()'] }
 ref['Drawing'] = {
@@ -26,7 +26,7 @@ ref['Compositing'] = {
     'types': ['Shadow', ],
     'compat': ['noshadow()', 'beginclip()', 'endclip()', ] }
 ref['Typography'] = {
-    'commands': [ 'font()', 'text()', 'textpath()', 'paginate()', 'stylesheet()',],
+    'commands': [ 'font()', 'layout()', 'stylesheet()', 'paginate()', 'textpath()', ],
     'types': ['Text', 'TextFrame', 'TextMatch', 'LineFragment', ('Font', 'Family'), ],
     'compat': ['align()', 'fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textwidth()'] }
 # grouped into Misc.html

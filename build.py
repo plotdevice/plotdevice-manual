@@ -214,7 +214,7 @@ class PlotDeviceLexer(PythonLexer):
     'capstyle', 'choice', 'clear', 'clip', 'closepath', 'color', 'colormode',
     'colorrange', 'curveto', 'drawpath', 'ellipse', 'endclip', 'endpath',
     'export', 'files', 'fill', 'findpath', 'font', 'fonts', 'fontsize',
-    'geometry', 'grid', 'image', 'imagesize', 'joinstyle', 'line', 'lineheight',
+    'geometry', 'grid', 'image', 'imagesize', 'joinstyle', 'layout', 'line', 'lineheight',
     'lineto', 'mask', 'measure', 'moveto', 'nofill', 'noshadow', 'nostroke',
     'order', 'ordered', 'outputmode', 'oval', 'paginate', 'pen', 'plot', 'poly',
     'pop', 'push', 'random', 'read', 'rect', 'reset', 'rotate', 'scale', 'shadow',

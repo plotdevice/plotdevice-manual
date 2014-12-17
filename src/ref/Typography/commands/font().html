@@ -16,15 +16,15 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>Sets the font used by <a href="#text()">text()</a> (or modifies selected attributes of the current font). The <code>family</code> and <code>weight</code> arguments are strings corresponding to the name of a font family installed on the system and a weight name. If the family lacks the specified weight, the closest match will be used instead. If included, the <code>size</code> argument should be a number representing the desired point size. All three positional arguments are optional since unspecified attributes will use the current font as a basis for selecting a new one.
+      <p>Sets the font, typographic features, and letter-spacing to be used by the <a href="Primitives.html#text()">text()</a> command (or modifies selected attributes of the current font). The <code>family</code> and <code>weight</code> arguments are strings corresponding to the name of a font family installed on the system and a weight name. If the family lacks the specified weight, the closest match will be used instead. If included, the <code>size</code> argument should be a number representing the desired point size. All three positional arguments are optional since unspecified attributes will use the canvas's current <i>font()</i> setting as a basis for selecting a new one.
       </p><p>You can retrieve a list of valid <code>family</code> names on your system using the <a href="Misc.html#fonts()">fonts()</a> command. To determine which weights &amp; styles are provided by a given family, either create a <a href="#Family">Family</a> object and inspect its properties, or take a look at the <code>weights</code>, <code>widths</code>, and <code>variants</code> properties of the current <a href="#Font">Font</a> object (returned by calling <i>font()</i> with no arguments).
     </p></div>
 
-    <h2>Character-style Parameters</h2>
+    <h2>Typeface Parameters</h2>
 
     <div class="row">
       <p><code class="box"><span class="red">italic</span></code>
-      </p><p>A boolean value specifying whether to use the italic style of the current font family. Note that the family must provide an italic as it won't be algorithmically generated. If you're dead-set on hacking in a fake italic, try drawing the text as an <code>outline</code> and applying a <a href="Transform.html#skew">skew</a> transform to it.</p>
+      </p><p>A boolean (or <code class="mi">0</code>/<code class="mi">1</code>) value specifying whether to use the italic style of the current font family. Note that the family must provide an italic as it won't be algorithmically generated. If you're dead-set on hacking in a fake italic, try drawing the text as an <code>outline</code> and applying a <a href="Transform.html#skew">skew</a> transform to it.</p>
       <p><code class="box"><span class="red">width</span></code>
       </p><p>For families that provide a range of widths (e.g., "compressed", "condensed", or "extended"), the <code>width</code> argument allows you to select them by name.
       </p><p><code class="box"><span class="red">variant</span></code>
@@ -34,22 +34,13 @@
       </p><pre>font('avenir', 'heavy', italic=True)
 font(face='Avenir-HeavyOblique')
 </pre>
-      <p>To find the <code>face</code> name of a specific font, use the Show Font Info option in the Preview menu of <a href="http://support.apple.com/kb/HT2509?viewlocale=en_US&amp;locale=en_US">Font Book</a>.
+      <p>To find the <code>face</code> name of a specific font, use the <span class="message">Show Font Info</span> option in the <span class="message">Preview</span> menu of <a href="http://support.apple.com/kb/HT2509?viewlocale=en_US&amp;locale=en_US">Font Book</a>.
       </p>
-    </div>
 
 
-    <h2>Layout Parameters</h2>
-    <div class="row">
-      <p><code class="box"><span class="red">align</span></code>
-      </p><p>Text can be aligned to the <code class="kw">LEFT</code>, <code class="kw">RIGHT</code>, or <code class="kw">CENTER</code> or spaced out to fill the entire width of the textblock via the <code class="kw">JUSTIFY</code> option. See the legacy <a href="#align()">align()</a> command for examples of each.</p>
+      <p><code class="box"><span class="red">tracking</span></code></p>
+      <p>Controls the letter-spacing of a run of text. The value is a positive or negative number in thousandths of an <a href="http://en.wikipedia.org/wiki/Em_%28typography%29">em</a> and sets the amount of extra space added (or subtracted) between characters. The default value is zero, meaning no extra space will be added beyond what is specified in the font's kerning tables. To disable kerning altogether, set the value to <span class="kw"><code>None</code></span>.</p>
 
-      <p><code class="box"><span class="red">leading</span></code>
-      </p><p>Controls the spacing from baseline-to-baseline in multi-line text runs. The value is a floating point number representing the distance as a multiple of the current font size. The default leading is 1.2 (120% of the font size), but you may wish to increase this when typesetting a particularly wide measure.
-      </p><p><code class="box"><span class="red">tracking</span></code>
-      </p><p>Controls the letter-spacing of a run of text. The value is a positive or negative number in thousandths of an em and sets the amount of extra space added (or subtracted) between characters. The default value is zero, meaning no extra space will be added beyond what is specified in the font's kerning tables. To disable kerning altogether, set the value to <span class="kw"><code>None</code></span>.
-      </p><p><code class="box"><span class="red">hyphenate</span></code>
-      </p><p>Controls whether line-breaking operates on the level of words or syllables. If set to <code class="kw">True</code>, the layout engine will attempt to break lines even mid-word in order to create a nicer rag. Hyphenation is especially useful when drawing text with an alignment of <code class="kw">JUSTIFY</code> since word spacing can get comically loose without it. For more fine-grained control, pass a number between 0 and 1.0 to set how hyphen-happy the typesetter should be.</p>
     </div>
 
 
@@ -131,8 +122,8 @@ font(face='Avenir-HeavyOblique')
         <p>Enable one or more "stylistic sets" provided by the font. Tragically, these sets of alternate character forms don't have human readable names. Fonts can define up to 20 sets, with each identified by an integer.</p>
         <table class="argvals">
           <tr><td><code class="kw">None</code> / <code>0</code></td><td>Use the font's default character forms</td></tr>
-          <tr><td><code class="kw">1-20</code></td><td>Enable the n'th set (and disable all others)</td></tr>
-          <tr><td><code class="kw">[1,5,…]</code></td><td>Enable multiple stylistic sets</td></tr>
+          <tr><td><code>1<span class="kw">…</span>20</code></td><td>Enable the n'th set (and disable all others)</td></tr>
+          <tr><td><code class="kw">[<span class="off">1,5,</span>…]</code></td><td>Enable multiple stylistic sets</td></tr>
           <tr><td><code class="kw">all</code></td><td>Enable all sets supported by the font</td></tr>
         </table>
       </div>
@@ -147,7 +138,7 @@ font(face='Avenir-HeavyOblique')
     <h2>Returns</h2>
 
     <div class="row">
-      a <a href="#Font">Font</a> object with the canvas's current font
+      a <a href="#Font">Font</a> object with the canvas's current font and layout settings
     </div>
 
     <h2>Example</h2>

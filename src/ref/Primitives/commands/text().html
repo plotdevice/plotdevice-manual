@@ -1,0 +1,142 @@
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="definition">
+    <h1>text()</h1>
+
+    <h2>Syntax</h2>
+
+    <div class="row">
+      <div class="def-box">
+        <pre>text(str, x, y, width=None, height=None, outline=False, plot=True, **options)</pre>
+        <p>Draw a string at x/y (while optionally setting its maximum width and height)</p>
+      </div>
+      <div class="def-box">
+        <pre>text(x, y, width=None, height=None, str="", **options)</pre>
+        <p>The string can be omitted as the first arg if provided as a keyword argument</p>
+      </div>
+      <div class="def-box">
+        <pre>text(x, y, width=None, height=None, xml="", **options)</pre>
+        <p>If an xml string is passed as a keyword argument, its tags will be accessible through the <a href="Typography.html#Text.select()">select()</a> method and the tag names will be mapped to font definitions in the <a href="Typography.html#stylesheet()">stylesheet()</a></p>
+      </div>
+      <div class="def-box">
+        <pre>text(x, y, width=None, height=None, src="&lt;path or url&gt;", **options)</pre>
+        <p>Load the file pointed to by the src argument and draw its contents</p>
+      </div>
+    </div>
+
+    <h2>Description</h2>
+
+    <div class="row">
+      <p>Draws text to the screen, either as a single line or a multi-line block. The first parameter is a string of unicode text to display. The x &amp; y parameters set the location of the text’s baseline. The optional <code>width</code> parameter specifies the column-width for a multi-line textblock and, if present, the <code>height</code> parameter sets maximum height for the column. Text in a column is wrapped across as many lines as will fit in the maximum height.</p>
+
+      <p>Text will be drawn using the current <a href="Typography.html#font()">font()</a> and <a href="Typography.html#layout()">layout()</a> style, but individual settings can be overridden by passing new values as keyword arguments (the <i>text()</i> command supports all the same keyword arguments that <i>font()</i> and <i>layout()</i> provide). For instance, the text's alignment can be set with the <a href="Typography.html#layout()">layout()</a> command or the optional <code>align</code> keyword argument.</p>
+
+      <p>Text will be drawn in the current <a href="Line+Color.html#fill()">fill()</a> color, but will not reflect the global <a href="Line+Color.html#pen()">pen()</a> and <a href="Line+Color.html#stroke()">stroke()</a> unless drawn as an <code>outline</code>. If the current <i>fill()</i> is a multi-color gradient, <i>text()</i> will use the first color in its range (unless outlined, in which case it will use the gradient fill).
+      </p><p> By default, text is not outlined (which may not be what you want when exporting to PDF). To "trace" the text into outlines, call <i>text()</i> with <code>outline=<span class="kw">True</span></code>. This will convert the text to a <a href="Drawing.html#Bezier">Bezier</a> before adding it to the canvas. Also consider using the <a href="Typography.html#textpath()">textpath()</a> convenience function.
+    </p></div>
+
+    <h2>Inline Style Markup</h2>
+
+    <div class="row">
+      <p>By default, <i>text()</i> will render the entire <code>str</code> argument in a single style (based on the canvas's current <a href="Typography.html#font()">font()</a>, <a href="Typography.html#layout()">layout()</a>, and <a href="Line+Color.html#fill()">fill()</a> state). You can selectively style portions of the string if you format it as XML and use the <a href="Typography.html#stylesheet()">stylesheet()</a> command to define styles for the tags you use in the markup. Stylesheet definitions behave similarly to CSS declarations in that more deeply nested styles will override attributes of less deeply nested ones.
+      </p>
+
+      <hr>
+      <p class="double-dagger">Note that for PlotDevice to recognize your string as XML it <strong>must</strong> be passed as the <code>xml</code> keyword argument – passing it as the first positional argument will display the raw markup verbatim.
+      </p>
+      <hr>
+
+      <p>The string you pass must be "valid" XML, in particular you must <a href="http://en.wikipedia.org/wiki/XML#Escaping">escape</a> the control characters: <code class="str">&amp;</code>, <code class="str">&lt;</code>, <code class="str">&gt;</code>, <code class="str">'</code>, and <code class="str">"</code>. Also note that any <a href="http://www.w3schools.com/xml/xml_attributes.asp">attributes</a> you add to your tags must be wrapped in double-quotes. PlotDevice diverges from strict XML in two ways: </p>
+      <ol>
+        <li>your string does not need to be wrapped in a <a href="http://en.wikipedia.org/wiki/Root_element">root</a> element or include any XML-declaration/doctype boilerplate</li>
+        <li>whitespace and line breaks are significant: each "line" of the string will be typeset as a single, word-wrapped paragraph.</li>
+      </ol>
+
+      <p>When drawing an XML string, <i>text()</i> will ignore any tags that don't correspond to a definition in the <i>stylesheet()</i>. Tags that don't correspond to styles can still be useful though since their character location, layout, and attribute data can be retrieved from the <a href="Typography.html#TextMatch">TextMatch</a> objects returned by <i>Text.<a href="Typography.html#Text.select()">select()</a></i>.
+      </p>
+    </div>
+
+    <h2>Reading Text from Files and URLs</h2>
+
+    <div class="row">
+      <p>If you pass a <code>src</code> keyword argument to <i>text()</i>, PlotDevice will treat it as either a file path or (if it begins with <code class="str">"http://"</code> or <code class="str">"https://"</code>) a URL to be fetched. If the file name ends with <code class="str">".xml"</code>, the contents will be parsed for inline styling; otherwise the text read from the file will be displayed without further processing.</p>
+
+    </div>
+
+    <h2>Optional Parameters</h2>
+
+
+    <div class="row">
+      <p><code class="box"><span class="red">family</span></code>
+         <code class="box"><span class="red">weight</span></code>
+         <code class="box"><span class="red">size</span></code>
+         <code class="box"><span class="red">italic</span></code>
+         <code class="box"><span class="red">variant</span></code>
+         <code class="box"><span class="red">face</span></code>
+         <code class="box"><span class="red">tracking</span></code>
+      </p>
+
+      <p>You can override the current character-style for an individual <i>text()</i> invocation by including any of the keyword arguments supported by the <a href="Typography.html#font()">font()</a> command.</p>
+
+      <p><code class="box"><span class="red">lig</span></code>
+         <code class="box"><span class="red">sc</span></code>
+         <code class="box"><span class="red">osf</span></code>
+         <code class="box"><span class="red">tab</span></code>
+         <code class="box"><span class="red">vpos</span></code>
+         <code class="box"><span class="red">frac</span></code>
+         <code class="box"><span class="red">ss</span></code>
+       </p>
+      <p>The current OpenType Feature settings from prior calls to the <i>font()</i> command may also be overridden for an individual <i>text()</i> call.</p>
+
+      <p>
+         <code class="box"><span class="red">align</span></code>
+         <code class="box"><span class="red">hyphenate</span></code>
+         <code class="box"><span class="red">margin</span></code>
+         <code class="box"><span class="red">indent</span></code>
+         <code class="box"><span class="red">leading</span></code>
+         <code class="box"><span class="red">spacing</span></code>
+      </p>
+
+      <p>Likewise, the current paragraph-style settings can be overridden for an individual <i>text()</i> invocation by including any of the layout arguments supported by <a href="Typography.html#layout()">layout()</a>.</p>
+
+      <p><code class="box"><span class="red">style</span></code>
+      </p><p>If you have defined text styles using the <a href="Typography.html#stylesheet()">stylesheet()</a> command, you can select one by passing a style-name as the <code>style</code> argument. The selected style will be applied to the entire run of text (so use inline markup if you need greater granularity).
+      </p>
+
+
+      <p><code class="box"><span class="red">plot</span></code>
+      </p><p>By default, the <i>text()</i> command will render to the canvas immediately. Passing <code>plot=<span class="kw">False</span></code> will return the rendered Text or Bezier object without adding it to the canvas.
+      </p>
+
+    </div>
+
+    <h2>Returns</h2>
+
+    <div class="row">
+      the <a href="Typography.html#Text">Text</a> object being drawn, or a <a href="Drawing.html#Bezier">Bezier</a> path (if outlined)
+    </div>
+
+    <h2>Tutorial</h2>
+
+    <div class="row">
+      <a href="../tut/Typography.html">Typography</a>, <a href="../tut/Strings.html">Strings</a>
+    </div>
+
+    <h2>Example</h2>
+
+    <div class="row">
+      <div class="example">
+        <span><img height="125" src="../etc/ref/text.png" width="125"/></span>
+<pre>fill(0.2)
+font("Helvetica", 20)
+text("hello", 10,50)
+text("goodbye", 10,70, italic=True)
+</pre>
+      </div>
+    </div>
+  </div>
+
+</body></html>
