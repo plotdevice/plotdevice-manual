@@ -28,10 +28,10 @@ match.<span class="red">end</span>   <span class="c"># the index of first charac
 
     <div class="row">
       <pre class="manual">
-match.<span class="red">bounds</span> <span class="c"># a Region containing all the lines in the match</span>
-match.<span class="red">used</span>  <span class="c"># a Region containing just the matched charactes</span>
-match.<span class="red">lines</span> <span class="c"># a list of one or more LineFragments describing layout geometry</span>
-match.<span class="red">path</span>  <span class="c"># a Bezier object with the glyphs from the matched range</span>
+match.<span class="red">bounds</span> <span class="c"># Region containing all the lines in the match</span>
+match.<span class="red">used</span>   <span class="c"># Region containing just the matched charactes</span>
+match.<span class="red">lines</span>  <span class="c"># list of one or more LineFragments describing layout geometry</span>
+match.<span class="red">path</span>   <span class="c"># Bezier object with the glyphs from the matched range</span>
 </pre>
     </div>
 
@@ -39,16 +39,19 @@ match.<span class="red">path</span>  <span class="c"># a Bezier object with the 
     <h2>Regular Expression Properties <span class="grey">(via Text.<a href="#Text.find()">find()</a>)</span></h2>
     <div class="row">
       <pre class="manual">
-match.<span class="red">m</span> <span class="c"># a regular expression <a href="https://docs.python.org/2/library/re.html#match-objects">Match</a> object</span>
+match.<span class="red">m</span>           <span class="c"># regular expression <a href="https://docs.python.org/2/library/re.html#match-objects">Match</a> object</span>
+match.<span class="red">group</span>(idx)  <span class="c"># TextMatch corresponding to the numbered or named group</span>
+match.<span class="red">groups</span>()    <span class="c"># list of TextMatch objects corresponding to regex captures</span>
+match.<span class="red">groupdict</span>() <span class="c"># dictionary mapping captured group names to TextMatch objects</span>
 </pre>
     </div>
 
     <h2>XML Element Properties <span class="grey">(via Text.<a href="#Text.select()">select()</a>)</span></h2>
     <div class="row">
       <pre class="manual">
-match.<span class="red">tag</span>     <span class="c"># a string with the matched element's name</span>
-match.<span class="red">attrs</span>   <span class="c"># a dictionary with the element's attributes (if any)</span>
-match.<span class="red">parents</span> <span class="c"># a tuple with the parent, grandparent, etc. tag names</span>
+match.<span class="red">tag</span>     <span class="c"># string with the matched element's name</span>
+match.<span class="red">attrs</span>   <span class="c"># dictionary with the element's attributes (if any)</span>
+match.<span class="red">parents</span> <span class="c"># tuple with the parent, grandparent, etc. tag names</span>
 </pre>
     </div>
 
