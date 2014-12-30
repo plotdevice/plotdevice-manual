@@ -5,25 +5,223 @@
 
 </head><body>
   <div class="article">
-    <p>Intro...</p>
 
-    <h1>Typesetting Basics</h1>
-    <p>tktktk</p>
+    <p>In previous chapters we've seen how graphics primitives <a href="Graphics_State.html">inherit</a> the canvas's global state to determine their <a href="Color.html">color</a>, <a href="../ref/Line+Color.html#pen()">line-style</a>, and <a href="Geometry.html">position</a>. When dealing with text, the same settings apply but are joined by a number of additional attributes controlling the font to be used and the desired layout behavior. </p>
 
-    <h2>Single Lines</h2>
-    <h2>Text Blocks</h2>
-    <h2>Multi-column Text</h2>
 
-    <h1>Fonts &amp; Styles</h1>
-    <p>tktktk</p>
+    <h1>Basic Typesetting</h1>
+    <p>Unicode strings can be drawn to specific locations on the canvas with the <a href="../ref/Typography.html#text()">text()</a> command. They can either be drawn to a point or, if the optional <i>width</i> and <i>height</i> parameters are included, word-wrapped into a block of text. Text will be drawn using the canvas's current <i>font()</i> and <i>layout()</i> settings as well as the current <a href="../ref/Line+Color.html#fill()">fill()</a> color.</p>
+
+
+    <p>The text's "character style" (in <span class="message">inDesign</span> nomenclature) is controlled by the <a href="../ref/Typography.html#font()">font()</a> command. It allows you to specify a typeface, toggle OpenType features, and even tweak the kerning between neighboring glyphs.</p>
+
+    <p>The "paragraph style" can be set with the <a href="../ref/Typography.html#layout()">layout()</a> command. These settings affect line-wrapping behavior, spacing, and alignment. Note that character styles can be wildly different from character-to-character in a string, but paragraph styles will apply to whole runs of text (separated by <code class="str">"\n"</code> characters in the <i>text()</i> string).</p>
+
+
+    <h2>drawing text at a point</h2>
+    <p>To draw some text to the canvas, simply pass a string followed by a pair of <code>x</code> &amp; <code>y</code> coordinates defining its "origin". Note that the origin point corresponds to the <em>baseline</em> of the text (rather than its upper-left corner). The text will be drawn as a single line unless you include manual line breaks in the string.</p>
+
+
+    <p>To draw text in typefaces other than the default, call the <i>font()</i> command before placing your <i>text()</i> on the canvas. In its simplest usage, you can select a font by passing the name of a font <i>family</i>, the name of a <i>weight</i>, and the font's point <i>size:</i></p>
+
+    <div class="example">
+      <span><img class="border" src="../etc/tut/typography-basics.png"/></span>
+      <pre>
+x, y = 24, 56
+arc(x,y, 6, fill='red') # the baseline ‘origin’ pt
+
+font('Avenir', 'black', 32)
+text('München', x, y)
+</pre>
+    </div>
+
+    <p>If you want to italicize the text (or use the "oblique" variant of a typeface), set the <code>italic</code> keyword argument to a boolean:</p>
+    <div class="example">
+      <span><img class="border" src="../etc/tut/typography-basic-lines.png"/></span>
+      <pre>
+x, y = 24, 24
+font('Baskerville', 24, italic=True)
+text('One.\nTwo.\nThree.', x, y)
+</pre>
+      </div>
+
+    <p>Calls to the <i>font()</i> command work <b>incrementally</b> and all its parameters are optional. Any parameters you leave out will preserve the existing <em>family/width/size</em> and italicization from the canvas's "current" state:</p>
+    <pre>
+print "1:", font()
+print "2:", font('Avenir', 'heavy', 64)
+print "3:", font(128)
+print "4:", font('Baskerville')
+print "5:", font('light')
+>>> 1: Font(Helvetica Neue 24pt | Regular)
+>>> 2: Font(Avenir 64pt | Heavy)
+>>> 3: Font(Avenir 128pt | Heavy)
+>>> 4: Font(Baskerville 128pt | Bold)
+>>> 5: Font(Baskerville 128pt | Regular)
+</pre>
+
+
+    <h2>drawing a block of text</h2>
+    <p>The <i>text()</i> command allows you to typeset columns of text with automatic word-wrapping and optional hyphenation. To enable this behavior, simply pass a numerical <i>width</i> argument after the initial <code>x</code> and <code>y</code> parameters to set the maximium line-length before the text system will break the line.</p>
+
+    <p>Note that the <code>x</code>/<code>y</code> location still corresponds to the <em>baseline</em> of the first character and that the rendered text will be as tall as necessary to contain the entire string being drawn. For instance, typesetting a paragraph with a maximum width of 270 would look something like:</p>
+
+    <div class="example">
+      <span><img class="border" src="../etc/tut/typography-basic-block.png"/></span>
+      <pre>
+lorem = "Early in the bright sun-yellowed morning, Stuart McConchie swept the sidewalk before Modem TV Sales & Service, hearing the cars along Shattuck Avenue and the secretaries hurrying on high heels to their offices, all the stirrings and fine smells of a new week, a new time in which a good salesman could accomplish things."
+x, y = 12, 24
+
+font("american typewriter", 16)
+layout(leading=1.3)
+text(lorem, x, y, 270)
+</pre>
+    </div>
+
+    <p>If your string is long enough, it's quite possible that your text will spill off the bottom of the canvas. To constrain the total number of lines drawn you can include a fourth numerical parameter: <i>height</i>. When both a maximal <i>width</i> and <i>height</i> are defined, the string will be word-wrapped up to the point where the next text line would cause the Text's height to "overflow" the maximum height.</p>
+
+    <div class="example">
+      <span><img class="border" src="../etc/tut/typography-basic-block-height.png"/></span>
+      <pre>
+lorem = "It was about eleven o'clock in the morning, mid October, with the sun not shining and a look of hard wet rain in the clearness of the foothills."
+font('baskerville', 16)
+
+# left: fixed width, unlimited height
+text(lorem, 10,20, 120)
+
+# right: fixed width and height
+text(lorem, 150,20, 120,60)
+</pre>
+    </div>
+
+    <p>The characters in the string that don't fit within the maximum <i>width</i> and <i>height</i> aren't "lost" however. As we'll see below you can "flow" text across multiple columns or even pages (consult the <a href="#advanced-layout">Advanced Layout</a> section for details).</p>
+
+
+    <h2>optional text arguments</h2>
+
+    <p>When you draw a piece of text it "inherits" the current paragraph- and character-style, but you can selectively override these settings by passing keyword arguments to the <i>text()</i> command. You can call <i>text()</i> with any of the keyword arguments supported by the <i>font()</i> and <i>layout()</i> commands. Your alterations will apply only to that <i>Text</i> object and won't affect the global state:</p>
+
+    <div class="example">
+      <span><img class="border" src="../etc/tut/typography-basic-overrides.png"/></span>
+      <pre>
+fill(0.3)
+font('avenir next', 'medium', 32)
+
+text('Good', 100,40)
+text('big', 10,120, weight='bold', size=120, sc=True)
+text('or Red', 16,155, fill='red')</pre>
+    </div>
+
+    <p>When you pass a string to be drawn to the text() command, you can either include it as the first positional argument or as a keyword argument called <code>str</code>. When using the keyword argument, the positional arguments are dedictated to setting the text's location (<i>x</i>, <i>y</i>, <i>width</i>, and <i>height</i>).</p>
+
+    <p>This can help keep your code readable when drawing long strings that would otherwise push the coordinates off the right margin of the editor. For instance the following usages are equivalent:</p>
+    <pre>
+text("Something very long that ends up hiding the coordinates (or at least making them painful to jump to when editing)", 100,100, 256,256, italic=True)
+text(100,100, 256,256, italic=True, str="Something very long that no longer hides the coordinates (since now just the string itself is spilling off the screen)")
+</pre>
+
+
+    <h2>text alignment</h2>
+
+    <p>By default, PlotDevice renders text with a left-alignment (a.k.a. "rag right"). You can change this setting by passing an <code>align</code> keyword argument to the <i>layout()</i> command to update the "current" canvas state. It can also be passed to the <i>text()</i> command itself (to set the alignment for just that invocation).</p>
+
+    <p>The current alignment setting applies both when drawing to a point or into a block of text. However, the alignment's effect on positioning is quite different depending on whether a <i>width</i> was defined for the given <i>Text</i> object. When drawing to a point, the text will "grow" out from the origin based on the alignment setting:</p>
+
+    <div class="example">
+      <span><img class="border" src="../etc/tut/typography-align-point.png"/></span>
+      <pre>
+x = WIDTH/2
+
+text("left",   x, 50)
+text("center", x, 100, align=CENTER)
+text("right",  x, 150, align=RIGHT)
+
+with stroke(.7), pen(dash=3):
+  line(x,0, x,HEIGHT)
+</pre>
+      </div>
+
+  <p>When drawing a block of text, the alignment will be interpreted based on the left &amp; right edges defined by the <i>x</i> and <i>width</i> arguments:</p>
+  <div class="example">
+    <span><img class="border" src="../etc/tut/typography-align-block.png"/></span>
+    <pre>
+x, w = 30, 140
+
+text("left",   x,50,  w)
+text("center", x,100, w, align=CENTER)
+text("right",  x,150, w, align=RIGHT)
+
+with stroke(.7), pen(dash=3):
+    line(x,0, dy=HEIGHT)
+    line(x+w,0, dy=HEIGHT)</pre>
+  </div>
+
+
+
+    <h1>Setting the Style</h1>
+
     <h2>Character Styles</h2>
-    <h2>Paragraph Styles</h2>
+    <p>the font() command, psname-selection/aat, and tracking</p>
 
-    <h1>Advanced Formatting</h1>
-    <p>tktktk</p>
+    <h2>Paragraph Styles</h2>
+    <p>the layout() command and its effect on the rosetta stone diagram</p>
+
     <h2>The Global Stylesheet</h2>
-    <h2>Inline Styles</h2>
-    <h2>Building Strings</h2>
+    <p>combine font &amp; layout settings for later use with text()</p>
+
+
+
+    <h1>Building Text Up</h1>
+
+    <h2>incremental text</h2>
+    <p>using append() and kwargs to style the string non-monolithically</p>
+    <p>the Text object's font() and layout() methods can help in looping contexts</p>
+    <div class="example">
+      <span><img class="border" src="../etc/tut/typography-basic-append.png"/></span>
+      <pre>
+names = ['red', 'tan', 'aqua', 'blue', 'cyan', 'gold', 'gray', 'lime', 'peru', 'pink', 'plum', 'snow', 'teal', 'azure', 'beige', 'brown', 'coral', 'green', 'ivory', 'khaki', 'linen', 'olive', 'deepskyblue', ]
+background(.15)
+font('gill sans')
+
+t = text(10,26, 280, fill=.5)
+for name in names:
+    t.append(name, fill=name)
+    t.append(' / ', weight='light')</pre>
+      </div>
+
+    <h2>inline styles</h2>
+    <p>xml input, tag/style mapping, and retrieving element attrs</p>
+
+    <h2>external sources</h2>
+    <p>loading strings from files and urls (with auto-parsing for html &amp; rtf)</p>
+
+    <h1>Breaking Text Down</h1>
+    <h2>layout geometry</h2>
+    <p>using the Text's bounds to help position other grobs</p>
+    <p>the omnipresent .lines property and LineFragment struct</p>
+    <p>measuring actual glyph bounds vs the layout bounds</p>
+
+    <h2>finding substrings</h2>
+
+    <p>character-indexing/slicing and the TextMatch type (plus the words/paragraphs properties)</p>
+    <p>using the find() method with strings &amp; regexes</p>
+    <p>using the select() method to find tagged regions</p>
+
+    <a name="advanced-layout"></a>
+    <h1>Advanced Layout</h1>
+
+    <h2>Multi-column Text</h2>
+    <p>using the flow() command to add "child" TextFrames</p>
+    <p>frame geometry v/a/v the parent Text's bounds</p>
+    <p>using form-feeds or break entities to divide columns</p>
+
+    <h2>Pagination</h2>
+    <p>breaking a long Text into a series of them</p>
+    <p>also supports form-feeds for page breaking</p>
+    <p>using export() to make a book</p>
+
+    <h2>Whitespace and Indentation</h2>
+    <p>auto-indentation and overriding entities</p>
+    <p>paragraph spacing and the empty tag special-case</p>
 
   </div>
 
