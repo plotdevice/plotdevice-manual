@@ -104,6 +104,27 @@
         <p>a dictionary of "PostScript names" and Font objects for the given font's family.</p>
       </div>
     </div>
+
+    <h2>Example</h2>
+
+    <div class="row">
+      <div class="example">
+        <span><img height="170" src="../etc/ref/font-metrics.png" width="270"/></span>
+  <pre>
+f = font('Palatino',110)
+pt = Point(10,120)
+with pen(2):
+    line(pt-(0, f.ascender), stroke='steelblue', dx=250)
+    line(pt-(0, f.capheight), stroke='orange', dx=250)
+    line(pt-(0, f.xheight), stroke='red', dx=250)
+    line(pt, dash=3, stroke='grey', dx=250)
+    line(pt-(0, f.descender), stroke='green', dx=250)
+text(pt, str="Tulip")
+</pre>
+      </div>
+    </div>
   </div>
+
+
 
 </body></html>

@@ -80,14 +80,14 @@ with nofill(), stroke(.7):
         </div>
 
         <div class="def-box">
-          <pre class="manual">r.<span class="red">offset</span>(point)</pre>
+          <pre class="manual">r.<span class="red">shift</span>(point)</pre>
           <p>return a copy of the Region with its origin shifted by a Point</p>
         </div>
         <div class="example">
-          <span><img height="125" src="../etc/ref/region-offset.png" width="125"/></span>
+          <span><img height="125" src="../etc/ref/region-shift.png" width="125"/></span>
 <pre>
 r = Region(20,20, 40,30)
-shifted = r.offset(20,15)
+shifted = r.shift(20,15)
 nofill()
 rect(r, stroke=.7)
 rect(shifted, stroke='red', dash=3)

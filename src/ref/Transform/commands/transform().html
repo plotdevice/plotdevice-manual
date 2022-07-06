@@ -16,12 +16,20 @@
         <p>Set the current transform mode (to <code class="kw">CENTER</code> or <code class="kw">CORNER</code>)
       </p></div>
 
+    <div class="row">
       <div class="def-box">
-<pre>with transform(mode=None):
+<pre>transform(matrix=[m11, m21, m12, m22, tX, tY])
+</pre>
+        <p>Overwrite the current transform matrix with a new one
+      </p></div>
+
+
+      <div class="def-box">
+<pre>with transform(mode=None, matrix=None):
     ... # drawing &amp; transformation commands
 </pre>
 
-        <p>Restore the transformation state at the end of the indented block (and optionally change the transform mode for the duration)
+        <p>Restore the transformation state at the end of the indented block (and optionally change the transform mode/matrix for the duration)
       </p></div>
     </div>
 
@@ -29,7 +37,14 @@
 
     <div class="row">
       <p>The <code>mode</code> parameter sets the registration point – the offset for <a href="#rotate()">rotate()</a>, <a href="#scale()">scale()</a> and <a href="#skew()">skew()</a> commands. By default, primitives, text, and images rotate around their own centerpoints. But if you call <i>transform()</i> with <code><span class="kw">CORNER</span></code> as its <code>mode</code> parameter, transformations will be applied relative to <em>canvas’s</em> "origin point" rather than being relative to the <em>objects'</em> centerpoint origins.
-    </p></div>
+    </p>
+
+    <p>In addition to changing the mode, the <i>transform()</i> command also allows you to overwrite the underlying transformation matrix with a new set of values. Pass a 6-element list or tuple as the <code>matrix</code> argument to update the current transform (see Apple's <a href="http://tinyurl.com/cocoa-drawing-guide-transforms">docs</a> for all the math-y details). Note that you can omit the <code>mode</code> arg when setting a new matrix if you don't want the transformation origin to change.</p>
+
+
+
+</p>
+  </div>
 
     <h2>Context Manager</h2>
 
@@ -67,7 +82,7 @@ transform(oldmode)
 
     <div class="row">
       <div class="example">
-        <span><img height="125" src="../etc/ref/pop.jpg" width="125"/></span>
+        <span><img height="125" src="../etc/ref/pop.png" width="125"/></span>
 <pre>fill(0.2)
 fontsize(14)
 rotate(90)

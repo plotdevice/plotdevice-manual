@@ -36,7 +36,7 @@
     <div class="row">
       <p>Returns a <a href="http://anandology.com/python-practice-book/iterators.html#generators">generator</a> which yields one or more <a href="#Text">Text</a> objects with a fixed position and size. The syntax is identical to that of the <a href="Primitives.html#text()">text()</a> command, but rather than drawing to the canvas it returns the resulting <i>Text</i> objects for your script to <a href="Canvas.html#plot()">plot()</a> manually.</p>
 
-      <p>The <i>paginate()</i> command can be useful when drawing long passages of text that may not fit in a single text block (or on a single canvas frame). The objects it returns are standard <i>Text</i> objects but contain three additional "counter" attributes that may be useful during layout:</p>
+      <p>The <i>paginate()</i> command can be useful when drawing long passages of text that may not fit in a single text block (or on a single canvas frame). The objects it returns are standard <i>Text</i> objects but contain two additional "counter" attributes that may be useful during layout:</p>
 
       <pre class="manual">
 txt.<span class="red">folio</span> <span class="grey"># the "page number" of the object (typically counting from one)</span>
@@ -62,6 +62,11 @@ txt.<span class="red">pg</span>    <span class="grey"># the index of the object 
       <p>an iterable generator of <a href="#Text">Text</a> objects (as many as needed to fully lay out the string)</p>
     </div>
 
+    <h2>Tutorial</h2>
+
+    <div class="row">
+      <a href="../tut/Typography.html">Typography</a>, <a href="../tut/Strings.html">Strings</a>
+    </div>
 
     <h2>Example</h2>
 

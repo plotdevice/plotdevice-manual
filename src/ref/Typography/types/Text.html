@@ -47,12 +47,29 @@ txt.<span class="red">height</span> <span class="c"># the maximum height for wra
 </pre>
     </div>
 
-    <h2>Character Properties <span class="grey">(read-only)</span></h2>
+    <h2>Layout Properties <span class="grey">(read-only)</span></h2>
 
     <div class="row">
       <pre class="manual">
-txt.<span class="red">text</span> <span class="c"># the unicode characters to be drawn</span>
-txt.<span class="red">path</span> <span class="c"># an NSBezierPath with the traced letterforms</span>
+txt.<span class="red">frame</span>   <span class="c"># the rectangle in which text is laid out</span>
+txt.<span class="red">bounds</span>  <span class="c"># rectangle within the frame that contains actual text</span>
+txt.<span class="red">metrics</span> <span class="c"># the size of the bounds Region</span>
+</pre>
+      <p>Note that the <i>frame</i> property is a <a href="Misc.html#Region">Region</a> defining the maximal layout rectangle (based on the Text object's <i>width</i> and <i>height</i> properties). If you've used the <i>flow()</i> method to create a multi-column layout, the <i>frame</i> will reflect the union of all the <a href="TextBlock">TextBlock</a> offsets and sizes.</p>
+
+      <p>The <i>metrics</i> property is a <a href="Misc.html#Size">Size</a> tuple containing the width and height of the laid-out glyphs (identical to what you'd get from using the <a href="Misc.html#measure()">measure()</a> command). Its width will only be as wide as needed to contain all the word-wrapped text. The height reflects the total line-height (including ascenders &amp; descenders).</p>
+
+    </div>
+
+
+
+    <h2>Content Properties <span class="grey">(read-only)</span></h2>
+    <div class="row">
+      <pre class="manual">
+txt.<span class="red">text</span>   <span class="c"># the unicode characters to be drawn</span>
+txt.<span class="red">lines</span>  <span class="c"># a list of <a href="#TextFragment">TextFragment</a> objects describing each typeset line</span>
+txt.<span class="red">blocks</span> <span class="c"># a list of one or more <a href="#TextBlock">TextBlocks</a> defining text-column geometry</span>
+txt.<span class="red">path</span>   <span class="c"># a <a href="../Drawing.html#Bezier">Bezier</a> path with the traced letterforms</span>
 </pre>
     </div>
 
@@ -62,49 +79,34 @@ txt.<span class="red">path</span> <span class="c"># an NSBezierPath with the tra
 
     <div class="row">
       <pre class="manual">
-txt.<span class="red">words</span>       <span class="c"># a list of TextMatch objects corresponding to distinct words</span>
-txt.<span class="red">paragraphs</span>  <span class="c"># a list of TextMatch objects corresponding to paragraphs</span>
-txt<span class="red">[<span class="str">start</span>:<span class="str">stop</span>]</span> <span class="c"># a single TextMatch object describing the character range</span>
+txt.<span class="red">words</span>       <span class="c"># a list of TextFragment objects corresponding to distinct words</span>
+txt.<span class="red">paragraphs</span>  <span class="c"># a list of TextFragment objects corresponding to paragraphs</span>
+txt<span class="red">[<span class="str">start</span>:<span class="str">stop</span>]</span> <span class="c"># a single TextFragment object describing the character range</span>
 </pre>
-      <p>The <a href="#TextMatch">TextMatch</a> objects returned by these methods allow you to examine both the character- and layout-details of each slice of the <i>Text</i>.</p>
+      <p>The <a href="#TextFragment">TextFragment</a> objects returned by these methods allow you to examine both the character- and layout-details of each slice of the <i>Text</i>.</p>
     </div>
-
-    <h2>Layout Properties <span class="grey">(read-only)</span></h2>
-
-    <div class="row">
-      <pre class="manual">
-txt.<span class="red">bounds</span>  <span class="c"># the rectangle in which text is laid out</span>
-txt.<span class="red">used</span>    <span class="c"># rectangle within the bounds that contains actual text</span>
-txt.<span class="red">metrics</span> <span class="c"># the size of the text within the bounds rectangle</span>
-txt.<span class="red">frames</span>  <span class="c"># a list of one or more TextFrames defining text-column geometry</span>
-txt.<span class="red">lines</span>   <span class="c"># a list of <a href="#LineFragment">LineFragment</a> objects describing each typeset line</span>
-</pre>
-      <p>Note that the <i>bounds</i> property is a <a href="Misc.html#Region">Region</a> defining the maximal layout rectangle (based on the Text object's <i>width</i> and <i>height</i> properties). If you've used the <i>flow()</i> method to create a multi-column layout, the bounds will reflect the union of all the <a href="TextFrame">TextFrame</a> offsets and sizes.</p>
-
-      <p>The <i>metrics</i> property is a <a href="Misc.html#Size">Size</a> tuple containing the width and height of the laid-out glyphs (identical to what you'd get from using the <a href="Misc.html#measure()">measure()</a> command). Its width will only be as wide as needed to contain all the word-wrapped text. The height reflects the total line-height (including ascenders &amp; descenders).</p>
-
-    </div>
-
 
 
     <h2>Mutation Methods</h2>
 
     <div class="row">
 
+      <a name="Text.append()"></a>
       <div class="def-box">
         <pre class="manual">
 txt.<span class="red">append</span>(str, **options)
 txt.<span class="red">append</span>(xml=<span class="str">""</span>, **options)
 </pre>
-        <p>Append additional characters to the text string. By default, the font and style will match the Text object being appended to. You can optionally include any of the styling keyword arguments supported by the <a href="Primitives.html#text()">text()</a> command to override these defaults.</p>
+        <p>Append additional characters to the text string. By default, the font and style will match the <i>Text</i> object being appended to. You can optionally include any of the styling keyword arguments supported by the <a href="Primitives.html#text()">text()</a> command to override these defaults.</p>
       </div>
 
-
+      <a name="Text.font()"></a>
       <div class="def-box">
         <pre class="manual">txt.<span class="red">font</span>(*args, **kwargs)</pre>
         <p>Update the <i>Text</i> object's character style (using the same arguments as the <a href="#font()">font()</a> command). Changing the font won't affect any characters already added to the <i>Text</i> but <b>will</b> be used as the default style for any strings passed to the <i>append()</i> method.</p>
       </div>
 
+      <a name="Text.layout()"></a>
       <div class="def-box">
         <pre class="manual">txt.<span class="red">layout</span>(*args, **kwargs)</pre>
         <p>Update the <i>Text</i> object's paragraph style (using the same arguments as the <a href="#layout()">layout()</a> command). Changing layout options won't affect any paragraphs already added to the <i>Text</i> but <b>will</b> be used as the default style for any strings passed to the <i>append()</i> method. Note that paragraph styles only "kick in" at the beginning of a new <code class="str">"\n"</code>-separated line.</p>
@@ -117,45 +119,45 @@ txt.<span class="red">append</span>(xml=<span class="str">""</span>, **options)
       <a name="Text.find()"></a>
       <div class="def-box">
         <pre class="manual">txt.<span class="red">find</span>(pattern, matches=0)</pre>
-        <p>Search the text string using regular expressions and return a list of zero or more <a href="#TextMatch">TextMatch</a> objects. The <code>pattern</code> arg can be an <code class="str">r'.*?'</code>-style string or an <code>re.compile</code>'d regex object. You can limit the number of matches found by setting the <code>matches</code> arg to a positive integer. By default, matching portions of the string that aren't visible (e.g., when the Text object is too small to fit the entire string) will be omitted from the return value. Setting <code>matches</code> to <code class="kw">all</code> will return every matching portion of the text, visible or not.</p>
+        <p>Search the text string using regular expressions and return a list of zero or more <a href="#TextFragment">TextFragment</a> objects. The <code>pattern</code> arg can be an <code class="str">r'.*?'</code>-style string or an <code>re.compile</code>'d regex object. You can limit the number of matches found by setting the <code>matches</code> arg to a positive integer. By default, portions of the string that match but aren't visible (e.g., when the Text object is too small to fit the entire string) will be omitted from the return value. Setting <code>matches</code> to <code class="kw">all</code> will return every matching portion of the text, visible or not.</p>
       </div>
 
       <a name="Text.select()"></a>
       <div class="def-box">
         <pre class="manual">txt.<span class="red">select</span>(tag_name, matches=0)</pre>
-        <p>Search the string for regions contained within named elements (useful if text() was called with an <code>xml</code> keyword argument). Returns a list of <a href="#TextMatch">TextMatch</a> objects providing the character-range of the match as well as the layout geometry at the frame- and line-level. The <code>matches</code> argument has the same filtering effect as in the txt.find() method.</p>
+        <p>Search the string for regions contained within named elements (useful if text() was called with an <code>xml</code> keyword argument). Returns a list of <a href="#TextFragment">TextFragment</a> objects providing the character-range of the match as well as the layout geometry at the block- and line-level. The <code>matches</code> argument has the same filtering effect as in the txt.find() method.</p>
       </div>
     </div>
 
-
+    <a name="Text.flow()"></a>
     <h2>Text-flow Methods</h2>
     <div class="row">
       <div class="def-box">
         <pre class="manual">txt.<span class="red">flow</span>(columns=<span class="kw">all</span>, layout=<span class="bp">None</span>)</pre>
-        <p>If the <code>Text</code> object has both a fixed <code>width</code> and <code>height</code>, it's possible that the string won't fit entirely inside its bounds. Iterating over the return value of flow() will step through as many <a href="#TextFrame">TextFrame</a> objects as are necessary to fully present the text.</p>
+        <p>If the <code>Text</code> object has both a fixed <code>width</code> and <code>height</code>, it's possible that the string won't fit entirely inside its frame. Iterating over the return value of flow() will step through as many <a href="#TextBlock">TextBlock</a> objects as are necessary to fully present the text.</p>
 
-       <p>Within your loop you can set the <code>x</code>, <code>y</code>, <code>width</code>, and <code>height</code> of each frame in turn (starting from the first "overflow" frame). The <code>x</code> and <code>y</code> coordinates are relative to the Text object's position, so setting them to zero moves you back to the original origin.</p>
+       <p>Within your loop you can set the <code>x</code>, <code>y</code>, <code>width</code>, and <code>height</code> of each block in turn (starting from the first "overflow" block). The <code>x</code> and <code>y</code> coordinates are relative to the Text object's position, so setting them to zero moves you back to the original origin.</p>
 
 
-        <p>Each frame uses the dimensions of the prior frame as its default, so it's totally reasonable to e.g., set positions using relative values:</p>
+        <p>Each block uses the dimensions of the prior block as its default, so it's totally reasonable to e.g., set positions using relative values:</p>
        <pre>
   txt = text(40,40, 200,500, str="something really long...")
-  for frame in txt.flow():
-      frame.x += frame.width + 50
+  for block in txt.flow():
+      block.x += block.width + 50
 </pre>
 
-       <p>By default the flow loop will continue until the entire string has been laid-out. But if you know ahead of time that you only want a specific number of columns, pass an integer as the <code>column</code> arg to set the total number of desired frames (including the initial frame defined by the Text object).</p>
-        <p>The optional <code>layout</code> argument allows you to pass a reference to a function that accepts a single TextFrame. The function will be called once for each frame in the sequence:</p>
+       <p>By default the flow loop will continue until the entire string has been laid-out. But if you know ahead of time that you only want a specific number of columns, pass an integer as the <code>column</code> arg to set the total number of desired blocks (including the initial block defined by the Text object).</p>
+        <p>The optional <code>layout</code> argument allows you to pass a reference to a function that accepts a single TextBlock. The function will be called once for each block in the sequence:</p>
        <pre>
-  def rightward(frame):
-      frame.x += frame.width + 50
+  def rightward(block):
+      block.x += block.width + 50
   text(40,40, 200,500, str="something really long...").flow(rightward)
 </pre>
       </div>
 
       <div class="def-box">
         <pre class="manual">txt.<span class="red">overleaf</span>()</pre>
-        <p>Returns a Text object containing any "overflow" characters that did not fit within the Text's <code>width</code> &amp; <code>height</code> bounds. If the entire string fits within the bounds, returns None. See also: the <a href="#paginate()">paginate()</a> command.</p>
+        <p>Returns a Text object containing any "overflow" characters that did not fit within the Text's <code>width</code> &amp; <code>height</code> frame. If the entire string fits within the frame, returns None. See also: the <a href="#paginate()">paginate()</a> command.</p>
       </div>
 
 

@@ -506,6 +506,11 @@ if __name__=='__main__':
   else:
     build(static='site' not in sys.argv)
 
+  if 'tests' in sys.argv:
+    from detest import make_tests
+    make_tests()
+
+
   # check_media()
   # check_links()
   # code_blocks()

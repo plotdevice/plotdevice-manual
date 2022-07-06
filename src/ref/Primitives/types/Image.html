@@ -9,7 +9,7 @@
     <h2>Description</h2>
 
     <div class="row">
-      <p>The <a href="#image()">image()</a> command in PlotDevice returns an Image object representing a bitmap or vector image file. If you call <i>image()</i> with a <code>plot=<span class="kw">False</span></code> argument, you can make copies of the image and position or <a href="Canvas.html#plot()">plot()</a> the object manually.</p>
+      <p>The <a href="#image()">image()</a> command in PlotDevice returns an <i>Image</i> object representing a bitmap or vector image file. If you call <i>image()</i> with a <code>plot=<span class="kw">False</span></code> argument, you can make copies of the image and position or <a href="Canvas.html#plot()">plot()</a> the object manually.</p>
     </div>
 
     <h2>Methods</h2>
@@ -27,7 +27,9 @@ img.<span class="red">copy</span>()
 img.<span class="red">y</span>
 img.<span class="red">width</span>
 img.<span class="red">height</span>
-img.<span class="red">size</span>  <span class="grey"># the dimensions in a (w,h) tuple</span>
+img.<span class="red">frame</span>  <span class="grey"># position &amp; maximal size defined when creating the Image</span>
+img.<span class="red">bounds</span> <span class="grey"># position &amp; size of the scaled image (fitted to the frame)</span>
+img.<span class="red">size</span>   <span class="grey"># the (unscaled) dimensions of the source image</span>
 </pre>
     </div>
   </div>

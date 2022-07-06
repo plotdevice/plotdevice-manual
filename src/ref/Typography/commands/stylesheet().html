@@ -78,7 +78,7 @@ print stylesheet('serif')
 markup = "&lt;it&gt;Bip &lt;bf&gt;Blip&lt;/bf&gt;&lt;/it&gt;"
 stylesheet("it", italic=True)
 stylesheet("bf", weight='black')
-with font("Georgia", 22):
+with font("Baskerville", 22):
     text(20,40, xml=markup)
 with font("Avenir", 18), fill('red'):
     text(20,80, xml=markup)

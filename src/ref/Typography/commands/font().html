@@ -15,6 +15,7 @@
 
     <h2>Description</h2>
 
+    <a name="font(size)"></a>
     <div class="row">
       <p>Sets the font, typographic features, and letter-spacing to be used by the <a href="Primitives.html#text()">text()</a> command (or modifies selected attributes of the current font). The <code>family</code> and <code>weight</code> arguments are strings corresponding to the name of a font family installed on the system and a weight name. If the family lacks the specified weight, the closest match will be used instead. If included, the <code>size</code> argument should be a number representing the desired point size. All three positional arguments are optional since unspecified attributes will use the canvas's current <i>font()</i> setting as a basis for selecting a new one.
       </p><p>You can retrieve a list of valid <code>family</code> names on your system using the <a href="Misc.html#fonts()">fonts()</a> command. To determine which weights &amp; styles are provided by a given family, either create a <a href="#Family">Family</a> object and inspect its properties, or take a look at the <code>weights</code>, <code>widths</code>, and <code>variants</code> properties of the current <a href="#Font">Font</a> object (returned by calling <i>font()</i> with no arguments).
@@ -23,10 +24,13 @@
     <h2>Typeface Parameters</h2>
 
     <div class="row">
+      <a name="font(italic)"></a>
       <p><code class="box"><span class="red">italic</span></code>
       </p><p>A boolean (or <code class="mi">0</code>/<code class="mi">1</code>) value specifying whether to use the italic style of the current font family. Note that the family must provide an italic as it won't be algorithmically generated. If you're dead-set on hacking in a fake italic, try drawing the text as an <code>outline</code> and applying a <a href="Transform.html#skew">skew</a> transform to it.</p>
+      <a name="font(width)"></a>
       <p><code class="box"><span class="red">width</span></code>
       </p><p>For families that provide a range of widths (e.g., "compressed", "condensed", or "extended"), the <code>width</code> argument allows you to select them by name.
+      <a name="font(variant)"></a>
       </p><p><code class="box"><span class="red">variant</span></code>
       </p><p>The vast majority of western typefaces use weight, width, and italicization as the "axes" for selecting fonts. Occasionally you will run into a family with a more idioscyncratic organization (for example, see Chalet's goofy/charming city-and-era <a href="http://www.houseind.com/fonts/chalet">naming scheme</a>). Strings passed as the <code>variant</code> arg allow you to select these sorts of non-standard names.
       </p><p><code class="box"><span class="red">face</span></code>
@@ -37,7 +41,7 @@ font(face='Avenir-HeavyOblique')
       <p>To find the <code>face</code> name of a specific font, use the <span class="message">Show Font Info</span> option in the <span class="message">Preview</span> menu of <a href="http://support.apple.com/kb/HT2509?viewlocale=en_US&amp;locale=en_US">Font Book</a>.
       </p>
 
-
+      <a name="font(tracking)"></a>
       <p><code class="box"><span class="red">tracking</span></code></p>
       <p>Controls the letter-spacing of a run of text. The value is a positive or negative number in thousandths of an <a href="http://en.wikipedia.org/wiki/Em_%28typography%29">em</a> and sets the amount of extra space added (or subtracted) between characters. The default value is zero, meaning no extra space will be added beyond what is specified in the font's kerning tables. To disable kerning altogether, set the value to <span class="kw"><code>None</code></span>.</p>
 
@@ -51,7 +55,7 @@ font(face='Avenir-HeavyOblique')
       <p>If the selected font is an OpenType file with support for advanced typographical features, you may pass any of the following optional arguments to enable or disable them. Note that these settings will only affect the typesetting if the font was designed to support OpenType or ‘AAT’ features.</p>
       <p>Argument values may be either a boolean or the intergers <code>0</code> and <code>1</code>. Certain features also accept other integer values or the <span class="kw"><code>all</code></span> keyword as noted below.</p>
 
-
+      <a name="font(lig)"></a>
       <div class="def-box">
         <pre class="red shell">lig</pre>
 
@@ -63,7 +67,7 @@ font(face='Avenir-HeavyOblique')
         </table>
       </div>
 
-
+      <a name="font(sc)"></a>
       <div class="def-box">
         <pre class="red shell">sc</pre>
         <p>Control how upper and lower case characters are mapped to "small capital" glyphs.</p>
@@ -75,7 +79,7 @@ font(face='Avenir-HeavyOblique')
         </table>
       </div>
 
-
+      <a name="font(osf)"></a>
       <div class="def-box">
         <pre class="red shell">osf</pre>
         <p>Select between  "lining" and "old style figures" when drawing numbers.</p>
@@ -84,7 +88,7 @@ font(face='Avenir-HeavyOblique')
           <tr><td><code class="kw">True</code> / <code>1</code></td><td>use old style (or "lower case") numerals</td></tr>
         </table>
       </div>
-
+      <a name="font(tab)"></a>
       <div class="def-box">
         <pre class="red shell">tab</pre>
         <p>Set the horizontal spacing used by runs of number characters. Fonts will typically default to proportional spacing, meaning the columns in sequential lines won't line up. Enabling "tabular" spacing will add extra space around narrow digits so everything lines up nicely.</p>
@@ -94,7 +98,7 @@ font(face='Avenir-HeavyOblique')
         </table>
       </div>
 
-
+      <a name="font(vpos)"></a>
       <div class="def-box">
         <pre class="red shell">vpos</pre>
         <p>Set the vertical position of numbers (and possibly also letter characters). Many fonts allow you to draw "superscript" characters and a smaller number also support "subscripts".</p>
@@ -106,7 +110,7 @@ font(face='Avenir-HeavyOblique')
         </table>
       </div>
 
-
+      <a name="font(frac)"></a>
       <div class="def-box">
         <pre class="red shell">frac</pre>
         <p>Enable or disable "automatic fractions". If the font supports this, strings such as <span class="str"><code>"1/2"</code></span> or <span class="str"><code>"3/4"</code></span> will be converted to a single glyph with a diagonal solidus drawn between the numerator and denominator.
@@ -116,7 +120,7 @@ font(face='Avenir-HeavyOblique')
           <tr><td><code class="kw">True</code> / <code>1</code></td><td>Enable fractions</td></tr>
         </table>
       </div>
-
+      <a name="font(ss)"></a>
       <div class="def-box">
         <pre class="red shell">ss</pre>
         <p>Enable one or more "stylistic sets" provided by the font. Tragically, these sets of alternate character forms don't have human readable names. Fonts can define up to 20 sets, with each identified by an integer.</p>
@@ -139,6 +143,12 @@ font(face='Avenir-HeavyOblique')
 
     <div class="row">
       a <a href="#Font">Font</a> object with the canvas's current font and layout settings
+    </div>
+
+    <h2>Tutorial</h2>
+
+    <div class="row">
+      <a href="../tut/Typography.html">Typography</a>
     </div>
 
     <h2>Example</h2>

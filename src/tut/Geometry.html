@@ -201,7 +201,8 @@ for i in range(10):
       <div class="example">
         <span><img src="../etc/tut/math-perpendicular.png" width="194" height="194"/></span>
         <pre>
-path = oval(100, 100, 105, 105)
+stroke(0.5) and nofill()
+path = oval(45, 45, 105, 105)
 for t in range(50):
     curve = path.point(t/50.0)
     a = curve.angle(curve.ctrl2)
@@ -230,10 +231,10 @@ with stroke(0), nofill():
     arc(50,25, 25, range=180)
 
     geometry(RADIANS)
-    arc(50,50, 25, range=pi)
+    arc(50,75, 25, range=pi)
 
     geometry(PERCENT)
-    arc(50,75, 25, range=.5)
+    arc(50,125, 25, range=.5)
 </pre>
     </div>
 

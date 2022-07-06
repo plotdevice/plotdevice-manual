@@ -10,6 +10,7 @@
 
     <div class="row">
 <pre>measure(grob)
+measure(image="path", width=None, height=None)
 measure("text", width=None, height=None, **fontstyle)
 </pre>
     </div>
@@ -18,7 +19,7 @@ measure("text", width=None, height=None, **fontstyle)
 
     <div class="row">
       <p>Returns width &amp; height for graphics objects, strings, or images. If the first argument is a string, the size will reflect the current <a href="Typography.html#font()">font()</a> settings and will layout the text using the optional <code>width</code> and <code>height</code> arguments (as well as any keyword arguments supported by the <a href="Primitives.html#text()">text()</a> command).
-      </p><p>If called with a <a href="https://docs.python.org/2/library/stdtypes.html#bltin-file-objects">file</a> object, PlotDevice will expect it to be an image file and return its pixel dimensions.</p>
+      </p><p>If called with an <i>image</i> keyword argument, PlotDevice will expect it to be the path to an image file and will return its pixel dimensions.</p>
       <p>If called with a <a href="Drawing.html#Bezier">Bezier</a>, returns its "bounding box" dimensions.
     </p></div>
 

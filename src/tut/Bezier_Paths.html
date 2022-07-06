@@ -68,8 +68,7 @@ curve.<span class="red">ctrl2</span>.y</pre>
       handle how the curve connects to the destination point. For example:</p>
       <div class="example">
         <span><img height="256" src="../etc/tut/paths-ctrl1.png" width="280"/></span>
-        <pre>fill(None)
-stroke(1)
+        <pre>stroke(0) and nofill()
 with bezier(100,100) as path:
     curveto(150, 100, 200, 200, 150, 200)
     curveto(100, 200, 200, 350, 300, 300)
@@ -85,8 +84,8 @@ with bezier(100,100) as path:
         <span><img src="../etc/tut/paths-transform-pre.png"/></span>
         <pre>
 font("Dolly", "bold", 300)
-path = textpath("e", 200, 200)
-bezier(path)
+path = textpath("e", 10, 150)
+bezier(path, stroke='black', fill=None)
 </pre>
       </div>
 
@@ -95,14 +94,14 @@ bezier(path)
         <span><img src="../etc/tut/paths-transform-post.png"/></span>
         <pre>
 font("Dolly", "bold", 300)
-path = textpath("e", 200, 200)
+path = textpath("e", 10, 150)
 curves = []
 for curve in path:
     curve.y += 20 # nudge the point downward
     curves.append(curve)
 
 # draw a new bezier (built from our list of Curve objects)
-bezier(curves)
+bezier(curves, stroke='black', fill=None)
 </pre>
       </div>
 
@@ -117,7 +116,7 @@ bezier(curves)
       <div class="example">
         <span><img height="87" src="../etc/tut/paths-broken.jpg" width="334"/></span>
 <pre>font("Dolly", "bold", 100)
-path = textpath("broken", 200,200)
+path = textpath("broken", 0,80)
 
 curves = []
 for curve in path:
@@ -127,7 +126,8 @@ for curve in path:
         curve.y += 5
     curves.append(curve)
 
-bezier(curves)
+with stroke(0), nofill():
+    bezier(curves)
 </pre>
       </div>
 
@@ -226,7 +226,7 @@ for curve in path:
         <pre>
 font("Dolly", "bold", 50)
 with pen(2), nofill():
-    path = textpath("@#$&amp;!", 10, 100)
+    path = textpath("@#$&amp;!", 10, 50)
     for contour in path.contours:
         stroke(HSV, random(), 1, .8)
         bezier(contour)
@@ -298,8 +298,8 @@ bezier(path)
       <div class="example">
         <span><img src="../etc/tut/paths-flat-union.png"/></span>
         <pre>
-path1 = oval(40, 40, 80, 80, plot=False)
-path2 = oval(90, 40, 80, 80, plot=False)
+path1 = arc( 50,50, 40, plot=False)
+path2 = arc(100,50, 40, plot=False)
 compound = path1.union(path2)
 with stroke(0), nofill():
     bezier(compound)
@@ -313,8 +313,8 @@ with stroke(0), nofill():
       <div class="example">
         <span><img src="../etc/tut/paths-flat-intersect.png"/></span>
         <pre>
-path1 = oval(40, 40, 80, 80, plot=False)
-path2 = oval(90, 40, 80, 80, plot=False)
+path1 = arc( 50,50, 40, plot=False)
+path2 = arc(100,50, 40, plot=False)
 compound = path1.intersect(path2)
 with stroke(0), nofill():
     bezier(compound)
@@ -328,8 +328,8 @@ with stroke(0), nofill():
       <div class="example">
         <span><img src="../etc/tut/paths-flat-difference.png"/></span>
         <pre>
-path1 = oval(40, 40, 80, 80, plot=False)
-path2 = oval(90, 40, 80, 80, plot=False)
+path1 = arc( 50,50, 40, plot=False)
+path2 = arc(100,50, 40, plot=False)
 compound = path1.difference(path2)
 with stroke(0), nofill():
     bezier(compound)
@@ -343,8 +343,8 @@ with stroke(0), nofill():
       <div class="example">
         <span><img src="../etc/tut/paths-flat-xor.png"/></span>
         <pre>
-path1 = oval(40, 40, 80, 80, plot=False)
-path2 = oval(90, 40, 80, 80, plot=False)
+path1 = arc( 50,50, 40, plot=False)
+path2 = arc(100,50, 40, plot=False)
 compound = path1.xor(path2)
 with stroke(0), fill(0.8):
     bezier(compound)

@@ -20,17 +20,17 @@
       </p><p>Calling <i>text()</i> with a <code>width</code> argument will lay out a column of type. Text in a column wraps across multiple lines within the rectangle defined by the x/y/w/h dimensions and the <i>align()</i> setting controls how lines are broken within this block.
     </p></div>
 
-    <h2>PlotDevice Equivalent</h2>
-
-    <div class="row">
-      <p>The <a href="#layout()">layout()</a> and <i>text()</i> commands can both be called with an <code>align</code> argument to set the text alignment.</p>
-    </div>
-
 
     <h2>Returns</h2>
 
     <div class="row">
       the current alignment
+    </div>
+
+    <h2>PlotDevice Equivalent</h2>
+
+    <div class="row">
+      <p>The <a href="#layout()">layout()</a> and <i>text()</i> commands can both be called with an <code>align</code> argument to set the text alignment.</p>
     </div>
 
     <h2>Example</h2>
@@ -57,9 +57,8 @@ text("Homeopape", x,105)
 x,y = 10,55
 font(16)
 align(RIGHT)
-text(quip, x,y, width=90)
-with stroke(.7), nofill():
-    rect(x,y-font().size, 90, 70, dash=3)
+t = text(quip, x,y, width=95, height=65)
+rect(t.frame, dash=3, stroke=.7, fill=None)
 </pre>
       </div>
     </div>

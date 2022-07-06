@@ -1,0 +1,87 @@
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="definition">
+    <h1>TextFragment</h1>
+
+    <h2>Description</h2>
+
+    <div class="row">
+      <p>The <a href="#Text">Text</a> objects you create using the <a href="Primitives.html#text()">text()</a> command are still "live" objects that can provide information about their contents and layout. The Text object's <a href="#Text-content">substring properties</a> allow you to slice out portions of the text by returning <i>TextFragment</i> objects that describe their character and geometry data.</p>
+
+      <p>Each <i>TextFragment</i> object represents a contiguous range of characters in the <i>Text</i> object's string and describes their layout (whether it lies on a single line, a range of lines, or even across multiple <i>TextBlock</i> "columns". Depending on which property you retrieve the match from, different <i>TextFragment</i> properties will be relevant:</p>
+    </div>
+
+    <h2>Character-range Properties</h2>
+
+    <div class="row">
+      <pre class="manual">
+match.<span class="red">start</span> <span class="c"># the index of the first character in the match</span>
+match.<span class="red">end</span>   <span class="c"># the index of first character after the match</span>
+</pre>
+    </div>
+
+    <h2>Geometry Properties</h2>
+
+    <div class="row">
+      <pre class="manual">
+match.<span class="red">baseline</span> <span class="c"># the origin Point of the first glyph in the match</span>
+match.<span class="red">frame</span>    <span class="c"># Region containing the full lines of the matched range</span>
+match.<span class="red">bounds</span>   <span class="c"># Region containing just the matched characters</span>
+</pre>
+    </div>
+
+    <h2>Content Properties</h2>
+    <div class="row">
+      <pre class="manual">
+match.<span class="red">text</span>   <span class="c"># the substring that was matched</span>
+match.<span class="red">lines</span>  <span class="c"># list with one TextFragment per line within the matched range</span>
+match.<span class="red">blocks</span> <span class="c"># list with the TextBlock(s) containing the matched range</span>
+match.<span class="red">path</span>   <span class="c"># Bezier object with the glyphs from the matched range</span>
+</pre>
+    </div>
+
+
+    <h2>Regular Expression Properties <span class="grey">(via Text.<a href="#Text.find()">find()</a>)</span></h2>
+    <div class="row">
+      <pre class="manual">
+match.<span class="red">m</span>           <span class="c"># regular expression <a href="https://docs.python.org/2/library/re.html#match-objects">Match</a> object</span>
+match.<span class="red">group</span>(idx)  <span class="c"># TextFragment corresponding to the numbered or named group</span>
+match.<span class="red">groups</span>()    <span class="c"># list of TextMatch objects corresponding to regex captures</span>
+match.<span class="red">groupdict</span>() <span class="c"># dictionary mapping captured group names to TextMatch objects</span>
+</pre>
+    </div>
+
+    <h2>XML Element Properties <span class="grey">(via Text.<a href="#Text.select()">select()</a>)</span></h2>
+    <div class="row">
+      <pre class="manual">
+match.<span class="red">tag</span>     <span class="c"># string with the matched element's name</span>
+match.<span class="red">attrs</span>   <span class="c"># dictionary with the element's attributes (if any)</span>
+match.<span class="red">parents</span> <span class="c"># tuple with the parent, grandparent, etc. tag names</span>
+</pre>
+    </div>
+
+
+  <h2>Example</h2>
+
+  <div class="row">
+    <div class="example">
+      <span><img height="150" src="../etc/ref/line-fragment.png" width="270"/></span>
+<pre>
+font('avenir', 32)
+layout(leading=1.6)
+t = text(20,60, 230, str='Blixa Bargeld, poet laureate')
+
+nofill()
+for slug in t.lines:
+    rect(slug.frame, stroke=.9)  # faint
+    rect(slug.bounds, stroke=.6) # dark
+    arc(slug.baseline, 4, fill='red')
+</pre>
+    </div>
+  </div>
+
+
+</body></html>
