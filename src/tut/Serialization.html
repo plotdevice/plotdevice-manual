@@ -141,8 +141,8 @@ print year[9].german
   <p>An <a href="../ref/Misc.html#odict()">odict</a> will let you address columns by order as well as by name:</p>
   <pre>year = read("months.csv", cols=True, dict=odict)
 june = year[5]
-print "column order:" june.keys()
-print "column values:" june.values()
+print "column order:", june.keys()
+print "column values:", june.values()
 >>> column order: [u'days', u'english', u'french', u'german']
 >>> column values: [u'30', u'June', u'Juin', u'Juni']
 </pre>

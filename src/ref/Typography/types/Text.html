@@ -141,17 +141,17 @@ txt.<span class="red">append</span>(xml=<span class="str">""</span>, **options)
 
         <p>Each block uses the dimensions of the prior block as its default, so it's totally reasonable to e.g., set positions using relative values:</p>
        <pre>
-  txt = text(40,40, 200,500, str="something really long...")
-  for block in txt.flow():
-      block.x += block.width + 50
+txt = text(40,40, 200,500, str="something really long...")
+for block in txt.flow():
+    block.x += block.width + 50
 </pre>
 
        <p>By default the flow loop will continue until the entire string has been laid-out. But if you know ahead of time that you only want a specific number of columns, pass an integer as the <code>column</code> arg to set the total number of desired blocks (including the initial block defined by the Text object).</p>
         <p>The optional <code>layout</code> argument allows you to pass a reference to a function that accepts a single TextBlock. The function will be called once for each block in the sequence:</p>
        <pre>
-  def rightward(block):
-      block.x += block.width + 50
-  text(40,40, 200,500, str="something really long...").flow(rightward)
+def rightward(block):
+    block.x += block.width + 50
+text(40,40, 200,500, str="something really long...").flow(rightward)
 </pre>
       </div>
 
