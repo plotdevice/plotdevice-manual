@@ -133,26 +133,26 @@ def draw():
       <h2>Point Objects</h2>
       <p>You can create a <i>Point</i> by passing a pair of coordinate values to the constructor function and access its coordinates through the <code>x</code> and <code>y</code> attributes.</p>
       <pre>pt = Point(13,37)
-print pt.y
+print(pt.y)
 >>> 37</pre>
       <p>You can unpack it back into a pair of values through simple assignment:</p>
       <pre>x, y = pt
-print x, y
+print(x, y)
 >>> 13 37</pre>
 
       <p><i>Point</i> objects support basic arithmetic operators (as does the similar <a href="../ref/Misc.html#Size">Size</a> object):</p>
       <pre>
 pt = Point(10, 20)
-print pt * 2        # Point(20, 40)
-print pt / 2        # Point(5, 10)
-print pt + 5        # Point(15, 25)
-print pt + (40, 30) # Point(50, 50)
+print(pt * 2)        # Point(20, 40)
+print(pt / 2)        # Point(5, 10)
+print(pt + 5)        # Point(15, 25)
+print(pt + (40, 30)) # Point(50, 50)
 </pre>
 <pre>
 pt = Point(10, 20)
 sz = Size(200,200)
-print pt + sz       # Point(210, 220)
-print pt + sz/2     # Point(110, 120)
+print(pt + sz)       # Point(210, 220)
+print(pt + sz/2)     # Point(110, 120)
 </pre>
 
 
@@ -258,7 +258,7 @@ with stroke(0), nofill():
 <pre>def fib(n):
     if n == 0: return 0
     if n == 1: return 1
-    if n &gt;= 2: return fib(n-1) + fib(n-2)
+    if n >= 2: return fib(n-1) + fib(n-2)
 
 def goldenratio(n, f=4):
     # Returns two proportional numbers whose sum is n.

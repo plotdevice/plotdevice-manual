@@ -223,7 +223,7 @@ def trash(path, pt0, pt1, m=0.2, n=20, d=3.0):
     # m: controls how much of the path is trashed.
     # n: the number of lines to insert.
     # d: the maximum length of inserted lines.
-    if random() &lt; m:
+    if random() < m:
         for i in range(random(n)):
             pt0.x += random(-d, d)
             pt0.y += random(-d, d)
@@ -233,7 +233,7 @@ def trash(path, pt0, pt1, m=0.2, n=20, d=3.0):
 
     # Create a blot/speckle near the current point.
     # We have to add this to the path at the end.
-    if random() &lt; m*0.3:
+    if random() < m*0.3:
         x = pt1.x - random(-d*4, d*4)
         y = pt1.y - random(-d*2, d*2)
         blot = Bezier()

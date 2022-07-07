@@ -235,24 +235,24 @@ def reflect(x0, y0, x1, y1, d=1.0, a=180):
             d = distance(self.x, self.y, obstacle.x, obstacle.y)
 
             # Respond faster if the creature is very close to an obstacle.
-            if d - obstacle.radius &lt; perimeter: m *= 10
+            if d - obstacle.radius < perimeter: m *= 10
 
             # Check if the tip of the feeler falls inside the obstacle.
             # This is never true if the feeler length
             # is smaller than the distance to the obstable.
-            if d - obstacle.radius &lt;= self.feeler_length:
+            if d - obstacle.radius <= self.feeler_length:
                 tip_x, tip_y = coordinates(self.x, self.y, d, a)
                 if distance(obstacle.x, obstacle.y,
-                            tip_x, tip_y) &lt; obstacle.radius:
+                            tip_x, tip_y) < obstacle.radius:
 
                     # Nudge the creature away from the obstacle.
                     m *= self.speed
-                    if tip_x &lt; obstacle.x: self._vx -= random(m)
-                    if tip_y &lt; obstacle.y: self._vy -= random(m)
-                    if tip_x &gt; obstacle.x: self._vx += random(m)
-                    if tip_y &gt; obstacle.y: self._vy += random(m)
+                    if tip_x < obstacle.x: self._vx -= random(m)
+                    if tip_y < obstacle.y: self._vy -= random(m)
+                    if tip_x > obstacle.x: self._vx += random(m)
+                    if tip_y > obstacle.y: self._vy += random(m)
 
-                    if d - obstacle.radius &lt; perimeter: return
+                    if d - obstacle.radius < perimeter: return
 
     def roam(self):
         """ Creature changes heading aimlessly.

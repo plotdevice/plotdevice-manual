@@ -226,7 +226,7 @@ for curve in path:
         <pre>
 font("Dolly", "bold", 50)
 with pen(2), nofill():
-    path = textpath("@#$&amp;!", 10, 50)
+    path = textpath("@#$&!", 10, 50)
     for contour in path.contours:
         stroke(HSV, random(), 1, .8)
         bezier(contour)
@@ -246,13 +246,13 @@ pen(4, cap=ROUND)
 
 # draw twelve overlapping lines separately
 translate(5,5)
-for i in xrange(12):
+for i in range(12):
     line(0, i*10, i*15, 120)
 
 # draw them as a single compound-path
 translate(0, 140)
 with bezier():
-    for i in xrange(12):
+    for i in range(12):
         line(0, i*10, i*15, 120)
 </pre>
 </div>

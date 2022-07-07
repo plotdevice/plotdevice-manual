@@ -53,7 +53,7 @@ with export('output.png'):
     <p>As with the single-image version of the <i>export()</i> call, you can use the <code>with</code> statement in your code to tidy up some of the frame-drawing boilerplate. All three examples below are equivalent. Note the use of the <code>movie</code> object's <i>frame</i> property (which is itself a context manager) in the final example:
     </p><pre># export a 100-frame movie
 movie = export('anim.mov', fps=50, bitrate=1.8)
-for i in xrange(100):
+for i in range(100):
     clear(all)  # erase the previous frame from the canvas
     ...         # (do some drawing)
     movie.add() # add the canvas to the movie
@@ -61,7 +61,7 @@ movie.finish()  # wait for i/o to complete
 </pre><pre>
 # export a movie (with the context manager finishing the file when done)
 with export('anim.mov', fps=50, bitrate=1.8) as movie:
-    for i in xrange(100):
+    for i in range(100):
         clear(all)  # erase the previous frame from the canvas
         ...         # (do some drawing)
         movie.add() # add the canvas to the movie
@@ -69,7 +69,7 @@ with export('anim.mov', fps=50, bitrate=1.8) as movie:
 # export a movie (with the context manager finishing the file when done)
 # let the movie.frame context manager call clear() and add() for us
 with export('anim.mov', fps=50, bitrate=1.8) as movie:
-    for i in xrange(100):
+    for i in range(100):
         with movie.frame:
             ... # draw the next frame
 </pre>
@@ -82,14 +82,14 @@ with export('anim.mov', fps=50, bitrate=1.8) as movie:
     </p><pre># export a sequence of images to output-0001.png, output-0002.png, ...
 #                                output-0099.png, output-0100.png
 with export('output.png') as img:
-    for i in xrange(100):
+    for i in range(100):
         with img.frame:
             ... # draw the next image in the sequence
 
 # export a sequence of images to 01-img.png, 02-img.png, ...
 #                                99-img.png, 100-img.png
 with export('{2}-img.png') as img:
-    for i in xrange(100):
+    for i in range(100):
         with img.frame:
             ... # draw the next image in the sequence
 </pre>
@@ -100,7 +100,7 @@ with export('{2}-img.png') as img:
     <p>Creating PDF documents works the same way, letting you either <i>clear()</i>, <i>add()</i>, and <i>finish()</i> the export manually or take advantage of the <code>with</code> statement to hide the repetitive bits. Note that PDF exports use the <code>page</code> attribute rather than <code>frame</code>:
     </p><pre># export a five-page pdf document
 pdf = export('multipage.pdf')
-for i in xrange(5):
+for i in range(5):
     clear(all) # erase the previous page's graphics from the canvas
     ...        # (do some drawing)
     pdf.add()  # add the canvas to the pdf as a new page
@@ -108,7 +108,7 @@ pdf.finish()   # write the pdf document to disk
 
 # export a pdf document more succinctly
 with export('multipage.pdf') as pdf:
-    for i in xrange(5):
+    for i in range(5):
         with pdf.page:
             ... # draw the next page
 </pre>

@@ -36,7 +36,7 @@
 
     <p>So if <em>sequence</em> were <code>[<code class="str">"ready"</code>, <code class="str">"steady"</code>, <code class="str">"GO!"</code>]</code>, the commands in the for-loop would be executed three times. The <em>variable</em> will be assigned <code class="str">"ready"</code> the first time through the loop, <code class="str">"steady"</code> the second time, and <code class="str">"GO!"</code> the third time:</p>
 <pre>for item in ["ready", "steady", "GO!"]:
-  print item
+  print(item)
 >>> ready
 >>> steady
 >>> GO!
@@ -45,7 +45,7 @@
 <p>If you want your loop to execute a fixed number of times, try using the built-in <a href="https://docs.python.org/2/library/functions.html#range">range()</a> function. When you use a range, the loop will run once for each value from zero up to (but not including) the number you pass as the range argument.</p>
 
 <pre>for item in range(3):
-    print item
+    print(item)
 >>> 0
 >>> 1
 >>> 2
@@ -79,7 +79,7 @@
     <pre>
 shortlist = ['first', 'middle', 'last']
 for i, name in enumerate(shortlist):
-    print "item", i, "is:", name
+    print("item", i, "is:", name)
 >>> item 0 is first
 >>> item 1 is middle
 >>> item 2 is last
@@ -94,14 +94,14 @@ for i, name in enumerate(shortlist):
     <pre>info = dict(series=9000, instructor="Langley", operational="1992/01/12")
 for key in info:
     val = info[key]
-    print key, val
+    print(key, val)
 >>> series 9000
 >>> instructor Langley
 >>> operational 1992/01/12
 </pre>
     <p>You can also iterate through key/value <em>pairs</em> using the <i>dict.<a href="https://docs.python.org/2/library/stdtypes.html#dict.items">items()</a></i> method. In this case your <i>for</i> statement should declare two variables (separated by a comma) to refer to the key and value respectively:</p>
-    <pre>for key, val in info.items():
-    print key, val</pre>
+    <pre>for key, val in list(info.items()):
+    print(key, val)</pre>
 
 
 
@@ -141,11 +141,11 @@ for i in range(100):
     <p>If your goal is to reorder the items in a list while ensuring that each element only appears once, use the <a href="../ref/Misc.html#shuffled()">shuffled()</a> command. Calling <i>shuffled()</i> doesn't actually modify the list you pass to it; instead it generates a new, permuted list with the same values as your original. You can store this permutation in another value, or iterate through it immediately:</p>
     <pre>
 alphabet = ['a','b','c','d']
-print shuffled(alphabet)
+print(shuffled(alphabet))
 >>> ['b', 'c', 'a', 'd']
 
 for letter in shuffled(alphabet):
-    print letter
+    print(letter)
 >>> a
 >>> c
 >>> d

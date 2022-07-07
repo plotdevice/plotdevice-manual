@@ -52,7 +52,7 @@ text('One.\nTwo.\nThree.', x, y)
     <div class="example">
       <span><img class="border" src="../etc/tut/typography-basic-block.png"/></span>
       <pre>
-lorem = "Early in the bright sun-yellowed morning, Stuart McConchie swept the sidewalk before Modem TV Sales &amp; Service, hearing the cars along Shattuck Avenue and the secretaries hurrying on high heels to their offices, all the stirrings and fine smells of a new week, a new time in which a good salesman could accomplish things."
+lorem = "Early in the bright sun-yellowed morning, Stuart McConchie swept the sidewalk before Modem TV Sales & Service, hearing the cars along Shattuck Avenue and the secretaries hurrying on high heels to their offices, all the stirrings and fine smells of a new week, a new time in which a good salesman could accomplish things."
 x, y = 12, 24
 
 font("american typewriter", 16)
@@ -153,11 +153,11 @@ with stroke(.7), pen(dash=3):
 
     <p>Each time you call <i>font()</i>, the canvas's state is updated and an inspectable <a href="../ref/Typography.html#Font">Font</a> object is returned reflecting the new values:</p>
     <pre>
-print font()                  # Font(Helvetica Neue 24pt | Regular)
-print font('Avenir', 'heavy') # Font(Avenir 24pt | Heavy)
-print font(128)               # Font(Avenir 128pt | Heavy)
-print font('Baskerville', 64) # Font(Baskerville 64pt | Bold)
-print font('light')           # Font(Baskerville 64pt | Regular)
+print(font())                  # Font(Helvetica Neue 24pt | Regular)
+print(font('Avenir', 'heavy')) # Font(Avenir 24pt | Heavy)
+print(font(128))               # Font(Avenir 128pt | Heavy)
+print(font('Baskerville', 64)) # Font(Baskerville 64pt | Bold)
+print(font('light'))           # Font(Baskerville 64pt | Regular)
 </pre>
 
     <p>In addition to the positional parameters, <i>font()</i> also accepts a variety of keyword arguments for selecting a typeface, toggling OpenType features, and even tweaking the kerning between neighboring glyphs:</p>
@@ -259,7 +259,7 @@ names = ['red', 'tan', 'aqua', 'blue', 'cyan', 'gold', 'gray', 'lime', 'peru', '
 background(.15)
 font('gill sans')
 
-t = text(10,26, 280, fill=.5)
+t = text('', 10,26, 280, fill=.5)
 for name in names:
     t.append(name, fill=name)
     t.append(' / ', weight='light')
@@ -287,9 +287,9 @@ text(12,42, xml='correct &lt;caps&gt;horse &lt;bold&gt;battery&lt;/bold&gt; stap
 
     <p>Since you may be interested in positioning multiple <i>Text</i> objects relative to one another, it's often handy to know how much space a given run of text will require <i>before</i> drawing it. For this you can use the <a href="../ref/Misc.html#measure()">measure()</a> command, passing a string along with an optional maximum width and height.</p>
 
-    <pre>print measure('lorem ipsum dolor') # all on one line
+    <pre>print(measure('lorem ipsum dolor')) # all on one line
 >>> Size(193.848, 28.8)
-print measure('lorem ipsum dolor', 100, 999) # word-wrapped at 100px
+print(measure('lorem ipsum dolor', 100, 999)) # word-wrapped at 100px
 >>> Size(72.048, 86.4)
 </pre>
 
@@ -346,7 +346,7 @@ jabber = "Twas brillig, and the slithy toves did gyre and gimble in the wabe: al
 
 font('american typewriter', 20)
 t = text(20,40, 250,160, str=jabber)
-print len(t.lines)
+print(len(t.lines))
 >>> 6
 
 nofill()
@@ -460,7 +460,7 @@ stylesheet('fn', vpos=1, fill='red')
 
 body = text(10,20, 170, xml=flaubert)
 for fn in body.select('fn'):
-    note = text(190, fn.baseline.y, width=100, italic=True)
+    note = text('', 190, fn.baseline.y, width=100, italic=True)
     note.append(fn.text, vpos=1)
     note.append(' '+fn.attrs['note'])
 </pre>
@@ -672,7 +672,7 @@ for block in t.flow():
       <pre>
 size(8.5, 11, inch)
 for page in paginate(1,1, 6.5,9, src='http://plotdevice.io/data/poe.txt'):
-    print page
+    print(page)
 >>> Text(chars=733 overflow=12335 idx=0 folio=1)
 >>> Text(chars=808 overflow=11527 idx=1 folio=2)
 >>> Text(chars=716 overflow=10811 idx=2 folio=3)
@@ -695,7 +695,7 @@ for page in paginate(1,1, 6.5,9, src='http://plotdevice.io/data/poe.txt'):
     <div class="example">
       <pre>
 with export('~/poe.pdf') as book:
-    # pick a nice trade paperback-y size so we can use WIDTH &amp; HEIGHT for layout
+    # pick a nice trade paperback-y size so we can use WIDTH & HEIGHT for layout
     size(6, 9, inch)
 
     # map styles to tag-names in our marked-up XML file

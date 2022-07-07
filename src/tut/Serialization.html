@@ -47,10 +47,10 @@
     <p>If we save this text into a file called <code>zork.json</code>, we can access it in PlotDevice by reading it into a variable. All of the "fields" in the data can then be accessed using normal dictionary syntax:</p>
     <pre>
 game = read("zork.json")
-print "Game saved after %i moves" % game["moves"]
-print "(%i points so far)" % game["player"]["score"]
+print("Game saved after %i moves" % game["moves"])
+print("(%i points so far)" % game["player"]["score"])
 if "lamp" in game["player"]["inventory"]:
-    print "Player has not yet been eaten by a grue..."
+    print("Player has not yet been eaten by a grue...")
 >>> Game saved after 153 moves
 >>> (53 points so far)
 >>> Player has not yet been eaten by a grue...
@@ -58,15 +58,15 @@ if "lamp" in game["player"]["inventory"]:
 
     <p>When you <i>read()</i> from a json file, you can also supply an optional keyword argument: <code>dict</code>. This lets you use one of the "specialized" dictionaries like <a href="../ref/Misc.html#adict()">adict</a> or <a href="../ref/Misc.html#odict()">odict</a> if that's more convenient. For instance, we can use an "Attribute Dictionary" to cut down on some of the punctuation noise in the previous example:</p>
 <pre>game = read("zork.json", dict=adict)
-print "Game saved after %i moves" % game.moves
-print "(%i points so far)" % game.player.score
+print("Game saved after %i moves" % game.moves)
+print("(%i points so far)" % game.player.score)
 if "lamp" in game.player.inventory:
-    print "Player has not yet been eaten by a grue..."
+    print("Player has not yet been eaten by a grue...")
 </pre>
     <p>An "Ordered Dictionary" is an appropriate choice if the preserving the file's key ordering is important to you:</p>
     <pre>
-print "normal:", read("zork.json").keys()
-print "ordered:", read("zork.json", dict=odict).keys()
+print("normal:", list(read("zork.json").keys()))
+print("ordered:", list(read("zork.json", dict=odict).keys()))
 >>> normal: [u'player', u'moves', u'thief']
 >>> ordered: [u'player', u'thief', u'moves']
 </pre>
@@ -95,9 +95,9 @@ print "ordered:", read("zork.json", dict=odict).keys()
 
     <p>When we load this file using <i>read()</i>, it returns a list with one element for each of the rows. Each row is itself a list containing the column values as its elements. You can then use list-index notation to read from particular a particular cell or even pull out a "slice" of values within a row:</p>
     <pre>mult = read('timestable.csv')
-print "%i rows and %i columns" % (len(mult), len(mult[0]))
-print "6 times 8 is", mult[6][8]
-print "multiples of 9:", mult[9][2:10]
+print("%i rows and %i columns" % (len(mult), len(mult[0])))
+print("6 times 8 is", mult[6][8])
+print("multiples of 9:", mult[9][2:10])
 >>> 11 rows and 11 columns
 >>> 6 times 8 is 48
 >>> multiples of 9: [u'18', u'27', u'36', u'45', u'54', u'63', u'72', u'81']
@@ -125,9 +125,9 @@ print "multiples of 9:", mult[9][2:10]
   <pre>
 year = read("months.csv", cols=True)
 dec = year[-1]
-print "%i months in a year" % len(year)
-print "The month of", dec['english']
-print "lasts for %i hours" % (24 * int(dec['days']))
+print("%i months in a year" % len(year))
+print("The month of", dec['english'])
+print("lasts for %i hours" % (24 * int(dec['days'])))
 >>> 12 months in a year
 >>> The month of December
 >>> lasts for 744 hours
@@ -135,14 +135,14 @@ print "lasts for %i hours" % (24 * int(dec['days']))
 
   <p>Just as with json files, you can tell <i>read()</i> to use a particular kind of dictionary if you don't want the standard one. An <a href="../ref/Misc.html#adict()">adict</a> will let you access the columns with dot-notation:</p>
   <pre>year = read("months.csv", cols=True, dict=adict)
-print year[9].german
+print(year[9].german)
 >>> Oktober
 </pre>
   <p>An <a href="../ref/Misc.html#odict()">odict</a> will let you address columns by order as well as by name:</p>
   <pre>year = read("months.csv", cols=True, dict=odict)
 june = year[5]
-print "column order:", june.keys()
-print "column values:", june.values()
+print("column order:", list(june.keys()))
+print("column values:", list(june.values()))
 >>> column order: [u'days', u'english', u'french', u'german']
 >>> column values: [u'30', u'June', u'Juin', u'Juni']
 </pre>

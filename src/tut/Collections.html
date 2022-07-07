@@ -29,25 +29,25 @@
     <pre>groceries = ["milk", "eggs", "tabasco", "brussel sprouts", "bacon", "pistachios"]</pre>
     <p>A list can contain any kind of data: strings, numbers, and even other lists. The <i>len()</i> command returns the number of items in a list:</p>
 <pre>
-print len(groceries)
+print(len(groceries))
 >>> 6
 </pre>
 
     <h2>Retrieving and editing items in a list</h2>
 
     <p>You can reference items in a list directly using "index notation". Place a pair of square brackets after the variable name with a numerical index between them:</p>
-<pre>print groceries[0]
+<pre>print(groceries[0])
 >>> milk
 </pre>
 <pre>groceries[2] = "habanero sauce"
-print groceries
+print(groceries)
 >>> ["milk", "eggs", "habanero sauce", "brussel sprouts", "bacon", "pistachios"]
 </pre>
 
     <p>Don’t forget that items in a list start at index <b>zero</b>. That’s why index "2" in the example above causes the <em>third</em> element to be replaced. You can also pull items from the end of the list by using <em>negative</em> index values to count backwards from the last item. The last element in a list is -1, the second-to-last is -2, and so on:</p>
 <pre>
-print "final item:", groceries[-1]
-print "penultimate:", groceries[-2]
+print("final item:", groceries[-1])
+print("penultimate:", groceries[-2])
 >>> final item: pistachios
 >>> penultimate: bacon
 </pre>
@@ -61,7 +61,7 @@ print "penultimate:", groceries[-2]
     <p>You can add a new item to the end of a list with the <i>append()</i> method:</p>
         <pre>
 groceries.append("tea")
-print groceries
+print(groceries)
 >>> ["milk", "eggs", "habanero sauce", "brussel sprouts",
 >>> "bacon", "pistachios", "tea"]
 </pre>
@@ -79,10 +79,10 @@ print groceries
 
     <p>When you use a <a href="Repetition.html">for-loop</a> with a list, any indented commands below the <em>for</em> statement are executed for each item in the list. The <em>item</em> variable consecutively contains each item in the list. Once it reaches the last item in the list, the loop ends:</p>
     <pre>
-print "walk to the market"
+print("walk to the market")
 for item in groceries:
-    print "buy some", item
-print "done shopping!"
+    print("buy some", item)
+print("done shopping!")
 >>> walk to the market
 >>> buy some milk
 >>> buy some eggs
@@ -114,8 +114,8 @@ heading["family"] = "Avenir Next"
 heading["size"] = 18
 heading["fill"] = color(1,0,0)
 
-print heading["size"]
-print heading["fill"]
+print(heading["size"])
+print(heading["fill"])
 >>> 18
 >>> Color('#f00')
 </pre>
@@ -133,7 +133,7 @@ print heading["fill"]
 
     <h2>Dictionaries are "random access"</h2>
     <p>While the elements in a list have an implicit order, there's no obvious way to decide what the "next" element in a dictionary should be. Instead you can think of the dictionary as a soup of key/value pairs. To get a list of all the keys that have been added to a dictionary, use its <i>keys()</i> method. Note that the order of the keys has no relation to the order in which you defined them:</p>
-    <pre>print heading.keys()
+    <pre>print(list(heading.keys()))
 >>> ["family", "fill", "size"] # even though we defined it with family, size, fill</pre>
     <p>If it's important for the key order to be preserved, you can use an <a href="../ref/Misc.html#odict()">odict</a> (a.k.a. an Ordered Dictionary) object instead.</p>
 
@@ -141,9 +141,9 @@ print heading["fill"]
     <p>To test whether a particular key has been defined in a dict, use an <i>"if … in"</i> statement.</p>
 
     <pre>if "fill" in heading:
-    print "found fill!"
+    print("found fill!")
 if "italic" not in heading:
-    print "italic not defined..."
+    print("italic not defined...")
 >>> found fill!
 >>> italic not defined...
 </pre>
@@ -153,8 +153,8 @@ if "italic" not in heading:
 >>> <span class="red">KeyError: 'italic'</span></pre>
 
     <p>Undefined keys are actually a rather common occurrance, so having a missing value cause a fatal error is a little harsh. Luckily Python offers a way to read keys "safely" by using the <i>dict.get()</i> method. Call <i>get()</i> with a pair of arguments: the key name and a "default" value to be returned if the dictionary doesn't contain that key:</p>
-<pre>print "fam:", heading.get("family", "Helvetica") # key exists, default ignored
-print "wgt:", heading.get("weight", "normal") # undefined, default used instead
+<pre>print("fam:", heading.get("family", "Helvetica")) # key exists, default ignored
+print("wgt:", heading.get("weight", "normal")) # undefined, default used instead
 >>> fam: Avenir Next
 >>> wgt: normal</pre>
 

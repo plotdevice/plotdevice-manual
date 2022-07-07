@@ -61,7 +61,7 @@ def draw():
     limit -= 1 # likewise for value overwriting
 
 def stop():
-    print limit # no need to use global here since we're only reading
+    print(limit) # no need to use global here since we're only reading
 </pre>
 
     <h2>Animation state</h2>
@@ -98,7 +98,7 @@ def draw(anim):
     anim.dots = anim.dots[-anim.limit:]
 
 def stop(anim):
-    print "Final population:", len(anim.dots)
+    print("Final population:", len(anim.dots))
 </pre>
     <div class="media"><img height="516" src="../etc/tut/animation-state.png" width="716"/></div>
 

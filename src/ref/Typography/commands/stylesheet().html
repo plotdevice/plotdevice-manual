@@ -44,8 +44,8 @@ stylesheet("name", None) # undefine a style
     <div class="row">
       <p>The <i>Stylesheet</i> stores individual styles as dictionaries of attributes. If your script needs access to the properties set by a previously defined style, call <i>stylesheet()</i> with the style name as the sole argument. It will return the dictionary associated with the name.
       </p><pre>stylesheet('serif', 'Adobe Garamond', 'semibold', 11)
-print stylesheet('serif')
-# &gt;&gt;&gt; {'family': u'Adobe Garamond Pro', 'weight': 'semibold', 'size': 11}
+print(stylesheet('serif'))
+>>> {'family': u'Adobe Garamond Pro', 'weight': 'semibold', 'size': 11}
 </pre>
     </div>
 

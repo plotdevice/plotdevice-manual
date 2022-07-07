@@ -13,7 +13,7 @@
 <span class="grey">>>> </span><span class="red">NameError: name 'hello' is not defined</span>
 </pre><pre>
 txt = "hello"
-print txt
+print(txt)
 >>> hello
 </pre>
 
@@ -78,9 +78,9 @@ alphabet[-3:] # 'xyz'
     <p>All the string methods leave your original string untouched and instead return a new copy that's been modified accordingly:</p>
 
 <pre>txt = "Ask me, ask me, ask me"
-print txt.title()
-print txt.upper()
-print txt
+print(txt.title())
+print(txt.upper())
+print(txt)
 >>> Ask Me, Ask Me, Ask Me
 >>> ASK ME, ASK ME, ASK ME
 >>> Ask me, ask me, ask me
@@ -92,7 +92,7 @@ print txt
 <pre>txt = "There's more to life than code, you know."
 txt = txt.replace("code", "books")
 txt = txt.replace(".", ". But not much more...")
-print txt
+print(txt)
 >>> There's more to life than books, you know. But not much more...
 </pre>
     <p>If your search &amp; replace needs are more complex, Python has a powerful <a href="https://docs.python.org/2/library/re.html">Regular Expressions</a> library available to you. Add <code>import</code> <code>re</code> to the top of your script and you'll have access to useful methods like:</p>
@@ -113,13 +113,13 @@ print txt
     <pre>pastry = 'pie'
 num = [4, 20]
 price = 12.5
-txt = '%i &amp; %i blackbirds baked in a %s: $%0.2f' % (num[0], num[1], pastry, price)
-print txt
->>> 4 &amp; 20 blackbirds baked in a pie: $12.50
+txt = '%i & %i blackbirds baked in a %s: $%0.2f' % (num[0], num[1], pastry, price)
+print(txt)
+>>> 4 & 20 blackbirds baked in a pie: $12.50
 </pre>
 
     <p>If you want your string to contain a literal <code class="str">"%"</code> character, put a <code class="str">"%%"</code> in your format instead:</p>
-    <pre>print "(plus %i%% sales tax)" % 5
+    <pre>print("(plus %i%% sales tax)" % 5)
 >>> (plus 5% sales tax)</pre>
 
     <h2>Quotes in quotes</h2>

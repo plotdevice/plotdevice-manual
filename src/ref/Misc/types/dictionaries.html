@@ -21,9 +21,9 @@
       <div class="example">
 <pre>d = adict(torches=12, rations=3, potions=0)
 d.keys = 9
-print d.rations # 3
-print d.keys()  # ['keys', 'torches', 'potions', 'rations']
-print d['keys'] # 9
+print(d.rations) # 3
+print(list(d.keys()))  # ['keys', 'torches', 'potions', 'rations']
+print(d['keys']) # 9
 </pre>
       </div>
     </div><a name="ddict()"></a>
@@ -44,12 +44,12 @@ lst_dict = ddict(list)
 lst_dict['foo'].append(42)    # sets 'foo' to [42]
 
 num_dict = ddict(int)
-print num_dict['bar']         # prints '0'
+print(num_dict['bar'])         # prints '0'
 num_dict['baz'] += 2          # increments 'baz' from 0 to 2
 
 nest_dict = ddict(dict)
 nest_dict['apple']['color'] = 'green'
-print nset_dict               # prints ddict{'apple': {'color': 'green'}}
+print(nset_dict)               # prints ddict{'apple': {'color': 'green'}}
 </pre>
       </div>
     </div><a name="odict()"></a>
@@ -65,7 +65,7 @@ print nset_dict               # prints ddict{'apple': {'color': 'green'}}
 </pre>
 
       <p>or construct it as part of a generator expression:
-      </p><pre>odict( (k,other[k]) for k in ordered(other.keys()) )
+      </p><pre>odict( (k,other[k]) for k in ordered(list(other.keys())) )
 </pre>
     </div>
 

@@ -39,24 +39,24 @@
     <div class="row">
       <div class="example">
 <pre>lipsum = read('lorem.txt')
-print lipsum[:11]        # lorem ipsum
-print lipsum.split()[:3] # [u'Lorem', u'ipsum', u'dolor']
+print(lipsum[:11])        # lorem ipsum
+print(lipsum.split()[:3]) # [u'Lorem', u'ipsum', u'dolor']
 </pre>
       </div>
 
       <div class="example">
 <pre>rows = read('related/months.csv', cols=True)
-print rows[0]['english'], rows[0]['days'] # January 31
-print rows[1]['french'] # Février
-print rows[2]['german'] # März
+print(rows[0]['english'], rows[0]['days']) # January 31
+print(rows[1]['french']) # Février
+print(rows[2]['german']) # März
 </pre>
       </div>
 
       <div class="example">
 <pre>oracle = read('8ball.json')
-prognosis = choice(oracle.keys())
+prognosis = choice(list(oracle.keys()))
 outcome = choice(oracle[prognosis])
-print (prognosis, outcome) # (u'neutral', u'Better not tell you now')
+print((prognosis, outcome)) # (u'neutral', u'Better not tell you now')
 </pre>
       </div>
 

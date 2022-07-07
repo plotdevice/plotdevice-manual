@@ -18,16 +18,16 @@
     <p>For instance, you can <code>import</code> the <a href="https://docs.python.org/2/library/json.html"><code>json</code></a> module to serialize your data to a string:</p>
     <pre>import json
 data = dict(fingers=10, handedness="left", feathers=None)
-print json.dumps(data)
+print(json.dumps(data))
 >>> {"handedness": "left", "feathers": null, "fingers": 10}
 </pre>
 
     <p>If you only need certain pieces of functionality from a module, you can import specific functions using the "<code>from … import …</code>" syntax. For example, both of the following snippets make use of the <code>os</code> module's <code>basename</code> function. Use whichever approach makes your code easier to understand:</p>
     <pre>import os
-print os.path.basename("/etc/passwd")
+print(os.path.basename("/etc/passwd"))
 </pre>
 <pre>from os.path import basename
-print basename("/etc/passwd")</pre>
+print(basename("/etc/passwd"))</pre>
 <pre>>>> passwd</pre>
 
     <p>You don’t need to install any files or configure anything; PlotDevice knows where the standard libraries are.</p>

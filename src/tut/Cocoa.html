@@ -90,7 +90,7 @@ class Mixer:
     def play(self):
         now = time() - self.start
         for ch in self.channels:
-            if len(ch) &gt; 0 and ch[0][0] &lt; now:
+            if len(ch) > 0 and ch[0][0] < now:
                 self.playing.append(ch[0][1])
                 ch[0][1].play()
                 del ch[0]
