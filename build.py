@@ -9,13 +9,14 @@ Created by Christian Swinehart on 2014/01/14.
 Copyright (c) 2014 Samizdat Drafting Co. All rights reserved.
 """
 
-from __future__ import with_statement, division
+
 import sys, os, re
 import json
 from os.path import basename, abspath, dirname, join, relpath, exists, getmtime, splitext
+import importlib
 py_root = dirname(abspath(__file__))
-from SocketServer import TCPServer, ThreadingMixIn
-from SimpleHTTPServer import SimpleHTTPRequestHandler as Handler
+from socketserver import TCPServer, ThreadingMixIn
+from http.server import SimpleHTTPRequestHandler as Handler
 from collections import defaultdict as ddict, OrderedDict as odict
 from glob import glob
 from pprint import pprint
@@ -34,14 +35,14 @@ sys.path.append('%s/src'%py_root)
 import toc as ToC
 
 # analytics
-ga = "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-631520-4', 'auto'); ga('send', 'pageview');</script>"
+# ga = "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-631520-4', 'auto'); ga('send', 'pageview');</script>"
 
 ### the big red button ###
 
 def build(static=True):
   # if True, will make sure every link points to a valid .html file path
   # if False, hrefs are shortened: Line+Color.html#fill() -> Line+Color#fill()
-  print "Building %s...\n" %('manual' if static else 'website')
+  print("Building %s...\n" %('manual' if static else 'website'))
   global file_urls
   file_urls = static
   toc()
@@ -59,17 +60,17 @@ class PlotDoxServer(ThreadingMixIn, TCPServer):
     allow_reuse_address = True
 
     def __init__(self, host, port):
-        print "Live version of the manual at http://127.0.0.1:%i/doc/manual.html"%PORT
+        print("Live version of the manual at http://127.0.0.1:%i/doc/manual.html"%PORT)
         TCPServer.__init__(self, (host, port), PlotDoxHandler)
 
 class PlotDoxHandler(Handler):
   def do_GET(self):
     # run the build script before every pageload
     if self.path.endswith('.html'):
-      print "regen for", self.path
-      sys.stdout, _out = file('/dev/null','w'), sys.stdout
+      print("regen for", self.path)
+      sys.stdout, _out = open('/dev/null','w'), sys.stdout
       build()
-      sys.stdout = _out
+      # sys.stdout = _out
     Handler.do_GET(self)
 
 ### utilities ###
@@ -77,20 +78,22 @@ class PlotDoxHandler(Handler):
 _mkdir = lambda pth: os.path.exists(pth) or os.makedirs(pth)
 
 def parse(fn):
-  return BeautifulSoup(file(fn).read().decode('utf-8'), "html5lib")
+  return BeautifulSoup(open(fn, encoding='utf-8').read(), "html5lib")
 
 def tidy(html):
   # swap our html5-isms for html2-isms (so htmltidy won't refuse to cooperate)
-  html = html.replace("<nav","<object").replace("</nav","</object")
-  html = html.replace("<footer","<embed").replace("</footer","</embed")
-  HTMLTIDY = '/usr/bin/tidy -q -i -w 1000 --doctype "html" -utf8 -omit -f /dev/null'.split()
-  tidy = Popen(HTMLTIDY, stdin=PIPE, stdout=PIPE)
-  (out, err) = tidy.communicate(html.encode('utf-8'))
+  # html = html.replace("<nav","<object").replace("</nav","</object")
+  # html = html.replace("<footer","<embed").replace("</footer","</embed")
+  # HTMLTIDY = '/usr/bin/tidy -q -i -w 1000 --doctype "html" -utf8 -omit -f /dev/null'.split()
+  # tidy = Popen(HTMLTIDY, stdin=PIPE, stdout=PIPE)
+  # (out, err) = tidy.communicate(html.encode('utf-8'))
 
-  # swap the fake tags back to their real nav/footer identities
-  markup = u"\n".join(out.decode('utf-8').split(u"\n"))
-  markup = markup.replace("<object","<nav").replace("</object","</nav")
-  markup = markup.replace("<embed","<footer").replace("</embed","</footer")
+  # # swap the fake tags back to their real nav/footer identities
+  # markup = "\n".join(out.decode('utf-8').split("\n"))
+  # markup = markup.replace("<object","<nav").replace("</object","</nav")
+  # markup = markup.replace("<embed","<footer").replace("</embed","</footer")
+
+  markup = html
 
 
   soup = BeautifulSoup(markup, "html5lib")
@@ -113,7 +116,7 @@ def tidy(html):
       rents = [p.name for p in child.parents]
       if type(child) is NavigableString and 'pre' not in rents:
         if 'table' in rents or 'ul' in rents or 'p' in rents:
-          child.replace_with(child.replace(u'\n\n',u'\n'))
+          child.replace_with(child.replace('\n\n','\n'))
 
   # smarten up quotes
   for tag in soup.find_all(recursive=True):
@@ -122,7 +125,7 @@ def tidy(html):
       if type(child) is NavigableString and 'pre' not in rents and 'script' not in rents and 'code' not in rents:
         if "'" in child or '"' in child:
           # child.replace_with(child.replace(u"'",u"’").replace(u' "',u" “").replace(u'"',u'”'))
-          child.replace_with(child.replace(u"'",u"’").replace(u' "',u" ‘").replace(u'"',u'’'))
+          child.replace_with(child.replace("'","’").replace(' "'," ‘").replace('"','’'))
 
   # run all of the python blocks through pygments
   for pre in soup.find_all('pre'):
@@ -132,18 +135,18 @@ def tidy(html):
     pre.replace_with(syntax_color(pre.text))
 
   # close <p> and </pre> at the end of the line rather than on a new one
-  html = re.sub(r'\n( +)</p><',r'</p>\n\1<', unicode(soup))
+  html = re.sub(r'\n( +)</p><',r'</p>\n\1<', str(soup))
   html = re.sub(r'\n( +)</li><',r'</li>\n\1<', html)
   # html = re.sub(r'<pre><',r'<pre>\n<', html)
   # html = re.sub(r'( +)<pre>',r'<pre>', html)
   # html = re.sub(r'\n</pre>',r'</pre>\n', html)
   html = re.sub(r'<body([^>]*)>',r'\n<body\1>\n', html)
-  if not file_urls:
-    html = re.sub(r'</head>','  %s\n</head>'%ga, html)
+  # if not file_urls:
+  #   html = re.sub(r'</head>','  %s\n</head>'%ga, html)
   return html
 
 def is_stale(dst, src, deps=[], quiet=False):
-  if isinstance(src, basestring):
+  if isinstance(src, str):
     src = (src,)
 
   # print src, deps
@@ -151,7 +154,7 @@ def is_stale(dst, src, deps=[], quiet=False):
   newest = max(max(getmtime(s) for s in src), max(getmtime(d) for d in deps))
   stale = not exists(dst) or getmtime(dst) < newest
   if stale or not quiet:
-    print ">" if stale else '-', namify(dst)
+    print(">" if stale else '-', namify(dst))
   return stale
 
 def namify(fn):
@@ -256,29 +259,30 @@ def etc():
     os.system('ln -f src/etc/%s/* doc/etc/%s'%(sect,sect))
 
 def toc():
-  print "Table of Contents"
-  toc = reload(ToC)
+  print("Table of Contents")
+  toc = importlib.reload(ToC)
   html = tmpls.get_template('toc.html')
   local = dict(isinstance=isinstance, tuple=tuple, len=len)
   info = dict(ref=toc.ref, tut=toc.tut, lib=toc.lib, **local)
   markup = html.render(info)
 
   _mkdir('doc')
-  with file('doc/manual.html', 'w') as f:
-    f.write(tidy(markup).encode('utf-8'))
+  with open('doc/manual.html', 'w', encoding='utf-8') as f:
+    f.write(tidy(markup))
 
 def ref():
-  print "\nReference"
+  print("\nReference")
   _mkdir('doc/ref')
 
   # collapse the last two ToC categories into a single page
-  siblings = reload(ToC).ref.keys()[:-2] + ["Misc"]
+  siblings = list(list(importlib.reload(ToC).ref.keys()))[:-2] + ["Misc"]
 
   for page in glob('src/ref/*'):
     name = basename(page)
     fname = 'doc/ref/%s.html' % name
+
     if is_stale(fname, glob('%s/*/*.html'%page), deps=['tmpl/nav.html','tmpl/manpage.html']):
-      cmd, typ, old = [map(get_def, glob('%s/%s/*'%(page,s))) for s in ('commands','types','compat')]
+      cmd, typ, old = [list(map(get_def, glob('%s/%s/*'%(page,s)))) for s in ('commands','types','compat')]
 
       html = tmpls.get_template('manpage.html')
       info = dict(name=name, sect='ref', siblings=siblings, commands=cmd, types=typ, compat=old)
@@ -286,14 +290,14 @@ def ref():
       push = '<a name="push()"></a>'
       pushpop = push + '<a name="pop()"></a>'
       markup = html.render(info).replace(push, pushpop)
-      with file(fname, 'w') as f:
-        f.write(tidy(markup).encode('utf-8'))
+      with open(fname, 'w', encoding='utf-8') as f:
+        f.write(tidy(markup))
 
 def tut():
-  print "\nTutorials"
+  print("\nTutorials")
   _mkdir('doc/tut')
 
-  siblings = sum(reload(ToC).tut.values(), [])
+  siblings = sum(list(list(importlib.reload(ToC).tut.values())), [])
 
   html = tmpls.get_template('manpage.html')
   for tut in sorted(glob('src/tut/*.html')):
@@ -301,17 +305,17 @@ def tut():
     tut_name = basename(tut)[:-5]
     fname = 'doc/tut/%s.html'%tut_name
     if is_stale(fname, tut, deps=['tmpl/nav.html','tmpl/manpage.html']):
-      soup = BeautifulSoup(file(tut).read().decode('utf-8'), "html5lib")
+      soup = BeautifulSoup(open(tut, encoding='utf-8').read(), "html5lib")
       article = soup.find('div', class_='article')
       article['class'] = 'tut article'
       info = dict(name=api, doc=article, sect='tut', siblings=siblings, tutorial=tut_name)
       markup = html.render(info)
-      with file(fname, 'w') as f:
-        f.write(tidy(markup).encode('utf-8'))
+      with open(fname, 'w', encoding='utf-8') as f:
+        f.write(tidy(markup))
 
 
 def lib():
-  print "\nLibraries"
+  print("\nLibraries")
   _mkdir('doc/lib')
 
   in_sub = False
@@ -323,15 +327,15 @@ def lib():
 
     if is_stale(fname, lib, quiet=subdir, deps=['tmpl/nav.html','tmpl/manpage.html']):
       _mkdir(dirname(fname))
-      soup = BeautifulSoup(file(lib).read().decode('utf-8'), "html5lib")
+      soup = BeautifulSoup(open(lib, encoding='utf-8').read(), "html5lib")
       article = soup.find('div', class_='article')
       article['class'] = 'lib article'
       api = namify(fname)
 
       info = dict(name=api, doc=article, sect='lib', root='../' if subdir else '')
       markup = html.render(info)
-      with file(fname, 'w') as f:
-        f.write(tidy(markup).encode('utf-8'))
+      with open(fname, 'w', encoding='utf-8') as f:
+        f.write(tidy(markup))
 
 def code():
   _mkdir('doc/etc/code')
@@ -340,7 +344,7 @@ def code():
   for example in glob('../plotdevice/examples/*/*.pv'):
     cat=basename(dirname(example))
     title=splitext(basename(example))[0]
-    raw = file(example).read().decode('utf-8')
+    raw = open(example, encoding='utf-8').read()
     m = re.match(r'\s*"""(.*?)"""', raw, re.S)
 
     docstring = m.group(1).strip()
@@ -352,7 +356,7 @@ def code():
     sidebar = '<p>'+ "</p><p>".join(doc) + "</p>"
     corpus[title] = dict(code=code, head=headline, doc=sidebar)
 
-  with file('doc/etc/code/index.json','w') as f:
+  with open('doc/etc/code/index.json','w') as f:
     json.dump(corpus, f)
 
 
@@ -363,19 +367,19 @@ def scan_toc():
   # dump out the contents of the src/ref folders for a first pass at setting up the `ref` dict
   ref_sects = {}
   for page in glob('src/ref/*'):
-    cmd, typ, old = [map(lambda x:basename(x)[:-5], glob('%s/%s/*'%(page,s))) for s in ('commands','types','compat')]
+    cmd, typ, old = [[basename(x)[:-5] for x in glob('%s/%s/*'%(page,s))] for s in ('commands','types','compat')]
     sect = basename(page)
     ref_sects[sect] = (cmd, typ, old)
   ref = {}
   for sect in 'Canvas','Line+Color','Typography','Transform','Primitives','Drawing','Utility':
-    print sect, ":", dict(zip(('commands','types','compat'),ref_sects[sect]))
-    ref[sect] = dict(zip(('commands','types','compat'),ref_sects[sect]))
-  print ref
+    print(sect, ":", dict(list(zip(('commands','types','compat'),ref_sects[sect]))))
+    ref[sect] = dict(list(zip(('commands','types','compat'),ref_sects[sect])))
+  print(ref)
 
 ### post-build validation ###
 
 def check_media():
-  print "\nMissing Images"
+  print("\nMissing Images")
   outs = []
   media = ddict(list)
   for fn in glob('doc/*/*.html') + glob('doc/*/*/*.html'):
@@ -389,9 +393,9 @@ def check_media():
         media[src].append(fn)
 
   # broken images
-  for fn,info in media.items():
+  for fn,info in list(media.items()):
     if not os.path.exists(fn):
-      print "!",fn,'<-',info
+      print("!",fn,'<-',info)
 
   # unused images
   # css=["doc/etc/ref/transparency-grid.png","doc/etc/ref/blend-modes.png"]
@@ -402,7 +406,7 @@ def check_media():
 
 
 def check_links():
-  print "\nMissing Links"
+  print("\nMissing Links")
   outs = []
   refs = ddict(lambda: ddict(set))
 
@@ -421,35 +425,35 @@ def check_links():
           url = pg
         refs[url]['refrs'].add(fn)
       # print "- %s :: <%s>" % (url, link['href'])
-  refs = {k:dict((kind, sorted(lst)) for kind, lst in v.items()) for k,v in refs.items()}
+  refs = {k:dict((kind, sorted(lst)) for kind, lst in list(v.items())) for k,v in list(refs.items())}
 
   # broken links
   for fn,info in sorted(refs.items()):
     if not os.path.exists(fn):
-      print "!",fn,'<-',info['refrs']
+      print("!",fn,'<-',info['refrs'])
 
 def code_blocks():
   lexx = PlotDeviceLexer()
   yack = HtmlFormatter()
   render = lambda src: highlight(src, lexx, yack)
-  reload(__main__)
+  importlib.reload(__main__)
   classes = set()
   for fn in glob('doc/*/*.html') + glob('doc/*/*/*.html'):
     soup = parse(fn)
-    print fn
+    print(fn)
     for pre in soup.find_all('pre'):
       # print pre.text
       # print render(pre.text)
       out = render(pre.text)
       classes.update(re.findall(r'class="(.*?)"', out))
       # print out.encode('utf-8'),
-      print pre.attrs
-      print '-----------------------------'
+      print(pre.attrs)
+      print('-----------------------------')
       # print '.',
     # print
-  print classes
+  print(classes)
 
-  print yack.get_style_defs()
+  print(yack.get_style_defs())
 
 def zap():
   os.system('rm -rf %s/doc/*'%py_root)
@@ -468,17 +472,17 @@ def ensite():
   build(static=False)
   if exists('../plotdevice-site/www/etc'):
     for fn in glob('doc/etc/*'):
-      print 'sync', fn
+      print('sync', fn)
       os.system('rsync -avq %s ../plotdevice-site/www/etc/'%fn)
 
   if exists('../plotdevice-site'):
     for fn in 'ref','tut','lib','manual.html':
-      print 'sync', fn
+      print('sync', fn)
       os.system('rsync -avq doc/%s ../plotdevice-site/www/'%fn)
 
-  landing = file('doc/manual.html').read().decode('utf-8').replace('href="http://plotdevice.io"','href="/"',1)
-  with file('../plotdevice-site/www/manual.html', 'w') as f:
-    f.write(landing.encode('utf-8'))
+  landing = open('doc/manual.html', encoding='utf-8').read().replace('href="http://plotdevice.io"','href="/"',1)
+  with open('../plotdevice-site/www/manual.html', 'w', encoding='utf-8') as f:
+    f.write(landing)
 
   # build & install plotdevice-docs.zip
   if exists('../plotdevice-site/www/extras'):
