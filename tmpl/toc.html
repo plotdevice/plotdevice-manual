@@ -78,8 +78,8 @@ ref/{{dst}}.html
       <div class="section {{sect.lower()}}">
         <h2><a href="{{sectionpage(sect)}}">{{sect.replace('+',' &amp; ')}}</a></h2>
         <ul class="commands">
-        {% for group, links in groups.items() %}
-          {% for link in links %}
+        {% for group in ['commands', 'compat'] %}
+          {% for link in groups[group] %}
           {{ reference(sect, link, group) }}
           {% endfor %}
         {% endfor %}
@@ -99,15 +99,17 @@ ref/{{dst}}.html
     </nav>
 
     <div class="sections">
-    {% for sect, links in rows.types.items() %}
+    {% for sect, groups in ref.items() %}
+      {% if 'types' in groups %}
       <div class="section">
         <h2><a href="{{sectionpage(sect)}}">{{sect.replace('+',' &amp; ')}}</a></h2>
         <ul>
-          {% for link in links %}
+          {% for link in ref[sect]['types'] %}
           {{ reference(sect, link, 'types') }}
           {% endfor %}
         </ul>
       </div>
+      {% endif %}
     {% endfor %}
     </div>
   </div>
