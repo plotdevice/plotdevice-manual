@@ -59,10 +59,10 @@ ul li { }
 
 /***************************************/
 /* ToC Layout */
-header + .toc{ margin-top:40px; margin-bottom:0; }
+header + a{ margin-top:40px; margin-bottom:0; }
 
 /* basic styles for each third's row */
-#commands,#tut,#lib,#types,footer{
+#commands,#tutorials,#lib,#types,footer{
   overflow:auto;
   padding-bottom:20px;
   border-top:1px solid #666;
@@ -89,7 +89,7 @@ h1{
   font-style:italic;
 }
 
-#tut .section a{
+#tutorials .section a{
   font-style: normal;
 }
 
@@ -435,7 +435,7 @@ header h3.tt{
     font: 18px/27px "chaparral-pro", "Alegreya";
   }
 
-  header + .toc{
+  header + a{
     margin-top: 43px;
   }
 
