@@ -310,6 +310,7 @@ nav h3{
   /*float:left;*/
   margin:9px 0;
   font-weight:bold;
+  white-space: nowrap;
 }
 nav h3.tt{
   font-family:"Courier Prime";
@@ -364,7 +365,7 @@ nav.ref ul.chapter{
   display:none; /* only displayed on small-screens */
 }
 
-nav ul.chapter li a.stepper{
+ul.chapter a.stepper{
   display: none;
 }
 
@@ -381,7 +382,7 @@ nav li a:hover{
 
 
 footer{
-  max-width:600px;
+  /*max-width:600px;*/
   margin: 0 0 48px 215px;
 }
 
@@ -757,6 +758,19 @@ div.media{
   nav.tut h1{ width:160px }
   nav.tut .chapter a:not(.stepper){display: none}
   nav.tut .chapter a.stepper{display: inline}
+
+  .article.tut .media{
+    margin: 0;
+  }
+
+  .article.tut img{
+    max-width: 100%;
+    height: auto;
+  }
+
+  .tut footer{
+    margin: 0;
+  }
 
   .article.tut{
     padding: 0;
