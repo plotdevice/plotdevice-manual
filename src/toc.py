@@ -1,42 +1,50 @@
 from collections import OrderedDict as odict
 
+
+types = odict()
+types['Canvas'] = ['constants', 'Color', 'Shadow']
+types['Primitives'] = ['Bezier', 'Curve', 'Image']
+types['Transform'] = ['Point', 'Size', 'Region', 'Transform']
+types['Typography'] = ['Text', 'TextBlock', 'TextFragment', ('Font', 'Family') ]
+types['Utility'] = ['dictionaries']
+
 ref=odict()
 ref['Canvas'] = {
     'commands': ['size()', 'speed()', 'background()', 'geometry()', 'export()', ('plot()', 'clear()'), ],
-    'types': ['Constants'],
+    # 'types': ['Constants'],
     'compat': ['outputmode()', 'ximport()', 'halt()'] }
 ref['Line+Color'] = {
     'commands': ['color()', 'stroke()', 'fill()', 'pen()', ],
-    'types': ['Color', ],
+    # 'types': ['Color', ],
     'compat': ['capstyle()', 'colormode()', 'joinstyle()', 'nofill()', 'nostroke()', 'strokewidth()'] }
 ref['Primitives'] = {
     'commands': [('poly()', 'rect()'),  ('arc()', 'oval()'), 'line()', 'image()', 'text()', ],
-    'types': ['Image'],
+    # 'types': ['Image'],
     'compat': ['arrow()', 'star()'] }
 ref['Drawing'] = {
     'commands': ['bezier()', 'moveto()', 'lineto()', 'arcto()', 'curveto()',  ],
-    'types': ['Bezier', 'Curve'],
+    # 'types': ['Bezier', 'Curve'],
     'compat': ['autoclosepath()', 'beginpath()', 'drawpath()', 'endpath()', 'findpath()'] }
 ref['Transform'] = {
     'commands': ['transform()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', ],
-    'types': ['Transform'],
+    # 'types': ['Transform'],
     'compat': ['pop()', 'push()'] }
 ref['Compositing'] = {
     'commands': ['alpha()', 'blend()', 'shadow()', ('clip()', 'mask()'), ],
-    'types': ['Shadow', ],
+    # 'types': ['Shadow', ],
     'compat': ['noshadow()', 'beginclip()', 'endclip()', ] }
 ref['Typography'] = {
     'commands': [ 'font()', 'layout()', 'stylesheet()', 'paginate()', 'textpath()', ],
-    'types': ['Text', 'TextBlock', 'TextFragment', ('Font', 'Family'),  ],
+    # 'types': ['Text', 'TextBlock', 'TextFragment', ('Font', 'Family'),  ],
     'compat': ['align()', 'fontsize()', 'lineheight()', 'textheight()', 'textmetrics()', 'textwidth()'] }
 # grouped into Misc.html
 ref['Utility'] = {
     'commands': ['read()', 'measure()', 'files()', 'fonts()', 'var()',],
-    'types': ['Point', 'Size', 'Region', ],
+    # 'types': ['Point', 'Size', 'Region', ],
     'compat': ['imagesize()', 'open()', ] }
 ref['Entropy'] = {
     'commands': ['random()', 'choice()', 'shuffled()', 'ordered()', 'grid()',  ],
-    'types': [ 'dictionaries', ],
+    # 'types': [ 'dictionaries', ],
     'compat': ['autotext()', ] }
 
 

@@ -10,15 +10,15 @@ ref/{{dst}}.html
 {%- endmacro %}
 
 
-{%- macro reference(sect, link) -%}
-{% set ctxclass=' class="cm"' if link in managers+metamanagers else '' %}
-{# {% set ctxclass=' class="cm"' if link in managers else ' class="cmm"' if link in metamanagers else '' %} #}
+{%- macro reference(sect, link, group) -%}
+{% set ctxclass='%s cm' % group if link in managers+metamanagers else group %}
+{% set typeclass=' collection' if (group=='types' and link[0]==link[0].lower()) else '' %}
 {% if isinstance(link, tuple) %}
-<li{{ctxclass}}>{% for lnk in link %} <a href="ref/{{sect}}.html#{{lnk}}">{{lnk}}</a> {% endfor%} </li>
+<li class="{{ctxclass}}">{% for lnk in link %} <a href="ref/{{sect}}.html#{{lnk}}">{{lnk}}</a> {% endfor%} </li>
 {% elif not link %}
 <li><hr></li>
 {% else %}
-<li{{ctxclass}}><a href="{{sectionpage(sect)}}#{{link}}">{{link}}</a></li>
+<li class="{{ctxclass}}{{typeclass}}"><a href="{{sectionpage(sect)}}#{{link}}">{{link}}</a></li>
 {% endif %}
 {%- endmacro %}
 
@@ -32,43 +32,11 @@ ref/{{dst}}.html
   <title>PlotDevice Manual</title>
 </head>
 <body class="commands">
+  <main>
 
-  <nav>
+  <header>
     <h1><a href="http://plotdevice.io">PlotDevice <span>Manual</span></a></h1>
-  </nav>
-
-  <div id="ref" class="toc">
-    <h1>Reference</h1>
-    <ul class="filter"><li class="commands active">Commands</li><li class='types'>Types</li><li class='compat'>Etc.</li></ul>
-    <div class="sidebar">
-      <div class="commands">
-        <p>Commands marked with a<br/>dot support the python <a title="a.k.a. ‘context managers’" href="http://python.org/dev/peps/pep-0343/"><code>with</code></a>
-           statement to <a href="tut/Graphics_State.html#with">limit their scope</a>.</p>
-      </div>
-      <div class="types">
-        <p>To create graphics objects without adding them to the canvas, instantiate them from their respective classes.</p>
-
-      </div>
-      <div class="compat">
-        <p>NodeBox commands drawn in cyan are supported but most have been obviated by an alternate syntax.</p>
-        <p>Consult their reference entries for details.</p>
-      </div>
-    </div>
-    <div class="sections">
-      {% for sect, groups in ref.items() %}
-      <div class="section {{sect.lower()}}">
-        <h2><a href="{{sectionpage(sect)}}">{{sect.replace('+',' &amp; ')}}</a></h2>
-        {% for group, links in groups.items() %}
-        <ul class="{{group}}">
-          {% for link in links %}
-          {{ reference(sect, link) }}
-          {% endfor %}
-        </ul>
-        {% endfor %}
-      </div>
-      {% endfor %}
-    </div>
-  </div>
+  </header>
 
   <div id="tut" class="toc">
     <h1>Tutorials</h1>
@@ -86,6 +54,65 @@ ref/{{dst}}.html
     </div>
   </div>
 
+
+  <div id="ref" class="toc">
+    <h1>Commands</h1>
+
+    <nav>
+      <ul class="filter">
+        <li class="commands active">Modern</li>
+        <li class='compat'>Legacy</li>
+      </ul>
+      <aside class="commands">
+        <p>Commands marked with a <br/>dot support the python <a title="a.k.a. ‘context managers’" href="http://python.org/dev/peps/pep-0343/"><code>with</code></a>
+           statement to <a href="tut/Graphics_State.html#with">limit their scope</a>.</p>
+      </aside>
+      <aside class="compat">
+        <p>NodeBox commands drawn in cyan are supported but most have been obviated by an alternate syntax.</p>
+        <p>Consult their reference entries for details.</p>
+      </aside>
+    </nav>
+
+    <div class="sections">
+      {% for sect, groups in ref.items() %}
+      <div class="section {{sect.lower()}}">
+        <h2><a href="{{sectionpage(sect)}}">{{sect.replace('+',' &amp; ')}}</a></h2>
+        <ul class="commands">
+        {% for group, links in groups.items() %}
+          {% for link in links %}
+          {{ reference(sect, link, group) }}
+          {% endfor %}
+        {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+  <div id="types" class="toc">
+    <h1>Objects</h1>
+    <nav>
+      <aside class="types">
+        <p>To create graphics objects without adding them to the canvas, instantiate them from their respective classes.</p>
+      </aside>
+    </nav>
+
+    <div class="sections">
+    {% for sect, links in rows.types.items() %}
+      <div class="section">
+        <h2><a href="{{sectionpage(sect)}}">{{sect.replace('+',' &amp; ')}}</a></h2>
+        <ul>
+          {% for link in links %}
+          {{ reference(sect, link, 'types') }}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+
+{#
   <div id="lib" class="toc">
     <h1>Libraries</h1>
     <div class="sections">
@@ -101,16 +128,19 @@ ref/{{dst}}.html
       {% endfor %}
     </div>
   </div>
-
+#}
   <footer class="toc">
-    Derived from <a href="http://organisms.be">Tom De Smedt</a>’s manual for <a href="http://nodebox.net/code">NodeBox</a>
+    Derived from <a href="http://organisms.be">Tom De Smedt</a>’s manual for <a href="https://www.nodebox.net/code/index.php/Home">NodeBox</a>
     <a href="http://www.emrg.be/" title="Experimental Media Research Group">© 2004-2012</a>.
     <br>
-    Rewritten for <a href="http://plotdevice.io">PlotDevice</a> by <a href="http://samizdat.cc">Christian Swinehart</a> © 2015
+    Rewritten for <a href="http://plotdevice.io">PlotDevice</a> by <a href="http://samizdat.co">Christian Swinehart</a> © 2015–<span class="now">2022</span>
   </footer>
+
   <script src="etc/zepto.min.js"></script>
   <script>
     Zepto(function($){
+
+      $("footer.toc .now").text(new Date().getFullYear())
 
       // handle Commands/Types clicks for the refs
       $('.filter').on('click', 'li', function(e){
@@ -121,5 +151,6 @@ ref/{{dst}}.html
       })
     })
   </script>
+</main>
 </body>
 </html>
