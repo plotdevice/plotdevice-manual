@@ -42,7 +42,7 @@
 >>> GO!
 </pre>
 
-<p>If you want your loop to execute a fixed number of times, try using the built-in <a href="https://docs.python.org/2/library/functions.html#range">range()</a> function. When you use a range, the loop will run once for each value from zero up to (but not including) the number you pass as the range argument.</p>
+<p>If you want your loop to execute a fixed number of times, try using the built-in <a href="https://docs.python.org/3/library/functions.html#func-range">range()</a> function. When you use a range, the loop will run once for each value from zero up to (but not including) the number you pass as the range argument.</p>
 
 <pre>for item in range(3):
     print(item)
@@ -75,7 +75,7 @@
 
     <h2>Lists</h2>
 
-    <p>Using a simple "<em>for … in</em>" loop only gives you the <em>values</em> from the list. If you also need the <em>index</em> within the loop, use the convenient <a href="https://docs.python.org/2/library/functions.html#enumerate">enumerate()</a> command. It provides you with a sequence of index/value <em>pairs</em>, one for each item in the list:</p>
+    <p>Using a simple "<em>for … in</em>" loop only gives you the <em>values</em> from the list. If you also need the <em>index</em> within the loop, use the convenient <a href="https://docs.python.org/3/library/functions.html#enumerate">enumerate()</a> command. It provides you with a sequence of index/value <em>pairs</em>, one for each item in the list:</p>
     <pre>
 shortlist = ['first', 'middle', 'last']
 for i, name in enumerate(shortlist):
@@ -99,7 +99,7 @@ for key in info:
 >>> instructor Langley
 >>> operational 1992/01/12
 </pre>
-    <p>You can also iterate through key/value <em>pairs</em> using the <i>dict.<a href="https://docs.python.org/2/library/stdtypes.html#dict.items">items()</a></i> method. In this case your <i>for</i> statement should declare two variables (separated by a comma) to refer to the key and value respectively:</p>
+    <p>You can also iterate through key/value <em>pairs</em> using the <i>dict.<a href="https://docs.python.org/3/library/stdtypes.html#dict.items">items()</a></i> method. In this case your <i>for</i> statement should declare two variables (separated by a comma) to refer to the key and value respectively:</p>
     <pre>for key, val in list(info.items()):
     print(key, val)</pre>
 

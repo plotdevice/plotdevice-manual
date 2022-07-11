@@ -49,7 +49,7 @@ ease = sin(radians(x)) * y
     </ol>
 
     <h2>Global state</h2>
-    <p>For all but the simplest animations you'll want a way to keep track of values that persist between calls to your <i>draw()</i> function. The most obvious solution to this problem would be to define global variables at the top of your script, then refer to them from your animation functions. If you do this, don't forget to use the Python <a href="https://docs.python.org/2/reference/simple_stmts.html#the-global-statement"><code>global</code></a> statement inside any of the functions that need to modify a variable. Otherwise you'll end up creating a local variable of the same name rather than updating the global:</p>
+    <p>For all but the simplest animations you'll want a way to keep track of values that persist between calls to your <i>draw()</i> function. The most obvious solution to this problem would be to define global variables at the top of your script, then refer to them from your animation functions. If you do this, don't forget to use the Python <a href="https://docs.python.org/3/reference/simple_stmts.html#the-global-statement"><code>global</code></a> statement inside any of the functions that need to modify a variable. Otherwise you'll end up creating a local variable of the same name rather than updating the global:</p>
 <pre>limit = 0
 
 def setup():

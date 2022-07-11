@@ -7,7 +7,7 @@
     <h1>dictionaries</h1>
 
     <div class="row">
-      <p>Python's built-in <a href="https://docs.python.org/2/library/stdtypes.html#mapping-types-dict">dictionary</a> type has the advantages of being fast, versatile, and <em>standard</em>. But sometimes you'll come across situations where you wish it worked slightly differently. PlotDevice includes a handful of dict-like classes to make a few common access patterns easier or less verbose.
+      <p>Python's built-in <a href="https://docs.python.org/3/library/stdtypes.html#mapping-types-dict">dictionary</a> type has the advantages of being fast, versatile, and <em>standard</em>. But sometimes you'll come across situations where you wish it worked slightly differently. PlotDevice includes a handful of dict-like classes to make a few common access patterns easier or less verbose.
     </p></div><a name="adict()"></a>
 
     <h2>Attribute Dictionary<br/>
@@ -29,7 +29,7 @@ print(d['keys']) # 9
     </div><a name="ddict()"></a>
 
     <h2>Default Dictionary<br/>
-    <span style="font:italic 14px Georgia;">A thin wrapper for <a href="https://docs.python.org/2/library/collections.html#defaultdict-objects">collections.defaultdict</a></span></h2>
+    <span style="font:italic 14px Georgia;">A thin wrapper for <a href="https://docs.python.org/3/library/collections.html#defaultdict-objects">collections.defaultdict</a></span></h2>
 
     <div class="row">
       <p>The <code class="kw">ddict()</code> command creates a dictionary with a default ‘factory’ function for lazily initializing items. When your code accesses a previously undefined key in the dictionary, the factory function is run and its return value is assigned to the specified key.
@@ -55,7 +55,7 @@ print(nset_dict)               # prints ddict{'apple': {'color': 'green'}}
     </div><a name="odict()"></a>
 
     <h2>Ordered Dictionary<br/>
-    <span style="font:italic 14px Georgia;">A thin wrapper for <a href="https://docs.python.org/2/library/collections.html#ordereddict-examples-and-recipes">collections.OrderedDict</a></span></h2>
+    <span style="font:italic 14px Georgia;">A thin wrapper for <a href="https://docs.python.org/3/library/collections.html#ordereddict-examples-and-recipes">collections.OrderedDict</a></span></h2>
 
     <div class="row">
       <p>the <code class="kw">odict()</code> command creates a dictionary that remembers insertion order. When you iterate using its <i>keys()</i>, <i>values()</i>, or <i>items()</i> methods, the values will be returned in the order they were created (or, e.g., deserialized from JSON).

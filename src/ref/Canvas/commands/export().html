@@ -30,7 +30,7 @@ export("spool.pdf", cmyk=False)
     <a name="export-context-manager"></a>
     <h2>Context Manager</h2>
 
-    <p>The <i>export()</i> command returns a <a href="http://docs.python.org/2/reference/compound_stmts.html#the-with-statement">context manager</a> that takes care of canvas-setup and file-generation for both single images and animations. By enclosing your drawing code in a <code>with</code> block, you can ensure that the correct sequence of <i>clear()</i> and <i>export()</i> calls is made automatically.</p>
+    <p>The <i>export()</i> command returns a <a href="http://docs.python.org/3/reference/compound_stmts.html#the-with-statement">context manager</a> that takes care of canvas-setup and file-generation for both single images and animations. By enclosing your drawing code in a <code>with</code> block, you can ensure that the correct sequence of <i>clear()</i> and <i>export()</i> calls is made automatically.</p>
     <p>For instance these two methods of generating a PNG are functionally equivalent:
     </p><pre>
 clear(all)

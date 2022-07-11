@@ -95,19 +95,19 @@ txt = txt.replace(".", ". But not much more...")
 print(txt)
 >>> There's more to life than books, you know. But not much more...
 </pre>
-    <p>If your search &amp; replace needs are more complex, Python has a powerful <a href="https://docs.python.org/2/library/re.html">Regular Expressions</a> library available to you. Add <code>import</code> <code>re</code> to the top of your script and you'll have access to useful methods like:</p>
+    <p>If your search &amp; replace needs are more complex, Python has a powerful <a href="https://docs.python.org/3/library/re.html">Regular Expressions</a> library available to you. Add <code>import</code> <code>re</code> to the top of your script and you'll have access to useful methods like:</p>
 
     <ul>
-        <li><a class="noexternal" href="https://docs.python.org/2/library/re.html#re.search">re.search</a><em>(regex, str)</em>: return a <a href="https://docs.python.org/2/library/re.html#re.MatchObject">match</a> if the pattern was found in <i>str</i> or <code class="kw">None</code> if it wasn't.</li>
-        <li><a class="noexternal" href="https://docs.python.org/2/library/re.html#re.sub">re.sub</a><em>(regex, new, orig)</em>: return a string derived from <i>orig</i> in which each occurrance of a pattern is replaced with <i>new</i>.</li>
-        <li><a class="noexternal" href="https://docs.python.org/2/library/re.html#re.split">re.split</a><em>(regex, str)</em>: return a list of substrings, using the pattern to divide the original string.</li>
+        <li><a class="noexternal" href="https://docs.python.org/3/library/re.html#re.search">re.search</a><em>(regex, str)</em>: return a <a href="https://docs.python.org/3/library/re.html#re.MatchObject">match</a> if the pattern was found in <i>str</i> or <code class="kw">None</code> if it wasn't.</li>
+        <li><a class="noexternal" href="https://docs.python.org/3/library/re.html#re.sub">re.sub</a><em>(regex, new, orig)</em>: return a string derived from <i>orig</i> in which each occurrance of a pattern is replaced with <i>new</i>.</li>
+        <li><a class="noexternal" href="https://docs.python.org/3/library/re.html#re.split">re.split</a><em>(regex, str)</em>: return a list of substrings, using the pattern to divide the original string.</li>
     </ul>
 
     <h2>String formatting</h2>
 
     <p>We've seen that the <code>print</code> statement allows you to combine multiple variables when generating output. It even adds a space character between terms separated by commas. But mixing strings and values like this gets hard to edit as your code gets more complex. An alternative approach is to use ‘string interpolation’ to generate a new string with your values inserted at specific locations according to a template.</p>
 
-    <p>Python has two syntaxes for this: the ‘new’ style using the string's <a href="https://docs.python.org/2/library/string.html#format-specification-mini-language">format()</a> method, and the ‘old’ style using printf-style escapes and the <a href="http://infohost.nmt.edu/tcc/help/pubs/python/web/old-str-format.html"><code>%</code> operator</a>. Personally, I still prefer the older approach, but your mileage may vary.</p>
+    <p>Python has two syntaxes for this: the ‘new’ style using the string's <a href="https://docs.python.org/3/library/string.html#format-specification-mini-language">format()</a> method, and the ‘old’ style using printf-style escapes and the <a href="https://web.archive.org/web/20190328231905/http://infohost.nmt.edu/tcc/help/pubs/python/web/old-str-format.html"><code>%</code> operator</a>. Personally, I still prefer the older approach, but your mileage may vary.</p>
 
     <p>Here's an old-style formatting example. The basic usage is <code>template % values</code>. If you're inserting multiple values, be sure to wrap them in parentheses separated by commas:</p>
     <pre>pastry = 'pie'

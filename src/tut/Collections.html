@@ -98,14 +98,14 @@ print("done shopping!")
 
     <h2>Further reading</h2>
 
-    <p>There's a lot more you can do with lists, like <a href="../ref/Misc.html#ordered()">sorting and reversing</a>, retrieving a range of elements as a <a href="http://www.pythoncentral.io/how-to-slice-listsarrays-and-tuples-in-python/">slice</a>, or using functional-programming concepts like "map" and "filter" in a <a href="https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions">list comprehension</a>. The Python tutorial on <a href="https://docs.python.org/2/tutorial/datastructures.html">Datastructures</a> will get you started with some of the more advanced features of the list object. </p>
+    <p>There's a lot more you can do with lists, like <a href="../ref/Misc.html#ordered()">sorting and reversing</a>, retrieving a range of elements as a <a href="http://www.pythoncentral.io/how-to-slice-listsarrays-and-tuples-in-python/">slice</a>, or using functional-programming concepts like "map" and "filter" in a <a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">list comprehension</a>. The Python tutorial on <a href="https://docs.python.org/3/tutorial/datastructures.html">Datastructures</a> will get you started with some of the more advanced features of the list object. </p>
 
 
 
     <a name="dictionaries"></a>
     <h1>Dictionaries</h1>
 
-    <p>A dictionary (or "<i>dict</i>") is an extremely versatile kind of list that lets you access elements via indices (known as "<em>keys</em>") that you define yourself. Each key is unique and references an item stored in the dict. Unlike list indices, which are always integers, dictionary keys can be any datatype you want. String-based keys are a popular choice, but you could just as easily use numbers, booleans, or even <a href="https://docs.python.org/2/tutorial/datastructures.html#tuples-and-sequences">tuples</a>.</p>
+    <p>A dictionary (or "<i>dict</i>") is an extremely versatile kind of list that lets you access elements via indices (known as "<em>keys</em>") that you define yourself. Each key is unique and references an item stored in the dict. Unlike list indices, which are always integers, dictionary keys can be any datatype you want. String-based keys are a popular choice, but you could just as easily use numbers, booleans, or even <a href="https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences">tuples</a>.</p>
 
     <p>Dictionaries are created with <strong>curly braces</strong> instead of square brackets. You can assign and retrieve values from a dictionary using the same "index" syntax as for lists:</p>
 
@@ -128,7 +128,7 @@ print(heading["fill"])
 }
 </pre>
 
-    <p>If this sounds like too much punctuation, consider using the <a href="https://docs.python.org/2/library/stdtypes.html#mapping-types-dict">dict()</a> command which lets you specify keys through keyword arguments:</p>
+    <p>If this sounds like too much punctuation, consider using the <a href="https://docs.python.org/3/library/stdtypes.html#mapping-types-dict">dict()</a> command which lets you specify keys through keyword arguments:</p>
     <pre class="manual">heading = <span class="nb">dict</span>(family=<span class="s">"Avenir Next"</span>, size=<span class="mi">18</span>, fill=<span class="nf">color</span>(<span class="mi">1</span>,<span class="mi">0</span>,<span class="mi">0</span>))</pre>
 
     <h2>Dictionaries are "random access"</h2>
@@ -160,7 +160,7 @@ print("wgt:", heading.get("weight", "normal")) # undefined, default used instead
 
     <h2>Specialized dictionaries</h2>
 
-    <p>The standard dictionary object provided by the built-in <a href="https://docs.python.org/2/library/stdtypes.html#mapping-types-dict">dict</a> type will suit your needs the vast majority of the time. There are three dictionary variants that may also come in handy:</p>
+    <p>The standard dictionary object provided by the built-in <a href="https://docs.python.org/3/library/stdtypes.html#mapping-types-dict">dict</a> type will suit your needs the vast majority of the time. There are three dictionary variants that may also come in handy:</p>
     <ul>
         <li><a href="../ref/Misc.html#adict()">adict</a> – allows you to use dot-notation for key access</li>
         <li><a href="../ref/Misc.html#ddict()">ddict</a> – provides a default value for undefined keys</li>
