@@ -13,25 +13,53 @@
   <link rel="stylesheet" href="{{root}}../etc/manual.css" type="text/css" charset="utf-8">
 </head>
 <body>
-
-{{nav(sect,name,root,tutorial,siblings)}}
+<main class="{{sect}}">
+<header>
+  {{nav(sect,name,root,tutorial,siblings)}}
+</header>
 
 {%- if sect=='ref' -%}
 <div class="ref article">
   {%- if commands -%}
-  <div class="commands">
-    {%- for cmd in commands -%}<a name="{{cmd[0]}}"></a>{{cmd[1]}}{%- endfor -%}
-  </div>
+  <section>
+    <aside>
+      <menu>
+        <li><h3>Commands</h3></li>
+        {%- for cmd in commands -%}<li><a href="#{{cmd[0]}}">{{cmd[0]}}</a></li>{%- endfor -%}
+      </menu>
+    </aside>
+    <div class="commands">
+      {%- for cmd in commands -%}<a name="{{cmd[0]}}"></a>{{cmd[1]}}{%- endfor -%}
+    </div>
+  </section>
   {%- endif -%}
+
   {%- if types -%}
-  <div class="types">
-    {%- for typ in types -%}<a name="{{typ[0]}}"></a>{{typ[1]}}{%- endfor -%}
-  </div>
+  <section>
+    <aside>
+      <menu>
+        <li><h3>Objects</h3></li>
+        {%- for typ in types -%}<li><a href="#{{typ[0]}}">{{typ[0]}}</a></li>{%- endfor -%}
+      </menu>
+    </aside>
+    <div class="types">
+      {%- for typ in types -%}<a name="{{typ[0]}}"></a>{{typ[1]}}{%- endfor -%}
+    </div>
+  </section>
   {%- endif -%}
+
   {%- if compat -%}
-  <div class="compat">
-    {%- for old in compat -%}<a name="{{old[0]}}"></a>{{old[1]}}{%- endfor -%}
-  </div>
+  <section>
+    <aside>
+      <menu>
+        <li><h3>Legacy Commands</h3></li>
+        {%- for old in compat -%}<li><a href="#{{old[0]}}">{{old[0]}}</a></li>{%- endfor -%}
+      </menu>
+    </aside>
+    <div class="compat">
+      {%- for old in compat -%}<a name="{{old[0]}}"></a>{{old[1]}}{%- endfor -%}
+    </div>
+  </section>
   {%- endif -%}
 </div>
 {%- else -%}
@@ -39,11 +67,6 @@
 {{footer(tutorial, siblings)}}
 {%- endif -%}
 
-
-
-
-
-
-
+</main>
 </body>
 </html>

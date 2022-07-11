@@ -45,6 +45,12 @@ p { margin: 10px 0 10px 0; }
 /* Links */
 a { color: #bb4200; text-decoration: none; }
 a:hover { text-decoration: underline; }
+a[name]{
+  display: block;
+  position: relative;
+  top: -45px;
+  visibility: hidden;
+}
 
 /* Lists */
 ul { margin: 0px; padding-left: 20px; }
@@ -56,7 +62,7 @@ ul li { }
 header + .toc{ margin-top:40px; margin-bottom:0; }
 
 /* basic styles for each third's row */
-#ref,#tut,#lib,#types,footer{
+#commands,#tut,#lib,#types,footer{
   overflow:auto;
   padding-bottom:20px;
   border-top:1px solid #666;
@@ -124,7 +130,7 @@ h1{
   font:14px/20px "Courier Prime";
 }
 
-#ref .section ul.commands{
+#commands .section ul.commands{
   /* deal with safari leaving clipped bits exposed when the `commands' group is hidden */
   padding-left:3px;
   margin-left:-3px;
@@ -178,14 +184,14 @@ li.cmm:before{
   cursor:pointer;
 }
 
-body.commands #ref .sections ul li.compat{ display:none }
-body.commands #ref nav aside.compat{ display:none }
-body.compat #ref .sections ul li.commands{ display:none }
-body.compat #ref nav aside.commands{ display:none }
+body.commands #commands .sections ul li.compat{ display:none }
+body.commands #commands nav aside.compat{ display:none }
+body.compat #commands .sections ul li.commands{ display:none }
+body.compat #commands nav aside.commands{ display:none }
 
-body.commands #ref .sections ul.commands,
-body.types #ref .sections ul.types,
-body.compat #ref .sections ul.compat{
+body.commands #commands .sections ul.commands,
+body.types #commands .sections ul.types,
+body.compat #commands .sections ul.compat{
   opacity:1;
   pointer-events:auto;
 }
