@@ -1,4 +1,4 @@
-#!./env/bin/python
+#!./env/bin/python3
 # encoding: utf-8
 """
 build.py
