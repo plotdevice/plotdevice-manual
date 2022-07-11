@@ -282,8 +282,7 @@ def ref():
     fname = 'doc/ref/%s.html' % name
 
     if is_stale(fname, glob('%s/*/*.html'%page), deps=['tmpl/nav.html','tmpl/manpage.html']):
-      cmd, typ, old = [list(map(get_def, glob('%s/%s/*'%(page,s)))) for s in ('commands','types','compat')]
-
+      cmd, typ, old = [list(map(get_def, sorted(glob('%s/%s/*'%(page,s))))) for s in ('commands','types','compat')]
       html = tmpls.get_template('manpage.html')
       info = dict(name=name, sect='ref', siblings=siblings, commands=cmd, types=typ, compat=old)
 
