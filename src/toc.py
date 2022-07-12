@@ -3,17 +3,17 @@ from collections import OrderedDict as odict
 ref=odict()
 ref['Canvas'] = {
     'commands': ['size()', 'speed()', 'background()', 'geometry()', 'export()', ('plot()', 'clear()'), ],
-    'types': ['Context', 'Color', 'Shadow'],
     'compat': ['outputmode()', 'ximport()', 'halt()'] }
 ref['Line+Color'] = {
     'commands': ['color()', 'stroke()', 'fill()', 'pen()', ],
+    'types': ['Color', 'Gradient', 'Shadow'],
     'compat': ['capstyle()', 'colormode()', 'joinstyle()', 'nofill()', 'nostroke()', 'strokewidth()'] }
 ref['Primitives'] = {
     'commands': [('poly()', 'rect()'),  ('arc()', 'oval()'), 'line()', 'image()', 'text()', ],
     'compat': ['arrow()', 'star()'] }
 ref['Drawing'] = {
     'commands': ['bezier()', 'moveto()', 'lineto()', 'arcto()', 'curveto()',  ],
-    'types': ['Bezier', 'Curve', 'Image'],
+    'types': ['Bezier', 'Curve', 'Image', 'Context'],
     'compat': ['autoclosepath()', 'beginpath()', 'drawpath()', 'endpath()', 'findpath()'] }
 ref['Transform'] = {
     'commands': ['transform()', 'translate()', 'rotate()', 'scale()', 'skew()', 'reset()', ],
