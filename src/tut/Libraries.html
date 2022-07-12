@@ -13,7 +13,7 @@
 
     <h2>Python modules</h2>
 
-    <p>Since the scripts you write in PlotDevice use <a href="http://www.python.org/">Python</a>, you can access and <b>import</b> any of the <b>modules</b> from the <a href="https://docs.python.org/3/library/">Standard Library</a> (a.k.a. the "stdlib") in your projects. The stdlib is almost preposterously extensive, reflecting Python's motto of "batteries included". A terrific set of tutorials for some of the most useful modules can be found at <a href="http://pymotw.com/2/contents.html">Python Module of the Week</a>.</p>
+    <p>Since the scripts you write in PlotDevice use <a href="http://www.python.org/">Python</a>, you can access and <b>import</b> any of the <b>modules</b> from the <a href="https://docs.python.org/3/library/">Standard Library</a> (a.k.a. the "stdlib") in your projects. The stdlib is almost preposterously extensive, reflecting Python's motto of "batteries included". A terrific set of tutorials for some of the most useful modules can be found at <a href="https://pymotw.com/3/">Python Module of the Week</a>.</p>
 
     <p>For instance, you can <code>import</code> the <a href="https://docs.python.org/3/library/json.html"><code>json</code></a> module to serialize your data to a string:</p>
     <pre>import json
@@ -33,6 +33,47 @@ print(basename("/etc/passwd"))</pre>
     <p>You don’t need to install any files or configure anything; PlotDevice knows where the standard libraries are.</p>
 
 
+    <h2>Libraries from the Python community</h2>
+
+    <p>The <a href="https://pypi.org">Python Package Index</a> (PyPI) is the central location where open source libraries are collected and distributed. Try searching for a topic you're interested in or a problem you'd like to solve and marvel at both the number and quality of solutions that are already written, tested, and waiting for you. When you're writing python code from the command line, you'll typically use a combination of <a href="https://docs.python.org/3/library/venv.html">virtual environments</a> and the <a href="https://packaging.python.org/en/latest/guides/tool-recommendations/">pip installer</a> tool to add libraries to your project.</p>
+
+    <p>Installing packages for use with the PlotDevice app is a little tricker since it uses a version of Python embedded in the app bundle itself. To simplify this, the <code>plotdevice</code> <a href="Console.html">command line tool</a> has an <code>--install</code> option that will call <code>pip</code> for you and installs into a folder the application knows about: <span class="message">~/Library/Application Support/PlotDevice</span>. Be sure you have access to the <code>plotdevice</code> command by opening the application's Preferences window and clicking the Install button in the <span class="message">Command Line Tool</span> section.
+
+    <p>To install a package, first find it on the Python Package Index and look for the text <code>pip install &lt;<em class="kw">package-name</em>&gt;</code> to find its official module name. For instance, on the <a href="https://pypi.org/project/numpy/">NumPy page</a> we can see that the package name is <code>numpy</code> (all lowercase). Now, from the terminal, you can install it by typing:</p>
+    <pre>plotdevice --install numpy</pre>
+
+    <p>After the installation is complete, go back to the app and try importing it in your own script using the <code class='kw'>import</code> statement used in the previous section. You can even ask the module to describe itself via the <code>help</code> command:</p>
+    <pre>import numpy
+print(help(numpy))
+>>> Help on package numpy:
+>>>
+>>> NAME
+>>>     numpy
+>>>
+>>> DESCRIPTION
+>>>     NumPy
+>>>     =====
+>>>
+>>>     Provides
+>>>       1. An array object of arbitrary homogeneous items
+>>>       2. Fast mathematical operations over arrays
+>>>       3. Linear Algebra, Fourier Transforms, Random Number Generation
+>>>
+>>>     How to use the documentation
+>>>     ----------------------------
+>>>     Documentation is available in two forms: docstrings provided
+>>>     with the code, and a loose standing reference guide, available from
+>>>     `the NumPy homepage <https://numpy.org>`_.
+>>>
+>>>     We recommend exploring the docstrings using
+>>>     `IPython <https://ipython.org>`_, an advanced Python shell with
+>>>     TAB-completion and introspection capabilities.  See below for further
+>>>     instructions.
+>>>
+>>> …and much much more…</pre>
+
+    </p>
+<!--
     <h2>Libraries from the PlotDevice site</h2>
 
     <p>The PlotDevice site has a lot of interesting libraries originally developed for <a href="http://nodebox.net/code/index.php/Library">NodeBox</a>. Libraries allow you to access <a href="../lib/WordNet.html">natural language</a> processing, or <a href="../lib/Core_Image.html">Core Image</a> filters, or even <a href="../lib/Colors.html">Color</a> math. A list of all libraries is <a href="../manual.html#lib">here</a>.</p>
@@ -51,6 +92,7 @@ print(basename("/etc/passwd"))</pre>
     <p>Now our script can access the library by using the <a href="http://effbot.org/zone/import-confusion.htm"><code>import</code></a> statement along with the library's folder name (note the lack of quotes around the name). When you import a module, a variable with the same name is created and you access its functionality using dot-syntax of the form: <em>module.funcname()</em>. Let's try using the <i>WordNet</i> lib's "glossary" method:</p>
 
         <div class="media" style="margin:0"><img height="262" src="../etc/tut/libraries2.png" width="534"/></div>
+-->
 
 
   </div>
