@@ -12,6 +12,9 @@
 <pre>... # draw to the canvas
 export("spool.pdf", cmyk=False)
 </pre>
+<pre>... # draw at retina-quality to the canvas
+export("spool.png", zoom=2)
+</pre>
 <pre>with export("movie.mov", fps=30, bitrate=1.0):
     ... # draw movie frames
 </pre>
@@ -24,8 +27,14 @@ export("spool.pdf", cmyk=False)
     </p><p>When running the PlotDevice application, you'll likely find it more convenient to use the <span class="message">File → Export as…</span> menu items (<span class="message">⌘P</span> and <span class="message">⇧⌘P</span> for images and animations respectively). But for <a href="../tut/Console.html#standalone">standalone scripts</a> that import the <code>plotdevice</code> module, the <i>export()</i> command is the main avenue for generating graphics.
     </p><h2>Saving the canvas to an image</h2>
 
-    <p>You can call <i>export()</i> at any time to write the current set of graphics objects on the canvas to a single bitmap or vector image file. The only required argument is a file path (whose extension will determine the format). The optional <code>cmyk</code> argument can be set to <code class="kw">True</code> to use "process" colors when exporting to a PDF, EPS, or TIFF file.
-    </p>
+    <p>You can call <i>export()</i> at any time to write the current set of graphics objects on the canvas to a single bitmap or vector image file. The only required argument is a file path (whose extension will determine the format). The optional <code>cmyk</code> argument can be set to <code class="kw">True</code> to use "process" colors when exporting to a PDF, EPS, or TIFF file. </p>
+
+    <p>By default, bitmap images will be exported at 1:1 resolution (i.e., one pixel for each ‘point’ in the area set via <a href="#size()">size()</a>). The <code>zoom</code> parameter defaults to <code class="n">1.0</code> and allows you to generate arbitrarily larger (or smaller) magnifications—though sticking to round numbmers like 1, 2, and 3 will give you the best results. As a shortcut, you can also set your filename to end with an <code class="s">"@…x"</code> to specify the zoom factor.
+
+    <p>For instance the following will generate identical bitmaps:
+    <pre>export("retina.png", zoom=2)
+export("retina@2x.png")</pre>
+
 
     <a name="export-context-manager"></a>
     <h2>Context Manager</h2>
