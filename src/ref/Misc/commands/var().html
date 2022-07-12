@@ -7,10 +7,26 @@
     <h1>var()</h1>
 
     <h2>Syntax</h2>
-
     <div class="row">
-<pre>var(name, type, default, min, max)
-</pre>
+      <div class="def-box">
+        <pre>var(name, NUMBER, value=50, min=0, max=100, step=None, label=None)</pre>
+        <p>Create a numeric variable with the given name. Step can be set to <code>1</code> to round to integers or larger values to round-off by multiples.</p>
+      </div>
+
+      <div class="def-box">
+        <pre>var(name, TEXT, value, label=None)</pre>
+        <p>Create a text variable (defaults to the string <code>"hello"</code> unless a <i>value</i> argument is supplied)</p>
+      </div>
+
+      <div class="def-box">
+        <pre>var(name, BOOLEAN, value, label=None)</pre>
+        <p>Create a boolean variable (defaults to True unless a <i>value</i> argument is supplied)</p>
+      </div>
+
+      <div class="def-box">
+        <pre>var(name, BUTTON, value, color=None, label=None)</pre>
+        <p>Trigger a user-defined function by name from a button labeled with the <i>value</i> argument.</p>
+      </div>
     </div>
 
     <h2>Description</h2>
@@ -30,15 +46,30 @@
 
     <div class="row">
       <div class="example">
-        <span><img height="125" src="../etc/ref/var.jpg" width="125"/></span>
-<pre>var("amount", NUMBER, 30, 0, 100)
+        <span><img height="125" src="../etc/ref/var.png" width="125"/></span>
+<pre>var("amount", NUMBER, 36, 0, 100, step=1)
 
 background(0.1, 0, 0.0)
 for i in range(int(amount)):
     rotate(15)
-    image("10.png", 5, 5, alpha=0.25)
+    fill(1, .1)
+    rect(100,100,100,12)
 </pre>
       </div>
+
+      <div class="example"><pre>def introduce_yourself():
+  text("My name is %s" % name, 100, 100)
+  text("I am {} years old".format(age), 100, 140)
+  if voter:
+    text("I am a registered voter", 100, 180)
+  else:
+    text("I will be registering to vote soon", 100, 180)
+
+var("name", TEXT, "John Doe")
+var("age", NUMBER, 37, 0, 90, step=1)
+var("voter", BOOLEAN, True, label="registered?")
+var("introduce_yourself", BUTTON, "Say Hi")</pre>
+
     </div>
   </div>
 

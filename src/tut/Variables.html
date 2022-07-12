@@ -137,18 +137,29 @@ text(quote, x, y)
     retained as long as you don’t re-run your script. In other words, random values change when you
     run a script, but not when you change values or drag sliders in the variable panel. --></p>
 
-    <div class="media"><img height="443" src="../etc/tut/variables-panel.png" width="669"/></div>
+    <div class="media"><img height="490" src="../etc/tut/variables-panel.png" width="760"/></div>
 
     <p>You can add user-controlled variables to the panel with the <a href="../ref/Misc.html#var()">var()</a> command.</p>
-    <pre>var("name", NUMBER, default, min, max)</pre>
-    <pre>var("name", TEXT, default="hello")</pre>
-    <pre>var("name", BOOLEAN, default=True)</pre>
-    <pre>var("command", BUTTON) </pre>
+    <pre>var("name", NUMBER, value, min, max, step)</pre>
+    <pre>var("name", TEXT, a_string)</pre>
+    <pre>var("name", BOOLEAN, true_or_false)</pre>
+    <pre>def do_something():
+  print("i did it!")
+var('do_something', BUTTON, button_text)</pre>
 
     <p>You can then use the <i>name</i> variable in your script like any other variable. Numbers
     produce a slider, text an input field and booleans (<i>True</i> or <i>False</i>) a checkbox.
-    The <i>command</i> parameter for buttons is the name of a command in your script to call when
-    the button is pressed.</p>
+    The <i>name</i> parameter for buttons doesn't actually create a variable—instead you use it to identify a function
+    that you've defined in your script that should be called when the button is clicked. The button will have the name of your
+    function as its text label unless you pass an alternate string for it to use as the third argument.</p>
+
+    <p>By default, the variables panel will label each of your controls using the same name as your variable, but if you provide
+    a <i>label</i> argument, you can customize it. The <code class="kw">BUTTON</code> type also allows you to specify a <i>color</i>
+    value for it to use as its background:</p>
+    <pre>var("surname", TEXT, "Richelieu", label="Last Name")
+var("search_geneology", BUTTON, "Search", label="Find Relatives", color="#f00")
+</pre>
+
     <p>The variable panel is modeled on <a href="http://bob.ippoli.to">Bob Ippolito’s widget drawer</a> in the
     original DrawBot.</p>
   </div>
