@@ -154,7 +154,7 @@ li.cmm, li.cm{
 }
 
 li.cm:before{
-  content:"·";
+  content:"•";
   font-weight:bold;
   position:absolute;
   left:-11px;
@@ -447,13 +447,17 @@ header h3.tt{
 
   h1, h3 { font: bold 20px "Cabin"; }
 
+  .section h2 { font: bold 14px "Cabin"; line-height: 1.5em; margin-top: 16px; }
+
   nav ul.filter{
-    font:15px/23px "Cabin";
+    font:15px/33px "Cabin";
+    margin: 0;
   }
 
   nav aside{
     font-size: 16px;
-    line-height: 22px;
+    line-height: 20px;
+    margin-top: 7px;
   }
 
   #types li{
