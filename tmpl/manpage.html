@@ -20,47 +20,66 @@
 
 {%- if sect=='ref' -%}
 <div class="ref article">
-  {%- if commands -%}
-  <section>
-    <aside>
-      <menu>
-        <li><h3>Commands</h3></li>
-        {%- for cmd in commands -%}<li><a href="#{{cmd[0]}}">{{cmd[0]}}</a></li>{%- endfor -%}
-      </menu>
-    </aside>
-    <div class="commands">
-      {%- for cmd in commands -%}<a name="{{cmd[0]}}"></a>{{cmd[1]}}{%- endfor -%}
-    </div>
-  </section>
-  {%- endif -%}
+  <aside>
+    <div class="groups">
+      {% if commands %}
+      <section>
+        <h3>Commands</h3>
+        <menu>
+          {%- for cmd in commands -%}<li><a href="#{{cmd[0]}}">{{cmd[0]}}</a></li>{%- endfor -%}
+        </menu>
+      </section>
+      {% endif %}
 
-  {%- if types -%}
-  <section>
-    <aside>
-      <menu>
-        <li><h3>Objects</h3></li>
-        {%- for typ in types -%}<li><a href="#{{typ[0]}}">{{typ[0]}}</a></li>{%- endfor -%}
-      </menu>
-    </aside>
-    <div class="types">
-      {%- for typ in types -%}<a name="{{typ[0]}}"></a>{{typ[1]}}{%- endfor -%}
-    </div>
-  </section>
-  {%- endif -%}
+      {% if types %}
+      <section>
+        <h3>Objects</h3>
+        <menu>
+          {%- for typ in types -%}<li><a class="type" href="#{{typ[0]}}">{{typ[0]}}</a></li>{%- endfor -%}
+        </menu>
+      </section>
+      {% endif %}
 
-  {%- if compat -%}
-  <section>
-    <aside>
-      <menu>
-        <li><h3>Legacy Commands</h3></li>
-        {%- for old in compat -%}<li><a href="#{{old[0]}}">{{old[0]}}</a></li>{%- endfor -%}
-      </menu>
-    </aside>
-    <div class="compat">
-      {%- for old in compat -%}<a name="{{old[0]}}"></a>{{old[1]}}{%- endfor -%}
+      {% if compat %}
+      <section>
+        <h3>Legacy Commands</h3>
+        <menu>
+          {%- for old in compat -%}<li><a class="compat" href="#{{old[0]}}">{{old[0]}}</a></li>{%- endfor -%}
+        </menu>
+      </section>
+      {% endif %}
     </div>
-  </section>
-  {%- endif -%}
+  </aside>
+
+  <div class="sections">
+    {%- if commands -%}
+    <section>
+      <h4>Commands</h4>
+      <div class="commands">
+        {%- for cmd in commands -%}<a name="{{cmd[0]}}"></a>{{cmd[1]}}{%- endfor -%}
+      </div>
+    </section>
+    {%- endif -%}
+
+    {%- if types -%}
+    <section>
+      <h4>Objects</h4>
+      <div class="types">
+        {%- for typ in types -%}<a name="{{typ[0]}}"></a>{{typ[1]}}{%- endfor -%}
+      </div>
+    </section>
+    {%- endif -%}
+
+    {%- if compat -%}
+    <section>
+      <h4>Legacy Commands</h4>
+      <div class="compat">
+        {%- for old in compat -%}<a name="{{old[0]}}"></a>{{old[1]}}{%- endfor -%}
+      </div>
+    </section>
+    {%- endif -%}
+  </div>
+
 </div>
 {%- else -%}
 {{doc}}
@@ -68,6 +87,22 @@
 {%- endif -%}
 
 </main>
+
   <script src="{{root}}../etc/cash.min.js"></script>
+  <script>
+    $(function(){
+      $(".definition h1").each((i,elt) => {
+        new IntersectionObserver(
+          ([e]) => { if(e.intersectionRatio==1){
+            let target = $(elt).text()
+            $("menu a").each( (i, link) => {
+              $(link).toggleClass('active', link.href.split('#')[1] == target)
+            })
+          }},
+          {rootMargin: '0% 0% -80% 0%', threshold: 1}
+        ).observe(elt)
+      })
+    })
+  </script>
 </body>
 </html>

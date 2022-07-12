@@ -245,27 +245,24 @@ main.tut header nav{
 /* NAV BAR */
 
 
+
 header{
   position:fixed;
   width:100%;
   top:0;
   left:0;
   background:rgba(255,255,255,0.9);
-  height: 45px;
+  height: 40px;
   overflow:visible;
   z-index:10;
-  /*min-width:840px;*/
 }
 
 nav{
   position:relative;
-  /*width:100%;*/
   top:0;
   left:0;
   overflow:visible;
   padding-left: 220px;
-  /*z-index:10;*/
-  /*min-width:840px;*/
   display: flex;
   justify-content: space-between;
 }
@@ -275,7 +272,6 @@ nav h1{
   position: absolute;
   left: 10px;
   margin:9px 0 9px 0;
-  /*float:left;*/
   width:200px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -307,7 +303,6 @@ nav h1:hover:after{ opacity:1; color:black; }
 /* the active section in the refs siblings-bar or just the orange page title text */
 nav h3{
   color:#bb4200;
-  /*float:left;*/
   margin:9px 0;
   font-weight:bold;
   white-space: nowrap;
@@ -319,7 +314,6 @@ nav h3.tt{
 
 /* special handling for the section-based nav in ref pages */
 nav ul.siblings{
-  /*float:left;*/
   list-style:none;
   padding-left:0;
   display: flex;
@@ -327,7 +321,6 @@ nav ul.siblings{
 }
 
 nav ul.siblings li{
-  /*float:left;*/
   margin:9px 9px 9px 0;
 }
 
@@ -348,9 +341,7 @@ nav ul.chapter.hidden{
 }
 
 nav ul.chapter li{
-  /*float:right;*/
   margin:9px 0 9px 6px;
-
 }
 
 nav ul.chapter li.current:before{
@@ -382,7 +373,6 @@ nav li a:hover{
 
 
 footer{
-  /*max-width:600px;*/
   margin: 0 0 48px 215px;
 }
 
@@ -411,10 +401,10 @@ footer ul.chapter li.prev{float:left; }
 /***************************************/
 /* ARTICLE PAGE */
 
+
 .article{
   position:relative;
-  /*max-width:600px;*/
-  margin: 45px 0 48px 0;
+  margin: 40px 0 48px 0;
   border-bottom:1px solid #666;
   padding-left: 215px;
 }
@@ -425,14 +415,15 @@ footer ul.chapter li.prev{float:left; }
 .article a[name]{
   display: block;
   position: relative;
-  top: -45px;
+  top: -40px;
   visibility: hidden;
 }
 
 
+
 .article .definition{
   position:relative;
-  border-top:3px double #666;
+  border-top:1px solid #666;
   margin-bottom: 2em;
 }
 
@@ -443,28 +434,48 @@ footer ul.chapter li.prev{float:left; }
 
 .article.ref{
   padding-left: 0;
-}
-
-.article.ref section{
   display: flex;
 }
 
-.article.ref section menu{
-  position: sticky;
-  top: 45px;
-  list-style-type: none;
+
+.article.ref aside{
   min-width: 200px;
-  border-top:1px solid #666;
-  padding: 0;
   margin: 0 15px 0 0 ;
 }
 
-.article.ref section menu h3{
+.article.ref aside .groups{
+  position: sticky;
+  top: 40px;
+  border-top:1px solid #666;
+  padding-top: 5px;
+}
+
+.article.ref aside h3{
   font:800 12px/18px "Cabin";
   text-transform:uppercase;
-  letter-spacing:1px;
+  letter-spacing: 1px;
   color: #666;
 }
+
+.article.ref aside menu{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.article.ref aside a.type{
+  font:16px/20px "Courier Prime";
+}
+
+.article.ref aside a.compat{
+  color: #1f96b5;
+}
+
+.article.ref aside a.active{
+  font-weight: bold;
+}
+
+
 
 .article .classic{
   display:none;
@@ -543,7 +554,18 @@ footer ul.chapter li.prev{float:left; }
   margin:12px 0;
 }
 
+.article.ref section h4{
+  border-top: 3px double black;
+  padding: 1em 0;
+  margin: 0;
+  font: bold 20px/28px "Cabin";
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
 
+.article.ref .sections section:first-child h4{
+  border-top: 1px solid black;
+}
 
 .article.tut > *{
   max-width: 690px;
@@ -684,21 +706,19 @@ div.media{
 @media (min-width: 1024px){
   body, table, td, input, select, option, textarea { font:19px/27px "chaparral-pro", "Alegreya";}
   pre{ font-size:14px; line-height:21px; }
-/*
-  h1, h3 { font: bold 18px "Cabin"; }
-  h3 { margin-top: 15px; }
-  h2 { font: bold 14px/22px "Cabin"; margin-top: 15px; }
-  pre { font-size: 12px; font-family:"Courier Prime"; line-height: 19px; overflow:auto;}
-  code { font-family:"Courier Prime"; letter-spacing:0; line-height: 16px;}
-  code.box{ padding:0 4px;}
-  p code, li code{ font-size:15px; }
-  .argvals{width:100%; padding:2px 4px; border-top:1px solid #d3d3ba;}
-  .argvals tr > td:first-child{text-align:right; width:100px;}
-  .argvals td{font-style:italic;}
-  .argvals td code{ font-style:normal; font-size:15px; font-weight:bold; color:#444;}
-  .argvals td code.kw{color: #366789; font-weight:bold;}
-  .message { font: bold 15px "Cabin"; line-height: 18px; }
-*/
+  p code, li code{ font-size:16px; }
+  h1, h3, nav li { font: bold 20px "Cabin"; }
+  .message { font: bold 18px "Cabin"; }
+  .article.tut h1{ font-size: 26px; margin: 66px 0 22px 0}
+  .article.tut h2{ font-size:16px; letter-spacing: .1em; margin: 66px 0 22px 0}
+
+  nav h1:after{ left:98px; } /* the rollover text */
+  nav ul.chapter li{ margin-left: 10px; }
+
+  header{ height: 44px; }
+  .article{ margin-top:44px; }
+  .article a[name]{ top: -44px; }
+  .article.ref aside .groups{ top: 44px; }
   .article.ref h2{ font-size:19px; }
 }
 
@@ -707,53 +727,53 @@ div.media{
     background: white;
   }
 
-  nav ul.siblings{
-    overflow: scroll;
-  }
-
-
-  .article.ref section{
-    flex-direction: column;
-  }
-
-  .article.ref section aside{
-    position: sticky;
-    top: 45px;
-    background: white;
-    z-index: 1;
-  }
-
-  .article.ref section aside menu{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 30px 0 20px 0;
-    margin: 0;
-    /*border: 0;*/
-  }
-
-  .article.ref section aside menu li + li::after{
-    content: "/";
-    margin: 0 5px;
-    color: #aaa;
-  }
-
-  .article.ref section aside menu li:nth-child(1){
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-  }
-
-  .article.ref section aside menu li:last-child::after{
-    content: "";
-  }
-  .article.ref section aside menu li h3{
-    margin-top: 10px;
+  nav ul.siblings li:not(.active){
+    display: none;
   }
 }
 
 
 @media (max-width: 640px){
+
+  .article.ref {
+    flex-direction: column;
+  }
+
+  .article.ref aside menu{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px 0;
+  }
+
+  .article.ref aside section{
+    display: flex;
+  }
+
+  .article.ref aside h3{
+    margin-top: 10px;
+    flex-basis: 215px;
+    flex-shrink: 0;
+  }
+
+  .article.ref aside menu li::after{
+    content: "/";
+    margin: 0 2px;
+    color: #aaa;
+  }
+
+  .article.ref aside menu li:last-child::after{
+    content: "";
+  }
+
+  .article.ref aside menu li a.active{
+    font-weight:inherit
+  }
+
+  .article.ref .sections section:first-child h4{
+    border-top: 3px double black;
+  }
+
+
   nav.tut{ padding-left:180px; }
   nav.tut h1{ width:160px }
   nav.tut .chapter a:not(.stepper){display: none}

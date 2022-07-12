@@ -47,7 +47,7 @@
 <ul class="siblings">
 {% for sect in cats %}
 {%- if sect==title -%}
-<li><h3 style="margin:0;">{{sect.replace('+',' &amp; ').replace('Misc','Misc.').replace('ography','e')}}</h3></li>
+<li class="active"><h3 style="margin:0;">{{sect.replace('+',' &amp; ').replace('Misc','Misc.').replace('ography','e')}}</h3></li>
 {%- else -%}
 <li><a href="{{sect}}.html">{{sect.replace('+',' &amp; ').replace('Misc','Misc.').replace('ography','e')}}</a></li>
 {%- endif -%}
