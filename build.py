@@ -253,7 +253,7 @@ def etc():
   os.system('ln -f tmpl/manual.css doc/etc/manual.css')
   os.system('ln -f tmpl/toc.css doc/etc/toc.css')
   os.system('ln -f tmpl/typography.css doc/etc/type/typography.css')
-  os.system('ln -f src/etc/zepto.min.js doc/etc/zepto.min.js')
+  os.system('ln -f src/etc/cash.min.js doc/etc/cash.min.js')
   for sect in ('ref','tut','lib'):
     _mkdir('doc/etc/%s'%sect)
     os.system('ln -f src/etc/%s/* doc/etc/%s'%(sect,sect))

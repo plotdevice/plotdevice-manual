@@ -134,6 +134,7 @@ ref/{{dst}}.html
     </div>
   </div>
 #}
+
   <footer class="toc">
     Adapted from <a href="http://organisms.be">Tom De Smedt</a>’s manual for <a href="https://www.nodebox.net/code/index.php/Home">NodeBox</a>
     <a href="http://www.emrg.be/" title="Experimental Media Research Group">© 2004-2012</a>.
@@ -141,10 +142,9 @@ ref/{{dst}}.html
     Rewritten for <a href="http://plotdevice.io">PlotDevice</a> by <a href="http://samizdat.co">Christian Swinehart</a> © 2015–<span class="now">2022</span>
   </footer>
 
-  <script src="etc/zepto.min.js"></script>
+  <script src="etc/cash.min.js"></script>
   <script>
-    Zepto(function($){
-
+    $(function(){
       $("footer.toc .now").text(new Date().getFullYear())
 
       // handle Commands/Types clicks for the refs
