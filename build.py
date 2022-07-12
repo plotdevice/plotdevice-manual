@@ -262,7 +262,7 @@ def toc():
   print("Table of Contents")
   toc = importlib.reload(ToC)
   html = tmpls.get_template('toc.html')
-  local = dict(isinstance=isinstance, tuple=tuple, len=len)
+  local = dict(isinstance=isinstance, tuple=tuple, len=len, sorted=sorted)
   info = dict(ref=toc.ref, tut=toc.tut, lib=toc.lib, **local)
   markup = html.render(info)
 
