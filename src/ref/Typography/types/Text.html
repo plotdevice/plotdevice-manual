@@ -55,9 +55,9 @@ txt.<span class="red">frame</span>   <span class="c"># the rectangle in which te
 txt.<span class="red">bounds</span>  <span class="c"># rectangle within the frame that contains actual text</span>
 txt.<span class="red">metrics</span> <span class="c"># the size of the bounds Region</span>
 </pre>
-      <p>Note that the <i>frame</i> property is a <a href="Misc.html#Region">Region</a> defining the maximal layout rectangle (based on the Text object's <i>width</i> and <i>height</i> properties). If you've used the <i>flow()</i> method to create a multi-column layout, the <i>frame</i> will reflect the union of all the <a href="TextBlock">TextBlock</a> offsets and sizes.</p>
+      <p>Note that the <i>frame</i> property is a <a href="Transform.html#Region">Region</a> defining the maximal layout rectangle (based on the Text object's <i>width</i> and <i>height</i> properties). If you've used the <i>flow()</i> method to create a multi-column layout, the <i>frame</i> will reflect the union of all the <a href="TextBlock">TextBlock</a> offsets and sizes.</p>
 
-      <p>The <i>metrics</i> property is a <a href="Misc.html#Size">Size</a> tuple containing the width and height of the laid-out glyphs (identical to what you'd get from using the <a href="Misc.html#measure()">measure()</a> command). Its width will only be as wide as needed to contain all the word-wrapped text. The height reflects the total line-height (including ascenders &amp; descenders).</p>
+      <p>The <i>metrics</i> property is a <a href="Transform.html#Size">Size</a> tuple containing the width and height of the laid-out glyphs (identical to what you'd get from using the <a href="Misc.html#measure()">measure()</a> command). Its width will only be as wide as needed to contain all the word-wrapped text. The height reflects the total line-height (including ascenders &amp; descenders).</p>
 
     </div>
 

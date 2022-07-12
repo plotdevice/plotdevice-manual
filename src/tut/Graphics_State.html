@@ -97,7 +97,7 @@ with fill('red'):  # remember the old color and set a new one
 
     <h2>Restyling Primitives</h2>
 
-    <p>When you call a primitive command, it returns a reference to the <a href="../ref/Drawing.html#Bezier">Bezier</a>, <a href="../ref/Typography.html#Text">Text</a>, or <a href="../ref/Primitives.html#Image">Image</a> object that has been created. If you assign this value to a variable, you can inspect the style-settings it "inherited" from the global state and modify them for that object alone. This can come in handy in looping contexts where you may not know the settings you wish to modify until after calling the primitive command.</p>
+    <p>When you call a primitive command, it returns a reference to the <a href="../ref/Drawing.html#Bezier">Bezier</a>, <a href="../ref/Typography.html#Text">Text</a>, or <a href="../ref/Drawing.html#Image">Image</a> object that has been created. If you assign this value to a variable, you can inspect the style-settings it "inherited" from the global state and modify them for that object alone. This can come in handy in looping contexts where you may not know the settings you wish to modify until after calling the primitive command.</p>
 
     <p>For instance, the previous example of drawing a red box (regardless of the current <i>fill()</i> color) could also be achieved by modifying a reference to the <i>Bezier</i> returned by the <i>rect()</i> command:
 <pre>

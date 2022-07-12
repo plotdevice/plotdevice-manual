@@ -20,7 +20,7 @@ image(x, y, width=None, height=None, data="bytes-or-base64", plot=True, **style)
     <div class="row">
       <p>Draws an image to the screen, optionally scaling and compositing it in the process.</p>
 
-      <p>The <code>src</code> parameter can be a string (containing the path to an image file), another <a href="#Image">Image</a> object, or even the global <code class="kw">canvas</code> object. The optional <code>data</code> parameter can be used in lieu of <code>src</code> to supply image data as either a stream of raw bytes from an image file or a base64-encoded string (prefixed with the characters <code class="str">"base64,"</code>).</p>
+      <p>The <code>src</code> parameter can be a string (containing the path to an image file), another <a href="Drawing.html#Image">Image</a> object, or even the global <code class="kw">canvas</code> object. The optional <code>data</code> parameter can be used in lieu of <code>src</code> to supply image data as either a stream of raw bytes from an image file or a base64-encoded string (prefixed with the characters <code class="str">"base64,"</code>).</p>
 
       <p>The <code>x</code> and <code>y</code> parameters set the location of the image's upper left corner. The <code>width</code> and <code>height</code> parameters are optional and define the maximum width and height of the image. The image will be scaled to fit within the given <code>width</code> and <code>height</code> while maintaining its aspect ratio. The command also accepts optional <code>alpha</code> and <code>blend</code> keyword arguments which set the opacity and blend-mode for compositing the image. </p>
 
@@ -28,7 +28,7 @@ image(x, y, width=None, height=None, data="bytes-or-base64", plot=True, **style)
       <p>As with other primitives, setting the <code>plot</code> parameter to <code class="kw">False</code> will return a drawable object but not add it to the canvas.
       </p><h2>Returns</h2>
 
-      <p>an <a href="#Image">Image</a> object that can be passed to <a href="Canvas.html#background()">background()</a>, <a href="Line+Color.html#fill()">fill()</a>, <a href="Compositing.html#clip()">clip()</a>, <a href="Compositing.html#mask()">mask()</a>, and <a href="Canvas.html#plot()">plot()</a> among others.
+      <p>an <a href="Drawing.html#Image">Image</a> object that can be passed to <a href="Canvas.html#background()">background()</a>, <a href="Line+Color.html#fill()">fill()</a>, <a href="Compositing.html#clip()">clip()</a>, <a href="Compositing.html#mask()">mask()</a>, and <a href="Canvas.html#plot()">plot()</a> among others.
     </p></div>
 
     <h2>Example</h2>

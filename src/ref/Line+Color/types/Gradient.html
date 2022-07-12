@@ -1,0 +1,43 @@
+<html><head>
+
+  <title></title>
+
+</head><body>
+  <div class="definition">
+    <h1>Gradient</h1>
+
+    <h2>Syntax</h2>
+
+    <div class="def-box">
+      <pre>Gradient(*colors, steps=[0,1], angle=0)</pre>
+      <p>Linear gradient</p>
+    </div>
+
+    <div class="def-box">
+      <pre>Gradient(*colors, steps=[0,1], center=[x,y])</pre>
+      <p>Radial gradient</p>
+    </div>
+
+    <h2>Description</h2>
+
+    <div class="row">
+      <p>A linear or radial gradient that can be used in any context that expects a <a href="">Color</a> (e.g., <a href="#fill()">fill()</a>, <a href="#stroke()">stroke()</a>, <a href="Canvas.html#background()">background()</a>, etc.). The <code>steps</code> list must have the same length as the number of colors and describes proportionally (in the range 0.0–1.0) where each color transition happens.</p>
+    </div>
+
+    <h2>Properties</h2>
+
+    <div class="row">
+      <pre class="manual">g.<span class="red">brightness</span></pre>
+    </div>
+
+    <h2>Methods</h2>
+
+    <div class="row">
+    <pre class="manual">g.<span class="red">fill</span>(<span class="nf">tuple</span>(x, y, width, height))
+g.<span class="red">fill</span>(<span class="kc">Bezier</span>)</pre>
+      <pre class="manual">g.<span class="red">copy</span>()
+</pre>
+    </div>
+  </div>
+
+</body></html>

@@ -127,7 +127,7 @@ def draw():
 
       <p>PlotDevice scripts are rife with x/y coordinate pairs. You use coordinates to place primitives on the canvas, add line segments to a <a href="Bezier_Paths.html">Bezier</a>, and so forth. Most of the time you can choose these locations through intuition or trial and error. But occasionally you'll want to perform calculations on points to assemble your compositions in a <em>relative</em> manner.</p>
 
-      <p>Sometimes you'll be working with a pair of points and want to know the angle or distance between them. In other cases you may have a single point and need to calculate a second position relative to the first. To aid in these kinds of tasks, PlotDevice provides a simple class called <a href="../ref/Misc.html#Point">Point</a>. </p>
+      <p>Sometimes you'll be working with a pair of points and want to know the angle or distance between them. In other cases you may have a single point and need to calculate a second position relative to the first. To aid in these kinds of tasks, PlotDevice provides a simple class called <a href="../ref/Transform.html#Point">Point</a>. </p>
 
 
       <h2>Point Objects</h2>
@@ -140,7 +140,7 @@ print(pt.y)
 print(x, y)
 >>> 13 37</pre>
 
-      <p><i>Point</i> objects support basic arithmetic operators (as does the similar <a href="../ref/Misc.html#Size">Size</a> object):</p>
+      <p><i>Point</i> objects support basic arithmetic operators (as does the similar <a href="../ref/Transform.html#Size">Size</a> object):</p>
       <pre>
 pt = Point(10, 20)
 print(pt * 2)        # Point(20, 40)
@@ -159,7 +159,7 @@ print(pt + sz/2)     # Point(110, 120)
 
       <h2>Drawing with computed points</h2>
 
-      <p>Once you have a <i>Point</i>, you can "ask" it all sorts of questions about how it relates to other points with a few useful (and speed-optimized) <a href="../ref/Misc.html#Point-methods">math methods</a>. You can pull off some neat graphical tricks by combining the <i>Point</i> methods in your scripts.</p>
+      <p>Once you have a <i>Point</i>, you can "ask" it all sorts of questions about how it relates to other points with a few useful (and speed-optimized) <a href="../ref/Transform.html#Point-methods">math methods</a>. You can pull off some neat graphical tricks by combining the <i>Point</i> methods in your scripts.</p>
 
       <p>Finding the angle from a central origin to a randomly positioned point:</p>
       <div class="example">

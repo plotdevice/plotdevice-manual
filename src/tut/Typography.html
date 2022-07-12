@@ -293,7 +293,7 @@ print(measure('lorem ipsum dolor', 100, 999)) # word-wrapped at 100px
 >>> Size(72.048, 86.4)
 </pre>
 
-    <p>You can unpack the returned <a href="../ref/Misc.html#Size">Size</a> object into a pair of floating point values using <a href="http://robert-lujo.com/post/40871820711/python-destructuring">destructuring assignment</a>, or take advantage of the <i>textwidth()</i> and <i>textheight()</i> utility functions to access just a single dimension of the measurement. For instance, the following are equivalent:</p>
+    <p>You can unpack the returned <a href="../ref/Transform.html#Size">Size</a> object into a pair of floating point values using <a href="http://robert-lujo.com/post/40871820711/python-destructuring">destructuring assignment</a>, or take advantage of the <i>textwidth()</i> and <i>textheight()</i> utility functions to access just a single dimension of the measurement. For instance, the following are equivalent:</p>
     <pre>w, h = measure('foo bar baz')</pre>
     <pre>w = textwidth('foo bar baz')
 h = textheight('foo bar baz')</pre>
@@ -321,7 +321,7 @@ text(40,40, str=content)
     <h2>layout geometry</h2>
     <p>When you create a <i>Text</i> object with a fixed width and height, its actual size on the canvas is determined by how much of the string fits within that area. You can access both the maximal size and the portion that was required for typestting through the <i>Text</i> object's <i>frame</i> and <i>bounds</i> properties respectively.</p>
 
-    <p>Both of these properties return a <a href="../ref/Misc.html#Region">Region</a> object specifying the origin and size of the rectangle being measured. You can access a <i>Region</i>'s <i>x</i>, <i>y</i>, <i>w</i>, and <i>h</i> properties to perform additional layout calculations or pass it to one of the primitive drawing commands directly:</p>
+    <p>Both of these properties return a <a href="../ref/Transform.html#Region">Region</a> object specifying the origin and size of the rectangle being measured. You can access a <i>Region</i>'s <i>x</i>, <i>y</i>, <i>w</i>, and <i>h</i> properties to perform additional layout calculations or pass it to one of the primitive drawing commands directly:</p>
 
     <div class="example">
       <span><img class="border" src="../etc/tut/typography-layout-bounds.png"/></span>
