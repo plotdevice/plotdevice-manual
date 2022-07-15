@@ -464,7 +464,7 @@ footer ul.chapter li.prev{float:left; }
 }
 
 .article.ref aside a.type{
-  font:16px/20px "Courier Prime";
+  font:15px/20px "Courier Prime";
 }
 
 .article.ref aside a.compat{
@@ -720,6 +720,10 @@ div.media{
   .article a[name]{ top: -44px; }
   .article.ref aside .groups{ top: 44px; }
   .article.ref h2{ font-size:19px; }
+  .article.ref aside menu li a.type{
+    font-size: 16px;
+  }
+
 }
 
 @media (max-width: 840px){
@@ -746,7 +750,12 @@ div.media{
   }
 
   .article.ref aside section{
+    border-top: 1px dotted #999;
     display: flex;
+  }
+
+  .article.ref aside section:first-child{
+    border: 0;
   }
 
   .article.ref aside h3{
