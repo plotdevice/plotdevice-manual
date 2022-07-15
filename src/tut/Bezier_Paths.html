@@ -382,13 +382,13 @@ bezier(compound, fill=None, stroke=0)
       <p>It’s easy enough to draw transformed and colored copies of the compound path, but what if
       we want to <b>rotate and scale the individual shapes</b> before flattening them? We can use
       the <a href="../ref/Transform.html#Transform">Transform</a> object for this purpose.</p>
-<pre># We construct our indivual shape in the top-left corner.
+<pre># We construct our individual shape in the top-left corner.
 # This is where corner-mode transforms originate.
 # We'll later on place the eventual compound path
 # where we want it with translate().
 path = rect(-10, 0, 20, 100, plot=False)
 
-# Let's chip away small piece of the rectangle:
+# Let's chip away a small piece of the rectangle:
 path = path.difference(rect(-15, 80, 20, 15, plot=False))
 
 # Create a rotation transform we'll repeatedly apply to a path
@@ -423,10 +423,7 @@ bezier(compound)
       <div class="def-box">
         <pre class="manual">path.<span class="red">fit</span>(x=<span class="bp">None</span>, y=<span class="bp">None</span>, width=<span class="bp">None</span>, height=<span class="bp">None</span>, stretch=<span class="bp">False</span>)</pre>
         <p>Modifies the path to fit within the specified constraints.</p>
-      </p></div>
-
-<pre>
-</pre>
+      </div>
 
       <p>All of the parameters are optional so you can define any combination of them:</p>
       <ul>
